@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3y-4D-5m7">
-                                <rect key="frame" x="-180" y="0.0" width="180" height="778"/>
+                                <rect key="frame" x="-180" y="88" width="180" height="690"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C9k-lu-b8Y">
                                         <rect key="frame" x="16" y="15" width="156" height="30"/>
@@ -70,10 +70,11 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" red="0.0" green="0.45690896932346869" blue="0.94745790155440412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.0" green="0.091817112587068928" blue="0.19039426813471505" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="J3y-4D-5m7" firstAttribute="bottom" secondItem="8c9-Ww-m5d" secondAttribute="bottom" id="KGU-ix-n0t"/>
-                            <constraint firstItem="J3y-4D-5m7" firstAttribute="top" secondItem="8c9-Ww-m5d" secondAttribute="top" constant="-88" id="X7J-TM-BCR"/>
+                            <constraint firstItem="J3y-4D-5m7" firstAttribute="top" secondItem="8c9-Ww-m5d" secondAttribute="top" id="X7J-TM-BCR"/>
                             <constraint firstItem="J3y-4D-5m7" firstAttribute="leading" secondItem="8c9-Ww-m5d" secondAttribute="leading" constant="-180" id="cM0-gA-6ly"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8c9-Ww-m5d"/>

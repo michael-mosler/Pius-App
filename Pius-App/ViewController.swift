@@ -19,6 +19,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set color of navigation bar.
+        self.navigationController?.navigationBar.barTintColor = UIColor.red;
+        
+        // Set menu shadow.
         self.menuView.layer.shadowOpacity = 1;
         self.menuView.layer.shadowRadius = 6;
     }
