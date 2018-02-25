@@ -10,16 +10,36 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var menuLeadingConstraint: NSLayoutConstraint!
+
+    @IBOutlet weak var menuView: UIView!
+
+    var menuIsOpen : Bool = false;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.menuView.layer.shadowOpacity = 1;
+        self.menuView.layer.shadowRadius = 6;
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+     }
+    
+    // Toggle sidebar menu visibility.
+    @IBAction func menuButtonAction(_ sender: Any) {
+        if (menuIsOpen) {
+            self.menuLeadingConstraint.constant = -180;
+        } else {
+            self.menuLeadingConstraint.constant = 0;
+        }
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+        })
+
+        self.menuIsOpen = !self.menuIsOpen;
     }
-
-
 }
 
