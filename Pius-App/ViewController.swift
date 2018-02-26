@@ -20,7 +20,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // Set color of navigation bar.
-        self.navigationController?.navigationBar.barTintColor = UIColor.red;
+        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.337, green:0.631, blue:0.824, alpha:1.0);
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white];
         
         // Set menu shadow.
         self.menuView.layer.shadowOpacity = 1;
