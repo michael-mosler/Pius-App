@@ -185,7 +185,7 @@
         <!--Einstellungen-->
         <scene sceneID="1ts-LO-NSL">
             <objects>
-                <viewController title="Einstellungen" id="Lk2-Qz-3KO" sceneMemberID="viewController">
+                <viewController title="Einstellungen" id="Lk2-Qz-3KO" customClass="EinstellungenViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U7H-Ju-EfE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -217,6 +217,10 @@
                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rkp-5u-rQE">
                                         <rect key="frame" x="199" y="53" width="160" height="50"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Lk2-Qz-3KO" id="vNa-EW-dtd"/>
+                                            <outlet property="delegate" destination="Lk2-Qz-3KO" id="Iwc-E9-uu2"/>
+                                        </connections>
                                     </pickerView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Klasse" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPL-8K-ac3">
                                         <rect key="frame" x="199" y="14" width="160" height="34"/>
@@ -240,6 +244,10 @@
                         <color key="backgroundColor" red="0.8759240284183909" green="0.8759240284183909" blue="0.8759240284183909" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="HEK-36-qmJ"/>
                     </view>
+                    <connections>
+                        <outlet property="classPickerView" destination="rkp-5u-rQE" id="6Qu-TQ-K2W"/>
+                        <outlet property="gradePicker" destination="XO8-MV-Wfl" id="nbR-ma-XSS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BAD-sn-0D0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

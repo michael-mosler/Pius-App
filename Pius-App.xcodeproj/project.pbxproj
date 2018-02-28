@@ -13,6 +13,7 @@
 		4C7C22972043117800ACA17B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C22962043117800ACA17B /* Assets.xcassets */; };
 		4C7C229A2043117800ACA17B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C22982043117800ACA17B /* LaunchScreen.storyboard */; };
 		4C7C22A52043117800ACA17B /* Pius_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C22A42043117800ACA17B /* Pius_AppUITests.swift */; };
+		4CED4A7D204749580012CB45 /* EinstellungenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		4C7C22A02043117800ACA17B /* Pius-AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pius-AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7C22A42043117800ACA17B /* Pius_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pius_AppUITests.swift; sourceTree = "<group>"; };
 		4C7C22A62043117800ACA17B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EinstellungenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				4C7C22962043117800ACA17B /* Assets.xcassets */,
 				4C7C22982043117800ACA17B /* LaunchScreen.storyboard */,
 				4C7C229B2043117800ACA17B /* Info.plist */,
+				4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */,
 			);
 			path = "Pius-App";
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 			files = (
 				4C7C22922043117800ACA17B /* ViewController.swift in Sources */,
 				4C7C22902043117800ACA17B /* AppDelegate.swift in Sources */,
+				4CED4A7D204749580012CB45 /* EinstellungenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
