@@ -10,10 +10,13 @@ import UIKit
 
 class EinstellungenViewController: UIViewController, UIPickerViewDataSource,UIPickerViewDelegate {
     
-    @IBOutlet weak var gradePicker: UIPickerView!
+    @IBOutlet weak var gradePickerView: UIPickerView!
     @IBOutlet weak var classPickerView: UIPickerView!
     
-    let grades = ["Klasse 5", "Klasse 6", "Klasse 7", "Klasse 8", "Klasse 9", "EF", "Q1", "Q2"];
+    let userDefaults = UserDefaults.standard;
+    
+    let grades = ["keine", "Klasse 5", "Klasse 6", "Klasse 7", "Klasse 8", "Klasse 9", "EF", "Q1", "Q2"];
+    
     let classes = ["keine", "a", "b", "c", "d", "e"];
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -21,28 +24,40 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource,UIPi
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if (pickerView == gradePicker) {
+        if (pickerView == gradePickerView) {
             return grades[row];
         }
         return classes[row];
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if (pickerView == gradePicker) {
+        if (pickerView == gradePickerView) {
             return grades.count;
         }
         return classes.count;
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if (pickerView == gradePickerView) {
+            userDefaults.set(row, forKey: "selectedGradeRow");
+        } else {
+            userDefaults.set(row, forKey: "selectedClassRow");
+        }
+    }
+
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        super.viewDidLoad();
+
+        var row : Int;
+        row = userDefaults.integer(forKey: "selectedGradeRow");
+        gradePickerView.selectRow(row, inComponent: 0, animated: false)
+
+        row = userDefaults.integer(forKey: "selectedClassRow");
+        classPickerView.selectRow(row, inComponent: 0, animated: false);
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     /*

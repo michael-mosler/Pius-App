@@ -194,7 +194,7 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="83"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Für die Dashboard-Funktion gib hier bitte Deine Jahrgangsstufe ein. Wenn Du möchtest kannst Du zusätzlich Deine Klasse angeben.">
+                                    <fragment content="Gib hier bitte für die Dashboard-Funktion Deine Jahrgangsstufe ein. Wenn Du möchtest kannst Du zusätzlich Deine Klasse angeben.">
                                         <attributes>
                                             <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" firstLineHeadIndent="5" headIndent="5" tighteningFactorForTruncation="0.0"/>
@@ -246,7 +246,7 @@
                     </view>
                     <connections>
                         <outlet property="classPickerView" destination="rkp-5u-rQE" id="6Qu-TQ-K2W"/>
-                        <outlet property="gradePicker" destination="XO8-MV-Wfl" id="nbR-ma-XSS"/>
+                        <outlet property="gradePickerView" destination="XO8-MV-Wfl" id="nbR-ma-XSS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BAD-sn-0D0" userLabel="First Responder" sceneMemberID="firstResponder"/>
