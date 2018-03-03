@@ -1,0 +1,36 @@
+
+/* Class = "UIButton"; normalTitle = "Vertretungsplan"; ObjectID = "C9k-lu-b8Y"; */
+"C9k-lu-b8Y.normalTitle" = "Vertretungsplan";
+
+/* Class = "UIViewController"; title = "Dashboard"; ObjectID = "DDz-ev-eNt"; */
+"DDz-ev-eNt.title" = "Dashboard";
+
+/* Class = "UIViewController"; title = "Einstellungen"; ObjectID = "Lk2-Qz-3KO"; */
+"Lk2-Qz-3KO.title" = "Einstellungen";
+
+/* Class = "UINavigationController"; title = "Home"; ObjectID = "PW6-oT-rOQ"; */
+"PW6-oT-rOQ.title" = "Home";
+
+/* Class = "UILabel"; text = "Jahrgangsstufe"; ObjectID = "Svf-AG-vcg"; */
+"Svf-AG-vcg.text" = "Jahrgangsstufe";
+
+/* Class = "UIButton"; normalTitle = "Dashboard"; ObjectID = "ZNP-XJ-bKz"; */
+"ZNP-XJ-bKz.normalTitle" = "Dashboard";
+
+/* Class = "UIButton"; normalTitle = "Termine"; ObjectID = "dSx-qi-Qjs"; */
+"dSx-qi-Qjs.normalTitle" = "Termine";
+
+/* Class = "UIViewController"; title = "Termine"; ObjectID = "h6z-rf-o6s"; */
+"h6z-rf-o6s.title" = "Termine";
+
+/* Class = "UILabel"; text = "Klasse"; ObjectID = "hPL-8K-ac3"; */
+"hPL-8K-ac3.text" = "Klasse";
+
+/* Class = "UIButton"; normalTitle = "Einstellungen"; ObjectID = "lbL-ur-1Cz"; */
+"lbL-ur-1Cz.normalTitle" = "Einstellungen";
+
+/* Class = "UIButton"; normalTitle = "Zur Webseite"; ObjectID = "ldL-2s-b65"; */
+"ldL-2s-b65.normalTitle" = "Zur Webseite";
+
+/* Class = "UIViewController"; title = "Vertretungsplan"; ObjectID = "rcS-2s-zrV"; */
+"rcS-2s-zrV.title" = "Vertretungsplan";
