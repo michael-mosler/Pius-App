@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import WebKit
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var menuLeadingConstraint: NSLayoutConstraint!
-
     @IBOutlet weak var menuView: UIView!
-
+    @IBOutlet weak var webView: WKWebView!
+    
+    // Indicates if sidebar menu is open or closed.
     var menuIsOpen : Bool = false;
     
     // Add Pius logo as navigation bar title on initial view.
@@ -34,6 +36,14 @@ class ViewController: UIViewController {
         navigationItem.titleView = imageView;
     }
     
+    private func loadWebView() {
+        // Pius Gymnasium Home Page will be shown on landing page.
+        let baseUrl = URL(string: "http://www.pius-gymnasium.de");
+        
+        let homePageRequest = URLRequest(url: baseUrl!);
+        webView.load(homePageRequest);
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,6 +56,9 @@ class ViewController: UIViewController {
         // Set menu shadow.
         self.menuView.layer.shadowOpacity = 1;
         self.menuView.layer.shadowRadius = 6;
+        
+        // Load web view on initial view.
+        self.loadWebView();
     }
 
     override func didReceiveMemoryWarning() {

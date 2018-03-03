@@ -61,12 +61,27 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource,UIPi
             let webSiteUserName = self.webSiteUserNameField.text!;
             let webSitePassword = self.webSitePasswordField.text!;
             
-            let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: webSiteUserName, accessGroup: KeychainConfiguration.accessGroup);
-            
+            let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "PiusApp", accessGroup: KeychainConfiguration.accessGroup);
             try passwordItem.savePassword(webSitePassword);
+
+            userDefaults.set(webSiteUserName, forKey: "webSiteUserName");
         }
         catch {
             fatalError("Die Anmeldedaten konnte nicht gespeichert werden - \(error)");
+        }
+    }
+
+    private func showCredentials() {
+        do {
+            guard let webSiteUserName = userDefaults.string(forKey: "webSiteUserName"), !webSiteUserName.isEmpty else { return };
+
+            webSiteUserNameField.text = webSiteUserName;
+            
+            let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "PiusApp", accessGroup: KeychainConfiguration.accessGroup);
+            try webSitePasswordField.text = passwordItem.readPassword();
+        }
+        catch {
+            fatalError("Die Anmeldedaten konnte nicht geladen werden - \(error)");
         }
     }
 
@@ -80,7 +95,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource,UIPi
         row = userDefaults.integer(forKey: "selectedClassRow");
         classPickerView.selectRow(row, inComponent: 0, animated: false);
         
-        
+        self.showCredentials();
     }
     
     override func didReceiveMemoryWarning() {
