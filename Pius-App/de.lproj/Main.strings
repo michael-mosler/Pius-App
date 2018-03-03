@@ -20,6 +20,9 @@
 /* Class = "UIButton"; normalTitle = "Termine"; ObjectID = "dSx-qi-Qjs"; */
 "dSx-qi-Qjs.normalTitle" = "Termine";
 
+/* Class = "UILabel"; text = "Benutzername"; ObjectID = "gPg-Ie-0E5"; */
+"gPg-Ie-0E5.text" = "Benutzername";
+
 /* Class = "UIViewController"; title = "Termine"; ObjectID = "h6z-rf-o6s"; */
 "h6z-rf-o6s.title" = "Termine";
 
@@ -31,6 +34,12 @@
 
 /* Class = "UIButton"; normalTitle = "Zur Webseite"; ObjectID = "ldL-2s-b65"; */
 "ldL-2s-b65.normalTitle" = "Zur Webseite";
+
+/* Class = "UITextField"; text = "Benutzername"; ObjectID = "pKS-PV-0Gi"; */
+"pKS-PV-0Gi.text" = "Benutzername";
+
+/* Class = "UILabel"; text = "Passwort"; ObjectID = "rAM-CY-Va0"; */
+"rAM-CY-Va0.text" = "Passwort";
 
 /* Class = "UIViewController"; title = "Vertretungsplan"; ObjectID = "rcS-2s-zrV"; */
 "rcS-2s-zrV.title" = "Vertretungsplan";

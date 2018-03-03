@@ -10,6 +10,12 @@ import UIKit
 
 class EinstellungenViewController: UIViewController, UIPickerViewDataSource,UIPickerViewDelegate {
     
+    @IBOutlet weak var webSiteUserNameField: UITextField!
+    @IBOutlet weak var webSitePasswordField: UITextField!
+    @IBAction func loginButton(_ sender: Any) {
+        self.saveCredentials();
+    }
+    
     @IBOutlet weak var gradePickerView: UIPickerView!
     @IBOutlet weak var classPickerView: UIPickerView!
     
@@ -19,10 +25,13 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource,UIPi
     
     let classes = ["keine", "a", "b", "c", "d", "e"];
     
+    // Return the number of components in picker view;
+    // Defaults to 1 in this case.
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1;
     }
     
+    // Return content for the named row and picker view.
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if (pickerView == gradePickerView) {
             return grades[row];
@@ -30,6 +39,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource,UIPi
         return classes[row];
     }
     
+    // Return the number if rows in the named picker view.
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if (pickerView == gradePickerView) {
             return grades.count;
@@ -37,11 +47,26 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource,UIPi
         return classes.count;
     }
     
+    // Store selected grade and class in user settings.
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (pickerView == gradePickerView) {
             userDefaults.set(row, forKey: "selectedGradeRow");
         } else {
             userDefaults.set(row, forKey: "selectedClassRow");
+        }
+    }
+
+    private func saveCredentials() {
+        do {
+            let webSiteUserName = self.webSiteUserNameField.text!;
+            let webSitePassword = self.webSitePasswordField.text!;
+            
+            let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: webSiteUserName, accessGroup: KeychainConfiguration.accessGroup);
+            
+            try passwordItem.savePassword(webSitePassword);
+        }
+        catch {
+            fatalError("Die Anmeldedaten konnte nicht gespeichert werden - \(error)");
         }
     }
 
@@ -54,6 +79,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource,UIPi
 
         row = userDefaults.integer(forKey: "selectedClassRow");
         classPickerView.selectRow(row, inComponent: 0, animated: false);
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
