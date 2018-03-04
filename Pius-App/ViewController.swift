@@ -38,8 +38,9 @@ class ViewController: UIViewController {
     
     private func loadWebView() {
         // Pius Gymnasium Home Page will be shown on landing page.
-        let baseUrl = URL(string: "http://www.pius-gymnasium.de");
-        
+        let baseUrl = URL(string: "https://pius-gateway.eu-de.mybluemix.net/news");
+        // let baseUrl = URL(string: "http://pius-gymnasium.de");
+
         let homePageRequest = URLRequest(url: baseUrl!);
         webView.load(homePageRequest);
     }
