@@ -39,10 +39,15 @@ class ViewController: UIViewController {
     private func loadWebView() {
         // Pius Gymnasium Home Page will be shown on landing page.
         let baseUrl = URL(string: "https://pius-gateway.eu-de.mybluemix.net/news");
-        // let baseUrl = URL(string: "http://pius-gymnasium.de");
 
         let homePageRequest = URLRequest(url: baseUrl!);
         webView.load(homePageRequest);
+    }
+    
+    // Refresh WebView.
+    @objc func refreshWebView(_ sender: UIRefreshControl) {
+        webView.reload();
+        sender.endRefreshing()
     }
 
     override func viewDidLoad() {
@@ -57,6 +62,11 @@ class ViewController: UIViewController {
         // Set menu shadow.
         self.menuView.layer.shadowOpacity = 1;
         self.menuView.layer.shadowRadius = 6;
+        
+        let refreshControl = UIRefreshControl();
+        refreshControl.addTarget(self, action: #selector(refreshWebView(_:)), for: UIControlEvents.valueChanged);
+        
+        webView.scrollView.addSubview(refreshControl);
         
         // Load web view on initial view.
         self.loadWebView();
