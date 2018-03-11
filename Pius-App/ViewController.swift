@@ -63,9 +63,9 @@ class ViewController: UIViewController {
         self.menuView.layer.shadowOpacity = 1;
         self.menuView.layer.shadowRadius = 6;
         
+        // Enable refresh in WebKit View.
         let refreshControl = UIRefreshControl();
         refreshControl.addTarget(self, action: #selector(refreshWebView(_:)), for: UIControlEvents.valueChanged);
-        
         webView.scrollView.addSubview(refreshControl);
         
         // Load web view on initial view.
