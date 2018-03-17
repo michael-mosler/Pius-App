@@ -12,6 +12,8 @@
 		4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */; };
 		4C1FDE4E205567C8006092C9 /* Vetretungsplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4D205567C8006092C9 /* Vetretungsplan.swift */; };
 		4C1FDE50205568E3006092C9 /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4F205568E3006092C9 /* ExpandableHeaderView.swift */; };
+		4C1FDE54205C5072006092C9 /* VertretungsplanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE52205C5072006092C9 /* VertretungsplanDetailViewController.swift */; };
+		4C1FDE55205C5072006092C9 /* VertretungsplanDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C1FDE53205C5072006092C9 /* VertretungsplanDetailViewController.xib */; };
 		4C7C22902043117800ACA17B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C228F2043117700ACA17B /* AppDelegate.swift */; };
 		4C7C22922043117800ACA17B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C22912043117800ACA17B /* ViewController.swift */; };
 		4C7C22952043117800ACA17B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C22932043117800ACA17B /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 		4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanViewController.swift; sourceTree = "<group>"; };
 		4C1FDE4D205567C8006092C9 /* Vetretungsplan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vetretungsplan.swift; sourceTree = "<group>"; };
 		4C1FDE4F205568E3006092C9 /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
+		4C1FDE52205C5072006092C9 /* VertretungsplanDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanDetailViewController.swift; sourceTree = "<group>"; };
+		4C1FDE53205C5072006092C9 /* VertretungsplanDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VertretungsplanDetailViewController.xib; sourceTree = "<group>"; };
 		4C7C228C2043117700ACA17B /* Pius-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pius-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7C228F2043117700ACA17B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C7C22912043117800ACA17B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +96,15 @@
 			path = VetretungsplanData;
 			sourceTree = "<group>";
 		};
+		4C1FDE51205C4FEF006092C9 /* VertretungsplanDetailData */ = {
+			isa = PBXGroup;
+			children = (
+				4C1FDE52205C5072006092C9 /* VertretungsplanDetailViewController.swift */,
+				4C1FDE53205C5072006092C9 /* VertretungsplanDetailViewController.xib */,
+			);
+			path = VertretungsplanDetailData;
+			sourceTree = "<group>";
+		};
 		4C7C22832043117700ACA17B = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +128,7 @@
 		4C7C228E2043117700ACA17B /* Pius-App */ = {
 			isa = PBXGroup;
 			children = (
+				4C1FDE51205C4FEF006092C9 /* VertretungsplanDetailData */,
 				4C1FDE4C205567A6006092C9 /* VetretungsplanData */,
 				4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */,
 				4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */,
@@ -222,6 +236,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C1FDE55205C5072006092C9 /* VertretungsplanDetailViewController.xib in Resources */,
 				4C7C229A2043117800ACA17B /* LaunchScreen.storyboard in Resources */,
 				4C194B4E204B072B00BA744A /* Default-568h@2x.png in Resources */,
 				4C7C22972043117800ACA17B /* Assets.xcassets in Resources */,
@@ -243,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C1FDE54205C5072006092C9 /* VertretungsplanDetailViewController.swift in Sources */,
 				4CED4A85204AE3510012CB45 /* KeychainPasswordItem.swift in Sources */,
 				4C7C22922043117800ACA17B /* ViewController.swift in Sources */,
 				4C1FDE4E205567C8006092C9 /* Vetretungsplan.swift in Sources */,

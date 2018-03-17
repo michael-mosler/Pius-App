@@ -15,6 +15,7 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     @IBOutlet weak var tableView: UITableView!
     
     var data: [Vertretungsplan] = [];
+    var selected: IndexPath?;
 
     /*
         Vertretungsplan(date: "Freitag, 09.03.2018", grades: ["5B", "6C"], expanded: false),
@@ -30,7 +31,9 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
             if let data = data {
                 do {
                     // Convert the data to JSON
-                    let jsonSerialized = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+                    let jsonSerialized = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any];
+                    
+                    // Extract ticker text and date of last update. Then dispatch update of label text.
                     if let json = jsonSerialized, let tickerText = json["tickerText"], let lastUpdate = json["lastUpdate"] {
                         DispatchQueue.main.async {
                             self.currentDateLabel.text = lastUpdate as? String;
@@ -38,19 +41,43 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
                         }
                     }
                     
+                    // Extract date items...
                     if let json = jsonSerialized, let dateItems = json["dateItems"] as? [Any] {
-                        for dateItem in dateItems {
-                            let dictionary = dateItem as! [String: Any];
+                        // ... and iterate on all of them. This the top level of our Vertretungsplan.
+                        for _dateItem in dateItems {
+                            // Convert date item element to dictionary that is indexed by string.
+                            let dictionary = _dateItem as! [String: Any];
                             let date = dictionary["title"] as! String;
                             
-                            var grades: [String] = [];
-                            for gradeItem in dictionary["gradeItems"] as! [Any] {
-                                let dictionary = gradeItem as! [String: Any];
-                                let grade = dictionary["grade"] as! String;
-                                grades.append(grade);
+                            // Iterate on all grades for which a Vetretungsplan for the current date exists.
+                            var gradeItems: [GradeItem] = [];
+                            for _gradeItem in dictionary["gradeItems"] as! [Any] {
+                                // Convert grade item into dictionary that is indexed by string.
+                                let dictionary = _gradeItem as! [String: Any];
+                                var gradeItem = GradeItem(grade: dictionary["grade"] as! String);
+                                
+                                // Iterate on all details of a particular Vetretungsplan elements
+                                // which gives information on all lessons affected.
+                                for _vertretungsplanItem in dictionary["vertretungsplanItems"] as! [Any] {
+                                    // Convert vertretungsplan item into a dictionary indexed by string.
+                                    // This is the bottom level of our data structure. Each element is
+                                    // one of lesson, course, room, teacher (new and old) and an optional
+                                    // remark.
+                                    var detailItems: DetailItems = [];
+                                    let dictionary = _vertretungsplanItem as! [String: Any];
+                                    for detailItem in dictionary["detailItems"] as! [String] {
+                                        detailItems.append(detailItem);
+                                    }
+
+                                    gradeItem.vertretungsplanItems.append(detailItems);
+                                }
+                                
+                                // Done for the current grade.
+                                gradeItems.append(gradeItem);
                             }
 
-                            self.data.append(Vertretungsplan(date: date, grades: grades, expanded: false));
+                            // Done for the current date.
+                            self.data.append(Vertretungsplan(date: date, gradeItems: gradeItems, expanded: false));
                         }
                         
                         DispatchQueue.main.async {
@@ -73,17 +100,28 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
         self.getVertretungsplanFromWeb();
     }
 
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        self.selected = indexPath;
+        return indexPath;
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vertretungsplanDetailViewController = segue.destination as? VertretungsplanDetailViewController, let selected = self.selected {
+            vertretungsplanDetailViewController.gradeItem = data[selected.section].gradeItems[selected.row];
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return data.count;
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data[section].grades.count;
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return data[section].gradeItems.count;
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -110,7 +148,7 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!;
-        cell.textLabel?.text = data[indexPath.section].grades[indexPath.row];
+        cell.textLabel?.text = data[indexPath.section].gradeItems[indexPath.row].grade;
         return cell;
     }
     
@@ -118,7 +156,7 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
         data[section].expanded = !data[section].expanded;
         
         tableView.beginUpdates();
-        for i in 0 ..< data[section].grades.count {
+        for i in 0 ..< data[section].gradeItems.count {
             tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
         }
         tableView.endUpdates();

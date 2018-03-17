@@ -8,14 +8,26 @@
 
 import Foundation
 
+typealias DetailItems = [String];
+
+struct GradeItem {
+    var grade: String!
+    var vertretungsplanItems: [DetailItems]!
+    
+    init(grade: String!) {
+        self.grade = grade;
+        self.vertretungsplanItems = [];
+    }
+}
+
 struct Vertretungsplan {
     var date: String!
-    var grades: [String]!
+    var gradeItems: [GradeItem]!
     var expanded: Bool!
 
-    init(date: String!, grades: [String]!, expanded: Bool!) {
+    init(date: String!, gradeItems: [GradeItem]!, expanded: Bool!) {
         self.date = date;
-        self.grades = grades;
+        self.gradeItems = gradeItems;
         self.expanded = expanded;
     }
 }
