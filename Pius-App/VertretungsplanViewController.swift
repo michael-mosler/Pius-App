@@ -8,21 +8,20 @@
 
 import UIKit
 
-class VertretungsplanViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ExpandableHeaderViewDelegate {
+class VertretungsplanViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, ExpandableHeaderViewDelegate {
 
+    @IBOutlet weak var tickerTextScrollView: UIScrollView!
+    @IBOutlet weak var additionalTextScrollView: UIScrollView!
+    @IBOutlet weak var tickerTextPageControl: UIPageControl!
+    
     @IBOutlet weak var currentDateLabel: UILabel!
     @IBOutlet weak var tickerTextLabel: UILabel!
+    @IBOutlet weak var additionalTextLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     var data: [Vertretungsplan] = [];
     var selected: IndexPath?;
 
-    /*
-        Vertretungsplan(date: "Freitag, 09.03.2018", grades: ["5B", "6C"], expanded: false),
-        Vertretungsplan(date: "Montag, 12.03.2018", grades: ["7A", "8C"], expanded: false)
-    ];
-    */
-    
     private func getVertretungsplanFromWeb() {
         let baseUrl = URL(string: "https://pius-gateway.eu-de.mybluemix.net/vertretungsplan");
         
@@ -38,6 +37,16 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
                         DispatchQueue.main.async {
                             self.currentDateLabel.text = lastUpdate as? String;
                             self.tickerTextLabel.text = StringHelper.replaceHtmlEntities(input:  tickerText as? String);
+                            self.tickerTextScrollView.contentSize = CGSize(width: 343, height: 70);
+                        }
+                    }
+                    
+                    if let json = jsonSerialized, let additionalText = json["_additionalText"] {
+                        DispatchQueue.main.async {
+                            self.additionalTextLabel.text = StringHelper.replaceHtmlEntities(input: additionalText as? String);
+                            // self.additionalTextLabel.height
+                            self.tickerTextScrollView.contentSize = CGSize(width: 686, height: 70);
+                            self.additionalTextScrollView.contentSize = CGSize(width: 343, height: 140);
                         }
                     }
                     
@@ -97,9 +106,14 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
 
     override func viewDidLoad() {
         super.viewDidLoad();
+        self.tickerTextScrollView.delegate = self;
         self.getVertretungsplanFromWeb();
     }
 
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        tickerTextPageControl.currentPage = Int(scrollView.contentOffset.x / CGFloat(343));
+    }
+    
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         self.selected = indexPath;
         return indexPath;
