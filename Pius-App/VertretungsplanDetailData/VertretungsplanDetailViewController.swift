@@ -12,14 +12,17 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
 
     @IBOutlet weak var detailsTableView: UITableView!
     @IBOutlet weak var detaileCollectionView: UICollectionView!
+    @IBOutlet weak var dateLabel: UILabel!
     
     var gradeItem: GradeItem?;
+    var date: String?;
     var index: Int?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = gradeItem!.grade;
+        title = gradeItem!.grade;
+        dateLabel.text = date;
 
         detailsTableView.delegate = self;
         detailsTableView.dataSource = self;
@@ -40,7 +43,7 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
             index = indexPath.row / 2;
 
             cell = detailsTableView.dequeueReusableCell(withIdentifier: "course");
-            cell?.textLabel?.text = "Fach/Kurs: " + (gradeItem?.vertretungsplanItems[index!][2])!;
+            cell?.textLabel?.text = "Fach/Kurs: " + StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[index!][2]);
             cell?.textLabel?.text! += ", ";
             cell?.textLabel?.text! += (gradeItem?.vertretungsplanItems[index!][0])!;
             cell?.textLabel?.text! += " Stunde";
@@ -54,29 +57,49 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4;
+        return 3;
     }
     
+    func getTeacherText(oldTeacher: String?, newTeacher: String?) -> NSAttributedString {
+        guard let oldTeacher = oldTeacher, let newTeacher = newTeacher else { return NSMutableAttributedString()  }
+
+        let textRange = NSMakeRange(0, oldTeacher.count);
+        let attributedText = NSMutableAttributedString(string: oldTeacher + " → " + newTeacher);
+        attributedText.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: textRange);
+        return attributedText;
+        
+    }
+
+    func getRoomText(room: String?) -> NSAttributedString {
+        guard let room = room, room != "" else { return NSAttributedString(string: "") }
+
+        let attributedText = NSMutableAttributedString(string: room);
+
+        let index = room.index(of: "→");
+        if (index != nil) {
+            let length = room.distance(from: room.startIndex, to: room.index(before: index!));
+            let strikeThroughRange = NSMakeRange(0, length);
+            attributedText.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: strikeThroughRange);
+        }
+        
+        return attributedText;
+    }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "detail", for: indexPath) as! DetailCollectionViewCell;
         
-        var detailIndex: Int;
         switch indexPath.item {
         case 0:
-            detailIndex = 1;
-            break;
+            // Type
+            cell.label.attributedText = NSAttributedString(string: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[index!][1]));
         case 1:
-            detailIndex = 3;
-            break;
-        case 2:
-            detailIndex = 4;
-            break;
+            // Room
+            cell.label.attributedText = getRoomText(room: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[index!][3]));
         default:
-            detailIndex = 5;
-            break;
+            // Teachers
+            cell.label.attributedText = getTeacherText(oldTeacher: (gradeItem?.vertretungsplanItems[index!][5]), newTeacher: gradeItem?.vertretungsplanItems[index!][4])
         }
 
-        cell.label.text = gradeItem?.vertretungsplanItems[index!][detailIndex];
         return cell;
     }
 

@@ -37,7 +37,7 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
                     if let json = jsonSerialized, let tickerText = json["tickerText"], let lastUpdate = json["lastUpdate"] {
                         DispatchQueue.main.async {
                             self.currentDateLabel.text = lastUpdate as? String;
-                            self.tickerTextLabel.text = tickerText as? String;
+                            self.tickerTextLabel.text = StringHelper.replaceHtmlEntities(input:  tickerText as? String);
                         }
                     }
                     
@@ -108,6 +108,7 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vertretungsplanDetailViewController = segue.destination as? VertretungsplanDetailViewController, let selected = self.selected {
             vertretungsplanDetailViewController.gradeItem = data[selected.section].gradeItems[selected.row];
+            vertretungsplanDetailViewController.date = data[selected.section].date;
         }
     }
     
