@@ -11,7 +11,6 @@ import UIKit
 class VertretungsplanDetailViewController: UIViewController, UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var detailsTableView: UITableView!
-    @IBOutlet weak var detaileCollectionView: UICollectionView!
     @IBOutlet weak var dateLabel: UILabel!
     
     var gradeItem: GradeItem?;
