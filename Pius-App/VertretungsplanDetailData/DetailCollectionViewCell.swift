@@ -9,6 +9,6 @@
 import UIKit
 
 class DetailCollectionViewCell: UICollectionViewCell {
-    
+    // One element of a particular Vertretungsplan item. It's just to get the outlet.
     @IBOutlet weak var label: UILabel!
 }
