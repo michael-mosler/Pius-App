@@ -31,14 +31,14 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2 * (gradeItem?.vertretungsplanItems.count)!;
+        return 3 * (gradeItem?.vertretungsplanItems.count)!;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?;
-        let itemIndex: Int = indexPath.row / 2;
+        let itemIndex: Int = indexPath.row / 3;
 
-        if (indexPath.row % 2 == 0) {
+        if (indexPath.row % 3 == 0) {
             cell = detailsTableView.dequeueReusableCell(withIdentifier: "course");
             cell?.textLabel?.text = "Fach/Kurs: " + StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][2]);
             cell?.textLabel?.text! += ", ";
@@ -46,21 +46,42 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
             cell?.textLabel?.text! += " Stunde";
         }
 
-        if (indexPath.row % 2 == 1) {
+        if (indexPath.row % 3 == 1) {
             cell = detailsTableView.dequeueReusableCell(withIdentifier: "details");
             if (cell != nil) {
+                // This is the itemIndex this cell is know displaying.
                 (cell as! DetailsCellTableViewCell).itemIndex = itemIndex;
+
+                // Reload content for this cell when it had already been used.
                 (cell as! DetailsCellTableViewCell).collectionView?.reloadData();
             }
+        }
+
+        if (indexPath.row % 3 == 2) {
+            let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][6]);
+            cell = detailsTableView.dequeueReusableCell(withIdentifier: "comment");
+            cell?.textLabel?.text = text;
         }
 
         return cell!;
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3;
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height : CGFloat;
+        
+        if (indexPath.row % 3 == 0) {
+            height = 36;
+        } else if (indexPath.row % 3 == 2) {
+            let itemIndex: Int = indexPath.row / 3;
+            let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][6]);
+            height = (text == "") ? 0 : 30;
+        } else {
+            height = 30;
+        }
+        
+        return height;
     }
-    
+
     func getTeacherText(oldTeacher: String?, newTeacher: String?) -> NSAttributedString {
         guard let oldTeacher = oldTeacher, let newTeacher = newTeacher else { return NSMutableAttributedString()  }
 
@@ -86,6 +107,10 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
         return attributedText;
     }
 
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3;
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "detail", for: indexPath) as! DetailCollectionViewCell;
         
