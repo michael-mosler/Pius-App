@@ -13,6 +13,8 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
     @IBOutlet weak var detailsTableView: UITableView!
     @IBOutlet weak var dateLabel: UILabel!
     
+    let rowsPerItem = 5;
+    
     var gradeItem: GradeItem?;
     var date: String?;
     
@@ -31,52 +33,73 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3 * (gradeItem?.vertretungsplanItems.count)!;
+        return rowsPerItem * (gradeItem?.vertretungsplanItems.count)!;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?;
-        let itemIndex: Int = indexPath.row / 3;
+        let itemIndex: Int = indexPath.row / rowsPerItem;
 
-        if (indexPath.row % 3 == 0) {
+        switch indexPath.row % rowsPerItem {
+        case 0:
             cell = detailsTableView.dequeueReusableCell(withIdentifier: "course");
             cell?.textLabel?.text = "Fach/Kurs: " + StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][2]);
             cell?.textLabel?.text! += ", ";
             cell?.textLabel?.text! += (gradeItem?.vertretungsplanItems[itemIndex][0])!;
-            cell?.textLabel?.text! += " Stunde";
-        }
-
-        if (indexPath.row % 3 == 1) {
+        case 1:
             cell = detailsTableView.dequeueReusableCell(withIdentifier: "details");
             if (cell != nil) {
                 // This is the itemIndex this cell is know displaying.
                 (cell as! DetailsCellTableViewCell).itemIndex = itemIndex;
-
+                
                 // Reload content for this cell when it had already been used.
                 (cell as! DetailsCellTableViewCell).collectionView?.reloadData();
             }
-        }
-
-        if (indexPath.row % 3 == 2) {
+        case 2:
             let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][6]);
             cell = detailsTableView.dequeueReusableCell(withIdentifier: "comment");
             cell?.textLabel?.text = text;
+        case 3:
+            cell = detailsTableView.dequeueReusableCell(withIdentifier: "eva");
+            if (gradeItem?.vertretungsplanItems[itemIndex].count == 8) {
+                let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][7]);
+                cell?.textLabel?.text = text;
+            }
+        default:
+            cell = detailsTableView.dequeueReusableCell(withIdentifier: "spacer");
+            break;
         }
 
         return cell!;
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height : CGFloat;
         
-        if (indexPath.row % 3 == 0) {
+        switch indexPath.row % rowsPerItem {
+        case 0:
             height = 36;
-        } else if (indexPath.row % 3 == 2) {
-            let itemIndex: Int = indexPath.row / 3;
+        case 1:
+            height = 30;
+        case 2:
+            let itemIndex: Int = indexPath.row / rowsPerItem;
             let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][6]);
             height = (text == "") ? 0 : 30;
-        } else {
-            height = 30;
+        case 3:
+            let itemIndex: Int = indexPath.row / rowsPerItem;
+            if ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) {
+                height = 0;
+            } else {
+                height = UITableViewAutomaticDimension;
+            }
+        default:
+            // Spacer is shown only if there is a EVA text.
+            let itemIndex: Int = indexPath.row / rowsPerItem;
+            if ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) {
+                height = 0;
+            } else {
+                height = 5;
+            }
         }
         
         return height;
