@@ -21,6 +21,7 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     
     var data: [Vertretungsplan] = [];
     var selected: IndexPath?;
+    var currentHeader: ExpandableHeaderView?;
 
     private func getVertretungsplanFromWeb() {
         let baseUrl = URL(string: "https://pius-gateway.eu-de.mybluemix.net/vertretungsplan");
@@ -115,7 +116,7 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        self.selected = indexPath;
+        selected = indexPath;
         return indexPath;
     }
 
@@ -168,6 +169,21 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func toggleSection(header: ExpandableHeaderView, section: Int) {
+        // If another than the current section is selected hide the current
+        // section.
+        if (currentHeader != nil && currentHeader != header) {
+            let currentSection = currentHeader!.section!;
+            data[currentSection].expanded = false;
+            
+            tableView.beginUpdates();
+            for i in 0 ..< data[currentSection].gradeItems.count {
+                tableView.reloadRows(at: [IndexPath(row: i, section: currentSection)], with: .automatic)
+            }
+            tableView.endUpdates();
+        }
+
+        // Expand/collapse the selected header depending on it's current state.
+        currentHeader = header;
         data[section].expanded = !data[section].expanded;
         
         tableView.beginUpdates();
