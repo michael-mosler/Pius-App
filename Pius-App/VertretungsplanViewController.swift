@@ -168,6 +168,8 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
         return cell;
     }
     
+    // Toggles section headers. If a new header is expanded the previous one when different
+    // from the current one is collapsed.
     func toggleSection(header: ExpandableHeaderView, section: Int) {
         // If another than the current section is selected hide the current
         // section.

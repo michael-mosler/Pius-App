@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" customUserAgent="" translatesAutoresizingMaskIntoConstraints="NO" id="QbP-Vw-84G">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <rect key="frame" x="5" y="88" width="370" height="690"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <dataDetectorTypes key="dataDetectorTypes" none="YES"/>
@@ -128,7 +128,7 @@
                             <constraint firstItem="QbP-Vw-84G" firstAttribute="top" secondItem="8c9-Ww-m5d" secondAttribute="top" id="Nn5-4h-A71"/>
                             <constraint firstItem="J3y-4D-5m7" firstAttribute="top" secondItem="8c9-Ww-m5d" secondAttribute="top" id="X7J-TM-BCR"/>
                             <constraint firstItem="J3y-4D-5m7" firstAttribute="leading" secondItem="8c9-Ww-m5d" secondAttribute="leading" constant="-180" id="cM0-gA-6ly"/>
-                            <constraint firstItem="QbP-Vw-84G" firstAttribute="leading" secondItem="8c9-Ww-m5d" secondAttribute="leading" id="wKt-Az-Dcx"/>
+                            <constraint firstItem="QbP-Vw-84G" firstAttribute="leading" secondItem="8c9-Ww-m5d" secondAttribute="leading" constant="5" id="wKt-Az-Dcx"/>
                             <constraint firstItem="QbP-Vw-84G" firstAttribute="bottom" secondItem="8c9-Ww-m5d" secondAttribute="bottom" id="xl0-lB-Khb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8c9-Ww-m5d"/>
