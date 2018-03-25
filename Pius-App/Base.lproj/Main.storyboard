@@ -46,15 +46,18 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i4W-MD-FEZ">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vSj-JC-Lu2">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="690"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="724" id="dz2-UN-SiN"/>
+                                </constraints>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J3y-4D-5m7">
-                                <rect key="frame" x="0.0" y="88" width="180" height="690"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3y-4D-5m7">
+                                <rect key="frame" x="-180" y="88" width="180" height="724"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C9k-lu-b8Y">
                                         <rect key="frame" x="16" y="15" width="156" height="30"/>
@@ -118,6 +121,7 @@
                                     <constraint firstItem="lbL-ur-1Cz" firstAttribute="leading" secondItem="J3y-4D-5m7" secondAttribute="leading" constant="16" id="Nh5-gK-4Ck"/>
                                     <constraint firstItem="lbL-ur-1Cz" firstAttribute="top" secondItem="ldL-2s-b65" secondAttribute="bottom" constant="8" id="bLl-g2-B5V"/>
                                     <constraint firstItem="C9k-lu-b8Y" firstAttribute="leading" secondItem="J3y-4D-5m7" secondAttribute="leading" constant="16" id="dNj-Xy-KUl"/>
+                                    <constraint firstAttribute="height" constant="724" id="f3O-yF-mjS"/>
                                     <constraint firstItem="dSx-qi-Qjs" firstAttribute="top" secondItem="ZNP-XJ-bKz" secondAttribute="bottom" constant="8" id="gOp-eG-zL7"/>
                                     <constraint firstAttribute="trailing" secondItem="ZNP-XJ-bKz" secondAttribute="trailing" constant="8" id="hqR-rW-AIe"/>
                                     <constraint firstItem="ZNP-XJ-bKz" firstAttribute="top" secondItem="C9k-lu-b8Y" secondAttribute="bottom" constant="8" id="rBk-2F-uTh"/>
@@ -135,12 +139,10 @@
                         <constraints>
                             <constraint firstItem="QbP-Vw-84G" firstAttribute="trailing" secondItem="8c9-Ww-m5d" secondAttribute="trailing" id="DYc-fy-Pgo"/>
                             <constraint firstItem="i4W-MD-FEZ" firstAttribute="leading" secondItem="8c9-Ww-m5d" secondAttribute="leading" id="IvL-VO-SL6"/>
-                            <constraint firstItem="J3y-4D-5m7" firstAttribute="bottom" secondItem="8c9-Ww-m5d" secondAttribute="bottom" id="KGU-ix-n0t"/>
                             <constraint firstItem="i4W-MD-FEZ" firstAttribute="top" secondItem="8c9-Ww-m5d" secondAttribute="top" id="NLu-Xa-XMo"/>
                             <constraint firstItem="8c9-Ww-m5d" firstAttribute="bottom" secondItem="QbP-Vw-84G" secondAttribute="bottom" id="QM6-sh-xua"/>
                             <constraint firstItem="J3y-4D-5m7" firstAttribute="top" secondItem="8c9-Ww-m5d" secondAttribute="top" id="X7J-TM-BCR"/>
                             <constraint firstItem="J3y-4D-5m7" firstAttribute="leading" secondItem="8c9-Ww-m5d" secondAttribute="leading" constant="-180" id="cM0-gA-6ly"/>
-                            <constraint firstItem="8c9-Ww-m5d" firstAttribute="bottom" secondItem="i4W-MD-FEZ" secondAttribute="bottom" id="h2b-NR-eez"/>
                             <constraint firstItem="8c9-Ww-m5d" firstAttribute="trailing" secondItem="i4W-MD-FEZ" secondAttribute="trailing" id="kKD-6A-RQF"/>
                             <constraint firstItem="QbP-Vw-84G" firstAttribute="top" secondItem="04M-lU-aWV" secondAttribute="top" id="otX-fR-06P"/>
                             <constraint firstItem="QbP-Vw-84G" firstAttribute="leading" secondItem="8c9-Ww-m5d" secondAttribute="leading" id="tw3-3S-3Mg"/>
