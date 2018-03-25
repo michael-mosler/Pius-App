@@ -10,6 +10,8 @@ import UIKit
 
 class VertretungsplanViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, ExpandableHeaderViewDelegate {
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tickerTextScrollView: UIScrollView!
     @IBOutlet weak var additionalTextScrollView: UIScrollView!
     @IBOutlet weak var tickerTextPageControl: UIPageControl!
@@ -25,6 +27,11 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
 
     private func getVertretungsplanFromWeb() {
         let baseUrl = URL(string: "https://pius-gateway.eu-de.mybluemix.net/vertretungsplan");
+        
+        // Clear all data.
+        data = [];
+        currentHeader = nil;
+        selected = nil;
         
         let task = URLSession.shared.dataTask(with: baseUrl!) {
             (data, response, error) in
@@ -92,6 +99,7 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
                         
                         DispatchQueue.main.async {
                             self.tableView.reloadData();
+                            self.activityIndicator.stopAnimating();
                         }
                     }
                 }  catch let error as NSError {
@@ -105,10 +113,19 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
         task.resume();
     }
 
+    @objc func refreshScrollView(_ sender: UIRefreshControl) {
+        getVertretungsplanFromWeb();
+        sender.endRefreshing()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad();
         self.tickerTextScrollView.delegate = self;
         self.getVertretungsplanFromWeb();
+        
+        let refreshControl = UIRefreshControl();
+        refreshControl.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControlEvents.valueChanged);
+        scrollView.addSubview(refreshControl);
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
