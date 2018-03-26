@@ -33,14 +33,12 @@ struct VertretungsplanForDate {
 }
 
 struct Vertretungsplan {
-    var tickerText: String?
-    var additionalText: String?
-    var lastUpdate: String!
-    var vertretungsplaene: [VertretungsplanForDate]
+    var tickerText: String? = nil;
+    var additionalText: String? = nil;
+    var lastUpdate: String! = ""
+    var vertretungsplaene: [VertretungsplanForDate] = []
     
-    init(tickerText: String?, lastUpdate: String!) {
-        self.tickerText = tickerText;
-        self.lastUpdate = lastUpdate;
-        self.vertretungsplaene = [];
+    func hasAdditionalText() -> Bool {
+        return additionalText != nil && additionalText!.count > 0;
     }
 }

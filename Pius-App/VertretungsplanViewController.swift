@@ -9,7 +9,6 @@
 import UIKit
 
 class VertretungsplanViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, ExpandableHeaderViewDelegate {
-
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tickerTextScrollView: UIScrollView!
@@ -21,96 +20,40 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     @IBOutlet weak var additionalTextLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    var data: [Vertretungsplan] = [];
+    var data: [VertretungsplanForDate] = [];
     var selected: IndexPath?;
     var currentHeader: ExpandableHeaderView?;
 
+    func doUpdate(with vertretungsplan: Vertretungsplan) {
+        self.data = vertretungsplan.vertretungsplaene;
+        
+        DispatchQueue.main.async {
+            self.currentDateLabel.text = vertretungsplan.lastUpdate;
+            self.tickerTextLabel.text = vertretungsplan.tickerText;
+            self.tickerTextScrollView.contentSize = CGSize(width: 343, height: 70);
+            
+            if (vertretungsplan.hasAdditionalText()) {
+                self.additionalTextLabel.text = vertretungsplan.additionalText;
+                self.tickerTextScrollView.contentSize = CGSize(width: 686, height: 70);
+                self.additionalTextScrollView.contentSize = CGSize(width: 343, height: 140);
+                self.tickerTextPageControl.numberOfPages = 2;
+            } else {
+                self.tickerTextPageControl.numberOfPages = 1;
+            }
+            
+            self.tableView.reloadData();
+            self.activityIndicator.stopAnimating();
+        }
+    }
+    
     private func getVertretungsplanFromWeb() {
-        let baseUrl = URL(string: "https://pius-gateway.eu-de.mybluemix.net/vertretungsplan");
+        let vertretungsplanLoader = VertretungsplanLoader(forGrade: nil);
         
         // Clear all data.
-        data = [];
         currentHeader = nil;
         selected = nil;
         
-        let task = URLSession.shared.dataTask(with: baseUrl!) {
-            (data, response, error) in
-            if let data = data {
-                do {
-                    // Convert the data to JSON
-                    let jsonSerialized = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any];
-                    
-                    // Extract ticker text and date of last update. Then dispatch update of label text.
-                    if let json = jsonSerialized, let tickerText = json["tickerText"], let lastUpdate = json["lastUpdate"] {
-                        DispatchQueue.main.async {
-                            self.currentDateLabel.text = lastUpdate as? String;
-                            self.tickerTextLabel.text = StringHelper.replaceHtmlEntities(input:  tickerText as? String);
-                            self.tickerTextScrollView.contentSize = CGSize(width: 343, height: 70);
-                        }
-                    }
-                    
-                    if let json = jsonSerialized, let additionalText = json["_additionalText"] {
-                        DispatchQueue.main.async {
-                            self.additionalTextLabel.text = StringHelper.replaceHtmlEntities(input: additionalText as? String);
-                            // self.additionalTextLabel.height
-                            self.tickerTextScrollView.contentSize = CGSize(width: 686, height: 70);
-                            self.additionalTextScrollView.contentSize = CGSize(width: 343, height: 140);
-                        }
-                    }
-                    
-                    // Extract date items...
-                    if let json = jsonSerialized, let dateItems = json["dateItems"] as? [Any] {
-                        // ... and iterate on all of them. This the top level of our Vertretungsplan.
-                        for _dateItem in dateItems {
-                            // Convert date item element to dictionary that is indexed by string.
-                            let dictionary = _dateItem as! [String: Any];
-                            let date = dictionary["title"] as! String;
-                            
-                            // Iterate on all grades for which a Vetretungsplan for the current date exists.
-                            var gradeItems: [GradeItem] = [];
-                            for _gradeItem in dictionary["gradeItems"] as! [Any] {
-                                // Convert grade item into dictionary that is indexed by string.
-                                let dictionary = _gradeItem as! [String: Any];
-                                var gradeItem = GradeItem(grade: dictionary["grade"] as! String);
-                                
-                                // Iterate on all details of a particular Vetretungsplan elements
-                                // which gives information on all lessons affected.
-                                for _vertretungsplanItem in dictionary["vertretungsplanItems"] as! [Any] {
-                                    // Convert vertretungsplan item into a dictionary indexed by string.
-                                    // This is the bottom level of our data structure. Each element is
-                                    // one of lesson, course, room, teacher (new and old) and an optional
-                                    // remark.
-                                    var detailItems: DetailItems = [];
-                                    let dictionary = _vertretungsplanItem as! [String: Any];
-                                    for detailItem in dictionary["detailItems"] as! [String] {
-                                        detailItems.append(detailItem);
-                                    }
-
-                                    gradeItem.vertretungsplanItems.append(detailItems);
-                                }
-                                
-                                // Done for the current grade.
-                                gradeItems.append(gradeItem);
-                            }
-
-                            // Done for the current date.
-                            self.data.append(Vertretungsplan(date: date, gradeItems: gradeItems, expanded: false));
-                        }
-                        
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData();
-                            self.activityIndicator.stopAnimating();
-                        }
-                    }
-                }  catch let error as NSError {
-                    print(error.localizedDescription)
-                }
-            } else if let error = error {
-                print(error.localizedDescription)
-            }
-        }
-        
-        task.resume();
+        vertretungsplanLoader.load(self.doUpdate);        
     }
 
     @objc func refreshScrollView(_ sender: UIRefreshControl) {
