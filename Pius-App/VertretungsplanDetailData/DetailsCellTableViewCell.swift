@@ -12,6 +12,9 @@ class DetailsCellTableViewCell: UITableViewCell {
     // The itemIndex in Vertretungsplan items this cell is displaying.
     var itemIndex: Int?;
     
+    // The table section this cell is in.
+    var section: Int?;
+    
     // The collection view that is used to display details for this cell.
     var collectionView: UICollectionView?;
 }

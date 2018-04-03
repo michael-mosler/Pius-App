@@ -301,7 +301,7 @@
                                 <viewLayoutGuide key="safeArea" id="4tq-tL-HsR"/>
                             </scrollView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="K8j-4m-SnQ">
-                                <rect key="frame" x="157" y="376" width="60" height="60"/>
+                                <rect key="frame" x="177" y="396" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -311,10 +311,8 @@
                             <constraint firstItem="4O7-Yu-m31" firstAttribute="bottom" secondItem="epQ-m8-0Zd" secondAttribute="bottom" id="GKk-8L-rCr"/>
                             <constraint firstItem="4O7-Yu-m31" firstAttribute="centerX" secondItem="K8j-4m-SnQ" secondAttribute="centerX" id="LFK-GG-sIn"/>
                             <constraint firstAttribute="trailing" secondItem="4O7-Yu-m31" secondAttribute="trailing" id="WRM-dX-bTQ"/>
-                            <constraint firstItem="K8j-4m-SnQ" firstAttribute="top" secondItem="epQ-m8-0Zd" secondAttribute="top" constant="288" id="Xoz-pY-pCf"/>
                             <constraint firstItem="4O7-Yu-m31" firstAttribute="top" secondItem="epQ-m8-0Zd" secondAttribute="top" id="f55-iP-aaA"/>
                             <constraint firstItem="K8j-4m-SnQ" firstAttribute="centerY" secondItem="Wdi-Sb-xdJ" secondAttribute="centerY" id="kqS-UO-5Ev"/>
-                            <constraint firstItem="K8j-4m-SnQ" firstAttribute="leading" secondItem="epQ-m8-0Zd" secondAttribute="leading" constant="157" id="pOG-Xi-3Vp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="epQ-m8-0Zd"/>
                     </view>
@@ -611,11 +609,11 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="35.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" id="apk-oQ-EQQ">
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="apk-oQ-EQQ">
                                                             <rect key="frame" x="15" y="0.0" width="345" height="35.666666666666664"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -673,8 +671,8 @@
                                                                 </collectionViewCell>
                                                             </cells>
                                                             <connections>
-                                                                <outlet property="dataSource" destination="g3v-qQ-FfA" id="UbG-vF-ELA"/>
-                                                                <outlet property="delegate" destination="g3v-qQ-FfA" id="hdX-Md-b2V"/>
+                                                                <outlet property="dataSource" destination="DDz-ev-eNt" id="Xi3-H8-96U"/>
+                                                                <outlet property="delegate" destination="DDz-ev-eNt" id="lnl-Gk-x9J"/>
                                                             </connections>
                                                         </collectionView>
                                                     </subviews>
@@ -732,8 +730,8 @@
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>
-                                            <outlet property="dataSource" destination="rcS-2s-zrV" id="F3z-bt-7Yb"/>
-                                            <outlet property="delegate" destination="rcS-2s-zrV" id="7wb-Q5-94e"/>
+                                            <outlet property="dataSource" destination="DDz-ev-eNt" id="gzz-ey-svB"/>
+                                            <outlet property="delegate" destination="DDz-ev-eNt" id="6Wx-Cy-FK6"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
@@ -756,7 +754,7 @@
                                 <viewLayoutGuide key="safeArea" id="e0c-cF-QuO"/>
                             </scrollView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="GYe-dW-Ecb">
-                                <rect key="frame" x="157" y="376" width="60" height="60"/>
+                                <rect key="frame" x="177" y="396" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -765,9 +763,7 @@
                             <constraint firstItem="GYe-dW-Ecb" firstAttribute="centerY" secondItem="zx5-6D-QJ4" secondAttribute="centerY" id="8fL-WA-re6"/>
                             <constraint firstItem="DKR-VK-fq2" firstAttribute="leading" secondItem="zx5-6D-QJ4" secondAttribute="leading" id="LAS-OB-1bc"/>
                             <constraint firstItem="DKR-VK-fq2" firstAttribute="top" secondItem="dum-Pz-6aa" secondAttribute="top" id="MqS-3h-wg4"/>
-                            <constraint firstItem="GYe-dW-Ecb" firstAttribute="leading" secondItem="dum-Pz-6aa" secondAttribute="leading" constant="157" id="P18-2H-ODo"/>
                             <constraint firstAttribute="trailing" secondItem="DKR-VK-fq2" secondAttribute="trailing" id="aga-B8-7NA"/>
-                            <constraint firstItem="GYe-dW-Ecb" firstAttribute="top" secondItem="dum-Pz-6aa" secondAttribute="top" constant="288" id="fEK-vc-hnh"/>
                             <constraint firstItem="DKR-VK-fq2" firstAttribute="bottom" secondItem="dum-Pz-6aa" secondAttribute="bottom" id="nBW-ej-VOr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dum-Pz-6aa"/>

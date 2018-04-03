@@ -21,9 +21,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource,UIPi
     
     let userDefaults = UserDefaults.standard;
     
-    let grades = ["keine", "Klasse 5", "Klasse 6", "Klasse 7", "Klasse 8", "Klasse 9", "EF", "Q1", "Q2"];
-    
-    let classes = ["keine", "a", "b", "c", "d", "e"];
+    let config = Config();
     
     // Return the number of components in picker view;
     // Defaults to 1 in this case.
@@ -34,17 +32,17 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource,UIPi
     // Return content for the named row and picker view.
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if (pickerView == gradePickerView) {
-            return grades[row];
+            return config.getGradeNameForSetting(setting: row);
         }
-        return classes[row];
+        return config.getClassNameForSetting(setting: row);
     }
     
     // Return the number if rows in the named picker view.
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if (pickerView == gradePickerView) {
-            return grades.count;
+            return config.grades.count;
         }
-        return classes.count;
+        return config.classes.count;
     }
     
     // Store selected grade and class in user settings.

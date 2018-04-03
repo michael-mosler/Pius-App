@@ -10,15 +10,17 @@ import Foundation
 import UIKit;
 
 class VertretungsplanLoader {
-    var forGrade: String?
-    let baseUrl = URL(string: "https://pius-gateway.eu-de.mybluemix.net/vertretungsplan");
+    var forGrade: String?;
+    var url: URL?;
+    let baseUrl = "https://pius-gateway.eu-de.mybluemix.net/vertretungsplan";
 
     init(forGrade: String? = nil) {
         self.forGrade = forGrade;
+        self.url = URL(string: (forGrade == nil) ? self.baseUrl : self.baseUrl + "/?forGrade=" + forGrade!);
     }
     
     func load(_ update: @escaping (Vertretungsplan) -> Void) {
-        let task = URLSession.shared.dataTask(with: baseUrl!) {
+        let task = URLSession.shared.dataTask(with: url!) {
             (data, response, error) in
             if let data = data {
                 var vertretungsplan: Vertretungsplan = Vertretungsplan();
