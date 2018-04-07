@@ -30,16 +30,22 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
         delegate?.toggleSection(header: self, section: cell.section);
     }
     
-    func customInit(title: String, section: Int, delegate: ExpandableHeaderViewDelegate) {
+    func customInit(title: String, userInteractionEnabled: Bool = true, section: Int, delegate: ExpandableHeaderViewDelegate) {
         self.textLabel?.text = title;
         self.section = section;
         self.delegate = delegate;
+        self.isUserInteractionEnabled = userInteractionEnabled;
     }
     
     override func layoutSubviews() {
         super.layoutSubviews();
 
-        self.contentView.backgroundColor = UIColor.init(red: 0.337, green: 0.631, blue: 0.824, alpha: 1.0);
-        self.textLabel?.textColor = UIColor.white;
+        if (isUserInteractionEnabled) {
+            contentView.backgroundColor = UIColor.init(red: 0.337, green: 0.631, blue: 0.824, alpha: 1.0);
+        } else {
+            contentView.backgroundColor = UIColor.lightGray;
+
+        }
+        textLabel?.textColor = UIColor.white;
     }
 }

@@ -26,7 +26,10 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     var selected: IndexPath?;
     var currentHeader: ExpandableHeaderView?;
 
-    let rowsPerItem = 4;
+    // User defaults access.
+    let userDefaults = UserDefaults.standard;
+
+    let rowsPerItem = 6;
     
     func doUpdate(with vertretungsplan: Vertretungsplan) {
         self.data = vertretungsplan.vertretungsplaene;
@@ -51,7 +54,12 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     private func getVertretungsplanFromWeb() {
-        let vertretungsplanLoader = VertretungsplanLoader(forGrade: "7B");
+        let gradeSetting = userDefaults.integer(forKey: "selectedGradeRow");
+        let classSetting = userDefaults.integer(forKey: "selectedClassRow");
+        let config = Config();
+        
+        let forGrade = config.shortGrades[gradeSetting] + config.shortClasses[classSetting];
+        let vertretungsplanLoader = VertretungsplanLoader(forGrade: forGrade);
         
         // Clear all data.
         currentHeader = nil;
@@ -100,7 +108,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
             return 0;
         }
 
-        return 4 * data[section].gradeItems[0].vertretungsplanItems.count;
+        return rowsPerItem * data[section].gradeItems[0].vertretungsplanItems.count;
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -109,7 +117,38 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (data[indexPath.section].expanded) {
-            return 44;
+            var height : CGFloat;
+            let gradeItem: GradeItem? = data[indexPath.section].gradeItems[0];
+            
+            switch indexPath.row % rowsPerItem {
+            case 0:
+                height = 2;
+            case 1:
+                height = 36;
+            case 2:
+                height = 30;
+            case 3:
+                let itemIndex: Int = indexPath.row / rowsPerItem;
+                let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][6]);
+                height = (text == "") ? 0 : 30;
+            case 4:
+                let itemIndex: Int = indexPath.row / rowsPerItem;
+                if ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) {
+                    height = 0;
+                } else {
+                    height = UITableViewAutomaticDimension;
+                }
+            default:
+                // Spacer is shown only if there is a EVA text.
+                let itemIndex: Int = indexPath.row / rowsPerItem;
+                if ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) {
+                    height = 0;
+                } else {
+                    height = 5;
+                }
+            }
+            
+            return height;
         } else {
             return 0;
         }
@@ -121,22 +160,24 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = ExpandableHeaderView();
-        header.customInit(title: data[section].date, section: section, delegate: self);
+        header.customInit(title: data[section].date, userInteractionEnabled: (data[section].gradeItems.count != 0), section: section, delegate: self);
         return header;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?;
-        let itemIndex: Int = indexPath.row / 4;
+        let itemIndex: Int = indexPath.row / rowsPerItem;
         let gradeItem: GradeItem? = data[indexPath.section].gradeItems[0];
 
         switch indexPath.row % rowsPerItem {
         case 0:
+            cell = tableView.dequeueReusableCell(withIdentifier: "spacerTop");
+        case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "course")!;
             cell?.textLabel?.text = "Fach/Kurs: " + StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][2]);
             cell?.textLabel?.text! += ", ";
             cell?.textLabel?.text! += (gradeItem?.vertretungsplanItems[itemIndex][0])!;
-        case 1:
+        case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "details");
             if (cell != nil) {
                 // This is the itemIndex this cell is know displaying.
@@ -146,9 +187,18 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                 // Reload content for this cell when it had already been used.
                 (cell as! DetailsCellTableViewCell).collectionView?.reloadData();
             }
-
+        case 3:
+            let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][6]);
+            cell = tableView.dequeueReusableCell(withIdentifier: "comment");
+            cell?.textLabel?.text = text;
+        case 4:
+            cell = tableView.dequeueReusableCell(withIdentifier: "eva");
+            if (gradeItem?.vertretungsplanItems[itemIndex].count == 8) {
+                let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][7]);
+                cell?.textLabel?.text = text;
+            }
         default:
-            cell = tableView.dequeueReusableCell(withIdentifier: "comment")!;
+            cell = tableView.dequeueReusableCell(withIdentifier: "spacerBottom");
         }
 
         return cell!;

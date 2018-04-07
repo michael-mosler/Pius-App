@@ -10,8 +10,10 @@ import Foundation
 
 struct Config {
     let grades = ["keine", "Klasse 5", "Klasse 6", "Klasse 7", "Klasse 8", "Klasse 9", "EF", "Q1", "Q2"];
+    let shortGrades = ["", "5", "6", "7", "8", "9", "EF", "Q1", "Q2"]
     
     let classes = ["keine", "a", "b", "c", "d", "e"];
+    let shortClasses = ["", "A", "B", "C", "D", "E"];
 
     func getGradeNameForSetting(setting: Int) -> String {
         return grades[setting];

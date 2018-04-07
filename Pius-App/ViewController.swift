@@ -16,9 +16,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    @IBOutlet weak var dashboardItem: UIButton!
     
     // Indicates if sidebar menu is open or closed.
     var menuIsOpen : Bool = false;
+    
+    // User defaults access.
+    let userDefaults = UserDefaults.standard;
 
     // Whenever use tabs outside of our sidebar menu it gets hidden.
     @IBAction func tabAction(_ sender: Any) {
@@ -135,6 +139,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         })
 
         menuIsOpen = !menuIsOpen;
+        
+        // Dashboard item is disabled if no grade is configured.
+        dashboardItem.isEnabled = (userDefaults.integer(forKey: "selectedGradeRow") != 0);
         
         // When sidebar menu is open disable web view and blurbackground.
         webView.isUserInteractionEnabled = !menuIsOpen;
