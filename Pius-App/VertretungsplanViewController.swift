@@ -29,11 +29,11 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
         
         DispatchQueue.main.async {
             self.currentDateLabel.text = vertretungsplan.lastUpdate;
-            self.tickerTextLabel.text = vertretungsplan.tickerText;
+            self.tickerTextLabel.text = StringHelper.replaceHtmlEntities(input: vertretungsplan.tickerText);
             self.tickerTextScrollView.contentSize = CGSize(width: 343, height: 70);
             
             if (vertretungsplan.hasAdditionalText()) {
-                self.additionalTextLabel.text = vertretungsplan.additionalText;
+                self.additionalTextLabel.text = StringHelper.replaceHtmlEntities(input: vertretungsplan.additionalText);
                 self.tickerTextScrollView.contentSize = CGSize(width: 686, height: 70);
                 self.additionalTextScrollView.contentSize = CGSize(width: 343, height: 140);
                 self.tickerTextPageControl.numberOfPages = 2;

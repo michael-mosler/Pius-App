@@ -16,11 +16,38 @@ class VertretungsplanLoader {
 
     init(forGrade: String? = nil) {
         self.forGrade = forGrade;
-        self.url = URL(string: (forGrade == nil) ? self.baseUrl : self.baseUrl + "/?forGrade=" + forGrade!);
+        self.url = URL(string: (forGrade == nil) ? self.baseUrl : String(format: "%@/?forGrade=%@", self.baseUrl, forGrade!));
     }
     
+    // Get username and password from settings and set up basic authentication
+    // header login string.
+    func getAndEncodeCredentials(username: String? = nil, password: String? = nil) -> String {
+        let config = Config();
+
+        var realUsername: String;
+        var realPassword: String;
+        if (username == nil && password == nil) {
+            (realUsername, realPassword) = config.getCredentials();
+        } else {
+            realUsername = username!;
+            realPassword = password!;
+        }
+
+        let loginString = String(format: "%@:%@", realUsername, realPassword);
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        return loginData.base64EncodedString();
+    }
+
     func load(_ update: @escaping (Vertretungsplan) -> Void) {
-        let task = URLSession.shared.dataTask(with: url!) {
+        let base64LoginString = getAndEncodeCredentials();
+        
+        // Define GET request with basic authentication.
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+
+        // Create task to get data in background.
+        let task = URLSession.shared.dataTask(with: request) {
             (data, response, error) in
             if let data = data {
                 var vertretungsplan: Vertretungsplan = Vertretungsplan();
@@ -88,6 +115,15 @@ class VertretungsplanLoader {
             }
         }
         
+        // Now get execute task and, thus, get data. This also updates all views.
         task.resume();
+    }
+    
+    // Validate the given credentials are these that are stored in user settings.
+    // If username and password are both nil values from user settings are validated
+    // instead.
+    func validateLogin(username: String? = nil, password: String? = nil) -> Bool {
+        let base64LoginString = getAndEncodeCredentials(username: username, password: password);
+        return false;
     }
 }

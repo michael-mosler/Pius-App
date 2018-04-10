@@ -15,11 +15,31 @@ struct Config {
     let classes = ["keine", "a", "b", "c", "d", "e"];
     let shortClasses = ["", "A", "B", "C", "D", "E"];
 
+    let userDefaults = UserDefaults.standard;
+
     func getGradeNameForSetting(setting: Int) -> String {
         return grades[setting];
     }
     
     func getClassNameForSetting(setting: Int) -> String {
         return classes[setting];
+    }
+    
+    // Gets current credentials from settings.
+    func getCredentials() -> (String, String) {
+        do {
+            guard let webSiteUserName = userDefaults.string(forKey: "webSiteUserName"), !webSiteUserName.isEmpty else { return ("", "") };
+            
+            let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "PiusApp", accessGroup: KeychainConfiguration.accessGroup);
+
+            var webSitePassword: String;
+            try webSitePassword = passwordItem.readPassword();
+            
+            return (webSiteUserName, webSitePassword);
+        }
+        catch {
+            fatalError("Die Anmeldedaten konnte nicht geladen werden - \(error)");
+        }
+
     }
 }

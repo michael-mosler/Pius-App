@@ -70,17 +70,11 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     }
 
     private func showCredentials() {
-        do {
-            guard let webSiteUserName = userDefaults.string(forKey: "webSiteUserName"), !webSiteUserName.isEmpty else { return };
-
-            webSiteUserNameField.text = webSiteUserName;
-            
-            let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "PiusApp", accessGroup: KeychainConfiguration.accessGroup);
-            try webSitePasswordField.text = passwordItem.readPassword();
-        }
-        catch {
-            fatalError("Die Anmeldedaten konnte nicht geladen werden - \(error)");
-        }
+        let config = Config();
+        let (webSiteUserName, webSitePassword) = config.getCredentials();
+        
+        webSiteUserNameField.text = webSiteUserName;
+        webSitePasswordField.text = webSitePassword;
     }
 
     override func viewDidLoad() {
