@@ -122,8 +122,20 @@ class VertretungsplanLoader {
     // Validate the given credentials are these that are stored in user settings.
     // If username and password are both nil values from user settings are validated
     // instead.
-    func validateLogin(username: String? = nil, password: String? = nil) -> Bool {
+    func validateLogin(forUser username: String? = nil, withPassword password: String? = nil, notfifyMeOn validationCallback: @escaping (Bool) -> Void) {
         let base64LoginString = getAndEncodeCredentials(username: username, password: password);
-        return false;
+        
+        let url = URL(string: baseUrl)!;
+        var request = URLRequest(url: url);
+        request.httpMethod = "HEAD";
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+
+        let task = URLSession.shared.dataTask(with: request) {
+            (data, response, error) in
+            let ok = ((response as! HTTPURLResponse).statusCode == 200);
+            validationCallback(ok);
+        }
+
+        task.resume();
     }
 }

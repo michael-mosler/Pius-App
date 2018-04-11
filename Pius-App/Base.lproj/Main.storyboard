@@ -992,6 +992,7 @@
                     <connections>
                         <outlet property="classPickerView" destination="rkp-5u-rQE" id="6Qu-TQ-K2W"/>
                         <outlet property="gradePickerView" destination="XO8-MV-Wfl" id="nbR-ma-XSS"/>
+                        <outlet property="loginButtonOutlet" destination="mOQ-io-SDv" id="m0T-pG-jPw"/>
                         <outlet property="webSitePasswordField" destination="7be-e2-HfE" id="85P-IE-hJC"/>
                         <outlet property="webSiteUserNameField" destination="pKS-PV-0Gi" id="RTX-DS-iF7"/>
                     </connections>
