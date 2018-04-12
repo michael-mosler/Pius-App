@@ -36,11 +36,13 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     func validationCallback(authenticated: Bool) {
         DispatchQueue.main.async {
             // create the alert
-            let message = (authenticated) ? "Die Anmeldung war erfolgreich." : "Die Anmeldedaten sind ungültig.";
+            let message = (authenticated) ? "Du bist nun angemeldet." : "Die Anmeldedaten sind ungültig.";
             let alert = UIAlertController(title: "Anmeldung", message: message, preferredStyle: UIAlertControllerStyle.alert);
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil));
             self.present(alert, animated: true, completion: nil);
             
+            // Store current authentication state in user settings and update text of
+            // login button.
             if (authenticated) {
                 self.config.userDefaults.set(true, forKey: "authenticated");
             } else {
@@ -104,12 +106,19 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
                 webSiteUserNameField.text = "";
                 webSitePasswordField.text = "";
 
+                // Delete credential from from user settings and clear text of username
+                // and password field.
                 let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "PiusApp", accessGroup: KeychainConfiguration.accessGroup);
                 try passwordItem.savePassword("");
 
                 config.userDefaults.set("", forKey: "webSiteUserName");
                 config.userDefaults.set(false, forKey: "authenticated");
                 updateLoginButtonText(authenticated: false);
+                
+                // Inform user on new login state.
+                let alert = UIAlertController(title: "Anmeldung", message: "Du bist nun abgemeldet.", preferredStyle: UIAlertControllerStyle.alert);
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil));
+                self.present(alert, animated: true, completion: nil);
             }
         }
         catch {

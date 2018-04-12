@@ -27,8 +27,12 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     var currentHeader: ExpandableHeaderView?;
 
     // User defaults access.
-    let userDefaults = UserDefaults.standard;
+    let config = Config();
 
+    // This dashboard is for this grade setting.
+    var grade: String = "";
+
+    // THat many rows per unfolded item.
     let rowsPerItem = 6;
     
     func doUpdate(with vertretungsplan: Vertretungsplan) {
@@ -53,13 +57,8 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    private func getVertretungsplanFromWeb() {
-        let gradeSetting = userDefaults.integer(forKey: "selectedGradeRow");
-        let classSetting = userDefaults.integer(forKey: "selectedClassRow");
-        let config = Config();
-        
-        let forGrade = config.shortGrades[gradeSetting] + config.shortClasses[classSetting];
-        let vertretungsplanLoader = VertretungsplanLoader(forGrade: forGrade);
+    private func getVertretungsplanFromWeb(forGrade grade: String) {
+        let vertretungsplanLoader = VertretungsplanLoader(forGrade: grade);
         
         // Clear all data.
         currentHeader = nil;
@@ -69,7 +68,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     @objc func refreshScrollView(_ sender: UIRefreshControl) {
-        getVertretungsplanFromWeb();
+        getVertretungsplanFromWeb(forGrade: grade);
         sender.endRefreshing()
     }
 
@@ -265,8 +264,15 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tickerTextScrollView.delegate = self;
-        self.getVertretungsplanFromWeb();
+        // This dashboard is for this grade setting.
+        let gradeSetting = config.userDefaults.integer(forKey: "selectedGradeRow");
+        let classSetting = config.userDefaults.integer(forKey: "selectedClassRow");
+        grade = config.shortGrades[gradeSetting] + config.shortClasses[classSetting];
+
+        title = grade;
+        
+        tickerTextScrollView.delegate = self;
+        getVertretungsplanFromWeb(forGrade: grade);
         
         let refreshControl = UIRefreshControl();
         refreshControl.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControlEvents.valueChanged);
