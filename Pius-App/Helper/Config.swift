@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 struct Config {
+    let colorPiusBlue = UIColor(red:0.337, green:0.631, blue:0.824, alpha:1.0);
+
     let grades = ["keine", "Klasse 5", "Klasse 6", "Klasse 7", "Klasse 8", "Klasse 9", "EF", "Q1", "Q2"];
     let shortGrades = ["", "5", "6", "7", "8", "9", "EF", "Q1", "Q2"]
     

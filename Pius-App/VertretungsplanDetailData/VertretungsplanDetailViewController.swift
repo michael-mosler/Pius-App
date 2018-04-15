@@ -42,10 +42,15 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
 
         switch indexPath.row % rowsPerItem {
         case 0:
-            cell = detailsTableView.dequeueReusableCell(withIdentifier: "course");
-            cell?.textLabel?.text = "Fach/Kurs: " + StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][2]);
-            cell?.textLabel?.text! += ", ";
-            cell?.textLabel?.text! += (gradeItem?.vertretungsplanItems[itemIndex][0])!;
+            cell = tableView.dequeueReusableCell(withIdentifier: "course")!;
+            let grade: String! = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][2]);
+            let lesson: String! = (gradeItem?.vertretungsplanItems[itemIndex][0])!
+
+            if (grade != "") {
+                cell?.textLabel?.text = String(format: "Fach/Kurs: %@, %@. Stunde", grade, lesson);
+            } else {
+                cell?.textLabel?.text! = String(format: "%@. Stunde", lesson);
+            }
         case 1:
             cell = detailsTableView.dequeueReusableCell(withIdentifier: "details");
             if (cell != nil) {

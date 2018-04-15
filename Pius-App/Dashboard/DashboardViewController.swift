@@ -173,9 +173,14 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
             cell = tableView.dequeueReusableCell(withIdentifier: "spacerTop");
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "course")!;
-            cell?.textLabel?.text = "Fach/Kurs: " + StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][2]);
-            cell?.textLabel?.text! += ", ";
-            cell?.textLabel?.text! += (gradeItem?.vertretungsplanItems[itemIndex][0])!;
+            let grade: String! = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][2]);
+            let lesson: String! = (gradeItem?.vertretungsplanItems[itemIndex][0])!
+
+            if (grade != "") {
+                cell?.textLabel?.text = String(format: "Fach/Kurs: %@, %@. Stunde", grade, lesson);
+            } else {
+                cell?.textLabel?.text! = String(format: "%@. Stunde", lesson);
+            }
         case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "details");
             if (cell != nil) {

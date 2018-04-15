@@ -93,7 +93,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         webViewTabGestureRecognizer.delegate = self;
         
         // Set color of navigation bar.
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.337, green:0.631, blue:0.824, alpha:1.0);
+        navigationController?.navigationBar.barTintColor = config.colorPiusBlue;
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white];
         
         addNavBarLogo();

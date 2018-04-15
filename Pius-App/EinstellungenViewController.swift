@@ -13,6 +13,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var webSiteUserNameField: UITextField!
     @IBOutlet weak var webSitePasswordField: UITextField!
     @IBOutlet weak var loginButtonOutlet: UIButton!
+    @IBOutlet weak var myCoursesButton: UIButton!
     @IBAction func loginButton(_ sender: Any) {
         self.saveCredentials();
     }
@@ -21,6 +22,10 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var classPickerView: UIPickerView!
     
     let config = Config();
+    
+    fileprivate func isUpperGradeSelected(_ row: Int) -> Bool {
+        return ["EF", "Q1", "Q2"].index(of: config.grades[row]) != nil
+    }
     
     // Update Login button text depending on authentication state.
     func updateLoginButtonText(authenticated: Bool?) {
@@ -53,6 +58,23 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         };
     }
 
+    // When user has selected EF, Q1 or Q2 set class picker view to "None" and disable.
+    // Enable "Meine Kurse" button.
+    private func setElementStates(forSelectedGrade row: Int) -> Void {
+        if (isUpperGradeSelected(row)) {
+            classPickerView.selectRow(0, inComponent: 0, animated: true);
+            config.userDefaults.set(0, forKey: "selectedClassRow");
+
+            classPickerView.isUserInteractionEnabled = false;
+            myCoursesButton.isEnabled = true;
+            myCoursesButton.backgroundColor = config.colorPiusBlue;
+        } else {
+            classPickerView.isUserInteractionEnabled = true;
+            myCoursesButton.isEnabled = false;
+            myCoursesButton.backgroundColor = UIColor.lightGray;
+        }
+    }
+    
     // Return the number of components in picker view;
     // Defaults to 1 in this case.
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -67,7 +89,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         return config.getClassNameForSetting(setting: row);
     }
     
-    // Return the number if rows in the named picker view.
+    // Return the number of rows in the named picker view.
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if (pickerView == gradePickerView) {
             return config.grades.count;
@@ -75,12 +97,46 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         return config.classes.count;
     }
     
+    /*
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let currentLabel = (view != nil) ? view as! UILabel : UILabel();
+        
+        if (pickerView == classPickerView) {
+            if (["EF", "Q1", "Q2"].index(of: config.grades[config.userDefaults.integer(forKey: "selectedGradeRow")]) != nil) {
+                currentLabel.backgroundColor = UIColor.lightGray;
+            } else {
+                currentLabel.backgroundColor = UIColor.white;
+            }
+            currentLabel.text = config.getClassNameForSetting(setting: row);
+        } else {
+            currentLabel.backgroundColor = UIColor.white;
+            currentLabel.attributedText = NSAttributedString(string: config.getGradeNameForSetting(setting: row));
+        }
+
+        return currentLabel;
+    }
+    */
+
     // Store selected grade and class in user settings.
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (pickerView == gradePickerView) {
+            // If user switches from upper grade row to non-upper grade make sure that at least "a" is selected as
+            // class.
+            if (!isUpperGradeSelected(row) && isUpperGradeSelected(config.userDefaults.integer(forKey: "selectedGradeRow"))) {
+                classPickerView.selectRow(1, inComponent: 0, animated: true);
+                config.userDefaults.set(1, forKey: "selectedClassRow");
+            }
+
             config.userDefaults.set(row, forKey: "selectedGradeRow");
+            setElementStates(forSelectedGrade: row);
         } else {
-            config.userDefaults.set(row, forKey: "selectedClassRow");
+            // If a non-upper grade row is picked prevent user from setting "none" for class.
+            if (row == 0 && !isUpperGradeSelected(config.userDefaults.integer(forKey: "selectedGradeRow"))) {
+                classPickerView.selectRow(1, inComponent: 0, animated: true);
+                config.userDefaults.set(1, forKey: "selectedClassRow");
+            } else {
+                config.userDefaults.set(row, forKey: "selectedClassRow");
+            }
         }
     }
 
@@ -139,13 +195,13 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     override func viewDidLoad() {
         super.viewDidLoad();
 
-        var row : Int;
-        row = config.userDefaults.integer(forKey: "selectedGradeRow");
-        gradePickerView.selectRow(row, inComponent: 0, animated: false)
+        let gradeRow: Int = config.userDefaults.integer(forKey: "selectedGradeRow");
+        gradePickerView.selectRow(gradeRow, inComponent: 0, animated: false)
 
-        row = config.userDefaults.integer(forKey: "selectedClassRow");
-        classPickerView.selectRow(row, inComponent: 0, animated: false);
+        let classRow = config.userDefaults.integer(forKey: "selectedClassRow");
+        classPickerView.selectRow(classRow, inComponent: 0, animated: false);
         
+        setElementStates(forSelectedGrade: gradeRow);
         showCredentials();
     }
     
