@@ -1033,24 +1033,52 @@
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addCourse" id="Gxk-kq-5wd">
-                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="coursePickerCell" rowHeight="70" id="LSz-u4-v9m">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gxk-kq-5wd" id="qgd-8n-ahJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LSz-u4-v9m" id="DsJ-pG-4Zv">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1UM-Dx-D8Q">
-                                                    <rect key="frame" x="15" y="6" width="345" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="LL0-pg-7ed" id="5B3-CQ-zc5"/>
-                                                    </connections>
-                                                </textField>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U6t-8d-NTA">
+                                                    <rect key="frame" x="15" y="11" width="83" height="48"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="3B7-xr-gem"/>
+                                                        <constraint firstAttribute="width" constant="83" id="Aro-5N-Pbp"/>
+                                                    </constraints>
+                                                </pickerView>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIw-id-Cnh">
+                                                    <rect key="frame" x="112" y="11" width="83" height="48"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="Ho2-B8-xPC"/>
+                                                        <constraint firstAttribute="width" constant="83" id="lNc-ju-nY9"/>
+                                                    </constraints>
+                                                </pickerView>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LPi-yv-ycZ">
+                                                    <rect key="frame" x="209" y="11" width="83" height="48"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="83" id="3RC-Lr-c8p"/>
+                                                        <constraint firstAttribute="height" constant="48" id="gQZ-HZ-QjQ"/>
+                                                    </constraints>
+                                                </pickerView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XU2-U3-osS">
+                                                    <rect key="frame" x="306" y="11" width="54" height="48"/>
+                                                    <color key="backgroundColor" red="0.33700000000000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Ok"/>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="OIw-id-Cnh" firstAttribute="leading" secondItem="U6t-8d-NTA" secondAttribute="trailing" constant="14" id="1FN-Yi-51J"/>
+                                                <constraint firstItem="U6t-8d-NTA" firstAttribute="leading" secondItem="DsJ-pG-4Zv" secondAttribute="leadingMargin" id="3cS-Kw-LvU"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="XU2-U3-osS" secondAttribute="bottom" id="PdG-kA-V49"/>
+                                                <constraint firstItem="XU2-U3-osS" firstAttribute="top" secondItem="DsJ-pG-4Zv" secondAttribute="topMargin" id="TM1-Ds-uwK"/>
+                                                <constraint firstItem="U6t-8d-NTA" firstAttribute="top" secondItem="DsJ-pG-4Zv" secondAttribute="topMargin" id="Xe0-m3-VqQ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="XU2-U3-osS" secondAttribute="trailing" id="deI-05-D1f"/>
+                                                <constraint firstItem="LPi-yv-ycZ" firstAttribute="leading" secondItem="OIw-id-Cnh" secondAttribute="trailing" constant="14" id="hdu-DK-4OW"/>
+                                                <constraint firstItem="LPi-yv-ycZ" firstAttribute="top" secondItem="DsJ-pG-4Zv" secondAttribute="topMargin" id="mWc-Ch-4qE"/>
+                                                <constraint firstItem="XU2-U3-osS" firstAttribute="leading" secondItem="LPi-yv-ycZ" secondAttribute="trailing" constant="14" id="o14-Ie-1X9"/>
+                                                <constraint firstItem="OIw-id-Cnh" firstAttribute="top" secondItem="DsJ-pG-4Zv" secondAttribute="topMargin" id="vXz-5h-re8"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>

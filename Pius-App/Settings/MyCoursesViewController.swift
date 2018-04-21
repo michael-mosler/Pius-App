@@ -8,10 +8,14 @@
 
 import UIKit
 
-class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
+
     @IBOutlet weak var addCoursesButton: UIBarButtonItem!
     @IBOutlet weak var myCoursesTableView: UITableView!
-    var textField: UITextField?;
+    var coursePicker: UIPickerView?;
+    var courseTypePicker: UIPickerView?;
+    var courseNumberPicker: UIPickerView?;
+    var okButton: UIButton?;
     
     let cellBgView = UIView();
     
@@ -20,14 +24,38 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var courseList: [String] = ["M GK1"];
     
-    private func addCourseFromTextField() {
-        let courseName: String! = textField?.text;
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1;
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch(pickerView) {
+        case coursePicker!: return config.courses.count;
+        case courseTypePicker!: return config.courseTypes.count;
+        case courseNumberPicker!: return config.courseNumbers.count;
+        default: fatalError("Invalid picker type");
+        }
+    }
+    
+    // Return content for the named row and picker view.
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch(pickerView) {
+        case coursePicker!: return config.courses[row];
+        case courseTypePicker!: return config.courseTypes[row];
+        case courseNumberPicker!: return config.courseNumbers[row];
+        default: fatalError("Invalid picker type");
+        }
+    }
+    
+
+    private func addCourseFromPickers() {
+        let courseName: String! = "A"; // textField?.text;
         courseList.append(courseName);
     }
 
     @IBAction func addCoursesButtonAction(_ sender: Any) {
         if (inEditMode) {
-            addCourseFromTextField();
+            addCourseFromPickers();
         }
 
         inEditMode = !inEditMode;
@@ -43,10 +71,18 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         var cell: UITableViewCell?;
         
         if (indexPath.row == courseList.count && inEditMode) {
-            cell = myCoursesTableView.dequeueReusableCell(withIdentifier: "addCourse")!;
-            textField = cell!.subviews[0].subviews[0] as? UITextField;
-            textField?.delegate = self;
-            textField?.text = "";
+            cell = myCoursesTableView.dequeueReusableCell(withIdentifier: "coursePickerCell")!;
+            coursePicker = cell!.subviews[0].subviews[0] as? UIPickerView;
+            courseTypePicker = cell!.subviews[0].subviews[1] as? UIPickerView;
+            courseNumberPicker = cell!.subviews[0].subviews[2] as? UIPickerView;
+            okButton = cell!.subviews[0].subviews[3] as? UIButton;
+            
+            coursePicker?.delegate = self;
+            coursePicker?.dataSource = self;
+            courseTypePicker?.delegate = self;
+            courseTypePicker?.dataSource = self;
+            courseNumberPicker?.delegate = self;
+            courseNumberPicker?.dataSource = self;
         } else {
             cell = myCoursesTableView.dequeueReusableCell(withIdentifier: "course")!;
             cell!.textLabel?.text = courseList[indexPath.row];
