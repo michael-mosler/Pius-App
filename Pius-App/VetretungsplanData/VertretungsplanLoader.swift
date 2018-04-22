@@ -12,6 +12,8 @@ import UIKit;
 class VertretungsplanLoader {
     var forGrade: String?;
     var url: URL?;
+    let config = Config();
+    
     let baseUrl = "https://pius-gateway.eu-de.mybluemix.net/vertretungsplan";
 
     init(forGrade: String? = nil) {
@@ -19,6 +21,30 @@ class VertretungsplanLoader {
         self.url = URL(string: (forGrade == nil) ? self.baseUrl : String(format: "%@/?forGrade=%@", self.baseUrl, forGrade!));
     }
     
+    private func accept(basedOn detailsItems: [String]) -> Bool {
+        // When not in dashboard mode accept any item.
+        if (forGrade == nil) {
+            return true;
+        }
+
+        // If no course list set or list is empty accept any item.
+        let courseList = config.userDefaults.array(forKey: "dashboardCourseList");
+        if (courseList == nil || courseList!.count == 0) {
+            return true;
+        }
+
+        // This is the item from Vertretungsplan to check.
+        let course = detailsItems[2].replacingOccurrences(of: " ", with: "", options: .literal, range: nil);
+        let found = courseList!.first(where: {
+            ($0 as! String)
+            .replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
+            .replacingOccurrences(of: "GK", with: "G", options: .literal, range: nil)
+            .replacingOccurrences(of: "LK", with: "L", options: .literal, range: nil) == course
+        });
+
+        return found != nil;
+    }
+
     // Get username and password from settings and set up basic authentication
     // header login string.
     func getAndEncodeCredentials(username: String? = nil, password: String? = nil) -> String {
@@ -94,11 +120,15 @@ class VertretungsplanLoader {
                                         detailItems.append(detailItem);
                                     }
                                     
-                                    gradeItem.vertretungsplanItems.append(detailItems);
+                                    if (self.accept(basedOn: detailItems)) {
+                                        gradeItem.vertretungsplanItems.append(detailItems);
+                                    }
                                 }
                                 
                                 // Done for the current grade.
-                                gradeItems.append(gradeItem);
+                                if (gradeItem.vertretungsplanItems.count > 0) {
+                                    gradeItems.append(gradeItem);
+                                }
                             }
                             
                             // Done for the current date.

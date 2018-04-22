@@ -9,7 +9,6 @@
 import UIKit
 
 class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
-
     @IBOutlet weak var addCoursesButton: UIBarButtonItem!
     @IBOutlet weak var myCoursesTableView: UITableView!
     var coursePicker: UIPickerView?;
@@ -22,7 +21,7 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
     let config = Config();
     var inEditMode: Bool = false;
     
-    var courseList: [String] = ["M GK1"];
+    var courseList: [String] = [];
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1;
@@ -49,18 +48,28 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
     
 
     private func addCourseFromPickers() {
-        let courseName: String! = "A"; // textField?.text;
-        courseList.append(courseName);
+        var realCourseName: String;
+        let courseName = config.coursesShortNames[(coursePicker?.selectedRow(inComponent: 0))!]
+        let courseType = config.courseTypes[(courseTypePicker?.selectedRow(inComponent: 0))!];
+        let courseNumber = config.courseNumbers[(courseNumberPicker?.selectedRow(inComponent: 0))!];
+        
+        if (courseType == "P" || courseType == "V") {
+            realCourseName = String(format: "%@%@%@", courseType, courseName, courseNumber);
+        } else {
+            realCourseName = String(format: "%@ %@%@", courseName, courseType, courseNumber);
+        }
+        
+        courseList.append(realCourseName);
     }
 
     @IBAction func addCoursesButtonAction(_ sender: Any) {
-        if (inEditMode) {
-            addCourseFromPickers();
-        }
-
         inEditMode = !inEditMode;
         addCoursesButton.title = (inEditMode) ? "Fertig" : "Hinzufügen";
         myCoursesTableView.reloadData();
+        
+        if (!inEditMode) {
+            config.userDefaults.set(courseList, forKey: "dashboardCourseList");
+        }
     }
 
     @objc func okAction(sender: UIButton) {
@@ -73,11 +82,13 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // Height for picker view row when visible.
         if (indexPath.row == 0 && inEditMode) {
             return 100;
         }
         
-        return 44;
+        // Default height.
+        return 30;
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -108,9 +119,20 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell!;
     }
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let realRow = indexPath.row - ((inEditMode) ? 1 : 0);
+            courseList.remove(at: realRow);
+            myCoursesTableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         cellBgView.backgroundColor = config.colorPiusBlue;
+        let savedCourseList: [String]? = config.userDefaults.array(forKey: "dashboardCourseList") as? [String];
+        
+        courseList = (savedCourseList != nil) ? savedCourseList! : [];
     }
 
     override func didReceiveMemoryWarning() {

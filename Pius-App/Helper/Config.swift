@@ -18,8 +18,8 @@ struct Config {
     let classes = ["keine", "a", "b", "c", "d", "e"];
     let shortClasses = ["", "A", "B", "C", "D", "E"];
 
-    let courses = ["Mathematik", "Deutsch", "Englisch", "Latein", "Französisch", "Spanisch", "Hebräisch", "Erdkunde", "Biologie", "Physik", "Chemie", "Geschichte", "Religion", "Philosophie", "Musik", "Kunst", "Sport", "Informatik", "Literatur", "SOWI"];
-    let coursesShortNames = ["M", "D", "E", "L", "F", "S", "H", "EK", "BI", "PH", "CH", "GE", "KR", "PL", "MU", "KU", "SP", "IF", "LI", "SOWI"];
+    let courses = ["Mathematik", "Deutsch", "Englisch", "Französisch", "Latein", "Spanisch", "Hebräisch", "Erdkunde", "Biologie", "Physik", "Chemie", "Informatik", "Geschichte", "Religion", "Philosophie", "Musik", "Kunst", "Sport", "Literatur", "SOWI"];
+    let coursesShortNames = ["M", "D", "E", "F", "L", "S", "H", "EK", "BI", "PH", "CH", "IF", "GE", "KR", "PL", "MU", "KU", "SP", "LI", "SOWI"];
     let courseTypes = ["GK", "LK", "ZK", "V", "P"];
     let courseNumbers = ["1", "2", "3", "4", "5"];
     

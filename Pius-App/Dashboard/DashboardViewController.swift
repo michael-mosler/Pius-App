@@ -32,7 +32,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     // This dashboard is for this grade setting.
     var grade: String = "";
 
-    // THat many rows per unfolded item.
+    // That many rows per unfolded item.
     let rowsPerItem = 6;
     
     func doUpdate(with vertretungsplan: Vertretungsplan) {

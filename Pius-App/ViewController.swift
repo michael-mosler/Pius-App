@@ -9,15 +9,22 @@
 import UIKit
 import WebKit
 
-class ViewController: UIViewController, UIGestureRecognizerDelegate {
-
+class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigationDelegate {
     @IBOutlet var webViewTabGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet var swipeLeftGestureRecognizer: UISwipeGestureRecognizer!
+    @IBOutlet var panRightGestureRecognizer: UIScreenEdgePanGestureRecognizer!
     @IBOutlet weak var menuLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var vertretungsplanItem: UIButton!
     @IBOutlet weak var dashboardItem: UIButton!
+    @IBOutlet weak var webViewActivityIndicator: UIActivityIndicatorView!
+
+    // Open Safari with Pius home page when menu item is selected.
+    @IBAction func gotoHomePageAction(_ sender: Any) {
+        UIApplication.shared.open(NSURL(string:"http://pius-gymnasium.de/")! as URL)
+    }
     
     // Indicates if sidebar menu is open or closed.
     var menuIsOpen : Bool = false;
@@ -25,26 +32,65 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     // User defaults access.
     let config = Config();
 
-    // Whenever use tabs outside of our sidebar menu it gets hidden.
-    @IBAction func tabAction(_ sender: Any) {
-        if (menuIsOpen) {
-            menuLeadingConstraint.constant = -180;
-            menuIsOpen = false;
-            webView.isUserInteractionEnabled = true;
-            visualEffectView.isHidden = true;
-            
-            UIView.animate(withDuration: 0.3, animations: {
-                self.view.layoutIfNeeded()
-            });
-        }
+    // Stop activity indicator when news page has been loaded.
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        webViewActivityIndicator.stopAnimating();
+    }
+
+    // Hide sidebar menu.
+    fileprivate func showSidebarMenu(with percentage: CGFloat = 0) {
+        menuIsOpen = percentage >= 1;
+
+        menuLeadingConstraint.constant = -180 + min(percentage, 1) * 180;
+        webView.isUserInteractionEnabled = true;
+        visualEffectView.isHidden = true;
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+        });
+        
+        // When sidebar menu is open disable web view and blur background.
+        webView.isUserInteractionEnabled = percentage == 0;
+        visualEffectView.isHidden = percentage == 0;
     }
     
-    // We want to receive tabs on our own gesture recognizer.
+    // Whenever user tabs outside of our sidebar menu it gets hidden.
+    @IBAction func tabAction(_ sender: Any) {
+        showSidebarMenu(with: 0);
+    }
+
+    // Swipe left to hide sidebar menu.
+    @IBAction func swipeLeftAction(_ sender: Any) {
+        showSidebarMenu(with: 0);
+    }
+    
+    // Pan right to show sidebar menu.
+    @IBAction func panRightAction(_ panGestureRecognizer: UIPanGestureRecognizer) {
+        let percentage = max(panGestureRecognizer.translation(in: webView).x, 0) / webView.frame.width;
+        switch(panRightGestureRecognizer.state) {
+        case .began:
+            showSidebarMenu(with: 0);
+        case .changed:
+            showSidebarMenu(with: 4 * percentage);
+        case .cancelled:
+            showSidebarMenu(with: 0);
+        case .ended:
+            if (percentage >= 0.25) {
+                showSidebarMenu(with: 1);
+            } else {
+                showSidebarMenu(with: 0);
+            }
+        default:
+            print("Unknown pan gesture state");
+        }
+    }
+
+    // We want to receive tabs on our own gesture recognizers.
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return true;
     }
 
-    // Allow tabs on all more than one gesture recognizer. This allows us to hide
+    // Allow tabs on more than one gesture recognizer. This allows us to hide
     // sidebar menu when user tabs on web view.
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true;
@@ -102,6 +148,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         menuView.layer.shadowOpacity = 1;
         menuView.layer.shadowRadius = 6;
         
+        webView.navigationDelegate = self;
+        
         // Enable refresh in WebKit View.
         let refreshControl = UIRefreshControl();
         refreshControl.addTarget(self, action: #selector(refreshWebView(_:)), for: UIControlEvents.valueChanged);
@@ -111,18 +159,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         loadWebView();
         
         visualEffectView.addGestureRecognizer(webViewTabGestureRecognizer);
+        menuView.addGestureRecognizer(swipeLeftGestureRecognizer);
+        webView.addGestureRecognizer(panRightGestureRecognizer);
     }
 
     // Hide the sidebar menu whenever a selection is made.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        menuLeadingConstraint.constant = -180;
-        menuIsOpen = false;
-        webView.isUserInteractionEnabled = true;
-        visualEffectView.isHidden = true;
-        
-        UIView.animate(withDuration: 0.3, animations: {
-            self.view.layoutIfNeeded()
-        });
+        showSidebarMenu(with: 0);
     }
 
     // Toggle sidebar menu visibility. When menu is open web view will
@@ -130,25 +173,15 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     // tabbing on background.
     @IBAction func menuButtonAction(_ sender: Any) {
         if (menuIsOpen) {
-            menuLeadingConstraint.constant = -180;
+            showSidebarMenu(with: 0);
         } else {
-            menuLeadingConstraint.constant = 0;
+            showSidebarMenu(with: 1);
         }
 
-        UIView.animate(withDuration: 0.3, animations: {
-            self.view.layoutIfNeeded()
-        })
-
-        menuIsOpen = !menuIsOpen;
-        
         // Dashboard item is disabled if no grade is configured.
         let authenticated = config.userDefaults.bool(forKey: "authenticated");
         dashboardItem.isEnabled = (config.userDefaults.integer(forKey: "selectedGradeRow") != 0) && authenticated;
         vertretungsplanItem.isEnabled = authenticated;
-        
-        // When sidebar menu is open disable web view and blurbackground.
-        webView.isUserInteractionEnabled = !menuIsOpen;
-        visualEffectView.isHidden = !menuIsOpen;
     }
 }
 
