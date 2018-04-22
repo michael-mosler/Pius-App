@@ -63,14 +63,27 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         myCoursesTableView.reloadData();
     }
 
+    @objc func okAction(sender: UIButton) {
+        addCourseFromPickers();
+        myCoursesTableView.reloadData();
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return courseList.count + ((inEditMode) ? 1 : 0);
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (indexPath.row == 0 && inEditMode) {
+            return 100;
+        }
+        
+        return 44;
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?;
         
-        if (indexPath.row == courseList.count && inEditMode) {
+        if (indexPath.row == 0 && inEditMode) {
             cell = myCoursesTableView.dequeueReusableCell(withIdentifier: "coursePickerCell")!;
             coursePicker = cell!.subviews[0].subviews[0] as? UIPickerView;
             courseTypePicker = cell!.subviews[0].subviews[1] as? UIPickerView;
@@ -83,9 +96,11 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
             courseTypePicker?.dataSource = self;
             courseNumberPicker?.delegate = self;
             courseNumberPicker?.dataSource = self;
+            okButton?.addTarget(self, action: #selector(okAction), for: UIControlEvents.touchUpInside);
         } else {
+            let realRow = indexPath.row - ((inEditMode) ? 1 : 0);
             cell = myCoursesTableView.dequeueReusableCell(withIdentifier: "course")!;
-            cell!.textLabel?.text = courseList[indexPath.row];
+            cell!.textLabel?.text = courseList[realRow];
             cell?.selectedBackgroundView = cellBgView;
             cell?.textLabel?.highlightedTextColor = UIColor.white;
         }
