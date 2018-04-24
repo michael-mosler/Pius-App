@@ -99,7 +99,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
     // Add Pius logo as navigation bar title on initial view.
     func addNavBarLogo() {
         let navigationController = self.navigationController!;
-        let image = #imageLiteral(resourceName: "pius-logo-transparent");
+        let image = UIImage(named: "pius-app-transparent.png")!;
         let imageView = UIImageView(image: image);
         
         let bannerWidth = navigationController.navigationBar.frame.size.width;

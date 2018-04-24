@@ -3,7 +3,7 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "pius-logo-40x40.png",
+      "filename" : "pius-app-40x40.png",
       "scale" : "2x"
     },
     {
@@ -24,7 +24,7 @@
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "pius-logo-80x80.png",
+      "filename" : "pius-app-80x80.png",
       "scale" : "2x"
     },
     {
@@ -35,7 +35,7 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "pius-logo-120x120.png",
+      "filename" : "pius-app-120x120.png",
       "scale" : "2x"
     },
     {
@@ -46,7 +46,7 @@
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "pius-logo-1024x1024.png",
+      "filename" : "pius-app-1024x1024.png",
       "scale" : "1x"
     }
   ],
