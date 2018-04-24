@@ -29,6 +29,7 @@
 		4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */; };
 		4CED4A85204AE3510012CB45 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */; };
 		4CFBCDD7208925B100E9041D /* MyCoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFBCDD6208925B100E9041D /* MyCoursesViewController.swift */; };
+		4CFBCDDA208FBB8F00E9041D /* DateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFBCDD9208FBB8F00E9041D /* DateListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainConfiguration.swift; sourceTree = "<group>"; };
 		4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		4CFBCDD6208925B100E9041D /* MyCoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoursesViewController.swift; sourceTree = "<group>"; };
+		4CFBCDD9208FBB8F00E9041D /* DateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 		4C7C228E2043117700ACA17B /* Pius-App */ = {
 			isa = PBXGroup;
 			children = (
+				4CFBCDD8208FBB6800E9041D /* DateList */,
 				4CFBCDD52089256E00E9041D /* Settings */,
 				4C1FDE5F206C2614006092C9 /* Dashboard */,
 				4C1FDE58205E77BD006092C9 /* Helper */,
@@ -193,6 +196,14 @@
 				4CFBCDD6208925B100E9041D /* MyCoursesViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		4CFBCDD8208FBB6800E9041D /* DateList */ = {
+			isa = PBXGroup;
+			children = (
+				4CFBCDD9208FBB8F00E9041D /* DateListViewController.swift */,
+			);
+			path = DateList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +326,7 @@
 				4C1FDE5E20697516006092C9 /* VertretungsplanLoader.swift in Sources */,
 				4CED4A7D204749580012CB45 /* EinstellungenViewController.swift in Sources */,
 				4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */,
+				4CFBCDDA208FBB8F00E9041D /* DateListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,10 +484,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YJV7R7837M;
+				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "FK.Pius-App";
+				PRODUCT_BUNDLE_IDENTIFIER = "MM.Pius-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -487,10 +499,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YJV7R7837M;
+				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "FK.Pius-App";
+				PRODUCT_BUNDLE_IDENTIFIER = "MM.Pius-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
