@@ -14,6 +14,7 @@ class StringHelper {
         return input
             .replacingOccurrences(of: "&rarr;", with: "→", options: .literal, range: nil)
             .replacingOccurrences(of: "&nbsp;", with: "", options: .literal, range: nil)
+            .replacingOccurrences(of: "\\", with: "", options: .literal, range: nil)
             .trimmingCharacters(in: .whitespacesAndNewlines);
     }
 }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4C194B4C204AFB3500BA744A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C194B4B204AFB3500BA744A /* WebKit.framework */; };
-		4C194B4E204B072B00BA744A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C194B4D204B072B00BA744A /* Default-568h@2x.png */; };
 		4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */; };
 		4C1FDE4E205567C8006092C9 /* Vertretungsplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4D205567C8006092C9 /* Vertretungsplan.swift */; };
 		4C1FDE50205568E3006092C9 /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4F205568E3006092C9 /* ExpandableHeaderView.swift */; };
@@ -44,7 +43,6 @@
 
 /* Begin PBXFileReference section */
 		4C194B4B204AFB3500BA744A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		4C194B4D204B072B00BA744A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanViewController.swift; sourceTree = "<group>"; };
 		4C1FDE4D205567C8006092C9 /* Vertretungsplan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertretungsplan.swift; sourceTree = "<group>"; };
 		4C1FDE4F205568E3006092C9 /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 		4C7C22832043117700ACA17B = {
 			isa = PBXGroup;
 			children = (
-				4C194B4D204B072B00BA744A /* Default-568h@2x.png */,
 				4C7C228E2043117700ACA17B /* Pius-App */,
 				4C7C22A32043117800ACA17B /* Pius-AppUITests */,
 				4C7C228D2043117700ACA17B /* Products */,
@@ -290,7 +287,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C7C229A2043117800ACA17B /* LaunchScreen.storyboard in Resources */,
-				4C194B4E204B072B00BA744A /* Default-568h@2x.png in Resources */,
 				4C7C22972043117800ACA17B /* Assets.xcassets in Resources */,
 				4C7C22952043117800ACA17B /* Main.storyboard in Resources */,
 			);

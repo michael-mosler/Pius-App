@@ -556,6 +556,9 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FX0-Po-N3M" userLabel="AdditionalTextLabel">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="70"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="wB2-3o-DaY"/>
+                                                        </constraints>
                                                         <attributedString key="attributedText">
                                                             <fragment content="Additional Text">
                                                                 <attributes>
@@ -574,6 +577,7 @@
                                                     <constraint firstItem="FX0-Po-N3M" firstAttribute="top" secondItem="yKF-T6-MMu" secondAttribute="top" id="RRG-oo-Z9u"/>
                                                     <constraint firstAttribute="trailing" secondItem="FX0-Po-N3M" secondAttribute="trailing" id="UMe-ui-vsD"/>
                                                     <constraint firstItem="FX0-Po-N3M" firstAttribute="centerX" secondItem="yKF-T6-MMu" secondAttribute="centerX" id="WMs-Wn-TIq"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="dgN-qV-L6D"/>
                                                     <constraint firstAttribute="width" constant="343" id="xaz-Ke-4pv"/>
                                                 </constraints>
                                             </scrollView>
