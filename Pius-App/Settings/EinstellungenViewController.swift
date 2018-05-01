@@ -8,8 +8,10 @@
 
 import UIKit
 
-class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
+    @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var webSiteUserNameField: UITextField!
     @IBOutlet weak var webSitePasswordField: UITextField!
     @IBOutlet weak var loginButtonOutlet: UIButton!
@@ -21,8 +23,13 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var gradePickerView: UIPickerView!
     @IBOutlet weak var classPickerView: UIPickerView!
     
+    // The active text field, is either webSizeUserNameField or webSitePasswordField.
+    var activeTextField: UITextField?;
+    
+    // The app configuration settings and supporting constants.
     let config = Config();
     
+    // Checks if grade picker has selected an upper grade.
     fileprivate func isUpperGradeSelected(_ row: Int) -> Bool {
         return ["EF", "Q1", "Q2"].index(of: config.grades[row]) != nil
     }
@@ -97,26 +104,6 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         return config.classes.count;
     }
     
-    /*
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        let currentLabel = (view != nil) ? view as! UILabel : UILabel();
-        
-        if (pickerView == classPickerView) {
-            if (["EF", "Q1", "Q2"].index(of: config.grades[config.userDefaults.integer(forKey: "selectedGradeRow")]) != nil) {
-                currentLabel.backgroundColor = UIColor.lightGray;
-            } else {
-                currentLabel.backgroundColor = UIColor.white;
-            }
-            currentLabel.text = config.getClassNameForSetting(setting: row);
-        } else {
-            currentLabel.backgroundColor = UIColor.white;
-            currentLabel.attributedText = NSAttributedString(string: config.getGradeNameForSetting(setting: row));
-        }
-
-        return currentLabel;
-    }
-    */
-
     // Store selected grade and class in user settings.
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (pickerView == gradePickerView) {
@@ -192,9 +179,62 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         updateLoginButtonText(authenticated: config.userDefaults.bool(forKey: "authenticated"));
     }
 
+    @IBAction func tapGestureAction(_ sender: Any) {
+        dismissKeyboard(fromTextField: activeTextField);
+    }
+    
+    private func dismissKeyboard(fromTextField textField: UITextField?) {
+        if (textField != nil) {
+            textField?.resignFirstResponder();
+        }
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField;
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField = nil;
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        dismissKeyboard(fromTextField: textField);
+        return true;
+    }
+
+    @objc func keyboardWasShown(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
+            scrollView.contentInset = contentInsets;
+            scrollView.scrollIndicatorInsets = contentInsets;
+            
+            var cgRect: CGRect = scrollView.frame;
+            cgRect.size.height -= keyboardSize.height;
+            
+            if (!cgRect.contains(activeTextField!.frame.origin)) {
+                scrollView.scrollRectToVisible(activeTextField!.frame, animated: true);
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        let contentInsets: UIEdgeInsets = UIEdgeInsets.zero;
+        scrollView.contentInset = contentInsets;
+        scrollView.scrollIndicatorInsets = contentInsets;
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad();
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        webSitePasswordField.delegate = self;
+        webSiteUserNameField.delegate = self;
+        
+        scrollView.addGestureRecognizer(tapGestureRecognizer);
+        
         let gradeRow: Int = config.userDefaults.integer(forKey: "selectedGradeRow");
         gradePickerView.selectRow(gradeRow, inComponent: 0, animated: false)
 

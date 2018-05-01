@@ -64,7 +64,7 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBAction func addCoursesButtonAction(_ sender: Any) {
         inEditMode = !inEditMode;
-        addCoursesButton.title = (inEditMode) ? "Fertig" : "Hinzufügen";
+        addCoursesButton.title = (inEditMode) ? "Fertig" : "Bearbeiten";
         myCoursesTableView.reloadData();
         
         if (!inEditMode) {
@@ -117,6 +117,18 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         }
 
         return cell!;
+    }
+
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if (!inEditMode) {
+            return .none;
+        }
+        
+        if (indexPath.row == 0) {
+            return .none;
+        } else {
+            return .delete;
+        }
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

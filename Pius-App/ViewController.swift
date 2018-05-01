@@ -159,6 +159,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
         loadWebView();
         
         visualEffectView.addGestureRecognizer(webViewTabGestureRecognizer);
+        visualEffectView.addGestureRecognizer(swipeLeftGestureRecognizer);
         menuView.addGestureRecognizer(swipeLeftGestureRecognizer);
         webView.addGestureRecognizer(panRightGestureRecognizer);
     }
