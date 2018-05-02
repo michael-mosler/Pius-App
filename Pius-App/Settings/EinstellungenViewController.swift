@@ -16,8 +16,10 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var webSitePasswordField: UITextField!
     @IBOutlet weak var loginButtonOutlet: UIButton!
     @IBOutlet weak var myCoursesButton: UIButton!
+
     @IBAction func loginButton(_ sender: Any) {
-        self.saveCredentials();
+        dismissKeyboard(fromTextField: activeTextField)
+        saveCredentials();
     }
     
     @IBOutlet weak var gradePickerView: UIPickerView!
@@ -30,8 +32,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     let config = Config();
     
     // Checks if grade picker has selected an upper grade.
-    fileprivate func isUpperGradeSelected(_ row: Int) -> Bool {
-        return ["EF", "Q1", "Q2"].index(of: config.grades[row]) != nil
+    func isUpperGradeSelected(_ row: Int) -> Bool {
+        return config.upperGrades.index(of: config.grades[row]) != nil
     }
     
     // Update Login button text depending on authentication state.
@@ -65,17 +67,37 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         };
     }
 
-    // When user has selected EF, Q1 or Q2 set class picker view to "None" and disable.
-    // Enable "Meine Kurse" button.
+    // Bring grade and class picker into a consistent state.
     private func setElementStates(forSelectedGrade row: Int) -> Void {
-        if (isUpperGradeSelected(row)) {
+        // If grade "None" is selected class picker also is set to None.
+        if (row == 0) {
+            classPickerView.selectRow(0, inComponent: 0, animated: true);
+            config.userDefaults.set(0, forKey: "selectedClassRow");
+            
+            classPickerView.isUserInteractionEnabled = false;
+            myCoursesButton.isEnabled = false;
+            myCoursesButton.backgroundColor = UIColor.lightGray;
+
+        }
+
+        // When user has selected EF, Q1 or Q2 set class picker view to "None" and disable.
+        // Enable "Meine Kurse" button.
+        else if (isUpperGradeSelected(row)) {
             classPickerView.selectRow(0, inComponent: 0, animated: true);
             config.userDefaults.set(0, forKey: "selectedClassRow");
 
             classPickerView.isUserInteractionEnabled = false;
             myCoursesButton.isEnabled = true;
             myCoursesButton.backgroundColor = config.colorPiusBlue;
+
+        // When a lower grade is selected disable "Meine Kurse" button and make sure
+        // that class is defined.
         } else {
+            if (classPickerView.selectedRow(inComponent: 0) == 0) {
+                classPickerView.selectRow(1, inComponent: 0, animated: true);
+                config.userDefaults.set(1, forKey: "selectedClassRow");
+            }
+
             classPickerView.isUserInteractionEnabled = true;
             myCoursesButton.isEnabled = false;
             myCoursesButton.backgroundColor = UIColor.lightGray;

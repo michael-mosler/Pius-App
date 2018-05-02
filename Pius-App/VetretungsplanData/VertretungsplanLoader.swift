@@ -27,6 +27,11 @@ class VertretungsplanLoader {
             return true;
         }
 
+        // If not an upper grade do not check course list.
+        if (config.upperGrades.index(of: forGrade!) == nil) {
+            return true;
+        }
+
         // If no course list set or list is empty accept any item.
         let courseList = config.userDefaults.array(forKey: "dashboardCourseList");
         if (courseList == nil || courseList!.count == 0) {
