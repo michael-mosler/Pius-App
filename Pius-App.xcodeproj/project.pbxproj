@@ -486,7 +486,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ddb2fdd0-e73a-425f-b690-1d0d8a8fc2f0";
+				PROVISIONING_PROFILE = "078196ce-b11b-4af0-811e-8c791955aa46";
 				PROVISIONING_PROFILE_SPECIFIER = "Pius-App Distribution Profile";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
