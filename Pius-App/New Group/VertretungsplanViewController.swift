@@ -12,12 +12,11 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tickerTextScrollView: UIScrollView!
-    @IBOutlet weak var additionalTextScrollView: UIScrollView!
     @IBOutlet weak var tickerTextPageControl: UIPageControl!
     
     @IBOutlet weak var currentDateLabel: UILabel!
-    @IBOutlet weak var tickerTextLabel: UILabel!
-    @IBOutlet weak var additionalTextLabel: UILabel!
+    @IBOutlet weak var tickerText: UITextView!
+    @IBOutlet weak var additionalText: UITextView!
     @IBOutlet weak var tableView: UITableView!
     
     var data: [VertretungsplanForDate] = [];
@@ -29,15 +28,14 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
         
         DispatchQueue.main.async {
             self.currentDateLabel.text = vertretungsplan.lastUpdate;
-            self.tickerTextLabel.text = StringHelper.replaceHtmlEntities(input: vertretungsplan.tickerText);
-            self.tickerTextScrollView.contentSize = CGSize(width: 343, height: 70);
+            self.tickerText.text = StringHelper.replaceHtmlEntities(input: vertretungsplan.tickerText);
             
             if (vertretungsplan.hasAdditionalText()) {
-                self.additionalTextLabel.text = StringHelper.replaceHtmlEntities(input: vertretungsplan.additionalText);
-                self.tickerTextScrollView.contentSize = CGSize(width: 686, height: 70);
-                self.additionalTextScrollView.contentSize = CGSize(width: 343, height: 140);
+                self.additionalText.text = StringHelper.replaceHtmlEntities(input: vertretungsplan.additionalText);
+                self.tickerTextScrollView.isScrollEnabled = true;
                 self.tickerTextPageControl.numberOfPages = 2;
             } else {
+                self.tickerTextScrollView.isScrollEnabled = false;
                 self.tickerTextPageControl.numberOfPages = 1;
             }
             
@@ -61,10 +59,20 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
         sender.endRefreshing()
     }
 
+    // After sub-views have been layouted content size of ticket text
+    // scroll view can be set. As we do not add UIText programmatically
+    // scroll view does not know about the correct size from story
+    // board.
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews();
+        tickerTextScrollView.contentSize = CGSize(width: 686, height: 70);
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad();
-        self.tickerTextScrollView.delegate = self;
-        self.getVertretungsplanFromWeb();
+        tickerTextScrollView.delegate = self;
+
+        getVertretungsplanFromWeb();
         
         let refreshControl = UIRefreshControl();
         refreshControl.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControlEvents.valueChanged);
@@ -72,9 +80,12 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        tickerTextPageControl.currentPage = Int(scrollView.contentOffset.x / CGFloat(343));
+        if (scrollView == tickerTextScrollView) {
+            let currentPage = round(scrollView.contentOffset.x / CGFloat(343));
+            tickerTextPageControl.currentPage = Int(currentPage);
+        }
     }
-    
+
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         selected = indexPath;
         return indexPath;

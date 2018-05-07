@@ -66,8 +66,8 @@
 		4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EinstellungenViewController.swift; sourceTree = "<group>"; };
 		4CED4A80204ADB520012CB45 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		4CED4A81204ADB520012CB45 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainConfiguration.swift; sourceTree = "<group>"; };
-		4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
+		4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainConfiguration.swift; path = ../KeychainConfiguration.swift; sourceTree = "<group>"; };
+		4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainPasswordItem.swift; path = ../KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		4CFBCDD6208925B100E9041D /* MyCoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoursesViewController.swift; sourceTree = "<group>"; };
 		4CFBCDD9208FBB8F00E9041D /* DateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,6 +122,8 @@
 		4C1FDE58205E77BD006092C9 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */,
+				4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */,
 				4C1FDE59205E77D7006092C9 /* StringHelper.swift */,
 				4C1FDE62206D5FE6006092C9 /* Config.swift */,
 			);
@@ -158,21 +160,19 @@
 		4C7C228E2043117700ACA17B /* Pius-App */ = {
 			isa = PBXGroup;
 			children = (
+				4C7C22912043117800ACA17B /* ViewController.swift */,
+				4C7C228F2043117700ACA17B /* AppDelegate.swift */,
+				4C7E61A8209F8860000D1225 /* Vertretungsplan */,
+				4C1FDE5F206C2614006092C9 /* Dashboard */,
 				4CFBCDD8208FBB6800E9041D /* DateList */,
 				4CFBCDD52089256E00E9041D /* Settings */,
-				4C1FDE5F206C2614006092C9 /* Dashboard */,
 				4C1FDE58205E77BD006092C9 /* Helper */,
 				4C1FDE51205C4FEF006092C9 /* VertretungsplanDetailData */,
 				4C1FDE4C205567A6006092C9 /* VetretungsplanData */,
-				4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */,
-				4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */,
-				4C7C228F2043117700ACA17B /* AppDelegate.swift */,
-				4C7C22912043117800ACA17B /* ViewController.swift */,
 				4C7C22932043117800ACA17B /* Main.storyboard */,
 				4C7C22962043117800ACA17B /* Assets.xcassets */,
 				4C7C22982043117800ACA17B /* LaunchScreen.storyboard */,
 				4C7C229B2043117800ACA17B /* Info.plist */,
-				4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */,
 			);
 			path = "Pius-App";
 			sourceTree = "<group>";
@@ -184,6 +184,15 @@
 				4C7C22A62043117800ACA17B /* Info.plist */,
 			);
 			path = "Pius-AppUITests";
+			sourceTree = "<group>";
+		};
+		4C7E61A8209F8860000D1225 /* Vertretungsplan */ = {
+			isa = PBXGroup;
+			children = (
+				4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */,
+			);
+			name = Vertretungsplan;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		4CFBCDD52089256E00E9041D /* Settings */ = {

@@ -211,53 +211,35 @@
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGO-3F-dCj">
                                         <rect key="frame" x="16" y="0.0" width="343" height="70"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KwO-PN-ixo">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tmA-gy-wnM">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="70"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="70" id="Hmi-87-dOk"/>
-                                                    <constraint firstAttribute="width" constant="343" id="PDY-rg-3c8"/>
+                                                    <constraint firstAttribute="height" constant="70" id="HRN-Wc-H1P"/>
+                                                    <constraint firstAttribute="width" constant="343" id="yOI-wj-dgm"/>
                                                 </constraints>
-                                                <attributedString key="attributedText"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXb-Gv-TGp">
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="w7E-sv-NRK">
                                                 <rect key="frame" x="343" y="0.0" width="343" height="70"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cI-n3-i6X" userLabel="AdditionalTextLabel">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="70"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="343" id="Eqf-8z-U6j"/>
-                                                            <constraint firstAttribute="height" constant="70" id="WhV-Gf-BDM"/>
-                                                        </constraints>
-                                                        <attributedString key="attributedText">
-                                                            <fragment content="Additional Text">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="3cI-n3-i6X" secondAttribute="trailing" id="4Dv-oO-0n1"/>
-                                                    <constraint firstItem="3cI-n3-i6X" firstAttribute="top" secondItem="UXb-Gv-TGp" secondAttribute="top" id="DwS-Pv-TdU"/>
-                                                    <constraint firstAttribute="width" constant="343" id="EQn-Dy-erv"/>
-                                                    <constraint firstAttribute="height" constant="70" id="FGc-i6-7Se"/>
-                                                    <constraint firstAttribute="bottom" secondItem="3cI-n3-i6X" secondAttribute="bottom" id="IO6-Fh-idA"/>
-                                                    <constraint firstItem="3cI-n3-i6X" firstAttribute="leading" secondItem="UXb-Gv-TGp" secondAttribute="leading" id="lTf-Hy-Znj"/>
+                                                    <constraint firstAttribute="height" constant="70" id="ZDy-oD-nf4"/>
+                                                    <constraint firstAttribute="width" constant="343" id="vmC-mP-52q"/>
                                                 </constraints>
-                                            </scrollView>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="UXb-Gv-TGp" secondAttribute="bottom" id="CNT-jo-4Ct"/>
-                                            <constraint firstItem="KwO-PN-ixo" firstAttribute="top" secondItem="efv-rD-mC1" secondAttribute="top" id="Eyg-fQ-FBh"/>
-                                            <constraint firstItem="KwO-PN-ixo" firstAttribute="leading" secondItem="nGO-3F-dCj" secondAttribute="leading" id="MrL-vy-pvZ"/>
-                                            <constraint firstItem="UXb-Gv-TGp" firstAttribute="leading" secondItem="KwO-PN-ixo" secondAttribute="trailing" id="UpN-Qq-3AF"/>
-                                            <constraint firstItem="UXb-Gv-TGp" firstAttribute="top" secondItem="nGO-3F-dCj" secondAttribute="top" id="lE5-bB-2wS"/>
-                                            <constraint firstAttribute="height" constant="70" id="p4e-iP-RW9"/>
-                                            <constraint firstAttribute="trailing" secondItem="UXb-Gv-TGp" secondAttribute="trailing" constant="-343" id="xUi-i5-Y9Y"/>
+                                            <constraint firstAttribute="trailing" secondItem="tmA-gy-wnM" secondAttribute="trailing" id="3RJ-et-ZFZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="tmA-gy-wnM" secondAttribute="bottom" id="BDO-7g-aD6"/>
+                                            <constraint firstItem="w7E-sv-NRK" firstAttribute="top" secondItem="nGO-3F-dCj" secondAttribute="top" id="d8w-KW-PBa"/>
+                                            <constraint firstItem="tmA-gy-wnM" firstAttribute="bottom" secondItem="efv-rD-mC1" secondAttribute="bottom" id="mdz-rD-17Q"/>
+                                            <constraint firstItem="tmA-gy-wnM" firstAttribute="leading" secondItem="nGO-3F-dCj" secondAttribute="leading" id="rkb-tg-dMl"/>
+                                            <constraint firstItem="tmA-gy-wnM" firstAttribute="top" secondItem="efv-rD-mC1" secondAttribute="top" id="sQB-fX-1xH"/>
+                                            <constraint firstItem="w7E-sv-NRK" firstAttribute="leading" secondItem="tmA-gy-wnM" secondAttribute="trailing" id="vIL-x0-YGN"/>
                                         </constraints>
                                         <viewLayoutGuide key="safeArea" id="efv-rD-mC1"/>
                                     </scrollView>
@@ -307,23 +289,20 @@
                                     </tableView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="nGO-3F-dCj" secondAttribute="trailing" constant="16" id="7cc-f0-QF9"/>
-                                    <constraint firstItem="nGO-3F-dCj" firstAttribute="leading" secondItem="FIz-jg-Esx" secondAttribute="leading" id="AV1-Z1-cwD"/>
+                                    <constraint firstAttribute="trailing" secondItem="nGO-3F-dCj" secondAttribute="trailing" constant="16" id="DJj-lr-GKd"/>
                                     <constraint firstItem="FIz-jg-Esx" firstAttribute="top" secondItem="4wv-Jr-w8S" secondAttribute="bottom" id="Jua-4m-is2"/>
+                                    <constraint firstItem="4tq-tL-HsR" firstAttribute="trailing" secondItem="nGO-3F-dCj" secondAttribute="trailing" constant="16" id="KL2-Yq-rCb"/>
+                                    <constraint firstItem="4wv-Jr-w8S" firstAttribute="top" secondItem="nGO-3F-dCj" secondAttribute="bottom" id="O27-Yo-xQg"/>
                                     <constraint firstItem="4tq-tL-HsR" firstAttribute="trailing" secondItem="4wv-Jr-w8S" secondAttribute="trailing" constant="176" id="QTG-Od-bec"/>
                                     <constraint firstItem="hOE-oW-LG1" firstAttribute="trailing" secondItem="4tq-tL-HsR" secondAttribute="trailing" id="RX3-fC-NHO"/>
-                                    <constraint firstItem="nGO-3F-dCj" firstAttribute="trailing" secondItem="FIz-jg-Esx" secondAttribute="trailing" id="SXK-QU-pcr"/>
                                     <constraint firstItem="hOE-oW-LG1" firstAttribute="bottom" secondItem="4tq-tL-HsR" secondAttribute="bottom" id="UB1-PG-vUC"/>
-                                    <constraint firstItem="nGO-3F-dCj" firstAttribute="leading" secondItem="4tq-tL-HsR" secondAttribute="leading" constant="16" id="Z0C-a4-ak0"/>
-                                    <constraint firstAttribute="bottom" secondItem="nGO-3F-dCj" secondAttribute="bottom" constant="620" id="aD8-3y-H20"/>
-                                    <constraint firstItem="nGO-3F-dCj" firstAttribute="centerX" secondItem="4O7-Yu-m31" secondAttribute="centerX" id="hVY-Rb-cON"/>
-                                    <constraint firstItem="4wv-Jr-w8S" firstAttribute="top" secondItem="nGO-3F-dCj" secondAttribute="bottom" id="hcx-df-IN4"/>
-                                    <constraint firstItem="nGO-3F-dCj" firstAttribute="top" secondItem="4O7-Yu-m31" secondAttribute="top" id="i9W-hK-oMh"/>
-                                    <constraint firstItem="nGO-3F-dCj" firstAttribute="centerX" secondItem="hOE-oW-LG1" secondAttribute="centerX" id="nJh-Jr-sI9"/>
+                                    <constraint firstItem="nGO-3F-dCj" firstAttribute="leading" secondItem="4tq-tL-HsR" secondAttribute="leading" constant="16" id="foT-Si-6D8"/>
+                                    <constraint firstAttribute="bottom" secondItem="nGO-3F-dCj" secondAttribute="bottom" constant="620" id="nk2-HH-opo"/>
                                     <constraint firstItem="4wv-Jr-w8S" firstAttribute="leading" secondItem="4tq-tL-HsR" secondAttribute="leading" constant="176" id="o9p-YH-9Pk"/>
                                     <constraint firstItem="FIz-jg-Esx" firstAttribute="leading" secondItem="4tq-tL-HsR" secondAttribute="leading" constant="16" id="pSN-gQ-iIg"/>
                                     <constraint firstItem="hOE-oW-LG1" firstAttribute="leading" secondItem="4tq-tL-HsR" secondAttribute="leading" id="q45-jc-LPY"/>
                                     <constraint firstItem="hOE-oW-LG1" firstAttribute="top" secondItem="FIz-jg-Esx" secondAttribute="bottom" constant="11" id="rff-nI-f16"/>
+                                    <constraint firstItem="nGO-3F-dCj" firstAttribute="top" secondItem="4tq-tL-HsR" secondAttribute="top" id="ycx-23-idA"/>
                                     <constraint firstItem="4tq-tL-HsR" firstAttribute="trailing" secondItem="FIz-jg-Esx" secondAttribute="trailing" constant="16" id="zht-cZ-28O"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="4tq-tL-HsR" userLabel="Safe Area 2"/>
@@ -347,12 +326,11 @@
                     <navigationItem key="navigationItem" title="Vertretungsplan" id="2Kd-Wu-yQj"/>
                     <connections>
                         <outlet property="activityIndicator" destination="K8j-4m-SnQ" id="VH4-gF-sib"/>
-                        <outlet property="additionalTextLabel" destination="3cI-n3-i6X" id="KaZ-P6-v24"/>
-                        <outlet property="additionalTextScrollView" destination="UXb-Gv-TGp" id="6nC-c9-MtJ"/>
+                        <outlet property="additionalText" destination="w7E-sv-NRK" id="hH7-ml-jEr"/>
                         <outlet property="currentDateLabel" destination="FIz-jg-Esx" id="chZ-yk-Za0"/>
                         <outlet property="scrollView" destination="4O7-Yu-m31" id="djl-4s-10d"/>
                         <outlet property="tableView" destination="hOE-oW-LG1" id="brb-2P-uZw"/>
-                        <outlet property="tickerTextLabel" destination="KwO-PN-ixo" id="Et2-V5-muh"/>
+                        <outlet property="tickerText" destination="tmA-gy-wnM" id="mNh-xO-Tfw"/>
                         <outlet property="tickerTextPageControl" destination="4wv-Jr-w8S" id="T3e-Nq-78j"/>
                         <outlet property="tickerTextScrollView" destination="nGO-3F-dCj" id="Wn1-dj-KFL"/>
                     </connections>
