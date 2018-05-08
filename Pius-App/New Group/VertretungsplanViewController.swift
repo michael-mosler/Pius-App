@@ -79,6 +79,8 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
         scrollView.addSubview(refreshControl);
     }
 
+    // Sets current page of page control when ticker text is
+    // scrolled horizontally.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (scrollView == tickerTextScrollView) {
             let currentPage = round(scrollView.contentOffset.x / CGFloat(343));

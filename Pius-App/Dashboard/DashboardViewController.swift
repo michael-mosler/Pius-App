@@ -14,10 +14,9 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var tickerTextPageControl: UIPageControl!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tickerTextScrollView: UIScrollView!
-    @IBOutlet weak var additionalTextScrollView: UIScrollView!
     
-    @IBOutlet weak var tickerTextLabel: UILabel!
-    @IBOutlet weak var additionalTextLabel: UILabel!
+    @IBOutlet weak var tickerText: UITextView!
+    @IBOutlet weak var additionalText: UITextView!
     @IBOutlet weak var currentDateLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
@@ -40,15 +39,14 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         
         DispatchQueue.main.async {
             self.currentDateLabel.text = vertretungsplan.lastUpdate;
-            self.tickerTextLabel.text = StringHelper.replaceHtmlEntities(input: vertretungsplan.tickerText);
-            self.tickerTextScrollView.contentSize = CGSize(width: 343, height: 70);
+            self.tickerText.text = StringHelper.replaceHtmlEntities(input: vertretungsplan.tickerText);
             
             if (vertretungsplan.hasAdditionalText()) {
-                self.additionalTextLabel.text = StringHelper.replaceHtmlEntities(input: vertretungsplan.additionalText);
-                self.tickerTextScrollView.contentSize = CGSize(width: 686, height: 70);
-                self.additionalTextScrollView.contentSize = CGSize(width: 343, height: 140);
+                self.additionalText.text = StringHelper.replaceHtmlEntities(input: vertretungsplan.additionalText);
+                self.tickerTextScrollView.isScrollEnabled = true;
                 self.tickerTextPageControl.numberOfPages = 2;
             } else {
+                self.tickerTextScrollView.isScrollEnabled = false;
                 self.tickerTextPageControl.numberOfPages = 1;
             }
             
@@ -266,6 +264,24 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
 
     }
 
+    // Sets current page of page control when ticker text is
+    // scrolled horizontally.
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (scrollView == tickerTextScrollView) {
+            let currentPage = round(scrollView.contentOffset.x / CGFloat(343));
+            tickerTextPageControl.currentPage = Int(currentPage);
+        }
+    }
+    
+    // After sub-views have been layouted content size of ticket text
+    // scroll view can be set. As we do not add UIText programmatically
+    // scroll view does not know about the correct size from story
+    // board.
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews();
+        tickerTextScrollView.contentSize = CGSize(width: 686, height: 70);
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -277,6 +293,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         title = grade;
         
         tickerTextScrollView.delegate = self;
+        
         getVertretungsplanFromWeb(forGrade: grade);
         
         let refreshControl = UIRefreshControl();
