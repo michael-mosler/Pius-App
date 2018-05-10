@@ -24,6 +24,8 @@
 		4C7C22972043117800ACA17B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C22962043117800ACA17B /* Assets.xcassets */; };
 		4C7C229A2043117800ACA17B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C22982043117800ACA17B /* LaunchScreen.storyboard */; };
 		4C7C22A52043117800ACA17B /* Pius_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C22A42043117800ACA17B /* Pius_AppUITests.swift */; };
+		4C7E61AA20A438A0000D1225 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7E61A920A4389F000D1225 /* SystemConfiguration.framework */; };
+		4C7E61AC20A438FF000D1225 /* ReachabilityChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7E61AB20A438FF000D1225 /* ReachabilityChecker.swift */; };
 		4CED4A7D204749580012CB45 /* EinstellungenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */; };
 		4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */; };
 		4CED4A85204AE3510012CB45 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */; };
@@ -63,6 +65,8 @@
 		4C7C22A02043117800ACA17B /* Pius-AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pius-AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7C22A42043117800ACA17B /* Pius_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pius_AppUITests.swift; sourceTree = "<group>"; };
 		4C7C22A62043117800ACA17B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C7E61A920A4389F000D1225 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4C7E61AB20A438FF000D1225 /* ReachabilityChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReachabilityChecker.swift; path = "Pius-App/Helper/ReachabilityChecker.swift"; sourceTree = SOURCE_ROOT; };
 		4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EinstellungenViewController.swift; sourceTree = "<group>"; };
 		4CED4A80204ADB520012CB45 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		4CED4A81204ADB520012CB45 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -77,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C7E61AA20A438A0000D1225 /* SystemConfiguration.framework in Frameworks */,
 				4C194B4C204AFB3500BA744A /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,6 +99,7 @@
 		4C194B4A204AFB3500BA744A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4C7E61A920A4389F000D1225 /* SystemConfiguration.framework */,
 				4C194B4B204AFB3500BA744A /* WebKit.framework */,
 			);
 			name = Frameworks;
@@ -122,6 +128,7 @@
 		4C1FDE58205E77BD006092C9 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				4C7E61AB20A438FF000D1225 /* ReachabilityChecker.swift */,
 				4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */,
 				4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */,
 				4C1FDE59205E77D7006092C9 /* StringHelper.swift */,
@@ -321,6 +328,7 @@
 				4C1FDE63206D5FE6006092C9 /* Config.swift in Sources */,
 				4CED4A85204AE3510012CB45 /* KeychainPasswordItem.swift in Sources */,
 				4C1FDE5A205E77D7006092C9 /* StringHelper.swift in Sources */,
+				4C7E61AC20A438FF000D1225 /* ReachabilityChecker.swift in Sources */,
 				4C7C22922043117800ACA17B /* ViewController.swift in Sources */,
 				4C1FDE57205D90E5006092C9 /* DetailCollectionViewCell.swift in Sources */,
 				4C1FDE4E205567C8006092C9 /* Vertretungsplan.swift in Sources */,

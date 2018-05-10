@@ -15,6 +15,7 @@ class VertretungsplanLoader {
     let config = Config();
     
     let baseUrl = "https://pius-gateway.eu-de.mybluemix.net/vertretungsplan";
+    let piusGatewayReachability = ReachabilityChecker(forName: "https://pius-gateway.eu-de.mybluemix.net");
 
     init(forGrade: String? = nil) {
         self.forGrade = forGrade;
@@ -71,6 +72,8 @@ class VertretungsplanLoader {
 
     func load(_ update: @escaping (Vertretungsplan) -> Void) {
         let base64LoginString = getAndEncodeCredentials();
+        
+        print(piusGatewayReachability.isNetworkReachable());
         
         // Define GET request with basic authentication.
         var request = URLRequest(url: url!)
