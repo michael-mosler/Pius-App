@@ -45,7 +45,7 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dein iPhone ist offline. Stelle eine Internet-Verbindung her, um die News anzuzeigen." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wl-BI-nlm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dein iPhone hat keine Internetverbindung. Stelle eine Verbindung her, um die News anzuzeigen." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wl-BI-nlm">
                                 <rect key="frame" x="16" y="415" width="343" height="36"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
@@ -273,7 +273,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hOE-oW-LG1">
-                                        <rect key="frame" x="0.0" y="129" width="375" height="561"/>
+                                        <rect key="frame" x="0.0" y="129" width="375" height="545"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="labelCell" textLabel="eIf-Lc-aYe" style="IBUITableViewCellStyleDefault" id="l3Y-Tr-zEy">
@@ -302,21 +302,34 @@
                                             <outlet property="delegate" destination="rcS-2s-zrV" id="Jki-6u-6t0"/>
                                         </connections>
                                     </tableView>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keine Verbindung" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5y-5W-Vez">
+                                        <rect key="frame" x="0.0" y="674" width="375" height="16"/>
+                                        <color key="backgroundColor" red="1" green="0.80144375560000003" blue="0.0046433899549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="fhW-1e-4mS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="y5y-5W-Vez" firstAttribute="trailing" secondItem="4tq-tL-HsR" secondAttribute="trailing" id="6Sk-dh-szl"/>
+                                    <constraint firstItem="4tq-tL-HsR" firstAttribute="bottom" secondItem="y5y-5W-Vez" secondAttribute="bottom" id="6zM-dK-eD7"/>
                                     <constraint firstAttribute="trailing" secondItem="nGO-3F-dCj" secondAttribute="trailing" constant="16" id="DJj-lr-GKd"/>
                                     <constraint firstItem="FIz-jg-Esx" firstAttribute="top" secondItem="4wv-Jr-w8S" secondAttribute="bottom" id="Jua-4m-is2"/>
                                     <constraint firstItem="4tq-tL-HsR" firstAttribute="trailing" secondItem="nGO-3F-dCj" secondAttribute="trailing" constant="16" id="KL2-Yq-rCb"/>
                                     <constraint firstItem="4wv-Jr-w8S" firstAttribute="top" secondItem="nGO-3F-dCj" secondAttribute="bottom" id="O27-Yo-xQg"/>
                                     <constraint firstItem="4tq-tL-HsR" firstAttribute="trailing" secondItem="4wv-Jr-w8S" secondAttribute="trailing" constant="176" id="QTG-Od-bec"/>
                                     <constraint firstItem="hOE-oW-LG1" firstAttribute="trailing" secondItem="4tq-tL-HsR" secondAttribute="trailing" id="RX3-fC-NHO"/>
-                                    <constraint firstItem="hOE-oW-LG1" firstAttribute="bottom" secondItem="4tq-tL-HsR" secondAttribute="bottom" id="UB1-PG-vUC"/>
+                                    <constraint firstItem="hOE-oW-LG1" firstAttribute="bottom" secondItem="y5y-5W-Vez" secondAttribute="top" id="UB1-PG-vUC"/>
                                     <constraint firstItem="4wv-Jr-w8S" firstAttribute="centerX" secondItem="4O7-Yu-m31" secondAttribute="centerX" id="Ud4-Nq-SUx"/>
                                     <constraint firstItem="nGO-3F-dCj" firstAttribute="leading" secondItem="4tq-tL-HsR" secondAttribute="leading" constant="16" id="foT-Si-6D8"/>
                                     <constraint firstAttribute="bottom" secondItem="nGO-3F-dCj" secondAttribute="bottom" constant="620" id="nk2-HH-opo"/>
                                     <constraint firstItem="FIz-jg-Esx" firstAttribute="leading" secondItem="4tq-tL-HsR" secondAttribute="leading" constant="16" id="pSN-gQ-iIg"/>
                                     <constraint firstItem="hOE-oW-LG1" firstAttribute="leading" secondItem="4tq-tL-HsR" secondAttribute="leading" id="q45-jc-LPY"/>
                                     <constraint firstItem="hOE-oW-LG1" firstAttribute="top" secondItem="FIz-jg-Esx" secondAttribute="bottom" constant="11" id="rff-nI-f16"/>
+                                    <constraint firstItem="y5y-5W-Vez" firstAttribute="leading" secondItem="4tq-tL-HsR" secondAttribute="leading" id="yb9-pT-Ms8"/>
                                     <constraint firstItem="nGO-3F-dCj" firstAttribute="top" secondItem="4O7-Yu-m31" secondAttribute="top" id="ycx-23-idA"/>
                                     <constraint firstItem="4tq-tL-HsR" firstAttribute="trailing" secondItem="FIz-jg-Esx" secondAttribute="trailing" constant="16" id="zht-cZ-28O"/>
                                 </constraints>
@@ -325,15 +338,23 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="K8j-4m-SnQ">
                                 <rect key="frame" x="178" y="396" width="20" height="20"/>
                             </activityIndicatorView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jep-mU-0Ww">
+                                <rect key="frame" x="0.0" y="778" width="375" height="34"/>
+                                <color key="backgroundColor" red="1" green="0.80144375560000003" blue="0.0046433899549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="K8j-4m-SnQ" firstAttribute="centerX" secondItem="Wdi-Sb-xdJ" secondAttribute="centerX" id="A5d-Ic-hJC"/>
                             <constraint firstItem="4O7-Yu-m31" firstAttribute="centerX" secondItem="K8j-4m-SnQ" secondAttribute="centerX" id="BFn-qw-mpb"/>
+                            <constraint firstAttribute="trailing" secondItem="Jep-mU-0Ww" secondAttribute="trailing" id="BP6-sH-CR2"/>
                             <constraint firstItem="4O7-Yu-m31" firstAttribute="top" secondItem="epQ-m8-0Zd" secondAttribute="top" id="BdW-BS-vMW"/>
                             <constraint firstItem="4O7-Yu-m31" firstAttribute="leading" secondItem="Wdi-Sb-xdJ" secondAttribute="leading" id="Ga9-J2-pF9"/>
+                            <constraint firstAttribute="bottom" secondItem="Jep-mU-0Ww" secondAttribute="bottom" id="bab-Kb-B0q"/>
                             <constraint firstItem="K8j-4m-SnQ" firstAttribute="centerY" secondItem="Wdi-Sb-xdJ" secondAttribute="centerY" id="ed7-lZ-FDs"/>
+                            <constraint firstItem="Jep-mU-0Ww" firstAttribute="top" secondItem="4O7-Yu-m31" secondAttribute="bottom" id="gdt-c5-yvc"/>
+                            <constraint firstItem="Jep-mU-0Ww" firstAttribute="leading" secondItem="Wdi-Sb-xdJ" secondAttribute="leading" id="tn8-jJ-aka"/>
                             <constraint firstItem="4O7-Yu-m31" firstAttribute="bottom" secondItem="epQ-m8-0Zd" secondAttribute="bottom" id="x3g-Cd-1IV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="epQ-m8-0Zd" userLabel="Safe Area 1"/>
@@ -343,6 +364,8 @@
                         <outlet property="activityIndicator" destination="K8j-4m-SnQ" id="VH4-gF-sib"/>
                         <outlet property="additionalText" destination="w7E-sv-NRK" id="hH7-ml-jEr"/>
                         <outlet property="currentDateLabel" destination="FIz-jg-Esx" id="chZ-yk-Za0"/>
+                        <outlet property="offlineFooterView" destination="Jep-mU-0Ww" id="qrI-Q3-HQt"/>
+                        <outlet property="offlineLabel" destination="y5y-5W-Vez" id="YGl-Hu-Tht"/>
                         <outlet property="scrollView" destination="4O7-Yu-m31" id="djl-4s-10d"/>
                         <outlet property="tableView" destination="hOE-oW-LG1" id="brb-2P-uZw"/>
                         <outlet property="tickerText" destination="tmA-gy-wnM" id="mNh-xO-Tfw"/>
@@ -819,8 +842,8 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dein iPhone ist offline. Stelle eine Internetverbindung her, um die Termine anzuzeigen." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBr-NF-DCO">
-                                <rect key="frame" x="16" y="406" width="343" height="54"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dein iPhone hat keine Internetverbindung. Stelle eine Verbindung her, um die Termine anzuzeigen." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBr-NF-DCO">
+                                <rect key="frame" x="16" y="415" width="343" height="36"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <nil key="textColor"/>

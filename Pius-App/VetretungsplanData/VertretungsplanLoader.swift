@@ -88,7 +88,7 @@ class VertretungsplanLoader {
         return request;
     }
     
-    func load(_ update: @escaping (Vertretungsplan?) -> Void) {
+    func load(_ update: @escaping (Vertretungsplan?, Bool) -> Void) {
         let piusGatewayIsReachable = piusGatewayReachability.isNetworkReachable();
         let request = getURLRequest(piusGatewayIsReachable);
 
@@ -97,7 +97,7 @@ class VertretungsplanLoader {
             (data, response, error) in
             if let error = error {
                 print("Vertretungsplan Loader had error: \(error)");
-                update(nil);
+                update(nil, piusGatewayIsReachable);
             }
 
             if let data = data {
@@ -166,7 +166,7 @@ class VertretungsplanLoader {
                         }
                     }
                     
-                    update(vertretungsplan);
+                    update(vertretungsplan, piusGatewayIsReachable);
                 }  catch let error as NSError {
                     print(error.localizedDescription)
                 }

@@ -34,7 +34,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     // That many rows per unfolded item.
     let rowsPerItem = 6;
     
-    func doUpdate(with vertretungsplan: Vertretungsplan?) {
+    func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
             DispatchQueue.main.async {
                 let alert = UIAlertController(title: "Vertretungsplan", message: "Die Daten konnten leider nicht geladen werden.", preferredStyle: UIAlertControllerStyle.alert);

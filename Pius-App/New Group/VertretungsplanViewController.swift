@@ -19,11 +19,14 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     @IBOutlet weak var additionalText: UITextView!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var offlineLabel: UILabel!
+    @IBOutlet weak var offlineFooterView: UIView!
+    
     var data: [VertretungsplanForDate] = [];
     var selected: IndexPath?;
     var currentHeader: ExpandableHeaderView?;
 
-    func doUpdate(with vertretungsplan: Vertretungsplan?) {
+    func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
             DispatchQueue.main.async {
                 let alert = UIAlertController(title: "Vertretungsplan", message: "Die Daten konnten leider nicht geladen werden.", preferredStyle: UIAlertControllerStyle.alert);
@@ -31,6 +34,9 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
                     (action: UIAlertAction!) in self.navigationController?.popViewController(animated: true);
                 }));
                 self.present(alert, animated: true, completion: nil);
+
+                self.offlineLabel.isHidden = online;
+                self.offlineFooterView.isHidden = online;
             }
         } else {
             self.data = vertretungsplan!.vertretungsplaene;
@@ -50,6 +56,9 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
                 
                 self.tableView.reloadData();
                 self.activityIndicator.stopAnimating();
+
+                self.offlineLabel.isHidden = online;
+                self.offlineFooterView.isHidden = online;
             }
         }
     }
