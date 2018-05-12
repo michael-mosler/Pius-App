@@ -10,16 +10,20 @@ import Foundation
 import UIKit;
 
 class VertretungsplanLoader {
-    var forGrade: String?;
-    var url: URL?;
-    let config = Config();
+    private var forGrade: String?;
+    private var url: URL?;
+    private let config = Config();
     
-    let baseUrl = "https://pius-gateway.eu-de.mybluemix.net/vertretungsplan";
-    let piusGatewayReachability = ReachabilityChecker(forName: "https://pius-gateway.eu-de.mybluemix.net");
+    private let baseUrl = "https://pius-gateway.eu-de.mybluemix.net/vertretungsplan";
+    private let piusGatewayReachability = ReachabilityChecker(forName: "https://pius-gateway.eu-de.mybluemix.net");
 
+    private let cache = Cache();
+    private var cacheFileName: String;
+    
     init(forGrade: String? = nil) {
         self.forGrade = forGrade;
-        self.url = URL(string: (forGrade == nil) ? self.baseUrl : String(format: "%@/?forGrade=%@", self.baseUrl, forGrade!));
+        url = URL(string: (forGrade == nil) ? self.baseUrl : String(format: "%@/?forGrade=%@", self.baseUrl, forGrade!));
+        cacheFileName = (forGrade != nil) ? String(format: "%@.html", forGrade!) : "vertretungsplan.html";
     }
     
     private func accept(basedOn detailsItems: [String]) -> Bool {
@@ -54,8 +58,6 @@ class VertretungsplanLoader {
     // Get username and password from settings and set up basic authentication
     // header login string.
     func getAndEncodeCredentials(username: String? = nil, password: String? = nil) -> String {
-        let config = Config();
-
         var realUsername: String;
         var realPassword: String;
         if (username == nil && password == nil) {
@@ -70,20 +72,40 @@ class VertretungsplanLoader {
         return loginData.base64EncodedString();
     }
 
-    func load(_ update: @escaping (Vertretungsplan) -> Void) {
+    private func getURLRequest(_ piusGatewayIsReachable: Bool) -> URLRequest {
         let base64LoginString = getAndEncodeCredentials();
+        var request: URLRequest;
         
-        print(piusGatewayReachability.isNetworkReachable());
+        if (piusGatewayIsReachable) {
+            // Define GET request with basic authentication.
+            request = URLRequest(url: url!)
+            request.httpMethod = "GET"
+            request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        } else {
+            request = URLRequest(url: cache.getCacheFileUrl(for: cacheFileName)!);
+        }
         
-        // Define GET request with basic authentication.
-        var request = URLRequest(url: url!)
-        request.httpMethod = "GET"
-        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        return request;
+    }
+    
+    func load(_ update: @escaping (Vertretungsplan?) -> Void) {
+        let piusGatewayIsReachable = piusGatewayReachability.isNetworkReachable();
+        let request = getURLRequest(piusGatewayIsReachable);
 
         // Create task to get data in background.
         let task = URLSession.shared.dataTask(with: request) {
             (data, response, error) in
+            if let error = error {
+                print("Vertretungsplan Loader had error: \(error)");
+                update(nil);
+            }
+
             if let data = data {
+                // If in online mode store current vertretungsplan in cache.
+                if (piusGatewayIsReachable) {
+                    self.cache.store(filename: self.cacheFileName, data: data);
+                }
+
                 var vertretungsplan: Vertretungsplan = Vertretungsplan();
                 
                 do {

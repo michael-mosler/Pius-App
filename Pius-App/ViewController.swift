@@ -20,7 +20,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
     @IBOutlet weak var vertretungsplanItem: UIButton!
     @IBOutlet weak var dashboardItem: UIButton!
     @IBOutlet weak var webViewActivityIndicator: UIActivityIndicatorView!
-
+    @IBOutlet weak var offlineText: UILabel!
+    
     // Open Safari with Pius home page when menu item is selected.
     @IBAction func gotoHomePageAction(_ sender: Any) {
         UIApplication.shared.open(NSURL(string:"http://pius-gymnasium.de/")! as URL)
@@ -32,13 +33,19 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
     // User defaults access.
     let config = Config();
 
+    // Checks reachability of news page.
+    let reachabilityChecker = ReachabilityChecker(forName: "https://pius-gateway.eu-de.mybluemix.net");
+    
+    // Becomes true if webview has been loaded.
+    var webViewLoaded: Bool = false;
+    
     // Stop activity indicator when news page has been loaded.
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         webViewActivityIndicator.stopAnimating();
     }
 
     // Hide sidebar menu.
-    fileprivate func showSidebarMenu(with percentage: CGFloat = 0) {
+    private func showSidebarMenu(with percentage: CGFloat = 0) {
         menuIsOpen = percentage >= 1;
 
         menuLeadingConstraint.constant = -180 + min(percentage, 1) * 180;
@@ -117,17 +124,30 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
     // Load news page from Pius home page but proxied by our Pius Gateway.
     // This returns an optimized version of the news page.
     private func loadWebView() {
-        // Pius Gymnasium Home Page will be shown on landing page.
-        let baseUrl = URL(string: "https://pius-gateway.eu-de.mybluemix.net/news");
+        var pageRequest: URLRequest;
+        
+        if (reachabilityChecker.isNetworkReachable()) {
+            offlineText.isHidden = true;
 
-        let homePageRequest = URLRequest(url: baseUrl!);
-        webView.load(homePageRequest);
+            // Pius Gymnasium Home Page will be shown on landing page.
+            let baseUrl = URL(string: "https://pius-gateway.eu-de.mybluemix.net/news");
+            pageRequest = URLRequest(url: baseUrl!);
+            webViewLoaded = true;
+        } else {
+            offlineText.isHidden = false;
+
+            let baseUrl = URL(string: "about:blank");
+            pageRequest = URLRequest(url: baseUrl!);
+            webViewLoaded = false;
+        }
+
+        webView.load(pageRequest);
     }
     
     // Refresh WebView.
     @objc func refreshWebView(_ sender: UIRefreshControl) {
-        webView.reload();
-        sender.endRefreshing()
+        sender.endRefreshing();
+        loadWebView();
     }
 
     // Called whenever view has been loaded. Initialises all our stuff.
@@ -155,7 +175,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
         refreshControl.addTarget(self, action: #selector(refreshWebView(_:)), for: UIControlEvents.valueChanged);
         webView.scrollView.addSubview(refreshControl);
         
-        // Load web view on initial view.
+        // Load web view on initial view. Activity indicator is started on
+        // initial load only. Later on refresh indicator is active instead.
+        webViewActivityIndicator.startAnimating();
         loadWebView();
         
         visualEffectView.addGestureRecognizer(webViewTabGestureRecognizer);

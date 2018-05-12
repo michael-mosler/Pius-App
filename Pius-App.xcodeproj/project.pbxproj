@@ -18,6 +18,7 @@
 		4C1FDE5E20697516006092C9 /* VertretungsplanLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */; };
 		4C1FDE61206C2644006092C9 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE60206C2644006092C9 /* DashboardViewController.swift */; };
 		4C1FDE63206D5FE6006092C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE62206D5FE6006092C9 /* Config.swift */; };
+		4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
 		4C7C22902043117800ACA17B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C228F2043117700ACA17B /* AppDelegate.swift */; };
 		4C7C22922043117800ACA17B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C22912043117800ACA17B /* ViewController.swift */; };
 		4C7C22952043117800ACA17B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C22932043117800ACA17B /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 		4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanLoader.swift; sourceTree = "<group>"; };
 		4C1FDE60206C2644006092C9 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		4C1FDE62206D5FE6006092C9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		4C5E0E7520A498DA00DAE459 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		4C7C228C2043117700ACA17B /* Pius-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pius-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7C228F2043117700ACA17B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C7C22912043117800ACA17B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				4C1FDE4D205567C8006092C9 /* Vertretungsplan.swift */,
 				4C1FDE4F205568E3006092C9 /* ExpandableHeaderView.swift */,
 				4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */,
+				4C5E0E7520A498DA00DAE459 /* Cache.swift */,
 			);
 			path = VetretungsplanData;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				4C1FDE57205D90E5006092C9 /* DetailCollectionViewCell.swift in Sources */,
 				4C1FDE4E205567C8006092C9 /* Vertretungsplan.swift in Sources */,
 				4C1FDE5C20603DF1006092C9 /* DetailsCellTableViewCell.swift in Sources */,
+				4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */,
 				4C7C22902043117800ACA17B /* AppDelegate.swift in Sources */,
 				4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */,
 				4C1FDE50205568E3006092C9 /* ExpandableHeaderView.swift in Sources */,
@@ -495,6 +499,7 @@
 		4C7C22AA2043117800ACA17B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -513,6 +518,7 @@
 		4C7C22AB2043117800ACA17B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;

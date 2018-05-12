@@ -10,8 +10,8 @@ import Foundation
 import SystemConfiguration
 
 class ReachabilityChecker {
-    var name: String?;
-    var reachability: SCNetworkReachability?;
+    private var name: String?;
+    private var reachability: SCNetworkReachability?;
     
     init(forName name: String) {
         reachability = SCNetworkReachabilityCreateWithName(nil, name);

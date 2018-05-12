@@ -45,6 +45,13 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dein iPhone ist offline. Stelle eine Internet-Verbindung her, um die News anzuzeigen." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wl-BI-nlm">
+                                <rect key="frame" x="16" y="415" width="343" height="36"/>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i4W-MD-FEZ">
                                 <rect key="frame" x="0.0" y="88" width="375" height="724"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vSj-JC-Lu2">
@@ -56,8 +63,8 @@
                                 </constraints>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hAQ-Lz-Ecs">
-                                <rect key="frame" x="177" y="396" width="20" height="20"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hAQ-Lz-Ecs">
+                                <rect key="frame" x="177" y="423" width="20" height="20"/>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3y-4D-5m7">
                                 <rect key="frame" x="-180" y="88" width="180" height="724"/>
@@ -143,17 +150,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="8c9-Ww-m5d" firstAttribute="trailing" secondItem="0wl-BI-nlm" secondAttribute="trailing" constant="16" id="0hf-RH-nS3"/>
                             <constraint firstItem="QbP-Vw-84G" firstAttribute="trailing" secondItem="8c9-Ww-m5d" secondAttribute="trailing" id="DYc-fy-Pgo"/>
+                            <constraint firstItem="0wl-BI-nlm" firstAttribute="leading" secondItem="J3y-4D-5m7" secondAttribute="trailing" constant="16" id="GfN-k5-48c"/>
                             <constraint firstItem="i4W-MD-FEZ" firstAttribute="leading" secondItem="8c9-Ww-m5d" secondAttribute="leading" id="IvL-VO-SL6"/>
                             <constraint firstItem="i4W-MD-FEZ" firstAttribute="top" secondItem="8c9-Ww-m5d" secondAttribute="top" id="NLu-Xa-XMo"/>
                             <constraint firstItem="8c9-Ww-m5d" firstAttribute="bottom" secondItem="QbP-Vw-84G" secondAttribute="bottom" id="QM6-sh-xua"/>
+                            <constraint firstItem="0wl-BI-nlm" firstAttribute="centerY" secondItem="8c9-Ww-m5d" secondAttribute="centerY" id="Vjj-Bg-huF"/>
                             <constraint firstItem="J3y-4D-5m7" firstAttribute="top" secondItem="8c9-Ww-m5d" secondAttribute="top" id="X7J-TM-BCR"/>
                             <constraint firstItem="J3y-4D-5m7" firstAttribute="leading" secondItem="8c9-Ww-m5d" secondAttribute="leading" constant="-180" id="cM0-gA-6ly"/>
                             <constraint firstItem="8c9-Ww-m5d" firstAttribute="trailing" secondItem="i4W-MD-FEZ" secondAttribute="trailing" id="kKD-6A-RQF"/>
-                            <constraint firstItem="hAQ-Lz-Ecs" firstAttribute="centerX" secondItem="04M-lU-aWV" secondAttribute="centerX" id="l6A-K3-ygj"/>
+                            <constraint firstItem="hAQ-Lz-Ecs" firstAttribute="centerX" secondItem="8c9-Ww-m5d" secondAttribute="centerX" id="l6A-K3-ygj"/>
                             <constraint firstItem="QbP-Vw-84G" firstAttribute="top" secondItem="8c9-Ww-m5d" secondAttribute="top" id="otX-fR-06P"/>
                             <constraint firstItem="QbP-Vw-84G" firstAttribute="leading" secondItem="8c9-Ww-m5d" secondAttribute="leading" id="tw3-3S-3Mg"/>
-                            <constraint firstItem="hAQ-Lz-Ecs" firstAttribute="centerY" secondItem="04M-lU-aWV" secondAttribute="centerY" id="vRr-AO-jFd"/>
+                            <constraint firstItem="hAQ-Lz-Ecs" firstAttribute="centerY" secondItem="8c9-Ww-m5d" secondAttribute="centerY" id="vRr-AO-jFd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8c9-Ww-m5d"/>
                     </view>
@@ -168,6 +178,7 @@
                         <outlet property="dashboardItem" destination="ZNP-XJ-bKz" id="Luf-Os-CQC"/>
                         <outlet property="menuLeadingConstraint" destination="cM0-gA-6ly" id="Nio-vZ-qQt"/>
                         <outlet property="menuView" destination="J3y-4D-5m7" id="Fsh-ns-4IA"/>
+                        <outlet property="offlineText" destination="0wl-BI-nlm" id="rWM-JS-kLM"/>
                         <outlet property="panRightGestureRecognizer" destination="qfl-Qx-UYV" id="prV-Qa-fxr"/>
                         <outlet property="swipeLeftGestureRecognizer" destination="Lga-Rh-Bhg" id="30n-zB-hWa"/>
                         <outlet property="vertretungsplanItem" destination="C9k-lu-b8Y" id="gGQ-RK-81R"/>
@@ -808,8 +819,15 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wKF-iO-a91">
-                                <rect key="frame" x="177.66666666666666" y="396" width="20" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dein iPhone ist offline. Stelle eine Internetverbindung her, um die Termine anzuzeigen." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBr-NF-DCO">
+                                <rect key="frame" x="16" y="406" width="343" height="54"/>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wKF-iO-a91">
+                                <rect key="frame" x="177.66666666666666" y="423" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -817,13 +835,17 @@
                             <constraint firstItem="icu-lC-cY9" firstAttribute="trailing" secondItem="zrC-uN-khI" secondAttribute="trailing" id="7tB-8K-g07"/>
                             <constraint firstItem="icu-lC-cY9" firstAttribute="bottom" secondItem="zrC-uN-khI" secondAttribute="bottom" id="E1L-kE-cYc"/>
                             <constraint firstItem="wKF-iO-a91" firstAttribute="centerX" secondItem="TaV-7q-t5v" secondAttribute="centerX" id="Gvh-oA-gdX"/>
+                            <constraint firstItem="wBr-NF-DCO" firstAttribute="leading" secondItem="icu-lC-cY9" secondAttribute="leading" constant="16" id="Ign-Fb-H49"/>
                             <constraint firstItem="zrC-uN-khI" firstAttribute="leading" secondItem="icu-lC-cY9" secondAttribute="leading" id="PNB-7M-lSa"/>
+                            <constraint firstItem="wBr-NF-DCO" firstAttribute="centerY" secondItem="icu-lC-cY9" secondAttribute="centerY" id="WBz-tA-xMe"/>
                             <constraint firstItem="zrC-uN-khI" firstAttribute="top" secondItem="icu-lC-cY9" secondAttribute="top" id="if2-i9-6Gr"/>
-                            <constraint firstItem="wKF-iO-a91" firstAttribute="centerY" secondItem="TaV-7q-t5v" secondAttribute="centerY" id="lmJ-Qm-DRn"/>
+                            <constraint firstItem="wKF-iO-a91" firstAttribute="centerY" secondItem="icu-lC-cY9" secondAttribute="centerY" id="lmJ-Qm-DRn"/>
+                            <constraint firstItem="icu-lC-cY9" firstAttribute="trailing" secondItem="wBr-NF-DCO" secondAttribute="trailing" constant="16" id="nh3-oP-Aaa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="icu-lC-cY9"/>
                     </view>
                     <connections>
+                        <outlet property="offlineText" destination="wBr-NF-DCO" id="39K-gI-fRJ"/>
                         <outlet property="webView" destination="zrC-uN-khI" id="GVp-Nd-d7w"/>
                         <outlet property="webViewActivityIndicator" destination="wKF-iO-a91" id="TAu-0Q-rdI"/>
                     </connections>

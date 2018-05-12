@@ -23,24 +23,34 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     var selected: IndexPath?;
     var currentHeader: ExpandableHeaderView?;
 
-    func doUpdate(with vertretungsplan: Vertretungsplan) {
-        self.data = vertretungsplan.vertretungsplaene;
-        
-        DispatchQueue.main.async {
-            self.currentDateLabel.text = vertretungsplan.lastUpdate;
-            self.tickerText.text = StringHelper.replaceHtmlEntities(input: vertretungsplan.tickerText);
-            
-            if (vertretungsplan.hasAdditionalText()) {
-                self.additionalText.text = StringHelper.replaceHtmlEntities(input: vertretungsplan.additionalText);
-                self.tickerTextScrollView.isScrollEnabled = true;
-                self.tickerTextPageControl.numberOfPages = 2;
-            } else {
-                self.tickerTextScrollView.isScrollEnabled = false;
-                self.tickerTextPageControl.numberOfPages = 1;
+    func doUpdate(with vertretungsplan: Vertretungsplan?) {
+        if (vertretungsplan == nil) {
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Vertretungsplan", message: "Die Daten konnten leider nicht geladen werden.", preferredStyle: UIAlertControllerStyle.alert);
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+                    (action: UIAlertAction!) in self.navigationController?.popViewController(animated: true);
+                }));
+                self.present(alert, animated: true, completion: nil);
             }
+        } else {
+            self.data = vertretungsplan!.vertretungsplaene;
             
-            self.tableView.reloadData();
-            self.activityIndicator.stopAnimating();
+            DispatchQueue.main.async {
+                self.currentDateLabel.text = vertretungsplan!.lastUpdate;
+                self.tickerText.text = StringHelper.replaceHtmlEntities(input: vertretungsplan!.tickerText);
+                
+                if (vertretungsplan!.hasAdditionalText()) {
+                    self.additionalText.text = StringHelper.replaceHtmlEntities(input: vertretungsplan!.additionalText);
+                    self.tickerTextScrollView.isScrollEnabled = true;
+                    self.tickerTextPageControl.numberOfPages = 2;
+                } else {
+                    self.tickerTextScrollView.isScrollEnabled = false;
+                    self.tickerTextPageControl.numberOfPages = 1;
+                }
+                
+                self.tableView.reloadData();
+                self.activityIndicator.stopAnimating();
+            }
         }
     }
     
