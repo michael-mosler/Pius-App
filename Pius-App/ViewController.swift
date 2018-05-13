@@ -39,6 +39,24 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
     // Becomes true if webview has been loaded.
     var webViewLoaded: Bool = false;
     
+    @IBAction func unwindFromLaunchScreen(unwindSegue: UIStoryboardSegue) {
+        
+    }
+
+    // If not authenticated and is launched show login screen.
+    private func showLaunchScreen() {
+        let _: Bool = config.userDefaults.bool(forKey: "hideLaunchScreen");
+        config.userDefaults.set(true, forKey: "hideLaunchScreen");
+        
+        if (!config.userDefaults.bool(forKey: "authenticated")) {
+            if let launchScreenViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen") as UIViewController? {
+                if let navigationController = navigationController {
+                    navigationController.pushViewController(launchScreenViewController, animated: false);
+                }
+            }
+        }
+    }
+
     // Stop activity indicator when news page has been loaded.
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         webViewActivityIndicator.stopAnimating();
@@ -110,7 +128,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
 
     // Add Pius logo as navigation bar title on initial view.
     func addNavBarLogo() {
-        let navigationController = self.navigationController!;
+        guard let navigationController = navigationController else { return };
+        
         let image = UIImage(named: "pius-app-transparent.png")!;
         let imageView = UIImageView(image: image);
         
@@ -158,6 +177,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
     // Called whenever view has been loaded. Initialises all our stuff.
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        showLaunchScreen();
 
         // Configure tab gesture recognizer.
         webViewTabGestureRecognizer.numberOfTapsRequired = 1;

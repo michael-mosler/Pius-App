@@ -27,6 +27,66 @@
             </objects>
             <point key="canvasLocation" x="148" y="45"/>
         </scene>
+        <!--Willkommen-->
+        <scene sceneID="mdQ-id-DtP">
+            <objects>
+                <viewController storyboardIdentifier="LaunchScreen" title="Willkommen" id="K57-cc-ZQV" customClass="LaunchScreenViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qu6-AU-v41">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenBgnd" translatesAutoresizingMaskIntoConstraints="NO" id="nHg-J5-XNW">
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Melde Dich in den Einstellungen an, um den Vertretungsplan und das Dashboard verwenden zu können." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kz1-4Y-xDe">
+                                <rect key="frame" x="16" y="555" width="343" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bje-LA-aeZ">
+                                <rect key="frame" x="112" y="632" width="150" height="30"/>
+                                <color key="backgroundColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Jetzt anmelden"/>
+                                <connections>
+                                    <segue destination="Lk2-Qz-3KO" kind="show" customClass="SettingsSegue" customModule="Pius_App" customModuleProvider="target" id="MCY-3C-dGO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwt-Mh-9jE">
+                                <rect key="frame" x="112" y="678" width="150" height="30"/>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <state key="normal" title="Später">
+                                    <color key="titleColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="2k9-7O-qLD" kind="unwind" unwindAction="unwindFromLaunchScreenWithUnwindSegue:" id="0IF-Sj-5KL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bje-LA-aeZ" firstAttribute="top" secondItem="kz1-4Y-xDe" secondAttribute="bottom" constant="16" id="25p-AV-cNS"/>
+                            <constraint firstItem="gwt-Mh-9jE" firstAttribute="top" secondItem="bje-LA-aeZ" secondAttribute="bottom" constant="16" id="DCD-Vv-peV"/>
+                            <constraint firstItem="nHg-J5-XNW" firstAttribute="leading" secondItem="hFp-0z-asL" secondAttribute="leading" id="IY9-e8-tRp"/>
+                            <constraint firstItem="kz1-4Y-xDe" firstAttribute="leading" secondItem="hFp-0z-asL" secondAttribute="leading" constant="16" id="Ias-PB-Y48"/>
+                            <constraint firstItem="kz1-4Y-xDe" firstAttribute="top" secondItem="hFp-0z-asL" secondAttribute="top" constant="467" id="Ibd-hO-33P"/>
+                            <constraint firstItem="nHg-J5-XNW" firstAttribute="top" secondItem="hFp-0z-asL" secondAttribute="top" id="KR2-UW-btZ"/>
+                            <constraint firstItem="hFp-0z-asL" firstAttribute="trailing" secondItem="bje-LA-aeZ" secondAttribute="trailing" constant="113" id="OfN-NR-clm"/>
+                            <constraint firstItem="hFp-0z-asL" firstAttribute="trailing" secondItem="gwt-Mh-9jE" secondAttribute="trailing" constant="113" id="Zcw-Y9-qGI"/>
+                            <constraint firstItem="hFp-0z-asL" firstAttribute="trailing" secondItem="kz1-4Y-xDe" secondAttribute="trailing" constant="16" id="aNh-C4-X69"/>
+                            <constraint firstItem="bje-LA-aeZ" firstAttribute="leading" secondItem="hFp-0z-asL" secondAttribute="leading" constant="112" id="aoA-b7-a7Y"/>
+                            <constraint firstItem="hFp-0z-asL" firstAttribute="trailing" secondItem="nHg-J5-XNW" secondAttribute="trailing" id="f6L-ja-AXA"/>
+                            <constraint firstAttribute="bottom" secondItem="nHg-J5-XNW" secondAttribute="bottom" id="kzi-NH-13N"/>
+                            <constraint firstItem="gwt-Mh-9jE" firstAttribute="leading" secondItem="hFp-0z-asL" secondAttribute="leading" constant="112" id="ycG-Qw-MgI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hFp-0z-asL"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4PM-1T-q7v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="2k9-7O-qLD" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1821.5999999999999" y="-635.46798029556658"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="h17-Dy-33i">
             <objects>
@@ -186,6 +246,7 @@
                         <outlet property="webView" destination="QbP-Vw-84G" id="ITu-l6-12l"/>
                         <outlet property="webViewActivityIndicator" destination="hAQ-Lz-Ecs" id="H1h-ef-t4E"/>
                         <outlet property="webViewTabGestureRecognizer" destination="qTt-MW-COP" id="wg7-Hz-8nE"/>
+                        <segue destination="K57-cc-ZQV" kind="show" identifier="appLaunch" id="Swj-Di-KAG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JSN-N5-dMg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1279,6 +1340,10 @@
     </scenes>
     <resources>
         <image name="Hamburger_icon.svg" width="50" height="50"/>
+        <image name="LaunchScreenBgnd" width="386" height="710"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="MCY-3C-dGO"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

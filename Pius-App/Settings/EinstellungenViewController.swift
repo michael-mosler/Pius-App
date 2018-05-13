@@ -38,12 +38,12 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     private let reachabilityChecker = ReachabilityChecker(forName: "https://pius-gateway.eu-de.mybluemix.net");
 
     // Checks if grade picker has selected an upper grade.
-    func isUpperGradeSelected(_ row: Int) -> Bool {
+    private func isUpperGradeSelected(_ row: Int) -> Bool {
         return config.upperGrades.index(of: config.grades[row]) != nil
     }
     
     // Update Login button text depending on authentication state.
-    func updateLoginButtonText(authenticated: Bool?) {
+    private func updateLoginButtonText(authenticated: Bool?) {
         if (authenticated != nil && authenticated!) {
             loginButtonOutlet.setTitle("Abmelden", for: .normal);
         } else {
