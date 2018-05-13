@@ -25,12 +25,18 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var gradePickerView: UIPickerView!
     @IBOutlet weak var classPickerView: UIPickerView!
     
+    @IBOutlet weak var offlineLabel: UILabel!
+    @IBOutlet weak var offlineFooterView: UIView!
+    
     // The active text field, is either webSizeUserNameField or webSitePasswordField.
-    var activeTextField: UITextField?;
+    private var activeTextField: UITextField?;
     
     // The app configuration settings and supporting constants.
-    let config = Config();
+    private let config = Config();
     
+    // Checks reachability of Pius Gateway
+    private let reachabilityChecker = ReachabilityChecker(forName: "https://pius-gateway.eu-de.mybluemix.net");
+
     // Checks if grade picker has selected an upper grade.
     func isUpperGradeSelected(_ row: Int) -> Bool {
         return config.upperGrades.index(of: config.grades[row]) != nil
@@ -262,6 +268,17 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
 
         let classRow = config.userDefaults.integer(forKey: "selectedClassRow");
         classPickerView.selectRow(classRow, inComponent: 0, animated: false);
+        
+        // Disable Login and Logout when offline.
+        let isOnline = reachabilityChecker.isNetworkReachable();
+        offlineLabel.isHidden = isOnline;
+        offlineFooterView.isHidden = isOnline;
+
+        let isAuthenticated = config.userDefaults.bool(forKey: "authenticated");
+        
+        webSiteUserNameField.isEnabled = isOnline && !isAuthenticated;
+        webSitePasswordField.isEnabled = isOnline && !isAuthenticated;
+        loginButtonOutlet.isEnabled = isOnline;
         
         setElementStates(forSelectedGrade: gradeRow);
         showCredentials();

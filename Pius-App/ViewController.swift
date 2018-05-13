@@ -56,6 +56,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
             self.view.layoutIfNeeded()
         });
         
+        // Dashboard item is disabled if no grade is configured.
+        let authenticated = config.userDefaults.bool(forKey: "authenticated");
+        dashboardItem.isEnabled = (config.userDefaults.integer(forKey: "selectedGradeRow") != 0) && authenticated;
+        vertretungsplanItem.isEnabled = authenticated;
+        
         // When sidebar menu is open disable web view and blur background.
         webView.isUserInteractionEnabled = percentage == 0;
         visualEffectView.isHidden = percentage == 0;
@@ -200,11 +205,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
         } else {
             showSidebarMenu(with: 1);
         }
-
-        // Dashboard item is disabled if no grade is configured.
-        let authenticated = config.userDefaults.bool(forKey: "authenticated");
-        dashboardItem.isEnabled = (config.userDefaults.integer(forKey: "selectedGradeRow") != 0) && authenticated;
-        vertretungsplanItem.isEnabled = authenticated;
-    }
+     }
 }
 

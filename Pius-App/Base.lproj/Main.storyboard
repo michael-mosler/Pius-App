@@ -932,7 +932,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="trz-rZ-pce">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="674"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gib hier bitte für die Dashboard-Funktion Deine Jahrgangsstufe ein. Wenn Du möchtest kannst Du zusätzlich Deine Klasse angeben." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="359" translatesAutoresizingMaskIntoConstraints="NO" id="7Aj-Cs-riU">
                                         <rect key="frame" x="8" y="8" width="359" height="54"/>
@@ -993,17 +993,18 @@
                                             <constraint firstAttribute="height" constant="155" id="fqY-iF-grW"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gib bitte den Benutzernamen und das Passwort für den Zugang zur Pius-Gymnasium Web-Seite an." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z14-lD-bDy">
-                                        <rect key="frame" x="16" y="233" width="359" height="36"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z14-lD-bDy">
+                                        <rect key="frame" x="16" y="232.99999999999997" width="359" height="71.666666666666657"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="359" id="C8E-MP-T4v"/>
                                         </constraints>
+                                        <string key="text">Gib bitte den Benutzernamen und das Passwort für den Zugang zur Pius-Gymnasium Web-Seite an. Zum Anmelden benötigst Du eine Internetverbindung.</string>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="71s-cE-mcQ">
-                                        <rect key="frame" x="0.0" y="277" width="375" height="204"/>
+                                        <rect key="frame" x="0.0" y="312.66666666666669" width="375" height="204.00000000000006"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Benutzername" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPg-Ie-0E5">
                                                 <rect key="frame" x="17" y="8" width="116" height="33"/>
@@ -1052,7 +1053,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pius-App für iOS Version 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cn0-el-aKL">
-                                        <rect key="frame" x="8" y="489" width="359" height="18"/>
+                                        <rect key="frame" x="8" y="524.66666666666663" width="359" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1077,12 +1078,33 @@
                                     <constraint firstItem="z14-lD-bDy" firstAttribute="top" secondItem="abt-ed-R0L" secondAttribute="bottom" constant="8" id="xk1-Ze-Uni"/>
                                 </constraints>
                             </scrollView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keine Verbindung" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFu-Gj-Cr2">
+                                <rect key="frame" x="0.0" y="762" width="375" height="16"/>
+                                <color key="backgroundColor" red="1" green="0.80144375560000003" blue="0.0046433899549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="d31-dI-hi5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BoI-bc-jrf">
+                                <rect key="frame" x="0.0" y="778" width="375" height="34"/>
+                                <color key="backgroundColor" red="1" green="0.80144375560000003" blue="0.0046433899549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.8759240284183909" green="0.8759240284183909" blue="0.8759240284183909" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="trz-rZ-pce" firstAttribute="top" secondItem="HEK-36-qmJ" secondAttribute="top" id="DaT-li-JhR"/>
                             <constraint firstItem="HEK-36-qmJ" firstAttribute="trailing" secondItem="trz-rZ-pce" secondAttribute="trailing" id="Khg-Nu-1JZ"/>
-                            <constraint firstItem="HEK-36-qmJ" firstAttribute="bottom" secondItem="trz-rZ-pce" secondAttribute="bottom" id="bag-ii-iVH"/>
+                            <constraint firstAttribute="bottom" secondItem="BoI-bc-jrf" secondAttribute="bottom" id="RXf-AM-S2t"/>
+                            <constraint firstAttribute="trailing" secondItem="BoI-bc-jrf" secondAttribute="trailing" id="Vo3-4m-Wtp"/>
+                            <constraint firstItem="gFu-Gj-Cr2" firstAttribute="top" secondItem="trz-rZ-pce" secondAttribute="bottom" id="bag-ii-iVH"/>
+                            <constraint firstItem="BoI-bc-jrf" firstAttribute="leading" secondItem="U7H-Ju-EfE" secondAttribute="leading" id="fMe-45-82j"/>
+                            <constraint firstItem="gFu-Gj-Cr2" firstAttribute="leading" secondItem="HEK-36-qmJ" secondAttribute="leading" id="hFX-qa-lab"/>
+                            <constraint firstItem="gFu-Gj-Cr2" firstAttribute="bottom" secondItem="HEK-36-qmJ" secondAttribute="bottom" id="hx6-nS-fKl"/>
+                            <constraint firstItem="HEK-36-qmJ" firstAttribute="trailing" secondItem="gFu-Gj-Cr2" secondAttribute="trailing" id="mOO-HR-leU"/>
+                            <constraint firstItem="BoI-bc-jrf" firstAttribute="top" secondItem="gFu-Gj-Cr2" secondAttribute="bottom" id="sde-4D-oOl"/>
                             <constraint firstItem="trz-rZ-pce" firstAttribute="leading" secondItem="HEK-36-qmJ" secondAttribute="leading" id="z9a-GL-qiU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HEK-36-qmJ"/>
@@ -1092,6 +1114,8 @@
                         <outlet property="gradePickerView" destination="XO8-MV-Wfl" id="nbR-ma-XSS"/>
                         <outlet property="loginButtonOutlet" destination="mOQ-io-SDv" id="m0T-pG-jPw"/>
                         <outlet property="myCoursesButton" destination="rYj-AZ-XUq" id="Dr6-qF-oxZ"/>
+                        <outlet property="offlineFooterView" destination="BoI-bc-jrf" id="iue-c2-dCR"/>
+                        <outlet property="offlineLabel" destination="gFu-Gj-Cr2" id="xT2-US-L9f"/>
                         <outlet property="scrollView" destination="trz-rZ-pce" id="rus-Gd-xfs"/>
                         <outlet property="tapGestureRecognizer" destination="IEa-8N-hxU" id="2AV-mJ-GOJ"/>
                         <outlet property="webSitePasswordField" destination="7be-e2-HfE" id="85P-IE-hJC"/>

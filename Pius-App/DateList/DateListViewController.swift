@@ -15,7 +15,7 @@ class DateListViewController: UIViewController, WKNavigationDelegate {
     @IBOutlet weak var offlineText: UILabel!
     
     // Checks reachability of news page.
-    let reachabilityChecker = ReachabilityChecker(forName: "http://pius-gymnasium.de");
+    private let reachabilityChecker = ReachabilityChecker(forName: "http://pius-gymnasium.de");
     
     // Stop activity indicator when news page has been loaded.
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
