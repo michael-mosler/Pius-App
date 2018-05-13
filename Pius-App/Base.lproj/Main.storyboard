@@ -69,13 +69,13 @@
                             <constraint firstItem="gwt-Mh-9jE" firstAttribute="top" secondItem="bje-LA-aeZ" secondAttribute="bottom" constant="16" id="DCD-Vv-peV"/>
                             <constraint firstItem="nHg-J5-XNW" firstAttribute="leading" secondItem="hFp-0z-asL" secondAttribute="leading" id="IY9-e8-tRp"/>
                             <constraint firstItem="kz1-4Y-xDe" firstAttribute="leading" secondItem="hFp-0z-asL" secondAttribute="leading" constant="16" id="Ias-PB-Y48"/>
-                            <constraint firstItem="kz1-4Y-xDe" firstAttribute="top" secondItem="hFp-0z-asL" secondAttribute="top" constant="467" id="Ibd-hO-33P"/>
                             <constraint firstItem="nHg-J5-XNW" firstAttribute="top" secondItem="hFp-0z-asL" secondAttribute="top" id="KR2-UW-btZ"/>
                             <constraint firstItem="hFp-0z-asL" firstAttribute="trailing" secondItem="bje-LA-aeZ" secondAttribute="trailing" constant="113" id="OfN-NR-clm"/>
                             <constraint firstItem="hFp-0z-asL" firstAttribute="trailing" secondItem="gwt-Mh-9jE" secondAttribute="trailing" constant="113" id="Zcw-Y9-qGI"/>
                             <constraint firstItem="hFp-0z-asL" firstAttribute="trailing" secondItem="kz1-4Y-xDe" secondAttribute="trailing" constant="16" id="aNh-C4-X69"/>
                             <constraint firstItem="bje-LA-aeZ" firstAttribute="leading" secondItem="hFp-0z-asL" secondAttribute="leading" constant="112" id="aoA-b7-a7Y"/>
                             <constraint firstItem="hFp-0z-asL" firstAttribute="trailing" secondItem="nHg-J5-XNW" secondAttribute="trailing" id="f6L-ja-AXA"/>
+                            <constraint firstItem="hFp-0z-asL" firstAttribute="bottom" secondItem="gwt-Mh-9jE" secondAttribute="bottom" constant="70" id="fgh-8x-W1F"/>
                             <constraint firstAttribute="bottom" secondItem="nHg-J5-XNW" secondAttribute="bottom" id="kzi-NH-13N"/>
                             <constraint firstItem="gwt-Mh-9jE" firstAttribute="leading" secondItem="hFp-0z-asL" secondAttribute="leading" constant="112" id="ycG-Qw-MgI"/>
                         </constraints>
@@ -1179,6 +1179,7 @@
                         <outlet property="offlineLabel" destination="gFu-Gj-Cr2" id="xT2-US-L9f"/>
                         <outlet property="scrollView" destination="trz-rZ-pce" id="rus-Gd-xfs"/>
                         <outlet property="tapGestureRecognizer" destination="IEa-8N-hxU" id="2AV-mJ-GOJ"/>
+                        <outlet property="versionLabel" destination="cn0-el-aKL" id="bbU-op-MhK"/>
                         <outlet property="webSitePasswordField" destination="7be-e2-HfE" id="85P-IE-hJC"/>
                         <outlet property="webSiteUserNameField" destination="pKS-PV-0Gi" id="RTX-DS-iF7"/>
                     </connections>

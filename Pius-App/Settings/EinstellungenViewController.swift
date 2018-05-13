@@ -16,7 +16,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var webSitePasswordField: UITextField!
     @IBOutlet weak var loginButtonOutlet: UIButton!
     @IBOutlet weak var myCoursesButton: UIButton!
-
+    @IBOutlet weak var versionLabel: UILabel!
+    
     @IBAction func loginButton(_ sender: Any) {
         dismissKeyboard(fromTextField: activeTextField)
         saveCredentials();
@@ -36,6 +37,16 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     
     // Checks reachability of Pius Gateway
     private let reachabilityChecker = ReachabilityChecker(forName: "https://pius-gateway.eu-de.mybluemix.net");
+
+    private func setVersionLabel() {
+        let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject;
+        
+        //Then just cast the object as a String, but be careful, you may want to double check for nil
+        let version = nsObject as! String;
+        let versionString = String(format: "Pius-App für iOS Version %@", version);
+
+        versionLabel.text = versionString;
+    }
 
     // Checks if grade picker has selected an upper grade.
     private func isUpperGradeSelected(_ row: Int) -> Bool {
@@ -253,6 +264,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        
+        setVersionLabel();
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
 
