@@ -21,18 +21,21 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBOutlet weak var tableView: UITableView!
 
-    var data: [VertretungsplanForDate] = [];
-    var selected: IndexPath?;
-    var currentHeader: ExpandableHeaderView?;
+    @IBOutlet weak var offlineLabel: UILabel!
+    @IBOutlet weak var offlineFooterView: UIView!
+    
+    private var data: [VertretungsplanForDate] = [];
+    private var selected: IndexPath?;
+    private var currentHeader: ExpandableHeaderView?;
 
     // User defaults access.
-    let config = Config();
+    private let config = Config();
 
     // This dashboard is for this grade setting.
-    var grade: String = "";
+    private var grade: String = "";
 
     // That many rows per unfolded item.
-    let rowsPerItem = 6;
+    private let rowsPerItem = 6;
     
     func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
@@ -42,6 +45,9 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                     (action: UIAlertAction!) in self.navigationController?.popViewController(animated: true);
                 }));
                 self.present(alert, animated: true, completion: nil);
+
+                self.offlineLabel.isHidden = online;
+                self.offlineFooterView.isHidden = online;
             }
         } else {
             self.data = vertretungsplan!.vertretungsplaene;
@@ -61,6 +67,9 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                 
                 self.tableView.reloadData();
                 self.activityIndicator.stopAnimating();
+                
+                self.offlineLabel.isHidden = online;
+                self.offlineFooterView.isHidden = online;
             }
         }
     }

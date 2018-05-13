@@ -22,9 +22,9 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     @IBOutlet weak var offlineLabel: UILabel!
     @IBOutlet weak var offlineFooterView: UIView!
     
-    var data: [VertretungsplanForDate] = [];
-    var selected: IndexPath?;
-    var currentHeader: ExpandableHeaderView?;
+    private var data: [VertretungsplanForDate] = [];
+    private var selected: IndexPath?;
+    private var currentHeader: ExpandableHeaderView?;
 
     func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
@@ -35,8 +35,10 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
                 }));
                 self.present(alert, animated: true, completion: nil);
 
-                self.offlineLabel.isHidden = online;
-                self.offlineFooterView.isHidden = online;
+                if (self.offlineLabel != nil && self.offlineFooterView != nil) {
+                    self.offlineLabel.isHidden = online;
+                    self.offlineFooterView.isHidden = online;
+                }
             }
         } else {
             self.data = vertretungsplan!.vertretungsplaene;
