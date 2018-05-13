@@ -45,9 +45,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
 
     // If not authenticated and is launched show login screen.
     private func showLaunchScreen() {
-        let _: Bool = config.userDefaults.bool(forKey: "hideLaunchScreen");
-        config.userDefaults.set(true, forKey: "hideLaunchScreen");
-        
         if (!config.userDefaults.bool(forKey: "authenticated")) {
             if let launchScreenViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen") as UIViewController? {
                 if let navigationController = navigationController {
