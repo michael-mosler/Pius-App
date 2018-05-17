@@ -18,6 +18,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var myCoursesButton: UIButton!
     @IBOutlet weak var versionLabel: UILabel!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     @IBAction func loginButton(_ sender: Any) {
         dismissKeyboard(fromTextField: activeTextField)
         saveCredentials();
@@ -66,16 +68,22 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     // button text of Login button changes to "Logout".
     func validationCallback(authenticated: Bool) {
         DispatchQueue.main.async {
+            // Stop activity indicator but keep blur effect.
+            self.activityIndicator.stopAnimating();
+            self.loginButtonOutlet.isEnabled = true;
+
             // create the alert
             let message = (authenticated) ? "Du bist nun angemeldet." : "Die Anmeldedaten sind ungültig.";
             let alert = UIAlertController(title: "Anmeldung", message: message, preferredStyle: UIAlertControllerStyle.alert);
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil));
             self.present(alert, animated: true, completion: nil);
-            
+
             // Store current authentication state in user settings and update text of
             // login button.
             if (authenticated) {
                 self.config.userDefaults.set(true, forKey: "authenticated");
+                self.webSiteUserNameField.isEnabled = false;
+                self.webSitePasswordField.isEnabled = false;
             } else {
                 self.config.userDefaults.set(false, forKey: "authenticated");
             }
@@ -179,9 +187,14 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
                 
                 config.userDefaults.set(webSiteUserName, forKey: "webSiteUserName");
 
+                // Show activity indicator.
+                activityIndicator.startAnimating();
+                
                 // Validate credentials; this will also update authenticated state
                 // of the app.
                 let vertretungsplanLoader = VertretungsplanLoader();
+
+                self.loginButtonOutlet.isEnabled = false;
                 vertretungsplanLoader.validateLogin(notfifyMeOn: self.validationCallback);
             } else {
                 // User is authenticated and wants to logout.
@@ -201,6 +214,9 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
                 let alert = UIAlertController(title: "Anmeldung", message: "Du bist nun abgemeldet.", preferredStyle: UIAlertControllerStyle.alert);
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil));
                 self.present(alert, animated: true, completion: nil);
+                
+                webSiteUserNameField.isEnabled = true;
+                webSitePasswordField.isEnabled = true;
             }
         }
         catch {

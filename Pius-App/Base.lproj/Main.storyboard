@@ -436,7 +436,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfD-Cx-VKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1821.5999999999999" y="43.596059113300491"/>
+            <point key="canvasLocation" x="3170" y="44"/>
         </scene>
         <!--Vertretungsplan Detail View Controller-->
         <scene sceneID="S5F-7G-3AU">
@@ -630,7 +630,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lka-Mw-E8R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3029.5999999999999" y="43.596059113300491"/>
+            <point key="canvasLocation" x="4217" y="44"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="UMR-uP-0ZW">
@@ -931,7 +931,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1l9-HJ-53T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1821.5999999999999" y="784.72906403940885"/>
+            <point key="canvasLocation" x="3169" y="789"/>
         </scene>
         <!--Termine-->
         <scene sceneID="pa2-er-vki">
@@ -982,7 +982,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MH2-4f-m9K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1822" y="1504"/>
+            <point key="canvasLocation" x="1822" y="882"/>
         </scene>
         <!--Einstellungen-->
         <scene sceneID="1ts-LO-NSL">
@@ -1153,9 +1153,13 @@
                                 <rect key="frame" x="0.0" y="778" width="375" height="34"/>
                                 <color key="backgroundColor" red="1" green="0.80144375560000003" blue="0.0046433899549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xZX-Mg-Gbf">
+                                <rect key="frame" x="177" y="396" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.8759240284183909" green="0.8759240284183909" blue="0.8759240284183909" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="xZX-Mg-Gbf" firstAttribute="centerX" secondItem="U7H-Ju-EfE" secondAttribute="centerX" id="B8i-vJ-1Vh"/>
                             <constraint firstItem="trz-rZ-pce" firstAttribute="top" secondItem="HEK-36-qmJ" secondAttribute="top" id="DaT-li-JhR"/>
                             <constraint firstItem="HEK-36-qmJ" firstAttribute="trailing" secondItem="trz-rZ-pce" secondAttribute="trailing" id="Khg-Nu-1JZ"/>
                             <constraint firstAttribute="bottom" secondItem="BoI-bc-jrf" secondAttribute="bottom" id="RXf-AM-S2t"/>
@@ -1165,12 +1169,14 @@
                             <constraint firstItem="gFu-Gj-Cr2" firstAttribute="leading" secondItem="HEK-36-qmJ" secondAttribute="leading" id="hFX-qa-lab"/>
                             <constraint firstItem="gFu-Gj-Cr2" firstAttribute="bottom" secondItem="HEK-36-qmJ" secondAttribute="bottom" id="hx6-nS-fKl"/>
                             <constraint firstItem="HEK-36-qmJ" firstAttribute="trailing" secondItem="gFu-Gj-Cr2" secondAttribute="trailing" id="mOO-HR-leU"/>
+                            <constraint firstItem="xZX-Mg-Gbf" firstAttribute="centerY" secondItem="U7H-Ju-EfE" secondAttribute="centerY" id="q3r-U2-nQ7"/>
                             <constraint firstItem="BoI-bc-jrf" firstAttribute="top" secondItem="gFu-Gj-Cr2" secondAttribute="bottom" id="sde-4D-oOl"/>
                             <constraint firstItem="trz-rZ-pce" firstAttribute="leading" secondItem="HEK-36-qmJ" secondAttribute="leading" id="z9a-GL-qiU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HEK-36-qmJ"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="xZX-Mg-Gbf" id="lFH-Qx-fqD"/>
                         <outlet property="classPickerView" destination="rkp-5u-rQE" id="6Qu-TQ-K2W"/>
                         <outlet property="gradePickerView" destination="XO8-MV-Wfl" id="nbR-ma-XSS"/>
                         <outlet property="loginButtonOutlet" destination="mOQ-io-SDv" id="m0T-pG-jPw"/>
@@ -1191,7 +1197,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1821.5999999999999" y="2191.6256157635471"/>
+            <point key="canvasLocation" x="1822" y="1776"/>
         </scene>
         <!--Meine Kurse-->
         <scene sceneID="Nhc-9t-odK">
@@ -1336,7 +1342,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iK4-Sj-w7b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3005.5999999999999" y="2189.4088669950738"/>
+            <point key="canvasLocation" x="3169" y="1776"/>
         </scene>
     </scenes>
     <resources>
