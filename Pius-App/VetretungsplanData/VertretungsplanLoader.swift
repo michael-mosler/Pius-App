@@ -19,11 +19,38 @@ class VertretungsplanLoader {
 
     private let cache = Cache();
     private var cacheFileName: String;
+    private var digest: String?;
     
     init(forGrade: String? = nil) {
+        var digest: String? = nil;
+        let cacheFileName: String = (forGrade != nil) ? String(format: "%@.html", forGrade!) : "vertretungsplan.html";
+        
+        // If cache file exists we may use digest to detect changes in Vertretungsplan. Without cache file
+        // we need to request data.
+        if (self.cache.fileExists(filename: cacheFileName)) {
+            digest = cache.read(filename: config.digestFileName);
+        } else {
+            print("Cache file \(cacheFileName) does not exist. Not sending digest.");
+        }
+
         self.forGrade = forGrade;
-        url = URL(string: (forGrade == nil) ? self.baseUrl : String(format: "%@/?forGrade=%@", self.baseUrl, forGrade!));
-        cacheFileName = (forGrade != nil) ? String(format: "%@.html", forGrade!) : "vertretungsplan.html";
+        self.digest = digest;
+        
+        var urlString = baseUrl;
+        if (forGrade != nil || digest != nil) {
+            var separator = "/?";
+            if (forGrade != nil) {
+                urlString.append(String(format: "%@forGrade=%@", separator, forGrade!));
+                separator = "&";
+            }
+            
+            if (digest != nil) {
+                urlString.append(String(format: "%@digest=%@", separator, digest!));
+            }
+        }
+        
+        self.url = URL(string: urlString);
+        self.cacheFileName = cacheFileName;
     }
     
     private func accept(basedOn detailsItems: [String]) -> Bool {
@@ -72,15 +99,18 @@ class VertretungsplanLoader {
         return loginData.base64EncodedString();
     }
 
+    // Returns URL request object depending on the connection status of the app.
+    // If online a web URL request is returned, when offline cache URL request
+    // object is returned instead.
     private func getURLRequest(_ piusGatewayIsReachable: Bool) -> URLRequest {
         let base64LoginString = getAndEncodeCredentials();
         var request: URLRequest;
         
         if (piusGatewayIsReachable) {
             // Define GET request with basic authentication.
-            request = URLRequest(url: url!)
-            request.httpMethod = "GET"
-            request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+            request = URLRequest(url: url!);
+            request.httpMethod = "GET";
+            request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization");
         } else {
             request = URLRequest(url: cache.getCacheFileUrl(for: cacheFileName)!);
         }
@@ -88,6 +118,11 @@ class VertretungsplanLoader {
         return request;
     }
     
+    // Loads Vertretungsplan from backend and converts data that has been received in JSON
+    // format into internal data structures. Finally calls update() method. This method is
+    // intented for updating the view from the model that has been built from JSON.
+    // In case of an error update() will be called with nil-data. Boolean value indicates
+    // is application currently is online or not.
     func load(_ update: @escaping (Vertretungsplan?, Bool) -> Void) {
         let piusGatewayIsReachable = piusGatewayReachability.isNetworkReachable();
         let request = getURLRequest(piusGatewayIsReachable);
@@ -95,22 +130,42 @@ class VertretungsplanLoader {
         // Create task to get data in background.
         let task = URLSession.shared.dataTask(with: request) {
             (data, response, error) in
+            var _data: Data? = data;
+            
+            // Request error. In this case nothing more is to be done here. Inform user and exit.
             if let error = error {
                 print("Vertretungsplan Loader had error: \(error)");
                 update(nil, piusGatewayIsReachable);
+                return;
             }
 
-            if let data = data {
-                // If in online mode store current vertretungsplan in cache.
-                if (piusGatewayIsReachable) {
-                    self.cache.store(filename: self.cacheFileName, data: data);
-                }
-
+            // Cached data is not modified. This can be checked in online mode only.
+            // In offline mode _data will come from cache already if available.
+            let notModified = piusGatewayIsReachable == true && ((response as! HTTPURLResponse).statusCode == 304);
+            if (notModified) {
+                _data = self.cache.read(filename: self.cacheFileName);
+                print("Vertretungsplan has not changed. Using data from cache.");
+            }
+            
+            if let data = _data {
                 var vertretungsplan: Vertretungsplan = Vertretungsplan();
                 
                 do {
                     // Convert the data to JSON
                     let jsonSerialized = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any];
+
+                    // If in online mode store current Vertretungsplan in cache. Here we are sure that data is valid
+                    // and could be parsed to JSON. If Vertretungsplan has been read from cache already we do not
+                    // re-save it.
+                    if (piusGatewayIsReachable && notModified == false) {
+                        self.cache.store(filename: self.cacheFileName, data: data);
+                    }
+                    
+                    // Store message digest for data cached before. If digest is unchanged this can be skipped.
+                    if notModified == false, let json = jsonSerialized, let _digest = json["_digest"] as! String? {
+                        let cache = Cache();
+                        cache.store(filename: self.config.digestFileName, data: _digest.data(using: .utf8)!);
+                    }
                     
                     // Extract ticker text and date of last update. Then dispatch update of label text.
                     if let json = jsonSerialized, let _tickerText = json["tickerText"], let _lastUpdate = json["lastUpdate"] {
@@ -168,10 +223,12 @@ class VertretungsplanLoader {
                     
                     update(vertretungsplan, piusGatewayIsReachable);
                 }  catch let error as NSError {
-                    print(error.localizedDescription)
+                    print(error.localizedDescription);
+                    update(nil, piusGatewayIsReachable);
                 }
             } else if let error = error {
                 print(error.localizedDescription)
+                update(nil, piusGatewayIsReachable);
             }
         }
         

@@ -26,6 +26,10 @@ struct Config {
     
     let userDefaults = UserDefaults.standard;
 
+    var digestFileName: String {
+        get { return "digest.md5"; }
+    };
+    
     func getGradeNameForSetting(setting: Int) -> String {
         return grades[setting];
     }

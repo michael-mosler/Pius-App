@@ -1055,7 +1055,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z14-lD-bDy">
-                                        <rect key="frame" x="16" y="232.99999999999997" width="359" height="71.666666666666657"/>
+                                        <rect key="frame" x="8" y="232.99999999999997" width="359" height="71.666666666666657"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="359" id="C8E-MP-T4v"/>
                                         </constraints>
@@ -1125,12 +1125,12 @@
                                     <constraint firstItem="abt-ed-R0L" firstAttribute="top" secondItem="7Aj-Cs-riU" secondAttribute="bottom" constant="8" id="3eL-FR-5ak"/>
                                     <constraint firstAttribute="bottom" secondItem="71s-cE-mcQ" secondAttribute="bottom" id="51H-cG-75P"/>
                                     <constraint firstAttribute="trailing" secondItem="7Aj-Cs-riU" secondAttribute="trailing" constant="8" id="6UX-pf-KE4"/>
-                                    <constraint firstItem="z14-lD-bDy" firstAttribute="trailing" secondItem="trz-rZ-pce" secondAttribute="trailingMargin" constant="8" id="I7J-do-b1Z"/>
+                                    <constraint firstAttribute="trailing" secondItem="z14-lD-bDy" secondAttribute="trailing" constant="8" id="I7J-do-b1Z"/>
                                     <constraint firstItem="7Aj-Cs-riU" firstAttribute="leading" secondItem="trz-rZ-pce" secondAttribute="leading" constant="8" id="Jcr-Jm-Cty"/>
                                     <constraint firstItem="cn0-el-aKL" firstAttribute="leading" secondItem="trz-rZ-pce" secondAttribute="leading" constant="8" id="Ssg-Yi-yPN"/>
                                     <constraint firstItem="71s-cE-mcQ" firstAttribute="top" secondItem="z14-lD-bDy" secondAttribute="bottom" constant="8" id="VGc-s7-I0I"/>
                                     <constraint firstAttribute="trailing" secondItem="abt-ed-R0L" secondAttribute="trailing" id="brX-CA-RL8"/>
-                                    <constraint firstItem="z14-lD-bDy" firstAttribute="leading" secondItem="trz-rZ-pce" secondAttribute="leadingMargin" constant="8" id="dJZ-ur-Fka"/>
+                                    <constraint firstItem="z14-lD-bDy" firstAttribute="leading" secondItem="trz-rZ-pce" secondAttribute="leading" constant="8" id="dJZ-ur-Fka"/>
                                     <constraint firstAttribute="trailing" secondItem="cn0-el-aKL" secondAttribute="trailing" constant="8" id="l4B-U2-vgv"/>
                                     <constraint firstItem="abt-ed-R0L" firstAttribute="leading" secondItem="trz-rZ-pce" secondAttribute="leading" id="ntP-L7-En0"/>
                                     <constraint firstItem="cn0-el-aKL" firstAttribute="top" secondItem="71s-cE-mcQ" secondAttribute="bottom" constant="8" id="teu-1b-gO8"/>
@@ -1212,11 +1212,8 @@
                                 <color key="backgroundColor" red="0.87592402840000005" green="0.87592402840000005" blue="0.87592402840000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ze7-Ry-gtd">
-                                <rect key="frame" x="0.0" y="88" width="375" height="100"/>
+                                <rect key="frame" x="8" y="96" width="375" height="71.666666666666686"/>
                                 <color key="backgroundColor" red="0.87592402840000005" green="0.87592402840000005" blue="0.87592402840000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="cMM-UJ-RyJ"/>
-                                </constraints>
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content">Hier legst Du fest, für welche Kurse im Dashboard Vertretungsstunden angezeigt werden. Kurse, die hier nicht eingetragen sind, werden im Dashboard nicht berücksichtigt.</string>
@@ -1229,7 +1226,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HBT-wz-Z4X">
-                                <rect key="frame" x="0.0" y="188" width="375" height="590"/>
+                                <rect key="frame" x="0.0" y="175.66666666666669" width="375" height="602.33333333333326"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="course" id="DSV-nl-sIi">
@@ -1312,17 +1309,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="HBT-wz-Z4X" firstAttribute="top" secondItem="Ze7-Ry-gtd" secondAttribute="bottom" id="0qy-Kf-6Nd"/>
-                            <constraint firstItem="Ze7-Ry-gtd" firstAttribute="leading" secondItem="xtb-QM-b4g" secondAttribute="leading" id="53v-OD-NMd"/>
+                            <constraint firstItem="HBT-wz-Z4X" firstAttribute="top" secondItem="Ze7-Ry-gtd" secondAttribute="bottom" constant="8" id="0qy-Kf-6Nd"/>
+                            <constraint firstItem="Ze7-Ry-gtd" firstAttribute="leading" secondItem="TrX-WO-i1x" secondAttribute="leading" constant="8" id="53v-OD-NMd"/>
                             <constraint firstAttribute="bottom" secondItem="HBT-wz-Z4X" secondAttribute="bottom" constant="34" id="6A9-gY-tsY"/>
                             <constraint firstAttribute="bottom" secondItem="aQz-XP-YT5" secondAttribute="bottom" constant="34" id="6tZ-z5-2gr"/>
-                            <constraint firstItem="Ze7-Ry-gtd" firstAttribute="trailing" secondItem="xtb-QM-b4g" secondAttribute="trailing" id="F6c-7h-MzF"/>
-                            <constraint firstItem="aQz-XP-YT5" firstAttribute="leading" secondItem="xtb-QM-b4g" secondAttribute="leading" id="ZFv-VR-hAp"/>
+                            <constraint firstItem="Ze7-Ry-gtd" firstAttribute="trailing" secondItem="TrX-WO-i1x" secondAttribute="trailing" constant="8" id="F6c-7h-MzF"/>
+                            <constraint firstItem="aQz-XP-YT5" firstAttribute="leading" secondItem="TrX-WO-i1x" secondAttribute="leading" id="ZFv-VR-hAp"/>
                             <constraint firstItem="aQz-XP-YT5" firstAttribute="top" secondItem="xtb-QM-b4g" secondAttribute="top" id="aQd-89-0KL"/>
-                            <constraint firstItem="aQz-XP-YT5" firstAttribute="trailing" secondItem="xtb-QM-b4g" secondAttribute="trailing" id="cqE-fI-OhW"/>
+                            <constraint firstItem="aQz-XP-YT5" firstAttribute="trailing" secondItem="TrX-WO-i1x" secondAttribute="trailing" id="cqE-fI-OhW"/>
                             <constraint firstItem="HBT-wz-Z4X" firstAttribute="trailing" secondItem="xtb-QM-b4g" secondAttribute="trailing" id="eOl-66-eJk"/>
                             <constraint firstItem="HBT-wz-Z4X" firstAttribute="leading" secondItem="xtb-QM-b4g" secondAttribute="leading" id="g1V-hn-Bpw"/>
-                            <constraint firstItem="Ze7-Ry-gtd" firstAttribute="top" secondItem="xtb-QM-b4g" secondAttribute="top" id="yaU-8x-1Cf"/>
+                            <constraint firstItem="Ze7-Ry-gtd" firstAttribute="top" secondItem="xtb-QM-b4g" secondAttribute="top" constant="8" id="yaU-8x-1Cf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xtb-QM-b4g"/>
                     </view>
