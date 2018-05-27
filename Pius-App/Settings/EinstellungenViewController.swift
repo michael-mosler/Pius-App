@@ -258,6 +258,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     }
 
     @objc func keyboardWasShown(notification: NSNotification) {
+        guard activeTextField != nil else { return };
+
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
             scrollView.contentInset = contentInsets;

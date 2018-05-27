@@ -64,6 +64,8 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBAction func addCoursesButtonAction(_ sender: Any) {
         inEditMode = !inEditMode;
+        myCoursesTableView.allowsSelection = inEditMode;
+        
         addCoursesButton.title = (inEditMode) ? "Fertig" : "Bearbeiten";
         myCoursesTableView.reloadData();
         
@@ -144,6 +146,7 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         cellBgView.backgroundColor = config.colorPiusBlue;
         let savedCourseList: [String]? = config.userDefaults.array(forKey: "dashboardCourseList") as? [String];
         
+        myCoursesTableView.allowsSelection = false;
         courseList = (savedCourseList != nil) ? savedCourseList! : [];
     }
 
