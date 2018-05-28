@@ -272,7 +272,7 @@
         <!--Vertretungsplan-->
         <scene sceneID="2Qw-aw-Orh">
             <objects>
-                <viewController title="Vertretungsplan" id="rcS-2s-zrV" customClass="VertretungsplanViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Vertretungsplan" title="Vertretungsplan" id="rcS-2s-zrV" customClass="VertretungsplanViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wdi-Sb-xdJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -635,7 +635,7 @@
         <!--Dashboard-->
         <scene sceneID="UMR-uP-0ZW">
             <objects>
-                <viewController title="Dashboard" id="DDz-ev-eNt" customClass="DashboardViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Dashboard" title="Dashboard" id="DDz-ev-eNt" customClass="DashboardViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zx5-6D-QJ4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -987,7 +987,7 @@
         <!--Einstellungen-->
         <scene sceneID="1ts-LO-NSL">
             <objects>
-                <viewController title="Einstellungen" id="Lk2-Qz-3KO" customClass="EinstellungenViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Einstellungen" title="Einstellungen" id="Lk2-Qz-3KO" customClass="EinstellungenViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U7H-Ju-EfE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

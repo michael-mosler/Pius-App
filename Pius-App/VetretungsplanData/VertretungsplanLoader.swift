@@ -19,16 +19,18 @@ class VertretungsplanLoader {
 
     private let cache = Cache();
     private var cacheFileName: String;
+    private var digestFileName: String;
     private var digest: String?;
     
     init(forGrade: String? = nil) {
         var digest: String? = nil;
         let cacheFileName: String = (forGrade != nil) ? String(format: "%@.html", forGrade!) : "vertretungsplan.html";
-        
+        let digestFileName: String = (forGrade != nil) ? String(format: "%@.md5", forGrade!) : "md5";
+
         // If cache file exists we may use digest to detect changes in Vertretungsplan. Without cache file
         // we need to request data.
         if (self.cache.fileExists(filename: cacheFileName)) {
-            digest = cache.read(filename: config.digestFileName);
+            digest = cache.read(filename: digestFileName);
         } else {
             print("Cache file \(cacheFileName) does not exist. Not sending digest.");
         }
@@ -51,6 +53,7 @@ class VertretungsplanLoader {
         
         self.url = URL(string: urlString);
         self.cacheFileName = cacheFileName;
+        self.digestFileName = digestFileName;
     }
     
     private func accept(basedOn detailsItems: [String]) -> Bool {
@@ -164,7 +167,7 @@ class VertretungsplanLoader {
                     // Store message digest for data cached before. If digest is unchanged this can be skipped.
                     if notModified == false, let json = jsonSerialized, let _digest = json["_digest"] as! String? {
                         let cache = Cache();
-                        cache.store(filename: self.config.digestFileName, data: _digest.data(using: .utf8)!);
+                        cache.store(filename: self.digestFileName, data: _digest.data(using: .utf8)!);
                     }
                     
                     // Extract ticker text and date of last update. Then dispatch update of label text.

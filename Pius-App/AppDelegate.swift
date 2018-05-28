@@ -44,9 +44,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        if (shortcutItem.type == "FK.Pius-App.showInformation") {
-            
+        if (!config.authenticated) {
+            if let launchScreenViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen") as UIViewController? {
+                window?.rootViewController?.navigationController?.pushViewController(launchScreenViewController, animated: false);
+            }
+        } else {
+            switch(shortcutItem.type) {
+            case "de.rmkrings.piusapp.vertretungsplan":
+                if let vertretungsplanViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Vertretungsplan") as UIViewController? {
+                    window?.rootViewController?.navigationController?.pushViewController(vertretungsplanViewController, animated: false);
+                }
+            case "de.rmkrings.piusapp.dashboard":
+                guard config.hasGrade else {
+                    let alert = UIAlertController(title: "Dashboard", message: "Um das Dashboard benutzen zu können, musst Du dich in den Einstellungen zuerst anmelden.", preferredStyle: UIAlertControllerStyle.alert);
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+                        (action: UIAlertAction!) in
+                            if let settingsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Einstellungen") as UIViewController? {
+                                self.window?.rootViewController?.navigationController?.pushViewController(settingsViewController, animated: false);
+                            }
+                    }));
+
+                    self.window?.rootViewController?.present(alert, animated: true, completion: nil);
+                    return;
+                }
+
+                if let dashboardViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Dashboard") as UIViewController? {
+                    window?.rootViewController?.navigationController?.pushViewController(dashboardViewController, animated: false);
+                }
+            default:
+                print("Unknown quick action code \(shortcutItem.type) is being ignored.");
+            }
         }
     }
 }
-

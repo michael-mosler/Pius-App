@@ -26,10 +26,6 @@ struct Config {
     
     let userDefaults = UserDefaults.standard;
 
-    var digestFileName: String {
-        get { return "digest.md5"; }
-    };
-    
     func getGradeNameForSetting(setting: Int) -> String {
         return grades[setting];
     }
@@ -54,5 +50,19 @@ struct Config {
             fatalError("Die Anmeldedaten konnte nicht geladen werden - \(error)");
         }
 
+    }
+    
+    // true when user is authenticated.
+    var authenticated: Bool {
+        get {
+            return userDefaults.bool(forKey: "authenticated");
+        }
+    }
+    
+    // Returns true when user has configured a grade.
+    var hasGrade: Bool {
+        get {
+            return userDefaults.integer(forKey: "selectedGradeRow") != 0;
+        }
     }
 }
