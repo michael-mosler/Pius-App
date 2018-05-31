@@ -93,7 +93,7 @@
         <!--View Controller-->
         <scene sceneID="h17-Dy-33i">
             <objects>
-                <viewController id="lDR-N4-8KS" customClass="ViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="lDR-N4-8KS" customClass="ViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="04M-lU-aWV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -452,7 +452,7 @@
                                 <rect key="frame" x="0.0" y="104" width="320" height="448"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="course" textLabel="5Ig-a6-Org" rowHeight="36" style="IBUITableViewCellStyleDefault" id="Ncn-E2-xmd">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="course" textLabel="5Ig-a6-Org" rowHeight="36" style="IBUITableViewCellStyleDefault" id="Ncn-E2-xmd">
                                         <rect key="frame" x="0.0" y="28" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ncn-E2-xmd" id="dWi-kA-7cJ">
@@ -470,7 +470,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="details" rowHeight="30" id="xE8-9h-4Pm" customClass="DetailsCellTableViewCell" customModule="Pius_App" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="details" rowHeight="30" id="xE8-9h-4Pm" customClass="DetailsCellTableViewCell" customModule="Pius_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="64" width="320" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xE8-9h-4Pm" id="9Hv-Tp-q0p">
@@ -534,7 +534,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="comment" textLabel="2ci-GI-4PC" rowHeight="30" style="IBUITableViewCellStyleDefault" id="Qyj-ix-CZl" userLabel="comment">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="comment" textLabel="2ci-GI-4PC" rowHeight="30" style="IBUITableViewCellStyleDefault" id="Qyj-ix-CZl" userLabel="comment">
                                         <rect key="frame" x="0.0" y="94" width="320" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qyj-ix-CZl" id="IIM-4s-P0v">
@@ -551,7 +551,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eva" textLabel="eAz-m6-C9C" style="IBUITableViewCellStyleDefault" id="hZr-cO-M0z" userLabel="eva">
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eva" textLabel="eAz-m6-C9C" style="IBUITableViewCellStyleDefault" id="hZr-cO-M0z" userLabel="eva">
                                         <rect key="frame" x="0.0" y="124" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hZr-cO-M0z" id="dCi-c9-bMs">
@@ -570,7 +570,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="0.80144375560000003" blue="0.0046433899549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spacer" rowHeight="5" id="wz3-Fn-OX5" userLabel="spacer">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spacer" rowHeight="5" id="wz3-Fn-OX5" userLabel="spacer">
                                         <rect key="frame" x="0.0" y="168" width="320" height="5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wz3-Fn-OX5" id="y0D-Q0-hsH">
@@ -754,7 +754,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GSl-ta-ZzF">
-                                                            <rect key="frame" x="11" y="0.0" width="353" height="25"/>
+                                                            <rect key="frame" x="11" y="0.0" width="298" height="25"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="F7G-xq-x8o"/>
@@ -1261,7 +1261,7 @@
                                 <rect key="frame" x="0.0" y="170" width="320" height="364"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="course" id="DSV-nl-sIi">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="course" id="DSV-nl-sIi">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DSV-nl-sIi" id="cOj-u8-AQE">
@@ -1380,7 +1380,7 @@
         <image name="LaunchScreenBgnd" width="386" height="710"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MCY-3C-dGO"/>
+        <segue reference="JuZ-2F-cuW"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

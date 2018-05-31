@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.2</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>7</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -42,7 +42,7 @@
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
-			<key>UIApplicationShortcutIconItemType</key>
+			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeHome</string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Vertretungsplan</string>
@@ -50,8 +50,8 @@
 			<string>de.rmkrings.piusapp.vertretungsplan</string>
 		</dict>
 		<dict>
-			<key>UIApplicationShortcutIconItemType</key>
-			<string>UIApplicationShortcutIconTypeAlarm</string>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeFavorite</string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Dashboard</string>
 			<key>UIApplicationShortcutItemType</key>

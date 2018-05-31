@@ -44,36 +44,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        // Get the root window navigation controller and set it's colour to out standard.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil);
+        let navigationController = self.window?.rootViewController as? UINavigationController;
+        navigationController?.navigationBar.barTintColor = config.colorPiusBlue;
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white];
+
         if (!config.authenticated) {
-            if let launchScreenViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen") as UIViewController? {
-                window?.rootViewController?.navigationController?.pushViewController(launchScreenViewController, animated: false);
-            }
-        } else {
-            switch(shortcutItem.type) {
-            case "de.rmkrings.piusapp.vertretungsplan":
-                if let vertretungsplanViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Vertretungsplan") as UIViewController? {
-                    window?.rootViewController?.navigationController?.pushViewController(vertretungsplanViewController, animated: false);
+            let alert = UIAlertController(title: "Anmeldung", message: "Um den Vertretungsplan oder das Dashboard benutzen zu können, musst Du dich zuerst in den Einstellungen anmelden.", preferredStyle: UIAlertControllerStyle.alert);
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+                (action: UIAlertAction!) in
+                if let settingsViewController = storyboard.instantiateViewController(withIdentifier: "Einstellungen") as? EinstellungenViewController {
+                    navigationController?.popToRootViewController(animated: false);
+                    navigationController?.pushViewController(settingsViewController, animated: false);
                 }
-            case "de.rmkrings.piusapp.dashboard":
-                guard config.hasGrade else {
-                    let alert = UIAlertController(title: "Dashboard", message: "Um das Dashboard benutzen zu können, musst Du dich in den Einstellungen zuerst anmelden.", preferredStyle: UIAlertControllerStyle.alert);
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
-                        (action: UIAlertAction!) in
-                            if let settingsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Einstellungen") as UIViewController? {
-                                self.window?.rootViewController?.navigationController?.pushViewController(settingsViewController, animated: false);
-                            }
-                    }));
+            }));
 
-                    self.window?.rootViewController?.present(alert, animated: true, completion: nil);
-                    return;
-                }
+            self.window?.rootViewController?.present(alert, animated: true, completion: nil);
+            completionHandler(true);
+            return;
+        }
 
-                if let dashboardViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Dashboard") as UIViewController? {
-                    window?.rootViewController?.navigationController?.pushViewController(dashboardViewController, animated: false);
-                }
-            default:
-                print("Unknown quick action code \(shortcutItem.type) is being ignored.");
+        switch(shortcutItem.type) {
+        case "de.rmkrings.piusapp.vertretungsplan":
+            if let vertretungsplanViewController = storyboard.instantiateViewController(withIdentifier: "Vertretungsplan") as? VertretungsplanViewController {
+                navigationController?.popToRootViewController(animated: false);
+                navigationController?.pushViewController(vertretungsplanViewController, animated: false);
             }
+            completionHandler(true);
+        case "de.rmkrings.piusapp.dashboard":
+            guard config.hasGrade else {
+                let alert = UIAlertController(title: "Dashboard", message: "Um das Dashboard benutzen zu können, musst Du in den Einstellungen zuerst Deine Jahrgangsstufe festlegen.", preferredStyle: UIAlertControllerStyle.alert);
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+                    (action: UIAlertAction!) in
+                    if let settingsViewController = storyboard.instantiateViewController(withIdentifier: "Einstellungen") as UIViewController? {
+                        navigationController?.popToRootViewController(animated: false);
+                        navigationController?.pushViewController(settingsViewController, animated: false);
+                    }
+                }));
+
+                self.window?.rootViewController?.present(alert, animated: true, completion: nil);
+                completionHandler(true);
+                return;
+            }
+
+            if let dashboardViewController = storyboard.instantiateViewController(withIdentifier: "Dashboard") as? DashboardViewController {
+                navigationController?.popToRootViewController(animated: false);
+                navigationController?.pushViewController(dashboardViewController, animated: false);
+            }
+            completionHandler(true);
+        default:
+            print("Unknown quick action code \(shortcutItem.type) is being ignored.");
+            completionHandler(false);
         }
     }
 }
