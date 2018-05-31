@@ -25,6 +25,9 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     private var data: [VertretungsplanForDate] = [];
     private var selected: IndexPath?;
     private var currentHeader: ExpandableHeaderView?;
+    
+    private let config = Config();
+    private var tickerTextScrollViewWidth: Int?;
 
     func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
@@ -86,12 +89,13 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     // board.
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews();
-        tickerTextScrollView.contentSize = CGSize(width: 686, height: 70);
+        tickerTextScrollView.contentSize = CGSize(width: 2 * tickerTextScrollViewWidth!, height: 70);
     }
 
     override func viewDidLoad() {
         super.viewDidLoad();
         tickerTextScrollView.delegate = self;
+        tickerTextScrollViewWidth = config.screenWidth - 32;
 
         getVertretungsplanFromWeb();
         
@@ -104,7 +108,7 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     // scrolled horizontally.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (scrollView == tickerTextScrollView) {
-            let currentPage = round(scrollView.contentOffset.x / CGFloat(343));
+            let currentPage = round(scrollView.contentOffset.x / CGFloat(tickerTextScrollViewWidth!));
             tickerTextPageControl.currentPage = Int(currentPage);
         }
     }

@@ -65,4 +65,11 @@ struct Config {
             return userDefaults.integer(forKey: "selectedGradeRow") != 0;
         }
     }
+    
+    // Returns screen width.
+    var screenWidth: Int {
+        get {
+            return Int(UIScreen.main.bounds.width);
+        }
+    }
 }

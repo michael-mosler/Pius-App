@@ -37,6 +37,9 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     // That many rows per unfolded item.
     private let rowsPerItem = 6;
     
+    // Screen width
+    private var tickerTextScrollViewWidth: Int?;
+
     func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
             DispatchQueue.main.async {
@@ -287,7 +290,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     // scrolled horizontally.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (scrollView == tickerTextScrollView) {
-            let currentPage = round(scrollView.contentOffset.x / CGFloat(343));
+            let currentPage = round(scrollView.contentOffset.x / CGFloat(tickerTextScrollViewWidth!));
             tickerTextPageControl.currentPage = Int(currentPage);
         }
     }
@@ -298,7 +301,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     // board.
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews();
-        tickerTextScrollView.contentSize = CGSize(width: 686, height: 70);
+        tickerTextScrollView.contentSize = CGSize(width: 2 * tickerTextScrollViewWidth!, height: 70);
     }
     
     override func viewDidLoad() {
@@ -312,6 +315,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         title = grade;
         
         tickerTextScrollView.delegate = self;
+        tickerTextScrollViewWidth = config.screenWidth - 32;
         
         getVertretungsplanFromWeb(forGrade: grade);
         
