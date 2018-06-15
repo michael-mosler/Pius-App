@@ -544,8 +544,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "078196ce-b11b-4af0-811e-8c791955aa46";
-				PROVISIONING_PROFILE_SPECIFIER = "Pius-App Distribution Profile";
+				PROVISIONING_PROFILE = "8c9b5b75-ed59-4252-bab8-26bf8d43957f";
+				PROVISIONING_PROFILE_SPECIFIER = "Provision to Felix iPhone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -563,8 +563,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "078196ce-b11b-4af0-811e-8c791955aa46";
-				PROVISIONING_PROFILE_SPECIFIER = "Pius-App Distribution Profile";
+				PROVISIONING_PROFILE = "8c9b5b75-ed59-4252-bab8-26bf8d43957f";
+				PROVISIONING_PROFILE_SPECIFIER = "Provision to Felix iPhone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
