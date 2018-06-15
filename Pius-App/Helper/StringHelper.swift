@@ -12,6 +12,9 @@ class StringHelper {
     static func replaceHtmlEntities(input: String?) -> String! {
         guard let input = input else { return "" };
         return input
+            .replacingOccurrences(of: "&auml;", with: "ä", options: .literal, range: nil)
+            .replacingOccurrences(of: "&uuml;", with: "ü", options: .literal, range: nil)
+            .replacingOccurrences(of: "&ouml;", with: "ö", options: .literal, range: nil)
             .replacingOccurrences(of: "&rarr;", with: "→", options: .literal, range: nil)
             .replacingOccurrences(of: "&nbsp;", with: "", options: .literal, range: nil)
             .replacingOccurrences(of: "\\", with: "", options: .literal, range: nil)

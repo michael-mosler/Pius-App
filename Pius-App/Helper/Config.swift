@@ -12,8 +12,8 @@ import UIKit
 struct Config {
     let colorPiusBlue = UIColor(red:0.337, green:0.631, blue:0.824, alpha:1.0);
 
-    let grades = ["keine", "Klasse 5", "Klasse 6", "Klasse 7", "Klasse 8", "Klasse 9", "EF", "Q1", "Q2"];
-    let shortGrades = ["", "5", "6", "7", "8", "9", "EF", "Q1", "Q2"]
+    let grades = ["keine", "Klasse 5", "Klasse 6", "Klasse 7", "Klasse 8", "Klasse 9", "EF", "Q1", "Q2", "IK"];
+    let shortGrades = ["", "5", "6", "7", "8", "9", "EF", "Q1", "Q2", "IK"]
     let upperGrades = ["EF", "Q1", "Q2"];
     
     let classes = ["keine", "a", "b", "c", "d", "e"];
@@ -22,7 +22,7 @@ struct Config {
     let courses = ["Mathematik", "Deutsch", "Englisch", "Französisch", "Latein", "Spanisch", "Hebräisch", "Erdkunde", "Biologie", "Physik", "Chemie", "Informatik", "Geschichte", "Religion", "Philosophie", "Musik", "Kunst", "Sport", "Literatur", "SOWI"];
     let coursesShortNames = ["M", "D", "E", "F", "L", "S", "H", "EK", "BI", "PH", "CH", "IF", "GE", "KR", "PL", "MU", "KU", "SP", "LI", "SOWI"];
     let courseTypes = ["GK", "LK", "ZK", "V", "P"];
-    let courseNumbers = ["1", "2", "3", "4", "5"];
+    let courseNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
     
     let userDefaults = UserDefaults.standard;
 
@@ -52,6 +52,12 @@ struct Config {
 
     }
     
+    static var baseUrl: String {
+        get {
+            return "https://pius-gateway-ng.eu-de.mybluemix.net";
+        }
+    }
+
     // true when user is authenticated.
     var authenticated: Bool {
         get {

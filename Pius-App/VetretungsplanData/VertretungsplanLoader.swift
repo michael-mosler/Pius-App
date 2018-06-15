@@ -14,8 +14,8 @@ class VertretungsplanLoader {
     private var url: URL?;
     private let config = Config();
     
-    private let baseUrl = "https://pius-gateway.eu-de.mybluemix.net/vertretungsplan";
-    private let piusGatewayReachability = ReachabilityChecker(forName: "https://pius-gateway.eu-de.mybluemix.net");
+    private let baseUrl = "\(Config.baseUrl)/vertretungsplan";
+    private let piusGatewayReachability = ReachabilityChecker(forName: Config.baseUrl);
 
     private let cache = Cache();
     private var cacheFileName: String;
