@@ -88,7 +88,7 @@ class CalendarLoader {
             }
             
             if let data = _data {
-                var calendar: Calendar = Calendar();
+                let calendar: Calendar = Calendar();
                 
                 do {
                     // Convert the data to JSON

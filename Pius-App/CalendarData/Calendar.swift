@@ -43,6 +43,41 @@ struct MonthItem {
     }
 }
 
-struct Calendar {
+class Calendar {
+    var _filter: String? = nil;
+    var filter: String? {
+        set(filter) {
+            _filter = filter?.lowercased();
+        }
+        get {
+            return _filter;
+        }
+    }
+
     var monthItems: [MonthItem] = []
+
+    var allItems: [Any] {
+        var _allItems: [Any] = [];
+        
+        monthItems.forEach { monthItem in
+            var _dayItems: [Any] = [];
+
+            monthItem.dayItems.forEach { dayItem in
+                if (filter != nil && filter!.count > 0) {
+                    if (dayItem.detailItems[1].lowercased().contains(filter!)) {
+                        _dayItems.append(dayItem.detailItems);
+                    }
+                } else {
+                    _dayItems.append(dayItem.detailItems);
+                }
+            }
+
+            if (_dayItems.count > 0) {
+                _allItems.append(monthItem.name);
+                _allItems += _dayItems;
+            }
+        }
+
+        return _allItems;
+    }
 }
