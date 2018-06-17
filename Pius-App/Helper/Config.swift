@@ -15,6 +15,7 @@ struct Config {
     let grades = ["keine", "Klasse 5", "Klasse 6", "Klasse 7", "Klasse 8", "Klasse 9", "EF", "Q1", "Q2", "IK"];
     let shortGrades = ["", "5", "6", "7", "8", "9", "EF", "Q1", "Q2", "IK"]
     let upperGrades = ["EF", "Q1", "Q2"];
+    let lowerGrades = ["Klasse 5", "Klasse 6", "Klasse 7", "Klasse 8", "Klasse 9"];
     
     let classes = ["keine", "a", "b", "c", "d", "e"];
     let shortClasses = ["", "A", "B", "C", "D", "E"];
@@ -54,7 +55,7 @@ struct Config {
     
     static var baseUrl: String {
         get {
-            return "https://pius-gateway-ng.eu-de.mybluemix.net";
+            return "https://pius-gateway.eu-de.mybluemix.net";
         }
     }
 

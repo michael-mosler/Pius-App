@@ -55,6 +55,10 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         return config.upperGrades.index(of: config.grades[row]) != nil
     }
     
+    private func isLowerGradeSelected(_ row: Int) -> Bool {
+        return config.lowerGrades.index(of: config.grades[row]) != nil
+    }
+    
     // Update Login button text depending on authentication state.
     private func updateLoginButtonText(authenticated: Bool?) {
         if (authenticated != nil && authenticated!) {
@@ -117,13 +121,20 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
 
         // When a lower grade is selected disable "Meine Kurse" button and make sure
         // that class is defined.
-        } else {
+        } else if (isLowerGradeSelected(row) ){
             if (classPickerView.selectedRow(inComponent: 0) == 0) {
                 classPickerView.selectRow(1, inComponent: 0, animated: true);
                 config.userDefaults.set(1, forKey: "selectedClassRow");
             }
 
             classPickerView.isUserInteractionEnabled = true;
+            myCoursesButton.isEnabled = false;
+            myCoursesButton.backgroundColor = UIColor.lightGray;
+
+        // Neither
+        } else {
+            classPickerView.selectRow(0, inComponent: 0, animated: true);
+            config.userDefaults.set(0, forKey: "selectedClassRow");
             myCoursesButton.isEnabled = false;
             myCoursesButton.backgroundColor = UIColor.lightGray;
         }

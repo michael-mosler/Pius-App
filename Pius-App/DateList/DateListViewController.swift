@@ -10,6 +10,9 @@ import UIKit
 
 class DateListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var offlineLabel: UILabel!
+    @IBOutlet weak var offlineFooterView: UIView!
+    @IBOutlet weak var offlineLabelBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var searchBarView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -23,6 +26,8 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     private var activeTextField: UITextField?;
     
     private var config = Config();
+    private let piusGatewayReachability = ReachabilityChecker(forName: "https://pius-gateway.eu-de.mybluemix.net");
+
     
     private struct tags {
         enum collectionView: Int {
@@ -43,6 +48,11 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        
+        if (piusGatewayReachability.isNetworkReachable()) {
+            showOfflineLabel(percentage: 0);
+        }
+
         getVCalendarFromWeb();
     }
 
@@ -57,6 +67,16 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         });
     }
     
+    private func showOfflineLabel(percentage: CGFloat) {
+        offlineLabelBottomConstraint.constant = -16 + min(percentage, 1) * 16;
+        offlineLabel.isHidden = offlineLabelBottomConstraint.constant == -16;
+        offlineFooterView.isHidden = offlineLabel.isHidden;
+
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded();
+        });
+    }
+    
     private func activateSearchCancelButton() {
         if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
             cancelButton.isEnabled = true
@@ -64,27 +84,20 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     @IBAction func searchButtonAction(_ sender: Any) {
+        hadSelectedMonth = selectedMonth;
+        selectedMonth = nil;
+        
+        hadSelectedButton = selectedButton;
+        selectedButton?.isSelected = false;
+        selectedButton = nil;
+        
+        inSearchMode = true;
+        dayListTableView.reloadData();
+
         showSearchBar(percentage: 100);
         activateSearchCancelButton()
     }
     
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        inSearchMode = true;
-        dayListTableView.reloadData();
-        return true;
-    }
-
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        guard hadSelectedMonth == nil && selectedMonth != nil else { return };
-        
-        hadSelectedMonth = selectedMonth;
-        selectedMonth = nil;
-
-        hadSelectedButton = selectedButton;
-        selectedButton?.isSelected = false;
-        selectedButton = nil;
-    }
-
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         calendar.filter = searchText;
         dayListTableView.reloadData();
@@ -97,6 +110,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         inSearchMode = false;
+        calendar.filter = nil;
         
         showSearchBar(percentage: 0);
         searchBar.endEditing(true);
@@ -108,7 +122,8 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         selectedButton = hadSelectedButton;
         selectedButton?.isSelected = true;
         hadSelectedButton = nil;
-
+        
+        changeSelectedButton(to: selectedButton!);
         dayListTableView.reloadData();
     }
 
@@ -126,12 +141,9 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
                 }));
                 self.present(alert, animated: true, completion: nil);
                 
-                /*
                 if (self.offlineLabel != nil && self.offlineFooterView != nil) {
-                    self.offlineLabel.isHidden = online;
-                    self.offlineFooterView.isHidden = online;
+                    self.showOfflineLabel(percentage: (online ? 0 : 1));
                 }
-                */
             }
         } else {
             self.calendar = calendar!;
@@ -168,15 +180,13 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = monthListCollectionView.dequeueReusableCell(withReuseIdentifier: "monthNameCell", for: indexPath);
-
         let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton;
-
         button.makeMonthButton(for: indexPath.row, with: calendar.monthItems[indexPath.row].name);
         
-        // Selected button has become visible.
-        if (indexPath.row == selectedMonth) {
-            button.isSelected = true;
-        } else if (selectedMonth == nil && hadSelectedMonth == nil && indexPath.row == 0) {
+        // Selected button has become visible or initial start of view. In latter case
+        // activate default month indexed by 0.
+        if (indexPath.row == selectedMonth
+            || selectedMonth == nil && hadSelectedMonth == nil && indexPath.row == 0) {
             changeSelectedButton(to: button);
         }
         
@@ -201,7 +211,6 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
             if let item = _item as? String {
                 cell = dayListTableView.dequeueReusableCell(withIdentifier: "MonthName")!;
                 cell.textLabel?.text = item;
-                cell.textLabel?.textColor = UIColor.white;
             } else {
                 let item = _item as! DetailItems;
                 cell = dayListTableView.dequeueReusableCell(withIdentifier: "DateEntry")!;
