@@ -28,6 +28,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     private var config = Config();
     private let piusGatewayReachability = ReachabilityChecker(forName: "https://pius-gateway.eu-de.mybluemix.net");
 
+    private var savedScrollPosition: CGPoint?;
     
     private struct tags {
         enum collectionView: Int {
@@ -84,6 +85,8 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     @IBAction func searchButtonAction(_ sender: Any) {
+        savedScrollPosition = dayListTableView.contentOffset;
+        
         hadSelectedMonth = selectedMonth;
         selectedMonth = nil;
         
@@ -95,7 +98,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         dayListTableView.reloadData();
 
         showSearchBar(percentage: 100);
-        activateSearchCancelButton()
+        activateSearchCancelButton();
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -123,8 +126,12 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         selectedButton?.isSelected = true;
         hadSelectedButton = nil;
         
-        changeSelectedButton(to: selectedButton!);
-        dayListTableView.reloadData();
+        // Restore original table view position as user might have scrolled
+        // in search mode.
+        UIView.animate(withDuration: 0, animations: {
+            self.changeSelectedButton(to: self.selectedButton!);
+        }, completion: { (finished: Bool) in
+            self.dayListTableView.setContentOffset(self.savedScrollPosition!, animated: false); });
     }
 
     @IBAction func monthButtonAction(_ sender: Any) {
