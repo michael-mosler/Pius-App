@@ -61,6 +61,8 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         super.didReceiveMemoryWarning()
     }
 
+    // Move search bar into view when search button has been tapped in navigation
+    // bar.
     private func showSearchBar(percentage: CGFloat) {
         searchBarTopConstraint.constant = -50 + min(percentage, 1) * 50;
         UIView.animate(withDuration: 0.3, animations: {
@@ -68,6 +70,8 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         });
     }
     
+    // Scroll offline label into view when offline mode is detected after in
+    // viewDidLoad().
     private func showOfflineLabel(percentage: CGFloat) {
         offlineLabelBottomConstraint.constant = -16 + min(percentage, 1) * 16;
         offlineLabel.isHidden = offlineLabelBottomConstraint.constant == -16;
@@ -78,12 +82,14 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         });
     }
     
+    // Activate cancel button in search bar.
     private func activateSearchCancelButton() {
         if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
             cancelButton.isEnabled = true
         }
     }
     
+    // Search button action: Store current state and activate search mode.
     @IBAction func searchButtonAction(_ sender: Any) {
         savedScrollPosition = dayListTableView.contentOffset;
         
@@ -101,16 +107,21 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         activateSearchCancelButton();
     }
     
+    // Called whenever input in search bar is changed. Updates filter text
+    // in calendar data and reloads date list. This applies the search text
+    // to calendar items.
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         calendar.filter = searchText;
         dayListTableView.reloadData();
     }
 
+    // Clicking search button in keyboard simply hides the keyboard.
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder();
         activateSearchCancelButton();
     }
     
+    // Cancel search. This restores the view from before search was started.
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         inSearchMode = false;
         calendar.filter = nil;
@@ -129,17 +140,21 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         // Restore original table view position as user might have scrolled
         // in search mode.
         UIView.animate(withDuration: 0, animations: {
-            self.changeSelectedButton(to: self.selectedButton!);
+            self.changeSelectedMonthButton(to: self.selectedButton!);
         }, completion: { (finished: Bool) in
             self.dayListTableView.setContentOffset(self.savedScrollPosition!, animated: false); });
     }
 
+    // Whenever a new month is selected this action load the corresponding dates into
+    // day view table.
     @IBAction func monthButtonAction(_ sender: Any) {
         let button = sender as? MonthButton;
-        changeSelectedButton(to: button!);
+        changeSelectedMonthButton(to: button!);
     }
 
+    // Update view from calendar that just has been loaded.
     func doUpdate(with calendar: Calendar?, online: Bool) {
+        // Error when loading calendar.
         if (calendar == nil) {
             DispatchQueue.main.async {
                 let alert = UIAlertController(title: "Termine", message: "Der Kalender konnte leider nicht geladen werden.", preferredStyle: UIAlertControllerStyle.alert);
@@ -161,15 +176,18 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
+    // Loads calendar from middleware.
     private func getVCalendarFromWeb() {
-        let calendarLoad = CalendarLoader();
+        let calendarLoader = CalendarLoader();
         
         // Clear all data and load calendar.
         selectedMonth = nil;
-        calendarLoad.load(self.doUpdate);
+        calendarLoader.load(self.doUpdate);
     }
     
-    func changeSelectedButton(to button: MonthButton) {
+    // Called when selected month is to changed. Deselects previous month
+    // and changes selection to the new button.
+    func changeSelectedMonthButton(to button: MonthButton) {
         if (selectedButton != nil) {
             selectedButton!.isSelected = false;
         }
@@ -181,10 +199,12 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         dayListTableView.reloadData();
     }
     
+    // Returns the number of distinct months in the calendar.
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return calendar.monthItems.count;
     }
 
+    // Return a new month selection collection view cell.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = monthListCollectionView.dequeueReusableCell(withReuseIdentifier: "monthNameCell", for: indexPath);
         let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton;
@@ -194,26 +214,23 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         // activate default month indexed by 0.
         if (indexPath.row == selectedMonth
             || selectedMonth == nil && hadSelectedMonth == nil && indexPath.row == 0) {
-            changeSelectedButton(to: button);
+            changeSelectedMonthButton(to: button);
         }
         
         return cell;
     }
     
+    // Returns the number of rows in the current day list table view. Actual calculation depends
+    // on the mode the view is in.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard selectedMonth != nil || inSearchMode else { return 0 };
-        
-        if (inSearchMode) {
-            return calendar.allItems.count;
-            // return calendar.monthItems.reduce(calendar.monthItems.count, { x, y in x + y.dayItems.count });
-        } else {
-            return calendar.monthItems[selectedMonth!].dayItems.count;
-        }
+        return (inSearchMode) ? calendar.allItems.count : calendar.monthItems[selectedMonth!].dayItems.count;
     }
     
+    // Return a cell of day list table view.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell;
         if (inSearchMode) {
-            var cell: UITableViewCell;
             let _item = calendar.allItems[indexPath.row];
             if let item = _item as? String {
                 cell = dayListTableView.dequeueReusableCell(withIdentifier: "MonthName")!;
@@ -227,19 +244,17 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
                 dayLabel.attributedText = NSMutableAttributedString(string: item[0], attributes: [NSAttributedStringKey.foregroundColor: config.colorPiusBlue]);
                 eventLabel.attributedText = NSMutableAttributedString(string: item[1]);
             }
-            
-            return cell;
         } else {
-            let cell = dayListTableView.dequeueReusableCell(withIdentifier: "DateEntry");
-            let dayLabel = cell?.viewWithTag(tags.tableView.dayLabelInTableViewCell.rawValue) as! UILabel;
-            let eventLabel = cell?.viewWithTag(tags.tableView.eventLabelInTablewViewCell.rawValue) as! UILabel;
+            cell = dayListTableView.dequeueReusableCell(withIdentifier: "DateEntry")!;
+            let dayLabel = cell.viewWithTag(tags.tableView.dayLabelInTableViewCell.rawValue) as! UILabel;
+            let eventLabel = cell.viewWithTag(tags.tableView.eventLabelInTablewViewCell.rawValue) as! UILabel;
 
             let detailItems = calendar.monthItems[selectedMonth!].dayItems[indexPath.row].detailItems;
             
             dayLabel.attributedText = NSMutableAttributedString(string: detailItems[0], attributes: [NSAttributedStringKey.foregroundColor: config.colorPiusBlue]);
             eventLabel.attributedText = NSMutableAttributedString(string: detailItems[1]);
-
-            return cell!;
         }
+        
+        return cell;
     }
 }
