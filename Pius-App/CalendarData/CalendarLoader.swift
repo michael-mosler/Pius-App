@@ -10,10 +10,9 @@ import Foundation
 
 class CalendarLoader {
     private var url: URL?;
-    private let config = Config();
     
-    private let baseUrl = "\(Config.baseUrl)/calendar";
-    private let piusGatewayReachability = ReachabilityChecker(forName: Config.baseUrl);
+    private let baseUrl = "\(AppDefaults.baseUrl)/calendar";
+    private let piusGatewayReachability = ReachabilityChecker(forName: AppDefaults.baseUrl);
     
     private let cache = Cache();
     private var cacheFileName: String { get { return "calendar.json"; } };

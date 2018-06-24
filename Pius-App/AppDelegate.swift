@@ -13,9 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    let config = Config();
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
@@ -47,10 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Get the root window navigation controller and set it's colour to out standard.
         let storyboard = UIStoryboard(name: "Main", bundle: nil);
         let navigationController = self.window?.rootViewController as? UINavigationController;
-        navigationController?.navigationBar.barTintColor = config.colorPiusBlue;
+        navigationController?.navigationBar.barTintColor = Config.colorPiusBlue;
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white];
 
-        if (!config.authenticated) {
+        if (!AppDefaults.authenticated) {
             let alert = UIAlertController(title: "Anmeldung", message: "Um den Vertretungsplan oder das Dashboard benutzen zu können, musst Du dich zuerst in den Einstellungen anmelden.", preferredStyle: UIAlertControllerStyle.alert);
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
                 (action: UIAlertAction!) in
@@ -73,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             completionHandler(true);
         case "de.rmkrings.piusapp.dashboard":
-            guard config.hasGrade else {
+            guard Config.hasGrade else {
                 let alert = UIAlertController(title: "Dashboard", message: "Um das Dashboard benutzen zu können, musst Du in den Einstellungen zuerst Deine Jahrgangsstufe festlegen.", preferredStyle: UIAlertControllerStyle.alert);
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
                     (action: UIAlertAction!) in

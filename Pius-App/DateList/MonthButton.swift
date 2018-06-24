@@ -11,7 +11,6 @@ import UIKit
 // Extends button with a property that holds information on the
 // month the button has been created for.
 class MonthButton: UIButton {
-    private var config = Config();
     private var _forMonth: Int? = nil;
     
     var forMonth: Int? {
@@ -27,11 +26,11 @@ class MonthButton: UIButton {
     // Color button depending on its selection state.
     private func setButtonColorForState() {
         if (isSelected) {
-            backgroundColor = config.colorPiusBlue;
+            backgroundColor = Config.colorPiusBlue;
             setTitleColor(UIColor.white, for: .normal);
         } else {
             backgroundColor = UIColor.white;
-            setTitleColor(config.colorPiusBlue, for: .normal);
+            setTitleColor(Config.colorPiusBlue, for: .normal);
         }
     }
 

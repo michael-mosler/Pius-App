@@ -12,10 +12,9 @@ import UIKit;
 class VertretungsplanLoader {
     private var forGrade: String?;
     private var url: URL?;
-    private let config = Config();
     
-    private let baseUrl = "\(Config.baseUrl)/vertretungsplan";
-    private let piusGatewayReachability = ReachabilityChecker(forName: Config.baseUrl);
+    private let baseUrl = "\(AppDefaults.baseUrl)/vertretungsplan";
+    private let piusGatewayReachability = ReachabilityChecker(forName: AppDefaults.baseUrl);
 
     private let cache = Cache();
     private var cacheFileName: String;
@@ -63,12 +62,12 @@ class VertretungsplanLoader {
         }
 
         // If not an upper grade do not check course list.
-        if (config.upperGrades.index(of: forGrade!) == nil) {
+        if (Config.upperGrades.index(of: forGrade!) == nil) {
             return true;
         }
 
         // If no course list set or list is empty accept any item.
-        let courseList = config.userDefaults.array(forKey: "dashboardCourseList");
+        let courseList = AppDefaults.courseList;
         if (courseList == nil || courseList!.count == 0) {
             return true;
         }
@@ -76,7 +75,7 @@ class VertretungsplanLoader {
         // This is the item from Vertretungsplan to check.
         let course = detailsItems[2].replacingOccurrences(of: " ", with: "", options: .literal, range: nil);
         let found = courseList!.first(where: {
-            ($0 as! String)
+            $0
             .replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
             .replacingOccurrences(of: "GK", with: "G", options: .literal, range: nil)
             .replacingOccurrences(of: "LK", with: "L", options: .literal, range: nil) == course
@@ -91,7 +90,7 @@ class VertretungsplanLoader {
         var realUsername: String;
         var realPassword: String;
         if (username == nil && password == nil) {
-            (realUsername, realPassword) = config.getCredentials();
+            (realUsername, realPassword) = AppDefaults.credentials;
         } else {
             realUsername = username!;
             realPassword = password!;

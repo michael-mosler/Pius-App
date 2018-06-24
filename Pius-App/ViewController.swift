@@ -30,11 +30,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
     // Indicates if sidebar menu is open or closed.
     var menuIsOpen : Bool = false;
     
-    // User defaults access.
-    let config = Config();
-
     // Checks reachability of news page.
-    let reachabilityChecker = ReachabilityChecker(forName: "https://pius-gateway.eu-de.mybluemix.net");
+    let reachabilityChecker = ReachabilityChecker(forName: AppDefaults.baseUrl);
     
     // Becomes true if webview has been loaded.
     var webViewLoaded: Bool = false;
@@ -45,7 +42,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
 
     // If not authenticated and is launched show login screen.
     private func showLaunchScreen() {
-        if (!config.userDefaults.bool(forKey: "authenticated")) {
+        if (!AppDefaults.authenticated) {
             if let launchScreenViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LaunchScreen") as UIViewController? {
                 if let navigationController = navigationController {
                     navigationController.pushViewController(launchScreenViewController, animated: false);
@@ -72,8 +69,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
         });
         
         // Dashboard item is disabled if no grade is configured.
-        let authenticated = config.userDefaults.bool(forKey: "authenticated");
-        dashboardItem.isEnabled = (config.userDefaults.integer(forKey: "selectedGradeRow") != 0) && authenticated;
+        let authenticated = AppDefaults.authenticated;
+        dashboardItem.isEnabled = (AppDefaults.selectedGradeRow != 0) && authenticated;
         vertretungsplanItem.isEnabled = authenticated;
         
         // When sidebar menu is open disable web view and blur background.
@@ -151,7 +148,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
             offlineText.isHidden = true;
 
             // Pius Gymnasium Home Page will be shown on landing page.
-            let baseUrl = URL(string: "https://pius-gateway.eu-de.mybluemix.net/news");
+            let baseUrl = URL(string: "\(AppDefaults.baseUrl)/news");
             pageRequest = URLRequest(url: baseUrl!);
             webViewLoaded = true;
         } else {
@@ -175,14 +172,14 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showLaunchScreen();
+         showLaunchScreen();
 
         // Configure tab gesture recognizer.
         webViewTabGestureRecognizer.numberOfTapsRequired = 1;
         webViewTabGestureRecognizer.delegate = self;
         
         // Set color of navigation bar.
-        navigationController?.navigationBar.barTintColor = config.colorPiusBlue;
+        navigationController?.navigationBar.barTintColor = Config.colorPiusBlue;
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white];
         
         addNavBarLogo();

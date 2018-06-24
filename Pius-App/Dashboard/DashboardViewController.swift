@@ -28,9 +28,6 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     private var selected: IndexPath?;
     private var currentHeader: ExpandableHeaderView?;
 
-    // User defaults access.
-    private let config = Config();
-
     // This dashboard is for this grade setting.
     private var grade: String = "";
 
@@ -308,14 +305,13 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
 
         // This dashboard is for this grade setting.
-        let gradeSetting = config.userDefaults.integer(forKey: "selectedGradeRow");
-        let classSetting = config.userDefaults.integer(forKey: "selectedClassRow");
-        grade = config.shortGrades[gradeSetting] + config.shortClasses[classSetting];
-
-        title = grade;
+        if let gradeSetting = AppDefaults.selectedGradeRow, let classSetting = AppDefaults.selectedClassRow {
+            grade = Config.shortGrades[gradeSetting] + Config.shortClasses[classSetting];
+            title = grade;
+        }
         
         tickerTextScrollView.delegate = self;
-        tickerTextScrollViewWidth = config.screenWidth - 32;
+        tickerTextScrollViewWidth = Config.screenWidth - 32;
         
         getVertretungsplanFromWeb(forGrade: grade);
         

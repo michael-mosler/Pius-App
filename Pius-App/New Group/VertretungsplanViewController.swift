@@ -26,7 +26,6 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     private var selected: IndexPath?;
     private var currentHeader: ExpandableHeaderView?;
     
-    private let config = Config();
     private var tickerTextScrollViewWidth: Int?;
 
     func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
@@ -95,7 +94,7 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad();
         tickerTextScrollView.delegate = self;
-        tickerTextScrollViewWidth = config.screenWidth - 32;
+        tickerTextScrollViewWidth = Config.screenWidth - 32;
 
         getVertretungsplanFromWeb();
         

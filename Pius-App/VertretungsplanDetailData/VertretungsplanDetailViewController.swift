@@ -21,7 +21,7 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
     public var gradeItem: GradeItem?;
     public var date: String?;
     
-    private let piusGatewayReachability = ReachabilityChecker(forName: "https://pius-gateway.eu-de.mybluemix.net");
+    private let piusGatewayReachability = ReachabilityChecker(forName: AppDefaults.baseUrl);
 
     
     override func viewDidLoad() {

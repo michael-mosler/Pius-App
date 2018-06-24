@@ -18,7 +18,6 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     let cellBgView = UIView();
     
-    let config = Config();
     var inEditMode: Bool = false;
     
     var courseList: [String] = [];
@@ -29,9 +28,9 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch(pickerView) {
-        case coursePicker!: return config.courses.count;
-        case courseTypePicker!: return config.courseTypes.count;
-        case courseNumberPicker!: return config.courseNumbers.count;
+        case coursePicker!: return Config.courses.count;
+        case courseTypePicker!: return Config.courseTypes.count;
+        case courseNumberPicker!: return Config.courseNumbers.count;
         default: fatalError("Invalid picker type");
         }
     }
@@ -39,9 +38,9 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
     // Return content for the named row and picker view.
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch(pickerView) {
-        case coursePicker!: return config.courses[row];
-        case courseTypePicker!: return config.courseTypes[row];
-        case courseNumberPicker!: return config.courseNumbers[row];
+        case coursePicker!: return Config.courses[row];
+        case courseTypePicker!: return Config.courseTypes[row];
+        case courseNumberPicker!: return Config.courseNumbers[row];
         default: fatalError("Invalid picker type");
         }
     }
@@ -49,9 +48,9 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
 
     private func addCourseFromPickers() {
         var realCourseName: String;
-        let courseName = config.coursesShortNames[(coursePicker?.selectedRow(inComponent: 0))!]
-        let courseType = config.courseTypes[(courseTypePicker?.selectedRow(inComponent: 0))!];
-        let courseNumber = config.courseNumbers[(courseNumberPicker?.selectedRow(inComponent: 0))!];
+        let courseName = Config.coursesShortNames[(coursePicker?.selectedRow(inComponent: 0))!]
+        let courseType = Config.courseTypes[(courseTypePicker?.selectedRow(inComponent: 0))!];
+        let courseNumber = Config.courseNumbers[(courseNumberPicker?.selectedRow(inComponent: 0))!];
         
         if (courseType == "P" || courseType == "V") {
             realCourseName = String(format: "%@%@%@", courseType, courseName, courseNumber);
@@ -70,7 +69,7 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         myCoursesTableView.reloadData();
         
         if (!inEditMode) {
-            config.userDefaults.set(courseList, forKey: "dashboardCourseList");
+            AppDefaults.courseList = courseList;
         }
     }
 
@@ -143,8 +142,8 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cellBgView.backgroundColor = config.colorPiusBlue;
-        let savedCourseList: [String]? = config.userDefaults.array(forKey: "dashboardCourseList") as? [String];
+        cellBgView.backgroundColor = Config.colorPiusBlue;
+        let savedCourseList: [String]? = AppDefaults.courseList;
         
         myCoursesTableView.allowsSelection = false;
         courseList = (savedCourseList != nil) ? savedCourseList! : [];

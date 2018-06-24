@@ -25,8 +25,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     // The active text field, is either webSizeUserNameField or webSitePasswordField.
     private var activeTextField: UITextField?;
     
-    private var config = Config();
-    private let piusGatewayReachability = ReachabilityChecker(forName: "https://pius-gateway.eu-de.mybluemix.net");
+    private let piusGatewayReachability = ReachabilityChecker(forName: AppDefaults.baseUrl);
 
     private var savedScrollPosition: CGPoint?;
     
@@ -241,7 +240,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
                 let dayLabel = cell.viewWithTag(tags.tableView.dayLabelInTableViewCell.rawValue) as! UILabel;
                 let eventLabel = cell.viewWithTag(tags.tableView.eventLabelInTablewViewCell.rawValue) as! UILabel;
                 
-                dayLabel.attributedText = NSMutableAttributedString(string: item[0], attributes: [NSAttributedStringKey.foregroundColor: config.colorPiusBlue]);
+                dayLabel.attributedText = NSMutableAttributedString(string: item[0], attributes: [NSAttributedStringKey.foregroundColor: Config.colorPiusBlue]);
                 eventLabel.attributedText = NSMutableAttributedString(string: item[1]);
             }
         } else {
@@ -251,7 +250,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
 
             let detailItems = calendar.monthItems[selectedMonth!].dayItems[indexPath.row].detailItems;
             
-            dayLabel.attributedText = NSMutableAttributedString(string: detailItems[0], attributes: [NSAttributedStringKey.foregroundColor: config.colorPiusBlue]);
+            dayLabel.attributedText = NSMutableAttributedString(string: detailItems[0], attributes: [NSAttributedStringKey.foregroundColor: Config.colorPiusBlue]);
             eventLabel.attributedText = NSMutableAttributedString(string: detailItems[1]);
         }
         
