@@ -182,15 +182,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Du musst Dich anmelden und das Dashboard konfigurieren, um das Widget verwenden zu können." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHP-gA-Kqd">
+                                <rect key="frame" x="0.0" y="44" width="320" height="214"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="m7N-CR-spD" firstAttribute="top" secondItem="nET-Z9-EQ2" secondAttribute="bottom" constant="2" id="8r3-Pb-muR"/>
                             <constraint firstItem="nET-Z9-EQ2" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="5" id="BA4-9S-6cp"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="DHP-gA-Kqd" secondAttribute="trailing" id="jKx-gm-Ylx"/>
                             <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="m7N-CR-spD" secondAttribute="trailing" id="jo0-QQ-Yel"/>
                             <constraint firstItem="ssy-KU-ocm" firstAttribute="bottom" secondItem="m7N-CR-spD" secondAttribute="bottom" constant="2" id="mVv-Xf-LJe"/>
                             <constraint firstItem="nET-Z9-EQ2" firstAttribute="top" secondItem="ssy-KU-ocm" secondAttribute="top" constant="2" id="nCw-Ix-pQq"/>
+                            <constraint firstItem="DHP-gA-Kqd" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="nQw-ek-VBW"/>
+                            <constraint firstItem="DHP-gA-Kqd" firstAttribute="top" secondItem="ssy-KU-ocm" secondAttribute="top" id="ny9-L8-Ngz"/>
                             <constraint firstItem="m7N-CR-spD" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="onk-CK-wLI"/>
                             <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="nET-Z9-EQ2" secondAttribute="trailing" constant="5" id="t3X-wA-yMr"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="bottom" secondItem="DHP-gA-Kqd" secondAttribute="bottom" id="ucU-5T-mvP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
                     </view>

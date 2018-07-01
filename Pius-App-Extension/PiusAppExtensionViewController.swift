@@ -75,7 +75,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         // This allows to notify widget of load result.
         func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
             if let vertretungsplan = vertretungsplan {
-                data = vertretungsplan.vertretungsplaene;
+                data = vertretungsplan.next;
                 DispatchQueue.main.async {
                     self.lastUpdateLabel.text = vertretungsplan.lastUpdate;
                     self.tableView.reloadData();

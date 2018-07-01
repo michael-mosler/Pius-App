@@ -55,7 +55,7 @@ class VertretungsplanLoader {
         self.digestFileName = digestFileName;
     }
     
-    private func accept(basedOn detailsItems: [String]) -> Bool {
+    private func accept(basedOn detailItems: [String]) -> Bool {
         // When not in dashboard mode accept any item.
         if (forGrade == nil) {
             return true;
@@ -73,7 +73,7 @@ class VertretungsplanLoader {
         }
 
         // This is the item from Vertretungsplan to check.
-        let course = detailsItems[2].replacingOccurrences(of: " ", with: "", options: .literal, range: nil);
+        let course = detailItems[2].replacingOccurrences(of: " ", with: "", options: .literal, range: nil);
         let found = courseList!.first(where: {
             $0
             .replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
