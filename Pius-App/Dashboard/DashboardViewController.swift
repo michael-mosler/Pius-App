@@ -199,7 +199,8 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                 cell?.textLabel?.text! = String(format: "%@. Stunde", lesson);
             }
         case 2:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "details") {
+            if let cell_ = tableView.dequeueReusableCell(withIdentifier: "details") {
+                cell = cell_;
                 // This is the itemIndex this cell is know displaying.
                 (cell as! DetailsCellTableViewCell).section = indexPath.section;
                 (cell as! DetailsCellTableViewCell).itemIndex = itemIndex;

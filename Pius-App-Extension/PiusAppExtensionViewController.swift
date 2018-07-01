@@ -13,8 +13,6 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
     @IBOutlet var widgetView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lastUpdateLabel: UILabel!
-    @IBOutlet weak var offlineLabel: UILabel!
-    @IBOutlet weak var offlineLabelBottomConstraint: NSLayoutConstraint!
     
     private struct tags {
         enum details: Int {
@@ -36,14 +34,8 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
     // present we have 5 rows otherwie we have 6.
     private var tableRows: Int {
         get {
-            guard data.count > 0 else { return 0; }
-            
-            let gradeItem: GradeItem? = data[0].gradeItems[0];
-            if ((gradeItem?.vertretungsplanItems[0].count)! < 8) {
-                return 5;
-            } else {
-                return 6;
-            }
+            guard data.count > 0 && data[0].gradeItems.count > 0 else { return 0; }
+            return 6;
         }
     }
 
@@ -57,84 +49,66 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
     // 16 = Label height
     // 2 = Space between 2 labels
     // 2 = Space between rows to show in compact mode.
-    private var maxFixedHeight: CGFloat {
-        get {
-            return ((offlineLabel.isHidden) ? 1 : 2) * 16 + 2 * 2 + 2;
-        }
-    }
-
     private var realFixedHeight: CGFloat {
         get {
-            return maxFixedHeight; // - 16 when in offline mode.
+            return 16 + 2 * 2 + 2;
         }
     }
 
     // Compute row height to use.
     private var rowHeight: CGFloat {
-        return (compactHeight - realFixedHeight) / 2;
-    }
-
-    // Scroll offline label into view when offline mode is detected after in
-    // viewDidLoad().
-    private func hideOfflineLabelWhenNeeded() {
-        guard isNetworkReachable else { return };
-        offlineLabelBottomConstraint.constant = -18;
-        offlineLabel.isHidden = true;
-        
-        UIView.animate(withDuration: 0.3, animations: {
-            self.view.layoutIfNeeded();
-        });
+        return (compactHeight - realFixedHeight) / 4;
     }
 
     override func viewDidLoad() {
         super.viewDidLoad();
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded;
-        
-        hideOfflineLabelWhenNeeded();
-
-        // This dashboard is for this grade setting.
-        if let gradeSetting = AppDefaults.selectedGradeRow, let classSetting = AppDefaults.selectedClassRow {
-            let grade = Config.shortGrades[gradeSetting] + Config.shortClasses[classSetting];
-            getVertretungsplanFromWeb(forGrade: grade);
-        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    private func getVertretungsplanFromWeb(forGrade grade: String) {
+    private func getVertretungsplanFromWeb(forGrade grade: String, withCompeltionHandler completionHandler: (@escaping (NCUpdateResult) -> Void)) {
+        
+        // Scoped version of doUpdate(). completionHandler() is injected from outside.
+        // This allows to notify widget of load result.
+        func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
+            if let vertretungsplan = vertretungsplan {
+                data = vertretungsplan.vertretungsplaene;
+                DispatchQueue.main.async {
+                    self.lastUpdateLabel.text = vertretungsplan.lastUpdate;
+                    self.tableView.reloadData();
+                    completionHandler(NCUpdateResult.newData);
+                }
+            } else {
+                completionHandler(NCUpdateResult.failed);
+            }
+        }
+        
+        // Load data and perform update of view.
         let vertretungsplanLoader = VertretungsplanLoader(forGrade: grade);
         vertretungsplanLoader.load(doUpdate);
     }
 
-    func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
-        if let vertretungsplan = vertretungsplan {
-            data = vertretungsplan.vertretungsplaene;
-            DispatchQueue.main.async {
-                self.lastUpdateLabel.text = vertretungsplan.lastUpdate;
-                self.tableView.reloadData();
-            }
-        }
-    }
-    
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize)
     {
-        if activeDisplayMode == .expanded {
+        if (activeDisplayMode == .expanded) {
+            // If there is not data fallback to collapsed mode.
             let height = rowHeight * CGFloat(tableRows - 1) + realFixedHeight;
             preferredContentSize = CGSize(width: 0.0, height: height)
         } else {
-            preferredContentSize = maxSize
+            let height = rowHeight * 4 + realFixedHeight;
+            preferredContentSize = CGSize(width: 0.0, height: height);
         }
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        // Perform any setup necessary in order to update the view.
-        
-        // If an error is encountered, use NCUpdateResult.Failed
-        // If there's no update required, use NCUpdateResult.NoData
-        // If there's an update, use NCUpdateResult.NewData
-        completionHandler(NCUpdateResult.newData)
+        // This dashboard is for this grade setting.
+        if let gradeSetting = AppDefaults.selectedGradeRow, let classSetting = AppDefaults.selectedClassRow {
+            let grade = Config.shortGrades[gradeSetting] + Config.shortClasses[classSetting];
+            getVertretungsplanFromWeb(forGrade: grade, withCompeltionHandler: completionHandler);
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -202,6 +176,9 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
             if (gradeItem?.vertretungsplanItems[0].count == 8) {
                 let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[0][7]);
                 cell?.textLabel?.text = text;
+                cell?.isHidden = false;
+            } else {
+                cell?.isHidden = true;
             }
             
         default:
