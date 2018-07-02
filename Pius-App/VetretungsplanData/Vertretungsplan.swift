@@ -45,9 +45,9 @@ struct Vertretungsplan {
         return additionalText != nil && additionalText!.count > 0;
     }
     
-    // Returns a filtered Vertretungsplan that returns information on the next item only.
+    // Returns a filtered Vertretungsplan that holds information on the next item only.
     // It expects that this is a Vertretungsplan instance which is filtered by grade
-    // and a given lesson list.
+    // and a given course list.
     var next: [VertretungsplanForDate] {
         get {
             do {
@@ -74,8 +74,8 @@ struct Vertretungsplan {
 
                             // Scan all items for the current date.
                             for vertretungsplanItem in gradeItem.vertretungsplanItems {
-                                // This is the time definition from vertretunsplan. Match on the first number
-                                // in this string.
+                                // Which lessons are affected? This may be a single figure or a range like "3-4. Stunde". Anyway
+                                // we are interested in the very first figure only as this defines the time.
                                 let lessonRange = vertretungsplanItem[0];
                                 if let startLessonMatch = matchFirstNumber.firstMatch(in: lessonRange, range: NSMakeRange(0, lessonRange.count)) {
                                     let range = Range(startLessonMatch.range, in: lessonRange);
@@ -85,7 +85,7 @@ struct Vertretungsplan {
                                     let lessonStartTime = lessonStartTimes[Int(startLesson)! - 1];
                                     
                                     if dateFormatter.date(from: date + lessonStartTime)! > Date() {
-                                        // Build a reduced vertretungsplan that only has the next item
+                                        // Build a reduced vertretungsplan that only has the "next" item
                                         var filteredGradeItem = gradeItem;
                                         filteredGradeItem.vertretungsplanItems = [vertretungsplanItem];
                                         
@@ -99,6 +99,7 @@ struct Vertretungsplan {
                     }
                 }
                 
+                // Nothing found, not next item. Sorry!
                 return [];
             } catch {
                 print("Failed to return widget data \(error)");

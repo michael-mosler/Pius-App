@@ -13,7 +13,15 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
     @IBOutlet var widgetView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lastUpdateLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
     
+    // Text constants
+    private struct messages {
+        static let notConfigured: String = "Du musst Dich anmelden und Deine Kursliste pflegen, um das Widget verwenden zu können.";
+        static let error: String = "Die Daten konnten leider nicht geladen werden.";
+        static let noNextItem: String = "In den nächsten Tagen hast Du keinen Vertretungsunterricht."
+    }
+
     private struct tags {
         enum details: Int {
             case type = 1, room, teacher
@@ -34,8 +42,14 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
     // present we have 5 rows otherwie we have 6.
     private var tableRows: Int {
         get {
-            guard data.count > 0 && data[0].gradeItems.count > 0 else { return 0; }
             return 6;
+        }
+    }
+    
+    private var displayMode: NCWidgetDisplayMode {
+        get {
+            guard data.count > 0 && data[0].gradeItems.count > 0 else { return .compact; }
+            return (data[0].gradeItems[0].vertretungsplanItems[0].count == 8) ? .expanded : .compact;
         }
     }
 
@@ -75,14 +89,30 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         // This allows to notify widget of load result.
         func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
             if let vertretungsplan = vertretungsplan {
+                self.infoLabel.isHidden = true;
+                
                 data = vertretungsplan.next;
-                DispatchQueue.main.async {
-                    self.lastUpdateLabel.text = vertretungsplan.lastUpdate;
-                    self.tableView.reloadData();
-                    completionHandler(NCUpdateResult.newData);
+                if data.count > 0 {
+                    DispatchQueue.main.async {
+                        self.lastUpdateLabel.text = vertretungsplan.lastUpdate;
+                        self.tableView.reloadData();
+                        self.extensionContext?.widgetLargestAvailableDisplayMode = self.displayMode;
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.infoLabel.isHidden = false;
+                        self.infoLabel.text = messages.noNextItem;
+                        self.extensionContext?.widgetLargestAvailableDisplayMode = .compact;
+                        completionHandler(NCUpdateResult.newData);
+                    }
                 }
             } else {
-                completionHandler(NCUpdateResult.failed);
+                DispatchQueue.main.async {
+                    self.infoLabel.isHidden = false;
+                    self.infoLabel.text = messages.error;
+                    self.extensionContext?.widgetLargestAvailableDisplayMode = .compact;
+                    completionHandler(NCUpdateResult.newData);
+                }
             }
         }
         
@@ -91,11 +121,17 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         vertretungsplanLoader.load(doUpdate);
     }
 
+    private func showConfigNotice() {
+        infoLabel.isHidden = false;
+        infoLabel.text = messages.notConfigured;
+        extensionContext?.widgetLargestAvailableDisplayMode = .compact;
+    }
+
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize)
     {
         if (activeDisplayMode == .expanded) {
             // If there is not data fallback to collapsed mode.
-            let height = rowHeight * CGFloat(tableRows - 1) + realFixedHeight;
+            let height = rowHeight * CGFloat(tableRows + 1) + realFixedHeight;
             preferredContentSize = CGSize(width: 0.0, height: height)
         } else {
             let height = rowHeight * 4 + realFixedHeight;
@@ -105,9 +141,15 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         // This dashboard is for this grade setting.
-        if let gradeSetting = AppDefaults.selectedGradeRow, let classSetting = AppDefaults.selectedClassRow {
-            let grade = Config.shortGrades[gradeSetting] + Config.shortClasses[classSetting];
-            getVertretungsplanFromWeb(forGrade: grade, withCompeltionHandler: completionHandler);
+        if AppDefaults.authenticated && (AppDefaults.hasLowerGrade || (AppDefaults.hasUpperGrade && AppDefaults.courseList != nil && AppDefaults.courseList!.count > 0)) {
+            if let gradeSetting = AppDefaults.selectedGradeRow, let classSetting = AppDefaults.selectedClassRow {
+                let grade = Config.shortGrades[gradeSetting] + Config.shortClasses[classSetting];
+                getVertretungsplanFromWeb(forGrade: grade, withCompeltionHandler: completionHandler);
+            } else {
+                showConfigNotice();
+            }
+        } else {
+            showConfigNotice();
         }
     }
     
@@ -121,6 +163,9 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         switch indexPath.row {
         case 1:
             return 2;
+            
+        case 5:
+            return 3 * rowHeight;
 
          default:
             return rowHeight;

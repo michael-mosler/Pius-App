@@ -38,6 +38,36 @@ struct AppDefaults {
         }
     }
 
+    static var hasLowerGrade: Bool {
+        get {
+            if let selectedGradeRow = selectedGradeRow {
+                return Config.lowerGrades.index(of: Config.grades[selectedGradeRow]) != nil
+            } else {
+                return false;
+            }
+        }
+    }
+
+    static var hasExtendedLowerGrade: Bool {
+        get {
+            if let selectedGradeRow = selectedGradeRow {
+                return Config.extendedLowerGrades.index(of: Config.grades[selectedGradeRow]) != nil
+            } else {
+                return false;
+            }
+        }
+    }
+
+    static var hasUpperGrade: Bool {
+        get {
+            if let selectedGradeRow = selectedGradeRow {
+                return Config.upperGrades.index(of: Config.grades[selectedGradeRow]) != nil
+            } else {
+                return false;
+            }
+        }
+    }
+
     static var courseList: [String]? {
         set(courseList) {
             AppDefaults.sharedDefaults?.set(courseList, forKey: "courseList");

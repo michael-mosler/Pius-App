@@ -39,6 +39,10 @@ struct Config {
         return  ["Klasse 5", "Klasse 6", "Klasse 7", "Klasse 8", "Klasse 9"];
     }
     
+    static var extendedLowerGrades: [String] {
+        return  ["Klasse 5", "Klasse 6", "Klasse 7", "Klasse 8", "Klasse 9"];
+    }
+    
     static var classes: [String] {
         get {
             return ["keine", "a", "b", "c", "d", "e"];
