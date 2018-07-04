@@ -56,6 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Delegate for opening app from widget. This will be called only if dashboard has been
     // configured as otherwise widget will refuse to work.
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        configureNavigationController();
+        
         if let dashboardViewController = storyboard.instantiateViewController(withIdentifier: "Dashboard") as? DashboardViewController {
             navigationController?.popToRootViewController(animated: false);
             navigationController?.pushViewController(dashboardViewController, animated: false);
