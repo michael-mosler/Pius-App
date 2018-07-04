@@ -12,7 +12,20 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let storyboard = UIStoryboard(name: "Main", bundle: nil);
     
+    var navigationController: UINavigationController? {
+        get {
+            return window?.rootViewController as? UINavigationController;
+        }
+    }
+    
+    // Get the root window navigation controller and set it's colour to our standard.
+    private func configureNavigationController() {
+        navigationController?.navigationBar.barTintColor = Config.colorPiusBlue;
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white];
+    }
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
@@ -40,20 +53,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    // Delegate for opening app from widget. This will be called only if dashboard has been
+    // configured as otherwise widget will refuse to work.
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        if let dashboardViewController = storyboard.instantiateViewController(withIdentifier: "Dashboard") as? DashboardViewController {
+            navigationController?.popToRootViewController(animated: false);
+            navigationController?.pushViewController(dashboardViewController, animated: false);
+        }
+
+        return true;
+    }
+    
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        // Get the root window navigation controller and set it's colour to out standard.
-        let storyboard = UIStoryboard(name: "Main", bundle: nil);
-        let navigationController = self.window?.rootViewController as? UINavigationController;
-        navigationController?.navigationBar.barTintColor = Config.colorPiusBlue;
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white];
+        configureNavigationController();
 
         if (!AppDefaults.authenticated) {
             let alert = UIAlertController(title: "Anmeldung", message: "Um den Vertretungsplan oder das Dashboard benutzen zu können, musst Du dich zuerst in den Einstellungen anmelden.", preferredStyle: UIAlertControllerStyle.alert);
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
                 (action: UIAlertAction!) in
-                if let settingsViewController = storyboard.instantiateViewController(withIdentifier: "Einstellungen") as? EinstellungenViewController {
-                    navigationController?.popToRootViewController(animated: false);
-                    navigationController?.pushViewController(settingsViewController, animated: false);
+                if let settingsViewController = self.storyboard.instantiateViewController(withIdentifier: "Einstellungen") as? EinstellungenViewController {
+                    self.navigationController?.popToRootViewController(animated: false);
+                    self.navigationController?.pushViewController(settingsViewController, animated: false);
                 }
             }));
 
@@ -74,9 +94,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let alert = UIAlertController(title: "Dashboard", message: "Um das Dashboard benutzen zu können, musst Du in den Einstellungen zuerst Deine Jahrgangsstufe festlegen.", preferredStyle: UIAlertControllerStyle.alert);
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
                     (action: UIAlertAction!) in
-                    if let settingsViewController = storyboard.instantiateViewController(withIdentifier: "Einstellungen") as UIViewController? {
-                        navigationController?.popToRootViewController(animated: false);
-                        navigationController?.pushViewController(settingsViewController, animated: false);
+                    if let settingsViewController = self.storyboard.instantiateViewController(withIdentifier: "Einstellungen") as UIViewController? {
+                        self.navigationController?.popToRootViewController(animated: false);
+                        self.navigationController?.pushViewController(settingsViewController, animated: false);
                     }
                 }));
 

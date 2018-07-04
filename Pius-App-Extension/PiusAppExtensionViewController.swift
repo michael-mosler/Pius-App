@@ -14,10 +14,11 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lastUpdateLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var openAppButton: UIButton!
     
     // Text constants
     private struct messages {
-        static let notConfigured: String = "Du musst Dich anmelden und Deine Kursliste pflegen, um das Widget verwenden zu können.";
+        static let notConfigured: String = "Du musst Dich anmelden und eine Kursliste anlegen, um das Widget verwenden zu können.";
         static let error: String = "Die Daten konnten leider nicht geladen werden.";
         static let noNextItem: String = "In den nächsten Tagen hast Du keinen Vertretungsunterricht."
     }
@@ -74,6 +75,11 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         return (compactHeight - realFixedHeight) / 4;
     }
 
+    // Navigate to app.
+    @IBAction func openAppAction(_ sender: Any) {
+        extensionContext?.open(URL(string: "pius-app://dashboard")!);
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad();
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded;
@@ -90,6 +96,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
             if let vertretungsplan = vertretungsplan {
                 self.infoLabel.isHidden = true;
+                self.openAppButton.isEnabled = true;
                 
                 data = vertretungsplan.next;
                 if data.count > 0 {
@@ -101,6 +108,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
                 } else {
                     DispatchQueue.main.async {
                         self.infoLabel.isHidden = false;
+                        self.openAppButton.isEnabled = false;
                         self.infoLabel.text = messages.noNextItem;
                         self.extensionContext?.widgetLargestAvailableDisplayMode = .compact;
                         completionHandler(NCUpdateResult.newData);
@@ -109,6 +117,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
             } else {
                 DispatchQueue.main.async {
                     self.infoLabel.isHidden = false;
+                    self.openAppButton.isEnabled = false;
                     self.infoLabel.text = messages.error;
                     self.extensionContext?.widgetLargestAvailableDisplayMode = .compact;
                     completionHandler(NCUpdateResult.newData);
@@ -123,6 +132,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
 
     private func showConfigNotice() {
         infoLabel.isHidden = false;
+        openAppButton.isEnabled = false;
         infoLabel.text = messages.notConfigured;
         extensionContext?.widgetLargestAvailableDisplayMode = .compact;
     }

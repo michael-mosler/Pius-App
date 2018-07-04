@@ -25,6 +25,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var offlineFooterView: UIView!
     
     private var data: [VertretungsplanForDate] = [];
+    private var nextDate: String = "";
     private var selected: IndexPath?;
     private var currentHeader: ExpandableHeaderView?;
 
@@ -51,6 +52,12 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
             }
         } else {
             self.data = vertretungsplan!.vertretungsplaene;
+            
+            // What is actually next active substitution schedule date?
+            let nextVertretungsplanForDate = vertretungsplan!.next;
+            if nextVertretungsplanForDate.count > 0 {
+                self.nextDate = nextVertretungsplanForDate[0].date;
+            }
             
             DispatchQueue.main.async {
                 self.currentDateLabel.text = vertretungsplan!.lastUpdate;
@@ -177,6 +184,12 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = ExpandableHeaderView();
         header.customInit(title: data[section].date, userInteractionEnabled: (data[section].gradeItems.count != 0), section: section, delegate: self);
+        
+        // Expand next substitution date entry.
+        if data[section].date == nextDate {
+            toggleSection(header: header, section: section);
+        }
+
         return header;
     }
     

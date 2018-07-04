@@ -166,7 +166,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             // class.
             if (!isUpperGradeSelected(row) && isUpperGradeSelected(AppDefaults.selectedGradeRow!)) {
                 classPickerView.selectRow(1, inComponent: 0, animated: true);
-                AppDefaults.selectedGradeRow = 1;
+                AppDefaults.selectedClassRow = 1;
             }
 
             AppDefaults.selectedGradeRow = row;

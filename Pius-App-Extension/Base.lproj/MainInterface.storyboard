@@ -182,6 +182,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKg-jg-Spz">
+                                <rect key="frame" x="0.0" y="44" width="320" height="196"/>
+                                <connections>
+                                    <action selector="openAppAction:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="acY-s2-L9y"/>
+                                </connections>
+                            </button>
                             <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHP-gA-Kqd">
                                 <rect key="frame" x="0.0" y="44" width="320" height="214"/>
                                 <color key="backgroundColor" red="0.87450980392156863" green="0.87450980392156863" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -191,8 +197,11 @@
                             </label>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="m7N-CR-spD" firstAttribute="top" secondItem="QKg-jg-Spz" secondAttribute="bottom" id="0CV-R5-qKG"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="QKg-jg-Spz" secondAttribute="trailing" id="2kB-Cf-hlc"/>
                             <constraint firstItem="m7N-CR-spD" firstAttribute="top" secondItem="nET-Z9-EQ2" secondAttribute="bottom" constant="2" id="8r3-Pb-muR"/>
                             <constraint firstItem="nET-Z9-EQ2" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="5" id="BA4-9S-6cp"/>
+                            <constraint firstItem="QKg-jg-Spz" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="bW8-YO-Wvk"/>
                             <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="DHP-gA-Kqd" secondAttribute="trailing" id="jKx-gm-Ylx"/>
                             <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="m7N-CR-spD" secondAttribute="trailing" id="jo0-QQ-Yel"/>
                             <constraint firstItem="ssy-KU-ocm" firstAttribute="bottom" secondItem="m7N-CR-spD" secondAttribute="bottom" constant="2" id="mVv-Xf-LJe"/>
@@ -200,6 +209,7 @@
                             <constraint firstItem="DHP-gA-Kqd" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="nQw-ek-VBW"/>
                             <constraint firstItem="DHP-gA-Kqd" firstAttribute="top" secondItem="ssy-KU-ocm" secondAttribute="top" id="ny9-L8-Ngz"/>
                             <constraint firstItem="m7N-CR-spD" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="onk-CK-wLI"/>
+                            <constraint firstItem="QKg-jg-Spz" firstAttribute="top" secondItem="ssy-KU-ocm" secondAttribute="top" id="r7c-Qh-e6c"/>
                             <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="nET-Z9-EQ2" secondAttribute="trailing" constant="5" id="t3X-wA-yMr"/>
                             <constraint firstItem="ssy-KU-ocm" firstAttribute="bottom" secondItem="DHP-gA-Kqd" secondAttribute="bottom" id="ucU-5T-mvP"/>
                         </constraints>
@@ -211,6 +221,7 @@
                     <connections>
                         <outlet property="infoLabel" destination="DHP-gA-Kqd" id="xMO-wD-iAe"/>
                         <outlet property="lastUpdateLabel" destination="m7N-CR-spD" id="9FM-M0-IJ0"/>
+                        <outlet property="openAppButton" destination="QKg-jg-Spz" id="2pp-JB-6cJ"/>
                         <outlet property="tableView" destination="nET-Z9-EQ2" id="GaL-23-cBX"/>
                         <outlet property="widgetView" destination="S3S-Oj-5AN" id="z7E-er-IFC"/>
                     </connections>
