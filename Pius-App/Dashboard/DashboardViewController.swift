@@ -28,6 +28,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     private var nextDate: String = "";
     private var selected: IndexPath?;
     private var currentHeader: ExpandableHeaderView?;
+    private var expandHeader: ExpandableHeaderView?;
 
     // This dashboard is for this grade setting.
     private var grade: String = "";
@@ -73,11 +74,17 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                 }
                 
                 self.tableView.reloadData();
+                self.tableView.layoutIfNeeded();
+                
+                if let header = self.expandHeader {
+                    self.toggleSection(header: header, section: 0);
+                }
+                
                 self.activityIndicator.stopAnimating();
                 
                 self.offlineLabel.isHidden = online;
                 self.offlineFooterView.isHidden = online;
-            }
+             }
         }
     }
     
@@ -187,8 +194,8 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         
         // Expand next substitution date entry.
         if data[section].date == nextDate {
-            toggleSection(header: header, section: section);
-        }
+            expandHeader = header;
+         }
 
         return header;
     }

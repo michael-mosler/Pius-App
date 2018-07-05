@@ -102,6 +102,12 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
                 if data.count > 0 {
                     DispatchQueue.main.async {
                         self.lastUpdateLabel.text = vertretungsplan.lastUpdate;
+                        
+                        if !online {
+                            self.lastUpdateLabel.backgroundColor = Config.offlineRed;
+                            self.lastUpdateLabel.textColor = .white;
+                        }
+
                         self.tableView.reloadData();
                         self.extensionContext?.widgetLargestAvailableDisplayMode = self.displayMode;
                     }

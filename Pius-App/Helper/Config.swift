@@ -16,6 +16,12 @@ struct Config {
         }
     }
 
+    static var offlineRed: UIColor {
+        get {
+            return UIColor(red: 0.914, green: 0.2, blue: 0.184, alpha: 1.0);
+        }
+    }
+
     // Grades and Classes
     static var grades: [String] {
         get {
