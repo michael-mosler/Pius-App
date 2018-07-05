@@ -23,19 +23,13 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         static let noNextItem: String = "In den nächsten Tagen hast Du keinen Vertretungsunterricht."
     }
 
+    // Tags used for labels.
     private struct tags {
         enum details: Int {
             case type = 1, room, teacher
         }
     }
     
-    private var isNetworkReachable: Bool {
-        get {
-            let piusGatewayReachability = ReachabilityChecker(forName: AppDefaults.baseUrl);
-            return piusGatewayReachability.isNetworkReachable();
-        }
-    }
-
     // Filtered VertretungsplanData.
     private var data: [VertretungsplanForDate] = [];
     
@@ -47,6 +41,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         }
     }
     
+    // Display mode to use.
     private var displayMode: NCWidgetDisplayMode {
         get {
             guard data.count > 0 && data[0].gradeItems.count > 0 else { return .compact; }
@@ -75,11 +70,6 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         return (compactHeight - realFixedHeight) / 4;
     }
 
-    // Navigate to app.
-    @IBAction func openAppAction(_ sender: Any) {
-        extensionContext?.open(URL(string: "pius-app://dashboard")!);
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad();
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded;
@@ -89,8 +79,13 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         super.didReceiveMemoryWarning()
     }
     
+    // Navigate to app.
+    @IBAction func openAppAction(_ sender: Any) {
+        extensionContext?.open(URL(string: "pius-app://dashboard")!);
+    }
+
+    // Load vetretungsplan from backend and initiate data reload.
     private func getVertretungsplanFromWeb(forGrade grade: String, withCompeltionHandler completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        
         // Scoped version of doUpdate(). completionHandler() is injected from outside.
         // This allows to notify widget of load result.
         func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
@@ -98,11 +93,14 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
                 self.infoLabel.isHidden = true;
                 self.openAppButton.isEnabled = true;
                 
+                // Get next item from vertretungsplan. This might be empty if no substitution is scheduled.
+                // In this case show info label with appropriate text.
                 data = vertretungsplan.next;
                 if data.count > 0 {
                     DispatchQueue.main.async {
                         self.lastUpdateLabel.text = vertretungsplan.lastUpdate;
                         
+                        // When offline print last update white on red.
                         if !online {
                             self.lastUpdateLabel.backgroundColor = Config.offlineRed;
                             self.lastUpdateLabel.textColor = .white;
@@ -136,6 +134,8 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         vertretungsplanLoader.load(doUpdate);
     }
 
+    // Show notice that one must be logged in and has to configure course list in order to make
+    // use of widget.
     private func showConfigNotice() {
         infoLabel.isHidden = false;
         openAppButton.isEnabled = false;
@@ -143,10 +143,10 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         extensionContext?.widgetLargestAvailableDisplayMode = .compact;
     }
 
+    // Widget display mode did change. Compute widget height depending on actual data present.
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize)
     {
         if (activeDisplayMode == .expanded) {
-            // If there is not data fallback to collapsed mode.
             let height = rowHeight * CGFloat(tableRows + 1) + realFixedHeight;
             preferredContentSize = CGSize(width: 0.0, height: height)
         } else {
@@ -155,6 +155,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         }
     }
     
+    // Update content of widget.
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         // This dashboard is for this grade setting.
         if AppDefaults.authenticated && (AppDefaults.hasLowerGrade || (AppDefaults.hasUpperGrade && AppDefaults.courseList != nil && AppDefaults.courseList!.count > 0)) {
@@ -169,17 +170,21 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         }
     }
     
+    // Return number of table rows.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         guard data.count > 0 else { return 0; }
         return tableRows;
     }
     
+    // Retuen height for cells.
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
+        // Spacer
         case 1:
             return 2;
             
+        // EVA
         case 5:
             return 3 * rowHeight;
 
@@ -188,6 +193,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         }
     }
     
+    // Return cell for index path.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?;
         
@@ -249,6 +255,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         return cell!;
     }
     
+    // Get text for teacher substitution.
     func getTeacherText(oldTeacher: String?, newTeacher: String?) -> NSAttributedString {
         guard let oldTeacher = oldTeacher, let newTeacher = newTeacher else { return NSMutableAttributedString()  }
         
@@ -259,6 +266,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         
     }
     
+    // Get text for room substitution.
     func getRoomText(room: String?) -> NSAttributedString {
         guard let room = room, room != "" else { return NSAttributedString(string: "") }
         

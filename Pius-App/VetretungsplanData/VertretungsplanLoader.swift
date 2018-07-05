@@ -10,6 +10,8 @@ import Foundation
 import UIKit;
 
 class VertretungsplanLoader {
+    private var matchEmptyCourse: NSRegularExpression?;
+    
     private var forGrade: String?;
     private var url: URL?;
     
@@ -53,6 +55,14 @@ class VertretungsplanLoader {
         self.url = URL(string: urlString);
         self.cacheFileName = cacheFileName;
         self.digestFileName = digestFileName;
+
+        // This expression matches a missing course that is indicated by dashes or blanks.
+        do {
+            matchEmptyCourse = try NSRegularExpression(pattern: "^[^A-Z]");
+        } catch {
+            print("Failed to compile regexp for empty course: \(error)");
+            matchEmptyCourse = nil;
+        }
     }
     
     private func accept(basedOn detailItems: [String]) -> Bool {
@@ -74,6 +84,19 @@ class VertretungsplanLoader {
 
         // This is the item from Vertretungsplan to check.
         let course = detailItems[2].replacingOccurrences(of: " ", with: "", options: .literal, range: nil);
+        
+        // Course is empty.
+        if course.count == 0 {
+            return true;
+        }
+
+        // Alternate definition of empty course?
+        if let matcher = matchEmptyCourse {
+            if matcher.firstMatch(in: course, range: NSMakeRange(0, course.count)) != nil {
+                return true;
+            }
+        }
+        
         let found = courseList!.first(where: {
             $0
             .replacingOccurrences(of: " ", with: "", options: .literal, range: nil)

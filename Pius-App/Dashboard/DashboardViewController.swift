@@ -28,7 +28,12 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     private var nextDate: String = "";
     private var selected: IndexPath?;
     private var currentHeader: ExpandableHeaderView?;
-    private var expandHeader: ExpandableHeaderView?;
+
+    private struct ExpandHeaderInfo {
+        var header: ExpandableHeaderView
+        var section: Int
+    }
+    private var expandHeaderInfo: ExpandHeaderInfo?;
 
     // This dashboard is for this grade setting.
     private var grade: String = "";
@@ -76,8 +81,8 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                 self.tableView.reloadData();
                 self.tableView.layoutIfNeeded();
                 
-                if let header = self.expandHeader {
-                    self.toggleSection(header: header, section: 0);
+                if let headerInfo = self.expandHeaderInfo {
+                    self.toggleSection(header: headerInfo.header, section: headerInfo.section);
                 }
                 
                 self.activityIndicator.stopAnimating();
@@ -194,7 +199,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         
         // Expand next substitution date entry.
         if data[section].date == nextDate {
-            expandHeader = header;
+            expandHeaderInfo = ExpandHeaderInfo(header: header, section: section);
          }
 
         return header;
