@@ -182,12 +182,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKg-jg-Spz">
-                                <rect key="frame" x="0.0" y="44" width="320" height="196"/>
-                                <connections>
-                                    <action selector="openAppAction:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="acY-s2-L9y"/>
-                                </connections>
-                            </button>
                             <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHP-gA-Kqd">
                                 <rect key="frame" x="0.0" y="44" width="320" height="214"/>
                                 <color key="backgroundColor" red="0.87450980392156863" green="0.87450980392156863" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -195,6 +189,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKg-jg-Spz">
+                                <rect key="frame" x="0.0" y="44" width="320" height="196"/>
+                                <connections>
+                                    <action selector="openAppAction:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="acY-s2-L9y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="m7N-CR-spD" firstAttribute="top" secondItem="QKg-jg-Spz" secondAttribute="bottom" id="0CV-R5-qKG"/>

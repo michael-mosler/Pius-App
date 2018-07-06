@@ -53,16 +53,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    // Delegate for opening app from widget. This will be called only if dashboard has been
-    // configured as otherwise widget will refuse to work.
+    // Delegate for opening app from widget. Host part of URL tells delegate which view controller to open.
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         configureNavigationController();
+        let host = url.host;
+        guard host != nil else { return false };
         
-        if let dashboardViewController = storyboard.instantiateViewController(withIdentifier: "Dashboard") as? DashboardViewController {
-            navigationController?.popToRootViewController(animated: false);
-            navigationController?.pushViewController(dashboardViewController, animated: false);
-        }
-
+        switch(host) {
+        case "dashboard":
+            if let dashboardViewController = storyboard.instantiateViewController(withIdentifier: "Dashboard") as? DashboardViewController {
+                navigationController?.popToRootViewController(animated: false);
+                navigationController?.pushViewController(dashboardViewController, animated: false);
+            }
+            
+        case "settings":
+            if let settingsViewController = self.storyboard.instantiateViewController(withIdentifier: "Einstellungen") as? EinstellungenViewController {
+                navigationController?.popToRootViewController(animated: false);
+                navigationController?.pushViewController(settingsViewController, animated: false);
+            }
+            
+        default:
+            return false;
+       }
+ 
         return true;
     }
     
