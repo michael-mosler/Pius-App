@@ -261,7 +261,7 @@ class VertretungsplanLoader {
         task.resume();
     }
     
-    // Validate the given credentials are these that are stored in user settings.
+    // Validate that given credentials are these that are stored in user settings.
     // If username and password are both nil values from user settings are validated
     // instead.
     func validateLogin(forUser username: String? = nil, withPassword password: String? = nil, notfifyMeOn validationCallback: @escaping (Bool) -> Void) {

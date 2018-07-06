@@ -390,7 +390,7 @@
                             </activityIndicatorView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keine Verbindung" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5y-5W-Vez">
                                 <rect key="frame" x="0.0" y="762" width="375" height="16"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.11385231465101242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.9148673415184021" green="0.32807183265686035" blue="0.31289210915565491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="fhW-1e-4mS"/>
                                 </constraints>
@@ -400,7 +400,7 @@
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jep-mU-0Ww">
                                 <rect key="frame" x="0.0" y="778" width="375" height="34"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.11385231465101242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.9148673415184021" green="0.32807183265686035" blue="0.31289210915565491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -869,7 +869,7 @@
                             </activityIndicatorView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keine Verbindung" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18B-LI-O1N">
                                 <rect key="frame" x="0.0" y="762" width="375" height="16"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.11385231465101242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.9148673415184021" green="0.32807183265686035" blue="0.31289210915565491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="UiD-W2-Le9"/>
                                 </constraints>
@@ -879,7 +879,7 @@
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="th2-ox-71e">
                                 <rect key="frame" x="0.0" y="778" width="375" height="34"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.11385231465101242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.9148673415184021" green="0.32807183265686035" blue="0.31289210915565491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1069,7 +1069,7 @@
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keine Verbindung" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDr-yl-aao">
                                 <rect key="frame" x="0.0" y="762" width="375" height="16"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.11385231465101242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.9148673415184021" green="0.32807183265686035" blue="0.31289210915565491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="pIA-wi-sNM"/>
                                 </constraints>
@@ -1079,7 +1079,7 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WdU-E8-aZI">
                                 <rect key="frame" x="0.0" y="778" width="375" height="34"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.11385231465101242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.9148673415184021" green="0.32807183265686035" blue="0.31289210915565491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1346,7 +1346,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                             </scrollView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keine Verbindung" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFu-Gj-Cr2">
                                 <rect key="frame" x="0.0" y="762" width="375" height="16"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.11385231465101242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.9148673415184021" green="0.32807183265686035" blue="0.31289210915565491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="d31-dI-hi5"/>
                                 </constraints>
@@ -1356,7 +1356,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BoI-bc-jrf">
                                 <rect key="frame" x="0.0" y="778" width="375" height="34"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.11385231465101242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.9148673415184021" green="0.32807183265686035" blue="0.31289210915565491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xZX-Mg-Gbf">
                                 <rect key="frame" x="177.66666666666666" y="423" width="20" height="20"/>
