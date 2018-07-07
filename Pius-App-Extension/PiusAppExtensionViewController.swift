@@ -82,6 +82,12 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         super.didReceiveMemoryWarning()
     }
     
+    private func showContent(_ mode: Bool) {
+        tableView.isHidden = !mode;
+        lastUpdateLabel.isHidden = !mode;
+        infoLabel.isHidden = mode;
+    }
+
     // Navigate to app.
     @IBAction func openAppAction(_ sender: Any) {
         extensionContext?.open(URL(string: "pius-app://\(appTarget)")!);
@@ -93,7 +99,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         // This allows to notify widget of load result.
         func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
             if let vertretungsplan = vertretungsplan {
-                self.infoLabel.isHidden = true;
+                self.showContent(true);
                 self.openAppButton.isEnabled = true;
                 
                 // Get next item from vertretungsplan. This might be empty if no substitution is scheduled.
@@ -114,7 +120,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
                     }
                 } else {
                     DispatchQueue.main.async {
-                        self.infoLabel.isHidden = false;
+                        self.showContent(false);
                         self.openAppButton.isEnabled = false;
                         self.infoLabel.text = Messages.noNextItem;
                         self.extensionContext?.widgetLargestAvailableDisplayMode = .compact;
@@ -123,7 +129,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
                 }
             } else {
                 DispatchQueue.main.async {
-                    self.infoLabel.isHidden = false;
+                    self.showContent(false);
                     self.openAppButton.isEnabled = false;
                     self.infoLabel.text = Messages.error;
                     self.extensionContext?.widgetLargestAvailableDisplayMode = .compact;
@@ -140,7 +146,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
     // Show notice that one must be logged in and has to configure course list in order to make
     // use of widget.
     private func showConfigNotice() {
-        infoLabel.isHidden = false;
+        showContent(false);
         infoLabel.text = Messages.notConfigured;
         appTarget = "settings";
         extensionContext?.widgetLargestAvailableDisplayMode = .compact;
