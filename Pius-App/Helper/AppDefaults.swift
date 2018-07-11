@@ -18,6 +18,17 @@ struct AppDefaults {
     
     // Shared configuration settings.
     private static let sharedDefaults = UserDefaults(suiteName: "group.de.rmkrings.piusapp.widget");
+    static var version: String {
+        set(version) {
+            AppDefaults.sharedDefaults?.set(version, forKey: "version");
+        }
+        
+        get {
+            guard let version = AppDefaults.sharedDefaults?.string(forKey: "version") else { return "" }
+            return version;
+        }
+    }
+
     static var selectedGradeRow: Int? {
         set(selectedGradeRow) {
             AppDefaults.sharedDefaults?.set(selectedGradeRow, forKey: "selectedGradeRow");
@@ -80,18 +91,25 @@ struct AppDefaults {
     
     static var credentials: (String, String) {
         get {
+            guard let webSiteUserName = sharedDefaults?.string(forKey: "webSiteUserName"), !webSiteUserName.isEmpty else { return ("", "") };
             do {
-                guard let webSiteUserName = sharedDefaults?.string(forKey: "webSiteUserName"), !webSiteUserName.isEmpty else { return ("", "") };
-                
+                // We need to deal with recovery here. Password will not be restored from backuo, thus there might
+                // situations where user is set but password is unset. Simply returning nil as password will crash
+                // app.
                 let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "PiusApp", accessGroup: KeychainConfiguration.accessGroup);
                 
-                var webSitePassword: String;
-                try webSitePassword = passwordItem.readPassword();
+                var webSitePassword_: String?;
+                try webSitePassword_ = passwordItem.readPassword();
                 
-                return (webSiteUserName, webSitePassword);
+                if let webSitePassword = webSitePassword_ {
+                    return (webSiteUserName, webSitePassword);
+                } else {
+                    return (webSiteUserName, "");
+                }
             }
             catch {
-                fatalError("Die Anmeldedaten konnte nicht geladen werden - \(error)");
+                print("Die Anmeldedaten konnten nicht geladen werden - \(error)");
+                return (webSiteUserName, "");
             }
         }
     }
@@ -115,7 +133,7 @@ struct AppDefaults {
                 }
             }
             catch {
-                fatalError("Das Password konnte nicht gespeichert werden - \(error)");
+                print("Das Password konnte nicht gespeichert werden - \(error)");
             }
         }
         
@@ -130,9 +148,11 @@ struct AppDefaults {
             sharedDefaults?.set(authenticated, forKey: "authenticated");
         }
         
+        // Returns true when authenticated is set and there is a password set.
+        // Password will be unset immediately after device restore from backup.
         get {
-            if let authenticated = sharedDefaults?.bool(forKey: "authenticated") {
-                return authenticated
+            if let authenticated = sharedDefaults?.bool(forKey: "authenticated"), let password = password {
+                return authenticated && password != ""
             } else {
                 return false;
             }

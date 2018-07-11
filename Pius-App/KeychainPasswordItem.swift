@@ -66,7 +66,28 @@ struct KeychainPasswordItem {
         
         return password
     }
-    
+
+    func setKSecAttrAccessibleAfterFirstUnlock() {
+        do {
+            // Check for an existing item in the keychain.
+            try _ = readPassword()
+            
+            // Update the existing item with the new password.
+            var attributesToUpdate = [String : AnyObject]()
+            
+            attributesToUpdate[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlock as AnyObject?;
+            
+            let query = KeychainPasswordItem.keychainQuery(withService: service, account: account, accessGroup: accessGroup)
+            let status = SecItemUpdate(query as CFDictionary, attributesToUpdate as CFDictionary)
+            
+            // Throw an error if an unexpected status was returned.
+            guard status == noErr else { throw KeychainError.unhandledError(status: status) }
+        }
+        catch {
+            print("No password set yet, no updating sec item");
+        }
+    }
+
     func savePassword(_ password: String) throws {
         // Encode the password into an Data object.
         let encodedPassword = password.data(using: String.Encoding.utf8)!
@@ -77,7 +98,9 @@ struct KeychainPasswordItem {
 
             // Update the existing item with the new password.
             var attributesToUpdate = [String : AnyObject]()
+            
             attributesToUpdate[kSecValueData as String] = encodedPassword as AnyObject?
+            attributesToUpdate[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlock as AnyObject?;
 
             let query = KeychainPasswordItem.keychainQuery(withService: service, account: account, accessGroup: accessGroup)
             let status = SecItemUpdate(query as CFDictionary, attributesToUpdate as CFDictionary)
@@ -92,7 +115,8 @@ struct KeychainPasswordItem {
             */
             var newItem = KeychainPasswordItem.keychainQuery(withService: service, account: account, accessGroup: accessGroup)
             newItem[kSecValueData as String] = encodedPassword as AnyObject?
-            
+            newItem[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlock as AnyObject?;
+
             // Add a the new item to the keychain.
             let status = SecItemAdd(newItem as CFDictionary, nil)
             

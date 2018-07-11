@@ -27,7 +27,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Current version.
+        let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject;
+        let version = nsObject as! String;
+
+        // If new version migrate whatever needs to be and set version.
+        if AppDefaults.version != version {
+            // Make password accessible after first unlock.
+            let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "PiusApp", accessGroup: "group.de.rmkrings.piusapp.widget");
+            passwordItem.setKSecAttrAccessibleAfterFirstUnlock();
+            
+            // Update version.
+            AppDefaults.version = version;
+        }
         return true
     }
 

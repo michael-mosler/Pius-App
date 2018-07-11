@@ -155,7 +155,7 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = ExpandableHeaderView();
-        header.customInit(title: data[section].date, section: section, delegate: self);
+        header.customInit(title: data[section].date, userInteractionEnabled: data[section].gradeItems.count > 0, section: section, delegate: self);
         return header;
     }
     

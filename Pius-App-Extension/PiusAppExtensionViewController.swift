@@ -116,7 +116,9 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
                         }
 
                         self.tableView.reloadData();
+                        self.widgetView.layoutIfNeeded();
                         self.extensionContext?.widgetLargestAvailableDisplayMode = self.displayMode;
+                        completionHandler(NCUpdateResult.newData);
                     }
                 } else {
                     DispatchQueue.main.async {

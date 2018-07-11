@@ -691,7 +691,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3f0de4bb-16e4-4c36-b2fa-48242ae7fe73";
+				PROVISIONING_PROFILE = "9a00b439-187e-4e14-ab1b-e2025036a82a";
 				PROVISIONING_PROFILE_SPECIFIER = "Debug on Felix iPhone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -764,7 +764,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0c9d001f-4492-48c0-9049-c9ba8bd30466";
+				PROVISIONING_PROFILE = "ba39b390-c14c-44eb-a9c1-fc80ffc91cf9";
 				PROVISIONING_PROFILE_SPECIFIER = "Debug Extension on Felix iPhone";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
