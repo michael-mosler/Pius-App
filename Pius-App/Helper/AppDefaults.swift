@@ -91,7 +91,7 @@ struct AppDefaults {
     
     static var credentials: (String, String) {
         get {
-            guard let webSiteUserName = sharedDefaults?.string(forKey: "webSiteUserName"), !webSiteUserName.isEmpty else { return ("", "") };
+            guard let webSiteUserName = AppDefaults.sharedDefaults?.string(forKey: "webSiteUserName"), !webSiteUserName.isEmpty else { return ("", "") };
             do {
                 // We need to deal with recovery here. Password will not be restored from backuo, thus there might
                 // situations where user is set but password is unset. Simply returning nil as password will crash

@@ -394,6 +394,12 @@
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 					4C7C229F2043117800ACA17B = {
@@ -691,8 +697,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9a00b439-187e-4e14-ab1b-e2025036a82a";
-				PROVISIONING_PROFILE_SPECIFIER = "Debug on Felix iPhone";
+				PROVISIONING_PROFILE = "cf5ddccf-af75-4b91-9ce3-82be1c98da3f";
+				PROVISIONING_PROFILE_SPECIFIER = "Debug on iPhone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -764,8 +770,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ba39b390-c14c-44eb-a9c1-fc80ffc91cf9";
-				PROVISIONING_PROFILE_SPECIFIER = "Debug Extension on Felix iPhone";
+				PROVISIONING_PROFILE = "497c7351-5074-4a9d-8f5d-ceb39301ed08";
+				PROVISIONING_PROFILE_SPECIFIER = "Debug Extension on iPhone";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

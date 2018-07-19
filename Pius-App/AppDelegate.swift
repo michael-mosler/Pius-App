@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +27,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white];
     }
 
+    // Register for push notification service.
+    func registerForPushNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) {
+            (granted, error) in
+            print("Permission granted: \(granted)");
+
+            guard granted else { return }
+            self.getNotificationSettings();
+        }
+    }
+    
+    // Gets current push notifications settings when authorized registers for remote
+    // notifications.
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            print("Notification settings: \(settings)");
+            
+            guard settings.authorizationStatus == .authorized else { return }
+            
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications();
+            }
+        }
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Current version.
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject;
@@ -40,6 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Update version.
             AppDefaults.version = version;
         }
+        
+        registerForPushNotifications();
+        
         return true
     }
 
@@ -141,5 +170,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Unknown quick action code \(shortcutItem.type) is being ignored.");
             completionHandler(false);
         }
+    }
+    
+    // Callback which is called when device has been registered for remote notifications.
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map { data -> String in
+            return String(format: "%02.2hhx", data)
+        }
+        
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
+    }
+    
+    // Callback which is called when registering for remote noftications has failed.
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register: \(error)")
     }
 }
