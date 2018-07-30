@@ -180,6 +180,12 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
                 AppDefaults.selectedClassRow = row;
             }
         }
+        
+        // Update subscription when app has push notifications enabled.
+        if let deviceToken = Config.currentDeviceToken {
+            let deviceTokenManager = DeviceTokenManager();
+            deviceTokenManager.registerDeviceToken(token: deviceToken, subscribeFor: AppDefaults.gradeSetting);
+        }
     }
 
     private func saveCredentials() {

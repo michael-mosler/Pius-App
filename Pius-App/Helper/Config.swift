@@ -10,6 +10,19 @@ import Foundation
 import UIKit
 
 struct Config {
+    private static let userDefaults = UserDefaults();
+
+    // The current device token. This is for transporting device token to Settings view controller only.
+    // Settings view controller will update subscription when grade setting is changed.
+    static var currentDeviceToken: String? {
+        set(deviceToken) {
+            Config.userDefaults.set(deviceToken, forKey: "currentDeviceToken");
+        }
+        get {
+            return Config.userDefaults.string(forKey: "currentDeviceToken");
+        }
+    }
+
     static var colorPiusBlue: UIColor {
         get {
             return UIColor(red:0.337, green:0.631, blue:0.824, alpha:1.0);

@@ -330,10 +330,8 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
 
         // This dashboard is for this grade setting.
-        if let gradeSetting = AppDefaults.selectedGradeRow, let classSetting = AppDefaults.selectedClassRow {
-            grade = Config.shortGrades[gradeSetting] + Config.shortClasses[classSetting];
-            title = grade;
-        }
+        grade = AppDefaults.gradeSetting;
+        title = grade;
         
         tickerTextScrollView.delegate = self;
         tickerTextScrollViewWidth = Config.screenWidth - 32;

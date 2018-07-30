@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // Register for push notification service.
-    func registerForPushNotifications() {
+    func registerForPushNotifications(forApplication application: UIApplication) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) {
             (granted, error) in
             print("Permission granted: \(granted)");
@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AppDefaults.version = version;
         }
         
-        registerForPushNotifications();
+        registerForPushNotifications(forApplication: application);
         
         return true
     }
@@ -120,6 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true;
     }
     
+    // Register for 3d touch actions.
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         configureNavigationController();
 
@@ -175,15 +176,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Callback which is called when device has been registered for remote notifications.
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let tokenParts = deviceToken.map { data -> String in
-            return String(format: "%02.2hhx", data)
+            return String(format: "%02.2hhx", data);
         }
         
-        let token = tokenParts.joined()
-        print("Device Token: \(token)")
+        let token = tokenParts.joined();
+        print("Device Token: \(token)");
+        
+        Config.currentDeviceToken = token;
+        let deviceTokenManager = DeviceTokenManager();
+        deviceTokenManager.registerDeviceToken(token: token, subscribeFor: AppDefaults.gradeSetting);
     }
     
     // Callback which is called when registering for remote noftications has failed.
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Failed to register: \(error)")
+
+        Config.currentDeviceToken = "mySimToken";
+        let deviceTokenManager = DeviceTokenManager();
+        deviceTokenManager.registerDeviceToken(token: "mySimToken", subscribeFor: AppDefaults.gradeSetting);
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("Received remote notidication");
+        completionHandler(.noData);
     }
 }

@@ -43,6 +43,7 @@
 		4CB3EC7720DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB3EC7620DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift */; };
 		4CB3EC7A20DC0ECB00BBEAE0 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CB3EC7820DC0ECB00BBEAE0 /* MainInterface.storyboard */; };
 		4CB3EC7E20DC0ECB00BBEAE0 /* Pius-App-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4CB3EC7220DC0ECA00BBEAE0 /* Pius-App-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4CB97F17210A53940019973D /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB97F16210A53940019973D /* DeviceTokenManager.swift */; };
 		4CED4A7D204749580012CB45 /* EinstellungenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */; };
 		4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */; };
 		4CED4A85204AE3510012CB45 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */; };
@@ -119,6 +120,7 @@
 		4CB3EC7B20DC0ECB00BBEAE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CB3EC8320DC104800BBEAE0 /* Pius-App-Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pius-App-Extension.entitlements"; sourceTree = "<group>"; };
 		4CB3EC8420DC10D700BBEAE0 /* Pius-App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pius-App.entitlements"; sourceTree = "<group>"; };
+		4CB97F16210A53940019973D /* DeviceTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenManager.swift; sourceTree = "<group>"; };
 		4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EinstellungenViewController.swift; sourceTree = "<group>"; };
 		4CED4A80204ADB520012CB45 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		4CED4A81204ADB520012CB45 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 		4C7C228E2043117700ACA17B /* Pius-App */ = {
 			isa = PBXGroup;
 			children = (
+				4CB97F15210A535F0019973D /* PushService */,
 				4CB3EC8420DC10D700BBEAE0 /* Pius-App.entitlements */,
 				4C7C22912043117800ACA17B /* ViewController.swift */,
 				4C7C228F2043117700ACA17B /* AppDelegate.swift */,
@@ -291,6 +294,14 @@
 				4CB3EC7B20DC0ECB00BBEAE0 /* Info.plist */,
 			);
 			path = "Pius-App-Extension";
+			sourceTree = "<group>";
+		};
+		4CB97F15210A535F0019973D /* PushService */ = {
+			isa = PBXGroup;
+			children = (
+				4CB97F16210A53940019973D /* DeviceTokenManager.swift */,
+			);
+			path = PushService;
 			sourceTree = "<group>";
 		};
 		4CFB105520D048B700432B1A /* CalendarData */ = {
@@ -490,6 +501,7 @@
 				4C5E0E7B20A8797D00DAE459 /* LaunchScreenViewController.swift in Sources */,
 				4CFB105720D0490B00432B1A /* CalendarLoader.swift in Sources */,
 				4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */,
+				4CB97F17210A53940019973D /* DeviceTokenManager.swift in Sources */,
 				4C1FDE50205568E3006092C9 /* ExpandableHeaderView.swift in Sources */,
 				4C1FDE5E20697516006092C9 /* VertretungsplanLoader.swift in Sources */,
 				4C5E0E7920A8730B00DAE459 /* SettingsSegue.swift in Sources */,
@@ -687,12 +699,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				API_KEY = "heSXxSOvNcl8J4UB9$#TV9TUZ3zClbX$EyOQzKiqGWxRgonzSe";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Pius-App/Pius-App.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
+				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp;
@@ -708,12 +722,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				API_KEY = "heSXxSOvNcl8J4UB9$#TV9TUZ3zClbX$EyOQzKiqGWxRgonzSe";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Pius-App/Pius-App.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
+				HOST_ADDRESS = "https://pius-gateway.eu-de.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp;

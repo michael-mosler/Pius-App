@@ -9,10 +9,17 @@
 import Foundation
 
 struct AppDefaults {
+    // API Key for middleware access
+    static var apiKey: String {
+        get {
+            return Bundle.main.infoDictionary?["API_KEY"] as! String;
+        }
+    }
+
     // Base-URL of our IBM Cloud Middlware
     static var baseUrl: String {
         get {
-            return "https://pius-gateway.eu-de.mybluemix.net";
+            return Bundle.main.infoDictionary?["HOST_ADDRESS"] as! String;
         }
     }
     
@@ -49,6 +56,12 @@ struct AppDefaults {
         }
     }
 
+    static var gradeSetting: String {
+        get {
+            guard let gradeSetting = AppDefaults.selectedGradeRow, let classSetting = AppDefaults.selectedClassRow else { return "" };
+            return Config.shortGrades[gradeSetting] + Config.shortClasses[classSetting];
+        }
+    }
     static var hasLowerGrade: Bool {
         get {
             if let selectedGradeRow = selectedGradeRow {
