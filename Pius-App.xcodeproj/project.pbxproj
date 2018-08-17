@@ -50,6 +50,11 @@
 		4CFB105720D0490B00432B1A /* CalendarLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB105620D0490B00432B1A /* CalendarLoader.swift */; };
 		4CFB105920D04BA600432B1A /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB105820D04BA600432B1A /* Calendar.swift */; };
 		4CFB105B20D1926300432B1A /* MonthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB105A20D1926300432B1A /* MonthButton.swift */; };
+		4CFB122D210F887E00BC4B44 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFB122C210F887E00BC4B44 /* UserNotifications.framework */; };
+		4CFB122F210F887E00BC4B44 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFB122E210F887E00BC4B44 /* UserNotificationsUI.framework */; };
+		4CFB1232210F887E00BC4B44 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB1231210F887E00BC4B44 /* NotificationViewController.swift */; };
+		4CFB1235210F887E00BC4B44 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CFB1233210F887E00BC4B44 /* MainInterface.storyboard */; };
+		4CFB1239210F887E00BC4B44 /* Pius-App Notification-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4CFB122B210F887E00BC4B44 /* Pius-App Notification-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4CFBCDD7208925B100E9041D /* MyCoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFBCDD6208925B100E9041D /* MyCoursesViewController.swift */; };
 		4CFBCDDA208FBB8F00E9041D /* DateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFBCDD9208FBB8F00E9041D /* DateListViewController.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +74,13 @@
 			remoteGlobalIDString = 4CB3EC7120DC0ECA00BBEAE0;
 			remoteInfo = "Pius-App-Extension";
 		};
+		4CFB1237210F887E00BC4B44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C7C22842043117700ACA17B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CFB122A210F887E00BC4B44;
+			remoteInfo = "Pius-App Notification-Extension";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,6 +91,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				4CB3EC7E20DC0ECB00BBEAE0 /* Pius-App-Extension.appex in Embed App Extensions */,
+				4CFB1239210F887E00BC4B44 /* Pius-App Notification-Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +142,13 @@
 		4CFB105620D0490B00432B1A /* CalendarLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLoader.swift; sourceTree = "<group>"; };
 		4CFB105820D04BA600432B1A /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		4CFB105A20D1926300432B1A /* MonthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthButton.swift; sourceTree = "<group>"; };
+		4CFB122B210F887E00BC4B44 /* Pius-App Notification-Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pius-App Notification-Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CFB122C210F887E00BC4B44 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		4CFB122E210F887E00BC4B44 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		4CFB1231210F887E00BC4B44 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		4CFB1234210F887E00BC4B44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		4CFB1236210F887E00BC4B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CFB123D210F888900BC4B44 /* Pius-App Notification-Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pius-App Notification-Extension.entitlements"; sourceTree = "<group>"; };
 		4CFBCDD6208925B100E9041D /* MyCoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoursesViewController.swift; sourceTree = "<group>"; };
 		4CFBCDD9208FBB8F00E9041D /* DateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,6 +178,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4CFB1228210F887E00BC4B44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CFB122F210F887E00BC4B44 /* UserNotificationsUI.framework in Frameworks */,
+				4CFB122D210F887E00BC4B44 /* UserNotifications.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -167,6 +196,8 @@
 				4C7E61A920A4389F000D1225 /* SystemConfiguration.framework */,
 				4C194B4B204AFB3500BA744A /* WebKit.framework */,
 				4CB3EC7320DC0ECB00BBEAE0 /* NotificationCenter.framework */,
+				4CFB122C210F887E00BC4B44 /* UserNotifications.framework */,
+				4CFB122E210F887E00BC4B44 /* UserNotificationsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -228,6 +259,7 @@
 				4C7C228E2043117700ACA17B /* Pius-App */,
 				4C7C22A32043117800ACA17B /* Pius-AppUITests */,
 				4CB3EC7520DC0ECB00BBEAE0 /* Pius-App-Extension */,
+				4CFB1230210F887E00BC4B44 /* Pius-App Notification-Extension */,
 				4C7C228D2043117700ACA17B /* Products */,
 				4C194B4A204AFB3500BA744A /* Frameworks */,
 			);
@@ -239,6 +271,7 @@
 				4C7C228C2043117700ACA17B /* Pius-App.app */,
 				4C7C22A02043117800ACA17B /* Pius-AppUITests.xctest */,
 				4CB3EC7220DC0ECA00BBEAE0 /* Pius-App-Extension.appex */,
+				4CFB122B210F887E00BC4B44 /* Pius-App Notification-Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -313,6 +346,17 @@
 			path = CalendarData;
 			sourceTree = "<group>";
 		};
+		4CFB1230210F887E00BC4B44 /* Pius-App Notification-Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4CFB123D210F888900BC4B44 /* Pius-App Notification-Extension.entitlements */,
+				4CFB1231210F887E00BC4B44 /* NotificationViewController.swift */,
+				4CFB1233210F887E00BC4B44 /* MainInterface.storyboard */,
+				4CFB1236210F887E00BC4B44 /* Info.plist */,
+			);
+			path = "Pius-App Notification-Extension";
+			sourceTree = "<group>";
+		};
 		4CFBCDD52089256E00E9041D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,6 +391,7 @@
 			);
 			dependencies = (
 				4CB3EC7D20DC0ECB00BBEAE0 /* PBXTargetDependency */,
+				4CFB1238210F887E00BC4B44 /* PBXTargetDependency */,
 			);
 			name = "Pius-App";
 			productName = "Pius-App";
@@ -388,6 +433,23 @@
 			productReference = 4CB3EC7220DC0ECA00BBEAE0 /* Pius-App-Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		4CFB122A210F887E00BC4B44 /* Pius-App Notification-Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CFB123C210F887E00BC4B44 /* Build configuration list for PBXNativeTarget "Pius-App Notification-Extension" */;
+			buildPhases = (
+				4CFB1227210F887E00BC4B44 /* Sources */,
+				4CFB1228210F887E00BC4B44 /* Frameworks */,
+				4CFB1229210F887E00BC4B44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pius-App Notification-Extension";
+			productName = "Pius-App Notification-Extension";
+			productReference = 4CFB122B210F887E00BC4B44 /* Pius-App Notification-Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -427,6 +489,15 @@
 							};
 						};
 					};
+					4CFB122A210F887E00BC4B44 = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 				};
 			};
 			buildConfigurationList = 4C7C22872043117700ACA17B /* Build configuration list for PBXProject "Pius-App" */;
@@ -446,6 +517,7 @@
 				4C7C228B2043117700ACA17B /* Pius-App */,
 				4C7C229F2043117800ACA17B /* Pius-AppUITests */,
 				4CB3EC7120DC0ECA00BBEAE0 /* Pius-App-Extension */,
+				4CFB122A210F887E00BC4B44 /* Pius-App Notification-Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -473,6 +545,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CB3EC7A20DC0ECB00BBEAE0 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CFB1229210F887E00BC4B44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CFB1235210F887E00BC4B44 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,6 +617,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4CFB1227210F887E00BC4B44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CFB1232210F887E00BC4B44 /* NotificationViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -549,6 +637,11 @@
 			isa = PBXTargetDependency;
 			target = 4CB3EC7120DC0ECA00BBEAE0 /* Pius-App-Extension */;
 			targetProxy = 4CB3EC7C20DC0ECB00BBEAE0 /* PBXContainerItemProxy */;
+		};
+		4CFB1238210F887E00BC4B44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4CFB122A210F887E00BC4B44 /* Pius-App Notification-Extension */;
+			targetProxy = 4CFB1237210F887E00BC4B44 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -575,6 +668,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				4CB3EC7920DC0ECB00BBEAE0 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		4CFB1233210F887E00BC4B44 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4CFB1234210F887E00BC4B44 /* Base */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -781,6 +882,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
+				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -802,6 +904,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
+				HOST_ADDRESS = "https://pius-gateway.eu-de.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -809,6 +912,49 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4dfe11e4-1cf3-4ce6-a67e-05c2934de45f";
 				PROVISIONING_PROFILE_SPECIFIER = "Provision Extension to App Store";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4CFB123A210F887E00BC4B44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "Pius-App Notification-Extension/Pius-App Notification-Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = A6MLRJ6C45;
+				INFOPLIST_FILE = "Pius-App Notification-Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.notification-extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "09d76f16-6033-4c3a-95ce-45a9a956c1c6";
+				PROVISIONING_PROFILE_SPECIFIER = "Debug Notification Extension on iPhone";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4CFB123B210F887E00BC4B44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "Pius-App Notification-Extension/Pius-App Notification-Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Pius-App Notification-Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.notification-extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -850,6 +996,15 @@
 			buildConfigurations = (
 				4CB3EC7F20DC0ECB00BBEAE0 /* Debug */,
 				4CB3EC8020DC0ECB00BBEAE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4CFB123C210F887E00BC4B44 /* Build configuration list for PBXNativeTarget "Pius-App Notification-Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CFB123A210F887E00BC4B44 /* Debug */,
+				4CFB123B210F887E00BC4B44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

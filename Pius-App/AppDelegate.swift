@@ -10,7 +10,7 @@ import UIKit
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     let storyboard = UIStoryboard(name: "Main", bundle: nil);
@@ -20,16 +20,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return window?.rootViewController as? UINavigationController;
         }
     }
-    
+
+    private var notificationCenter:  UNUserNotificationCenter {
+        get {
+            return UNUserNotificationCenter.current();
+        }
+    }
+
     // Get the root window navigation controller and set it's colour to our standard.
     private func configureNavigationController() {
         navigationController?.navigationBar.barTintColor = Config.colorPiusBlue;
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white];
     }
 
+    private func setCategories(){
+        let category = UNNotificationCategory(identifier: "substitution-schedule.changed", actions: [], intentIdentifiers: [], options: [])
+        notificationCenter.setNotificationCategories([category])
+    }
+    
     // Register for push notification service.
-    func registerForPushNotifications(forApplication application: UIApplication) {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) {
+    private func registerForPushNotifications(forApplication application: UIApplication) {
+        notificationCenter.delegate = self;
+        setCategories();
+
+        notificationCenter.requestAuthorization(options: [.alert, .sound]) {
             (granted, error) in
             print("Permission granted: \(granted)");
 
@@ -41,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Gets current push notifications settings when authorized registers for remote
     // notifications.
     func getNotificationSettings() {
-        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+        notificationCenter.getNotificationSettings { (settings) in
             print("Notification settings: \(settings)");
             
             guard settings.authorizationStatus == .authorized else { return }
@@ -189,15 +203,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Callback which is called when registering for remote noftications has failed.
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("Failed to register: \(error)")
-
-        Config.currentDeviceToken = "mySimToken";
-        let deviceTokenManager = DeviceTokenManager();
-        deviceTokenManager.registerDeviceToken(token: "mySimToken", subscribeFor: AppDefaults.gradeSetting);
+        print("Failed to register: \(error)");
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("Received remote notidication");
-        completionHandler(.noData);
+        print("Received remote notification");
+        print(userInfo);
+
+        /*
+        let content = UNMutableNotificationContent()
+        content.title = "Dein Vertretungsplan hat sich geändert!"
+        content.body = "Buy some milk"
+        content.sound = UNNotificationSound.default()
+        content.categoryIdentifier = "substitution-schedule.changed"
+        
+        let identifier = "UYLLocalNotification"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
+        notificationCenter.add(request, withCompletionHandler: { (error) in
+            if let error = error {
+                // Something went wrong
+            }
+        })
+        */
+
+        completionHandler(.newData);
     }
 }
