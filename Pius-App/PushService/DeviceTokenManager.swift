@@ -24,11 +24,12 @@ class DeviceTokenManager {
     }
     
     // Register device token in the middleware.
-    func registerDeviceToken(token: String, subscribeFor grade: String? = nil) {
+    func registerDeviceToken(token: String, subscribeFor grade: String? = nil, withCourseList courseList: [String]? = nil) {
         let json: [String: Any] = [
             "apiKey": AppDefaults.apiKey,
             "deviceToken": token,
-            "grade": grade as Any
+            "grade": grade as Any,
+            "courseList": courseList as Any
         ];
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json);

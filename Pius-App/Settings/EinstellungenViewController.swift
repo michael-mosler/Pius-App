@@ -184,7 +184,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         // Update subscription when app has push notifications enabled.
         if let deviceToken = Config.currentDeviceToken {
             let deviceTokenManager = DeviceTokenManager();
-            deviceTokenManager.registerDeviceToken(token: deviceToken, subscribeFor: AppDefaults.gradeSetting);
+            deviceTokenManager.registerDeviceToken(token: deviceToken, subscribeFor: AppDefaults.gradeSetting, withCourseList: AppDefaults.courseList);
         }
     }
 

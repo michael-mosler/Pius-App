@@ -70,6 +70,12 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if (!inEditMode) {
             AppDefaults.courseList = courseList;
+            
+            // Update subscription when app has push notifications enabled.
+            if let deviceToken = Config.currentDeviceToken {
+                let deviceTokenManager = DeviceTokenManager();
+                deviceTokenManager.registerDeviceToken(token: deviceToken, subscribeFor: AppDefaults.gradeSetting, withCourseList: AppDefaults.courseList);
+            }
         }
     }
 

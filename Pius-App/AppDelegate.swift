@@ -198,7 +198,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         Config.currentDeviceToken = token;
         let deviceTokenManager = DeviceTokenManager();
-        deviceTokenManager.registerDeviceToken(token: token, subscribeFor: AppDefaults.gradeSetting);
+        deviceTokenManager.registerDeviceToken(token: token, subscribeFor: AppDefaults.gradeSetting, withCourseList: AppDefaults.courseList);
     }
     
     // Callback which is called when registering for remote noftications has failed.
@@ -209,23 +209,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("Received remote notification");
         print(userInfo);
-
-        /*
-        let content = UNMutableNotificationContent()
-        content.title = "Dein Vertretungsplan hat sich geändert!"
-        content.body = "Buy some milk"
-        content.sound = UNNotificationSound.default()
-        content.categoryIdentifier = "substitution-schedule.changed"
-        
-        let identifier = "UYLLocalNotification"
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
-        notificationCenter.add(request, withCompletionHandler: { (error) in
-            if let error = error {
-                // Something went wrong
-            }
-        })
-        */
-
         completionHandler(.newData);
     }
 }

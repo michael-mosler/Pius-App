@@ -20,6 +20,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
     }
     
     func didReceive(_ notification: UNNotification) {
+        print(notification.request.content.userInfo["deltaList"] as Any);
         self.label?.text = notification.request.content.body
     }
 
