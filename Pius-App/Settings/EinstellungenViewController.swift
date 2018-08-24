@@ -188,6 +188,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         }
     }
 
+    // Saves credentials in shared defaults.
     private func saveCredentials() {
         // User is not authenticated; in this case we want to set credentials.
         if (!AppDefaults.authenticated) {
@@ -229,6 +230,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         }
     }
 
+    // Sets credentials from sahred defaults in UI.
     private func showCredentials() {
         let (webSiteUserName, webSitePassword) = AppDefaults.credentials;
         
@@ -238,6 +240,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         updateLoginButtonText(authenticated: AppDefaults.authenticated);
     }
 
+    // Dismiss keyboard on tap gesture somwwhere into view controller.
     @IBAction func tapGestureAction(_ sender: Any) {
         dismissKeyboard(fromTextField: activeTextField);
     }
@@ -248,19 +251,24 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         }
     }
 
+    // Remember text field in which editing has begun.
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField;
     }
     
+    // Forget text field which was edited in as editing has ended.
     func textFieldDidEndEditing(_ textField: UITextField) {
         activeTextField = nil;
     }
 
+    // Dismiss keyboard on request.
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         dismissKeyboard(fromTextField: textField);
         return true;
     }
 
+    // Keyboard was shown, we need to resize out scrollview to make sure that keyboard is visible
+    // on any device.
     @objc func keyboardWasShown(notification: NSNotification) {
         guard activeTextField != nil else { return };
 
@@ -278,6 +286,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         }
     }
 
+    // Keyboard will hide; scroll view can be expanded again.
     @objc func keyboardWillHide(notification: NSNotification) {
         let contentInsets: UIEdgeInsets = UIEdgeInsets.zero;
         scrollView.contentInset = contentInsets;
@@ -321,6 +330,11 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         showCredentials();
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated);
+        print("Swipe out");
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
