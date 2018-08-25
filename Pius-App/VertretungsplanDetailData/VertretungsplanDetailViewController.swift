@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VertretungsplanDetailViewController: UIViewController, UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class VertretungsplanDetailViewController: UIViewController, UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var detailsTableView: UITableView!
     @IBOutlet weak var dateLabel: UILabel!
@@ -148,6 +148,21 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3;
+    }
+    
+    // Compute collection view cell width.
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let defaultWidth = 90;
+        let width: Int;
+        
+        switch indexPath.item {
+        case 0:
+            width = Config.screenWidth - 2 * defaultWidth - 32;
+        default:
+            width = defaultWidth;
+        }
+
+        return CGSize(width: width, height: 20);
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

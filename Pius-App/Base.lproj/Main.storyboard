@@ -495,7 +495,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CyG-gI-unn">
-                                                                        <rect key="frame" x="0.0" y="4" width="104" height="18"/>
+                                                                        <rect key="frame" x="0.0" y="4.3333333333333339" width="104" height="17.666666666666664"/>
                                                                         <attributedString key="attributedText">
                                                                             <fragment content="Label">
                                                                                 <attributes>
@@ -737,7 +737,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GSl-ta-ZzF">
-                                                            <rect key="frame" x="11" y="0.0" width="353" height="25"/>
+                                                            <rect key="frame" x="14" y="0.0" width="347" height="25"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="F7G-xq-x8o"/>
@@ -789,7 +789,7 @@
                                                         </collectionView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="GSl-ta-ZzF" firstAttribute="leading" secondItem="ImD-ln-Wdc" secondAttribute="leadingMargin" constant="-4" id="Q9O-lx-mjY"/>
+                                                        <constraint firstItem="GSl-ta-ZzF" firstAttribute="leading" secondItem="ImD-ln-Wdc" secondAttribute="leadingMargin" constant="-1" id="Q9O-lx-mjY"/>
                                                         <constraint firstItem="GSl-ta-ZzF" firstAttribute="top" secondItem="ImD-ln-Wdc" secondAttribute="top" id="lwS-tG-Pod"/>
                                                         <constraint firstItem="GSl-ta-ZzF" firstAttribute="centerX" secondItem="ImD-ln-Wdc" secondAttribute="centerX" id="ttF-LW-IfC"/>
                                                     </constraints>
@@ -1083,6 +1083,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="82f-TF-sxj" firstAttribute="trailing" secondItem="Rjq-F6-X3i" secondAttribute="trailing" id="1Pe-uY-gzO"/>
                             <constraint firstItem="cTj-A5-WrW" firstAttribute="top" secondItem="x2K-e9-D9q" secondAttribute="bottom" id="2me-Qd-b0M"/>
@@ -1105,6 +1106,10 @@
                             <constraint firstItem="Rjq-F6-X3i" firstAttribute="leading" secondItem="82f-TF-sxj" secondAttribute="leading" id="zRh-oc-OpF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="82f-TF-sxj"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="UAe-Ei-E6Y" appends="YES" id="7so-2g-5FV"/>
+                            <outletCollection property="gestureRecognizers" destination="4dM-QZ-g1r" appends="YES" id="7On-Hr-wJa"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Termine" id="ADm-4p-vp2" userLabel="Termine">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="aY6-RU-69k">
@@ -1123,9 +1128,21 @@
                         <outlet property="searchBar" destination="KW0-6I-ocL" id="sMc-aR-GcB"/>
                         <outlet property="searchBarTopConstraint" destination="KeI-il-Cz4" id="A7x-6z-R2i"/>
                         <outlet property="searchBarView" destination="Rjq-F6-X3i" id="TCe-tW-Vyc"/>
+                        <outlet property="swipeLeftGestureRecognizer" destination="UAe-Ei-E6Y" id="zaw-nK-TC4"/>
+                        <outlet property="swipeRightGestureRecognizer" destination="4dM-QZ-g1r" id="r1U-el-aGU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KEQ-oH-egH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="UAe-Ei-E6Y">
+                    <connections>
+                        <action selector="swipeLeftAction:" destination="02y-vG-Sgs" id="m41-wP-cdt"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="4dM-QZ-g1r">
+                    <connections>
+                        <action selector="swipeRightAction:" destination="02y-vG-Sgs" id="dx3-Wx-7ti"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1818.4000000000001" y="-420.44334975369458"/>
         </scene>

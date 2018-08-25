@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DateListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class DateListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var offlineLabel: UILabel!
     @IBOutlet weak var offlineFooterView: UIView!
@@ -21,6 +21,9 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     @IBOutlet weak var monthListCollectionView: UICollectionView!
     @IBOutlet weak var dayListTableView: UITableView!
+    
+    @IBOutlet var swipeLeftGestureRecognizer: UISwipeGestureRecognizer!
+    @IBOutlet var swipeRightGestureRecognizer: UISwipeGestureRecognizer!
     
     // The active text field, is either webSizeUserNameField or webSitePasswordField.
     private var activeTextField: UITextField?;
@@ -133,7 +136,6 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         hadSelectedMonth = nil;
         
         selectedButton = hadSelectedButton;
-        selectedButton?.isSelected = true;
         hadSelectedButton = nil;
         
         // Restore original table view position as user might have scrolled
@@ -147,8 +149,12 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     // Whenever a new month is selected this action load the corresponding dates into
     // day view table.
     @IBAction func monthButtonAction(_ sender: Any) {
-        let button = sender as? MonthButton;
-        changeSelectedMonthButton(to: button!);
+        if let button = sender as? MonthButton {
+            UIView.animate(withDuration: 0, animations: {
+                self.changeSelectedMonthButton(to: button);
+            }, completion: { (finished: Bool) in
+                self.dayListTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: false); });
+        }
     }
 
     // Update view from calendar that just has been loaded.
@@ -193,9 +199,15 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         selectedMonth = button.forMonth;
         button.isSelected = true;
+        button.parentCell?.isSelected = true;
         selectedButton = button;
         
         dayListTableView.reloadData();
+        
+        if let _selectedMonth = selectedMonth {
+            let indexPath = IndexPath(item: _selectedMonth, section: 0);
+            monthListCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true);
+        }
     }
     
     // Returns the number of distinct months in the calendar.
@@ -207,7 +219,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = monthListCollectionView.dequeueReusableCell(withReuseIdentifier: "monthNameCell", for: indexPath);
         let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton;
-        button.makeMonthButton(for: indexPath.row, with: calendar.monthItems[indexPath.row].name);
+        button.makeMonthButton(for: indexPath.row, with: calendar.monthItems[indexPath.row].name, parentCell: cell);
         
         // Selected button has become visible or initial start of view. In latter case
         // activate default month indexed by 0.
@@ -255,5 +267,33 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
         return cell;
+    }
+    
+    // Execute swipe action.
+    private func doSwipe(direction: Int) {
+        if let selectedCell = selectedButton?.parentCell {
+            if var indexPath = monthListCollectionView.indexPath(for: selectedCell) {
+                indexPath.item += direction;
+                
+                if let cell = monthListCollectionView.cellForItem(at: indexPath) {
+                    let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton;
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self.changeSelectedMonthButton(to: button);
+                    }, completion: { (finished: Bool) in
+                        self.dayListTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true); });
+                }
+            }
+        }
+    }
+
+    // Swipe left
+    @IBAction func swipeLeftAction(_ sender: Any) {
+        doSwipe(direction: 1);
+    }
+    
+    
+    // Swipe right
+    @IBAction func swipeRightAction(_ sender: Any) {
+        doSwipe(direction: -1);
     }
 }
