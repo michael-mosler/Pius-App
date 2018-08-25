@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DateListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class DateListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var offlineLabel: UILabel!
     @IBOutlet weak var offlineFooterView: UIView!
@@ -21,6 +21,9 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     @IBOutlet weak var monthListCollectionView: UICollectionView!
     @IBOutlet weak var dayListTableView: UITableView!
+    
+    @IBOutlet var swipeLeftGestureRecognizer: UISwipeGestureRecognizer!
+    @IBOutlet var swipeRightGestureRecognizer: UISwipeGestureRecognizer!
     
     // The active text field, is either webSizeUserNameField or webSitePasswordField.
     private var activeTextField: UITextField?;
@@ -264,5 +267,33 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
         return cell;
+    }
+    
+    // Execute swipe action.
+    private func doSwipe(direction: Int) {
+        if let selectedCell = selectedButton?.parentCell {
+            if var indexPath = monthListCollectionView.indexPath(for: selectedCell) {
+                indexPath.item += direction;
+                
+                if let cell = monthListCollectionView.cellForItem(at: indexPath) {
+                    let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton;
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self.changeSelectedMonthButton(to: button);
+                    }, completion: { (finished: Bool) in
+                        self.dayListTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true); });
+                }
+            }
+        }
+    }
+
+    // Swipe left
+    @IBAction func swipeLeftAction(_ sender: Any) {
+        doSwipe(direction: 1);
+    }
+    
+    
+    // Swipe right
+    @IBAction func swipeRightAction(_ sender: Any) {
+        doSwipe(direction: -1);
     }
 }
