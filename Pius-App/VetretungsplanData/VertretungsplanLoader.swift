@@ -65,6 +65,26 @@ class VertretungsplanLoader {
         }
     }
     
+    // Gets 2nd course item for a pattern like "a&rarr;b". In this case 2nd item is
+    // b. If b is not a course name or does not exist at all nil is returned.
+    private static func get2ndCourseFromItem(item: String) -> String? {
+        if let range = item.range(of: "&rarr;") {
+            let characters = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVXYZ");
+            
+            let startIndex = range.upperBound;
+            let secondItem = String(item[startIndex...]);
+            
+            if item.rangeOfCharacter(from: characters) != nil {
+                return secondItem;
+            }
+            
+            return nil;
+        }
+        
+        return nil;
+    }
+
+    // For upper grades filters detail item against course list.
     private func accept(basedOn detailItems: [String]) -> Bool {
         // When not in dashboard mode accept any item.
         if (forGrade == nil) {
@@ -83,13 +103,26 @@ class VertretungsplanLoader {
         }
 
         // This is the item from Vertretungsplan to check.
-        let course = detailItems[2].replacingOccurrences(of: " ", with: "", options: .literal, range: nil);
+        var course = detailItems[2].replacingOccurrences(of: " ", with: "", options: .literal, range: nil);
         
+        // "Sondereinsatz": In this case course property is empty.
         // Course is empty.
         if course.count == 0 {
             return true;
         }
 
+        // "Messe": Starts with "Mes", if seconds item is a course on users own course list
+        // show it otherwise skip it.
+        // If no seconds course is notated also skip it.
+        let endOfText = course.index(course.startIndex, offsetBy: 3);
+        if (course[..<endOfText] == "Mes") {
+            if let secondCourse = VertretungsplanLoader.get2ndCourseFromItem(item: course) {
+                course = secondCourse;
+            } else {
+                return true;
+            }
+        }
+        
         // Alternate definition of empty course?
         if let matcher = matchEmptyCourse {
             if matcher.firstMatch(in: course, range: NSMakeRange(0, course.count)) != nil {

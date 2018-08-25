@@ -133,7 +133,6 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         hadSelectedMonth = nil;
         
         selectedButton = hadSelectedButton;
-        selectedButton?.isSelected = true;
         hadSelectedButton = nil;
         
         // Restore original table view position as user might have scrolled
@@ -147,8 +146,12 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     // Whenever a new month is selected this action load the corresponding dates into
     // day view table.
     @IBAction func monthButtonAction(_ sender: Any) {
-        let button = sender as? MonthButton;
-        changeSelectedMonthButton(to: button!);
+        if let button = sender as? MonthButton {
+            UIView.animate(withDuration: 0, animations: {
+                self.changeSelectedMonthButton(to: button);
+            }, completion: { (finished: Bool) in
+                self.dayListTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: false); });
+        }
     }
 
     // Update view from calendar that just has been loaded.
@@ -193,9 +196,15 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         selectedMonth = button.forMonth;
         button.isSelected = true;
+        button.parentCell?.isSelected = true;
         selectedButton = button;
         
         dayListTableView.reloadData();
+        
+        if let _selectedMonth = selectedMonth {
+            let indexPath = IndexPath(item: _selectedMonth, section: 0);
+            monthListCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true);
+        }
     }
     
     // Returns the number of distinct months in the calendar.
@@ -207,7 +216,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = monthListCollectionView.dequeueReusableCell(withReuseIdentifier: "monthNameCell", for: indexPath);
         let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton;
-        button.makeMonthButton(for: indexPath.row, with: calendar.monthItems[indexPath.row].name);
+        button.makeMonthButton(for: indexPath.row, with: calendar.monthItems[indexPath.row].name, parentCell: cell);
         
         // Selected button has become visible or initial start of view. In latter case
         // activate default month indexed by 0.

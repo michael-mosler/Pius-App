@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DashboardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, ExpandableHeaderViewDelegate {
+class DashboardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, ExpandableHeaderViewDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tickerTextPageControl: UIPageControl!
@@ -275,10 +275,27 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         return attributedText;
     }
 
+    // Returns number of collection view items in collection view.
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3;
     }
     
+    // Compute collection view cell width.
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let defaultWidth = 90;
+        let width: Int;
+        
+        switch indexPath.item {
+        case 0:
+            width = Config.screenWidth - 2 * defaultWidth - 32;
+        default:
+            width = defaultWidth;
+        }
+        
+        return CGSize(width: width, height: 20);
+    }
+
+    // Returns cell for a particular position in collection view.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "detail", for: indexPath) as! DetailCollectionViewCell;

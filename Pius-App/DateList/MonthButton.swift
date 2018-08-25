@@ -12,6 +12,7 @@ import UIKit
 // month the button has been created for.
 class MonthButton: UIButton {
     private var _forMonth: Int? = nil;
+    private var _parentCell: UICollectionViewCell? = nil;
     
     var forMonth: Int? {
         get {
@@ -20,6 +21,16 @@ class MonthButton: UIButton {
         
         set(month) {
             _forMonth = month;
+        }
+    }
+
+    var parentCell: UICollectionViewCell? {
+        get {
+            return _parentCell;
+        }
+        
+        set(cell) {
+            _parentCell = cell;
         }
     }
 
@@ -35,9 +46,10 @@ class MonthButton: UIButton {
     }
 
     // Makes a new month button amd sets its default color.
-    func makeMonthButton(for month: Int, with name: String) {
+    func makeMonthButton(for month: Int, with name: String, parentCell: UICollectionViewCell) {
         forMonth = month;
         isSelected = false;
+        self.parentCell = parentCell;
         
         setImage(nil, for: .normal);
         setTitle(name, for: .normal);

@@ -495,7 +495,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CyG-gI-unn">
-                                                                        <rect key="frame" x="0.0" y="4" width="104" height="18"/>
+                                                                        <rect key="frame" x="0.0" y="4.3333333333333339" width="104" height="17.666666666666664"/>
                                                                         <attributedString key="attributedText">
                                                                             <fragment content="Label">
                                                                                 <attributes>
@@ -737,7 +737,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GSl-ta-ZzF">
-                                                            <rect key="frame" x="11" y="0.0" width="353" height="25"/>
+                                                            <rect key="frame" x="14" y="0.0" width="347" height="25"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="F7G-xq-x8o"/>
@@ -789,7 +789,7 @@
                                                         </collectionView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="GSl-ta-ZzF" firstAttribute="leading" secondItem="ImD-ln-Wdc" secondAttribute="leadingMargin" constant="-4" id="Q9O-lx-mjY"/>
+                                                        <constraint firstItem="GSl-ta-ZzF" firstAttribute="leading" secondItem="ImD-ln-Wdc" secondAttribute="leadingMargin" constant="-1" id="Q9O-lx-mjY"/>
                                                         <constraint firstItem="GSl-ta-ZzF" firstAttribute="top" secondItem="ImD-ln-Wdc" secondAttribute="top" id="lwS-tG-Pod"/>
                                                         <constraint firstItem="GSl-ta-ZzF" firstAttribute="centerX" secondItem="ImD-ln-Wdc" secondAttribute="centerX" id="ttF-LW-IfC"/>
                                                     </constraints>
