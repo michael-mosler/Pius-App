@@ -111,7 +111,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
                         
                         // When offline print last update white on red.
                         if !online {
-                            self.lastUpdateLabel.backgroundColor = Config.colorOfflineRed;
+                            self.lastUpdateLabel.backgroundColor = Config.colorRed;
                             self.lastUpdateLabel.textColor = .white;
                         }
 

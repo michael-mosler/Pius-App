@@ -81,8 +81,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             AppDefaults.version = version;
         }
         
+        /*
+        // When user tapped on push notifdication open specific view controller.
+        // If app was launched by such a tap we do not need to register for
+        // push notifications obviously.
+        if let payload = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? NSDictionary {
+            print(payload);
+            // self.navigateToViewControllerOnNotication(withUserInfo: payload["userInfo"] as! [AnyHashable : Any]);
+        } else {
+            registerForPushNotifications(forApplication: application);
+        }
+        */
+
         registerForPushNotifications(forApplication: application);
-        
+
         return true
     }
 
@@ -160,8 +172,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 navigationController?.pushViewController(vertretungsplanViewController, animated: false);
             }
             completionHandler(true);
+
         case "de.rmkrings.piusapp.dashboard":
-            guard Config.hasGrade else {
+            guard AppDefaults.hasGrade else {
                 let alert = UIAlertController(title: "Dashboard", message: "Um das Dashboard benutzen zu können, musst Du in den Einstellungen zuerst Deine Jahrgangsstufe festlegen.", preferredStyle: UIAlertControllerStyle.alert);
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
                     (action: UIAlertAction!) in
@@ -181,6 +194,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 navigationController?.pushViewController(dashboardViewController, animated: false);
             }
             completionHandler(true);
+ 
         default:
             print("Unknown quick action code \(shortcutItem.type) is being ignored.");
             completionHandler(false);
@@ -206,9 +220,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print("Failed to register: \(error)");
     }
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("Received remote notification");
+    // Navigate to specific view controller when app is opened by tapping on
+    // a push notification.
+    private func navigateToViewControllerOnNotication(withUserInfo userInfo: [AnyHashable : Any]) {
         print(userInfo);
+        configureNavigationController();
+
+        if let dashboardViewController = storyboard.instantiateViewController(withIdentifier: "Dashboard") as? DashboardViewController {
+            navigationController?.popToRootViewController(animated: false);
+            navigationController?.pushViewController(dashboardViewController, animated: false);
+        }
+    }
+
+    // Received remote notification when app is running.
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // When app is running in background or not at all navigate to specific view controller on app launch.
+        if UIApplication.shared.applicationState != .active {
+            self.navigateToViewControllerOnNotication(withUserInfo: userInfo);
+        }
+        
         completionHandler(.newData);
     }
 }

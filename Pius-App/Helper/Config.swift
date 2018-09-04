@@ -29,12 +29,24 @@ struct Config {
         }
     }
 
-    static var colorOfflineRed: UIColor {
+    static var colorRed: UIColor {
         get {
             return UIColor(red: 0.843, green: 0.369, blue: 0.337, alpha: 1.0);
         }
     }
+    
+    static var colorGreen: UIColor {
+        get {
+            return UIColor(red: 0.557, green: 0.788, blue: 0.259, alpha: 1.0);
+        }
+    }
 
+    static var colorYellow: UIColor {
+        get {
+            return UIColor(red: 1.0, green: 0.8, blue: 0.004, alpha: 1.0);
+        }
+    }
+    
     // Grades and Classes
     static var grades: [String] {
         get {
@@ -104,13 +116,6 @@ struct Config {
     
     static func getClassNameForSetting(setting: Int) -> String {
         return Config.classes[setting];
-    }
-    
-     // Returns true when user has configured a grade.
-    static var hasGrade: Bool {
-        get {
-            return AppDefaults.selectedGradeRow != 0;
-        }
     }
     
     // Returns screen width.

@@ -91,6 +91,13 @@ struct AppDefaults {
             }
         }
     }
+    
+    // Returns true when user has configured a grade.
+    static var hasGrade: Bool {
+        get {
+            return AppDefaults.selectedGradeRow != 0;
+        }
+    }
 
     static var courseList: [String]? {
         set(courseList) {
