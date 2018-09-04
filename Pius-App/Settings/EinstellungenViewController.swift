@@ -332,7 +332,6 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated);
-        print("Swipe out");
     }
 
     override func didReceiveMemoryWarning() {

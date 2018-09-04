@@ -152,14 +152,14 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
     
     // Compute collection view cell width.
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let defaultWidth = 90;
+        let defaultWidth = 100;
         let width: Int;
         
         switch indexPath.item {
-        case 0:
-            width = Config.screenWidth - 2 * defaultWidth - 32;
-        default:
-            width = defaultWidth;
+            case 0: width = Config.screenWidth - 2 * defaultWidth - 32;
+            case 1: width = defaultWidth;
+            case 2: width = defaultWidth;
+            default: width = defaultWidth;
         }
 
         return CGSize(width: width, height: 20);

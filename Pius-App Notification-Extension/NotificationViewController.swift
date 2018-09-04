@@ -32,10 +32,6 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     func didReceive(_ notification: UNNotification) {
         guard notification.request.content.userInfo["deltaList"] != nil else { return };
         
@@ -97,6 +93,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
         }
     }
     
+    // Return cell for row at a given index path.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?;
         
@@ -118,7 +115,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
                     cell?.backgroundColor = Config.colorYellow;
 
                 default:
-                    print("Unvalid item change type \(type)");
+                    print("Invalid item change type \(type)");
                 }
             }
             

@@ -95,15 +95,15 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DpR-Ul-Axt">
-                                                            <rect key="frame" x="15" y="11" width="100" height="22"/>
+                                                            <rect key="frame" x="15" y="11" width="90" height="22"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAI-bR-2GZ">
-                                                            <rect key="frame" x="115" y="11" width="90" height="22"/>
+                                                            <rect key="frame" x="105" y="11" width="100" height="22"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="90" id="dJl-uk-xFG"/>
+                                                                <constraint firstAttribute="width" constant="100" id="dJl-uk-xFG"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
@@ -121,10 +121,13 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="YVF-4W-I5x" firstAttribute="top" secondItem="bhf-ea-6US" secondAttribute="topMargin" id="2Dk-O5-Iit"/>
+                                                        <constraint firstItem="iAI-bR-2GZ" firstAttribute="centerY" secondItem="bhf-ea-6US" secondAttribute="centerY" id="6It-3e-J1E"/>
                                                         <constraint firstAttribute="trailingMargin" secondItem="YVF-4W-I5x" secondAttribute="trailing" id="8b1-ra-k3o"/>
                                                         <constraint firstItem="iAI-bR-2GZ" firstAttribute="top" secondItem="bhf-ea-6US" secondAttribute="topMargin" id="9hi-2X-hQV"/>
+                                                        <constraint firstItem="YVF-4W-I5x" firstAttribute="centerY" secondItem="bhf-ea-6US" secondAttribute="centerY" id="IIT-Nm-SV9"/>
                                                         <constraint firstItem="YVF-4W-I5x" firstAttribute="leading" secondItem="iAI-bR-2GZ" secondAttribute="trailing" id="IgO-4L-tfY"/>
                                                         <constraint firstItem="iAI-bR-2GZ" firstAttribute="leading" secondItem="DpR-Ul-Axt" secondAttribute="trailing" id="WFn-7R-pup"/>
+                                                        <constraint firstItem="DpR-Ul-Axt" firstAttribute="centerY" secondItem="bhf-ea-6US" secondAttribute="centerY" id="XNh-DW-gVu"/>
                                                         <constraint firstAttribute="bottomMargin" secondItem="iAI-bR-2GZ" secondAttribute="bottom" id="cy3-d6-U5k"/>
                                                         <constraint firstAttribute="bottomMargin" secondItem="DpR-Ul-Axt" secondAttribute="bottom" id="quk-q2-IRL"/>
                                                         <constraint firstItem="DpR-Ul-Axt" firstAttribute="leading" secondItem="bhf-ea-6US" secondAttribute="leadingMargin" id="s7n-K8-Etu"/>
@@ -141,15 +144,15 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZ7-EE-jvm">
-                                                            <rect key="frame" x="15" y="11" width="100" height="22"/>
+                                                            <rect key="frame" x="15" y="11" width="90" height="22"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEW-Ui-dsS">
-                                                            <rect key="frame" x="115" y="11" width="90" height="22"/>
+                                                            <rect key="frame" x="105" y="11" width="100" height="22"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="90" id="Wab-yM-OSu"/>
+                                                                <constraint firstAttribute="width" constant="100" id="Wab-yM-OSu"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -169,9 +172,12 @@
                                                         <constraint firstAttribute="bottomMargin" secondItem="K7j-Ra-BbM" secondAttribute="bottom" id="9V7-EE-ghF"/>
                                                         <constraint firstAttribute="trailingMargin" secondItem="K7j-Ra-BbM" secondAttribute="trailing" id="BI5-aS-PfB"/>
                                                         <constraint firstItem="K7j-Ra-BbM" firstAttribute="top" secondItem="4lK-Yg-imX" secondAttribute="topMargin" id="HXb-It-S8g"/>
+                                                        <constraint firstItem="uZ7-EE-jvm" firstAttribute="centerY" secondItem="4lK-Yg-imX" secondAttribute="centerY" id="YVi-Y1-8z3"/>
                                                         <constraint firstAttribute="bottomMargin" secondItem="uZ7-EE-jvm" secondAttribute="bottom" id="bK3-Dq-WPD"/>
+                                                        <constraint firstItem="K7j-Ra-BbM" firstAttribute="centerY" secondItem="4lK-Yg-imX" secondAttribute="centerY" id="d3o-2j-EDG"/>
                                                         <constraint firstItem="uZ7-EE-jvm" firstAttribute="leading" secondItem="4lK-Yg-imX" secondAttribute="leadingMargin" id="dFJ-en-BQ3"/>
                                                         <constraint firstItem="rEW-Ui-dsS" firstAttribute="leading" secondItem="uZ7-EE-jvm" secondAttribute="trailing" id="eeC-E0-bqo"/>
+                                                        <constraint firstItem="rEW-Ui-dsS" firstAttribute="centerY" secondItem="4lK-Yg-imX" secondAttribute="centerY" id="ghI-Mt-Z20"/>
                                                         <constraint firstItem="rEW-Ui-dsS" firstAttribute="top" secondItem="4lK-Yg-imX" secondAttribute="topMargin" id="hc8-Ed-hGk"/>
                                                         <constraint firstItem="K7j-Ra-BbM" firstAttribute="leading" secondItem="rEW-Ui-dsS" secondAttribute="trailing" id="i20-ze-WXM"/>
                                                         <constraint firstAttribute="bottomMargin" secondItem="rEW-Ui-dsS" secondAttribute="bottom" id="jsm-S1-uOm"/>

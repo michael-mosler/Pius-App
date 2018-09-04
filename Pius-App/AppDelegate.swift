@@ -77,22 +77,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "PiusApp", accessGroup: "group.de.rmkrings.piusapp.widget");
             passwordItem.setKSecAttrAccessibleAfterFirstUnlock();
             
+            // Migrate SOWI -> SW
+            if let courseList = AppDefaults.courseList {
+                let mappedCourseList = courseList.map { value -> String in
+                    return value.replacingOccurrences(of: "SOWI", with: "SW");
+                };
+                
+                AppDefaults.courseList = mappedCourseList;
+            }
+
             // Update version.
             AppDefaults.version = version;
         }
         
-        /*
-        // When user tapped on push notifdication open specific view controller.
-        // If app was launched by such a tap we do not need to register for
-        // push notifications obviously.
-        if let payload = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? NSDictionary {
-            print(payload);
-            // self.navigateToViewControllerOnNotication(withUserInfo: payload["userInfo"] as! [AnyHashable : Any]);
-        } else {
-            registerForPushNotifications(forApplication: application);
-        }
-        */
-
         registerForPushNotifications(forApplication: application);
 
         return true
@@ -141,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
         default:
             return false;
-       }
+        }
  
         return true;
     }
@@ -223,7 +220,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // Navigate to specific view controller when app is opened by tapping on
     // a push notification.
     private func navigateToViewControllerOnNotication(withUserInfo userInfo: [AnyHashable : Any]) {
-        print(userInfo);
         configureNavigationController();
 
         if let dashboardViewController = storyboard.instantiateViewController(withIdentifier: "Dashboard") as? DashboardViewController {
@@ -240,5 +236,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         completionHandler(.newData);
+    }
+
+    // Show notification when app is running in foreground.
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound]);
     }
 }
