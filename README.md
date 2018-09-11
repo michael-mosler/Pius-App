@@ -8,3 +8,6 @@ Welche Funktionen gibt es?
 - Einfacher Einblick in den Terminkalender des Pius Gymnasium
 - Schneller Zugriff auf die offizielle Website
 - Offline Abfrage des Vertretungsplans
+- Ab Version 1.5 kannst Du Push-Benachrichtigungen bei Änderungen an Deinem Vetretungsplan empfangen
+
+Unsere Datenschutzrichtlinie findest Du hier: https://github.com/michael-mosler/Pius-App/wiki/Datenschutzrichtlinie
