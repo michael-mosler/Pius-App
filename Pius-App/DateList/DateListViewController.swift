@@ -93,20 +93,22 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     // Search button action: Store current state and activate search mode.
     @IBAction func searchButtonAction(_ sender: Any) {
-        savedScrollPosition = dayListTableView.contentOffset;
-        
-        hadSelectedMonth = selectedMonth;
-        selectedMonth = nil;
-        
-        hadSelectedButton = selectedButton;
-        selectedButton?.isSelected = false;
-        selectedButton = nil;
-        
-        inSearchMode = true;
-        dayListTableView.reloadData();
+        if !inSearchMode {
+            savedScrollPosition = dayListTableView.contentOffset;
+            
+            hadSelectedMonth = selectedMonth;
+            selectedMonth = nil;
+            
+            hadSelectedButton = selectedButton;
+            selectedButton?.isSelected = false;
+            selectedButton = nil;
+            
+            inSearchMode = true;
+            dayListTableView.reloadData();
 
-        showSearchBar(percentage: 100);
-        activateSearchCancelButton();
+            showSearchBar(percentage: 100);
+            activateSearchCancelButton();
+        }
     }
     
     // Called whenever input in search bar is changed. Updates filter text
