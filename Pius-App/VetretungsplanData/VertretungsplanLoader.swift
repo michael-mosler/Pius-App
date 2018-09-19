@@ -228,7 +228,7 @@ class VertretungsplanLoader {
                     // Extract ticker text and date of last update. Then dispatch update of label text.
                     if let json = jsonSerialized, let _tickerText = json["tickerText"], let _lastUpdate = json["lastUpdate"] {
                         vertretungsplan.tickerText = _tickerText as? String;
-                        vertretungsplan.lastUpdate = _lastUpdate as! String;
+                        vertretungsplan.lastUpdate = _lastUpdate as? String;
                     }
                     
                     if let json = jsonSerialized, let _additionalText = json["_additionalText"] {
@@ -248,7 +248,7 @@ class VertretungsplanLoader {
                             for _gradeItem in dictionary["gradeItems"] as! [Any] {
                                 // Convert grade item into dictionary that is indexed by string.
                                 let dictionary = _gradeItem as! [String: Any];
-                                var gradeItem = GradeItem(grade: dictionary["grade"] as! String);
+                                var gradeItem = GradeItem(grade: dictionary["grade"] as? String);
                                 
                                 // Iterate on all details of a particular Vetretungsplan elements
                                 // which gives information on all lessons affected.
