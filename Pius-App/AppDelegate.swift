@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // Get the root window navigation controller and set it's colour to our standard.
     private func configureNavigationController() {
         navigationController?.navigationBar.barTintColor = Config.colorPiusBlue;
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white];
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white];
     }
 
     private func setCategories(){
@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Current version.
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject;
         let version = nsObject as! String;
@@ -118,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     // Delegate for opening app from widget. Host part of URL tells delegate which view controller to open.
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         configureNavigationController();
         let host = url.host;
         guard host != nil else { return false };
@@ -148,8 +148,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         configureNavigationController();
 
         if (!AppDefaults.authenticated) {
-            let alert = UIAlertController(title: "Anmeldung", message: "Um den Vertretungsplan oder das Dashboard benutzen zu können, musst Du dich zuerst in den Einstellungen anmelden.", preferredStyle: UIAlertControllerStyle.alert);
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+            let alert = UIAlertController(title: "Anmeldung", message: "Um den Vertretungsplan oder das Dashboard benutzen zu können, musst Du dich zuerst in den Einstellungen anmelden.", preferredStyle: UIAlertController.Style.alert);
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
                 (action: UIAlertAction!) in
                 if let settingsViewController = self.storyboard.instantiateViewController(withIdentifier: "Einstellungen") as? EinstellungenViewController {
                     self.navigationController?.popToRootViewController(animated: false);
@@ -172,8 +172,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         case "de.rmkrings.piusapp.dashboard":
             guard AppDefaults.hasGrade else {
-                let alert = UIAlertController(title: "Dashboard", message: "Um das Dashboard benutzen zu können, musst Du in den Einstellungen zuerst Deine Jahrgangsstufe festlegen.", preferredStyle: UIAlertControllerStyle.alert);
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+                let alert = UIAlertController(title: "Dashboard", message: "Um das Dashboard benutzen zu können, musst Du in den Einstellungen zuerst Deine Jahrgangsstufe festlegen.", preferredStyle: UIAlertController.Style.alert);
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
                     (action: UIAlertAction!) in
                     if let settingsViewController = self.storyboard.instantiateViewController(withIdentifier: "Einstellungen") as UIViewController? {
                         self.navigationController?.popToRootViewController(animated: false);

@@ -47,8 +47,8 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
             DispatchQueue.main.async {
-                let alert = UIAlertController(title: "Vertretungsplan", message: "Die Daten konnten leider nicht geladen werden.", preferredStyle: UIAlertControllerStyle.alert);
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+                let alert = UIAlertController(title: "Vertretungsplan", message: "Die Daten konnten leider nicht geladen werden.", preferredStyle: UIAlertController.Style.alert);
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
                     (action: UIAlertAction!) in self.navigationController?.popViewController(animated: true);
                 }));
                 self.present(alert, animated: true, completion: nil);
@@ -171,7 +171,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                 if ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) {
                     height = 0;
                 } else {
-                    height = UITableViewAutomaticDimension;
+                    height = UITableView.automaticDimension;
                 }
             default:
                 // Spacer is shown only if there is a EVA text.
@@ -255,7 +255,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         
         let textRange = NSMakeRange(0, oldTeacher.count);
         let attributedText = NSMutableAttributedString(string: oldTeacher + " → " + newTeacher);
-        attributedText.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: textRange);
+        attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: textRange);
         return attributedText;
         
     }
@@ -269,7 +269,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         if (index != nil) {
             let length = room.distance(from: room.startIndex, to: room.index(before: index!));
             let strikeThroughRange = NSMakeRange(0, length);
-            attributedText.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: strikeThroughRange);
+            attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: strikeThroughRange);
         }
         
         return attributedText;
@@ -356,7 +356,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         getVertretungsplanFromWeb(forGrade: grade);
         
         let refreshControl = UIRefreshControl();
-        refreshControl.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControlEvents.valueChanged);
+        refreshControl.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged);
         scrollView.addSubview(refreshControl);
     }
 

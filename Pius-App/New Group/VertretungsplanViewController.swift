@@ -31,8 +31,8 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
     func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
             DispatchQueue.main.async {
-                let alert = UIAlertController(title: "Vertretungsplan", message: "Die Daten konnten leider nicht geladen werden.", preferredStyle: UIAlertControllerStyle.alert);
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+                let alert = UIAlertController(title: "Vertretungsplan", message: "Die Daten konnten leider nicht geladen werden.", preferredStyle: UIAlertController.Style.alert);
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
                     (action: UIAlertAction!) in self.navigationController?.popViewController(animated: true);
                 }));
                 self.present(alert, animated: true, completion: nil);
@@ -99,7 +99,7 @@ class VertretungsplanViewController: UIViewController, UITableViewDataSource, UI
         getVertretungsplanFromWeb();
         
         let refreshControl = UIRefreshControl();
-        refreshControl.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControlEvents.valueChanged);
+        refreshControl.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged);
         scrollView.addSubview(refreshControl);
     }
 

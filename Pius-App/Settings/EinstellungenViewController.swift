@@ -75,8 +75,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
 
             // create the alert
             let message = (authenticated) ? "Du bist nun angemeldet." : "Die Anmeldedaten sind ungültig.";
-            let alert = UIAlertController(title: "Anmeldung", message: message, preferredStyle: UIAlertControllerStyle.alert);
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil));
+            let alert = UIAlertController(title: "Anmeldung", message: message, preferredStyle: UIAlertController.Style.alert);
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil));
             self.present(alert, animated: true, completion: nil);
 
             // Store current authentication state in user settings and update text of
@@ -221,8 +221,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             updateLoginButtonText(authenticated: false);
             
             // Inform user on new login state.
-            let alert = UIAlertController(title: "Anmeldung", message: "Du bist nun abgemeldet.", preferredStyle: UIAlertControllerStyle.alert);
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil));
+            let alert = UIAlertController(title: "Anmeldung", message: "Du bist nun abgemeldet.", preferredStyle: UIAlertController.Style.alert);
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil));
             self.present(alert, animated: true, completion: nil);
             
             webSiteUserNameField.isEnabled = true;
@@ -272,8 +272,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     @objc func keyboardWasShown(notification: NSNotification) {
         guard activeTextField != nil else { return };
 
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let contentInsets: UIEdgeInsets = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0);
             scrollView.contentInset = contentInsets;
             scrollView.scrollIndicatorInsets = contentInsets;
             
@@ -298,9 +298,9 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         
         setVersionLabel();
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         webSitePasswordField.delegate = self;
         webSiteUserNameField.delegate = self;

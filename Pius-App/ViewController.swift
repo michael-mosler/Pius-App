@@ -180,7 +180,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
         
         // Set color of navigation bar.
         navigationController?.navigationBar.barTintColor = Config.colorPiusBlue;
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white];
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white];
         
         addNavBarLogo();
         
@@ -192,7 +192,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
         
         // Enable refresh in WebKit View.
         let refreshControl = UIRefreshControl();
-        refreshControl.addTarget(self, action: #selector(refreshWebView(_:)), for: UIControlEvents.valueChanged);
+        refreshControl.addTarget(self, action: #selector(refreshWebView(_:)), for: UIControl.Event.valueChanged);
         webView.scrollView.addSubview(refreshControl);
         
         // Load web view on initial view. Activity indicator is started on

@@ -106,7 +106,7 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
             if ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) {
                 height = 0;
             } else {
-                height = UITableViewAutomaticDimension;
+                height = UITableView.automaticDimension;
             }
         default:
             // Spacer is shown only if there is a EVA text.
@@ -126,7 +126,7 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
 
         let textRange = NSMakeRange(0, oldTeacher.count);
         let attributedText = NSMutableAttributedString(string: oldTeacher + " → " + newTeacher);
-        attributedText.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: textRange);
+        attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: textRange);
         return attributedText;
         
     }
@@ -140,7 +140,7 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
         if (index != nil) {
             let length = room.distance(from: room.startIndex, to: room.index(before: index!));
             let strikeThroughRange = NSMakeRange(0, length);
-            attributedText.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: strikeThroughRange);
+            attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: strikeThroughRange);
         }
         
         return attributedText;

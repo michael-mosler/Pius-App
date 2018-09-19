@@ -164,8 +164,8 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         // Error when loading calendar.
         if (calendar == nil) {
             DispatchQueue.main.async {
-                let alert = UIAlertController(title: "Termine", message: "Der Kalender konnte leider nicht geladen werden.", preferredStyle: UIAlertControllerStyle.alert);
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+                let alert = UIAlertController(title: "Termine", message: "Der Kalender konnte leider nicht geladen werden.", preferredStyle: UIAlertController.Style.alert);
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
                     (action: UIAlertAction!) in self.navigationController?.popViewController(animated: true);
                 }));
                 self.present(alert, animated: true, completion: nil);
@@ -254,12 +254,12 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
                 let dayLabel = cell.viewWithTag(tags.tableView.dayLabelInTableViewCell.rawValue) as! UILabel;
                 let eventLabel = cell.viewWithTag(tags.tableView.eventLabelInTablewViewCell.rawValue) as! UILabel;
                 
-                dayLabel.attributedText = NSMutableAttributedString(string: item.detailItems[0], attributes: [NSAttributedStringKey.foregroundColor: Config.colorPiusBlue]);
+                dayLabel.attributedText = NSMutableAttributedString(string: item.detailItems[0], attributes: [NSAttributedString.Key.foregroundColor: Config.colorPiusBlue]);
                 
                 // Event text; hightlight when range is given.
                 let text = NSMutableAttributedString(string: item.detailItems[1]);
                 if let _hightlight = item.highlight {
-                    text.addAttribute(NSAttributedStringKey.backgroundColor, value: Config.colorYellow, range: _hightlight);
+                    text.addAttribute(NSAttributedString.Key.backgroundColor, value: Config.colorYellow, range: _hightlight);
                 }
                 eventLabel.attributedText = text;
             }
@@ -270,7 +270,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
 
             let detailItems = calendar.monthItems[selectedMonth!].dayItems[indexPath.row].detailItems;
             
-            dayLabel.attributedText = NSMutableAttributedString(string: detailItems[0], attributes: [NSAttributedStringKey.foregroundColor: Config.colorPiusBlue]);
+            dayLabel.attributedText = NSMutableAttributedString(string: detailItems[0], attributes: [NSAttributedString.Key.foregroundColor: Config.colorPiusBlue]);
             eventLabel.attributedText = NSMutableAttributedString(string: detailItems[1]);
         }
         

@@ -114,7 +114,7 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
             courseTypePicker?.dataSource = self;
             courseNumberPicker?.delegate = self;
             courseNumberPicker?.dataSource = self;
-            okButton?.addTarget(self, action: #selector(okAction), for: UIControlEvents.touchUpInside);
+            okButton?.addTarget(self, action: #selector(okAction), for: UIControl.Event.touchUpInside);
         } else {
             let realRow = indexPath.row - ((inEditMode) ? 1 : 0);
             cell = myCoursesTableView.dequeueReusableCell(withIdentifier: "course")!;
@@ -126,7 +126,7 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell!;
     }
 
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         if (!inEditMode) {
             return .none;
         }
@@ -138,7 +138,7 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let realRow = indexPath.row - ((inEditMode) ? 1 : 0);
             courseList.remove(at: realRow);

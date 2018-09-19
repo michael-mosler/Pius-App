@@ -272,7 +272,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         
         let textRange = NSMakeRange(0, oldTeacher.count);
         let attributedText = NSMutableAttributedString(string: oldTeacher + " → " + newTeacher);
-        attributedText.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: textRange);
+        attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: textRange);
         return attributedText;
         
     }
@@ -287,7 +287,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         if (index != nil) {
             let length = room.distance(from: room.startIndex, to: room.index(before: index!));
             let strikeThroughRange = NSMakeRange(0, length);
-            attributedText.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: strikeThroughRange);
+            attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: strikeThroughRange);
         }
         
         return attributedText;
