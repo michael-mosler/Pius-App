@@ -16,8 +16,13 @@ struct DayItem {
         }
     }
     
+    // On search this property is to the range that defines a match.
+    // It can be used to hightlight the search result.
+    public var highlight: NSRange?;
+
     init(detailItems: DetailItems) {
         self._detailItems = detailItems;
+        self.highlight = nil;
     }
 };
 
@@ -56,6 +61,8 @@ class Calendar {
 
     var monthItems: [MonthItem] = []
 
+    // Contains all calendar entries. If a filter is set contains only
+    // those items that match the filter.
     var allItems: [Any] {
         var _allItems: [Any] = [];
         
@@ -63,12 +70,17 @@ class Calendar {
             var _dayItems: [Any] = [];
 
             monthItem.dayItems.forEach { dayItem in
-                if (filter != nil && filter!.count > 0) {
-                    if (dayItem.detailItems[1].lowercased().contains(filter!)) {
-                        _dayItems.append(dayItem.detailItems);
+                if let _filter = filter, _filter.count > 0 {
+                    if let stringRange_ = dayItem.detailItems[1].lowercased().localizedStandardRange(of: _filter) {
+                        // Make a copy of dayItem so that hightlight property can be set.
+                        var _dayItem = dayItem;
+                        _dayItem.highlight = NSRange(stringRange_, in: dayItem.detailItems[1]);
+                        _dayItems.append(_dayItem);
                     }
                 } else {
-                    _dayItems.append(dayItem.detailItems);
+                    var _dayItem = dayItem;
+                    _dayItem.highlight = nil;
+                    _dayItems.append(_dayItem);
                 }
             }
 

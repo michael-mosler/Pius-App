@@ -249,13 +249,19 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
                 cell = dayListTableView.dequeueReusableCell(withIdentifier: "MonthName")!;
                 cell.textLabel?.text = item;
             } else {
-                let item = _item as! DetailItems;
+                let item = _item as! DayItem;
                 cell = dayListTableView.dequeueReusableCell(withIdentifier: "DateEntry")!;
                 let dayLabel = cell.viewWithTag(tags.tableView.dayLabelInTableViewCell.rawValue) as! UILabel;
                 let eventLabel = cell.viewWithTag(tags.tableView.eventLabelInTablewViewCell.rawValue) as! UILabel;
                 
-                dayLabel.attributedText = NSMutableAttributedString(string: item[0], attributes: [NSAttributedStringKey.foregroundColor: Config.colorPiusBlue]);
-                eventLabel.attributedText = NSMutableAttributedString(string: item[1]);
+                dayLabel.attributedText = NSMutableAttributedString(string: item.detailItems[0], attributes: [NSAttributedStringKey.foregroundColor: Config.colorPiusBlue]);
+                
+                // Event text; hightlight when range is given.
+                let text = NSMutableAttributedString(string: item.detailItems[1]);
+                if let _hightlight = item.highlight {
+                    text.addAttribute(NSAttributedStringKey.backgroundColor, value: Config.colorYellow, range: _hightlight);
+                }
+                eventLabel.attributedText = text;
             }
         } else {
             cell = dayListTableView.dequeueReusableCell(withIdentifier: "DateEntry")!;
