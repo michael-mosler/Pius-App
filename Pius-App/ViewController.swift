@@ -22,11 +22,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
     @IBOutlet weak var webViewActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var offlineText: UILabel!
     
-    // Open Safari with Pius home page when menu item is selected.
-    @IBAction func gotoHomePageAction(_ sender: Any) {
-        UIApplication.shared.open(NSURL(string:"http://pius-gymnasium.de/")! as URL)
-    }
-    
     // Indicates if sidebar menu is open or closed.
     var menuIsOpen : Bool = false;
     
