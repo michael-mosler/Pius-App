@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5</string>
+	<string>1.5.1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>NSExtension</key>
@@ -26,10 +26,10 @@
 		<dict>
 			<key>UNNotificationExtensionCategory</key>
 			<string>substitution-schedule.changed</string>
-			<key>UNNotificationExtensionInitialContentSizeRatio</key>
-			<real>1</real>
 			<key>UNNotificationExtensionDefaultContentHidden</key>
 			<true/>
+			<key>UNNotificationExtensionInitialContentSizeRatio</key>
+			<real>1</real>
 		</dict>
 		<key>NSExtensionMainStoryboard</key>
 		<string>MainInterface</string>
