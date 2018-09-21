@@ -24,6 +24,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
     
     private let rowHeight: CGFloat = 44;
     private var data: NSDictionary? = nil;
+    private var nChanges: Int = 0;
     
     // Tags used for labels.
     private struct tagsOld {
@@ -36,8 +37,9 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
         guard notification.request.content.userInfo["deltaList"] != nil else { return };
         
         let payload = notification.request.content.userInfo["deltaList"] as! NSArray?
-        if let deltaList = payload?[0] as! NSDictionary? {
+        if let payload_ = payload, let deltaList = payload?[0] as! NSDictionary? {
             self.data = deltaList;
+            self.nChanges = payload_.count;
             tablewView.reloadData();
             notificationView.layoutIfNeeded();
             preferredContentSize = CGSize(width: view.bounds.size.width, height: tablewView.contentSize.height);
@@ -52,10 +54,10 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
     // and we will display one the top most change only this equals
     // the number of rows in table.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (self.data == nil) ? 0 : 8;
+        return (self.data == nil) ? 0 : 10;
     }
 
-    // Retuen height for cells.
+    // Return height for cells.
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         // Header
@@ -88,7 +90,13 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
                 return 0;
             }
             
-        default:
+        // Spacer2
+        case 8: return 2;
+        
+        // Number of further changes
+        case 9: return 16;
+            
+       default:
             return rowHeight;
         }
     }
@@ -124,7 +132,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
             cell?.textLabel?.text = data!["date"] as? String;
             
         case 2:
-            cell = tableView.dequeueReusableCell(withIdentifier: "spacer")
+            cell = tableView.dequeueReusableCell(withIdentifier: "spacer");
             
         case 3:
             cell = tableView.dequeueReusableCell(withIdentifier: "course")!;
@@ -188,7 +196,14 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
                 cell?.isHidden = false;
             }
             
-        default:
+        case 8:
+            cell = tableView.dequeueReusableCell(withIdentifier: "spacer2");
+            
+        case 9:
+            cell = tableView.dequeueReusableCell(withIdentifier: "#changes");
+            cell?.textLabel?.text = (self.nChanges == 1) ? "Keine weiteren Änderungen" : "\(self.nChanges - 1) weitere Änderung\((self.nChanges - 1 == 1) ? "" : "en")";
+            
+       default:
             cell = tableView.dequeueReusableCell(withIdentifier: "spacer");
         }
         
