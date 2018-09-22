@@ -87,7 +87,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4PM-1T-q7v" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="2k9-7O-qLD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1820" y="898"/>
+            <point key="canvasLocation" x="1819" y="897"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="h17-Dy-33i">
@@ -314,7 +314,7 @@
                                         <color key="pageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="currentPageIndicatorTintColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                     </pageControl>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIz-jg-Esx">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIz-jg-Esx">
                                         <rect key="frame" x="16" y="86" width="382" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="Grb-rT-U05"/>
@@ -1565,7 +1565,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
         <image name="LaunchScreenBgnd" width="386" height="710"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JuZ-2F-cuW"/>
+        <segue reference="MCY-3C-dGO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

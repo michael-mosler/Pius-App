@@ -112,14 +112,17 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
                 switch(type) {
                 case "ADDED":
                     cell?.textLabel?.text = "Hinzugefügt";
+                    cell?.textLabel?.textColor = .black;
                     cell?.backgroundColor = Config.colorGreen;
 
                 case "DELETED":
                     cell?.textLabel?.text = "Entfällt";
+                    cell?.textLabel?.textColor = .white;
                     cell?.backgroundColor = Config.colorRed;
 
                 case "CHANGED":
                     cell?.textLabel?.text = "Geändert";
+                    cell?.textLabel?.textColor = .black;
                     cell?.backgroundColor = Config.colorYellow;
 
                 default:
