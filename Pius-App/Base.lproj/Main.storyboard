@@ -20,11 +20,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="gKV-fo-wyh"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Vertretungsplan" image="list" id="iZF-Ql-QkI"/>
+                    <navigationItem key="navigationItem" title="Vertretungsplan" id="xCa-4O-JzF"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YWe-Ky-h2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4225" y="1672"/>
+            <point key="canvasLocation" x="-3315.9420289855075" y="1671.4285714285713"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="1ra-sh-3UO">
@@ -36,11 +36,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="QVe-27-aI3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Dashboard" image="star" id="DVc-01-GqP"/>
+                    <navigationItem key="navigationItem" title="Dashboard" id="bIn-0b-mSZ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTx-iI-2y1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4203" y="2334"/>
+            <point key="canvasLocation" x="-3294.202898550725" y="2333.7053571428569"/>
         </scene>
         <!--Kalender-->
         <scene sceneID="w85-NM-Ml1">
@@ -52,11 +52,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="dyR-wu-wzU"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Kalender" image="calendar" id="Cmt-Ih-R89"/>
+                    <navigationItem key="navigationItem" title="Kalender" id="qXD-UY-iEr"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25S-5S-Yxk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4203" y="2999"/>
+            <point key="canvasLocation" x="-3294.202898550725" y="2998.6607142857142"/>
         </scene>
         <!--Einstellungen-->
         <scene sceneID="W5h-Ub-3dM">
@@ -120,7 +120,7 @@
                                     </pickerView>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGV-Wk-lMg">
                                         <rect key="frame" x="16" y="168" width="382" height="40"/>
-                                        <color key="backgroundColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.82399999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="SlJ-dM-l0t"/>
                                         </constraints>
@@ -150,46 +150,7 @@
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                     <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" hyphenationFactor="1" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                        <tabStops>
-                                                            <textTab alignment="left" location="28">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="56">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="84">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="112">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="140">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="168">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="196">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="224">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="252">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="280">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="308">
-                                                                <options/>
-                                                            </textTab>
-                                                            <textTab alignment="left" location="336">
-                                                                <options/>
-                                                            </textTab>
-                                                        </tabStops>
-                                                    </paragraphStyle>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" hyphenationFactor="1" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
@@ -221,7 +182,7 @@
                                     </textField>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PrT-S5-1pL">
                                         <rect key="frame" x="16" y="478.5" width="382" height="40"/>
-                                        <color key="backgroundColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.82399999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="89T-Zn-Q4r"/>
                                         </constraints>
@@ -371,7 +332,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
         <!--Kurse hinzufügen-->
         <scene sceneID="Lji-TA-ioc">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="NOa-Bp-GMV" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="NOa-Bp-GMV" customClass="MyCoursesViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5MR-M8-Q2w">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -389,25 +350,33 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q31-vJ-33k">
-                                <rect key="frame" x="16" y="217" width="382" height="78"/>
+                                <rect key="frame" x="16" y="217" width="382" height="128"/>
                                 <subviews>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRE-nf-dRi">
-                                        <rect key="frame" x="0.0" y="0.0" width="276" height="50"/>
+                                    <pickerView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRE-nf-dRi">
+                                        <rect key="frame" x="0.0" y="0.0" width="277" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="CAd-7V-0OY"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="CAd-7V-0OY"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="dataSource" destination="NOa-Bp-GMV" id="tQV-aW-aXL"/>
+                                            <outlet property="delegate" destination="NOa-Bp-GMV" id="Jxi-Rz-ScK"/>
+                                        </connections>
                                     </pickerView>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nZA-9x-dF7">
-                                        <rect key="frame" x="284" y="0.0" width="45" height="50"/>
+                                    <pickerView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nZA-9x-dF7">
+                                        <rect key="frame" x="285" y="0.0" width="45" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="bk8-2I-Aaj"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="bk8-2I-Aaj"/>
                                             <constraint firstAttribute="width" constant="45" id="iL8-V9-psr"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="dataSource" destination="NOa-Bp-GMV" id="3dB-AT-tWp"/>
+                                            <outlet property="delegate" destination="NOa-Bp-GMV" id="70Z-80-vhw"/>
+                                        </connections>
                                     </pickerView>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Q6-Eh-moX">
-                                        <rect key="frame" x="284" y="53" width="98" height="30"/>
-                                        <color key="backgroundColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.84313725490196079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Übernehmen">
+                                        <rect key="frame" x="285" y="103" width="97" height="30"/>
+                                        <color key="backgroundColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.82399999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title=" Übernehmen ">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -416,21 +385,25 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1G-j4-ago">
-                                        <rect key="frame" x="337" y="0.0" width="45" height="50"/>
+                                    <pickerView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1G-j4-ago">
+                                        <rect key="frame" x="338" y="0.0" width="45" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="K0q-0G-rGM"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="K0q-0G-rGM"/>
                                             <constraint firstAttribute="width" constant="45" id="cq8-qM-vGl"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="dataSource" destination="NOa-Bp-GMV" id="XL6-Md-Vbs"/>
+                                            <outlet property="delegate" destination="NOa-Bp-GMV" id="LTF-c3-pLS"/>
+                                        </connections>
                                     </pickerView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" text="Mathematik LK 1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pll-SK-CDE">
-                                        <rect key="frame" x="0.0" y="58" width="276" height="20"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="top" text="Zum Bearbeiten drücken" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="pll-SK-CDE">
+                                        <rect key="frame" x="0.0" y="108" width="277" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="nsu-gp-1y9"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="20" id="nsu-gp-1y9"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -439,7 +412,8 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                     <constraint firstItem="8Q6-Eh-moX" firstAttribute="leading" secondItem="nZA-9x-dF7" secondAttribute="leading" id="46c-Lc-RQ2"/>
                                     <constraint firstItem="pll-SK-CDE" firstAttribute="width" secondItem="LRE-nf-dRi" secondAttribute="width" id="5h0-kA-QyW"/>
                                     <constraint firstAttribute="bottom" secondItem="pll-SK-CDE" secondAttribute="bottom" id="A00-G2-lXf"/>
-                                    <constraint firstAttribute="trailing" secondItem="f1G-j4-ago" secondAttribute="trailing" id="Kp8-NF-8yq"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="C8c-hQ-VzW"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="f1G-j4-ago" secondAttribute="trailing" id="Kp8-NF-8yq"/>
                                     <constraint firstItem="8Q6-Eh-moX" firstAttribute="centerY" secondItem="pll-SK-CDE" secondAttribute="centerY" id="Kvw-ET-mOf"/>
                                     <constraint firstItem="pll-SK-CDE" firstAttribute="leading" secondItem="q31-vJ-33k" secondAttribute="leading" id="OTP-Xv-9xt"/>
                                     <constraint firstItem="LRE-nf-dRi" firstAttribute="leading" secondItem="q31-vJ-33k" secondAttribute="leading" id="Ou9-dE-eUY"/>
@@ -452,14 +426,14 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4c0-qn-uf2" userLabel="Ruler 2">
-                                <rect key="frame" x="16" y="303" width="382" height="1"/>
+                                <rect key="frame" x="16" y="353" width="382" height="1"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="0k3-55-HjF"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ChF-bP-u7z">
-                                <rect key="frame" x="16" y="312" width="382" height="501"/>
+                                <rect key="frame" x="16" y="362" width="382" height="451"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="course" id="4tR-5P-rkj">
@@ -471,6 +445,10 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="NOa-Bp-GMV" id="iGB-oP-vyf"/>
+                                    <outlet property="delegate" destination="NOa-Bp-GMV" id="0k6-Zf-MBV"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -496,9 +474,24 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                     <navigationItem key="navigationItem" title="Kurse hinzufügen" largeTitleDisplayMode="always" id="REL-B5-CCL">
                         <barButtonItem key="rightBarButtonItem" title="Bearbeiten" id="wT2-Sk-Dki">
                             <color key="tintColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="addCoursesButtonAction:" destination="NOa-Bp-GMV" id="JAA-B9-j8H"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="addCoursesButton" destination="wT2-Sk-Dki" id="0r7-en-8Pn"/>
+                        <outlet property="constraint" destination="C8c-hQ-VzW" id="hU2-OO-G9f"/>
+                        <outlet property="constraint2" destination="0d5-Ph-kAU" id="Lnp-qg-ItF"/>
+                        <outlet property="courseNumberPicker" destination="f1G-j4-ago" id="POM-WR-xiv"/>
+                        <outlet property="coursePicker" destination="LRE-nf-dRi" id="KbK-mK-2v6"/>
+                        <outlet property="coursePickerView" destination="q31-vJ-33k" id="MEr-dK-52H"/>
+                        <outlet property="coursePickerViewTopConstraint" destination="lM6-TT-vgN" id="wo7-3C-XZ1"/>
+                        <outlet property="courseTypePicker" destination="nZA-9x-dF7" id="XmR-5U-Zte"/>
+                        <outlet property="myCoursesTableView" destination="ChF-bP-u7z" id="u8g-oo-g5F"/>
+                        <outlet property="okButton" destination="8Q6-Eh-moX" id="dD4-cF-qgz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UHD-C4-Gyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -514,11 +507,11 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="GIH-G9-BEo"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Heute" image="today_apps" id="pRa-eh-6Br"/>
+                    <navigationItem key="navigationItem" title="Heute" id="rgJ-By-9FD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pC1-Fp-zRZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4225" y="1026"/>
+            <point key="canvasLocation" x="-3315.9420289855075" y="1025.8928571428571"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="fAt-OK-cWF">
@@ -530,10 +523,10 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="eRM-KJ-FLv" kind="relationship" relationship="viewControllers" id="I7B-vC-reZ"/>
-                        <segue destination="jDj-KP-anZ" kind="relationship" relationship="viewControllers" id="fEU-Nf-40W"/>
-                        <segue destination="CeJ-Ic-QjO" kind="relationship" relationship="viewControllers" id="dcS-Wz-Abw"/>
-                        <segue destination="plZ-ta-2Yi" kind="relationship" relationship="viewControllers" id="J70-0I-Hgp"/>
+                        <segue destination="5he-3P-n3U" kind="relationship" relationship="viewControllers" id="I7B-vC-reZ"/>
+                        <segue destination="Gx3-5y-xHn" kind="relationship" relationship="viewControllers" id="fEU-Nf-40W"/>
+                        <segue destination="ADD-fG-MPP" kind="relationship" relationship="viewControllers" id="dcS-Wz-Abw"/>
+                        <segue destination="KiT-ZO-Mfr" kind="relationship" relationship="viewControllers" id="J70-0I-Hgp"/>
                         <segue destination="MIB-Ed-Heu" kind="relationship" relationship="viewControllers" id="M7p-ii-3a1"/>
                     </connections>
                 </tabBarController>
@@ -618,7 +611,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4PM-1T-q7v" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="2k9-7O-qLD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1819" y="897"/>
+            <point key="canvasLocation" x="2728.985507246377" y="896.65178571428567"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="h17-Dy-33i">
@@ -998,7 +991,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RT7-vi-dkL">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="25"/>
+                                                    <rect key="frame" x="19" y="0.0" width="376" height="25"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Lnt-o8-3BN">
                                                         <size key="itemSize" width="104" height="25"/>
@@ -1256,7 +1249,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GSl-ta-ZzF">
-                                                            <rect key="frame" x="15" y="0.0" width="290" height="25"/>
+                                                            <rect key="frame" x="19" y="0.0" width="376" height="25"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="F7G-xq-x8o"/>
@@ -1436,7 +1429,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1l9-HJ-53T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3167.1999999999998" y="787.6847290640394"/>
+            <point key="canvasLocation" x="4076.811594202899" y="787.5"/>
         </scene>
         <!--Termine-->
         <scene sceneID="NZ4-Ff-b9n">
@@ -1543,7 +1536,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tI1-1I-Ydu">
-                                                    <rect key="frame" x="16" y="11" width="50" height="22"/>
+                                                    <rect key="frame" x="20" y="11" width="50" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="q9F-J1-Irb"/>
                                                     </constraints>
@@ -1557,7 +1550,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpQ-9a-BPF">
-                                                    <rect key="frame" x="68" y="11" width="236" height="22"/>
+                                                    <rect key="frame" x="72" y="11" width="322" height="22"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Event">
                                                             <attributes>
@@ -1919,7 +1912,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1820" y="1939.6551724137933"/>
+            <point key="canvasLocation" x="3639.130434782609" y="1939.2857142857142"/>
         </scene>
         <!--Meine Kurse-->
         <scene sceneID="Nhc-9t-odK">
@@ -1959,7 +1952,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dms-GW-OSI">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="384" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1983,25 +1976,25 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U6t-8d-NTA">
-                                                    <rect key="frame" x="15" y="5" width="139" height="33.5"/>
+                                                    <rect key="frame" x="15" y="5" width="140" height="33.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="140" id="Aro-5N-Pbp"/>
                                                     </constraints>
                                                 </pickerView>
                                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIw-id-Cnh">
-                                                    <rect key="frame" x="161" y="5" width="45" height="33.5"/>
+                                                    <rect key="frame" x="162" y="5" width="45" height="33.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="45" id="lNc-ju-nY9"/>
                                                     </constraints>
                                                 </pickerView>
                                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LPi-yv-ycZ">
-                                                    <rect key="frame" x="213" y="5" width="45" height="33.5"/>
+                                                    <rect key="frame" x="214" y="5" width="45" height="33.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="45" id="3RC-Lr-c8p"/>
                                                     </constraints>
                                                 </pickerView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XU2-U3-osS">
-                                                    <rect key="frame" x="265" y="1.5" width="40" height="41"/>
+                                                    <rect key="frame" x="266" y="1.5" width="133" height="41"/>
                                                     <color key="backgroundColor" red="0.33700000000000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="41" id="S6U-fw-GoG"/>
@@ -2029,10 +2022,6 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="LL0-pg-7ed" id="xs9-qO-PPW"/>
-                                    <outlet property="delegate" destination="LL0-pg-7ed" id="hM2-Bx-ech"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2053,21 +2042,13 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Meine Kurse" id="bp6-dw-Rnq">
-                        <barButtonItem key="rightBarButtonItem" title="Bearbeiten" id="DQ2-vB-Tna">
-                            <connections>
-                                <action selector="addCoursesButtonAction:" destination="LL0-pg-7ed" id="ti0-H3-j0A"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Bearbeiten" id="DQ2-vB-Tna"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="addCoursesButton" destination="DQ2-vB-Tna" id="Q49-GL-p4e"/>
-                        <outlet property="myCoursesTableView" destination="HBT-wz-Z4X" id="3p0-6I-42e"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iK4-Sj-w7b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3167" y="1940"/>
+            <point key="canvasLocation" x="4986.9565217391309" y="1939.9553571428571"/>
         </scene>
         <!--Einstellungen-->
         <scene sceneID="WuK-yq-9rv">
@@ -2089,6 +2070,82 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4U-ae-7u5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4205.7971014492759" y="3660.9375"/>
+        </scene>
+        <!--Kalender-->
+        <scene sceneID="SLc-CC-f1W">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KiT-ZO-Mfr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Kalender" image="calendar" id="Cmt-Ih-R89"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="7s1-RM-N1G">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="plZ-ta-2Yi" kind="relationship" relationship="rootViewController" id="7kA-q5-z9q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qx2-dh-Mem" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4204.347826086957" y="2998.6607142857142"/>
+        </scene>
+        <!--Dashboard-->
+        <scene sceneID="Eh4-k9-4y8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ADD-fG-MPP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Dashboard" image="star" id="DVc-01-GqP"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Hnm-IP-Tnx">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CeJ-Ic-QjO" kind="relationship" relationship="rootViewController" id="tlW-sJ-HhL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OZ3-Kb-LXw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4204.347826086957" y="2333.7053571428569"/>
+        </scene>
+        <!--Vertretungsplan-->
+        <scene sceneID="H6D-og-czR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gx3-5y-xHn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Vertretungsplan" image="list" id="iZF-Ql-QkI"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="T6d-Bw-i6G">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jDj-KP-anZ" kind="relationship" relationship="rootViewController" id="cKE-8R-3kM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sMh-Fm-oQ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4226.086956521739" y="1671.4285714285713"/>
+        </scene>
+        <!--Heute-->
+        <scene sceneID="Sqr-Jh-lTB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5he-3P-n3U" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Heute" image="today_apps" id="pRa-eh-6Br"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="lkh-Kl-UWs">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eRM-KJ-FLv" kind="relationship" relationship="rootViewController" id="EU2-U4-h3b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hqO-HU-pV1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4226.086956521739" y="1025.8928571428571"/>
         </scene>
     </scenes>
     <resources>

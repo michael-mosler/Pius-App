@@ -11,10 +11,14 @@ import UIKit
 class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var addCoursesButton: UIBarButtonItem!
     @IBOutlet weak var myCoursesTableView: UITableView!
-    var coursePicker: UIPickerView?;
-    var courseTypePicker: UIPickerView?;
-    var courseNumberPicker: UIPickerView?;
-    var okButton: UIButton?;
+    @IBOutlet weak var coursePickerView: UIView!
+    @IBOutlet weak var coursePicker: UIPickerView!
+    @IBOutlet weak var courseTypePicker: UIPickerView!
+    @IBOutlet weak var courseNumberPicker: UIPickerView!
+    @IBOutlet weak var okButton: UIButton!
+    @IBOutlet weak var coursePickerViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var constraint: NSLayoutConstraint!
+    @IBOutlet weak var constraint2: NSLayoutConstraint!
     
     let cellBgView = UIView();
     
@@ -61,14 +65,24 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         courseList.append(realCourseName);
     }
 
+    private func showCoursePicker(_ visible: Bool) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.constraint.constant = (visible) ? 150 : 0;
+            self.constraint2.constant = (visible) ? 8 : 0;
+            self.coursePickerView.isHidden = !visible;
+            self.coursePickerView.layoutIfNeeded()
+        });
+    }
+
     @IBAction func addCoursesButtonAction(_ sender: Any) {
         inEditMode = !inEditMode;
         myCoursesTableView.allowsSelection = inEditMode;
         
         addCoursesButton.title = (inEditMode) ? "Fertig" : "Bearbeiten";
-        myCoursesTableView.reloadData();
+        //myCoursesTableView.reloadData();
         
         if (!inEditMode) {
+            showCoursePicker(false);
             AppDefaults.courseList = courseList;
             
             // Update subscription when app has push notifications enabled.
@@ -76,6 +90,8 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
                 let deviceTokenManager = DeviceTokenManager();
                 deviceTokenManager.registerDeviceToken(token: deviceToken, subscribeFor: AppDefaults.gradeSetting, withCourseList: AppDefaults.courseList);
             }
+        } else {
+            showCoursePicker(true);
         }
     }
 
@@ -148,13 +164,15 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showCoursePicker(false);
+
         cellBgView.backgroundColor = Config.colorPiusBlue;
         let savedCourseList: [String]? = AppDefaults.courseList;
         
         myCoursesTableView.allowsSelection = false;
         courseList = (savedCourseList != nil) ? savedCourseList! : [];
     }
-
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
