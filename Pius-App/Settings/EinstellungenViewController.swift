@@ -8,28 +8,26 @@
 
 import UIKit
 
-class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
+class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIScrollViewDelegate {
     
     @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var webSiteUserNameField: UITextField!
     @IBOutlet weak var webSitePasswordField: UITextField!
-    @IBOutlet weak var loginButtonOutlet: UIButton!
     @IBOutlet weak var myCoursesButton: UIButton!
     @IBOutlet weak var versionLabel: UILabel!
-    
+    @IBOutlet weak var ruler3: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    @IBAction func loginButton(_ sender: Any) {
-        dismissKeyboard(fromTextField: activeTextField)
-        saveCredentials();
-    }
     
     @IBOutlet weak var gradePickerView: UIPickerView!
     @IBOutlet weak var classPickerView: UIPickerView!
     
-    @IBOutlet weak var offlineLabel: UILabel!
-    @IBOutlet weak var offlineFooterView: UIView!
+    @IBOutlet weak var loginButtonOutlet: UIButton!
+    
+    @IBAction func loginButtonAction(_ sender: Any) {
+        dismissKeyboard(fromTextField: activeTextField)
+        saveCredentials();
+    }
     
     // The active text field, is either webSizeUserNameField or webSitePasswordField.
     private var activeTextField: UITextField?;
@@ -267,7 +265,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         return true;
     }
 
-    // Keyboard was shown, we need to resize out scrollview to make sure that keyboard is visible
+    // Keyboard was shown, we need to resize our scrollview to make sure that keyboard is visible
     // on any device.
     @objc func keyboardWasShown(notification: NSNotification) {
         guard activeTextField != nil else { return };
@@ -280,8 +278,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             var cgRect: CGRect = scrollView.frame;
             cgRect.size.height -= keyboardSize.height;
             
-            if (!cgRect.contains(activeTextField!.frame.origin)) {
-                scrollView.scrollRectToVisible(activeTextField!.frame, animated: true);
+            if (!cgRect.contains(loginButtonOutlet!.frame.origin)) {
+                scrollView.scrollRectToVisible(loginButtonOutlet!.frame, animated: true);
             }
         }
     }
@@ -309,9 +307,6 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         
         // Disable Login and Logout when offline.
         let isOnline = reachabilityChecker.isNetworkReachable();
-        offlineLabel.isHidden = isOnline;
-        offlineFooterView.isHidden = isOnline;
-
         let isAuthenticated = AppDefaults.authenticated;
         
         webSiteUserNameField.isEnabled = isOnline && !isAuthenticated;
@@ -338,4 +333,3 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         super.didReceiveMemoryWarning()
     }
 }
-

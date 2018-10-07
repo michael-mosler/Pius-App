@@ -61,33 +61,16 @@
         <!--Einstellungen-->
         <scene sceneID="W5h-Ub-3dM">
             <objects>
-                <viewController title="Einstellungen" id="1Vq-aE-bpe" sceneMemberID="viewController">
+                <viewController title="Einstellungen" id="1Vq-aE-bpe" customClass="EinstellungenViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AKr-Il-bgl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6XJ-lj-pAa">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6XJ-lj-pAa">
+                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Einstellungen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFU-AI-Q3v">
-                                        <rect key="frame" x="16" y="0.0" width="398" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="zhp-DO-SJh"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sTC-mi-Luq" userLabel="Ruler 1">
-                                        <rect key="frame" x="16" y="48" width="382" height="1"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="ZlD-j7-Vox"/>
-                                        </constraints>
-                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3p-zJ-kxt">
-                                        <rect key="frame" x="16" y="57" width="382" height="61"/>
-                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                        <rect key="frame" x="16" y="8" width="382" height="61"/>
                                         <attributedString key="attributedText">
                                             <fragment>
                                                 <string key="content">Gib bitte für Deinen persönlichen Vertretungsplan und zum Erhalt von Push-Benachrichtigungen Deine Klasse bzw. Jahrgangsstufe ein.</string>
@@ -100,19 +83,23 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jahrgangsstufe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zzp-qu-lO7">
-                                        <rect key="frame" x="16" y="134" width="266" height="21"/>
+                                        <rect key="frame" x="16" y="85" width="266" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nWM-df-5dw" userLabel="Picker View 1">
-                                        <rect key="frame" x="16" y="159" width="266" height="50"/>
+                                        <rect key="frame" x="16" y="110" width="266" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="4wJ-wr-O9k"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="dataSource" destination="1Vq-aE-bpe" id="g6L-MJ-TH0"/>
+                                            <outlet property="delegate" destination="1Vq-aE-bpe" id="7VL-5e-yiW"/>
+                                        </connections>
                                     </pickerView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Klasse" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXa-Em-87c">
-                                        <rect key="frame" x="298" y="134" width="100" height="21"/>
+                                        <rect key="frame" x="298" y="85" width="100" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Rpu-QA-Ju9"/>
                                         </constraints>
@@ -121,32 +108,42 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EGR-y8-NqW" userLabel="Picker View 2">
-                                        <rect key="frame" x="298" y="159" width="100" height="50"/>
+                                        <rect key="frame" x="298" y="110" width="100" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="35L-rQ-sx4"/>
                                             <constraint firstAttribute="width" constant="100" id="ydn-mE-Ckf"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="dataSource" destination="1Vq-aE-bpe" id="Ae4-Qo-iIQ"/>
+                                            <outlet property="delegate" destination="1Vq-aE-bpe" id="Zcn-uz-FaX"/>
+                                        </connections>
                                     </pickerView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGV-Wk-lMg">
-                                        <rect key="frame" x="16" y="217" width="382" height="40"/>
-                                        <color key="backgroundColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGV-Wk-lMg">
+                                        <rect key="frame" x="16" y="168" width="382" height="40"/>
+                                        <color key="backgroundColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="SlJ-dM-l0t"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Kurse hinzufügen"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <segue destination="NOa-Bp-GMV" kind="show" id="BRf-Up-6qF"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jtY-wy-50V" userLabel="Ruler 2">
-                                        <rect key="frame" x="16" y="281" width="382" height="1"/>
+                                        <rect key="frame" x="16" y="232" width="382" height="1"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="AJD-Gu-XFE"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sQ-9f-5iY">
-                                        <rect key="frame" x="16" y="290" width="382" height="79.5"/>
+                                        <rect key="frame" x="16" y="241" width="382" height="79.5"/>
                                         <attributedString key="attributedText">
                                             <fragment>
                                                 <string key="content">Gib bitte den Benutzernamen und das Passwort für den Zugang zur Pius-Gymnasium Web-Seite an. Zum Anmelden benötigst Du eine Internetverbindung.</string>
@@ -199,58 +196,67 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Benutzername" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeP-oa-uDB">
-                                        <rect key="frame" x="16" y="385.5" width="120" height="21"/>
+                                        <rect key="frame" x="16" y="336.5" width="120" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="YzV-FF-8G9">
-                                        <rect key="frame" x="16" y="414.5" width="382" height="30"/>
+                                        <rect key="frame" x="16" y="365.5" width="382" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartQuotesType="no" textContentType="username"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passwort" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cz9-iE-Qdn">
-                                        <rect key="frame" x="16" y="452.5" width="76.5" height="21"/>
+                                        <rect key="frame" x="16" y="403.5" width="76.5" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="j55-pk-XSt">
-                                        <rect key="frame" x="16" y="481.5" width="382" height="30"/>
+                                        <rect key="frame" x="16" y="432.5" width="382" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartQuotesType="no" textContentType="password"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PrT-S5-1pL">
-                                        <rect key="frame" x="168" y="519.5" width="78" height="33"/>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PrT-S5-1pL">
+                                        <rect key="frame" x="16" y="478.5" width="382" height="40"/>
+                                        <color key="backgroundColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="89T-Zn-Q4r"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Anmelden">
-                                            <color key="titleColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="loginButton:" destination="Lk2-Qz-3KO" eventType="touchUpInside" id="Mcz-EP-u76"/>
+                                            <action selector="loginButtonAction:" destination="1Vq-aE-bpe" eventType="touchUpInside" id="xNb-hS-0eX"/>
                                         </connections>
                                     </button>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="f1z-H5-S71">
-                                        <rect key="frame" x="197" y="526" width="20" height="20"/>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="f1z-H5-S71">
+                                        <rect key="frame" x="197" y="488.5" width="20" height="20"/>
                                         <color key="color" cocoaTouchSystemColor="darkTextColor"/>
                                     </activityIndicatorView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tek-tG-zSw" userLabel="Ruler 3">
-                                        <rect key="frame" x="16" y="576.5" width="382" height="1"/>
+                                        <rect key="frame" x="16" y="542.5" width="382" height="1"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="pp8-6m-iaD"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pius-App für iOS Version 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRn-6Q-3b4">
-                                        <rect key="frame" x="16" y="585.5" width="382" height="21"/>
+                                        <rect key="frame" x="16" y="551.5" width="382" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zW6-Ub-abp">
-                                        <rect key="frame" x="10" y="614.5" width="394" height="77"/>
+                                        <rect key="frame" x="10" y="580.5" width="394" height="77"/>
                                         <color key="tintColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="120" id="smo-0o-0L4"/>
@@ -271,30 +277,29 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                     </textView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="PrT-S5-1pL" secondAttribute="trailing" constant="16" id="2Ff-aO-fUd"/>
                                     <constraint firstItem="tek-tG-zSw" firstAttribute="leading" secondItem="6XJ-lj-pAa" secondAttribute="leading" constant="16" id="30B-VS-c47"/>
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Cz9-iE-Qdn" secondAttribute="trailing" constant="356" id="4Cm-Ds-mX4"/>
                                     <constraint firstItem="nWM-df-5dw" firstAttribute="top" secondItem="Zzp-qu-lO7" secondAttribute="bottom" constant="4" id="5HD-e9-rOV"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="d3p-zJ-kxt" secondAttribute="trailing" constant="16" id="5cK-1N-vz3"/>
                                     <constraint firstItem="XeP-oa-uDB" firstAttribute="leading" secondItem="6XJ-lj-pAa" secondAttribute="leading" constant="16" id="6sh-5A-JEr"/>
                                     <constraint firstItem="1sQ-9f-5iY" firstAttribute="leading" secondItem="6XJ-lj-pAa" secondAttribute="leading" constant="16" id="7Op-P1-9RO"/>
+                                    <constraint firstItem="PrT-S5-1pL" firstAttribute="leading" secondItem="6XJ-lj-pAa" secondAttribute="leading" constant="16" id="8U2-CN-f1q"/>
+                                    <constraint firstItem="d3p-zJ-kxt" firstAttribute="top" secondItem="6XJ-lj-pAa" secondAttribute="top" constant="8" id="8bX-3n-oRQ"/>
                                     <constraint firstItem="Zzp-qu-lO7" firstAttribute="leading" secondItem="6XJ-lj-pAa" secondAttribute="leading" constant="16" id="CQj-zh-MM5"/>
                                     <constraint firstItem="YzV-FF-8G9" firstAttribute="leading" secondItem="6XJ-lj-pAa" secondAttribute="leading" constant="16" id="DKs-OV-kOp"/>
                                     <constraint firstItem="mRn-6Q-3b4" firstAttribute="leading" secondItem="6XJ-lj-pAa" secondAttribute="leading" constant="16" id="Dwv-ue-mSM"/>
                                     <constraint firstAttribute="trailing" secondItem="dXa-Em-87c" secondAttribute="trailing" constant="16" id="F5n-bL-b9f"/>
                                     <constraint firstItem="YzV-FF-8G9" firstAttribute="top" secondItem="XeP-oa-uDB" secondAttribute="bottom" constant="8" id="FHe-6r-GZS"/>
-                                    <constraint firstItem="sTC-mi-Luq" firstAttribute="leading" secondItem="6XJ-lj-pAa" secondAttribute="leading" constant="16" id="Fd0-hg-0rH"/>
-                                    <constraint firstItem="pFU-AI-Q3v" firstAttribute="leading" secondItem="6XJ-lj-pAa" secondAttribute="leading" constant="16" id="HU6-IX-1Zi"/>
                                     <constraint firstItem="jtY-wy-50V" firstAttribute="top" secondItem="yGV-Wk-lMg" secondAttribute="bottom" constant="24" id="ISj-gy-Rnh"/>
                                     <constraint firstAttribute="trailing" secondItem="YzV-FF-8G9" secondAttribute="trailing" constant="16" id="IU8-Qq-ylF"/>
-                                    <constraint firstAttribute="trailing" secondItem="pFU-AI-Q3v" secondAttribute="trailing" id="JNA-W5-Iae"/>
                                     <constraint firstAttribute="bottom" secondItem="zW6-Ub-abp" secondAttribute="bottom" id="Mo6-1N-v2B"/>
                                     <constraint firstItem="jtY-wy-50V" firstAttribute="leading" secondItem="6XJ-lj-pAa" secondAttribute="leading" constant="16" id="Ngt-uC-CU6"/>
                                     <constraint firstItem="Cz9-iE-Qdn" firstAttribute="leading" secondItem="6XJ-lj-pAa" secondAttribute="leading" constant="16" id="O0N-wG-lgV"/>
                                     <constraint firstAttribute="trailing" secondItem="yGV-Wk-lMg" secondAttribute="trailing" constant="16" id="O1i-yr-4Pn"/>
                                     <constraint firstItem="j55-pk-XSt" firstAttribute="leading" secondItem="6XJ-lj-pAa" secondAttribute="leading" constant="16" id="PIO-d6-s8w"/>
-                                    <constraint firstItem="d3p-zJ-kxt" firstAttribute="top" secondItem="sTC-mi-Luq" secondAttribute="bottom" constant="8" id="Rgf-U3-0tI"/>
                                     <constraint firstAttribute="trailing" secondItem="zW6-Ub-abp" secondAttribute="trailing" constant="10" id="Rm0-x8-e2t"/>
-                                    <constraint firstItem="PrT-S5-1pL" firstAttribute="top" secondItem="j55-pk-XSt" secondAttribute="bottom" constant="8" id="STK-DS-Tqg"/>
+                                    <constraint firstItem="PrT-S5-1pL" firstAttribute="top" secondItem="j55-pk-XSt" secondAttribute="bottom" constant="16" id="STK-DS-Tqg"/>
                                     <constraint firstItem="zW6-Ub-abp" firstAttribute="leading" secondItem="6XJ-lj-pAa" secondAttribute="leading" constant="10" id="Swj-r8-PWr"/>
                                     <constraint firstItem="EGR-y8-NqW" firstAttribute="leading" secondItem="nWM-df-5dw" secondAttribute="trailing" constant="16" id="VsF-IG-f8P"/>
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="1sQ-9f-5iY" secondAttribute="trailing" constant="16" id="WDa-93-fZS"/>
@@ -303,7 +308,6 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                     <constraint firstItem="yGV-Wk-lMg" firstAttribute="top" secondItem="nWM-df-5dw" secondAttribute="bottom" constant="8" id="XZ2-Jc-1dc"/>
                                     <constraint firstItem="dXa-Em-87c" firstAttribute="leading" secondItem="Zzp-qu-lO7" secondAttribute="trailing" constant="16" id="YRf-jL-aGz"/>
                                     <constraint firstItem="nWM-df-5dw" firstAttribute="leading" secondItem="6XJ-lj-pAa" secondAttribute="leading" constant="16" id="Zwc-ua-e4H"/>
-                                    <constraint firstItem="pFU-AI-Q3v" firstAttribute="top" secondItem="6XJ-lj-pAa" secondAttribute="top" id="amJ-tl-hns"/>
                                     <constraint firstItem="zW6-Ub-abp" firstAttribute="top" secondItem="mRn-6Q-3b4" secondAttribute="bottom" constant="8" id="azz-bg-Pbu"/>
                                     <constraint firstItem="1sQ-9f-5iY" firstAttribute="top" secondItem="jtY-wy-50V" secondAttribute="bottom" constant="8" id="b9x-ym-BpY"/>
                                     <constraint firstItem="1sQ-9f-5iY" firstAttribute="centerX" secondItem="6XJ-lj-pAa" secondAttribute="centerX" id="bNT-LL-Ms7"/>
@@ -311,14 +315,11 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                     <constraint firstAttribute="trailing" secondItem="mRn-6Q-3b4" secondAttribute="trailing" constant="16" id="blf-HN-Pwz"/>
                                     <constraint firstItem="f1z-H5-S71" firstAttribute="centerY" secondItem="PrT-S5-1pL" secondAttribute="centerY" id="dfe-by-41z"/>
                                     <constraint firstItem="yGV-Wk-lMg" firstAttribute="leading" secondItem="6XJ-lj-pAa" secondAttribute="leading" constant="16" id="e7j-WQ-U1o"/>
-                                    <constraint firstItem="PrT-S5-1pL" firstAttribute="centerX" secondItem="6XJ-lj-pAa" secondAttribute="centerX" id="gVp-Ak-rFc"/>
                                     <constraint firstAttribute="trailing" secondItem="jtY-wy-50V" secondAttribute="trailing" constant="16" id="gXJ-hI-jGl"/>
                                     <constraint firstItem="d3p-zJ-kxt" firstAttribute="centerX" secondItem="6XJ-lj-pAa" secondAttribute="centerX" id="grv-Ek-ohN"/>
                                     <constraint firstItem="mRn-6Q-3b4" firstAttribute="top" secondItem="tek-tG-zSw" secondAttribute="bottom" constant="8" id="hUs-Z6-gfD"/>
-                                    <constraint firstAttribute="trailing" secondItem="sTC-mi-Luq" secondAttribute="trailing" constant="16" id="hvC-Jr-aqk"/>
                                     <constraint firstItem="Zzp-qu-lO7" firstAttribute="width" secondItem="nWM-df-5dw" secondAttribute="width" id="miG-gg-q84"/>
                                     <constraint firstItem="d3p-zJ-kxt" firstAttribute="leading" secondItem="6XJ-lj-pAa" secondAttribute="leading" constant="16" id="odO-xm-xh4"/>
-                                    <constraint firstItem="sTC-mi-Luq" firstAttribute="top" secondItem="pFU-AI-Q3v" secondAttribute="bottom" constant="4" id="shv-WH-Ek5"/>
                                     <constraint firstItem="Cz9-iE-Qdn" firstAttribute="top" secondItem="YzV-FF-8G9" secondAttribute="bottom" constant="8" id="siA-jE-6nd"/>
                                     <constraint firstAttribute="trailing" secondItem="EGR-y8-NqW" secondAttribute="trailing" constant="16" id="sqK-ph-z13"/>
                                     <constraint firstItem="EGR-y8-NqW" firstAttribute="top" secondItem="dXa-Em-87c" secondAttribute="bottom" constant="4" id="ssy-EJ-aUD"/>
@@ -329,6 +330,9 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                     <constraint firstItem="Zzp-qu-lO7" firstAttribute="top" secondItem="d3p-zJ-kxt" secondAttribute="bottom" constant="16" id="yDf-sv-me0"/>
                                     <constraint firstItem="j55-pk-XSt" firstAttribute="top" secondItem="Cz9-iE-Qdn" secondAttribute="bottom" constant="8" id="ybH-O0-LcK"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="1Vq-aE-bpe" id="iLG-zf-Hl7"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -341,12 +345,30 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                         <viewLayoutGuide key="safeArea" id="9dy-jZ-iHq"/>
                     </view>
                     <navigationItem key="navigationItem" title="Einstellungen" id="mkA-Us-KDP"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="f1z-H5-S71" id="Aoa-Xf-RFf"/>
+                        <outlet property="classPickerView" destination="EGR-y8-NqW" id="I2G-Zn-fny"/>
+                        <outlet property="gradePickerView" destination="nWM-df-5dw" id="qMp-Zc-Dg3"/>
+                        <outlet property="loginButtonOutlet" destination="PrT-S5-1pL" id="Qun-BX-YTw"/>
+                        <outlet property="myCoursesButton" destination="yGV-Wk-lMg" id="Vub-6L-ryy"/>
+                        <outlet property="ruler3" destination="tek-tG-zSw" id="cCC-Kg-b0s"/>
+                        <outlet property="scrollView" destination="6XJ-lj-pAa" id="ctS-M9-1zg"/>
+                        <outlet property="tapGestureRecognizer" destination="5nH-2p-ooL" id="Os9-ec-k4X"/>
+                        <outlet property="versionLabel" destination="mRn-6Q-3b4" id="xjB-kX-xIT"/>
+                        <outlet property="webSitePasswordField" destination="j55-pk-XSt" id="ccS-u3-U9M"/>
+                        <outlet property="webSiteUserNameField" destination="YzV-FF-8G9" id="Nyk-RM-ZYT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ryY-e2-5wW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="5nH-2p-ooL">
+                    <connections>
+                        <action selector="tapGestureAction:" destination="1Vq-aE-bpe" id="BU2-k8-tQK"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-3295.652173913044" y="3660.9375"/>
         </scene>
-        <!--View Controller-->
+        <!--Kurse hinzufügen-->
         <scene sceneID="Lji-TA-ioc">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="NOa-Bp-GMV" sceneMemberID="viewController">
@@ -354,25 +376,8 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kurse hinzufügen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="26" translatesAutoresizingMaskIntoConstraints="NO" id="Ayf-Ms-csq">
-                                <rect key="frame" x="16" y="88" width="382" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="7K3-XX-F17"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="Qzx-WB-diZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfs-9N-qOK" userLabel="Ruler 1">
-                                <rect key="frame" x="16" y="136" width="382" height="1"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="fx1-9E-hqM"/>
-                                </constraints>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cC0-rA-1OS">
-                                <rect key="frame" x="16" y="145" width="382" height="61"/>
+                                <rect key="frame" x="16" y="148" width="382" height="61"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Hier legst Du fest, für welche Kurse im Dashboard und bei Push-Benachrichtigungen berücksichtigt werden.">
                                         <attributes>
@@ -384,7 +389,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q31-vJ-33k">
-                                <rect key="frame" x="16" y="214" width="382" height="78"/>
+                                <rect key="frame" x="16" y="217" width="382" height="78"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRE-nf-dRi">
                                         <rect key="frame" x="0.0" y="0.0" width="276" height="50"/>
@@ -399,11 +404,17 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                             <constraint firstAttribute="width" constant="45" id="iL8-V9-psr"/>
                                         </constraints>
                                     </pickerView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Q6-Eh-moX">
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Q6-Eh-moX">
                                         <rect key="frame" x="284" y="53" width="98" height="30"/>
+                                        <color key="backgroundColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.84313725490196079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Übernehmen">
-                                            <color key="titleColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1G-j4-ago">
                                         <rect key="frame" x="337" y="0.0" width="45" height="50"/>
@@ -441,14 +452,14 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4c0-qn-uf2" userLabel="Ruler 2">
-                                <rect key="frame" x="16" y="300" width="382" height="1"/>
+                                <rect key="frame" x="16" y="303" width="382" height="1"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="0k3-55-HjF"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ChF-bP-u7z">
-                                <rect key="frame" x="16" y="309" width="382" height="504"/>
+                                <rect key="frame" x="16" y="312" width="382" height="501"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="course" id="4tR-5P-rkj">
@@ -466,29 +477,23 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="4c0-qn-uf2" secondAttribute="trailing" constant="16" id="0Bf-ZQ-m81"/>
                             <constraint firstAttribute="trailing" secondItem="q31-vJ-33k" secondAttribute="trailing" constant="16" id="0XJ-sv-wjC"/>
-                            <constraint firstItem="cC0-rA-1OS" firstAttribute="top" secondItem="kfs-9N-qOK" secondAttribute="bottom" constant="8" id="701-dD-Fpk"/>
-                            <constraint firstAttribute="trailing" secondItem="kfs-9N-qOK" secondAttribute="trailing" constant="16" id="G76-SR-Z0d"/>
                             <constraint firstItem="4c0-qn-uf2" firstAttribute="top" secondItem="q31-vJ-33k" secondAttribute="bottom" constant="8" id="G7f-9j-tUA"/>
-                            <constraint firstItem="kfs-9N-qOK" firstAttribute="leading" secondItem="5MR-M8-Q2w" secondAttribute="leading" constant="16" id="MYA-ba-frf"/>
                             <constraint firstItem="ChF-bP-u7z" firstAttribute="top" secondItem="4c0-qn-uf2" secondAttribute="bottom" constant="8" id="QJ9-6Z-jrf"/>
                             <constraint firstItem="4c0-qn-uf2" firstAttribute="leading" secondItem="5MR-M8-Q2w" secondAttribute="leading" constant="16" id="RQG-qM-SLz"/>
-                            <constraint firstItem="Ayf-Ms-csq" firstAttribute="leading" secondItem="1D2-hP-AoX" secondAttribute="leading" constant="16" id="d7O-Qw-rbX"/>
+                            <constraint firstItem="cC0-rA-1OS" firstAttribute="top" secondItem="1D2-hP-AoX" secondAttribute="top" constant="8" id="aRh-lO-dqt"/>
                             <constraint firstItem="1D2-hP-AoX" firstAttribute="trailing" secondItem="ChF-bP-u7z" secondAttribute="trailing" constant="16" id="eSs-f5-y71"/>
                             <constraint firstItem="1D2-hP-AoX" firstAttribute="trailing" secondItem="cC0-rA-1OS" secondAttribute="trailing" constant="16" id="gZZ-fe-m9G"/>
                             <constraint firstItem="q31-vJ-33k" firstAttribute="top" secondItem="cC0-rA-1OS" secondAttribute="bottom" constant="8" id="lM6-TT-vgN"/>
-                            <constraint firstItem="Ayf-Ms-csq" firstAttribute="top" secondItem="1D2-hP-AoX" secondAttribute="top" id="nlX-HQ-I5a"/>
                             <constraint firstItem="ChF-bP-u7z" firstAttribute="leading" secondItem="1D2-hP-AoX" secondAttribute="leading" constant="16" id="poN-WC-fAe"/>
-                            <constraint firstItem="kfs-9N-qOK" firstAttribute="top" secondItem="Ayf-Ms-csq" secondAttribute="bottom" constant="4" id="q2N-Gb-C6z"/>
                             <constraint firstItem="cC0-rA-1OS" firstAttribute="leading" relation="lessThanOrEqual" secondItem="1D2-hP-AoX" secondAttribute="leading" constant="16" id="qKB-O4-7F1"/>
                             <constraint firstItem="1D2-hP-AoX" firstAttribute="bottom" secondItem="ChF-bP-u7z" secondAttribute="bottom" id="r4I-sp-d6r"/>
                             <constraint firstItem="cC0-rA-1OS" firstAttribute="centerX" secondItem="5MR-M8-Q2w" secondAttribute="centerX" id="toz-k3-JqP"/>
-                            <constraint firstItem="1D2-hP-AoX" firstAttribute="trailing" secondItem="Ayf-Ms-csq" secondAttribute="trailing" constant="16" id="wu2-hO-Lzc"/>
                             <constraint firstItem="q31-vJ-33k" firstAttribute="leading" secondItem="1D2-hP-AoX" secondAttribute="leading" constant="16" id="xBW-qX-Wpe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1D2-hP-AoX"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="REL-B5-CCL">
+                    <navigationItem key="navigationItem" title="Kurse hinzufügen" largeTitleDisplayMode="always" id="REL-B5-CCL">
                         <barButtonItem key="rightBarButtonItem" title="Bearbeiten" id="wT2-Sk-Dki">
                             <color key="tintColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
@@ -1700,10 +1705,6 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                                     <constraint firstAttribute="height" constant="50" id="Onp-cc-FOj"/>
                                                     <constraint firstAttribute="width" constant="100" id="knN-FG-y3i"/>
                                                 </constraints>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="Lk2-Qz-3KO" id="vNa-EW-dtd"/>
-                                                    <outlet property="delegate" destination="Lk2-Qz-3KO" id="Iwc-E9-uu2"/>
-                                                </connections>
                                             </pickerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Klasse" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPL-8K-ac3">
                                                 <rect key="frame" x="323" y="14" width="50" height="20.5"/>
@@ -1716,10 +1717,6 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="vGe-6T-HL5"/>
                                                 </constraints>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="Lk2-Qz-3KO" id="OQy-9b-LnF"/>
-                                                    <outlet property="delegate" destination="Lk2-Qz-3KO" id="3x1-oQ-gM1"/>
-                                                </connections>
                                             </pickerView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYj-AZ-XUq">
                                                 <rect key="frame" x="16" y="108.5" width="382" height="33"/>
@@ -1795,9 +1792,6 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                                 <state key="normal" title="Anmelden">
                                                     <color key="titleColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="loginButton:" destination="Lk2-Qz-3KO" eventType="touchUpInside" id="qct-I3-UZx"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1914,18 +1908,8 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                         <viewLayoutGuide key="safeArea" id="HEK-36-qmJ"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="xZX-Mg-Gbf" id="lFH-Qx-fqD"/>
-                        <outlet property="classPickerView" destination="rkp-5u-rQE" id="6Qu-TQ-K2W"/>
-                        <outlet property="gradePickerView" destination="XO8-MV-Wfl" id="nbR-ma-XSS"/>
-                        <outlet property="loginButtonOutlet" destination="mOQ-io-SDv" id="m0T-pG-jPw"/>
-                        <outlet property="myCoursesButton" destination="rYj-AZ-XUq" id="Dr6-qF-oxZ"/>
                         <outlet property="offlineFooterView" destination="BoI-bc-jrf" id="iue-c2-dCR"/>
                         <outlet property="offlineLabel" destination="gFu-Gj-Cr2" id="xT2-US-L9f"/>
-                        <outlet property="scrollView" destination="trz-rZ-pce" id="rus-Gd-xfs"/>
-                        <outlet property="tapGestureRecognizer" destination="IEa-8N-hxU" id="2AV-mJ-GOJ"/>
-                        <outlet property="versionLabel" destination="cn0-el-aKL" id="bbU-op-MhK"/>
-                        <outlet property="webSitePasswordField" destination="7be-e2-HfE" id="85P-IE-hJC"/>
-                        <outlet property="webSiteUserNameField" destination="pKS-PV-0Gi" id="RTX-DS-iF7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BAD-sn-0D0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2091,8 +2075,8 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MIB-Ed-Heu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Einstellungen" image="settings" id="zJ0-nG-iGI"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SZX-jE-Lhb">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="SZX-jE-Lhb">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
