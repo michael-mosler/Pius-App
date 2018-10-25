@@ -9,12 +9,11 @@
 import UIKit
 
 class MetaDataCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var metaDataTextView: UITextView!
+    @IBOutlet weak var metaDataTextLabel: UILabel!
     @IBOutlet weak var textViewWidthConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib();
-        let screenWidth = UIScreen.main.bounds.width;
-        textViewWidthConstraint.constant = screenWidth - 2 * 16;        
+        textViewWidthConstraint.constant = CGFloat(Config.screenWidth - 2 * 16);
     }
-}
+ }

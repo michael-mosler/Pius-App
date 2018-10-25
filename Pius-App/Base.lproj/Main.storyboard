@@ -2084,90 +2084,80 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jaU-Rq-HCx">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="109.5"/>
-                                            <color key="backgroundColor" red="1" green="0.0" blue="0.11385231465101242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="tintColor" red="1" green="0.0" blue="0.11385231465101242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="iTH-6I-yYN">
-                                                <size key="itemSize" width="382" height="109.5"/>
+                                                <size key="itemSize" width="382" height="70"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                 <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" reuseIdentifier="metaDataCollectionViewCell" id="eNe-KU-9lF" customClass="MetaDataCollectionViewCell" customModule="Pius_App" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="0.0" width="382" height="109.5"/>
+                                                    <rect key="frame" x="16" y="-2.5" width="382" height="70"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="109.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="70"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JJ4-tc-Olv">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="109.5"/>
+                                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEH-Lv-9T0">
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="70"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRy-gY-WNI">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="109.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Text" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRy-gY-WNI">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="375" id="mL4-4W-Lkr"/>
+                                                                            <constraint firstAttribute="width" constant="375" id="mL4-4W-Lkr"/>
                                                                         </constraints>
-                                                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fB-YU-xhF">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="109.5"/>
-                                                                        <color key="backgroundColor" red="0.47644412517547607" green="0.79857361316680908" blue="0.083851449191570282" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="382" id="5Ut-Q0-n1E"/>
-                                                                        </constraints>
-                                                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
-                                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                                    </textView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="trailing" secondItem="4fB-YU-xhF" secondAttribute="trailing" id="ITM-zB-GBk"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="4fB-YU-xhF" secondAttribute="bottom" id="Mh4-Q6-IkW"/>
-                                                                    <constraint firstItem="NRy-gY-WNI" firstAttribute="leading" secondItem="JJ4-tc-Olv" secondAttribute="leading" id="Yzq-9r-KJD"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="NRy-gY-WNI" secondAttribute="trailing" id="aGS-G4-vpd"/>
-                                                                    <constraint firstItem="4fB-YU-xhF" firstAttribute="top" secondItem="JJ4-tc-Olv" secondAttribute="top" id="cXo-8Q-8y9"/>
-                                                                    <constraint firstItem="4fB-YU-xhF" firstAttribute="centerX" secondItem="JJ4-tc-Olv" secondAttribute="centerX" id="fym-Jk-HJj"/>
-                                                                    <constraint firstItem="NRy-gY-WNI" firstAttribute="top" secondItem="JJ4-tc-Olv" secondAttribute="top" id="i85-4Q-GTK"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="NRy-gY-WNI" secondAttribute="bottom" id="qyL-38-qHw"/>
+                                                                    <constraint firstItem="NRy-gY-WNI" firstAttribute="top" secondItem="KEH-Lv-9T0" secondAttribute="top" id="HGY-Pj-ZLL"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="NRy-gY-WNI" secondAttribute="trailing" id="Uh8-6i-N1l"/>
+                                                                    <constraint firstItem="NRy-gY-WNI" firstAttribute="leading" secondItem="KEH-Lv-9T0" secondAttribute="leading" id="e3Q-Qr-tiw"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="NRy-gY-WNI" secondAttribute="bottom" id="ojD-BY-dkW"/>
                                                                 </constraints>
-                                                            </view>
+                                                            </scrollView>
                                                         </subviews>
                                                     </view>
-                                                    <color key="backgroundColor" red="1" green="0.0" blue="0.11385231465101242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="tintColor" red="1" green="0.0" blue="0.11385231465101242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="JJ4-tc-Olv" firstAttribute="top" secondItem="eNe-KU-9lF" secondAttribute="top" id="Dpu-6t-jWW"/>
-                                                        <constraint firstItem="JJ4-tc-Olv" firstAttribute="leading" secondItem="eNe-KU-9lF" secondAttribute="leading" id="KAQ-4e-Xkf"/>
-                                                        <constraint firstAttribute="bottom" secondItem="JJ4-tc-Olv" secondAttribute="bottom" id="t4q-1u-YaW"/>
+                                                        <constraint firstAttribute="trailing" secondItem="KEH-Lv-9T0" secondAttribute="trailing" id="5U2-hn-slN"/>
+                                                        <constraint firstAttribute="bottom" secondItem="KEH-Lv-9T0" secondAttribute="bottom" id="Q3e-Eq-IPL"/>
+                                                        <constraint firstItem="KEH-Lv-9T0" firstAttribute="leading" secondItem="eNe-KU-9lF" secondAttribute="leading" id="QLR-gz-CR5"/>
+                                                        <constraint firstItem="KEH-Lv-9T0" firstAttribute="top" secondItem="eNe-KU-9lF" secondAttribute="top" id="raO-Ns-HWC"/>
                                                     </constraints>
                                                     <connections>
-                                                        <outlet property="metaDataTextView" destination="4fB-YU-xhF" id="uiO-qy-Qrg"/>
-                                                        <outlet property="textViewWidthConstraint" destination="5Ut-Q0-n1E" id="EOl-jS-GvB"/>
+                                                        <outlet property="metaDataTextLabel" destination="NRy-gY-WNI" id="Nr3-5h-niJ"/>
+                                                        <outlet property="textViewWidthConstraint" destination="mL4-4W-Lkr" id="H7M-fG-fML"/>
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
+                                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="fdH-BZ-Ixw">
+                                            <rect key="frame" x="20" y="69" width="374" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="ZmT-Hs-SpC"/>
+                                            </constraints>
+                                            <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="currentPageIndicatorTintColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.82399999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </pageControl>
                                     </subviews>
-                                    <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="jaU-Rq-HCx" firstAttribute="leading" secondItem="G7p-Td-Ua4" secondAttribute="leading" id="1Oe-Aw-sdm"/>
                                         <constraint firstItem="jaU-Rq-HCx" firstAttribute="top" secondItem="G7p-Td-Ua4" secondAttribute="top" id="4Q7-Kc-6Iz"/>
-                                        <constraint firstAttribute="bottom" secondItem="jaU-Rq-HCx" secondAttribute="bottom" id="LJb-dl-bk8"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="fdH-BZ-Ixw" secondAttribute="bottom" id="5hf-4h-Kc4"/>
+                                        <constraint firstItem="fdH-BZ-Ixw" firstAttribute="leading" secondItem="G7p-Td-Ua4" secondAttribute="leadingMargin" id="EKL-PR-SHz"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fdH-BZ-Ixw" secondAttribute="trailing" id="Hji-9o-Wms"/>
+                                        <constraint firstItem="fdH-BZ-Ixw" firstAttribute="top" secondItem="jaU-Rq-HCx" secondAttribute="bottom" constant="4" id="LJb-dl-bk8"/>
                                         <constraint firstAttribute="trailing" secondItem="jaU-Rq-HCx" secondAttribute="trailing" id="or3-hm-ULh"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="1" green="0.80000000000000004" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="collectionView" destination="jaU-Rq-HCx" id="2AR-fk-oS6"/>
                                     <outlet property="flowLayout" destination="iTH-6I-yYN" id="EY3-cr-4ps"/>
+                                    <outlet property="pageControl" destination="fdH-BZ-Ixw" id="NEs-LB-zQa"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="lastUpdateCell" textLabel="beW-O3-Ra3" detailTextLabel="f2J-Fl-jtn" style="IBUITableViewCellStyleSubtitle" id="1fi-T8-rUF">

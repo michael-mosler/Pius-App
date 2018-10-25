@@ -9,25 +9,7 @@
 import UIKit
 
 class VertretungsplanViewController: UITableViewController, ExpandableHeaderViewDelegate {
-
-    /*
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var tickerTextScrollView: UIScrollView!
-    @IBOutlet weak var tickerTextPageControl: UIPageControl!
-    
-    @IBOutlet weak var tableView: UITableView!
-     
-    @IBOutlet weak var currentDateLabel: UILabel!
-    @IBOutlet weak var tickerText: UITextView!
-    @IBOutlet weak var additionalText: UITextView!
-    
-    @IBOutlet weak var offlineLabel: UILabel!
-    @IBOutlet weak var offlineFooterView: UIView!
-    */
-    
     private var vertretungsplan: Vertretungsplan?;
-    // private var data: [VertretungsplanForDate] = [];
     private var selected: IndexPath?;
     private var currentHeader: ExpandableHeaderView?;
     
@@ -111,31 +93,11 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
         sender.endRefreshing()
     }
 
-    // After sub-views have been layouted content size of ticket text
-    // scroll view can be set. As we do not add UIText programmatically
-    // scroll view does not know about the correct size from story
-    // board.
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews();
-        // tickerTextScrollView.contentSize = CGSize(width: 2 * tickerTextScrollViewWidth!, height: 70);
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad();
         refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged);
         getVertretungsplanFromWeb();
     }
-
-    /*
-    // Sets current page of page control when ticker text is
-    // scrolled horizontally.
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (scrollView == tickerTextScrollView) {
-            let currentPage = round(scrollView.contentOffset.x / CGFloat(tickerTextScrollViewWidth!));
-            tickerTextPageControl.currentPage = Int(currentPage);
-        }
-    }
-    */
 
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         selected = indexPath;
@@ -161,23 +123,19 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath.section == 0) {
-            return 110;
-        }
-
-        if (indexPath.section == 1) {
-            return UITableView.automaticDimension;
-        } else {
-            return (data[indexPath.section - 2].expanded) ? 44 : 0;
+        switch(indexPath.section) {
+        case 0: return 113; // 70 + 42 + 1
+        case 1: return UITableView.automaticDimension;
+        default: return (data[indexPath.section - 2].expanded) ? 44 : 0;
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if (section == 0) {
-            return 0;
+        switch(section) {
+        case 0: return 0;
+        case 1: return 0;
+        default: return 44;
         }
-
-        return (section < 2) ? UITableView.automaticDimension : 44;
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -195,20 +153,21 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell;
-        
         switch(indexPath.section) {
         case 0:
-            cell = tableView.dequeueReusableCell(withIdentifier: "metaDataCell")!;
+            let cell = tableView.dequeueReusableCell(withIdentifier: "metaDataCell") as! MetaDataTableViewCell;
+            cell.setContent(tickerText: StringHelper.replaceHtmlEntities(input: vertretungsplan?.tickerText), additionalText: StringHelper.replaceHtmlEntities(input: vertretungsplan?.additionalText))
+            return cell;
         case 1:
-            cell = tableView.dequeueReusableCell(withIdentifier: "lastUpdateCell")!;
+            let cell = tableView.dequeueReusableCell(withIdentifier: "lastUpdateCell")!;
             cell.textLabel?.text = vertretungsplan?.lastUpdate;
             cell.detailTextLabel?.text = "Letzte Aktualisierung";
+            return cell;
         default:
-            cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!;
+            let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!;
             cell.textLabel?.text = data[indexPath.section - 2].gradeItems[indexPath.row].grade;
+            return cell;
         }
-        return cell;
     }
     
     // Toggles section headers. If a new header is expanded the previous one when different
