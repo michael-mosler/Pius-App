@@ -38,53 +38,21 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
                     (action: UIAlertAction!) in self.navigationController?.popViewController(animated: true);
                 }));
                 self.present(alert, animated: true, completion: nil);
-
-                /*
-                if (self.offlineLabel != nil && self.offlineFooterView != nil) {
-                    self.offlineLabel.isHidden = online;
-                    self.offlineFooterView.isHidden = online;
-                }
-                */
             }
         } else {
-            // self.data = vertretungsplan!.vertretungsplaene;
             self.vertretungsplan = vertretungsplan;
-
             DispatchQueue.main.async {
                 self.tableView.reloadData();
             }
-
-            /*
-            DispatchQueue.main.async {
-                self.currentDateLabel.text = vertretungsplan!.lastUpdate;
-                self.tickerText.text = StringHelper.replaceHtmlEntities(input: vertretungsplan!.tickerText);
-                
-                if (vertretungsplan!.hasAdditionalText()) {
-                    self.additionalText.text = StringHelper.replaceHtmlEntities(input: vertretungsplan!.additionalText);
-                    self.tickerTextScrollView.isScrollEnabled = true;
-                    self.tickerTextPageControl.numberOfPages = 2;
-                } else {
-                    self.tickerTextScrollView.isScrollEnabled = false;
-                    self.tickerTextPageControl.numberOfPages = 1;
-                }
-                
-                self.tableView.reloadData();
-                self.activityIndicator.stopAnimating();
-
-                self.offlineLabel.isHidden = online;
-                self.offlineFooterView.isHidden = online;
-            }
-            */
         }
     }
     
     private func getVertretungsplanFromWeb() {
         let vertretungsplanLoader = VertretungsplanLoader(forGrade: nil);
         
-        // Clear all data.
+        // Clear all data and reload.
         currentHeader = nil;
         selected = nil;
-        
         vertretungsplanLoader.load(self.doUpdate);        
     }
 
@@ -106,8 +74,8 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vertretungsplanDetailViewController = segue.destination as? VertretungsplanDetailViewController, let selected = self.selected {
-            vertretungsplanDetailViewController.gradeItem = data[selected.section].gradeItems[selected.row];
-            vertretungsplanDetailViewController.date = data[selected.section].date;
+            vertretungsplanDetailViewController.gradeItem = data[selected.section - 2].gradeItems[selected.row];
+            vertretungsplanDetailViewController.date = data[selected.section - 2].date;
         }
     }
     
@@ -124,7 +92,7 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch(indexPath.section) {
-        case 0: return 113; // 70 + 42 + 1
+        case 0: return 128; // 85 (Cell height) + 42 (Page Control + Spacing) + 1
         case 1: return UITableView.automaticDimension;
         default: return (data[indexPath.section - 2].expanded) ? 44 : 0;
         }

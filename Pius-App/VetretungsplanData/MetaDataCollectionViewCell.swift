@@ -14,6 +14,6 @@ class MetaDataCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib();
-        textViewWidthConstraint.constant = CGFloat(Config.screenWidth - 2 * 16);
+        textViewWidthConstraint.constant = CGFloat(Config.screenWidth - 2 * 16); // 16 = Left and right inset.
     }
  }

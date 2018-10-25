@@ -13,16 +13,12 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
     @IBOutlet weak var detailsTableView: UITableView!
     @IBOutlet weak var dateLabel: UILabel!
     
-    @IBOutlet weak var offlineLabel: UILabel!
-    @IBOutlet weak var offlineFooterView: UIView!
-
     private let rowsPerItem = 5;
     
     public var gradeItem: GradeItem?;
     public var date: String?;
     
     private let piusGatewayReachability = ReachabilityChecker(forName: AppDefaults.baseUrl);
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +30,8 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
         detailsTableView.dataSource = self;
         
         if (!piusGatewayReachability.isNetworkReachable()) {
-            offlineLabel.isHidden = false;
-            offlineFooterView.isHidden = false;
+            print("Offline");
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
