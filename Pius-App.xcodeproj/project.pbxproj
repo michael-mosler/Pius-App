@@ -48,6 +48,8 @@
 		4CB3EC7A20DC0ECB00BBEAE0 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CB3EC7820DC0ECB00BBEAE0 /* MainInterface.storyboard */; };
 		4CB3EC7E20DC0ECB00BBEAE0 /* Pius-App-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4CB3EC7220DC0ECA00BBEAE0 /* Pius-App-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4CB97F17210A53940019973D /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB97F16210A53940019973D /* DeviceTokenManager.swift */; };
+		4CC332CF2180DAB10055E3F5 /* MetaDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC332CE2180DAB10055E3F5 /* MetaDataTableViewCell.swift */; };
+		4CC332D12180DF580055E3F5 /* MetaDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC332D02180DF580055E3F5 /* MetaDataCollectionViewCell.swift */; };
 		4CED4A7D204749580012CB45 /* EinstellungenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */; };
 		4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */; };
 		4CED4A85204AE3510012CB45 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */; };
@@ -137,6 +139,8 @@
 		4CB3EC8320DC104800BBEAE0 /* Pius-App-Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pius-App-Extension.entitlements"; sourceTree = "<group>"; };
 		4CB3EC8420DC10D700BBEAE0 /* Pius-App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pius-App.entitlements"; sourceTree = "<group>"; };
 		4CB97F16210A53940019973D /* DeviceTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenManager.swift; sourceTree = "<group>"; };
+		4CC332CE2180DAB10055E3F5 /* MetaDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataTableViewCell.swift; sourceTree = "<group>"; };
+		4CC332D02180DF580055E3F5 /* MetaDataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataCollectionViewCell.swift; sourceTree = "<group>"; };
 		4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EinstellungenViewController.swift; sourceTree = "<group>"; };
 		4CED4A80204ADB520012CB45 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		4CED4A81204ADB520012CB45 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 				4C1FDE4D205567C8006092C9 /* Vertretungsplan.swift */,
 				4C1FDE4F205568E3006092C9 /* ExpandableHeaderView.swift */,
 				4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */,
+				4CC332CE2180DAB10055E3F5 /* MetaDataTableViewCell.swift */,
+				4CC332D02180DF580055E3F5 /* MetaDataCollectionViewCell.swift */,
 			);
 			path = VetretungsplanData;
 			sourceTree = "<group>";
@@ -572,6 +578,8 @@
 			files = (
 				4C1FDE54205C5072006092C9 /* VertretungsplanDetailViewController.swift in Sources */,
 				4CFBCDD7208925B100E9041D /* MyCoursesViewController.swift in Sources */,
+				4CC332D12180DF580055E3F5 /* MetaDataCollectionViewCell.swift in Sources */,
+				4CC332CF2180DAB10055E3F5 /* MetaDataTableViewCell.swift in Sources */,
 				4C1FDE61206C2644006092C9 /* DashboardViewController.swift in Sources */,
 				4C1FDE63206D5FE6006092C9 /* Config.swift in Sources */,
 				4CED4A85204AE3510012CB45 /* KeychainPasswordItem.swift in Sources */,
@@ -817,7 +825,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
-				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
+				HOST_ADDRESS = "http://localhost:3000";
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp;

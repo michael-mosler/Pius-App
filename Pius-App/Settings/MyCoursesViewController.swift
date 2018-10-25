@@ -17,19 +17,18 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var courseNumberPicker: UIPickerView!
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var coursePickerViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var constraint: NSLayoutConstraint!
-    @IBOutlet weak var constraint2: NSLayoutConstraint!
+    @IBOutlet weak var coursePickerViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var editTopConstraint: NSLayoutConstraint!
     
     let cellBgView = UIView();
-    
     var inEditMode: Bool = false;
-    
     var courseList: [String] = [];
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1;
     }
     
+    // Returns number of rows in picker view components.
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch(pickerView) {
         case coursePicker!: return Config.courses.count;
@@ -50,6 +49,7 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
 
+    // Appends selected course from picker to course list.
     private func addCourseFromPickers() {
         var realCourseName: String;
         let courseName = Config.coursesShortNames[(coursePicker?.selectedRow(inComponent: 0))!]
@@ -65,10 +65,11 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         courseList.append(realCourseName);
     }
 
+    // Show or hide course picker view.
     private func showCoursePicker(_ visible: Bool) {
         UIView.animate(withDuration: 0.3, animations: {
-            self.constraint.constant = (visible) ? 150 : 0;
-            self.constraint2.constant = (visible) ? 8 : 0;
+            self.coursePickerViewHeightConstraint.constant = (visible) ? 150 : 0;
+            self.editTopConstraint.constant = (visible) ? 8 : 0;
             self.coursePickerView.isHidden = !visible;
             self.coursePickerView.layoutIfNeeded()
         });
@@ -95,63 +96,30 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
 
-    @objc func okAction(sender: UIButton) {
+    @IBAction func okAction(sender: UIButton) {
         addCourseFromPickers();
         myCoursesTableView.reloadData();
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return courseList.count + ((inEditMode) ? 1 : 0);
+        return courseList.count;
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // Height for picker view row when visible.
-        if (indexPath.row == 0 && inEditMode) {
-            return 100;
-        }
-        
-        // Default height.
         return 30;
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell?;
-        
-        if (indexPath.row == 0 && inEditMode) {
-            cell = myCoursesTableView.dequeueReusableCell(withIdentifier: "coursePickerCell")!;
-            coursePicker = cell!.subviews[0].subviews[0] as? UIPickerView;
-            courseTypePicker = cell!.subviews[0].subviews[1] as? UIPickerView;
-            courseNumberPicker = cell!.subviews[0].subviews[2] as? UIPickerView;
-            okButton = cell!.subviews[0].subviews[3] as? UIButton;
-            
-            coursePicker?.delegate = self;
-            coursePicker?.dataSource = self;
-            courseTypePicker?.delegate = self;
-            courseTypePicker?.dataSource = self;
-            courseNumberPicker?.delegate = self;
-            courseNumberPicker?.dataSource = self;
-            okButton?.addTarget(self, action: #selector(okAction), for: UIControl.Event.touchUpInside);
-        } else {
-            let realRow = indexPath.row - ((inEditMode) ? 1 : 0);
-            cell = myCoursesTableView.dequeueReusableCell(withIdentifier: "course")!;
-            cell!.textLabel?.text = courseList[realRow];
-            cell?.selectedBackgroundView = cellBgView;
-            cell?.textLabel?.highlightedTextColor = UIColor.white;
-        }
+        let cell = myCoursesTableView.dequeueReusableCell(withIdentifier: "course")!;
+        cell.textLabel?.text = courseList[indexPath.row];
+        cell.selectedBackgroundView = cellBgView;
+        cell.textLabel?.highlightedTextColor = UIColor.white;
 
-        return cell!;
+        return cell;
     }
 
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        if (!inEditMode) {
-            return .none;
-        }
-        
-        if (indexPath.row == 0) {
-            return .none;
-        } else {
-            return .delete;
-        }
+        return (inEditMode) ? .delete : .none;
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
