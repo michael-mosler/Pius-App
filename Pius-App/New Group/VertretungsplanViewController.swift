@@ -13,8 +13,6 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
     private var selected: IndexPath?;
     private var currentHeader: ExpandableHeaderView?;
     
-    private var tickerTextScrollViewWidth: Int?;
-
     private var data: [VertretungsplanForDate] {
         get {
             if let vertretungsplan_ = vertretungsplan {
@@ -67,9 +65,9 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
         getVertretungsplanFromWeb();
     }
 
-    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        selected = indexPath;
-        return indexPath;
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
+        getVertretungsplanFromWeb();
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -83,6 +81,11 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
         return data.count + 2;
     }
 
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        selected = indexPath;
+        return indexPath;
+    }
+    
     // Returns number of rows in section. The first two sections are fix and have one row only
     // for all following sections the number of grade items defines the number of rows
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
