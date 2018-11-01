@@ -901,7 +901,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
         <scene sceneID="HZb-EE-dg3">
             <objects>
                 <tableViewController id="pyK-AN-dTj" customClass="DashboardViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="QEg-7e-P7B">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="2" id="QEg-7e-P7B">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1014,23 +1014,23 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spacerTop" rowHeight="5" id="tNP-8W-Fvn">
-                                <rect key="frame" x="0.0" y="202" width="414" height="5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spacerTop" id="VAC-BN-4Nr" userLabel="spacerTop">
+                                <rect key="frame" x="0.0" y="202" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tNP-8W-Fvn" id="Y8u-iI-SJO">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="4.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VAC-BN-4Nr" id="5wl-JA-tII">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="course" textLabel="h39-eN-dYt" rowHeight="36" style="IBUITableViewCellStyleDefault" id="QDQ-Cb-eai">
-                                <rect key="frame" x="0.0" y="207" width="414" height="36"/>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="course" textLabel="h39-eN-dYt" style="IBUITableViewCellStyleDefault" id="QDQ-Cb-eai">
+                                <rect key="frame" x="0.0" y="246" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QDQ-Cb-eai" id="FiK-1f-DlX">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="35.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h39-eN-dYt">
-                                            <rect key="frame" x="20" y="0.0" width="374" height="35.5"/>
+                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1041,7 +1041,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                 <color key="backgroundColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="details" id="0kz-wd-sJ9" customClass="VertretungsplanDetailsCell" customModule="Pius_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="243" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="290" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0kz-wd-sJ9" id="8O8-7u-Bpd">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -1088,15 +1088,15 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                     <outlet property="typeLabel" destination="0op-S3-LQu" id="Z2Y-c1-iUE"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="comment" textLabel="Ahz-1V-ZpK" rowHeight="30" style="IBUITableViewCellStyleDefault" id="lPg-GR-RQv" userLabel="comment">
-                                <rect key="frame" x="0.0" y="287" width="414" height="30"/>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="comment" textLabel="Ahz-1V-ZpK" style="IBUITableViewCellStyleDefault" id="lPg-GR-RQv" userLabel="comment">
+                                <rect key="frame" x="0.0" y="334" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lPg-GR-RQv" id="WGL-Nl-wH1">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="29.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ahz-1V-ZpK">
-                                            <rect key="frame" x="20" y="0.0" width="374" height="29.5"/>
+                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
@@ -1106,7 +1106,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eva" textLabel="8SG-vR-fTF" style="IBUITableViewCellStyleDefault" id="bW2-ny-B7T" userLabel="eva">
-                                <rect key="frame" x="0.0" y="317" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="378" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bW2-ny-B7T" id="g59-J8-BzF">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -1123,14 +1123,6 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="0.80144375560000003" blue="0.0046433899549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spacerBottom" rowHeight="5" id="LuR-jZ-KUx">
-                                <rect key="frame" x="0.0" y="361" width="414" height="5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LuR-jZ-KUx" id="Mu9-2E-wqe">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="4.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>

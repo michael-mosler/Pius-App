@@ -38,7 +38,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     private var grade: String = "";
 
     // That many rows per unfolded item.
-    private let rowsPerItem = 6;
+    private let rowsPerItem = 4;
     
     func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
@@ -64,6 +64,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                 if let headerInfo = self.expandHeaderInfo {
                     self.toggleSection(header: headerInfo.header, section: headerInfo.section);
                 }
+                self.tableView.isHidden = false;
             }
         }
     }
@@ -97,7 +98,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return data.count + 2;
+        return (data.count == 0) ? 0 : data.count + 2;
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -121,14 +122,13 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                 case 3:
                     let itemIndex: Int = indexPath.row / rowsPerItem;
                     let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][6]);
-                    return (text == "") ? 0 : 44; // UITableView.automaticDimension;
+                    return (text == "") ? 0 : UITableView.automaticDimension;
                 case 4:
                     let itemIndex: Int = indexPath.row / rowsPerItem;
                     return ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) ? 0: UITableView.automaticDimension;
                 default:
-                    // Spacer is shown only if there is a EVA text.
-                    let itemIndex: Int = indexPath.row / rowsPerItem;
-                    return ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) ? 0 : 5;
+                    print("Invalid row number");
+                    return 0;
                 }
             } else {
                 return 0;
@@ -140,7 +140,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         switch(section) {
         case 0: return 0;
         case 1: return 0;
-        default: return 44;
+        default: return UITableView.automaticDimension;
         }
     }
 
@@ -178,8 +178,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
             let gradeItem: GradeItem? = data[indexPath.section - 2].gradeItems[0];
             
             switch indexPath.row % rowsPerItem {
-            case 0:
-                return tableView.dequeueReusableCell(withIdentifier: "spacerTop")!;
+            case 0: return tableView.dequeueReusableCell(withIdentifier: "spacerTop")!;
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "course")!;
                 let grade: String! = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][2]);
@@ -203,7 +202,8 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                 }
                 return cell;
             default:
-                return tableView.dequeueReusableCell(withIdentifier: "spacerBottom")!;
+                print("Invalid row number");
+                return UITableViewCell();
             }
         }
     }

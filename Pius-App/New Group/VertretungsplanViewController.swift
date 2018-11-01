@@ -78,9 +78,9 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return data.count + 2;
+        return (data.count == 0) ? 0 : data.count + 2;
     }
-
+    
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         selected = indexPath;
         return indexPath;
@@ -97,7 +97,7 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
         switch(indexPath.section) {
         case 0: return 128; // 85 (Cell height) + 42 (Page Control + Spacing) + 1
         case 1: return UITableView.automaticDimension;
-        default: return (data[indexPath.section - 2].expanded) ? 44 : 0;
+        default: return (data[indexPath.section - 2].expanded) ? UITableView.automaticDimension : 0;
         }
     }
     
@@ -105,7 +105,7 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
         switch(section) {
         case 0: return 0;
         case 1: return 0;
-        default: return 44;
+        default: return UITableView.automaticDimension;
         }
     }
     
