@@ -471,7 +471,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
         <!--Tab Bar Controller-->
         <scene sceneID="fAt-OK-cWF">
             <objects>
-                <tabBarController id="k2r-lY-dFZ" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" id="k2r-lY-dFZ" customClass="TabBarController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZCL-O3-Y6U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -45,6 +45,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         versionLabel.text = versionString;
     }
 
+    var changeGradeDelegate: ChangeGradeDelegate?;
+    
     // Checks if grade picker has selected an upper grade.
     private func isUpperGradeSelected(_ row: Int) -> Bool {
         return Config.upperGrades.index(of: Config.grades[row]) != nil
@@ -179,6 +181,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             }
         }
         
+        changeGradeDelegate?.setGrade(grade: AppDefaults.gradeSetting);
+
         // Update subscription when app has push notifications enabled.
         if let deviceToken = Config.currentDeviceToken {
             let deviceTokenManager = DeviceTokenManager();
@@ -294,10 +298,10 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     override func viewDidLoad() {
         super.viewDidLoad();
         
-        setVersionLabel();
+        changeGradeDelegate = tabBarController as! TabBarController;
         
+        setVersionLabel();
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
-
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         webSitePasswordField.delegate = self;

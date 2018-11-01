@@ -54,6 +54,7 @@
 		4CED4A7D204749580012CB45 /* EinstellungenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */; };
 		4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */; };
 		4CED4A85204AE3510012CB45 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */; };
+		4CF02EAF218B559400647078 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF02EAE218B559400647078 /* TabBarController.swift */; };
 		4CFB105720D0490B00432B1A /* CalendarLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB105620D0490B00432B1A /* CalendarLoader.swift */; };
 		4CFB105920D04BA600432B1A /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB105820D04BA600432B1A /* Calendar.swift */; };
 		4CFB105B20D1926300432B1A /* MonthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB105A20D1926300432B1A /* MonthButton.swift */; };
@@ -148,6 +149,7 @@
 		4CED4A81204ADB520012CB45 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainConfiguration.swift; path = ../KeychainConfiguration.swift; sourceTree = "<group>"; };
 		4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainPasswordItem.swift; path = ../KeychainPasswordItem.swift; sourceTree = "<group>"; };
+		4CF02EAE218B559400647078 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4CFB105620D0490B00432B1A /* CalendarLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLoader.swift; sourceTree = "<group>"; };
 		4CFB105820D04BA600432B1A /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		4CFB105A20D1926300432B1A /* MonthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthButton.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				4C7C22962043117800ACA17B /* Assets.xcassets */,
 				4C7C22982043117800ACA17B /* LaunchScreen.storyboard */,
 				4C7C229B2043117800ACA17B /* Info.plist */,
+				4CF02EAE218B559400647078 /* TabBarController.swift */,
 			);
 			path = "Pius-App";
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				4C7C22922043117800ACA17B /* ViewController.swift in Sources */,
 				4C1FDE57205D90E5006092C9 /* DetailCollectionViewCell.swift in Sources */,
 				4C1FDE4E205567C8006092C9 /* Vertretungsplan.swift in Sources */,
+				4CF02EAF218B559400647078 /* TabBarController.swift in Sources */,
 				4C1FDE5C20603DF1006092C9 /* DetailsCellTableViewCell.swift in Sources */,
 				4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */,
 				4CFB105920D04BA600432B1A /* Calendar.swift in Sources */,
