@@ -114,11 +114,12 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         default:
             if (data[indexPath.section - 2].expanded) {
                 let gradeItem: GradeItem? = data[indexPath.section - 2].gradeItems[0];
+                // print("Section %ld Row %ld", indexPath.section, indexPath.row);
                 
                 switch indexPath.row % rowsPerItem {
                 case 0: return 2;
                 case 1: return UITableView.automaticDimension;
-                case 2: return UITableView.automaticDimension;
+                case 2: return tableView.rowHeight;
                 case 3:
                     let itemIndex: Int = indexPath.row / rowsPerItem;
                     let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][6]);
@@ -137,11 +138,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch(section) {
-        case 0: return 0;
-        case 1: return 0;
-        default: return UITableView.automaticDimension;
-        }
+        return (section < 2) ? 0 : UITableView.automaticDimension;
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -152,7 +149,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         guard (section >= 2) else { return UITableViewHeaderFooterView(); }
 
         let header = ExpandableHeaderView();
-        header.customInit(title: data[section - 2].date, userInteractionEnabled: (data[section - 2].gradeItems.count != 0), section: section, delegate: self);
+        header.customInit(userInteractionEnabled: (data[section - 2].gradeItems.count != 0), section: section, delegate: self);
         
         // Expand next substitution date entry.
         if data[section - 2].date == nextDate {
@@ -160,6 +157,10 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
          }
 
         return header;
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return (section < 2) ? "" : data[section - 2].date;
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

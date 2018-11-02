@@ -118,9 +118,13 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
             return UITableViewHeaderFooterView();
         } else {
             let header = ExpandableHeaderView();
-            header.customInit(title: data[section - 2].date, userInteractionEnabled: data[section - 2].gradeItems.count > 0, section: section, delegate: self);
+            header.customInit(userInteractionEnabled: data[section - 2].gradeItems.count > 0, section: section, delegate: self);
             return header;
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return (section < 2) ? "" : data[section - 2].date;
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
