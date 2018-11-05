@@ -9,23 +9,20 @@
 import UIKit
 
 class DateListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate {
+
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var offlineLabel: UILabel!
-    @IBOutlet weak var offlineFooterView: UIView!
-    @IBOutlet weak var offlineLabelBottomConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var searchBarView: UIView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var searchBarTopConstraint: NSLayoutConstraint!
-    private var inSearchMode: Bool = false;
     
     @IBOutlet weak var monthListCollectionView: UICollectionView!
+    @IBOutlet weak var monthListCollectionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var dayListTableView: UITableView!
     
-    @IBOutlet var swipeLeftGestureRecognizer: UISwipeGestureRecognizer!
-    @IBOutlet var swipeRightGestureRecognizer: UISwipeGestureRecognizer!
+    @IBOutlet weak var dateListViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var dateListViewTrailingConstraint: NSLayoutConstraint!
     
+    private var panGestureRecognizer: UIPanGestureRecognizer!
+
     // The active text field, is either webSizeUserNameField or webSitePasswordField.
+    private var inSearchMode: Bool = false;
     private var activeTextField: UITextField?;
     
     private let piusGatewayReachability = ReachabilityChecker(forName: AppDefaults.baseUrl);
@@ -52,43 +49,22 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func viewDidLoad() {
         super.viewDidLoad();
         
-        if (piusGatewayReachability.isNetworkReachable()) {
-            showOfflineLabel(percentage: 0);
-        }
+        panGestureRecognizer = UIPanGestureRecognizer();
+        panGestureRecognizer.addTarget(self, action:#selector(DateListViewController.panAction(_:)));
+        view.addGestureRecognizer(panGestureRecognizer)
 
         getVCalendarFromWeb();
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     // Move search bar into view when search button has been tapped in navigation
     // bar.
-    private func showSearchBar(percentage: CGFloat) {
-        searchBarTopConstraint.constant = -50 + min(percentage, 1) * 50;
-        UIView.animate(withDuration: 0.3, animations: {
-            self.view.layoutIfNeeded();
-        });
-    }
-    
-    // Scroll offline label into view when offline mode is detected after in
-    // viewDidLoad().
-    private func showOfflineLabel(percentage: CGFloat) {
-        offlineLabelBottomConstraint.constant = -16 + min(percentage, 1) * 16;
-        offlineLabel.isHidden = offlineLabelBottomConstraint.constant == -16;
-        offlineFooterView.isHidden = offlineLabel.isHidden;
-
-        UIView.animate(withDuration: 0.3, animations: {
-            self.view.layoutIfNeeded();
-        });
-    }
-    
-    // Activate cancel button in search bar.
-    private func activateSearchCancelButton() {
-        if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
-            cancelButton.isEnabled = true
-        }
+    private func showSearchBar() {
+        let search = UISearchController(searchResultsController: nil);
+        search.dimsBackgroundDuringPresentation = false;
+        search.searchBar.delegate = self;
+        navigationItem.searchController = search;
+        navigationItem.hidesSearchBarWhenScrolling = false;
+        monthListCollectionViewHeightConstraint.constant = 0;
     }
     
     // Search button action: Store current state and activate search mode.
@@ -106,8 +82,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
             inSearchMode = true;
             dayListTableView.reloadData();
 
-            showSearchBar(percentage: 100);
-            activateSearchCancelButton();
+            showSearchBar();
         }
     }
     
@@ -119,21 +94,13 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         dayListTableView.reloadData();
     }
 
-    // Clicking search button in keyboard simply hides the keyboard.
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder();
-        activateSearchCancelButton();
-    }
-    
     // Cancel search. This restores the view from before search was started.
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         inSearchMode = false;
         calendar.filter = nil;
-        
-        showSearchBar(percentage: 0);
-        searchBar.endEditing(true);
-        searchBar.text = nil;
-        
+        navigationItem.searchController = nil;
+        monthListCollectionViewHeightConstraint.constant = 50;
+
         selectedMonth = hadSelectedMonth;
         hadSelectedMonth = nil;
         
@@ -169,10 +136,6 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
                     (action: UIAlertAction!) in self.navigationController?.popViewController(animated: true);
                 }));
                 self.present(alert, animated: true, completion: nil);
-                
-                if (self.offlineLabel != nil && self.offlineFooterView != nil) {
-                    self.showOfflineLabel(percentage: (online ? 0 : 1));
-                }
             }
         } else {
             self.calendar = calendar!;
@@ -284,24 +247,24 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
                 indexPath.item += direction;
                 
                 if let cell = monthListCollectionView.cellForItem(at: indexPath) {
+                    self.dateListViewLeadingConstraint.constant -= CGFloat(Config.screenWidth);
+                    self.dateListViewTrailingConstraint.constant -= CGFloat(Config.screenWidth);
                     let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton;
                     UIView.animate(withDuration: 0.5, animations: {
                         self.changeSelectedMonthButton(to: button);
+                        self.view.layoutIfNeeded();
                     }, completion: { (finished: Bool) in
+                        print("Finished");
+                        self.dateListViewLeadingConstraint.constant = 0;
+                        self.dateListViewTrailingConstraint.constant = 0;
+                        self.view.layoutIfNeeded();
                         self.dayListTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true); });
                 }
             }
         }
     }
 
-    // Swipe left
-    @IBAction func swipeLeftAction(_ sender: Any) {
-        doSwipe(direction: 1);
-    }
-    
-    
-    // Swipe right
-    @IBAction func swipeRightAction(_ sender: Any) {
-        doSwipe(direction: -1);
+    @objc func panAction(_ sender: UIPanGestureRecognizer) {
+        print("Pan");
     }
 }

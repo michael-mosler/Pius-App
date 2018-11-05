@@ -1141,10 +1141,10 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
             </objects>
             <point key="canvasLocation" x="-3317" y="2333"/>
         </scene>
-        <!--Termine-->
+        <!--Kalender-->
         <scene sceneID="NZ4-Ff-b9n">
             <objects>
-                <viewController title="Termine" id="02y-vG-Sgs" customClass="DateListViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Kalender" definesPresentationContext="YES" id="02y-vG-Sgs" customClass="DateListViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a0r-uR-fel">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1194,30 +1194,8 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                     <outlet property="delegate" destination="02y-vG-Sgs" id="Yum-ts-tlg"/>
                                 </connections>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rjq-F6-X3i">
-                                <rect key="frame" x="0.0" y="84" width="414" height="50"/>
-                                <subviews>
-                                    <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KW0-6I-ocL">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="02y-vG-Sgs" id="69V-Bs-O26"/>
-                                        </connections>
-                                    </searchBar>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="1q3-pW-GoH"/>
-                                    <constraint firstAttribute="bottom" secondItem="KW0-6I-ocL" secondAttribute="bottom" id="EFN-Gx-c1I"/>
-                                    <constraint firstItem="KW0-6I-ocL" firstAttribute="top" secondItem="Rjq-F6-X3i" secondAttribute="top" id="Kry-ZQ-VyA"/>
-                                    <constraint firstItem="KW0-6I-ocL" firstAttribute="leading" secondItem="Rjq-F6-X3i" secondAttribute="leading" id="lva-6x-wZ2"/>
-                                    <constraint firstAttribute="trailing" secondItem="KW0-6I-ocL" secondAttribute="trailing" id="prK-tK-eEZ"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cTj-A5-WrW">
-                                <rect key="frame" x="0.0" y="190" width="414" height="607"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cTj-A5-WrW">
+                                <rect key="frame" x="0.0" y="190" width="414" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MonthName" textLabel="FG2-C0-AwK" style="IBUITableViewCellStyleDefault" id="Fxq-bw-0Wf">
@@ -1291,49 +1269,21 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ydO-Mg-jAz">
                                 <rect key="frame" x="197" y="438" width="20" height="20"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keine Verbindung" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDr-yl-aao">
-                                <rect key="frame" x="0.0" y="797" width="414" height="16"/>
-                                <color key="backgroundColor" red="0.9148673415184021" green="0.32807183265686035" blue="0.31289210915565491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="16" id="pIA-wi-sNM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WdU-E8-aZI">
-                                <rect key="frame" x="0.0" y="813" width="414" height="83"/>
-                                <color key="backgroundColor" red="0.9148673415184021" green="0.32807183265686035" blue="0.31289210915565491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="82f-TF-sxj" firstAttribute="trailing" secondItem="Rjq-F6-X3i" secondAttribute="trailing" id="1Pe-uY-gzO"/>
                             <constraint firstItem="cTj-A5-WrW" firstAttribute="top" secondItem="x2K-e9-D9q" secondAttribute="bottom" id="2me-Qd-b0M"/>
-                            <constraint firstItem="fDr-yl-aao" firstAttribute="trailing" secondItem="82f-TF-sxj" secondAttribute="trailing" id="Crj-lm-UaD"/>
                             <constraint firstItem="ydO-Mg-jAz" firstAttribute="centerX" secondItem="a0r-uR-fel" secondAttribute="centerX" id="Efb-Vk-Kfq"/>
                             <constraint firstItem="cTj-A5-WrW" firstAttribute="trailing" secondItem="82f-TF-sxj" secondAttribute="trailing" id="FaQ-LT-rVH"/>
-                            <constraint firstItem="Rjq-F6-X3i" firstAttribute="top" secondItem="82f-TF-sxj" secondAttribute="top" constant="-56" id="KeI-il-Cz4"/>
-                            <constraint firstItem="cTj-A5-WrW" firstAttribute="bottom" secondItem="fDr-yl-aao" secondAttribute="top" id="Lw4-4u-FN2"/>
                             <constraint firstItem="x2K-e9-D9q" firstAttribute="trailing" secondItem="82f-TF-sxj" secondAttribute="trailing" id="RTV-F9-hgu"/>
-                            <constraint firstAttribute="bottom" secondItem="WdU-E8-aZI" secondAttribute="bottom" id="TGi-ey-QRA"/>
                             <constraint firstItem="cTj-A5-WrW" firstAttribute="leading" secondItem="82f-TF-sxj" secondAttribute="leading" id="ZvM-ZB-wuN"/>
-                            <constraint firstItem="WdU-E8-aZI" firstAttribute="top" secondItem="82f-TF-sxj" secondAttribute="bottom" id="e1A-dM-EsK"/>
                             <constraint firstItem="x2K-e9-D9q" firstAttribute="leading" secondItem="82f-TF-sxj" secondAttribute="leading" id="e31-er-kwV"/>
                             <constraint firstItem="ydO-Mg-jAz" firstAttribute="centerY" secondItem="a0r-uR-fel" secondAttribute="centerY" id="nHi-36-2O5"/>
                             <constraint firstItem="x2K-e9-D9q" firstAttribute="top" secondItem="82f-TF-sxj" secondAttribute="top" id="ncB-hh-Eue"/>
-                            <constraint firstItem="fDr-yl-aao" firstAttribute="leading" secondItem="82f-TF-sxj" secondAttribute="leading" id="sWi-De-g6b"/>
-                            <constraint firstAttribute="trailing" secondItem="WdU-E8-aZI" secondAttribute="trailing" id="t9F-j6-z6E"/>
-                            <constraint firstItem="WdU-E8-aZI" firstAttribute="leading" secondItem="a0r-uR-fel" secondAttribute="leading" id="tCD-b0-82z"/>
-                            <constraint firstItem="82f-TF-sxj" firstAttribute="bottom" secondItem="fDr-yl-aao" secondAttribute="bottom" id="wTx-At-bOg"/>
-                            <constraint firstItem="Rjq-F6-X3i" firstAttribute="leading" secondItem="82f-TF-sxj" secondAttribute="leading" id="zRh-oc-OpF"/>
+                            <constraint firstItem="82f-TF-sxj" firstAttribute="bottom" secondItem="cTj-A5-WrW" secondAttribute="bottom" id="qdV-QF-XKH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="82f-TF-sxj"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="UAe-Ei-E6Y" appends="YES" id="7so-2g-5FV"/>
-                            <outletCollection property="gestureRecognizers" destination="4dM-QZ-g1r" appends="YES" id="7On-Hr-wJa"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Kalender" id="ADm-4p-vp2" userLabel="Termine">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="aY6-RU-69k">
@@ -1344,29 +1294,14 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="ydO-Mg-jAz" id="DV8-Fe-9Ja"/>
+                        <outlet property="dateListViewLeadingConstraint" destination="ZvM-ZB-wuN" id="lVu-CP-3Rw"/>
+                        <outlet property="dateListViewTrailingConstraint" destination="FaQ-LT-rVH" id="abC-Ls-HKS"/>
                         <outlet property="dayListTableView" destination="cTj-A5-WrW" id="ZAl-SY-YC3"/>
                         <outlet property="monthListCollectionView" destination="x2K-e9-D9q" id="x6m-XO-lUN"/>
-                        <outlet property="offlineFooterView" destination="WdU-E8-aZI" id="7Vg-8x-O0t"/>
-                        <outlet property="offlineLabel" destination="fDr-yl-aao" id="8vy-Iw-Qag"/>
-                        <outlet property="offlineLabelBottomConstraint" destination="wTx-At-bOg" id="eTc-BI-c8e"/>
-                        <outlet property="searchBar" destination="KW0-6I-ocL" id="sMc-aR-GcB"/>
-                        <outlet property="searchBarTopConstraint" destination="KeI-il-Cz4" id="A7x-6z-R2i"/>
-                        <outlet property="searchBarView" destination="Rjq-F6-X3i" id="TCe-tW-Vyc"/>
-                        <outlet property="swipeLeftGestureRecognizer" destination="UAe-Ei-E6Y" id="zaw-nK-TC4"/>
-                        <outlet property="swipeRightGestureRecognizer" destination="4dM-QZ-g1r" id="r1U-el-aGU"/>
+                        <outlet property="monthListCollectionViewHeightConstraint" destination="LEM-6Q-QCL" id="ICf-Rg-baK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KEQ-oH-egH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="UAe-Ei-E6Y">
-                    <connections>
-                        <action selector="swipeLeftAction:" destination="02y-vG-Sgs" id="m41-wP-cdt"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="4dM-QZ-g1r">
-                    <connections>
-                        <action selector="swipeRightAction:" destination="02y-vG-Sgs" id="dx3-Wx-7ti"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-3316" y="2999"/>
         </scene>
@@ -2021,7 +1956,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
         <image name="today_apps" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MCY-3C-dGO"/>
+        <segue reference="JuZ-2F-cuW"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
