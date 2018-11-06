@@ -1149,7 +1149,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="x2K-e9-D9q">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="x2K-e9-D9q">
                                 <rect key="frame" x="0.0" y="140" width="414" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1194,78 +1194,113 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                     <outlet property="delegate" destination="02y-vG-Sgs" id="Yum-ts-tlg"/>
                                 </connections>
                             </collectionView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cTj-A5-WrW">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HMa-eX-uGG">
                                 <rect key="frame" x="0.0" y="190" width="414" height="623"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MonthName" textLabel="FG2-C0-AwK" style="IBUITableViewCellStyleDefault" id="Fxq-bw-0Wf">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fxq-bw-0Wf" id="wGb-Vc-VNg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="anq-uG-Mm9">
+                                    <size key="itemSize" width="300" height="200"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dateListCell" id="eRO-7F-26e" customClass="DateListCollectionViewCell" customModule="Pius_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FG2-C0-AwK">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cTj-A5-WrW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <prototypes>
+                                                        <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MonthName" textLabel="FG2-C0-AwK" style="IBUITableViewCellStyleDefault" id="Fxq-bw-0Wf">
+                                                            <rect key="frame" x="0.0" y="28" width="300" height="44"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fxq-bw-0Wf" id="wGb-Vc-VNg">
+                                                                <rect key="frame" x="0.0" y="0.0" width="300" height="43.5"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FG2-C0-AwK">
+                                                                        <rect key="frame" x="16" y="0.0" width="268" height="43.5"/>
+                                                                        <autoresizingMask key="autoresizingMask"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </tableViewCellContentView>
+                                                            <color key="backgroundColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </tableViewCell>
+                                                        <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateEntry" id="Fpf-5E-zb5">
+                                                            <rect key="frame" x="0.0" y="72" width="300" height="44"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fpf-5E-zb5" id="EJC-s1-GXw">
+                                                                <rect key="frame" x="0.0" y="0.0" width="300" height="43.5"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tI1-1I-Ydu">
+                                                                        <rect key="frame" x="20" y="11" width="50" height="22"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="50" id="q9F-J1-Irb"/>
+                                                                        </constraints>
+                                                                        <attributedString key="attributedText">
+                                                                            <fragment content="Day">
+                                                                                <attributes>
+                                                                                    <font key="NSFont" metaFont="system" size="15"/>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpQ-9a-BPF">
+                                                                        <rect key="frame" x="72" y="11" width="322" height="22"/>
+                                                                        <attributedString key="attributedText">
+                                                                            <fragment content="Event">
+                                                                                <attributes>
+                                                                                    <font key="NSFont" metaFont="system" size="15"/>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="tI1-1I-Ydu" firstAttribute="leading" secondItem="EJC-s1-GXw" secondAttribute="leadingMargin" id="4Dv-s6-9nd"/>
+                                                                    <constraint firstItem="tI1-1I-Ydu" firstAttribute="top" secondItem="EJC-s1-GXw" secondAttribute="topMargin" id="LFH-uw-Sec"/>
+                                                                    <constraint firstItem="tI1-1I-Ydu" firstAttribute="bottom" secondItem="EJC-s1-GXw" secondAttribute="bottomMargin" id="Qzi-Yh-5br"/>
+                                                                    <constraint firstItem="lpQ-9a-BPF" firstAttribute="leading" secondItem="tI1-1I-Ydu" secondAttribute="trailing" constant="2" id="cqj-Qp-5hc"/>
+                                                                    <constraint firstItem="lpQ-9a-BPF" firstAttribute="top" secondItem="EJC-s1-GXw" secondAttribute="topMargin" id="oIa-EL-deD"/>
+                                                                    <constraint firstItem="lpQ-9a-BPF" firstAttribute="bottom" secondItem="EJC-s1-GXw" secondAttribute="bottomMargin" id="u5s-PT-3nf"/>
+                                                                    <constraint firstAttribute="trailingMargin" secondItem="lpQ-9a-BPF" secondAttribute="trailing" id="uBy-D6-IB9"/>
+                                                                </constraints>
+                                                            </tableViewCellContentView>
+                                                        </tableViewCell>
+                                                    </prototypes>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="eRO-7F-26e" id="0Lz-Wa-c8P"/>
+                                                        <outlet property="delegate" destination="eRO-7F-26e" id="SlQ-xO-MVO"/>
+                                                    </connections>
+                                                </tableView>
                                             </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateEntry" id="Fpf-5E-zb5">
-                                        <rect key="frame" x="0.0" y="72" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fpf-5E-zb5" id="EJC-s1-GXw">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tI1-1I-Ydu">
-                                                    <rect key="frame" x="20" y="11" width="50" height="22"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="q9F-J1-Irb"/>
-                                                    </constraints>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="Day">
-                                                            <attributes>
-                                                                <font key="NSFont" metaFont="system" size="15"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpQ-9a-BPF">
-                                                    <rect key="frame" x="72" y="11" width="322" height="22"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="Event">
-                                                            <attributes>
-                                                                <font key="NSFont" metaFont="system" size="15"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="tI1-1I-Ydu" firstAttribute="leading" secondItem="EJC-s1-GXw" secondAttribute="leadingMargin" id="4Dv-s6-9nd"/>
-                                                <constraint firstItem="tI1-1I-Ydu" firstAttribute="top" secondItem="EJC-s1-GXw" secondAttribute="topMargin" id="LFH-uw-Sec"/>
-                                                <constraint firstItem="tI1-1I-Ydu" firstAttribute="bottom" secondItem="EJC-s1-GXw" secondAttribute="bottomMargin" id="Qzi-Yh-5br"/>
-                                                <constraint firstItem="lpQ-9a-BPF" firstAttribute="leading" secondItem="tI1-1I-Ydu" secondAttribute="trailing" constant="2" id="cqj-Qp-5hc"/>
-                                                <constraint firstItem="lpQ-9a-BPF" firstAttribute="top" secondItem="EJC-s1-GXw" secondAttribute="topMargin" id="oIa-EL-deD"/>
-                                                <constraint firstItem="lpQ-9a-BPF" firstAttribute="bottom" secondItem="EJC-s1-GXw" secondAttribute="bottomMargin" id="u5s-PT-3nf"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="lpQ-9a-BPF" secondAttribute="trailing" id="uBy-D6-IB9"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="cTj-A5-WrW" secondAttribute="bottom" id="6zy-ZD-1gZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="cTj-A5-WrW" secondAttribute="trailing" id="SZc-oj-50q"/>
+                                            <constraint firstItem="cTj-A5-WrW" firstAttribute="leading" secondItem="eRO-7F-26e" secondAttribute="leading" id="mdS-xo-LEu"/>
+                                            <constraint firstItem="cTj-A5-WrW" firstAttribute="top" secondItem="eRO-7F-26e" secondAttribute="top" id="ujh-l8-bs0"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="dateListTableView" destination="cTj-A5-WrW" id="P7K-2v-n7g"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="02y-vG-Sgs" id="lpz-lK-tpW"/>
-                                    <outlet property="delegate" destination="02y-vG-Sgs" id="aeJ-SQ-Z32"/>
+                                    <outlet property="dataSource" destination="02y-vG-Sgs" id="dy0-if-6VE"/>
+                                    <outlet property="delegate" destination="02y-vG-Sgs" id="XA3-NY-qcD"/>
                                 </connections>
-                            </tableView>
+                            </collectionView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ydO-Mg-jAz">
                                 <rect key="frame" x="197" y="438" width="20" height="20"/>
                             </activityIndicatorView>
@@ -1273,15 +1308,15 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="cTj-A5-WrW" firstAttribute="top" secondItem="x2K-e9-D9q" secondAttribute="bottom" id="2me-Qd-b0M"/>
+                            <constraint firstItem="HMa-eX-uGG" firstAttribute="leading" secondItem="82f-TF-sxj" secondAttribute="leading" id="5hH-Ae-gNH"/>
+                            <constraint firstItem="82f-TF-sxj" firstAttribute="bottom" secondItem="HMa-eX-uGG" secondAttribute="bottom" id="7Kh-c3-0UY"/>
                             <constraint firstItem="ydO-Mg-jAz" firstAttribute="centerX" secondItem="a0r-uR-fel" secondAttribute="centerX" id="Efb-Vk-Kfq"/>
-                            <constraint firstItem="cTj-A5-WrW" firstAttribute="trailing" secondItem="82f-TF-sxj" secondAttribute="trailing" id="FaQ-LT-rVH"/>
                             <constraint firstItem="x2K-e9-D9q" firstAttribute="trailing" secondItem="82f-TF-sxj" secondAttribute="trailing" id="RTV-F9-hgu"/>
-                            <constraint firstItem="cTj-A5-WrW" firstAttribute="leading" secondItem="82f-TF-sxj" secondAttribute="leading" id="ZvM-ZB-wuN"/>
+                            <constraint firstItem="HMa-eX-uGG" firstAttribute="top" secondItem="x2K-e9-D9q" secondAttribute="bottom" id="X0f-c2-obz"/>
                             <constraint firstItem="x2K-e9-D9q" firstAttribute="leading" secondItem="82f-TF-sxj" secondAttribute="leading" id="e31-er-kwV"/>
                             <constraint firstItem="ydO-Mg-jAz" firstAttribute="centerY" secondItem="a0r-uR-fel" secondAttribute="centerY" id="nHi-36-2O5"/>
                             <constraint firstItem="x2K-e9-D9q" firstAttribute="top" secondItem="82f-TF-sxj" secondAttribute="top" id="ncB-hh-Eue"/>
-                            <constraint firstItem="82f-TF-sxj" firstAttribute="bottom" secondItem="cTj-A5-WrW" secondAttribute="bottom" id="qdV-QF-XKH"/>
+                            <constraint firstItem="82f-TF-sxj" firstAttribute="trailing" secondItem="HMa-eX-uGG" secondAttribute="trailing" id="wm9-B4-iyP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="82f-TF-sxj"/>
                     </view>
@@ -1294,16 +1329,15 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="ydO-Mg-jAz" id="DV8-Fe-9Ja"/>
-                        <outlet property="dateListViewLeadingConstraint" destination="ZvM-ZB-wuN" id="lVu-CP-3Rw"/>
-                        <outlet property="dateListViewTrailingConstraint" destination="FaQ-LT-rVH" id="abC-Ls-HKS"/>
-                        <outlet property="dayListTableView" destination="cTj-A5-WrW" id="ZAl-SY-YC3"/>
+                        <outlet property="dateListCollectionView" destination="HMa-eX-uGG" id="N3I-ob-v4o"/>
+                        <outlet property="dateListCollectionViewFlowLayout" destination="anq-uG-Mm9" id="eE9-YR-Q1A"/>
                         <outlet property="monthListCollectionView" destination="x2K-e9-D9q" id="x6m-XO-lUN"/>
                         <outlet property="monthListCollectionViewHeightConstraint" destination="LEM-6Q-QCL" id="ICf-Rg-baK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KEQ-oH-egH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3316" y="2999"/>
+            <point key="canvasLocation" x="-3317.3913043478265" y="2998.6607142857142"/>
         </scene>
         <!--Einstellungen-->
         <scene sceneID="1ts-LO-NSL">

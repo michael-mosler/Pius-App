@@ -8,21 +8,16 @@
 
 import UIKit
 
-class DateListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate {
-
+class DateListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, CalendarDataDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var monthListCollectionView: UICollectionView!
     @IBOutlet weak var monthListCollectionViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var dayListTableView: UITableView!
+    @IBOutlet weak var dateListCollectionView: UICollectionView!
+    @IBOutlet weak var dateListCollectionViewFlowLayout: UICollectionViewFlowLayout!
     
-    @IBOutlet weak var dateListViewLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var dateListViewTrailingConstraint: NSLayoutConstraint!
-    
-    private var panGestureRecognizer: UIPanGestureRecognizer!
-
     // The active text field, is either webSizeUserNameField or webSitePasswordField.
-    private var inSearchMode: Bool = false;
+    private var inSearchMode_: Bool = false;
     private var activeTextField: UITextField?;
     
     private let piusGatewayReachability = ReachabilityChecker(forName: AppDefaults.baseUrl);
@@ -41,19 +36,18 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
 
     private var selectedButton: MonthButton? = nil;
     private var hadSelectedButton: MonthButton? = nil;
-    private var selectedMonth: Int? = nil;
+    private var selectedMonth_: Int? = nil;
     private var hadSelectedMonth: Int? = nil;
     
     private var calendar: Calendar = Calendar();
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        
-        panGestureRecognizer = UIPanGestureRecognizer();
-        panGestureRecognizer.addTarget(self, action:#selector(DateListViewController.panAction(_:)));
-        view.addGestureRecognizer(panGestureRecognizer)
-
-        getVCalendarFromWeb();
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        dateListCollectionViewFlowLayout.estimatedItemSize = CGSize(width: dateListCollectionView.frame.width - 10, height: dateListCollectionView.frame.height);
+        getCalendarFromWeb();
     }
 
     // Move search bar into view when search button has been tapped in navigation
@@ -67,20 +61,24 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         monthListCollectionViewHeightConstraint.constant = 0;
     }
     
+    override func viewWillLayoutSubviews() {
+        print("Will layout");
+    }
+    
     // Search button action: Store current state and activate search mode.
     @IBAction func searchButtonAction(_ sender: Any) {
-        if !inSearchMode {
-            savedScrollPosition = dayListTableView.contentOffset;
+        if !inSearchMode_ {
+            //savedScrollPosition = dayListTableView.contentOffset;
             
-            hadSelectedMonth = selectedMonth;
-            selectedMonth = nil;
+            hadSelectedMonth = selectedMonth_;
+            selectedMonth_ = nil;
             
             hadSelectedButton = selectedButton;
             selectedButton?.isSelected = false;
             selectedButton = nil;
             
-            inSearchMode = true;
-            dayListTableView.reloadData();
+            inSearchMode_ = true;
+            dateListCollectionView.reloadData();
 
             showSearchBar();
         }
@@ -91,17 +89,17 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     // to calendar items.
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         calendar.filter = searchText;
-        dayListTableView.reloadData();
+        dateListCollectionView.reloadData();
     }
 
     // Cancel search. This restores the view from before search was started.
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        inSearchMode = false;
+        inSearchMode_ = false;
         calendar.filter = nil;
         navigationItem.searchController = nil;
         monthListCollectionViewHeightConstraint.constant = 50;
 
-        selectedMonth = hadSelectedMonth;
+        selectedMonth_ = hadSelectedMonth;
         hadSelectedMonth = nil;
         
         selectedButton = hadSelectedButton;
@@ -112,7 +110,8 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         UIView.animate(withDuration: 0, animations: {
             self.changeSelectedMonthButton(to: self.selectedButton!);
         }, completion: { (finished: Bool) in
-            self.dayListTableView.setContentOffset(self.savedScrollPosition!, animated: false); });
+            // self.dayListTableView.setContentOffset(self.savedScrollPosition!, animated: false);
+        });
     }
 
     // Whenever a new month is selected this action load the corresponding dates into
@@ -122,7 +121,9 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
             UIView.animate(withDuration: 0, animations: {
                 self.changeSelectedMonthButton(to: button);
             }, completion: { (finished: Bool) in
-                self.dayListTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: false); });
+                let indexPath = IndexPath(item: button.forMonth!, section: 0);
+                self.dateListCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true);
+            });
         }
     }
 
@@ -147,11 +148,11 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     // Loads calendar from middleware.
-    private func getVCalendarFromWeb() {
+    private func getCalendarFromWeb() {
         let calendarLoader = CalendarLoader();
         
         // Clear all data and load calendar.
-        selectedMonth = nil;
+        selectedMonth_ = nil;
         calendarLoader.load(self.doUpdate);
     }
     
@@ -162,14 +163,14 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
             selectedButton!.isSelected = false;
         }
         
-        selectedMonth = button.forMonth;
+        selectedMonth_ = button.forMonth;
         button.isSelected = true;
         button.parentCell?.isSelected = true;
         selectedButton = button;
         
-        dayListTableView.reloadData();
+        dateListCollectionView.reloadData();
         
-        if let _selectedMonth = selectedMonth {
+        if let _selectedMonth = selectedMonth_ {
             let indexPath = IndexPath(item: _selectedMonth, section: 0);
             monthListCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true);
         }
@@ -182,89 +183,54 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
 
     // Return a new month selection collection view cell.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = monthListCollectionView.dequeueReusableCell(withReuseIdentifier: "monthNameCell", for: indexPath);
-        let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton;
-        button.makeMonthButton(for: indexPath.row, with: calendar.monthItems[indexPath.row].name, parentCell: cell);
-        
-        // Selected button has become visible or initial start of view. In latter case
-        // activate default month indexed by 0.
-        if (indexPath.row == selectedMonth
-            || selectedMonth == nil && hadSelectedMonth == nil && indexPath.row == 0) {
-            changeSelectedMonthButton(to: button);
-        }
-        
-        return cell;
-    }
-    
-    // Returns the number of rows in the current day list table view. Actual calculation depends
-    // on the mode the view is in.
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard selectedMonth != nil || inSearchMode else { return 0 };
-        return (inSearchMode) ? calendar.allItems.count : calendar.monthItems[selectedMonth!].dayItems.count;
-    }
-    
-    // Return a cell of day list table view.
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell;
-        if (inSearchMode) {
-            let _item = calendar.allItems[indexPath.row];
-            if let item = _item as? String {
-                cell = dayListTableView.dequeueReusableCell(withIdentifier: "MonthName")!;
-                cell.textLabel?.text = item;
-            } else {
-                let item = _item as! DayItem;
-                cell = dayListTableView.dequeueReusableCell(withIdentifier: "DateEntry")!;
-                let dayLabel = cell.viewWithTag(tags.tableView.dayLabelInTableViewCell.rawValue) as! UILabel;
-                let eventLabel = cell.viewWithTag(tags.tableView.eventLabelInTablewViewCell.rawValue) as! UILabel;
-                
-                dayLabel.attributedText = NSMutableAttributedString(string: item.detailItems[0], attributes: [NSAttributedString.Key.foregroundColor: Config.colorPiusBlue]);
-                
-                // Event text; hightlight when range is given.
-                let text = NSMutableAttributedString(string: item.detailItems[1]);
-                if let _hightlight = item.highlight {
-                    text.addAttribute(NSAttributedString.Key.backgroundColor, value: Config.colorYellow, range: _hightlight);
-                }
-                eventLabel.attributedText = text;
-            }
-        } else {
-            cell = dayListTableView.dequeueReusableCell(withIdentifier: "DateEntry")!;
-            let dayLabel = cell.viewWithTag(tags.tableView.dayLabelInTableViewCell.rawValue) as! UILabel;
-            let eventLabel = cell.viewWithTag(tags.tableView.eventLabelInTablewViewCell.rawValue) as! UILabel;
-
-            let detailItems = calendar.monthItems[selectedMonth!].dayItems[indexPath.row].detailItems;
+        if (collectionView == monthListCollectionView) {
+            let cell = monthListCollectionView.dequeueReusableCell(withReuseIdentifier: "monthNameCell", for: indexPath);
+            let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton;
+            button.makeMonthButton(for: indexPath.row, with: calendar.monthItems[indexPath.row].name, parentCell: cell);
             
-            dayLabel.attributedText = NSMutableAttributedString(string: detailItems[0], attributes: [NSAttributedString.Key.foregroundColor: Config.colorPiusBlue]);
-            eventLabel.attributedText = NSMutableAttributedString(string: detailItems[1]);
+            // Selected button has become visible or initial start of view. In latter case
+            // activate default month indexed by 0.
+            if (indexPath.row == selectedMonth_
+                || selectedMonth_ == nil && hadSelectedMonth == nil && indexPath.row == 0) {
+                changeSelectedMonthButton(to: button);
+            }
+            
+            return cell;
         }
-        
+
+        // Date list cell; we should have a class for this collection view.
+        let cell = dateListCollectionView.dequeueReusableCell(withReuseIdentifier: "dateListCell", for: indexPath) as! DateListCollectionViewCell;
+        cell.customInit(delegate: self, forMonth: indexPath.row);
         return cell;
     }
     
-    // Execute swipe action.
-    private func doSwipe(direction: Int) {
-        if let selectedCell = selectedButton?.parentCell {
-            if var indexPath = monthListCollectionView.indexPath(for: selectedCell) {
-                indexPath.item += direction;
-                
-                if let cell = monthListCollectionView.cellForItem(at: indexPath) {
-                    self.dateListViewLeadingConstraint.constant -= CGFloat(Config.screenWidth);
-                    self.dateListViewTrailingConstraint.constant -= CGFloat(Config.screenWidth);
-                    let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton;
-                    UIView.animate(withDuration: 0.5, animations: {
-                        self.changeSelectedMonthButton(to: button);
-                        self.view.layoutIfNeeded();
-                    }, completion: { (finished: Bool) in
-                        print("Finished");
-                        self.dateListViewLeadingConstraint.constant = 0;
-                        self.dateListViewTrailingConstraint.constant = 0;
-                        self.view.layoutIfNeeded();
-                        self.dayListTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true); });
-                }
-            }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let itemIndex = (scrollView.contentOffset.x / CGFloat(Config.screenWidth)).rounded();
+        let indexPath = NSIndexPath(row: Int(itemIndex), section: 0);
+
+        if let cell = monthListCollectionView.cellForItem(at: indexPath as IndexPath) {
+            let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton;
+            UIView.animate(withDuration: 0.5, animations: {
+                self.changeSelectedMonthButton(to: button);
+            }, completion: { (finished: Bool) in
+                self.dateListCollectionView.reloadData();
+            });
         }
     }
 
-    @objc func panAction(_ sender: UIPanGestureRecognizer) {
-        print("Pan");
+    func allItems() -> [Any] {
+        return calendar.allItems;
+    }
+    
+    func monthItems() -> [MonthItem] {
+        return calendar.monthItems;
+    }
+    
+    func inSearchMode() -> Bool {
+        return inSearchMode_;
+    }
+    
+    func selectedMonth() -> Int? {
+        return selectedMonth_;
     }
 }
