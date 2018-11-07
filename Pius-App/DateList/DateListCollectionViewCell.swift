@@ -48,7 +48,7 @@ class DateListCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UIT
     // on the mode the view is in.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let delegate = calendarDataDelegate, let _forMonth = forMonth  else { return 0 };
-        return (delegate.inSearchMode()) ? delegate.allItems().count : delegate.monthItems()[_forMonth].dayItems.count;
+        return delegate.monthItems()[_forMonth].dayItems.count;
     }
 
     // Return a cell of day list table view.
@@ -56,36 +56,14 @@ class DateListCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UIT
         guard let delegate = calendarDataDelegate else { return UITableViewCell(); }
 
         var cell: UITableViewCell;
-        if (delegate.inSearchMode()) {
-            let _item = delegate.allItems()[indexPath.row];
-            if let item = _item as? String {
-                cell = dateListTableView.dequeueReusableCell(withIdentifier: "MonthName")!;
-                cell.textLabel?.text = item;
-            } else {
-                let item = _item as! DayItem;
-                cell = dateListTableView.dequeueReusableCell(withIdentifier: "DateEntry")!;
-                let dayLabel = cell.viewWithTag(tags.tableView.dayLabelInTableViewCell.rawValue) as! UILabel;
-                let eventLabel = cell.viewWithTag(tags.tableView.eventLabelInTablewViewCell.rawValue) as! UILabel;
-                
-                dayLabel.attributedText = NSMutableAttributedString(string: item.detailItems[0], attributes: [NSAttributedString.Key.foregroundColor: Config.colorPiusBlue]);
-                
-                // Event text; hightlight when range is given.
-                let text = NSMutableAttributedString(string: item.detailItems[1]);
-                if let _hightlight = item.highlight {
-                    text.addAttribute(NSAttributedString.Key.backgroundColor, value: Config.colorYellow, range: _hightlight);
-                }
-                eventLabel.attributedText = text;
-            }
-        } else {
-            cell = dateListTableView.dequeueReusableCell(withIdentifier: "DateEntry")!;
-            let dayLabel = cell.viewWithTag(tags.tableView.dayLabelInTableViewCell.rawValue) as! UILabel;
-            let eventLabel = cell.viewWithTag(tags.tableView.eventLabelInTablewViewCell.rawValue) as! UILabel;
-            
-            let detailItems = delegate.monthItems()[forMonth!].dayItems[indexPath.row].detailItems;
-            
-            dayLabel.attributedText = NSMutableAttributedString(string: detailItems[0], attributes: [NSAttributedString.Key.foregroundColor: Config.colorPiusBlue]);
-            eventLabel.attributedText = NSMutableAttributedString(string: detailItems[1]);
-        }
+        cell = dateListTableView.dequeueReusableCell(withIdentifier: "DateEntry")!;
+        let dayLabel = cell.viewWithTag(tags.tableView.dayLabelInTableViewCell.rawValue) as! UILabel;
+        let eventLabel = cell.viewWithTag(tags.tableView.eventLabelInTablewViewCell.rawValue) as! UILabel;
+        
+        let detailItems = delegate.monthItems()[forMonth!].dayItems[indexPath.row].detailItems;
+        
+        dayLabel.attributedText = NSMutableAttributedString(string: detailItems[0], attributes: [NSAttributedString.Key.foregroundColor: Config.colorPiusBlue]);
+        eventLabel.attributedText = NSMutableAttributedString(string: detailItems[1]);
         
         return cell;
     }

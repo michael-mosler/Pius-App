@@ -1048,13 +1048,13 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label 1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0op-S3-LQu">
-                                            <rect key="frame" x="20" y="13" width="164" height="18"/>
+                                            <rect key="frame" x="20" y="11" width="164" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label 2" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oP0-2l-NRe">
-                                            <rect key="frame" x="189" y="13" width="100" height="18"/>
+                                            <rect key="frame" x="189" y="11" width="100" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="NJ8-fj-ukN"/>
                                             </constraints>
@@ -1063,7 +1063,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label 3" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhJ-Gk-7RT">
-                                            <rect key="frame" x="294" y="13" width="100" height="18"/>
+                                            <rect key="frame" x="294" y="11" width="100" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="oql-IF-8O6"/>
                                             </constraints>
@@ -1197,7 +1197,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HMa-eX-uGG">
                                 <rect key="frame" x="0.0" y="190" width="414" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="anq-uG-Mm9">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="anq-uG-Mm9" customClass="DateListCollectionViewFlowLayout" customModule="Pius_App" customModuleProvider="target">
                                     <size key="itemSize" width="300" height="200"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -1215,33 +1215,15 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MonthName" textLabel="FG2-C0-AwK" style="IBUITableViewCellStyleDefault" id="Fxq-bw-0Wf">
-                                                            <rect key="frame" x="0.0" y="28" width="300" height="44"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fxq-bw-0Wf" id="wGb-Vc-VNg">
-                                                                <rect key="frame" x="0.0" y="0.0" width="300" height="43.5"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FG2-C0-AwK">
-                                                                        <rect key="frame" x="16" y="0.0" width="268" height="43.5"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                            </tableViewCellContentView>
-                                                            <color key="backgroundColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </tableViewCell>
                                                         <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateEntry" id="Fpf-5E-zb5">
-                                                            <rect key="frame" x="0.0" y="72" width="300" height="44"/>
+                                                            <rect key="frame" x="0.0" y="28" width="300" height="44"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fpf-5E-zb5" id="EJC-s1-GXw">
                                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="43.5"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tI1-1I-Ydu">
-                                                                        <rect key="frame" x="20" y="11" width="50" height="22"/>
+                                                                        <rect key="frame" x="16" y="11" width="50" height="22"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="50" id="q9F-J1-Irb"/>
                                                                         </constraints>
@@ -1255,7 +1237,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpQ-9a-BPF">
-                                                                        <rect key="frame" x="72" y="11" width="322" height="22"/>
+                                                                        <rect key="frame" x="68" y="11" width="216" height="22"/>
                                                                         <attributedString key="attributedText">
                                                                             <fragment content="Event">
                                                                                 <attributes>
@@ -1304,15 +1286,91 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ydO-Mg-jAz">
                                 <rect key="frame" x="197" y="438" width="20" height="20"/>
                             </activityIndicatorView>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ug9-6v-TAo">
+                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MonthName" textLabel="fJm-WS-h38" style="IBUITableViewCellStyleDefault" id="aIc-4j-Src">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aIc-4j-Src" id="PUO-NI-XmO">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fJm-WS-h38">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateEntry" id="G7n-JJ-BVx">
+                                        <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="G7n-JJ-BVx" id="KCk-cV-QrJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3U-V8-7aZ">
+                                                    <rect key="frame" x="8" y="8" width="50" height="27.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="goq-ln-1Ui"/>
+                                                    </constraints>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Day">
+                                                            <attributes>
+                                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHP-uK-Hdd">
+                                                    <rect key="frame" x="60" y="8" width="232" height="27.5"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Event">
+                                                            <attributes>
+                                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qHP-uK-Hdd" firstAttribute="bottom" secondItem="KCk-cV-QrJ" secondAttribute="bottomMargin" id="9Z5-0f-zVA"/>
+                                                <constraint firstItem="T3U-V8-7aZ" firstAttribute="leading" secondItem="KCk-cV-QrJ" secondAttribute="leadingMargin" id="9bZ-k0-vKG"/>
+                                                <constraint firstItem="T3U-V8-7aZ" firstAttribute="top" secondItem="KCk-cV-QrJ" secondAttribute="topMargin" id="COE-R1-du3"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="qHP-uK-Hdd" secondAttribute="trailing" id="Je1-Rd-84V"/>
+                                                <constraint firstItem="qHP-uK-Hdd" firstAttribute="leading" secondItem="T3U-V8-7aZ" secondAttribute="trailing" constant="2" id="OwT-BG-8hy"/>
+                                                <constraint firstItem="qHP-uK-Hdd" firstAttribute="top" secondItem="KCk-cV-QrJ" secondAttribute="topMargin" id="UhV-d4-nto"/>
+                                                <constraint firstItem="T3U-V8-7aZ" firstAttribute="bottom" secondItem="KCk-cV-QrJ" secondAttribute="bottomMargin" id="j7X-Zz-ydc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="02y-vG-Sgs" id="0P9-t2-eN6"/>
+                                    <outlet property="delegate" destination="02y-vG-Sgs" id="IXw-g2-sX7"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="82f-TF-sxj" firstAttribute="bottom" secondItem="ug9-6v-TAo" secondAttribute="bottom" id="2PJ-nO-uHe"/>
                             <constraint firstItem="HMa-eX-uGG" firstAttribute="leading" secondItem="82f-TF-sxj" secondAttribute="leading" id="5hH-Ae-gNH"/>
                             <constraint firstItem="82f-TF-sxj" firstAttribute="bottom" secondItem="HMa-eX-uGG" secondAttribute="bottom" id="7Kh-c3-0UY"/>
+                            <constraint firstItem="ug9-6v-TAo" firstAttribute="leading" secondItem="82f-TF-sxj" secondAttribute="leading" id="CA9-Vh-vkm"/>
                             <constraint firstItem="ydO-Mg-jAz" firstAttribute="centerX" secondItem="a0r-uR-fel" secondAttribute="centerX" id="Efb-Vk-Kfq"/>
+                            <constraint firstItem="82f-TF-sxj" firstAttribute="trailing" secondItem="ug9-6v-TAo" secondAttribute="trailing" id="GDc-ii-CXl"/>
                             <constraint firstItem="x2K-e9-D9q" firstAttribute="trailing" secondItem="82f-TF-sxj" secondAttribute="trailing" id="RTV-F9-hgu"/>
                             <constraint firstItem="HMa-eX-uGG" firstAttribute="top" secondItem="x2K-e9-D9q" secondAttribute="bottom" id="X0f-c2-obz"/>
+                            <constraint firstItem="ug9-6v-TAo" firstAttribute="top" secondItem="82f-TF-sxj" secondAttribute="top" id="XOu-Wb-SWr"/>
                             <constraint firstItem="x2K-e9-D9q" firstAttribute="leading" secondItem="82f-TF-sxj" secondAttribute="leading" id="e31-er-kwV"/>
                             <constraint firstItem="ydO-Mg-jAz" firstAttribute="centerY" secondItem="a0r-uR-fel" secondAttribute="centerY" id="nHi-36-2O5"/>
                             <constraint firstItem="x2K-e9-D9q" firstAttribute="top" secondItem="82f-TF-sxj" secondAttribute="top" id="ncB-hh-Eue"/>
@@ -1331,8 +1389,8 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                         <outlet property="activityIndicator" destination="ydO-Mg-jAz" id="DV8-Fe-9Ja"/>
                         <outlet property="dateListCollectionView" destination="HMa-eX-uGG" id="N3I-ob-v4o"/>
                         <outlet property="dateListCollectionViewFlowLayout" destination="anq-uG-Mm9" id="eE9-YR-Q1A"/>
+                        <outlet property="dateListSearchTableView" destination="ug9-6v-TAo" id="kAO-Qc-koZ"/>
                         <outlet property="monthListCollectionView" destination="x2K-e9-D9q" id="x6m-XO-lUN"/>
-                        <outlet property="monthListCollectionViewHeightConstraint" destination="LEM-6Q-QCL" id="ICf-Rg-baK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KEQ-oH-egH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1348,7 +1406,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="trz-rZ-pce">
-                                <rect key="frame" x="0.0" y="44" width="414" height="802"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="758"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="359" translatesAutoresizingMaskIntoConstraints="NO" id="7Aj-Cs-riU">
                                         <rect key="frame" x="0.0" y="8" width="414" height="54"/>
@@ -1558,7 +1616,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                 <color key="backgroundColor" red="0.9148673415184021" green="0.32807183265686035" blue="0.31289210915565491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xZX-Mg-Gbf">
-                                <rect key="frame" x="197" y="443" width="20" height="20"/>
+                                <rect key="frame" x="197" y="465" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.8759240284183909" green="0.8759240284183909" blue="0.8759240284183909" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1602,11 +1660,11 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQz-XP-YT5">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" red="0.87592402840000005" green="0.87592402840000005" blue="0.87592402840000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ze7-Ry-gtd">
-                                <rect key="frame" x="8" y="52" width="414" height="72"/>
+                                <rect key="frame" x="8" y="96" width="414" height="72"/>
                                 <color key="backgroundColor" red="0.87592402840000005" green="0.87592402840000005" blue="0.87592402840000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <attributedString key="attributedText">
                                     <fragment>
@@ -1620,7 +1678,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HBT-wz-Z4X">
-                                <rect key="frame" x="0.0" y="132" width="414" height="730"/>
+                                <rect key="frame" x="0.0" y="176" width="414" height="686"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="course" id="DSV-nl-sIi">

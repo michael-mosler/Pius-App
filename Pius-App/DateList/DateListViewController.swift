@@ -8,13 +8,14 @@
 
 import UIKit
 
-class DateListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, CalendarDataDelegate {
+class DateListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, CalendarDataDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var monthListCollectionView: UICollectionView!
-    @IBOutlet weak var monthListCollectionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var dateListCollectionView: UICollectionView!
     @IBOutlet weak var dateListCollectionViewFlowLayout: UICollectionViewFlowLayout!
+    
+    @IBOutlet weak var dateListSearchTableView: UITableView!
     
     // The active text field, is either webSizeUserNameField or webSitePasswordField.
     private var inSearchMode_: Bool = false;
@@ -41,10 +42,6 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     private var calendar: Calendar = Calendar();
     
-    override func viewDidLoad() {
-        super.viewDidLoad();
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         dateListCollectionViewFlowLayout.estimatedItemSize = CGSize(width: dateListCollectionView.frame.width - 10, height: dateListCollectionView.frame.height);
         getCalendarFromWeb();
@@ -58,27 +55,20 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         search.searchBar.delegate = self;
         navigationItem.searchController = search;
         navigationItem.hidesSearchBarWhenScrolling = false;
-        monthListCollectionViewHeightConstraint.constant = 0;
-    }
-    
-    override func viewWillLayoutSubviews() {
-        print("Will layout");
     }
     
     // Search button action: Store current state and activate search mode.
     @IBAction func searchButtonAction(_ sender: Any) {
         if !inSearchMode_ {
-            //savedScrollPosition = dayListTableView.contentOffset;
-            
             hadSelectedMonth = selectedMonth_;
             selectedMonth_ = nil;
-            
             hadSelectedButton = selectedButton;
             selectedButton?.isSelected = false;
             selectedButton = nil;
-            
             inSearchMode_ = true;
-            dateListCollectionView.reloadData();
+
+            dateListSearchTableView.isHidden = false;
+            dateListSearchTableView.reloadData();
 
             showSearchBar();
         }
@@ -89,19 +79,19 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     // to calendar items.
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         calendar.filter = searchText;
-        dateListCollectionView.reloadData();
+        dateListSearchTableView.reloadData();
     }
 
     // Cancel search. This restores the view from before search was started.
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        dateListSearchTableView.isHidden = true;
+        dateListCollectionView.collectionViewLayout.invalidateLayout();
+        
         inSearchMode_ = false;
         calendar.filter = nil;
         navigationItem.searchController = nil;
-        monthListCollectionViewHeightConstraint.constant = 50;
-
         selectedMonth_ = hadSelectedMonth;
         hadSelectedMonth = nil;
-        
         selectedButton = hadSelectedButton;
         hadSelectedButton = nil;
         
@@ -109,8 +99,6 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         // in search mode.
         UIView.animate(withDuration: 0, animations: {
             self.changeSelectedMonthButton(to: self.selectedButton!);
-        }, completion: { (finished: Bool) in
-            // self.dayListTableView.setContentOffset(self.savedScrollPosition!, animated: false);
         });
     }
 
@@ -181,6 +169,14 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         return calendar.monthItems.count;
     }
 
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        if (collectionView == dateListCollectionView) {
+            return CGSize(width: collectionView.frame.size.width - 20, height: collectionView.frame.height);
+        }
+        
+        return CGSize(width: 90, height: 50);
+    }
+    
     // Return a new month selection collection view cell.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if (collectionView == monthListCollectionView) {
@@ -216,6 +212,38 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
                 self.dateListCollectionView.reloadData();
             });
         }
+    }
+
+    // Returns the number of rows in the current day list table view. Actual calculation depends
+    // on the mode the view is in.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.allItems().count;
+    }
+    
+    // Return a cell of day list table view.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell;
+        let _item = self.allItems()[indexPath.row];
+        if let item = _item as? String {
+            cell = dateListSearchTableView.dequeueReusableCell(withIdentifier: "MonthName")!;
+            cell.textLabel?.text = item;
+        } else {
+            let item = _item as! DayItem;
+            cell = dateListSearchTableView.dequeueReusableCell(withIdentifier: "DateEntry")!;
+            let dayLabel = cell.viewWithTag(tags.tableView.dayLabelInTableViewCell.rawValue) as! UILabel;
+            let eventLabel = cell.viewWithTag(tags.tableView.eventLabelInTablewViewCell.rawValue) as! UILabel;
+            
+            dayLabel.attributedText = NSMutableAttributedString(string: item.detailItems[0], attributes: [NSAttributedString.Key.foregroundColor: Config.colorPiusBlue]);
+            
+            // Event text; hightlight when range is given.
+            let text = NSMutableAttributedString(string: item.detailItems[1]);
+            if let _hightlight = item.highlight {
+                text.addAttribute(NSAttributedString.Key.backgroundColor, value: Config.colorYellow, range: _hightlight);
+            }
+            eventLabel.attributedText = text;
+        }
+        
+        return cell;
     }
 
     func allItems() -> [Any] {
