@@ -8,10 +8,11 @@
 
 import UIKit
 
-class DateListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, CalendarDataDelegate {
+class DateListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, CalendarDataDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var monthListCollectionView: UICollectionView!
+    @IBOutlet weak var monthListCollectionViewFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var dateListCollectionView: UICollectionView!
     @IBOutlet weak var dateListCollectionViewFlowLayout: UICollectionViewFlowLayout!
     
@@ -39,6 +40,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     private var hadSelectedButton: MonthButton? = nil;
     private var selectedMonth_: Int? = nil;
     private var hadSelectedMonth: Int? = nil;
+    private var scrollToIndexPath: NSIndexPath?;
     
     private var calendar: Calendar = Calendar();
     
@@ -128,8 +130,17 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
             }
         } else {
             self.calendar = calendar!;
+
             DispatchQueue.main.async {
                 self.monthListCollectionView.reloadData();
+                let indexPath = NSIndexPath(row: 0, section: 0);
+                
+                self.monthListCollectionView.scrollToItem(at: indexPath as IndexPath, at: .left, animated: false);
+                self.monthListCollectionView.layoutIfNeeded();
+
+                self.dateListCollectionView.scrollToItem(at: indexPath as IndexPath, at: .left, animated: false);
+                self.dateListCollectionView.layoutIfNeeded();
+
                 self.activityIndicator.stopAnimating();
             }
         }
@@ -168,6 +179,14 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return calendar.monthItems.count;
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if (collectionView == monthListCollectionView) {
+            return CGSize(width: monthListCollectionViewFlowLayout.itemSize.width, height: monthListCollectionViewFlowLayout.itemSize.height);
+        }
+        
+        return CGSize(width: collectionView.frame.width - 10, height: collectionView.frame.height);
+    }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if (collectionView == dateListCollectionView) {
@@ -201,16 +220,36 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let itemIndex = (scrollView.contentOffset.x / CGFloat(Config.screenWidth)).rounded();
-        let indexPath = NSIndexPath(row: Int(itemIndex), section: 0);
-
-        if let cell = monthListCollectionView.cellForItem(at: indexPath as IndexPath) {
-            let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton;
-            UIView.animate(withDuration: 0.5, animations: {
-                self.changeSelectedMonthButton(to: button);
-            }, completion: { (finished: Bool) in
-                self.dateListCollectionView.reloadData();
-            });
+        if (scrollView == dateListCollectionView) {
+            let itemIndex = (scrollView.contentOffset.x / CGFloat(Config.screenWidth)).rounded();
+            let indexPath = NSIndexPath(row: Int(itemIndex), section: 0);
+            
+            if let cell = monthListCollectionView.cellForItem(at: indexPath as IndexPath) {
+                let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton;
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.changeSelectedMonthButton(to: button);
+                }, completion: { (finished: Bool) in
+                    self.dateListCollectionView.reloadData();
+                });
+            } else {
+                scrollToIndexPath = indexPath;
+                monthListCollectionView.scrollToItem(at: indexPath as IndexPath, at: .centeredHorizontally, animated: true);
+                monthListCollectionView.layoutIfNeeded();
+            }
+        }
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        if (scrollView == monthListCollectionView && scrollToIndexPath != nil) {
+            if let cell = monthListCollectionView.cellForItem(at: scrollToIndexPath! as IndexPath) {
+                let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton;
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.changeSelectedMonthButton(to: button);
+                }, completion: { (finished: Bool) in
+                    self.dateListCollectionView.reloadData();
+                });
+            }
+            scrollToIndexPath = nil;
         }
     }
 
@@ -245,7 +284,12 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         return cell;
     }
+}
 
+/*
+ * Calendat Data protocol methods.
+ */
+extension DateListViewController {
     func allItems() -> [Any] {
         return calendar.allItems;
     }

@@ -33,17 +33,6 @@ class DateListCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UIT
         dateListTableView.reloadData();
     }
     
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let autoLayoutAttributes = super.preferredLayoutAttributesFitting(layoutAttributes)
-        
-        let targetSize = CGSize(width: layoutAttributes.frame.width, height: layoutAttributes.frame.height)
-        let autoLayoutSize = contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: UILayoutPriority.required, verticalFittingPriority: UILayoutPriority.required)
-        let autoLayoutFrame = CGRect(origin: autoLayoutAttributes.frame.origin, size: autoLayoutSize)
-        autoLayoutAttributes.frame = autoLayoutFrame
-
-        return autoLayoutAttributes
-    }
-
     // Returns the number of rows in the current day list table view. Actual calculation depends
     // on the mode the view is in.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

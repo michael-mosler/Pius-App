@@ -122,22 +122,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // Delegate for opening app from widget. Host part of URL tells delegate which view controller to open.
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         configureNavigationController();
-        let host = url.host;
-        guard host != nil else { return false };
+        guard let host = url.host else { return false };
         
         switch(host) {
         case "dashboard":
-            if let dashboardViewController = storyboard.instantiateViewController(withIdentifier: "Dashboard") as? DashboardViewController {
-                navigationController?.popToRootViewController(animated: false);
-                navigationController?.pushViewController(dashboardViewController, animated: false);
-            }
+            let tbc = window?.rootViewController as! UITabBarController;
+            let dashboard = tbc.viewControllers![2];
+            tbc.selectedViewController = dashboard;
             
         case "settings":
-            if let settingsViewController = self.storyboard.instantiateViewController(withIdentifier: "Einstellungen") as? EinstellungenViewController {
-                navigationController?.popToRootViewController(animated: false);
-                navigationController?.pushViewController(settingsViewController, animated: false);
-            }
-            
+            let tbc = window?.rootViewController as! UITabBarController;
+            let dashboard = tbc.viewControllers![4];
+            tbc.selectedViewController = dashboard;
+
         default:
             return false;
         }

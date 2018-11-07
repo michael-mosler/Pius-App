@@ -74,6 +74,8 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         
         // Clear all data.
         currentHeader = nil;
+        nextDate = "";
+        expandHeaderInfo = nil;
         vertretungsplanLoader.load(self.doUpdate);
     }
 
@@ -92,9 +94,11 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         
         // This dashboard is for this grade setting.
         grade = AppDefaults.gradeSetting;
-        title = grade;
         
-        getVertretungsplanFromWeb(forGrade: grade);
+        if (data.count == 0 || title != grade) {
+            title = grade;
+            getVertretungsplanFromWeb(forGrade: grade);
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -138,7 +142,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return (section < 2) ? 0 : UITableView.automaticDimension;
+        return (section < 2) ? 0 : 44;
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

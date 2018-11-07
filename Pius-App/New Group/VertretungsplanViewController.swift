@@ -65,11 +65,6 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
         getVertretungsplanFromWeb();
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated);
-        getVertretungsplanFromWeb();
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vertretungsplanDetailViewController = segue.destination as? VertretungsplanDetailViewController, let selected = self.selected {
             vertretungsplanDetailViewController.gradeItem = data[selected.section - 2].gradeItems[selected.row];
@@ -105,7 +100,7 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
         switch(section) {
         case 0: return 0;
         case 1: return 0;
-        default: return UITableView.automaticDimension;
+        default: return 44;
         }
     }
     
