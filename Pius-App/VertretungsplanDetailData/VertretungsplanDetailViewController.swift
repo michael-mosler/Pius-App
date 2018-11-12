@@ -18,8 +18,6 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
     public var gradeItem: GradeItem?;
     public var date: String?;
     
-    private let piusGatewayReachability = ReachabilityChecker(forName: AppDefaults.baseUrl);
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,10 +26,6 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
 
         detailsTableView.delegate = self;
         detailsTableView.dataSource = self;
-        
-        if (!piusGatewayReachability.isNetworkReachable()) {
-            print("Offline");
-        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

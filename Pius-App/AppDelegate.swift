@@ -9,11 +9,12 @@
 import UIKit
 import UserNotifications
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
     var window: UIWindow?
     let storyboard = UIStoryboard(name: "Main", bundle: nil);
+    private let reachability = Reachability();
     
     var navigationController: UINavigationController? {
         get {
@@ -69,12 +70,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UITextField.appearance().tintColor = Config.colorPiusBlue;
         
+        /*
+         * ===============================================================
+         *                      Reachability Chahges
+         * ===============================================================
+         */
+        reachability?.whenReachable = { _ in
+            let tbc = self.window?.rootViewController as! UITabBarController;
+            let tb = tbc.tabBar;
+            tb.tintColor = Config.colorPiusBlue;
+        }
+        reachability?.whenUnreachable = { _ in
+            let tbc = self.window?.rootViewController as! UITabBarController;
+            let tb = tbc.tabBar;
+            tb.tintColor = Config.colorRed;
+        }
+
+        do {
+            try reachability?.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+
         // Current version.
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject;
         let version = nsObject as! String;
-
+        
         // If new version migrate whatever needs to be and set version.
-        if AppDefaults.version != version {
+        if Config.alwaysShowOnboarding || AppDefaults.version != version {
             // Make password accessible after first unlock.
             let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "PiusApp", accessGroup: "group.de.rmkrings.piusapp.widget");
             passwordItem.setKSecAttrAccessibleAfterFirstUnlock();
@@ -87,37 +110,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 AppDefaults.courseList = mappedCourseList;
             }
-
+            
             // Update version.
             AppDefaults.version = version;
+            
+            DispatchQueue.main.async {
+                self.window?.rootViewController?.performSegue(withIdentifier: "toOnboarding", sender: self);
+            }
         }
         
         registerForPushNotifications(forApplication: application);
-
+        
         return true
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
+    /*
+     * ===============================================================
+     * Activation by 3D Touch or Tap on Extension or Push Notification
+     * ===============================================================
+     */
 
     // Delegate for opening app from widget. Host part of URL tells delegate which view controller to open.
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -132,13 +143,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
         case "settings":
             let tbc = window?.rootViewController as! UITabBarController;
-            let dashboard = tbc.viewControllers![4];
-            tbc.selectedViewController = dashboard;
-
+            let settings = tbc.viewControllers![4];
+            tbc.selectedViewController = settings;
+            
         default:
             return false;
         }
- 
+        
         return true;
     }
     
@@ -196,6 +207,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             completionHandler(false);
         }
     }
+
+    /*
+     * ============================================================
+     *                 Push Notifications
+     * ============================================================
+     */
     
     // Callback which is called when device has been registered for remote notifications.
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -204,8 +221,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         let token = tokenParts.joined();
-        print("Device Token: \(token)");
-        
         Config.currentDeviceToken = token;
         let deviceTokenManager = DeviceTokenManager();
         deviceTokenManager.registerDeviceToken(token: token, subscribeFor: AppDefaults.gradeSetting, withCourseList: AppDefaults.courseList);

@@ -12,8 +12,6 @@ class CalendarLoader {
     private var url: URL?;
     
     private let baseUrl = "\(AppDefaults.baseUrl)/calendar";
-    private let piusGatewayReachability = ReachabilityChecker(forName: AppDefaults.baseUrl);
-    
     private let cache = Cache();
     private var cacheFileName: String { get { return "calendar.json"; } };
     private var digestFileName: String { get { return "calendar.md5"; } };
@@ -63,7 +61,8 @@ class CalendarLoader {
     // In case of an error update() will be called with nil-data. Boolean value indicates
     // is application currently is online or not.
     func load(_ update: @escaping (Calendar?, Bool) -> Void) {
-        let piusGatewayIsReachable = piusGatewayReachability.isNetworkReachable();
+        let reachability = Reachability();
+        let piusGatewayIsReachable = reachability?.connection != .none;
         let request = getURLRequest(piusGatewayIsReachable);
         
         // Create task to get data in background.

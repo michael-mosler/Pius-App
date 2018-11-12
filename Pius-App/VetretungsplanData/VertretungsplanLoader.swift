@@ -7,17 +7,12 @@
 //
 
 import Foundation
-import UIKit;
 
 class VertretungsplanLoader {
     private var matchEmptyCourse: NSRegularExpression?;
-    
     private var forGrade: String?;
     private var url: URL?;
-    
     private let baseUrl = "\(AppDefaults.baseUrl)/vertretungsplan";
-    private let piusGatewayReachability = ReachabilityChecker(forName: AppDefaults.baseUrl);
-
     private let cache = Cache();
     private var cacheFileName: String;
     private var digestFileName: String;
@@ -182,7 +177,8 @@ class VertretungsplanLoader {
     // In case of an error update() will be called with nil-data. Boolean value indicates
     // is application currently is online or not.
     func load(_ update: @escaping (Vertretungsplan?, Bool) -> Void) {
-        let piusGatewayIsReachable = piusGatewayReachability.isNetworkReachable();
+        let reachability = Reachability();
+        let piusGatewayIsReachable: Bool! = reachability!.connection != .none;
         let request = getURLRequest(piusGatewayIsReachable);
 
         // Create task to get data in background.

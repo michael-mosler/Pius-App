@@ -124,4 +124,10 @@ struct Config {
             return Int(UIScreen.main.bounds.width);
         }
     }
+    
+    static var alwaysShowOnboarding: Bool {
+        get {
+            return Bundle.main.infoDictionary?["ALWAYS_SHOW_ONBOARDING"] as! String == "true";
+        }
+    }
 }

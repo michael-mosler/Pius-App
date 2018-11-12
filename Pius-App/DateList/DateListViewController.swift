@@ -21,9 +21,6 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     // The active text field, is either webSizeUserNameField or webSitePasswordField.
     private var inSearchMode_: Bool = false;
     private var activeTextField: UITextField?;
-    
-    private let piusGatewayReachability = ReachabilityChecker(forName: AppDefaults.baseUrl);
-
     private var savedScrollPosition: CGPoint?;
     
     private struct tags {

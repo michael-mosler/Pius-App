@@ -32,9 +32,6 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     // The active text field, is either webSizeUserNameField or webSitePasswordField.
     private var activeTextField: UITextField?;
     
-    // Checks reachability of Pius Gateway
-    private let reachabilityChecker = ReachabilityChecker(forName: AppDefaults.baseUrl);
-
     private func setVersionLabel() {
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject;
         
@@ -310,7 +307,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         scrollView.addGestureRecognizer(tapGestureRecognizer);
         
         // Disable Login and Logout when offline.
-        let isOnline = reachabilityChecker.isNetworkReachable();
+        let reachability = Reachability();
+        let isOnline = reachability?.connection != .none;
         let isAuthenticated = AppDefaults.authenticated;
         
         webSiteUserNameField.isEnabled = isOnline && !isAuthenticated;
