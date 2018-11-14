@@ -62,7 +62,7 @@ class CalendarLoader {
     // is application currently is online or not.
     func load(_ update: @escaping (Calendar?, Bool) -> Void) {
         let reachability = Reachability();
-        let piusGatewayIsReachable = reachability?.connection != .none;
+        let piusGatewayIsReachable = reachability!.connection != .none;
         let request = getURLRequest(piusGatewayIsReachable);
         
         // Create task to get data in background.

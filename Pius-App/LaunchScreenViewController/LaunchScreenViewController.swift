@@ -10,7 +10,7 @@ import UIKit
 
 class LaunchScreenViewController: UITableViewController {
     @IBAction func startAppAction(_ sender: Any) {
-        self.performSegue(withIdentifier: "toRoot", sender: self);
+        dismiss(animated: true, completion: nil);
     }
 
     /*

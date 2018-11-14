@@ -28,6 +28,12 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         }
     }
 
+    private var canUseDashboard: Bool {
+        get {
+            return AppDefaults.authenticated && AppDefaults.hasGrade;
+        }
+    }
+
     private struct ExpandHeaderInfo {
         var header: ExpandableHeaderView
         var section: Int
@@ -39,6 +45,34 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
 
     // That many rows per unfolded item.
     private let rowsPerItem = 4;
+    
+    override func viewDidLoad() {
+        super.viewDidLoad();
+        refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged);
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+        
+        if !canUseDashboard {
+            tableView.reloadData();
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
+        
+        // This dashboard is for this grade setting.
+        grade = AppDefaults.gradeSetting;
+        
+        if (data.count == 0 || title != grade) {
+            title = grade;
+            
+            if canUseDashboard {
+                getVertretungsplanFromWeb(forGrade: grade);
+            }
+        }
+    }
     
     func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
@@ -80,38 +114,29 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     }
 
     @objc func refreshScrollView(_ sender: UIRefreshControl) {
+        guard canUseDashboard else {
+            sender.endRefreshing();
+            return;
+        }
+        
         getVertretungsplanFromWeb(forGrade: grade);
         sender.endRefreshing()
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad();
-        refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged);
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated);
-        
-        // This dashboard is for this grade setting.
-        grade = AppDefaults.gradeSetting;
-        
-        if (data.count == 0 || title != grade) {
-            title = grade;
-            getVertretungsplanFromWeb(forGrade: grade);
-        }
-    }
-
     override func numberOfSections(in tableView: UITableView) -> Int {
+        guard canUseDashboard else { return 1; }
         return (data.count == 0) ? 0 : data.count + 2;
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        guard (section >= 2) else { return 1; }
+        guard canUseDashboard && section >= 2 else { return 1; }
         return ((data[section - 2].gradeItems.count == 0)) ? 0 : rowsPerItem * data[section - 2].gradeItems[0].vertretungsplanItems.count;
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard canUseDashboard else { return tableView.frame.height - (tabBarController?.tabBar.frame.height)! - (navigationController?.navigationBar.frame.height)!;  }
+
         switch(indexPath.section) {
         case 0: return 128;
         case 1: return UITableView.automaticDimension;
@@ -168,6 +193,8 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard canUseDashboard else { return tableView.dequeueReusableCell(withIdentifier: "notLoggedIn")!; }
+
         switch(indexPath.section) {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "metaDataCell") as! MetaDataTableViewCell;

@@ -293,7 +293,7 @@ class VertretungsplanLoader {
     // Validate that given credentials are these that are stored in user settings.
     // If username and password are both nil values from user settings are validated
     // instead.
-    func validateLogin(forUser username: String? = nil, withPassword password: String? = nil, notfifyMeOn validationCallback: @escaping (Bool) -> Void) {
+    func validateLogin(forUser username: String? = nil, withPassword password: String? = nil, notfifyMeOn validationCallback: @escaping (Bool, Bool) -> Void) {
         let base64LoginString = getAndEncodeCredentials(username: username, password: password);
         
         let url = URL(string: baseUrl)!;
@@ -303,8 +303,8 @@ class VertretungsplanLoader {
 
         let task = URLSession.shared.dataTask(with: request) {
             (data, response, error) in
-            let ok = ((response as! HTTPURLResponse).statusCode == 200);
-            validationCallback(ok);
+            let ok = (error == nil && (response as! HTTPURLResponse).statusCode == 200);
+            validationCallback(ok, error != nil);
         }
 
         task.resume();

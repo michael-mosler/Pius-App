@@ -118,7 +118,7 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard AppDefaults.authenticated else { return UITableView.automaticDimension; }
+        guard AppDefaults.authenticated else { return tableView.frame.height - (tabBarController?.tabBar.frame.height)! - (navigationController?.navigationBar.frame.height)!;  }
         
         switch(indexPath.section) {
         case 0: return 128; // 85 (Cell height) + 42 (Page Control + Spacing) + 1

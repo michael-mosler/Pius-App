@@ -745,7 +745,6 @@ Cg
                     </tableView>
                     <connections>
                         <outlet property="startAppButton" destination="nvY-r5-8co" id="p8I-Fo-f5H"/>
-                        <segue destination="k2r-lY-dFZ" kind="show" identifier="toRoot" id="BkA-Uw-50z"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7cQ-IP-NGk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1214,6 +1213,125 @@ Cg
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="0.80144375560000003" blue="0.0046433899549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="notLoggedIn" rowHeight="239" id="kcB-5W-hUd">
+                                <rect key="frame" x="0.0" y="398" width="414" height="239"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kcB-5W-hUd" id="o1q-9h-wTm">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="238.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4R-eo-Q8O">
+                                            <rect key="frame" x="20" y="11" width="374" height="217"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="Melde Dich in den Einstellungen an">
+                                                    <attributes>
+                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <font key="NSFont" size="17" name="ArialMT"/>
+                                                        <font key="NSOriginalFont" size="17" name="ArialMT"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content=" und lege Deine Klasse/Jahrgangsstufe fest">
+                                                    <attributes>
+                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <font key="NSFont" size="17" name="ArialMT"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content=", um ">
+                                                    <attributes>
+                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <font key="NSFont" size="17" name="ArialMT"/>
+                                                        <font key="NSOriginalFont" size="17" name="ArialMT"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content="das">
+                                                    <attributes>
+                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <font key="NSFont" size="17" name="ArialMT"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content=" ">
+                                                    <attributes>
+                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <font key="NSFont" size="17" name="ArialMT"/>
+                                                        <font key="NSOriginalFont" size="17" name="ArialMT"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content="Dashboard">
+                                                    <attributes>
+                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <font key="NSFont" size="17" name="ArialMT"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content=" zu verwenden.">
+                                                    <attributes>
+                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <font key="NSFont" size="17" name="ArialMT"/>
+                                                        <font key="NSOriginalFont" size="17" name="ArialMT"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content"> Wenn Du in der Oberstufe bist, musst Du auch Deine Kursliste hinzufügen, um ein personalisiertes Dashboard zu erhalten.
+
+Hast Du alle Informationen angegeben, dann kannst Du das Widget verwenden und Push-Benachrichtigungen erhalten.</string>
+                                                    <attributes>
+                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <font key="NSFont" size="17" name="ArialMT"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content">
+
+Tippe unten auf </string>
+                                                    <attributes>
+                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <font key="NSFont" size="17" name="ArialMT"/>
+                                                        <font key="NSOriginalFont" size="17" name="ArialMT"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content="Einstellungen">
+                                                    <attributes>
+                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <font key="NSFont" size="17" name="Arial-BoldMT"/>
+                                                        <font key="NSOriginalFont" size="17" name="Arial-BoldMT"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content=", um mit der Konfiguration zu beginnen">
+                                                    <attributes>
+                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <font key="NSFont" size="17" name="ArialMT"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content=".">
+                                                    <attributes>
+                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <font key="NSFont" size="17" name="ArialMT"/>
+                                                        <font key="NSOriginalFont" size="17" name="ArialMT"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="M4R-eo-Q8O" firstAttribute="leading" secondItem="o1q-9h-wTm" secondAttribute="leadingMargin" id="MXM-l9-s7A"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="M4R-eo-Q8O" secondAttribute="trailing" id="clD-od-NPE"/>
+                                        <constraint firstItem="M4R-eo-Q8O" firstAttribute="top" secondItem="o1q-9h-wTm" secondAttribute="topMargin" id="gLA-Hg-Qoz"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="M4R-eo-Q8O" secondAttribute="bottom" id="xOD-7h-7ov"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="pyK-AN-dTj" id="VsJ-S1-fe8"/>
@@ -1229,7 +1347,7 @@ Cg
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ao0-Wd-UyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3317" y="2333"/>
+            <point key="canvasLocation" x="-3317.3913043478265" y="2332.3660714285711"/>
         </scene>
         <!--Kalender-->
         <scene sceneID="NZ4-Ff-b9n">
@@ -1762,7 +1880,8 @@ Cg
                                                 </fragment>
                                                 <fragment content="an">
                                                     <attributes>
-                                                        <font key="NSFont" size="17" name="Arial-BoldMT"/>
+                                                        <font key="NSFont" size="17" name="ArialMT"/>
+                                                        <font key="NSOriginalFont" size="17" name="ArialMT"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
                                                             <tabStops>
                                                                 <textTab alignment="left" location="28">
