@@ -28,6 +28,36 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
         }
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad();
+        refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged);
+        
+        if AppDefaults.authenticated {
+            getVertretungsplanFromWeb();
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+
+        if !AppDefaults.authenticated {
+            tableView.reloadData();
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vertretungsplanDetailViewController = segue.destination as? VertretungsplanDetailViewController, let selected = self.selected {
+            vertretungsplanDetailViewController.gradeItem = data[selected.section - 2].gradeItems[selected.row];
+            vertretungsplanDetailViewController.date = data[selected.section - 2].date;
+        }
+    }
+    
+    /*
+     * ===============================================================
+     *                            Refresh
+     * ===============================================================
+     */
+
     func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
             DispatchQueue.main.async {
@@ -55,24 +85,23 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
     }
 
     @objc func refreshScrollView(_ sender: UIRefreshControl) {
+        guard AppDefaults.authenticated else {
+            sender.endRefreshing();
+            return;
+        }
+
         getVertretungsplanFromWeb();
         sender.endRefreshing()
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad();
-        refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged);
-        getVertretungsplanFromWeb();
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vertretungsplanDetailViewController = segue.destination as? VertretungsplanDetailViewController, let selected = self.selected {
-            vertretungsplanDetailViewController.gradeItem = data[selected.section - 2].gradeItems[selected.row];
-            vertretungsplanDetailViewController.date = data[selected.section - 2].date;
-        }
-    }
+    /*
+     * ===============================================================
+     *                      Table View
+     * ===============================================================
+     */
     
     override func numberOfSections(in tableView: UITableView) -> Int {
+        guard AppDefaults.authenticated else { return 1; }
         return (data.count == 0) ? 0 : data.count + 2;
     }
     
@@ -83,12 +112,14 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
     
     // Returns number of rows in section. The first two sections are fix and have one row only
     // for all following sections the number of grade items defines the number of rows
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard AppDefaults.authenticated else { return 1; }
         return (section < 2) ? 1 : data[section - 2].gradeItems.count;
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard AppDefaults.authenticated else { return UITableView.automaticDimension; }
+        
         switch(indexPath.section) {
         case 0: return 128; // 85 (Cell height) + 42 (Page Control + Spacing) + 1
         case 1: return UITableView.automaticDimension;
@@ -123,6 +154,8 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard AppDefaults.authenticated else { return tableView.dequeueReusableCell(withIdentifier: "notLoggedIn")!; }
+        
         switch(indexPath.section) {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "metaDataCell") as! MetaDataTableViewCell;
