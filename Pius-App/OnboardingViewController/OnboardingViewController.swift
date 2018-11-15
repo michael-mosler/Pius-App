@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LaunchScreenViewController: UITableViewController {
+class OnboardingViewController: UITableViewController {
     @IBAction func startAppAction(_ sender: Any) {
         dismiss(animated: true, completion: nil);
     }
@@ -20,7 +20,7 @@ class LaunchScreenViewController: UITableViewController {
      */
     
     @IBOutlet weak var startAppButton: UIButton!
-    private let rowHeights: [CGFloat] = [90, 44, 100, 145, 100];
+    private let rowHeights: [CGFloat] = [110, 44, 100, 145, 100];
     private let offset: CGFloat = 32;
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

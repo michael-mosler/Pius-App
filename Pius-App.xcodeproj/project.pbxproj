@@ -21,7 +21,7 @@
 		4C300F392126BFEE00D6E129 /* Pius-App Notification-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4CFB122B210F887E00BC4B44 /* Pius-App Notification-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C5AA0132189DAA90040A455 /* VertretungsplanDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */; };
 		4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
-		4C5E0E7B20A8797D00DAE459 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7A20A8797D00DAE459 /* LaunchScreenViewController.swift */; };
+		4C5E0E7B20A8797D00DAE459 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7A20A8797D00DAE459 /* OnboardingViewController.swift */; };
 		4C7C22902043117800ACA17B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C228F2043117700ACA17B /* AppDelegate.swift */; };
 		4C7C22922043117800ACA17B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C22912043117800ACA17B /* ViewController.swift */; };
 		4C7C22952043117800ACA17B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C22932043117800ACA17B /* Main.storyboard */; };
@@ -119,7 +119,7 @@
 		4C1FDE62206D5FE6006092C9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanDetailsCell.swift; sourceTree = "<group>"; };
 		4C5E0E7520A498DA00DAE459 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
-		4C5E0E7A20A8797D00DAE459 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		4C5E0E7A20A8797D00DAE459 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		4C7C228C2043117700ACA17B /* Pius-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pius-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7C228F2043117700ACA17B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C7C22912043117800ACA17B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -257,12 +257,12 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
-		4C5E0E7720A872C200DAE459 /* LaunchScreenViewController */ = {
+		4C5E0E7720A872C200DAE459 /* OnboardingViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4C5E0E7A20A8797D00DAE459 /* LaunchScreenViewController.swift */,
+				4C5E0E7A20A8797D00DAE459 /* OnboardingViewController.swift */,
 			);
-			path = LaunchScreenViewController;
+			path = OnboardingViewController;
 			sourceTree = "<group>";
 		};
 		4C7C22832043117700ACA17B = {
@@ -296,7 +296,7 @@
 				4C7C22912043117800ACA17B /* ViewController.swift */,
 				4C7C228F2043117700ACA17B /* AppDelegate.swift */,
 				4CB2AF512198813C007E5D1F /* Reachability.swift */,
-				4C5E0E7720A872C200DAE459 /* LaunchScreenViewController */,
+				4C5E0E7720A872C200DAE459 /* OnboardingViewController */,
 				4C7E61A8209F8860000D1225 /* Vertretungsplan */,
 				4C1FDE5F206C2614006092C9 /* Dashboard */,
 				4CFBCDD8208FBB6800E9041D /* DateList */,
@@ -601,7 +601,7 @@
 				4C7C22902043117800ACA17B /* AppDelegate.swift in Sources */,
 				4CFB105B20D1926300432B1A /* MonthButton.swift in Sources */,
 				4C5AA0132189DAA90040A455 /* VertretungsplanDetailsCell.swift in Sources */,
-				4C5E0E7B20A8797D00DAE459 /* LaunchScreenViewController.swift in Sources */,
+				4C5E0E7B20A8797D00DAE459 /* OnboardingViewController.swift in Sources */,
 				4CFB105720D0490B00432B1A /* CalendarLoader.swift in Sources */,
 				4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */,
 				4CB97F17210A53940019973D /* DeviceTokenManager.swift in Sources */,
@@ -826,7 +826,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ALWAYS_SHOW_ONBOARDING = true;
+				ALWAYS_SHOW_ONBOARDING = false;
 				API_KEY = "heSXxSOvNcl8J4UB9$#TV9TUZ3zClbX$EyOQzKiqGWxRgonzSe";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Pius-App/Pius-App.entitlements";

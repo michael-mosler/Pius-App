@@ -12,7 +12,7 @@ class VertretungsplanLoader {
     private var matchEmptyCourse: NSRegularExpression?;
     private var forGrade: String?;
     private var url: URL?;
-    private let baseUrl = "\(AppDefaults.baseUrl)/vertretungsplan";
+    private let baseUrl = "\(AppDefaults.baseUrl)/v2/vertretungsplan";
     private let cache = Cache();
     private var cacheFileName: String;
     private var digestFileName: String;

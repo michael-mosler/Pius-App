@@ -21,6 +21,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
         
         // Enable refresh in WebKit View.
         let refreshControl = UIRefreshControl();
+        refreshControl.tintColor = UIColor.black;
         refreshControl.addTarget(self, action: #selector(refreshWebView(_:)), for: UIControl.Event.valueChanged);
         webView.scrollView.addSubview(refreshControl);
         

@@ -169,19 +169,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zW6-Ub-abp">
-                                        <rect key="frame" x="10" y="580.5" width="394" height="77"/>
+                                        <rect key="frame" x="10" y="580.5" width="394" height="214"/>
                                         <color key="tintColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="120" id="smo-0o-0L4"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="400" id="smo-0o-0L4"/>
                                         </constraints>
                                         <attributedString key="attributedText">
                                             <fragment>
                                                 <string key="content">© Felix Krings und Michael Mosler-Krings
-Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</string>
+Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos zur App. 
+Informationen zu unserer Datenschutzrichtlinie findest Du unter https://github.com/michael-mosler/Pius-App/wiki/Datenschutzrichtlinie.
+Wir verwenden Ashley Mills Reachability Paket (https://github.com/ashleymills/Reachability.swift).</string>
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                     <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
@@ -279,7 +281,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-3317" y="3661"/>
+            <point key="canvasLocation" x="-9533" y="-3311"/>
         </scene>
         <!--Kurse hinzufügen-->
         <scene sceneID="Lji-TA-ioc">
@@ -461,12 +463,12 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-2200" y="3661"/>
+            <point key="canvasLocation" x="-8414" y="-3311"/>
         </scene>
-        <!--Launch Screen View Controller-->
+        <!--Onboarding View Controller-->
         <scene sceneID="XJN-43-Axj">
             <objects>
-                <tableViewController id="xtL-4a-1C0" customClass="LaunchScreenViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="xtL-4a-1C0" customClass="OnboardingViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="y9w-8w-XVt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -474,15 +476,15 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                         <sections>
                             <tableViewSection id="zaA-kD-Pd2">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="90" id="P2b-Oa-piS">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="110" id="P2b-Oa-piS">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P2b-Oa-piS" id="sGH-1D-CSf">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRq-Ig-m8l">
-                                                    <rect key="frame" x="16" y="0.0" width="382" height="90"/>
+                                                    <rect key="frame" x="16" y="0.0" width="382" height="110"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Willkommen bei der Pius-App">
                                                             <attributes>
@@ -504,7 +506,7 @@ Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos.</stri
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="WeR-5W-bP8">
-                                        <rect key="frame" x="0.0" y="90" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="110" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WeR-5W-bP8" id="aKw-3S-HGr">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -536,7 +538,7 @@ Deine Vorteile mit Login:
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="I3N-Xe-eNc">
-                                        <rect key="frame" x="0.0" y="134" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="154" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I3N-Xe-eNc" id="RMe-dJ-H6r">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -592,7 +594,7 @@ Cg
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="146" id="1zQ-mh-hPP">
-                                        <rect key="frame" x="0.0" y="234" width="414" height="146"/>
+                                        <rect key="frame" x="0.0" y="254" width="414" height="146"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1zQ-mh-hPP" id="X7Y-3H-rnL">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="146"/>
@@ -648,7 +650,7 @@ Cg
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="oHA-qe-MUO">
-                                        <rect key="frame" x="0.0" y="380" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="400" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oHA-qe-MUO" id="Jzv-MJ-ubB">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -703,7 +705,7 @@ Cg
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="154" id="BPd-KX-vi0">
-                                        <rect key="frame" x="0.0" y="480" width="414" height="154"/>
+                                        <rect key="frame" x="0.0" y="500" width="414" height="154"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BPd-KX-vi0" id="j7C-3f-5bb">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="154"/>
@@ -749,7 +751,7 @@ Cg
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7cQ-IP-NGk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4226" y="277"/>
+            <point key="canvasLocation" x="-10441" y="-6695"/>
         </scene>
         <!--Heute-->
         <scene sceneID="lyW-DX-xE2">
@@ -790,7 +792,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pC1-Fp-zRZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3315.9420289855075" y="1025.8928571428571"/>
+            <point key="canvasLocation" x="-9530" y="-5946"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="fAt-OK-cWF">
@@ -813,7 +815,7 @@ Cg
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jqf-Dq-lxi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6478" y="2044"/>
+            <point key="canvasLocation" x="-12694" y="-4929"/>
         </scene>
         <!--Vertretungsplan Detail View Controller-->
         <scene sceneID="S5F-7G-3AU">
@@ -984,7 +986,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lka-Mw-E8R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2199" y="1671"/>
+            <point key="canvasLocation" x="-8414" y="-5302"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="HZb-EE-dg3">
@@ -1347,7 +1349,7 @@ Tippe unten auf </string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ao0-Wd-UyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3317.3913043478265" y="2332.3660714285711"/>
+            <point key="canvasLocation" x="-9533" y="-4641"/>
         </scene>
         <!--Kalender-->
         <scene sceneID="NZ4-Ff-b9n">
@@ -1609,7 +1611,7 @@ Tippe unten auf </string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KEQ-oH-egH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3317.3913043478265" y="2998.6607142857142"/>
+            <point key="canvasLocation" x="-9533" y="-3973"/>
         </scene>
         <!--Einstellungen-->
         <scene sceneID="WuK-yq-9rv">
@@ -1630,7 +1632,7 @@ Tippe unten auf </string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4U-ae-7u5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4205.7971014492759" y="3660.9375"/>
+            <point key="canvasLocation" x="-10420" y="-3311"/>
         </scene>
         <!--Kalender-->
         <scene sceneID="SLc-CC-f1W">
@@ -1651,7 +1653,7 @@ Tippe unten auf </string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qx2-dh-Mem" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4204.347826086957" y="2998.6607142857142"/>
+            <point key="canvasLocation" x="-10420" y="-3973"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="Eh4-k9-4y8">
@@ -1672,7 +1674,7 @@ Tippe unten auf </string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZ3-Kb-LXw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4204.347826086957" y="2333.7053571428569"/>
+            <point key="canvasLocation" x="-10420" y="-4639"/>
         </scene>
         <!--Vertretungsplan-->
         <scene sceneID="H6D-og-czR">
@@ -1693,7 +1695,7 @@ Tippe unten auf </string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sMh-Fm-oQ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4226.086956521739" y="1671.4285714285713"/>
+            <point key="canvasLocation" x="-10441" y="-5300"/>
         </scene>
         <!--Vertretungsplan-->
         <scene sceneID="62M-cT-jO9">
@@ -2090,7 +2092,7 @@ Tippe dazu unten auf </string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ite-7p-3Pv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3317.3913043478265" y="1670.7589285714284"/>
+            <point key="canvasLocation" x="-9533" y="-5302"/>
         </scene>
         <!--Heute-->
         <scene sceneID="Sqr-Jh-lTB">
@@ -2110,7 +2112,7 @@ Tippe dazu unten auf </string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hqO-HU-pV1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4226.086956521739" y="1025.8928571428571"/>
+            <point key="canvasLocation" x="-10441" y="-5946"/>
         </scene>
     </scenes>
     <resources>
