@@ -156,51 +156,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // Register for 3d touch actions.
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         configureNavigationController();
-
-        if (!AppDefaults.authenticated) {
-            let alert = UIAlertController(title: "Anmeldung", message: "Um den Vertretungsplan oder das Dashboard benutzen zu können, musst Du dich zuerst in den Einstellungen anmelden.", preferredStyle: UIAlertController.Style.alert);
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
-                (action: UIAlertAction!) in
-                if let settingsViewController = self.storyboard.instantiateViewController(withIdentifier: "Einstellungen") as? EinstellungenViewController {
-                    self.navigationController?.popToRootViewController(animated: false);
-                    self.navigationController?.pushViewController(settingsViewController, animated: false);
-                }
-            }));
-
-            self.window?.rootViewController?.present(alert, animated: true, completion: nil);
-            completionHandler(true);
-            return;
-        }
-
         switch(shortcutItem.type) {
         case "de.rmkrings.piusapp.vertretungsplan":
-            if let vertretungsplanViewController = storyboard.instantiateViewController(withIdentifier: "Vertretungsplan") as? VertretungsplanViewController {
-                navigationController?.popToRootViewController(animated: false);
-                navigationController?.pushViewController(vertretungsplanViewController, animated: false);
-            }
+            let tbc = window?.rootViewController as! UITabBarController;
+            let dashboard = tbc.viewControllers![1];
+            tbc.selectedViewController = dashboard;
             completionHandler(true);
+            return;
 
         case "de.rmkrings.piusapp.dashboard":
-            guard AppDefaults.hasGrade else {
-                let alert = UIAlertController(title: "Dashboard", message: "Um das Dashboard benutzen zu können, musst Du in den Einstellungen zuerst Deine Jahrgangsstufe festlegen.", preferredStyle: UIAlertController.Style.alert);
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
-                    (action: UIAlertAction!) in
-                    if let settingsViewController = self.storyboard.instantiateViewController(withIdentifier: "Einstellungen") as UIViewController? {
-                        self.navigationController?.popToRootViewController(animated: false);
-                        self.navigationController?.pushViewController(settingsViewController, animated: false);
-                    }
-                }));
-
-                self.window?.rootViewController?.present(alert, animated: true, completion: nil);
-                completionHandler(true);
-                return;
-            }
-
-            if let dashboardViewController = storyboard.instantiateViewController(withIdentifier: "Dashboard") as? DashboardViewController {
-                navigationController?.popToRootViewController(animated: false);
-                navigationController?.pushViewController(dashboardViewController, animated: false);
-            }
+            let tbc = window?.rootViewController as! UITabBarController;
+            let dashboard = tbc.viewControllers![2];
+            tbc.selectedViewController = dashboard;
             completionHandler(true);
+            return;
  
         default:
             print("Unknown quick action code \(shortcutItem.type) is being ignored.");

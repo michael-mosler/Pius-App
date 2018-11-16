@@ -55,7 +55,10 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         super.viewWillAppear(animated);
         
         if !canUseDashboard {
+            tableView.isUserInteractionEnabled = false;
             tableView.reloadData();
+        } else {
+            tableView.isUserInteractionEnabled = true;
         }
     }
     

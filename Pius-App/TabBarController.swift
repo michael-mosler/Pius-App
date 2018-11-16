@@ -14,7 +14,7 @@ protocol ChangeGradeDelegate {
 
 class TabBarController: UITabBarController, ChangeGradeDelegate {
     private func changeDashboardItemTitle(newTitle: String?) {
-        tabBar.items![2].title = newTitle;
+        tabBar.items![2].title = (newTitle != nil && newTitle != "") ? newTitle : "Dashboard";
     }
 
     override func viewDidLoad() {

@@ -251,7 +251,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             // Delete credential from from user settings and clear text of username
             // and password field.
             AppDefaults.username = "";
-            AppDefaults.password = "";
+            AppDefaults.password = nil;
             AppDefaults.authenticated = false;
             updateLoginButtonText(authenticated: false);
             

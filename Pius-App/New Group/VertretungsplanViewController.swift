@@ -41,7 +41,10 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
         super.viewWillAppear(animated);
 
         if !AppDefaults.authenticated {
+            tableView.isUserInteractionEnabled = false;
             tableView.reloadData();
+        } else {
+            tableView.isUserInteractionEnabled = true;
         }
     }
 
