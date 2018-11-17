@@ -8,34 +8,60 @@
 
 import UIKit
 
-class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
-    
+class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIScrollViewDelegate {
     @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var webSiteUserNameField: UITextField!
     @IBOutlet weak var webSitePasswordField: UITextField!
-    @IBOutlet weak var loginButtonOutlet: UIButton!
     @IBOutlet weak var myCoursesButton: UIButton!
     @IBOutlet weak var versionLabel: UILabel!
-    
+    @IBOutlet weak var ruler3: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    @IBAction func loginButton(_ sender: Any) {
-        dismissKeyboard(fromTextField: activeTextField)
-        saveCredentials();
-    }
     
     @IBOutlet weak var gradePickerView: UIPickerView!
     @IBOutlet weak var classPickerView: UIPickerView!
     
-    @IBOutlet weak var offlineLabel: UILabel!
-    @IBOutlet weak var offlineFooterView: UIView!
+    @IBOutlet weak var loginButtonOutlet: UIButton!
     
     // The active text field, is either webSizeUserNameField or webSitePasswordField.
     private var activeTextField: UITextField?;
+
+    @IBAction func loginButtonAction(_ sender: Any) {
+        dismissKeyboard(fromTextField: activeTextField)
+        saveCredentials();
+    }
     
-    // Checks reachability of Pius Gateway
-    private let reachabilityChecker = ReachabilityChecker(forName: AppDefaults.baseUrl);
+    override func viewDidLoad() {
+        super.viewDidLoad();
+        
+        changeGradeDelegate = tabBarController as! TabBarController;
+        
+        setVersionLabel();
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        webSitePasswordField.delegate = self;
+        webSiteUserNameField.delegate = self;
+        
+        scrollView.addGestureRecognizer(tapGestureRecognizer);
+        
+        // Disable Login and Logout when offline.
+        let isAuthenticated = AppDefaults.authenticated;
+        
+        webSiteUserNameField.isEnabled = !isAuthenticated;
+        webSitePasswordField.isEnabled = !isAuthenticated;
+        
+        if let classRow = AppDefaults.selectedClassRow {
+            classPickerView.selectRow(classRow, inComponent: 0, animated: false);
+        }
+        
+        if let gradeRow = AppDefaults.selectedGradeRow {
+            gradePickerView.selectRow(gradeRow, inComponent: 0, animated: false);
+            setElementStates(forSelectedGrade: gradeRow);
+        }
+        
+        showCredentials();
+    }
 
     private func setVersionLabel() {
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject;
@@ -47,6 +73,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         versionLabel.text = versionString;
     }
 
+    var changeGradeDelegate: ChangeGradeDelegate?;
+    
     // Checks if grade picker has selected an upper grade.
     private func isUpperGradeSelected(_ row: Int) -> Bool {
         return Config.upperGrades.index(of: Config.grades[row]) != nil
@@ -67,14 +95,19 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
 
     // Callback for credential check. When credentials have been checked successfully authState is set to true and
     // button text of Login button changes to "Logout".
-    func validationCallback(authenticated: Bool) {
+    func validationCallback(authenticated: Bool, hadError: Bool) {
         DispatchQueue.main.async {
             // Stop activity indicator but keep blur effect.
             self.activityIndicator.stopAnimating();
             self.loginButtonOutlet.isEnabled = true;
 
             // create the alert
-            let message = (authenticated) ? "Du bist nun angemeldet." : "Die Anmeldedaten sind ungültig.";
+            var message: String;
+            if hadError {
+                message = "Es ist ein Fehler aufgetreten. Bitte überprüfe Deine Internetverbindung und versuche es noch einmal."
+            } else {
+                message = (authenticated) ? "Du bist nun angemeldet." : "Die Anmeldedaten sind ungültig.";
+            }
             let alert = UIAlertController(title: "Anmeldung", message: message, preferredStyle: UIAlertController.Style.alert);
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil));
             self.present(alert, animated: true, completion: nil);
@@ -181,6 +214,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             }
         }
         
+        changeGradeDelegate?.setGrade(grade: AppDefaults.gradeSetting);
+
         // Update subscription when app has push notifications enabled.
         if let deviceToken = Config.currentDeviceToken {
             let deviceTokenManager = DeviceTokenManager();
@@ -216,7 +251,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             // Delete credential from from user settings and clear text of username
             // and password field.
             AppDefaults.username = "";
-            AppDefaults.password = "";
+            AppDefaults.password = nil;
             AppDefaults.authenticated = false;
             updateLoginButtonText(authenticated: false);
             
@@ -267,7 +302,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         return true;
     }
 
-    // Keyboard was shown, we need to resize out scrollview to make sure that keyboard is visible
+    // Keyboard was shown, we need to resize our scrollview to make sure that keyboard is visible
     // on any device.
     @objc func keyboardWasShown(notification: NSNotification) {
         guard activeTextField != nil else { return };
@@ -280,8 +315,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             var cgRect: CGRect = scrollView.frame;
             cgRect.size.height -= keyboardSize.height;
             
-            if (!cgRect.contains(activeTextField!.frame.origin)) {
-                scrollView.scrollRectToVisible(activeTextField!.frame, animated: true);
+            if (!cgRect.contains(loginButtonOutlet!.frame.origin)) {
+                scrollView.scrollRectToVisible(loginButtonOutlet!.frame, animated: true);
             }
         }
     }
@@ -292,50 +327,4 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         scrollView.contentInset = contentInsets;
         scrollView.scrollIndicatorInsets = contentInsets;
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad();
-        
-        setVersionLabel();
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        webSitePasswordField.delegate = self;
-        webSiteUserNameField.delegate = self;
-        
-        scrollView.addGestureRecognizer(tapGestureRecognizer);
-        
-        // Disable Login and Logout when offline.
-        let isOnline = reachabilityChecker.isNetworkReachable();
-        offlineLabel.isHidden = isOnline;
-        offlineFooterView.isHidden = isOnline;
-
-        let isAuthenticated = AppDefaults.authenticated;
-        
-        webSiteUserNameField.isEnabled = isOnline && !isAuthenticated;
-        webSitePasswordField.isEnabled = isOnline && !isAuthenticated;
-        loginButtonOutlet.isEnabled = isOnline;
-        
-        if let classRow = AppDefaults.selectedClassRow {
-            classPickerView.selectRow(classRow, inComponent: 0, animated: false);
-        }
-
-        if let gradeRow = AppDefaults.selectedGradeRow {
-            gradePickerView.selectRow(gradeRow, inComponent: 0, animated: false);
-            setElementStates(forSelectedGrade: gradeRow);
-        }
-        
-        showCredentials();
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated);
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }
-

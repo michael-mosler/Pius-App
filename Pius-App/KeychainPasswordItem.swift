@@ -88,22 +88,25 @@ struct KeychainPasswordItem {
         }
     }
 
-    func savePassword(_ password: String) throws {
-        // Encode the password into an Data object.
-        let encodedPassword = password.data(using: String.Encoding.utf8)!
-        
+    func savePassword(_ password: String?) throws {
         do {
             // Check for an existing item in the keychain.
             try _ = readPassword()
 
-            // Update the existing item with the new password.
-            var attributesToUpdate = [String : AnyObject]()
-            
-            attributesToUpdate[kSecValueData as String] = encodedPassword as AnyObject?
-            attributesToUpdate[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlock as AnyObject?;
-
             let query = KeychainPasswordItem.keychainQuery(withService: service, account: account, accessGroup: accessGroup)
-            let status = SecItemUpdate(query as CFDictionary, attributesToUpdate as CFDictionary)
+
+            // Encode the password into an Data object.
+            var status: OSStatus;
+            if (password != nil) {
+                var attributesToUpdate = [String : AnyObject]()
+                
+                let encodedPassword = password!.data(using: String.Encoding.utf8)!
+                attributesToUpdate[kSecValueData as String] = encodedPassword as AnyObject?
+                attributesToUpdate[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlock as AnyObject?;
+                status = SecItemUpdate(query as CFDictionary, attributesToUpdate as CFDictionary)
+            } else {
+                status = SecItemDelete(query as CFDictionary);
+            }
             
             // Throw an error if an unexpected status was returned.
             guard status == noErr else { throw KeychainError.unhandledError(status: status) }
@@ -113,6 +116,9 @@ struct KeychainPasswordItem {
                 No password was found in the keychain. Create a dictionary to save
                 as a new keychain item.
             */
+
+            // Encode the password into an Data object.
+            let encodedPassword = password!.data(using: String.Encoding.utf8)!
             var newItem = KeychainPasswordItem.keychainQuery(withService: service, account: account, accessGroup: accessGroup)
             newItem[kSecValueData as String] = encodedPassword as AnyObject?
             newItem[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlock as AnyObject?;

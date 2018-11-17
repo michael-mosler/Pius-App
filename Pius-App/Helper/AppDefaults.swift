@@ -116,7 +116,7 @@ struct AppDefaults {
                 // We need to deal with recovery here. Password will not be restored from backuo, thus there might
                 // situations where user is set but password is unset. Simply returning nil as password will crash
                 // app.
-                let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "PiusApp", accessGroup: KeychainConfiguration.accessGroup);
+                let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "PiusApp", accessGroup: "group.de.rmkrings.piusapp.widget");
                 
                 var webSitePassword_: String?;
                 try webSitePassword_ = passwordItem.readPassword();
@@ -148,9 +148,7 @@ struct AppDefaults {
         set(password) {
             do {
                 let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "PiusApp", accessGroup: "group.de.rmkrings.piusapp.widget");
-                if let password = password {
-                    try passwordItem.savePassword(password);
-                }
+                try passwordItem.savePassword(password);
             }
             catch {
                 print("Das Password konnte nicht gespeichert werden - \(error)");

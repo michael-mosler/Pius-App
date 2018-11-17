@@ -9,11 +9,12 @@
 import UIKit
 import UserNotifications
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
     var window: UIWindow?
     let storyboard = UIStoryboard(name: "Main", bundle: nil);
+    private let reachability = Reachability();
     
     var navigationController: UINavigationController? {
         get {
@@ -67,12 +68,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        UITextField.appearance().tintColor = Config.colorPiusBlue;
+        
+        /*
+         * ===============================================================
+         *                      Reachability Chahges
+         * ===============================================================
+         */
+        reachability?.whenReachable = { _ in
+            let tbc = self.window?.rootViewController as! UITabBarController;
+            let tb = tbc.tabBar;
+            tb.tintColor = Config.colorPiusBlue;
+        }
+        reachability?.whenUnreachable = { _ in
+            let tbc = self.window?.rootViewController as! UITabBarController;
+            let tb = tbc.tabBar;
+            tb.tintColor = Config.colorRed;
+        }
+
+        do {
+            try reachability?.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+
         // Current version.
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject;
         let version = nsObject as! String;
-
+        
         // If new version migrate whatever needs to be and set version.
-        if AppDefaults.version != version {
+        if Config.alwaysShowOnboarding || AppDefaults.version != version {
             // Make password accessible after first unlock.
             let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "PiusApp", accessGroup: "group.de.rmkrings.piusapp.widget");
             passwordItem.setKSecAttrAccessibleAfterFirstUnlock();
@@ -85,118 +110,78 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 AppDefaults.courseList = mappedCourseList;
             }
-
+            
             // Update version.
             AppDefaults.version = version;
+            
+            DispatchQueue.main.async {
+                self.window?.rootViewController?.performSegue(withIdentifier: "toOnboarding", sender: self);
+            }
         }
         
         registerForPushNotifications(forApplication: application);
-
+        
         return true
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
+    /*
+     * ===============================================================
+     * Activation by 3D Touch or Tap on Extension or Push Notification
+     * ===============================================================
+     */
 
     // Delegate for opening app from widget. Host part of URL tells delegate which view controller to open.
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         configureNavigationController();
-        let host = url.host;
-        guard host != nil else { return false };
+        guard let host = url.host else { return false };
         
         switch(host) {
         case "dashboard":
-            if let dashboardViewController = storyboard.instantiateViewController(withIdentifier: "Dashboard") as? DashboardViewController {
-                navigationController?.popToRootViewController(animated: false);
-                navigationController?.pushViewController(dashboardViewController, animated: false);
-            }
+            let tbc = window?.rootViewController as! UITabBarController;
+            let dashboard = tbc.viewControllers![2];
+            tbc.selectedViewController = dashboard;
             
         case "settings":
-            if let settingsViewController = self.storyboard.instantiateViewController(withIdentifier: "Einstellungen") as? EinstellungenViewController {
-                navigationController?.popToRootViewController(animated: false);
-                navigationController?.pushViewController(settingsViewController, animated: false);
-            }
+            let tbc = window?.rootViewController as! UITabBarController;
+            let settings = tbc.viewControllers![4];
+            tbc.selectedViewController = settings;
             
         default:
             return false;
         }
- 
+        
         return true;
     }
     
     // Register for 3d touch actions.
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         configureNavigationController();
-
-        if (!AppDefaults.authenticated) {
-            let alert = UIAlertController(title: "Anmeldung", message: "Um den Vertretungsplan oder das Dashboard benutzen zu können, musst Du dich zuerst in den Einstellungen anmelden.", preferredStyle: UIAlertController.Style.alert);
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
-                (action: UIAlertAction!) in
-                if let settingsViewController = self.storyboard.instantiateViewController(withIdentifier: "Einstellungen") as? EinstellungenViewController {
-                    self.navigationController?.popToRootViewController(animated: false);
-                    self.navigationController?.pushViewController(settingsViewController, animated: false);
-                }
-            }));
-
-            self.window?.rootViewController?.present(alert, animated: true, completion: nil);
-            completionHandler(true);
-            return;
-        }
-
         switch(shortcutItem.type) {
         case "de.rmkrings.piusapp.vertretungsplan":
-            if let vertretungsplanViewController = storyboard.instantiateViewController(withIdentifier: "Vertretungsplan") as? VertretungsplanViewController {
-                navigationController?.popToRootViewController(animated: false);
-                navigationController?.pushViewController(vertretungsplanViewController, animated: false);
-            }
+            let tbc = window?.rootViewController as! UITabBarController;
+            let dashboard = tbc.viewControllers![1];
+            tbc.selectedViewController = dashboard;
             completionHandler(true);
+            return;
 
         case "de.rmkrings.piusapp.dashboard":
-            guard AppDefaults.hasGrade else {
-                let alert = UIAlertController(title: "Dashboard", message: "Um das Dashboard benutzen zu können, musst Du in den Einstellungen zuerst Deine Jahrgangsstufe festlegen.", preferredStyle: UIAlertController.Style.alert);
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
-                    (action: UIAlertAction!) in
-                    if let settingsViewController = self.storyboard.instantiateViewController(withIdentifier: "Einstellungen") as UIViewController? {
-                        self.navigationController?.popToRootViewController(animated: false);
-                        self.navigationController?.pushViewController(settingsViewController, animated: false);
-                    }
-                }));
-
-                self.window?.rootViewController?.present(alert, animated: true, completion: nil);
-                completionHandler(true);
-                return;
-            }
-
-            if let dashboardViewController = storyboard.instantiateViewController(withIdentifier: "Dashboard") as? DashboardViewController {
-                navigationController?.popToRootViewController(animated: false);
-                navigationController?.pushViewController(dashboardViewController, animated: false);
-            }
+            let tbc = window?.rootViewController as! UITabBarController;
+            let dashboard = tbc.viewControllers![2];
+            tbc.selectedViewController = dashboard;
             completionHandler(true);
+            return;
  
         default:
             print("Unknown quick action code \(shortcutItem.type) is being ignored.");
             completionHandler(false);
         }
     }
+
+    /*
+     * ============================================================
+     *                 Push Notifications
+     * ============================================================
+     */
     
     // Callback which is called when device has been registered for remote notifications.
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -205,8 +190,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         let token = tokenParts.joined();
-        print("Device Token: \(token)");
-        
         Config.currentDeviceToken = token;
         let deviceTokenManager = DeviceTokenManager();
         deviceTokenManager.registerDeviceToken(token: token, subscribeFor: AppDefaults.gradeSetting, withCourseList: AppDefaults.courseList);
