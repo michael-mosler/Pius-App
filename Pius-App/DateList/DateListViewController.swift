@@ -54,6 +54,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         search.searchBar.delegate = self;
         navigationItem.searchController = search;
         navigationItem.hidesSearchBarWhenScrolling = false;
+        navigationItem.searchController?.isActive = true;
     }
     
     // Search button action: Store current state and activate search mode.
