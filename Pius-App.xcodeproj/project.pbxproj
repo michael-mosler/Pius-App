@@ -43,6 +43,7 @@
 		4CAB552C213C398200156A13 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE62206D5FE6006092C9 /* Config.swift */; };
 		4CB2AF522198813C007E5D1F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF512198813C007E5D1F /* Reachability.swift */; };
 		4CB2AF53219A15BF007E5D1F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF512198813C007E5D1F /* Reachability.swift */; };
+		4CB2AF5621A75595007E5D1F /* TodayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF5521A75595007E5D1F /* TodayTableViewController.swift */; };
 		4CB3EC7420DC0ECB00BBEAE0 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB3EC7320DC0ECB00BBEAE0 /* NotificationCenter.framework */; };
 		4CB3EC7720DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB3EC7620DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift */; };
 		4CB3EC7A20DC0ECB00BBEAE0 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CB3EC7820DC0ECB00BBEAE0 /* MainInterface.storyboard */; };
@@ -133,6 +134,7 @@
 		4C7E61A920A4389F000D1225 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4CA4907620DE4DDC00796457 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		4CB2AF512198813C007E5D1F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		4CB2AF5521A75595007E5D1F /* TodayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewController.swift; sourceTree = "<group>"; };
 		4CB3EC7220DC0ECA00BBEAE0 /* Pius-App-Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pius-App-Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CB3EC7320DC0ECB00BBEAE0 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		4CB3EC7620DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiusAppExtensionViewController.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 		4C7C228E2043117700ACA17B /* Pius-App */ = {
 			isa = PBXGroup;
 			children = (
+				4CB2AF5421A75563007E5D1F /* Today */,
 				4CB97F15210A535F0019973D /* PushService */,
 				4CB3EC8420DC10D700BBEAE0 /* Pius-App.entitlements */,
 				4C7C22912043117800ACA17B /* ViewController.swift */,
@@ -330,6 +333,14 @@
 			);
 			name = Vertretungsplan;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		4CB2AF5421A75563007E5D1F /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				4CB2AF5521A75595007E5D1F /* TodayTableViewController.swift */,
+			);
+			path = Today;
 			sourceTree = "<group>";
 		};
 		4CB3EC7520DC0ECB00BBEAE0 /* Pius-App-Extension */ = {
@@ -600,6 +611,7 @@
 				4CFB105920D04BA600432B1A /* Calendar.swift in Sources */,
 				4C7C22902043117800ACA17B /* AppDelegate.swift in Sources */,
 				4CFB105B20D1926300432B1A /* MonthButton.swift in Sources */,
+				4CB2AF5621A75595007E5D1F /* TodayTableViewController.swift in Sources */,
 				4C5AA0132189DAA90040A455 /* VertretungsplanDetailsCell.swift in Sources */,
 				4C5E0E7B20A8797D00DAE459 /* OnboardingViewController.swift in Sources */,
 				4CFB105720D0490B00432B1A /* CalendarLoader.swift in Sources */,

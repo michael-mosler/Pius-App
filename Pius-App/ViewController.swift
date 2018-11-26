@@ -17,8 +17,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
     var webViewLoaded: Bool = false;
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad();
         
+        let view = UIView();
+        view.backgroundColor = .white;
+        view.frame = UIApplication.shared.statusBarFrame;
+                
         // Enable refresh in WebKit View.
         let refreshControl = UIRefreshControl();
         refreshControl.tintColor = UIColor.black;
