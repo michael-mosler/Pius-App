@@ -1943,7 +1943,115 @@ Tippe dazu unten auf </string>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="34I-D9-KoN">
                                                     <rect key="frame" x="8" y="8" width="398" height="89"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="hs5-yY-U8k">
+                                                            <rect key="frame" x="0.0" y="0.0" width="398" height="89"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="10"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </imageView>
+                                                        <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhZ-sb-7w7">
+                                                            <rect key="frame" x="0.0" y="0.0" width="398" height="89"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CqR-kv-aaG">
+                                                                <rect key="frame" x="0.0" y="0.0" width="398" height="89"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                            <blurEffect style="extraLight"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="10"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </visualEffectView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJv-xL-Qff">
+                                                            <rect key="frame" x="8" y="0.0" width="382" height="29"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="29" id="6RV-7C-K06"/>
+                                                            </constraints>
+                                                            <attributedString key="attributedText">
+                                                                <fragment content="Aktuelle News">
+                                                                    <attributes>
+                                                                        <font key="NSFont" size="24" name=".AppleSystemUIFont"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="cT7-Mi-M1Q" customClass="NewsTableView" customModule="Pius_App" customModuleProvider="target">
+                                                            <rect key="frame" x="8" y="33" width="382" height="48"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <prototypes>
+                                                                <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="newsItem" rowHeight="44" id="3dF-mx-axo" customClass="NewsTableViewCell" customModule="Pius_App" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="1" width="382" height="44"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3dF-mx-axo" id="DYr-8d-JeG">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="43.5"/>
+                                                                        <autoresizingMask key="autoresizingMask"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gey-vx-dqQ">
+                                                                                <rect key="frame" x="0.0" y="8" width="310" height="27.5"/>
+                                                                                <attributedString key="attributedText">
+                                                                                    <fragment content="News Text">
+                                                                                        <attributes>
+                                                                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                                            <font key="NSFont" size="13" name=".SFNSText"/>
+                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                        </attributes>
+                                                                                    </fragment>
+                                                                                </attributedString>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="js0-rz-4wb">
+                                                                                <rect key="frame" x="318" y="-10.5" width="64" height="64.5"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="64" id="8z7-Yb-8gD"/>
+                                                                                    <constraint firstAttribute="height" constant="64" id="uT7-dp-ZCz"/>
+                                                                                </constraints>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                        <integer key="value" value="5"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </imageView>
+                                                                        </subviews>
+                                                                        <constraints>
+                                                                            <constraint firstItem="Gey-vx-dqQ" firstAttribute="top" secondItem="DYr-8d-JeG" secondAttribute="topMargin" id="4Ra-nY-ftu"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="js0-rz-4wb" secondAttribute="trailing" id="Iws-Ay-nyH"/>
+                                                                            <constraint firstItem="js0-rz-4wb" firstAttribute="centerY" secondItem="DYr-8d-JeG" secondAttribute="centerY" id="P4d-DN-gfR"/>
+                                                                            <constraint firstItem="js0-rz-4wb" firstAttribute="leading" secondItem="Gey-vx-dqQ" secondAttribute="trailing" constant="8" id="Yi6-CE-trE"/>
+                                                                            <constraint firstItem="Gey-vx-dqQ" firstAttribute="leading" secondItem="DYr-8d-JeG" secondAttribute="leading" id="qAz-GL-0qg"/>
+                                                                            <constraint firstAttribute="bottomMargin" secondItem="Gey-vx-dqQ" secondAttribute="bottom" id="xTd-Qp-0W3"/>
+                                                                        </constraints>
+                                                                    </tableViewCellContentView>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <connections>
+                                                                        <outlet property="newsItemImageView" destination="js0-rz-4wb" id="lBu-tg-ui5"/>
+                                                                        <outlet property="newsItemTextLabel" destination="Gey-vx-dqQ" id="zFh-aw-V32"/>
+                                                                    </connections>
+                                                                </tableViewCell>
+                                                            </prototypes>
+                                                        </tableView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="hs5-yY-U8k" firstAttribute="width" secondItem="34I-D9-KoN" secondAttribute="width" id="8ZK-2k-tTm"/>
+                                                        <constraint firstItem="hs5-yY-U8k" firstAttribute="height" secondItem="34I-D9-KoN" secondAttribute="height" id="FrB-Fi-LaH"/>
+                                                        <constraint firstItem="lhZ-sb-7w7" firstAttribute="height" secondItem="34I-D9-KoN" secondAttribute="height" id="GTW-mk-bux"/>
+                                                        <constraint firstAttribute="trailing" secondItem="cT7-Mi-M1Q" secondAttribute="trailing" constant="8" id="GgQ-v6-Opi"/>
+                                                        <constraint firstItem="lhZ-sb-7w7" firstAttribute="leading" secondItem="34I-D9-KoN" secondAttribute="leading" id="HFf-9E-sq2"/>
+                                                        <constraint firstItem="hs5-yY-U8k" firstAttribute="top" secondItem="34I-D9-KoN" secondAttribute="top" id="MJu-Xb-0SF"/>
+                                                        <constraint firstAttribute="trailing" secondItem="QJv-xL-Qff" secondAttribute="trailing" constant="8" id="afE-EW-IwY"/>
+                                                        <constraint firstItem="lhZ-sb-7w7" firstAttribute="top" secondItem="34I-D9-KoN" secondAttribute="top" id="bzq-vf-XsM"/>
+                                                        <constraint firstItem="lhZ-sb-7w7" firstAttribute="width" secondItem="34I-D9-KoN" secondAttribute="width" id="gDa-S6-Hlj"/>
+                                                        <constraint firstAttribute="bottom" secondItem="cT7-Mi-M1Q" secondAttribute="bottom" constant="8" id="kov-OI-Sqz"/>
+                                                        <constraint firstItem="hs5-yY-U8k" firstAttribute="leading" secondItem="34I-D9-KoN" secondAttribute="leading" id="lBs-WF-vCD"/>
+                                                        <constraint firstItem="QJv-xL-Qff" firstAttribute="top" secondItem="34I-D9-KoN" secondAttribute="top" id="mV6-CI-I6c"/>
+                                                        <constraint firstItem="cT7-Mi-M1Q" firstAttribute="leading" secondItem="34I-D9-KoN" secondAttribute="leading" constant="8" id="s4g-1t-rxS"/>
+                                                        <constraint firstItem="QJv-xL-Qff" firstAttribute="leading" secondItem="34I-D9-KoN" secondAttribute="leading" constant="8" id="x7D-6H-QfT"/>
+                                                        <constraint firstItem="cT7-Mi-M1Q" firstAttribute="top" secondItem="QJv-xL-Qff" secondAttribute="bottom" constant="4" id="xfb-sh-bEw"/>
+                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="10"/>
@@ -1989,7 +2097,9 @@ Tippe dazu unten auf </string>
                     <navigationItem key="navigationItem" id="8Uw-VP-151"/>
                     <connections>
                         <outlet property="headerLabel" destination="ITJ-AC-VYG" id="8pG-EI-PVo"/>
-                        <outlet property="newsView" destination="34I-D9-KoN" id="iq4-rf-SLA"/>
+                        <outlet property="newViewHeaderLabel" destination="QJv-xL-Qff" id="5Io-r6-kUf"/>
+                        <outlet property="newsTableView" destination="cT7-Mi-M1Q" id="2sG-fX-CpR"/>
+                        <outlet property="newsView" destination="34I-D9-KoN" id="10g-vB-xGt"/>
                         <outlet property="tablewView" destination="Dfr-om-off" id="zsn-Sf-pp0"/>
                     </connections>
                 </tableViewController>
@@ -2023,6 +2133,7 @@ Tippe dazu unten auf </string>
         <image name="bluelist" width="30" height="30"/>
         <image name="bluestar" width="30" height="30"/>
         <image name="calendar" width="30" height="30"/>
+        <image name="gradient" width="64" height="64"/>
         <image name="list" width="30" height="30"/>
         <image name="settings" width="30" height="30"/>
         <image name="star" width="30" height="30"/>

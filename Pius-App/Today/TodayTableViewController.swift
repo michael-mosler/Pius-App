@@ -11,7 +11,9 @@ import UIKit
 class TodayTableViewController: UITableViewController {
     @IBOutlet var tablewView: UITableView!
     @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var newViewHeaderLabel: UILabel!
     @IBOutlet weak var newsView: UIView!
+    @IBOutlet weak var newsTableView: NewsTableView!
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -24,11 +26,17 @@ class TodayTableViewController: UITableViewController {
         view.frame = UIApplication.shared.statusBarFrame;
         navigationController!.view.addSubview(view);
         
-        headerCellContent();
+        // Set header content
+        setHeaderCellContent();
         
-        newsView.layer.borderColor = UIColor.black.cgColor;
+        newViewHeaderLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold);
+        
+        // Get content for calendar.
+        newsTableView.loadData(sender: tableView);
+        
+        newsView.layer.borderColor = UIColor.lightGray.cgColor;
         newsView.layer.borderWidth = 1;
-        newsView.layer.shadowColor = UIColor.black.cgColor;
+        newsView.layer.shadowColor = UIColor.lightGray.cgColor;
         newsView.layer.shadowOffset = CGSize(width: 1, height: 3);
         newsView.layer.shadowOpacity = 0.7;
         newsView.layer.shadowRadius = 4;
@@ -40,8 +48,8 @@ class TodayTableViewController: UITableViewController {
      * ====================================================
      */
 
-    private func headerCellContent() {
-        let defaultSystemFont = UIFont.systemFont(ofSize: 11);
+    private func setHeaderCellContent() {
+        let defaultSystemFont = UIFont.systemFont(ofSize: 14);
         //let largeTitleFont = UIFont.preferredFont(forTextStyle: .largeTitle);
         let largeTitleFont = UIFont.systemFont(ofSize: 36, weight: .bold);
         let dateFormatter = DateFormatter();
@@ -70,6 +78,15 @@ class TodayTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0;
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch(indexPath.row) {
+        case 0: return 105;
+        case 1: return (newsTableView.contentSize.height > 0) ? newsTableView.contentSize.height + 29 + 4 + 8 + 8: 500;
+        default: return 0;
+        }
+    }
+
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

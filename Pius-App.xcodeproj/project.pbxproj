@@ -44,6 +44,9 @@
 		4CB2AF522198813C007E5D1F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF512198813C007E5D1F /* Reachability.swift */; };
 		4CB2AF53219A15BF007E5D1F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF512198813C007E5D1F /* Reachability.swift */; };
 		4CB2AF5621A75595007E5D1F /* TodayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF5521A75595007E5D1F /* TodayTableViewController.swift */; };
+		4CB2AF5821ADBF62007E5D1F /* NewsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF5721ADBF62007E5D1F /* NewsTableView.swift */; };
+		4CB2AF5A21ADBFAC007E5D1F /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF5921ADBFAC007E5D1F /* NewsTableViewCell.swift */; };
+		4CB2AF5C21ADC498007E5D1F /* NewsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF5B21ADC498007E5D1F /* NewsLoader.swift */; };
 		4CB3EC7420DC0ECB00BBEAE0 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB3EC7320DC0ECB00BBEAE0 /* NotificationCenter.framework */; };
 		4CB3EC7720DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB3EC7620DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift */; };
 		4CB3EC7A20DC0ECB00BBEAE0 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CB3EC7820DC0ECB00BBEAE0 /* MainInterface.storyboard */; };
@@ -135,6 +138,9 @@
 		4CA4907620DE4DDC00796457 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		4CB2AF512198813C007E5D1F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		4CB2AF5521A75595007E5D1F /* TodayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewController.swift; sourceTree = "<group>"; };
+		4CB2AF5721ADBF62007E5D1F /* NewsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableView.swift; sourceTree = "<group>"; };
+		4CB2AF5921ADBFAC007E5D1F /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		4CB2AF5B21ADC498007E5D1F /* NewsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLoader.swift; sourceTree = "<group>"; };
 		4CB3EC7220DC0ECA00BBEAE0 /* Pius-App-Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pius-App-Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CB3EC7320DC0ECB00BBEAE0 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		4CB3EC7620DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiusAppExtensionViewController.swift; sourceTree = "<group>"; };
@@ -339,6 +345,9 @@
 			isa = PBXGroup;
 			children = (
 				4CB2AF5521A75595007E5D1F /* TodayTableViewController.swift */,
+				4CB2AF5721ADBF62007E5D1F /* NewsTableView.swift */,
+				4CB2AF5921ADBFAC007E5D1F /* NewsTableViewCell.swift */,
+				4CB2AF5B21ADC498007E5D1F /* NewsLoader.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -596,6 +605,7 @@
 				4C1FDE54205C5072006092C9 /* VertretungsplanDetailViewController.swift in Sources */,
 				4CFBCDD7208925B100E9041D /* MyCoursesViewController.swift in Sources */,
 				4CC332D12180DF580055E3F5 /* MetaDataCollectionViewCell.swift in Sources */,
+				4CB2AF5A21ADBFAC007E5D1F /* NewsTableViewCell.swift in Sources */,
 				4CC332CF2180DAB10055E3F5 /* MetaDataTableViewCell.swift in Sources */,
 				4C1FDE61206C2644006092C9 /* DashboardViewController.swift in Sources */,
 				4C1FDE63206D5FE6006092C9 /* Config.swift in Sources */,
@@ -607,11 +617,13 @@
 				4C1FDE4E205567C8006092C9 /* Vertretungsplan.swift in Sources */,
 				4CF02EAF218B559400647078 /* TabBarController.swift in Sources */,
 				4C1FDE5C20603DF1006092C9 /* DetailsCellTableViewCell.swift in Sources */,
+				4CB2AF5821ADBF62007E5D1F /* NewsTableView.swift in Sources */,
 				4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */,
 				4CFB105920D04BA600432B1A /* Calendar.swift in Sources */,
 				4C7C22902043117800ACA17B /* AppDelegate.swift in Sources */,
 				4CFB105B20D1926300432B1A /* MonthButton.swift in Sources */,
 				4CB2AF5621A75595007E5D1F /* TodayTableViewController.swift in Sources */,
+				4CB2AF5C21ADC498007E5D1F /* NewsLoader.swift in Sources */,
 				4C5AA0132189DAA90040A455 /* VertretungsplanDetailsCell.swift in Sources */,
 				4C5E0E7B20A8797D00DAE459 /* OnboardingViewController.swift in Sources */,
 				4CFB105720D0490B00432B1A /* CalendarLoader.swift in Sources */,
