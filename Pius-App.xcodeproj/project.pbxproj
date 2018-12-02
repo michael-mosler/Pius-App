@@ -47,6 +47,7 @@
 		4CB2AF5821ADBF62007E5D1F /* NewsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF5721ADBF62007E5D1F /* NewsTableView.swift */; };
 		4CB2AF5A21ADBFAC007E5D1F /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF5921ADBFAC007E5D1F /* NewsTableViewCell.swift */; };
 		4CB2AF5C21ADC498007E5D1F /* NewsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF5B21ADC498007E5D1F /* NewsLoader.swift */; };
+		4CB2AF5E21B302E6007E5D1F /* NewsArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF5D21B302E6007E5D1F /* NewsArticleViewController.swift */; };
 		4CB3EC7420DC0ECB00BBEAE0 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB3EC7320DC0ECB00BBEAE0 /* NotificationCenter.framework */; };
 		4CB3EC7720DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB3EC7620DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift */; };
 		4CB3EC7A20DC0ECB00BBEAE0 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CB3EC7820DC0ECB00BBEAE0 /* MainInterface.storyboard */; };
@@ -141,6 +142,7 @@
 		4CB2AF5721ADBF62007E5D1F /* NewsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableView.swift; sourceTree = "<group>"; };
 		4CB2AF5921ADBFAC007E5D1F /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		4CB2AF5B21ADC498007E5D1F /* NewsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLoader.swift; sourceTree = "<group>"; };
+		4CB2AF5D21B302E6007E5D1F /* NewsArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsArticleViewController.swift; sourceTree = "<group>"; };
 		4CB3EC7220DC0ECA00BBEAE0 /* Pius-App-Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pius-App-Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CB3EC7320DC0ECB00BBEAE0 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		4CB3EC7620DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiusAppExtensionViewController.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				4CB2AF5721ADBF62007E5D1F /* NewsTableView.swift */,
 				4CB2AF5921ADBFAC007E5D1F /* NewsTableViewCell.swift */,
 				4CB2AF5B21ADC498007E5D1F /* NewsLoader.swift */,
+				4CB2AF5D21B302E6007E5D1F /* NewsArticleViewController.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 			files = (
 				4C1FDE54205C5072006092C9 /* VertretungsplanDetailViewController.swift in Sources */,
 				4CFBCDD7208925B100E9041D /* MyCoursesViewController.swift in Sources */,
+				4CB2AF5E21B302E6007E5D1F /* NewsArticleViewController.swift in Sources */,
 				4CC332D12180DF580055E3F5 /* MetaDataCollectionViewCell.swift in Sources */,
 				4CB2AF5A21ADBFAC007E5D1F /* NewsTableViewCell.swift in Sources */,
 				4CC332CF2180DAB10055E3F5 /* MetaDataTableViewCell.swift in Sources */,

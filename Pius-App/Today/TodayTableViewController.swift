@@ -8,12 +8,27 @@
 
 import UIKit
 
-class TodayTableViewController: UITableViewController {
-    @IBOutlet var tablewView: UITableView!
+protocol ModalDismissDelegate {
+    func hasDismissed();
+}
+
+class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, ModalDismissDelegate {
+    private var statusBarShouldBeHidden: Bool = false;
+    
+    override var prefersStatusBarHidden: Bool {
+        return statusBarShouldBeHidden;
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
+    
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var newViewHeaderLabel: UILabel!
     @IBOutlet weak var newsView: UIView!
     @IBOutlet weak var newsTableView: NewsTableView!
+    
+    var newsUrlToShow: URL?;
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -32,7 +47,7 @@ class TodayTableViewController: UITableViewController {
         newViewHeaderLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold);
         
         // Get content for calendar.
-        newsTableView.loadData(sender: tableView);
+        newsTableView.loadData(showNewsDelegate: self, sender: tableView);
         
         newsView.layer.borderColor = UIColor.lightGray.cgColor;
         newsView.layer.borderWidth = 1;
@@ -40,6 +55,40 @@ class TodayTableViewController: UITableViewController {
         newsView.layer.shadowOffset = CGSize(width: 1, height: 3);
         newsView.layer.shadowOpacity = 0.7;
         newsView.layer.shadowRadius = 4;
+    }
+
+    /*
+     * ====================================================
+     *                Navigation
+     * ====================================================
+     */
+
+    func prepareShow(of url: URL) {
+        self.newsUrlToShow = url;
+    }
+    
+    func show() {
+        guard newsUrlToShow != nil else { return; }
+        statusBarShouldBeHidden = true;
+
+        UIView.animate(withDuration: 0.25) {
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+
+        performSegue(withIdentifier: "showNews", sender: self);
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? NewsArticleViewController else { return; }
+        destination.delegate = self;
+        destination.urlToShow = newsUrlToShow;
+    }
+
+    func hasDismissed() {
+        statusBarShouldBeHidden = false;
+        UIView.animate(withDuration: 0.25) {
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
     }
 
     /*
@@ -86,7 +135,7 @@ class TodayTableViewController: UITableViewController {
         default: return 0;
         }
     }
-
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

@@ -753,6 +753,64 @@ Cg
             </objects>
             <point key="canvasLocation" x="-10441" y="-6695"/>
         </scene>
+        <!--News Article View Controller-->
+        <scene sceneID="QdH-xS-EDj">
+            <objects>
+                <viewController storyboardIdentifier="newsPopover" id="0ce-tQ-RCf" customClass="NewsArticleViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mjq-8e-vkr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AgX-0p-Beh">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OgV-Op-O7x">
+                                <rect key="frame" x="368" y="16" width="30" height="30"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="35m-dK-yNu"/>
+                                    <constraint firstAttribute="height" constant="30" id="Qpg-e6-6D5"/>
+                                </constraints>
+                                <state key="normal" image="greycancel"/>
+                                <connections>
+                                    <action selector="dismiss:" destination="0ce-tQ-RCf" eventType="touchUpInside" id="8l5-BP-cqg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="AgX-0p-Beh" firstAttribute="leading" secondItem="ihV-lk-iDC" secondAttribute="leading" id="0Yy-gr-ehF"/>
+                            <constraint firstItem="ihV-lk-iDC" firstAttribute="bottom" secondItem="AgX-0p-Beh" secondAttribute="bottom" id="4ky-hM-DD3"/>
+                            <constraint firstAttribute="trailing" secondItem="OgV-Op-O7x" secondAttribute="trailing" constant="16" id="58h-X8-TDC"/>
+                            <constraint firstItem="AgX-0p-Beh" firstAttribute="top" secondItem="mjq-8e-vkr" secondAttribute="top" id="Exu-L9-Mjh"/>
+                            <constraint firstItem="ihV-lk-iDC" firstAttribute="trailing" secondItem="AgX-0p-Beh" secondAttribute="trailing" id="lw8-Oa-sqc"/>
+                            <constraint firstItem="OgV-Op-O7x" firstAttribute="top" secondItem="mjq-8e-vkr" secondAttribute="top" constant="16" id="qhQ-Fc-JYP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ihV-lk-iDC"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="panGestureRecognizer" destination="y6I-T3-2Xp" id="jjC-UE-Hoy"/>
+                        <outlet property="webView" destination="AgX-0p-Beh" id="ldD-Sl-KD2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JrU-j2-n7y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="y6I-T3-2Xp">
+                    <connections>
+                        <action selector="panGestureAction:" destination="0ce-tQ-RCf" id="UTe-rw-fkA"/>
+                        <outlet property="delegate" destination="0ce-tQ-RCf" id="iVS-vQ-0Mu"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-8414" y="-5946"/>
+        </scene>
         <!--Heute-->
         <scene sceneID="lyW-DX-xE2">
             <objects>
@@ -1903,7 +1961,6 @@ Tippe dazu unten auf </string>
         <!--Today Table View Controller-->
         <scene sceneID="Ik4-je-eo3">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0iN-ny-gxr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="NEd-NM-bVZ" customClass="TodayTableViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Dfr-om-off">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -1934,7 +1991,7 @@ Tippe dazu unten auf </string>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="105" id="i24-xH-FBr">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="105" id="i24-xH-FBr">
                                         <rect key="frame" x="0.0" y="105" width="414" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i24-xH-FBr" id="qnW-6U-9gG">
@@ -1944,7 +2001,7 @@ Tippe dazu unten auf </string>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="34I-D9-KoN">
                                                     <rect key="frame" x="8" y="8" width="398" height="89"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="hs5-yY-U8k">
+                                                        <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="hs5-yY-U8k">
                                                             <rect key="frame" x="0.0" y="0.0" width="398" height="89"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1980,11 +2037,11 @@ Tippe dazu unten auf </string>
                                                             </attributedString>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="cT7-Mi-M1Q" customClass="NewsTableView" customModule="Pius_App" customModuleProvider="target">
+                                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="cT7-Mi-M1Q" customClass="NewsTableView" customModule="Pius_App" customModuleProvider="target">
                                                             <rect key="frame" x="8" y="33" width="382" height="48"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <prototypes>
-                                                                <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="newsItem" rowHeight="44" id="3dF-mx-axo" customClass="NewsTableViewCell" customModule="Pius_App" customModuleProvider="target">
+                                                                <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="newsItem" rowHeight="44" id="3dF-mx-axo" customClass="NewsTableViewCell" customModule="Pius_App" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="1" width="382" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3dF-mx-axo" id="DYr-8d-JeG">
@@ -2100,9 +2157,10 @@ Tippe dazu unten auf </string>
                         <outlet property="newViewHeaderLabel" destination="QJv-xL-Qff" id="5Io-r6-kUf"/>
                         <outlet property="newsTableView" destination="cT7-Mi-M1Q" id="2sG-fX-CpR"/>
                         <outlet property="newsView" destination="34I-D9-KoN" id="10g-vB-xGt"/>
-                        <outlet property="tablewView" destination="Dfr-om-off" id="zsn-Sf-pp0"/>
+                        <segue destination="0ce-tQ-RCf" kind="presentation" identifier="showNews" modalPresentationStyle="overCurrentContext" id="0X1-r6-2zV"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0iN-ny-gxr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-9533.3333333333339" y="-5946.4285714285716"/>
         </scene>
@@ -2134,6 +2192,7 @@ Tippe dazu unten auf </string>
         <image name="bluestar" width="30" height="30"/>
         <image name="calendar" width="30" height="30"/>
         <image name="gradient" width="64" height="64"/>
+        <image name="greycancel" width="30" height="30"/>
         <image name="list" width="30" height="30"/>
         <image name="settings" width="30" height="30"/>
         <image name="star" width="30" height="30"/>

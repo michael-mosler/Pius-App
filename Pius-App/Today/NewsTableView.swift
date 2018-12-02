@@ -8,8 +8,14 @@
 
 import UIKit
 
-class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
-    private var sender: UITableView?;
+protocol ShowNewsArticleDelegate {
+    func prepareShow(of url: URL);
+    func show();
+}
+
+class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
+    private var showNewsDelegate: ShowNewsArticleDelegate?;
+    private var parentTableView: UITableView?;
     private let newsLoader = NewsLoader();
     private var newsItems: NewsItems?;
 
@@ -50,15 +56,18 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
             self.dataSource = self;
             self.delegate = self;
 
-            self.sender?.beginUpdates();
+            print("Updating view");
+            self.parentTableView?.beginUpdates();
             self.reloadData();
             self.layoutSubviews();
-            self.sender?.endUpdates();
+            self.parentTableView?.endUpdates();
+            print("Done");
         }
     }
 
-    func loadData(sender: UITableView) {
-        self.sender = sender;
+    func loadData(showNewsDelegate delegate: ShowNewsArticleDelegate, sender: UITableView) {
+        self.showNewsDelegate = delegate as? TodayTableViewController;
+        self.parentTableView = sender;
         newsLoader.load(doUpdate);
     }
 
@@ -89,7 +98,16 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.newsItemTextLabel.text = text;
         }
+        
+        cell.href = newsItems[indexPath.row].href;
 
         return cell;
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? NewsTableViewCell, let href = cell.href, let url = URL(string: href) else { return; };
+
+        showNewsDelegate?.prepareShow(of: url);
+        showNewsDelegate?.show();
     }
 }
