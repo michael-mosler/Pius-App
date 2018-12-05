@@ -146,7 +146,6 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         default:
             if (data[indexPath.section - 2].expanded) {
                 let gradeItem: GradeItem? = data[indexPath.section - 2].gradeItems[0];
-                // print("Section %ld Row %ld", indexPath.section, indexPath.row);
                 
                 switch indexPath.row % rowsPerItem {
                 case 0: return 2;

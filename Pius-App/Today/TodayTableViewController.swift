@@ -24,6 +24,11 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     }
     
     @IBOutlet weak var headerLabel: UILabel!
+
+    @IBOutlet weak var dashboardView: UIView!
+    @IBOutlet weak var dashboardViewHeaderLabel: UILabel!
+    @IBOutlet weak var dashboardTableView: TodayDashboardTableView!
+    
     @IBOutlet weak var newViewHeaderLabel: UILabel!
     @IBOutlet weak var newsView: UIView!
     @IBOutlet weak var newsTableView: NewsTableView!
@@ -32,6 +37,8 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad();
+
+        refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged);
 
         // Make background of status opaque; by default status bar is presented transparently.
         // When scrolling we do not want to shine through table content as text gets unreadable
@@ -44,17 +51,25 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
         // Set header content
         setHeaderCellContent();
         
-        newViewHeaderLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold);
+        // Dashboard
+        dashboardViewHeaderLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold);
+        dashboardTableView.loadData(sender: tableView);
+        setContentViewLayerProperties(forView: dashboardView);
         
         // Get content for calendar.
+        newViewHeaderLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold);
         newsTableView.loadData(showNewsDelegate: self, sender: tableView);
-        
-        newsView.layer.borderColor = UIColor.lightGray.cgColor;
-        newsView.layer.borderWidth = 1;
-        newsView.layer.shadowColor = UIColor.lightGray.cgColor;
-        newsView.layer.shadowOffset = CGSize(width: 1, height: 3);
-        newsView.layer.shadowOpacity = 0.7;
-        newsView.layer.shadowRadius = 4;
+        setContentViewLayerProperties(forView: newsView);
+    }
+
+    private func setContentViewLayerProperties(forView view: UIView) {
+        view.layer.borderColor = UIColor.lightGray.cgColor;
+        view.layer.borderWidth = 1;
+        view.layer.shadowColor = UIColor.lightGray.cgColor;
+        view.layer.shadowOffset = CGSize(width: 1, height: 3);
+        view.layer.shadowOpacity = 0.7;
+        view.layer.shadowRadius = 4;
+        view.layer.masksToBounds = true;
     }
 
     /*
@@ -97,9 +112,18 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
      * ====================================================
      */
 
+    @objc func refreshScrollView(_ sender: UIRefreshControl) {
+        setHeaderCellContent();
+
+        // Reload content.
+        dashboardTableView.loadData(sender: tableView);
+        newsTableView.loadData(showNewsDelegate: self, sender: tableView);
+
+        sender.endRefreshing()
+    }
+
     private func setHeaderCellContent() {
         let defaultSystemFont = UIFont.systemFont(ofSize: 14);
-        //let largeTitleFont = UIFont.preferredFont(forTextStyle: .largeTitle);
         let largeTitleFont = UIFont.systemFont(ofSize: 36, weight: .bold);
         let dateFormatter = DateFormatter();
         let date = Date();
@@ -113,11 +137,11 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 1;
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3;
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -131,64 +155,9 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch(indexPath.row) {
         case 0: return 105;
-        case 1: return (newsTableView.contentSize.height > 0) ? newsTableView.contentSize.height + 29 + 4 + 8 + 8: 500;
+        case 1: return (newsTableView.contentSize.height > 0) ? dashboardTableView.contentSize.height + 29 + 4 + 8 + 8: 100;
+        case 2: return (newsTableView.contentSize.height > 0) ? newsTableView.contentSize.height + 29 + 4 + 8 + 8: 500;
         default: return 0;
         }
     }
-    
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

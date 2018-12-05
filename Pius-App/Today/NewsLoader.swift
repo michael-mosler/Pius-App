@@ -17,11 +17,13 @@ import Foundation
 struct NewsItem {
     var imgUrl: String?;
     var href: String?;
+    var heading: String?;
     var text: String?;
     
-    init(imgUrl: String?, href: String?, text: String?) {
+    init(imgUrl: String?, href: String?, heading: String?, text: String?) {
         self.imgUrl = imgUrl;
         self.href = href;
+        self.heading = heading;
         self.text = text;
     }
 }
@@ -131,7 +133,7 @@ class NewsLoader {
                         for newsItem_ in newsItems_ {
                             // Convert news item element to dictionary that is indexed by string.
                             let dictionary = newsItem_ as! [String: String];
-                            let newsItem = NewsItem(imgUrl: dictionary["img"], href: dictionary["href"], text: dictionary["text"]);
+                            let newsItem = NewsItem(imgUrl: dictionary["img"], href: dictionary["href"], heading: dictionary["heading"], text: dictionary["text"]);
                             newsItems.append(newsItem);
                         }
                     }

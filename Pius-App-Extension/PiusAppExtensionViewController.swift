@@ -188,7 +188,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
         return tableRows;
     }
     
-    // Retuen height for cells.
+    // Return height for cells.
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         // Spacer

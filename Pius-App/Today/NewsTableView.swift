@@ -19,32 +19,6 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UI
     private let newsLoader = NewsLoader();
     private var newsItems: NewsItems?;
 
-    private func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
-        let size = image.size
-        
-        let widthRatio  = targetSize.width  / size.width
-        let heightRatio = targetSize.height / size.height
-        
-        // Figure out what our orientation is, and use that to form the rectangle
-        var newSize: CGSize
-        if(widthRatio > heightRatio) {
-            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
-        } else {
-            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
-        }
-        
-        // This is the rect that we've calculated out and this is what is actually used below
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-        
-        // Actually do the resizing to the rect using the ImageContext stuff
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage!
-    }
-    
     private func doUpdate(with newsItems: NewsItems?, online: Bool) {
         if newsItems == nil {
             self.newsItems = [];
@@ -56,12 +30,10 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UI
             self.dataSource = self;
             self.delegate = self;
 
-            print("Updating view");
             self.parentTableView?.beginUpdates();
             self.reloadData();
             self.layoutSubviews();
             self.parentTableView?.endUpdates();
-            print("Done");
         }
     }
 
@@ -78,13 +50,14 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UI
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let newsItems = self.newsItems, let text = newsItems[indexPath.row].text else { return UITableViewCell(); }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsItem") as! NewsTableViewCell;
 
         if let imgUrl = newsItems[indexPath.row].imgUrl {
             do {
                 let url = URL(string: imgUrl);
                 let data = try Data(contentsOf : url!);
-                let image = resizeImage(image: UIImage(data : data)!, targetSize: CGSize(width: 64, height: 64));
+                let image = UIImage(data: data);
                 cell.newsItemImageView.image = image;
             }
             catch {
@@ -92,15 +65,16 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UI
             }
         }
 
-        if text.count > 200 {
-            let index = text.index(text.startIndex, offsetBy: 160)
-            cell.newsItemTextLabel.text = String(newsItems[indexPath.row].text![..<index]) + "...";
-        } else {
-            cell.newsItemTextLabel.text = text;
+        let itemText = NSMutableAttributedString(string: "");
+        if let heading = newsItems[indexPath.row].heading {
+            let headingFont = UIFont.systemFont(ofSize: 13, weight: .bold);
+            itemText.append(NSAttributedString(string: heading, attributes: [NSAttributedString.Key.font: headingFont]));
+            itemText.append(NSAttributedString(string: "\n"));
         }
+        itemText.append(NSAttributedString(string: text));
+        cell.newsItemTextLabel.attributedText = itemText;
         
         cell.href = newsItems[indexPath.row].href;
-
         return cell;
     }
     
