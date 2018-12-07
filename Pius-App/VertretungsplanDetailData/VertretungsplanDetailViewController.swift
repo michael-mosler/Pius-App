@@ -75,60 +75,21 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height : CGFloat;
-        
         switch indexPath.row % rowsPerItem {
-        case 0:
-            height = 36;
-        case 1:
-            height = 30;
+        case 0: return tableView.rowHeight;
+        case 1: return tableView.rowHeight;
         case 2:
             let itemIndex: Int = indexPath.row / rowsPerItem;
             let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][6]);
-            height = (text == "") ? 0 : 30;
+            return (text == "") ? 0 : tableView.rowHeight;
         case 3:
             let itemIndex: Int = indexPath.row / rowsPerItem;
-            if ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) {
-                height = 0;
-            } else {
-                height = UITableView.automaticDimension;
-            }
+            return ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) ? 0 : UITableView.automaticDimension;
         default:
             // Spacer is shown only if there is a EVA text.
             let itemIndex: Int = indexPath.row / rowsPerItem;
-            if ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) {
-                height = 0;
-            } else {
-                height = 5;
-            }
+            return ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) ? 0 : 2;
         }
-        
-        return height;
-    }
-
-    func getTeacherText(oldTeacher: String?, newTeacher: String?) -> NSAttributedString {
-        guard let oldTeacher = oldTeacher, let newTeacher = newTeacher else { return NSMutableAttributedString()  }
-
-        let textRange = NSMakeRange(0, oldTeacher.count);
-        let attributedText = NSMutableAttributedString(string: oldTeacher + " → " + newTeacher);
-        attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: textRange);
-        return attributedText;
-        
-    }
-
-    func getRoomText(room: String?) -> NSAttributedString {
-        guard let room = room, room != "" else { return NSAttributedString(string: "") }
-
-        let attributedText = NSMutableAttributedString(string: room);
-
-        let index = room.index(of: "→");
-        if (index != nil) {
-            let length = room.distance(from: room.startIndex, to: room.index(before: index!));
-            let strikeThroughRange = NSMakeRange(0, length);
-            attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: strikeThroughRange);
-        }
-        
-        return attributedText;
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -166,10 +127,10 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
             cell.label.attributedText = NSAttributedString(string: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][1]));
         case 1:
             // Room
-            cell.label.attributedText = getRoomText(room: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][3]));
+            cell.label.attributedText = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][3]));
         default:
             // Teachers
-            cell.label.attributedText = getTeacherText(oldTeacher: (gradeItem?.vertretungsplanItems[itemIndex][5]), newTeacher: gradeItem?.vertretungsplanItems[itemIndex][4])
+            cell.label.attributedText = FormatHelper.teacherText(oldTeacher: (gradeItem?.vertretungsplanItems[itemIndex][5]), newTeacher: gradeItem?.vertretungsplanItems[itemIndex][4])
         }
 
         return cell;

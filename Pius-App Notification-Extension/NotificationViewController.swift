@@ -162,10 +162,10 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
                 typeLabel.attributedText = NSAttributedString(string: StringHelper.replaceHtmlEntities(input: details[1] as? String));
                 
                 let roomLabel = cell?.viewWithTag(tags.details.room.rawValue) as! UILabel;
-                roomLabel.attributedText = getRoomText(room: StringHelper.replaceHtmlEntities(input: details[3] as? String));
+                roomLabel.attributedText = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: details[3] as? String));
                 
                 let teacherLabel = cell?.viewWithTag(tags.details.teacher.rawValue) as! UILabel;
-                teacherLabel.attributedText = getTeacherText(oldTeacher: details[5] as? String, newTeacher: details[4] as? String);
+                teacherLabel.attributedText = FormatHelper.teacherText(oldTeacher: details[5] as? String, newTeacher: details[4] as? String);
             }
             
         case 5:
@@ -176,10 +176,10 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
                 typeLabel.attributedText = NSAttributedString(string: StringHelper.replaceHtmlEntities(input: details[1] as? String));
                 
                 let roomLabel = cell?.viewWithTag(tagsOld.details.room.rawValue) as! UILabel;
-                roomLabel.attributedText = getRoomText(room: StringHelper.replaceHtmlEntities(input: details[3] as? String));
+                roomLabel.attributedText = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: details[3] as? String));
                 
                 let teacherLabel = cell?.viewWithTag(tagsOld.details.teacher.rawValue) as! UILabel;
-                teacherLabel.attributedText = getTeacherText(oldTeacher: details[5] as? String, newTeacher: details[4] as? String);
+                teacherLabel.attributedText = FormatHelper.teacherText(oldTeacher: details[5] as? String, newTeacher: details[4] as? String);
             }
 
         case 6:
@@ -211,32 +211,5 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
         }
         
         return cell!;
-    }
-    
-    // Get text for teacher substitution.
-    func getTeacherText(oldTeacher: String?, newTeacher: String?) -> NSAttributedString {
-        guard let oldTeacher = oldTeacher, let newTeacher = newTeacher else { return NSMutableAttributedString()  }
-        
-        let textRange = NSMakeRange(0, oldTeacher.count);
-        let attributedText = NSMutableAttributedString(string: oldTeacher + " → " + newTeacher);
-        attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: textRange);
-        return attributedText;
-        
-    }
-    
-    // Get text for room substitution.
-    func getRoomText(room: String?) -> NSAttributedString {
-        guard let room = room, room != "" else { return NSAttributedString(string: "") }
-        
-        let attributedText = NSMutableAttributedString(string: room);
-        
-        let index = room.index(of: "→");
-        if (index != nil) {
-            let length = room.distance(from: room.startIndex, to: room.index(before: index!));
-            let strikeThroughRange = NSMakeRange(0, length);
-            attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: strikeThroughRange);
-        }
-        
-        return attributedText;
     }
 }

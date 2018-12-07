@@ -13,7 +13,7 @@
 		4C1FDE50205568E3006092C9 /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4F205568E3006092C9 /* ExpandableHeaderView.swift */; };
 		4C1FDE54205C5072006092C9 /* VertretungsplanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE52205C5072006092C9 /* VertretungsplanDetailViewController.swift */; };
 		4C1FDE57205D90E5006092C9 /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE56205D90E5006092C9 /* DetailCollectionViewCell.swift */; };
-		4C1FDE5A205E77D7006092C9 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE59205E77D7006092C9 /* StringHelper.swift */; };
+		4C1FDE5A205E77D7006092C9 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE59205E77D7006092C9 /* Helper.swift */; };
 		4C1FDE5C20603DF1006092C9 /* DetailsCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE5B20603DF1006092C9 /* DetailsCellTableViewCell.swift */; };
 		4C1FDE5E20697516006092C9 /* VertretungsplanLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */; };
 		4C1FDE61206C2644006092C9 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE60206C2644006092C9 /* DashboardViewController.swift */; };
@@ -39,8 +39,8 @@
 		4CA4907D20DEA51700796457 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */; };
 		4CA4907E20DEA57D00796457 /* Vertretungsplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4D205567C8006092C9 /* Vertretungsplan.swift */; };
 		4CA4907F20DF9BE100796457 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE62206D5FE6006092C9 /* Config.swift */; };
-		4CA4908020DFABFF00796457 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE59205E77D7006092C9 /* StringHelper.swift */; };
-		4CAB552A213AE21A00156A13 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE59205E77D7006092C9 /* StringHelper.swift */; };
+		4CA4908020DFABFF00796457 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE59205E77D7006092C9 /* Helper.swift */; };
+		4CAB552A213AE21A00156A13 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE59205E77D7006092C9 /* Helper.swift */; };
 		4CAB552B213AE28600156A13 /* Vertretungsplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4D205567C8006092C9 /* Vertretungsplan.swift */; };
 		4CAB552C213C398200156A13 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE62206D5FE6006092C9 /* Config.swift */; };
 		4CB2AF522198813C007E5D1F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF512198813C007E5D1F /* Reachability.swift */; };
@@ -119,7 +119,7 @@
 		4C1FDE4F205568E3006092C9 /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
 		4C1FDE52205C5072006092C9 /* VertretungsplanDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanDetailViewController.swift; sourceTree = "<group>"; };
 		4C1FDE56205D90E5006092C9 /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
-		4C1FDE59205E77D7006092C9 /* StringHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
+		4C1FDE59205E77D7006092C9 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		4C1FDE5B20603DF1006092C9 /* DetailsCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCellTableViewCell.swift; sourceTree = "<group>"; };
 		4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanLoader.swift; sourceTree = "<group>"; };
 		4C1FDE60206C2644006092C9 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 				4C5E0E7520A498DA00DAE459 /* Cache.swift */,
 				4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */,
 				4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */,
-				4C1FDE59205E77D7006092C9 /* StringHelper.swift */,
+				4C1FDE59205E77D7006092C9 /* Helper.swift */,
 				4C1FDE62206D5FE6006092C9 /* Config.swift */,
 				4CA4907620DE4DDC00796457 /* AppDefaults.swift */,
 			);
@@ -620,7 +620,7 @@
 				4C1FDE61206C2644006092C9 /* DashboardViewController.swift in Sources */,
 				4C1FDE63206D5FE6006092C9 /* Config.swift in Sources */,
 				4CED4A85204AE3510012CB45 /* KeychainPasswordItem.swift in Sources */,
-				4C1FDE5A205E77D7006092C9 /* StringHelper.swift in Sources */,
+				4C1FDE5A205E77D7006092C9 /* Helper.swift in Sources */,
 				4CF02EB12190C64300647078 /* DateListCollectionViewCell.swift in Sources */,
 				4C7C22922043117800ACA17B /* ViewController.swift in Sources */,
 				4C1FDE57205D90E5006092C9 /* DetailCollectionViewCell.swift in Sources */,
@@ -670,7 +670,7 @@
 				4CA4907E20DEA57D00796457 /* Vertretungsplan.swift in Sources */,
 				4CA4907820DE4E6E00796457 /* AppDefaults.swift in Sources */,
 				4CA4907D20DEA51700796457 /* KeychainConfiguration.swift in Sources */,
-				4CA4908020DFABFF00796457 /* StringHelper.swift in Sources */,
+				4CA4908020DFABFF00796457 /* Helper.swift in Sources */,
 				4CB2AF53219A15BF007E5D1F /* Reachability.swift in Sources */,
 				4CA4907C20DEA51400796457 /* KeychainPasswordItem.swift in Sources */,
 			);
@@ -680,7 +680,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CAB552A213AE21A00156A13 /* StringHelper.swift in Sources */,
+				4CAB552A213AE21A00156A13 /* Helper.swift in Sources */,
 				4CAB552C213C398200156A13 /* Config.swift in Sources */,
 				4CFB1232210F887E00BC4B44 /* NotificationViewController.swift in Sources */,
 				4CAB552B213AE28600156A13 /* Vertretungsplan.swift in Sources */,
@@ -870,7 +870,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
-				HOST_ADDRESS = "http://localhost:3000";
+				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp;

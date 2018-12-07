@@ -9,6 +9,7 @@
 import UIKit
 
 class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
+    private var hadError = false;
     private var parentTableView: UITableView?;
     private var vertretungsplan: Vertretungsplan?;
     private var nextDate: String = "";
@@ -16,7 +17,9 @@ class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewData
 
     private var data: [VertretungsplanForDate] {
         get {
-            if let vertretungsplan_ = vertretungsplan {
+            // If there is a schedule at all and if there a substitutions for the configured
+            // grade.
+            if let vertretungsplan_ = vertretungsplan, vertretungsplan_.vertretungsplaene.count > 0, vertretungsplan_.vertretungsplaene[0].gradeItems.count > 0 {
                 return vertretungsplan_.vertretungsplaene;
             }
             return [];
@@ -28,6 +31,12 @@ class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewData
             }
         }
     }
+    
+    /*
+     * ====================================================
+     *                  Data Loader
+     * ====================================================
+     */
     
     private var canUseDashboard: Bool {
         get {
@@ -44,21 +53,23 @@ class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewData
     }
     
     private func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
-        if (vertretungsplan != nil) {
-            self.vertretungsplan = vertretungsplan;
+        hadError = vertretungsplan == nil;
+        if !hadError, var vertretungsplan_ = vertretungsplan {
+            // Date to filter for. Reduce schedules to the one with the given date.
+            let dateFormatter = DateFormatter();
             
-            // What is actually next active substitution schedule date?
-            let nextVertretungsplanForDate = vertretungsplan!.next;
-            if nextVertretungsplanForDate.count > 0 {
-                self.nextDate = nextVertretungsplanForDate[0].date;
-            }
+            dateFormatter.locale = Locale(identifier: "de-DE");
+            dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, dd.MM.yyyy");
+            let filterDate = dateFormatter.string(from: Date());
+            vertretungsplan_.vertretungsplaene = vertretungsplan_.vertretungsplaene.filter {$0.date == filterDate};
+            self.vertretungsplan = vertretungsplan_;
+        }
             
-            DispatchQueue.main.async {
-                self.parentTableView?.beginUpdates();
-                self.reloadData();
-                self.layoutIfNeeded();
-                self.parentTableView?.endUpdates();
-            }
+        DispatchQueue.main.async {
+            self.parentTableView?.beginUpdates();
+            self.reloadData();
+            self.layoutIfNeeded();
+            self.parentTableView?.endUpdates();
         }
     }
 
@@ -74,27 +85,40 @@ class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewData
         }
     }
 
+    /*
+     * ====================================================
+     *                  Table Data
+     * ====================================================
+     */
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return (data.count == 0) ? 0 : 2;
+        return (data.count == 0) ? 1 : data[0].gradeItems[0].vertretungsplanItems.count + 1;
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard section > 0 else { return (data.count == 0) ? 0 : 1; }
-        return ((data[section - 1].gradeItems.count == 0)) ? 0 : rowsPerItem * data[section - 1].gradeItems[0].vertretungsplanItems.count;
+        guard section > 0 else { return data.count > 0 || hadError ? 1 : 2; }
+        
+        var numberOfRows = 4;
+        if StringHelper.replaceHtmlEntities(input: data[0].gradeItems[0].vertretungsplanItems[section - 1][6]) == "" {
+            numberOfRows -= 1;
+        }
+
+        if data[0].gradeItems[0].vertretungsplanItems[section - 1].count < 8 {
+            numberOfRows -= 1;
+        }
+
+        return numberOfRows;
     }
-    
+ 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch(indexPath.section) {
-        case 0: return UITableView.automaticDimension;
+        case 0: return tableView.rowHeight;
         default:
-            switch(indexPath.row % rowsPerItem) {
-            case 0: return UITableView.automaticDimension;
-            case 1: return UITableView.automaticDimension;
-            case 2: return UITableView.automaticDimension;
-            case 3:
-                let gradeItem: GradeItem? = data[indexPath.section - 1].gradeItems[0];
-                let itemIndex: Int = indexPath.row / rowsPerItem;
-                return ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) ? 0: UITableView.automaticDimension;
+            switch(indexPath.row) {
+            case 0: return tableView.rowHeight;
+            case 1: return tableView.rowHeight;
+            case 2: return tableView.rowHeight;
+            case 3: return UITableView.automaticDimension;
             default: return 0;
             }
         }
@@ -103,65 +127,50 @@ class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch(indexPath.section) {
         case 0:
-            let cell = dequeueReusableCell(withIdentifier: "lastUpdateCell")!;
-            cell.textLabel?.text = vertretungsplan?.lastUpdate;
-            cell.detailTextLabel?.text = "Letzte Aktualisierung";
-            return cell;
+            switch(indexPath.row) {
+            case 0:
+                if hadError {
+                    let cell = dequeueReusableCell(withIdentifier: "loadError")!;
+                    return cell;
+                } else {
+                    let cell = dequeueReusableCell(withIdentifier: "lastUpdateCell")!;
+                    cell.textLabel?.text = vertretungsplan?.lastUpdate;
+                    cell.detailTextLabel?.text = "Letzte Aktualisierung";
+                    return cell;
+                }
+            case 1:
+                let cell = dequeueReusableCell(withIdentifier: "noSubstitutions")!;
+                return cell;
+            default:
+                return UITableViewCell();
+            }
         default:
-            let itemIndex: Int = indexPath.row / rowsPerItem;
-            let gradeItem: GradeItem? = data[indexPath.section - 1].gradeItems[0];
+            let items: DetailItems = data[0].gradeItems[0].vertretungsplanItems[indexPath.section - 1];
 
-            switch(indexPath.row % rowsPerItem) {
+            switch(indexPath.row) {
             case 0:
                 let cell = dequeueReusableCell(withIdentifier: "course")!;
-                let grade: String! = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][2]);
-                let lesson: String! = (gradeItem?.vertretungsplanItems[itemIndex][0])!
+                let grade: String! = StringHelper.replaceHtmlEntities(input: items[2]);
+                let lesson: String! = items[0];
                 cell.textLabel?.text = (grade != "") ? String(format: "Fach/Kurs: %@, %@. Stunde", grade, lesson) : String(format: "%@. Stunde", lesson);
                 return cell;
             case 1:
                 let cell = dequeueReusableCell(withIdentifier: "details") as! TodayDashboardDetailsCell;
-                cell.setContent(type: NSAttributedString(string: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][1])), room: getRoomText(room: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][3])), substitution: getTeacherText(oldTeacher: (gradeItem?.vertretungsplanItems[itemIndex][5]), newTeacher: gradeItem?.vertretungsplanItems[itemIndex][4]))
+                cell.setContent(type: NSAttributedString(string: StringHelper.replaceHtmlEntities(input: items[1])), room: FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: items[3])), substitution: FormatHelper.teacherText(oldTeacher: (items[5]), newTeacher: items[4]))
                 return cell;
             case 2:
                 let cell = dequeueReusableCell(withIdentifier: "comment")!;
-                let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][6]);
+                let text = StringHelper.replaceHtmlEntities(input: items[6]);
                 cell.textLabel?.text = text;
                 return cell;
             case 3:
                 let cell = dequeueReusableCell(withIdentifier: "eva")!;
-                if (gradeItem?.vertretungsplanItems[itemIndex].count == 8) {
-                    let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][7]);
-                    cell.textLabel?.text = text;
-                }
+                let text = StringHelper.replaceHtmlEntities(input: items[7]);
+                cell.textLabel?.text = text;
                 return cell;
             default:
                 return UITableViewCell();
             }
         }
     }
-}
-
-func getTeacherText(oldTeacher: String?, newTeacher: String?) -> NSAttributedString {
-    guard let oldTeacher = oldTeacher, let newTeacher = newTeacher else { return NSMutableAttributedString()  }
-    
-    let textRange = NSMakeRange(0, oldTeacher.count);
-    let attributedText = NSMutableAttributedString(string: oldTeacher + " → " + newTeacher);
-    attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: textRange);
-    return attributedText;
-    
-}
-
-func getRoomText(room: String?) -> NSAttributedString {
-    guard let room = room, room != "" else { return NSAttributedString(string: "") }
-    
-    let attributedText = NSMutableAttributedString(string: room);
-    
-    let index = room.index(of: "→");
-    if (index != nil) {
-        let length = room.distance(from: room.startIndex, to: room.index(before: index!));
-        let strikeThroughRange = NSMakeRange(0, length);
-        attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: strikeThroughRange);
-    }
-    
-    return attributedText;
 }

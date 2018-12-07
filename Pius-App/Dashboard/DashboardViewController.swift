@@ -221,7 +221,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                 return cell;
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "details") as! VertretungsplanDetailsCell;
-                cell.setContent(type: NSAttributedString(string: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][1])), room: getRoomText(room: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][3])), substitution: getTeacherText(oldTeacher: (gradeItem?.vertretungsplanItems[itemIndex][5]), newTeacher: gradeItem?.vertretungsplanItems[itemIndex][4]))
+                cell.setContent(type: NSAttributedString(string: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][1])), room: FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][3])), substitution: FormatHelper.teacherText(oldTeacher: (gradeItem?.vertretungsplanItems[itemIndex][5]), newTeacher: gradeItem?.vertretungsplanItems[itemIndex][4]))
                 return cell;
             case 3:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "comment")!;
@@ -240,31 +240,6 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                 return UITableViewCell();
             }
         }
-    }
-
-    func getTeacherText(oldTeacher: String?, newTeacher: String?) -> NSAttributedString {
-        guard let oldTeacher = oldTeacher, let newTeacher = newTeacher else { return NSMutableAttributedString()  }
-        
-        let textRange = NSMakeRange(0, oldTeacher.count);
-        let attributedText = NSMutableAttributedString(string: oldTeacher + " → " + newTeacher);
-        attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: textRange);
-        return attributedText;
-        
-    }
-    
-    func getRoomText(room: String?) -> NSAttributedString {
-        guard let room = room, room != "" else { return NSAttributedString(string: "") }
-        
-        let attributedText = NSMutableAttributedString(string: room);
-        
-        let index = room.index(of: "→");
-        if (index != nil) {
-            let length = room.distance(from: room.startIndex, to: room.index(before: index!));
-            let strikeThroughRange = NSMakeRange(0, length);
-            attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: strikeThroughRange);
-        }
-        
-        return attributedText;
     }
 
     func toggleSection(header: ExpandableHeaderView, section: Int) {

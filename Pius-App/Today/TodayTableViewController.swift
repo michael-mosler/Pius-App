@@ -128,6 +128,7 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
         let dateFormatter = DateFormatter();
         let date = Date();
         
+        dateFormatter.locale = Locale(identifier: "de-DE");
         dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, d. MMMM");
         let dateString = NSMutableAttributedString(string: dateFormatter.string(from: date), attributes: [NSAttributedString.Key.font: defaultSystemFont]);
         let todayString = NSMutableAttributedString(string: "Heute", attributes: [NSAttributedString.Key.font: largeTitleFont]);
@@ -155,7 +156,7 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch(indexPath.row) {
         case 0: return 105;
-        case 1: return (newsTableView.contentSize.height > 0) ? dashboardTableView.contentSize.height + 29 + 4 + 8 + 8: 100;
+        case 1: return (newsTableView.contentSize.height > 0) ? dashboardTableView.contentSize.height + 29 + 4 + 8 + 8: 44;
         case 2: return (newsTableView.contentSize.height > 0) ? newsTableView.contentSize.height + 29 + 4 + 8 + 8: 500;
         default: return 0;
         }
