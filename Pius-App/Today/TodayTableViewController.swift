@@ -25,9 +25,17 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     
     @IBOutlet weak var headerLabel: UILabel!
 
-    @IBOutlet weak var dashboardView: UIView!
+    @IBOutlet weak var postingsHeaderLabel: UILabel!
+    @IBOutlet weak var postingsView: UIView!
+    @IBOutlet weak var postingsTableView: TodayPostingsTableView!
+    
     @IBOutlet weak var dashboardViewHeaderLabel: UILabel!
+    @IBOutlet weak var dashboardView: UIView!
     @IBOutlet weak var dashboardTableView: TodayDashboardTableView!
+    
+    @IBOutlet weak var calendarViewHeaderLabel: UILabel!
+    @IBOutlet weak var calendarView: UIView!
+    @IBOutlet weak var calendarTableView: TodayCalendarTableView!
     
     @IBOutlet weak var newViewHeaderLabel: UILabel!
     @IBOutlet weak var newsView: UIView!
@@ -51,25 +59,41 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
         // Set header content
         setHeaderCellContent();
         
+        // Postings
+        postingsHeaderLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold);
+        postingsTableView.loadData(sender: tableView);
+        
         // Dashboard
         dashboardViewHeaderLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold);
         dashboardTableView.loadData(sender: tableView);
-        setContentViewLayerProperties(forView: dashboardView);
+        
+        // Calendar
+        calendarViewHeaderLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold);
+        calendarTableView.loadData(sender: tableView);
         
         // Get content for calendar.
         newViewHeaderLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold);
         newsTableView.loadData(showNewsDelegate: self, sender: tableView);
-        setContentViewLayerProperties(forView: newsView);
     }
 
     private func setContentViewLayerProperties(forView view: UIView) {
+        let shadowPath = UIBezierPath(rect: view.bounds)
+
         view.layer.borderColor = UIColor.lightGray.cgColor;
         view.layer.borderWidth = 1;
         view.layer.shadowColor = UIColor.lightGray.cgColor;
-        view.layer.shadowOffset = CGSize(width: 1, height: 3);
+        view.layer.shadowOffset = CGSize(width: 0, height: 0.5);
         view.layer.shadowOpacity = 0.7;
         view.layer.shadowRadius = 4;
-        view.layer.masksToBounds = true;
+        view.layer.shadowPath = shadowPath.cgPath;
+        view.layer.masksToBounds = false;
+    }
+
+    override func viewWillLayoutSubviews() {
+        setContentViewLayerProperties(forView: postingsView);
+        setContentViewLayerProperties(forView: dashboardView);
+        setContentViewLayerProperties(forView: calendarView);
+        setContentViewLayerProperties(forView: newsView);
     }
 
     /*
@@ -104,6 +128,8 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
         UIView.animate(withDuration: 0.25) {
             self.setNeedsStatusBarAppearanceUpdate()
         }
+
+        view.setNeedsDisplay();
     }
 
     /*
@@ -116,7 +142,9 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
         setHeaderCellContent();
 
         // Reload content.
+        postingsTableView.loadData(sender: tableView);
         dashboardTableView.loadData(sender: tableView);
+        calendarTableView.loadData(sender: tableView);
         newsTableView.loadData(showNewsDelegate: self, sender: tableView);
 
         sender.endRefreshing()
@@ -142,7 +170,7 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3;
+        return 5;
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -156,8 +184,10 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch(indexPath.row) {
         case 0: return 105;
-        case 1: return (newsTableView.contentSize.height > 0) ? dashboardTableView.contentSize.height + 29 + 4 + 8 + 8: 44;
-        case 2: return (newsTableView.contentSize.height > 0) ? newsTableView.contentSize.height + 29 + 4 + 8 + 8: 500;
+        case 1: return (postingsTableView.contentSize.height > 0) ? postingsTableView.contentSize.height + 29 + 4 + 8 + 8: 44;
+        case 2: return (newsTableView.contentSize.height > 0) ? dashboardTableView.contentSize.height + 29 + 4 + 8 + 8: 44;
+        case 3: return (calendarTableView.contentSize.height > 0) ? calendarTableView.contentSize.height + 29 + 4 + 8 + 8: 44;
+        case 4: return (newsTableView.contentSize.height > 0) ? newsTableView.contentSize.height + 29 + 4 + 8 + 8: 500;
         default: return 0;
         }
     }

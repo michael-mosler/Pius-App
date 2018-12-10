@@ -12,8 +12,6 @@ class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewData
     private var hadError = false;
     private var parentTableView: UITableView?;
     private var vertretungsplan: Vertretungsplan?;
-    private var nextDate: String = "";
-    private let rowsPerItem = 4;
 
     private var data: [VertretungsplanForDate] {
         get {
@@ -99,7 +97,8 @@ class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewData
         guard section > 0 else { return data.count > 0 || hadError ? 1 : 2; }
         
         var numberOfRows = 4;
-        if StringHelper.replaceHtmlEntities(input: data[0].gradeItems[0].vertretungsplanItems[section - 1][6]) == "" {
+        
+        if (StringHelper.replaceHtmlEntities(input: data[0].gradeItems[0].vertretungsplanItems[section - 1][6]) == "") {
             numberOfRows -= 1;
         }
 
@@ -110,6 +109,7 @@ class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewData
         return numberOfRows;
     }
  
+    /*
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch(indexPath.section) {
         case 0: return tableView.rowHeight;
@@ -117,12 +117,24 @@ class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewData
             switch(indexPath.row) {
             case 0: return tableView.rowHeight;
             case 1: return tableView.rowHeight;
-            case 2: return tableView.rowHeight;
-            case 3: return UITableView.automaticDimension;
+            case 2:
+                // Comment to be shown on index 2
+                if StringHelper.replaceHtmlEntities(input: data[0].gradeItems[0].vertretungsplanItems[indexPath.section - 1][6]) != "" {
+                    return tableView.rowHeight;
+                }
+                
+                // EVA to be shown on index 2
+                if data[0].gradeItems[0].vertretungsplanItems[indexPath.section - 1].count >= 8 {
+                    return tableView.rowHeight;
+                }
+                
+                return 0;
+            case 3: return tableView.rowHeight;
             default: return 0;
             }
         }
     }
+ */
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch(indexPath.section) {
@@ -159,14 +171,26 @@ class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewData
                 cell.setContent(type: NSAttributedString(string: StringHelper.replaceHtmlEntities(input: items[1])), room: FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: items[3])), substitution: FormatHelper.teacherText(oldTeacher: (items[5]), newTeacher: items[4]))
                 return cell;
             case 2:
-                let cell = dequeueReusableCell(withIdentifier: "comment")!;
-                let text = StringHelper.replaceHtmlEntities(input: items[6]);
-                cell.textLabel?.text = text;
-                return cell;
+                if StringHelper.replaceHtmlEntities(input: data[0].gradeItems[0].vertretungsplanItems[indexPath.section - 1][6]) != "" {
+                    let cell = dequeueReusableCell(withIdentifier: "comment")!;
+                    let text = StringHelper.replaceHtmlEntities(input: items[6]);
+                    cell.textLabel?.text = text;
+                    return cell;
+                }
+                
+                if data[0].gradeItems[0].vertretungsplanItems[indexPath.section - 1].count >= 8 {
+                    let cell = dequeueReusableCell(withIdentifier: "eva")!;
+                    let text = StringHelper.replaceHtmlEntities(input: items[7]);
+                    cell.textLabel?.text = text;
+                    return cell;
+                }
+
+                return UITableViewCell();
             case 3:
                 let cell = dequeueReusableCell(withIdentifier: "eva")!;
                 let text = StringHelper.replaceHtmlEntities(input: items[7]);
                 cell.textLabel?.text = text;
+                cell.backgroundView?.clipsToBounds = true;
                 return cell;
             default:
                 return UITableViewCell();

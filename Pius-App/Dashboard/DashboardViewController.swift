@@ -44,7 +44,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     private var grade: String = "";
 
     // That many rows per unfolded item.
-    private let rowsPerItem = 4;
+    private let rowsPerItem = 5;
     
     override func viewDidLoad() {
         super.viewDidLoad();

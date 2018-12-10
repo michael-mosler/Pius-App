@@ -18,4 +18,8 @@ class TodayDashboardDetailsCell: UITableViewCell {
         roomLabel.attributedText = room;
         substitutionLabel.attributedText = substitution;
     }
+    
+    override func awakeFromNib() {
+        self.clipsToBounds = true;
+    }
 }

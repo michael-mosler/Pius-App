@@ -1,8 +1,8 @@
 //
-//  NewsLoader.swift
+//  PostingsLoader.swift
 //  Pius-App
 //
-//  Created by Michael Mosler-Krings on 27.11.18.
+//  Created by Michael Mosler-Krings on 10.12.18.
 //  Copyright © 2018 Felix Krings. All rights reserved.
 //
 
@@ -14,29 +14,25 @@ import Foundation
  * ====================================================
  */
 
-struct NewsItem {
-    var imgUrl: String?;
-    var href: String?;
-    var heading: String?;
-    var text: String?;
+struct PostingsItem {
+    var message: String;
+    var timestamp: String;
     
-    init(imgUrl: String?, href: String?, heading: String?, text: String?) {
-        self.imgUrl = imgUrl;
-        self.href = href;
-        self.heading = heading;
-        self.text = text;
+    init(message: String, timestamp: String) {
+        self.message = message;
+        self.timestamp = timestamp;
     }
 }
 
-typealias NewsItems = [NewsItem];
+typealias PostingsItems = [PostingsItem];
 
-class NewsLoader {
+class PostingsLoader {
     private var url: URL?;
     
-    private let baseUrl = "\(AppDefaults.baseUrl)/v2/news";
+    private let baseUrl = "\(AppDefaults.baseUrl)/v2/postings";
     private let cache = Cache();
-    private var cacheFileName: String { get { return "news.json"; } };
-    private var digestFileName: String { get { return "news.md5"; } };
+    private var cacheFileName: String { get { return "postings.json"; } };
+    private var digestFileName: String { get { return "postings.md5"; } };
     
     private var digest: String?;
     
@@ -77,12 +73,12 @@ class NewsLoader {
         return request;
     }
     
-    // Loads News from backend and converts data that has been received in JSON
+    // Loads Postings from backend and converts data that has been received in JSON
     // format into internal data structures. Finally calls update() method. This method is
     // intented for updating the view from the model that has been built from JSON.
     // In case of an error update() will be called with nil-data. Boolean value indicates
     // is application currently is online or not.
-    func load(_ update: @escaping (NewsItems?, Bool) -> Void) {
+    func load(_ update: @escaping (PostingsItems?, Bool) -> Void) {
         let reachability = Reachability();
         let piusGatewayIsReachable = reachability!.connection != .none;
         let request = getURLRequest(piusGatewayIsReachable);
@@ -94,7 +90,7 @@ class NewsLoader {
             
             // Request error. In this case nothing more is to be done here. Inform user and exit.
             if let error = error {
-                print("News Loader had error: \(error)");
+                print("Postings Loader had error: \(error)");
                 update(nil, piusGatewayIsReachable);
                 return;
             }
@@ -104,17 +100,17 @@ class NewsLoader {
             let notModified = piusGatewayIsReachable == true && ((response as! HTTPURLResponse).statusCode == 304);
             if (notModified) {
                 data_ = self.cache.read(filename: self.cacheFileName);
-                print("News has not changed. Using data from cache.");
+                print("Postings have not changed. Using data from cache.");
             }
             
             if let data = data_ {
-                var newsItems: NewsItems = [];
+                var postingsItems: PostingsItems = [];
                 
                 do {
                     // Convert the data to JSON
                     let jsonSerialized = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any];
                     
-                    // If in online mode store current News in cache. Here we are sure that data is valid
+                    // If in online mode store current Postings in cache. Here we are sure that data is valid
                     // and could be parsed to JSON. If News has been read from cache already we do not
                     // re-save it.
                     if (piusGatewayIsReachable && notModified == false) {
@@ -127,17 +123,20 @@ class NewsLoader {
                         cache.store(filename: self.digestFileName, data: _digest.data(using: .utf8)!);
                     }
                     
-                    if let json = jsonSerialized, let newsItems_ = json["newsItems"] as! [Any]? {
+                    if let json = jsonSerialized, let postingsItems_ = json["messages"] as! [Any]? {
                         // ... and iterate on all of them. This the top level of our Vertretungsplan.
-                        for newsItem_ in newsItems_ {
+                        for postingsItem_ in postingsItems_ {
                             // Convert news item element to dictionary that is indexed by string.
-                            let dictionary = newsItem_ as! [String: String];
-                            let newsItem = NewsItem(imgUrl: dictionary["img"], href: dictionary["href"], heading: dictionary["heading"], text: dictionary["text"]);
-                            newsItems.append(newsItem);
+                            let dictionary = postingsItem_ as! [String: String];
+                            
+                            if let message = dictionary["message"], let timestamp = dictionary["timestamp"] {
+                                let postingsItem = PostingsItem(message: message, timestamp: timestamp);
+                                postingsItems.append(postingsItem);
+                            }
                         }
                     }
                     
-                    update(newsItems, piusGatewayIsReachable);
+                    update(postingsItems, piusGatewayIsReachable);
                 }  catch let error as NSError {
                     print(error.localizedDescription);
                     update(nil, piusGatewayIsReachable);

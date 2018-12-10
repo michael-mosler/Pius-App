@@ -34,11 +34,21 @@ struct MonthItem {
             return "\(_name.prefix(3)) \(_name[index...])";
         }
     }
+    
+    var fullName: String {
+        get {
+            return _name;
+        }
+    }
 
     private var _dayItems: [DayItem];
     var dayItems: [DayItem] {
         get {
             return _dayItems;
+        }
+        
+        set(value) {
+            _dayItems = value;
         }
     }
     
