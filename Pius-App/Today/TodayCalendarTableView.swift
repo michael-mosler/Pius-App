@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodayCalendarTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
+class TodayCalendarTableView: UITableView, UITableViewDelegate, UITableViewDataSource, TodaySubTableViewDelegate {
     private var hadError = false;
     private var parentTableView: UITableView?;
     private var calendar: Calendar?
@@ -21,6 +21,10 @@ class TodayCalendarTableView: UITableView, UITableViewDelegate, UITableViewDataS
                 return [];
             }
         }
+    }
+
+    func needsShow() -> Bool {
+        return true;
     }
 
     /*
@@ -92,12 +96,6 @@ class TodayCalendarTableView: UITableView, UITableViewDelegate, UITableViewDataS
         return (hadError || data.count == 0) ? 1 : data.count;
     }
     
-    /*
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.rowHeight;
-    }
- */
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if hadError {
             let cell = dequeueReusableCell(withIdentifier: "loadError")!;

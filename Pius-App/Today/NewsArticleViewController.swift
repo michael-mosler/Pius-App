@@ -9,6 +9,10 @@
 import UIKit;
 import WebKit;
 
+protocol ModalDismissDelegate {
+    func hasDismissed();
+}
+
 class NewsArticleViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!

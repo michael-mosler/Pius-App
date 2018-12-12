@@ -13,11 +13,15 @@ protocol ShowNewsArticleDelegate {
     func show();
 }
 
-class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
+class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, TodaySubTableViewDelegate {
     private var showNewsDelegate: ShowNewsArticleDelegate?;
     private var parentTableView: UITableView?;
     private let newsLoader = NewsLoader();
     private var newsItems: NewsItems?;
+
+    func needsShow() -> Bool {
+        return true;
+    }
 
     private func doUpdate(with newsItems: NewsItems?, online: Bool) {
         if newsItems == nil {
@@ -67,7 +71,7 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UI
 
         let itemText = NSMutableAttributedString(string: "");
         if let heading = newsItems[indexPath.row].heading {
-            let headingFont = UIFont.systemFont(ofSize: 13, weight: .bold);
+            let headingFont = UIFont.systemFont(ofSize: 15, weight: .bold);
             itemText.append(NSAttributedString(string: heading, attributes: [NSAttributedString.Key.font: headingFont]));
             itemText.append(NSAttributedString(string: "\n"));
         }

@@ -104,7 +104,7 @@ class NewsLoader {
             let notModified = piusGatewayIsReachable == true && ((response as! HTTPURLResponse).statusCode == 304);
             if (notModified) {
                 data_ = self.cache.read(filename: self.cacheFileName);
-                print("News has not changed. Using data from cache.");
+                print("News have not changed. Using data from cache.");
             }
             
             if let data = data_ {
@@ -115,7 +115,7 @@ class NewsLoader {
                     let jsonSerialized = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any];
                     
                     // If in online mode store current News in cache. Here we are sure that data is valid
-                    // and could be parsed to JSON. If News has been read from cache already we do not
+                    // and could be parsed to JSON. If News have been read from cache already we do not
                     // re-save it.
                     if (piusGatewayIsReachable && notModified == false) {
                         self.cache.store(filename: self.cacheFileName, data: data);

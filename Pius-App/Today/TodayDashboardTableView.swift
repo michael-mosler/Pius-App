@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
+class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewDataSource, TodaySubTableViewDelegate {
     private var hadError = false;
     private var parentTableView: UITableView?;
     private var vertretungsplan: Vertretungsplan?;
@@ -50,6 +50,10 @@ class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewData
         }
     }
     
+    func needsShow() -> Bool {
+        return canUseDashboard;
+    }
+
     private func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         hadError = vertretungsplan == nil;
         if !hadError, var vertretungsplan_ = vertretungsplan {
@@ -109,33 +113,6 @@ class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewData
         return numberOfRows;
     }
  
-    /*
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch(indexPath.section) {
-        case 0: return tableView.rowHeight;
-        default:
-            switch(indexPath.row) {
-            case 0: return tableView.rowHeight;
-            case 1: return tableView.rowHeight;
-            case 2:
-                // Comment to be shown on index 2
-                if StringHelper.replaceHtmlEntities(input: data[0].gradeItems[0].vertretungsplanItems[indexPath.section - 1][6]) != "" {
-                    return tableView.rowHeight;
-                }
-                
-                // EVA to be shown on index 2
-                if data[0].gradeItems[0].vertretungsplanItems[indexPath.section - 1].count >= 8 {
-                    return tableView.rowHeight;
-                }
-                
-                return 0;
-            case 3: return tableView.rowHeight;
-            default: return 0;
-            }
-        }
-    }
- */
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch(indexPath.section) {
         case 0:

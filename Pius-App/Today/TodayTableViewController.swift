@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol ModalDismissDelegate {
-    func hasDismissed();
+protocol TodaySubTableViewDelegate {
+    func needsShow() -> Bool
 }
 
 class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, ModalDismissDelegate {
@@ -184,10 +184,30 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch(indexPath.row) {
         case 0: return 105;
-        case 1: return (postingsTableView.contentSize.height > 0) ? postingsTableView.contentSize.height + 29 + 4 + 8 + 8: 44;
-        case 2: return (newsTableView.contentSize.height > 0) ? dashboardTableView.contentSize.height + 29 + 4 + 8 + 8: 44;
-        case 3: return (calendarTableView.contentSize.height > 0) ? calendarTableView.contentSize.height + 29 + 4 + 8 + 8: 44;
-        case 4: return (newsTableView.contentSize.height > 0) ? newsTableView.contentSize.height + 29 + 4 + 8 + 8: 500;
+        case 1:
+            if postingsTableView.needsShow() {
+                return (postingsTableView.contentSize.height > 0) ? postingsTableView.contentSize.height + 29 + 4 + 8 + 8: 54;
+            } else {
+                return 0;
+            }
+        case 2:
+            if dashboardTableView.needsShow() {
+                return (dashboardTableView.contentSize.height > 0) ? dashboardTableView.contentSize.height + 29 + 4 + 8 + 8: 54;
+            } else {
+                return 0;
+            }
+        case 3:
+            if calendarTableView.needsShow() {
+                return (calendarTableView.contentSize.height > 0) ? calendarTableView.contentSize.height + 29 + 4 + 8 + 8: 54;
+            } else {
+                return 0;
+            }
+        case 4:
+            if newsTableView.needsShow() {
+                return (newsTableView.contentSize.height > 0) ? newsTableView.contentSize.height + 29 + 4 + 8 + 8: 500;
+            } else {
+                return 0;
+            }
         default: return 0;
         }
     }

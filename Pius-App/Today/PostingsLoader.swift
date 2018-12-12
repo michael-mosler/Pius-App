@@ -111,7 +111,7 @@ class PostingsLoader {
                     let jsonSerialized = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any];
                     
                     // If in online mode store current Postings in cache. Here we are sure that data is valid
-                    // and could be parsed to JSON. If News has been read from cache already we do not
+                    // and could be parsed to JSON. If Postings have been read from cache already we do not
                     // re-save it.
                     if (piusGatewayIsReachable && notModified == false) {
                         self.cache.store(filename: self.cacheFileName, data: data);
