@@ -109,6 +109,7 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     func show() {
         guard newsUrlToShow != nil else { return; }
         statusBarShouldBeHidden = true;
+        tabBarController?.tabBar.isHidden = true;
 
         UIView.animate(withDuration: 0.25) {
             self.setNeedsStatusBarAppearanceUpdate()
@@ -125,6 +126,7 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
 
     func hasDismissed() {
         statusBarShouldBeHidden = false;
+        tabBarController?.tabBar.isHidden = false;
         UIView.animate(withDuration: 0.25) {
             self.setNeedsStatusBarAppearanceUpdate()
         }

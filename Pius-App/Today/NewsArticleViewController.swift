@@ -21,10 +21,8 @@ class NewsArticleViewController: UIViewController, UIGestureRecognizerDelegate {
     var delegate: ModalDismissDelegate?;
     
     private func dismissView() {
-        dismiss(animated: true, completion: {
-            guard self.delegate != nil else { return; }
-            self.delegate?.hasDismissed();
-        });
+        self.delegate?.hasDismissed();
+        dismiss(animated: true);
     }
 
     @IBAction func dismiss(_ sender: Any) {
