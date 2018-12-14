@@ -202,20 +202,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     // Navigate to specific view controller when app is opened by tapping on
     // a push notification.
-    private func navigateToViewControllerOnNotication(withUserInfo userInfo: [AnyHashable : Any]) {
+    private func navigateToViewControllerOnNotification(withUserInfo userInfo: [AnyHashable : Any]) {
         configureNavigationController();
 
-        if let dashboardViewController = storyboard.instantiateViewController(withIdentifier: "Dashboard") as? DashboardViewController {
-            navigationController?.popToRootViewController(animated: false);
-            navigationController?.pushViewController(dashboardViewController, animated: false);
-        }
+        let tbc = window?.rootViewController as! UITabBarController;
+        let dashboard = tbc.viewControllers![2];
+        tbc.selectedViewController = dashboard;
     }
 
     // Received remote notification when app is running.
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         // When app is running in background or not at all navigate to specific view controller on app launch.
         if UIApplication.shared.applicationState != .active {
-            self.navigateToViewControllerOnNotication(withUserInfo: userInfo);
+            self.navigateToViewControllerOnNotification(withUserInfo: userInfo);
         }
         
         completionHandler(.newData);
