@@ -43,7 +43,15 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         view.addGestureRecognizer(tapGestureRecognizer);
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+        tabBarController?.tabBar.isHidden = true;
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated);
+        tabBarController?.tabBar.isHidden = false;
+
         AppDefaults.courseList = courseList;
         
         // Update subscription when app has push notifications enabled.
@@ -52,7 +60,7 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
             deviceTokenManager.registerDeviceToken(token: deviceToken, subscribeFor: AppDefaults.gradeSetting, withCourseList: AppDefaults.courseList);
         }
     }
-
+    
     /*
      * ============================================================
      *                   Picker and Button
