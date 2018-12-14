@@ -9,14 +9,12 @@
 import UIKit
 
 protocol ShowNewsArticleDelegate {
-    func prepareShow(of url: URL);
-    func show();
+    func show(url: URL);
 }
 
 class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, TodaySubTableViewDelegate {
     var controller: TodayTableViewController?
     
-    private var showNewsDelegate: ShowNewsArticleDelegate?;
     private var parentTableView: UITableView?;
     private let newsLoader = NewsLoader();
     private var newsItems: NewsItems?;
@@ -77,7 +75,6 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? NewsTableViewCell, let href = cell.href, let url = URL(string: href) else { return; };
 
-        (controller)?.prepareShow(of: url);
-        showNewsDelegate?.show();
+        controller?.show(url: url);
     }
 }

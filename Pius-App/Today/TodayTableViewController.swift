@@ -119,12 +119,10 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
      * ====================================================
      */
 
-    func prepareShow(of url: URL) {
-        self.newsUrlToShow = url;
-    }
-    
-    func show() {
-        guard newsUrlToShow != nil else { return; }
+    func show(url: URL) {
+        guard url != nil else { return; }
+
+        newsUrlToShow = url;
         statusBarShouldBeHidden = true;
         tabBarController?.tabBar.isHidden = true;
 
