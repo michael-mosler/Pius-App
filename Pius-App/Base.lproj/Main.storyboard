@@ -286,7 +286,7 @@ Wir verwenden Ashley Mills Reachability Paket (https://github.com/ashleymills/Re
         <!--Kurse hinzufügen-->
         <scene sceneID="Lji-TA-ioc">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="NOa-Bp-GMV" customClass="MyCoursesViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="NOa-Bp-GMV" customClass="MyCoursesViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5MR-M8-Q2w">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -393,7 +393,7 @@ Wir verwenden Ashley Mills Reachability Paket (https://github.com/ashleymills/Re
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ChF-bP-u7z">
-                                <rect key="frame" x="16" y="334" width="382" height="479"/>
+                                <rect key="frame" x="16" y="334" width="382" height="528"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="course" id="4tR-5P-rkj">
@@ -439,7 +439,6 @@ Wir verwenden Ashley Mills Reachability Paket (https://github.com/ashleymills/Re
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addCoursesButton" destination="wT2-Sk-Dki" id="0r7-en-8Pn"/>
                         <outlet property="courseEditField" destination="pll-SK-CDE" id="73n-Ro-Fv4"/>

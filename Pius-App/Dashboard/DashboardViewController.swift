@@ -69,7 +69,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         grade = AppDefaults.gradeSetting;
         
         if (data.count == 0 || title != grade) {
-            title = grade;
+            title = (grade != "") ? grade : "Dashboard";
             
             if canUseDashboard {
                 getVertretungsplanFromWeb(forGrade: grade);

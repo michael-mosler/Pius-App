@@ -19,6 +19,13 @@ class TodayPostingsDetailsCell: UITableViewCell {
         } else {
             postingLabel.attributedText = NSAttributedString(string: message);
         }
-        postingSubtitle.text = date;
+
+        let dateFormatter = DateFormatter();
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ";
+        let isoDate = dateFormatter.date(from: date)!;
+        
+        dateFormatter.dateFormat = "EEEE, d. MMMM, HH:MM";
+        dateFormatter.locale = Locale(identifier: "de_DE");
+        postingSubtitle.text = "\(dateFormatter.string(from: isoDate)) Uhr";
     }
 }

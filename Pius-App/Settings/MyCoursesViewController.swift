@@ -30,6 +30,8 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         showCoursePicker(false);
         
+        tabBarController?.tabBar.isHidden = true;
+        
         cellBgView.backgroundColor = Config.colorPiusBlue;
         let savedCourseList: [String]? = AppDefaults.courseList;
         
