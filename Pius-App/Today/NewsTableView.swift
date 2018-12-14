@@ -14,6 +14,8 @@ protocol ShowNewsArticleDelegate {
 }
 
 class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, TodaySubTableViewDelegate {
+    var controller: TodayTableViewController?
+    
     private var showNewsDelegate: ShowNewsArticleDelegate?;
     private var parentTableView: UITableView?;
     private let newsLoader = NewsLoader();
@@ -38,12 +40,13 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UI
             self.reloadData();
             self.layoutSubviews();
             self.parentTableView?.endUpdates();
+            self.controller?.doneLoadingSubTable();
         }
     }
 
-    func loadData(showNewsDelegate delegate: ShowNewsArticleDelegate, sender: UITableView) {
-        self.showNewsDelegate = delegate as? TodayTableViewController;
-        self.parentTableView = sender;
+    func loadData(controller: TodayTableViewController, sender: UITableView) {
+        self.controller = controller;
+        parentTableView = sender;
         newsLoader.load(doUpdate);
     }
 
@@ -85,7 +88,7 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? NewsTableViewCell, let href = cell.href, let url = URL(string: href) else { return; };
 
-        showNewsDelegate?.prepareShow(of: url);
+        (controller)?.prepareShow(of: url);
         showNewsDelegate?.show();
     }
 }

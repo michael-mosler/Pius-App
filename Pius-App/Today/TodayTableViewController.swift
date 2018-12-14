@@ -9,10 +9,18 @@
 import UIKit
 
 protocol TodaySubTableViewDelegate {
-    func needsShow() -> Bool
+    var controller: TodayTableViewController? { get set };
+    
+    func needsShow() -> Bool;
+    func loadData(controller: TodayTableViewController, sender: UITableView);
 }
 
-class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, ModalDismissDelegate {
+protocol TodaySubTableLoadedDelegate {
+    func doneLoadingSubTable();
+}
+
+class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, ModalDismissDelegate, TodaySubTableLoadedDelegate {
+    private var pendingLoads: Int = 4;
     private var statusBarShouldBeHidden: Bool = false;
     
     override var prefersStatusBarHidden: Bool {
@@ -24,7 +32,8 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     }
     
     @IBOutlet weak var headerLabel: UILabel!
-
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var postingsHeaderLabel: UILabel!
     @IBOutlet weak var postingsView: UIView!
     @IBOutlet weak var postingsTableView: TodayPostingsTableView!
@@ -43,6 +52,14 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     
     var newsUrlToShow: URL?;
     
+    func doneLoadingSubTable() {
+        pendingLoads -= 1;
+        
+        if pendingLoads <= 0 {
+            refreshControl?.endRefreshing();
+            activityIndicator.stopAnimating();
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad();
 
@@ -61,19 +78,19 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
         
         // Postings
         postingsHeaderLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold);
-        postingsTableView.loadData(sender: tableView);
+        postingsTableView.loadData(controller: self, sender: tableView);
         
         // Dashboard
         dashboardViewHeaderLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold);
-        dashboardTableView.loadData(sender: tableView);
+        dashboardTableView.loadData(controller: self, sender: tableView);
         
         // Calendar
         calendarViewHeaderLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold);
-        calendarTableView.loadData(sender: tableView);
+        calendarTableView.loadData(controller: self, sender: tableView);
         
         // Get content for calendar.
         newViewHeaderLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold);
-        newsTableView.loadData(showNewsDelegate: self, sender: tableView);
+        newsTableView.loadData(controller: self, sender: tableView);
     }
 
     private func setContentViewLayerProperties(forView view: UIView) {
@@ -143,13 +160,13 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     @objc func refreshScrollView(_ sender: UIRefreshControl) {
         setHeaderCellContent();
 
+        pendingLoads = 4;
+        
         // Reload content.
-        postingsTableView.loadData(sender: tableView);
-        dashboardTableView.loadData(sender: tableView);
-        calendarTableView.loadData(sender: tableView);
-        newsTableView.loadData(showNewsDelegate: self, sender: tableView);
-
-        sender.endRefreshing()
+        postingsTableView.loadData(controller: self, sender: tableView);
+        dashboardTableView.loadData(controller: self, sender: tableView);
+        calendarTableView.loadData(controller: self, sender: tableView);
+        newsTableView.loadData(controller: self, sender: tableView);
     }
 
     private func setHeaderCellContent() {

@@ -9,6 +9,8 @@
 import UIKit
 
 class TodayPostingsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, TodaySubTableViewDelegate {
+    var controller: TodayTableViewController?
+    
     private var parentTableView: UITableView?;
     private var postingsItems: PostingsItems?
     
@@ -43,10 +45,12 @@ class TodayPostingsTableView: UITableView, UITableViewDelegate, UITableViewDataS
             self.reloadData();
             self.layoutIfNeeded();
             self.parentTableView?.endUpdates();
+            self.controller?.doneLoadingSubTable();
         }
     }
     
-    func loadData(sender: UITableView) {
+    func loadData(controller: TodayTableViewController, sender: UITableView) {
+        self.controller = controller;
         parentTableView = sender;
         delegate = self;
         dataSource = self;

@@ -1940,10 +1940,19 @@ Tippe dazu unten auf </string>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2bL-w9-gRW">
+                                                    <rect key="frame" x="197" y="42.5" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="h80-KI-5mK"/>
+                                                        <constraint firstAttribute="height" constant="20" id="qAU-g8-N2x"/>
+                                                    </constraints>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ITJ-AC-VYG" firstAttribute="top" secondItem="X7f-IZ-LGT" secondAttribute="topMargin" id="MT5-DK-Xez"/>
+                                                <constraint firstItem="2bL-w9-gRW" firstAttribute="centerY" secondItem="X7f-IZ-LGT" secondAttribute="centerY" id="Omr-hJ-5cU"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ITJ-AC-VYG" secondAttribute="trailing" id="XZ4-bt-G4g"/>
+                                                <constraint firstItem="2bL-w9-gRW" firstAttribute="centerX" secondItem="X7f-IZ-LGT" secondAttribute="centerX" id="eqv-NS-QPq"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="ITJ-AC-VYG" secondAttribute="bottom" id="gie-M9-iXs"/>
                                                 <constraint firstItem="ITJ-AC-VYG" firstAttribute="leading" secondItem="X7f-IZ-LGT" secondAttribute="leadingMargin" id="ps2-9t-Vk2"/>
                                             </constraints>
@@ -2242,7 +2251,7 @@ Tippe dazu unten auf </string>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
                                                                             <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2rQ-ir-xkO">
-                                                                                <rect key="frame" x="20" y="0.0" width="358" height="43.5"/>
+                                                                                <rect key="frame" x="15" y="0.0" width="368" height="43.5"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                 <nil key="textColor"/>
@@ -2645,6 +2654,7 @@ Tippe dazu unten auf </string>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </refreshControl>
                     <connections>
+                        <outlet property="activityIndicator" destination="2bL-w9-gRW" id="Gl6-6K-xXq"/>
                         <outlet property="calendarTableView" destination="xHW-oC-EXC" id="FwJ-wI-NMD"/>
                         <outlet property="calendarView" destination="iNQ-Op-g5V" id="rqW-1i-sgG"/>
                         <outlet property="calendarViewHeaderLabel" destination="QPz-bb-V8L" id="vmz-cu-wWN"/>
