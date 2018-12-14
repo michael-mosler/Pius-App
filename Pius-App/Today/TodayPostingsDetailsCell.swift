@@ -14,7 +14,7 @@ class TodayPostingsDetailsCell: UITableViewCell {
     
     func setContent(message: String, date: String) {
         let data = Data(message.utf8);
-        if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+        if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil) {
             postingLabel.attributedText = attributedString;
         } else {
             postingLabel.attributedText = NSAttributedString(string: message);

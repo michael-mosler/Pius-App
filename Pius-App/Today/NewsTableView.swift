@@ -59,18 +59,7 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UI
         guard let newsItems = self.newsItems, let text = newsItems[indexPath.row].text else { return UITableViewCell(); }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsItem") as! NewsTableViewCell;
-
-        if let imgUrl = newsItems[indexPath.row].imgUrl {
-            do {
-                let url = URL(string: imgUrl);
-                let data = try Data(contentsOf : url!);
-                let image = UIImage(data: data);
-                cell.newsItemImageView.image = image;
-            }
-            catch {
-                print("Failed to load image from \(imgUrl)");
-            }
-        }
+        cell.setImageUrl(imgUrl: newsItems[indexPath.row].imgUrl);
 
         let itemText = NSMutableAttributedString(string: "");
         if let heading = newsItems[indexPath.row].heading {

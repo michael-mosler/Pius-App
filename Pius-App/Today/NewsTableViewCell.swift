@@ -11,6 +11,26 @@ import UIKit
 class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var newsItemImageView: UIImageView!
     @IBOutlet weak var newsItemTextLabel: UILabel!
+
+    var href: String?;
     
-    var href: String?;    
+    // Sets image URL and loads images in background.
+    func setImageUrl(imgUrl: String?) {
+        guard let imgUrl = imgUrl else { return; }
+        
+        let url = URL(string: imgUrl);
+        DispatchQueue.global().async {
+            do {
+                let data = try Data(contentsOf : url!);
+                let image = UIImage(data: data);
+                
+                DispatchQueue.main.async {
+                    self.newsItemImageView.image = image;
+                }
+            }
+            catch {
+                print("Failed to load image from \(imgUrl)");
+            }
+        }
+    }
 }
