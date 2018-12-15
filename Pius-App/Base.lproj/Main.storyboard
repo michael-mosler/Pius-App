@@ -2216,7 +2216,7 @@ Tippe dazu unten auf </string>
                                                             <rect key="frame" x="0.0" y="33" width="398" height="97"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <prototypes>
-                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="lastUpdateCell" textLabel="Pw6-Tt-Vp6" detailTextLabel="KNJ-bl-JOP" style="IBUITableViewCellStyleSubtitle" id="8b7-zV-cug">
+                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="lastUpdateCell" textLabel="Pw6-Tt-Vp6" detailTextLabel="KNJ-bl-JOP" style="IBUITableViewCellStyleSubtitle" id="8b7-zV-cug">
                                                                     <rect key="frame" x="0.0" y="1" width="398" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8b7-zV-cug" id="G7Z-C9-rg2">
@@ -2242,7 +2242,7 @@ Tippe dazu unten auf </string>
                                                                     </tableViewCellContentView>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </tableViewCell>
-                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="course" textLabel="FEA-h0-6iY" style="IBUITableViewCellStyleDefault" id="ZTi-bV-dhU">
+                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="course" textLabel="FEA-h0-6iY" style="IBUITableViewCellStyleDefault" id="ZTi-bV-dhU">
                                                                     <rect key="frame" x="0.0" y="45" width="398" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZTi-bV-dhU" id="Fii-Kt-XW4">
@@ -2260,7 +2260,7 @@ Tippe dazu unten auf </string>
                                                                     </tableViewCellContentView>
                                                                     <color key="backgroundColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.82399999999999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </tableViewCell>
-                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="details" id="sTN-ZU-C1e" customClass="TodayDashboardDetailsCell" customModule="Pius_App" customModuleProvider="target">
+                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="details" id="sTN-ZU-C1e" customClass="TodayDashboardDetailsCell" customModule="Pius_App" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="89" width="398" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sTN-ZU-C1e" id="HNy-oK-DJ0">
@@ -2331,7 +2331,7 @@ Tippe dazu unten auf </string>
                                                                         <outlet property="typeLabel" destination="oZC-iZ-8Hp" id="ASc-eC-4Qb"/>
                                                                     </connections>
                                                                 </tableViewCell>
-                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="comment" textLabel="2rQ-ir-xkO" style="IBUITableViewCellStyleDefault" id="wDz-Mc-bJH">
+                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="comment" textLabel="2rQ-ir-xkO" style="IBUITableViewCellStyleDefault" id="wDz-Mc-bJH">
                                                                     <rect key="frame" x="0.0" y="133" width="398" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wDz-Mc-bJH" id="xv6-bQ-2D3">
@@ -2350,7 +2350,7 @@ Tippe dazu unten auf </string>
                                                                     </tableViewCellContentView>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </tableViewCell>
-                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="eva" textLabel="gYH-2a-APW" style="IBUITableViewCellStyleDefault" id="Wvf-Qq-6nO">
+                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="eva" textLabel="gYH-2a-APW" style="IBUITableViewCellStyleDefault" id="Wvf-Qq-6nO">
                                                                     <rect key="frame" x="0.0" y="177" width="398" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wvf-Qq-6nO" id="zHq-Ee-dK5">
@@ -2368,7 +2368,7 @@ Tippe dazu unten auf </string>
                                                                     </tableViewCellContentView>
                                                                     <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </tableViewCell>
-                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noSubstitutions" textLabel="60S-vW-YIX" style="IBUITableViewCellStyleDefault" id="Rr4-2b-GBJ">
+                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="noSubstitutions" textLabel="60S-vW-YIX" style="IBUITableViewCellStyleDefault" id="Rr4-2b-GBJ">
                                                                     <rect key="frame" x="0.0" y="221" width="398" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rr4-2b-GBJ" id="SYA-wH-Q8d">
@@ -2387,7 +2387,7 @@ Tippe dazu unten auf </string>
                                                                     </tableViewCellContentView>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </tableViewCell>
-                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="loadError" textLabel="LjN-2e-f8o" style="IBUITableViewCellStyleDefault" id="56u-bO-URg">
+                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="loadError" textLabel="LjN-2e-f8o" style="IBUITableViewCellStyleDefault" id="56u-bO-URg">
                                                                     <rect key="frame" x="0.0" y="265" width="398" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="56u-bO-URg" id="Zll-hg-f4k">
@@ -2523,7 +2523,7 @@ Tippe dazu unten auf </string>
                                                                         <outlet property="eventItemLabel" destination="XgM-pP-Zwv" id="Mv3-nG-IZU"/>
                                                                     </connections>
                                                                 </tableViewCell>
-                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="loadError" textLabel="yhW-Cm-VRm" style="IBUITableViewCellStyleDefault" id="V49-Ce-sNN">
+                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="loadError" textLabel="yhW-Cm-VRm" style="IBUITableViewCellStyleDefault" id="V49-Ce-sNN">
                                                                     <rect key="frame" x="0.0" y="45" width="382" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V49-Ce-sNN" id="jHA-lG-76L">
@@ -2541,7 +2541,7 @@ Tippe dazu unten auf </string>
                                                                     </tableViewCellContentView>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </tableViewCell>
-                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noItems" textLabel="HiW-id-ZQb" style="IBUITableViewCellStyleDefault" id="fn7-Vh-Zd5">
+                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="noItems" textLabel="HiW-id-ZQb" style="IBUITableViewCellStyleDefault" id="fn7-Vh-Zd5">
                                                                     <rect key="frame" x="0.0" y="89" width="382" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fn7-Vh-Zd5" id="4vk-Zt-Ved">
