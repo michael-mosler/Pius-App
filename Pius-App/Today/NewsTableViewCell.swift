@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var newsItemImageView: UIImageView!
@@ -19,18 +20,6 @@ class NewsTableViewCell: UITableViewCell {
         guard let imgUrl = imgUrl else { return; }
         
         let url = URL(string: imgUrl);
-        DispatchQueue.global().async {
-            do {
-                let data = try Data(contentsOf : url!);
-                let image = UIImage(data: data);
-                
-                DispatchQueue.main.async {
-                    self.newsItemImageView.image = image;
-                }
-            }
-            catch {
-                print("Failed to load image from \(imgUrl)");
-            }
-        }
+        self.newsItemImageView.kf.setImage(with: url);
     }
 }

@@ -64,6 +64,7 @@
 		4CC332D12180DF580055E3F5 /* MetaDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC332D02180DF580055E3F5 /* MetaDataCollectionViewCell.swift */; };
 		4CC3F9A821C520D800DB98B7 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3F9A621C520D700DB98B7 /* SF-Pro-Display-Regular.otf */; };
 		4CC3F9A921C520D800DB98B7 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3F9A721C520D800DB98B7 /* SF-Pro-Display-Bold.otf */; };
+		4CEBAD0B21C5613600E152BF /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CEBAD0A21C5613600E152BF /* Kingfisher.framework */; };
 		4CED4A7D204749580012CB45 /* EinstellungenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */; };
 		4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */; };
 		4CED4A85204AE3510012CB45 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */; };
@@ -171,6 +172,7 @@
 		4CC332D02180DF580055E3F5 /* MetaDataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataCollectionViewCell.swift; sourceTree = "<group>"; };
 		4CC3F9A621C520D700DB98B7 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		4CC3F9A721C520D800DB98B7 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		4CEBAD0A21C5613600E152BF /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EinstellungenViewController.swift; sourceTree = "<group>"; };
 		4CED4A80204ADB520012CB45 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		4CED4A81204ADB520012CB45 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CEBAD0B21C5613600E152BF /* Kingfisher.framework in Frameworks */,
 				4C7E61AA20A438A0000D1225 /* SystemConfiguration.framework in Frameworks */,
 				4C194B4C204AFB3500BA744A /* WebKit.framework in Frameworks */,
 			);
@@ -232,6 +235,7 @@
 		4C194B4A204AFB3500BA744A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4CEBAD0A21C5613600E152BF /* Kingfisher.framework */,
 				4C7E61A920A4389F000D1225 /* SystemConfiguration.framework */,
 				4C194B4B204AFB3500BA744A /* WebKit.framework */,
 				4CB3EC7320DC0ECB00BBEAE0 /* NotificationCenter.framework */,
@@ -459,6 +463,7 @@
 				4C7C22892043117700ACA17B /* Frameworks */,
 				4C7C228A2043117700ACA17B /* Resources */,
 				4CB3EC8220DC0ECB00BBEAE0 /* Embed App Extensions */,
+				4CEBAD0C21C5618D00E152BF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -636,6 +641,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4CEBAD0C21C5618D00E152BF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Kingfisher.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4C7C22882043117700ACA17B /* Sources */ = {
@@ -898,7 +925,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ALWAYS_SHOW_ONBOARDING = true;
+				ALWAYS_SHOW_ONBOARDING = false;
 				API_KEY = "heSXxSOvNcl8J4UB9$#TV9TUZ3zClbX$EyOQzKiqGWxRgonzSe";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Pius-App/Pius-App.entitlements";
@@ -906,6 +933,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -922,7 +953,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ALWAYS_SHOW_ONBOARDING = true;
+				ALWAYS_SHOW_ONBOARDING = false;
 				API_KEY = "heSXxSOvNcl8J4UB9$#TV9TUZ3zClbX$EyOQzKiqGWxRgonzSe";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Pius-App/Pius-App.entitlements";
@@ -930,6 +961,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				HOST_ADDRESS = "https://pius-gateway.eu-de.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

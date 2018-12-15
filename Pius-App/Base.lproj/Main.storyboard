@@ -169,7 +169,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zW6-Ub-abp">
-                                        <rect key="frame" x="10" y="580.5" width="394" height="214"/>
+                                        <rect key="frame" x="10" y="580.5" width="394" height="279.5"/>
                                         <color key="tintColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="400" id="smo-0o-0L4"/>
@@ -179,7 +179,8 @@
                                                 <string key="content">© Felix Krings und Michael Mosler-Krings
 Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos zur App. 
 Informationen zu unserer Datenschutzrichtlinie findest Du unter https://github.com/michael-mosler/Pius-App/wiki/Datenschutzrichtlinie.
-Wir verwenden Ashley Mills Reachability Paket von https://github.com/ashleymills/Reachability.swift.</string>
+Wir verwenden Ashley Mills Reachability Paket von https://github.com/ashleymills/Reachability.swift.
+Für das Cachen von Bildern verwenden wir Kingfisher von https://github.com/onevcat/Kingfisher.</string>
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                     <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
