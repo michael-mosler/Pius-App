@@ -12,6 +12,7 @@ protocol TodaySubTableViewDelegate {
     var controller: TodayTableViewController? { get set };
     
     func needsShow() -> Bool;
+    func willTryLoading() -> Bool;
     func loadData(controller: TodayTableViewController, sender: UITableView);
 }
 
@@ -20,17 +21,6 @@ protocol TodaySubTableLoadedDelegate {
 }
 
 class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, ModalDismissDelegate, TodaySubTableLoadedDelegate {
-    private var pendingLoads: Int = 4;
-    private var statusBarShouldBeHidden: Bool = false;
-    
-    override var prefersStatusBarHidden: Bool {
-        return statusBarShouldBeHidden;
-    }
-    
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-        return .slide
-    }
-    
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -49,6 +39,26 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     @IBOutlet weak var newViewHeaderLabel: UILabel!
     @IBOutlet weak var newsView: UIView!
     @IBOutlet weak var newsTableView: NewsTableView!
+   
+    private var expectedLoads: Int {
+        get {
+            return (postingsTableView.willTryLoading() ? 1 : 0)
+                + (dashboardTableView.willTryLoading() ? 1 : 0)
+                + (calendarTableView.willTryLoading() ? 1 : 0)
+                + (newsTableView.willTryLoading() ? 1 : 0)
+        }
+    }
+
+    private var pendingLoads: Int = 0;
+    private var statusBarShouldBeHidden: Bool = false;
+    
+    override var prefersStatusBarHidden: Bool {
+        return statusBarShouldBeHidden;
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
     
     var newsUrlToShow: URL?;
     
@@ -72,6 +82,8 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
         view.backgroundColor = .white;
         view.frame = UIApplication.shared.statusBarFrame;
         navigationController!.view.addSubview(view);
+        
+        pendingLoads = expectedLoads;
         
         // Set header content
         setHeaderCellContent();
@@ -156,7 +168,7 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     @objc func refreshScrollView(_ sender: UIRefreshControl) {
         setHeaderCellContent();
 
-        pendingLoads = 4;
+        pendingLoads = expectedLoads;
         
         // Reload content.
         postingsTableView.loadData(controller: self, sender: tableView);

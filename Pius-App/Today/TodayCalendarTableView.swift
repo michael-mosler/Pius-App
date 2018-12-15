@@ -25,16 +25,20 @@ class TodayCalendarTableView: UITableView, UITableViewDelegate, UITableViewDataS
         }
     }
 
-    func needsShow() -> Bool {
-        return true;
-    }
-
     /*
      * ====================================================
      *                  Data Loader
      * ====================================================
      */
     
+    func needsShow() -> Bool {
+        return true;
+    }
+
+    func willTryLoading() -> Bool {
+        return true;
+    }
+
     private func doUpdate(with calendar: Calendar?, online: Bool) {
         hadError = calendar == nil;
         if !hadError, let calendar_ = calendar {

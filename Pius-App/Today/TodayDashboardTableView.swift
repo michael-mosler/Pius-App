@@ -56,6 +56,10 @@ class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewData
         return canUseDashboard;
     }
 
+    func willTryLoading() -> Bool {
+        return canUseDashboard;
+    }
+
     private func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         hadError = vertretungsplan == nil;
         if !hadError, var vertretungsplan_ = vertretungsplan {

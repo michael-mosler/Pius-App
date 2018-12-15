@@ -24,15 +24,19 @@ class TodayPostingsTableView: UITableView, UITableViewDelegate, UITableViewDataS
         }
     }
 
-    func needsShow() -> Bool {
-        return data.count > 0;
-    }
-
     /*
      * ====================================================
      *                  Data Loader
      * ====================================================
      */
+
+    func needsShow() -> Bool {
+        return data.count > 0;
+    }
+    
+    func willTryLoading() -> Bool {
+        return true;
+    }
     
     private func doUpdate(with postingsItems: PostingsItems?, online: Bool) {
         let hadError = postingsItems == nil;

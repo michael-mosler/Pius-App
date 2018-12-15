@@ -19,7 +19,17 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UI
     private let newsLoader = NewsLoader();
     private var newsItems: NewsItems?;
 
+    /*
+     * ====================================================
+     *                  Data Loader
+     * ====================================================
+     */
+    
     func needsShow() -> Bool {
+        return true;
+    }
+
+    func willTryLoading() -> Bool {
         return true;
     }
 
@@ -48,6 +58,12 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UI
         newsLoader.load(doUpdate);
     }
 
+    /*
+     * ====================================================
+     *                  Table Data
+     * ====================================================
+     */
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let newsItems = self.newsItems else { return 0; }
         return newsItems.count;

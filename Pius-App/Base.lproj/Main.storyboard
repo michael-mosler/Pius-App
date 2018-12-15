@@ -179,7 +179,7 @@
                                                 <string key="content">© Felix Krings und Michael Mosler-Krings
 Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos zur App. 
 Informationen zu unserer Datenschutzrichtlinie findest Du unter https://github.com/michael-mosler/Pius-App/wiki/Datenschutzrichtlinie.
-Wir verwenden Ashley Mills Reachability Paket (https://github.com/ashleymills/Reachability.swift).</string>
+Wir verwenden Ashley Mills Reachability Paket von https://github.com/ashleymills/Reachability.swift.</string>
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                     <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
@@ -488,8 +488,9 @@ Wir verwenden Ashley Mills Reachability Paket (https://github.com/ashleymills/Re
                                                         <fragment content="Willkommen bei der Pius-App">
                                                             <attributes>
                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="36" name="Arial-BoldMT"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                <font key="NSFont" size="28" name="SFProDisplay-Bold"/>
+                                                                <font key="NSOriginalFont" size="28" name="SFProDisplay-Bold"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" headerLevel="1"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -504,8 +505,86 @@ Wir verwenden Ashley Mills Reachability Paket (https://github.com/ashleymills/Re
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="WeR-5W-bP8">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="tbJ-xB-H9O">
                                         <rect key="frame" x="0.0" y="110" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tbJ-xB-H9O" id="ape-5f-BrB">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHV-CX-I7k">
+                                                    <rect key="frame" x="16" y="0.0" width="382" height="44"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Neu in der Version 2.1:">
+                                                            <attributes>
+                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                <font key="NSFont" size="17" name="SFProDisplay-Regular"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="iHV-CX-I7k" firstAttribute="top" secondItem="ape-5f-BrB" secondAttribute="top" id="U1H-m9-OWf"/>
+                                                <constraint firstAttribute="trailing" secondItem="iHV-CX-I7k" secondAttribute="trailing" constant="16" id="g4U-qs-FPM"/>
+                                                <constraint firstItem="iHV-CX-I7k" firstAttribute="leading" secondItem="ape-5f-BrB" secondAttribute="leading" constant="16" id="tjQ-FV-jfb"/>
+                                                <constraint firstAttribute="bottom" secondItem="iHV-CX-I7k" secondAttribute="bottom" id="vnA-NU-fJJ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="lg9-AQ-N3b">
+                                        <rect key="frame" x="0.0" y="154" width="414" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lg9-AQ-N3b" id="DTB-O4-aqD">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluetoday_apps" translatesAutoresizingMaskIntoConstraints="NO" id="BeY-4v-ewz">
+                                                    <rect key="frame" x="16" y="26" width="48" height="48"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="AcS-Wo-OsG"/>
+                                                        <constraint firstAttribute="width" constant="48" id="e4h-jw-I8c"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQV-eL-xIm">
+                                                    <rect key="frame" x="80" y="8" width="318" height="84"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Heute">
+                                                            <attributes>
+                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                <font key="NSFont" size="17" name="SFProDisplay-Bold"/>
+                                                                <font key="NSOriginalFont" size="17" name="SFProDisplay-Bold"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment>
+                                                            <string key="content">
+Auf der vollkommen neugestalteten Heute-Seite hast Du alles Wichtige im Blick.</string>
+                                                            <attributes>
+                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                <font key="NSFont" size="17" name="SFProDisplay-Regular"/>
+                                                                <font key="NSOriginalFont" size="17" name="SFProDisplay-Regular"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="BeY-4v-ewz" firstAttribute="centerY" secondItem="PQV-eL-xIm" secondAttribute="centerY" id="9Vs-a0-vEy"/>
+                                                <constraint firstAttribute="trailing" secondItem="PQV-eL-xIm" secondAttribute="trailing" constant="16" id="LxU-kQ-Uz3"/>
+                                                <constraint firstItem="BeY-4v-ewz" firstAttribute="leading" secondItem="DTB-O4-aqD" secondAttribute="leading" constant="16" id="ZX9-Un-pzd"/>
+                                                <constraint firstItem="PQV-eL-xIm" firstAttribute="leading" secondItem="BeY-4v-ewz" secondAttribute="trailing" constant="16" id="dlN-yw-gye"/>
+                                                <constraint firstItem="PQV-eL-xIm" firstAttribute="top" secondItem="DTB-O4-aqD" secondAttribute="top" constant="8" id="khM-Xv-BtQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="PQV-eL-xIm" secondAttribute="bottom" constant="8" id="riw-IN-YyJ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="WeR-5W-bP8">
+                                        <rect key="frame" x="0.0" y="254" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WeR-5W-bP8" id="aKw-3S-HGr">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -537,7 +616,7 @@ Deine Vorteile mit Login:
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="I3N-Xe-eNc">
-                                        <rect key="frame" x="0.0" y="154" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="298" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I3N-Xe-eNc" id="RMe-dJ-H6r">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -593,7 +672,7 @@ Cg
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="146" id="1zQ-mh-hPP">
-                                        <rect key="frame" x="0.0" y="254" width="414" height="146"/>
+                                        <rect key="frame" x="0.0" y="398" width="414" height="146"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1zQ-mh-hPP" id="X7Y-3H-rnL">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="146"/>
@@ -649,7 +728,7 @@ Cg
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="oHA-qe-MUO">
-                                        <rect key="frame" x="0.0" y="400" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="544" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oHA-qe-MUO" id="Jzv-MJ-ubB">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -704,14 +783,14 @@ Cg
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="154" id="BPd-KX-vi0">
-                                        <rect key="frame" x="0.0" y="500" width="414" height="154"/>
+                                        <rect key="frame" x="0.0" y="644" width="414" height="154"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BPd-KX-vi0" id="j7C-3f-5bb">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="154"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nvY-r5-8co">
-                                                    <rect key="frame" x="16" y="110" width="382" height="44"/>
+                                                    <rect key="frame" x="16" y="102" width="382" height="44"/>
                                                     <color key="backgroundColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.82399999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="hIn-w7-mJd"/>
@@ -731,7 +810,7 @@ Cg
                                                 <constraint firstItem="nvY-r5-8co" firstAttribute="centerX" secondItem="j7C-3f-5bb" secondAttribute="centerX" id="ON7-J8-fZH"/>
                                                 <constraint firstItem="nvY-r5-8co" firstAttribute="leading" secondItem="j7C-3f-5bb" secondAttribute="leading" constant="16" id="U7Z-fu-2V8"/>
                                                 <constraint firstItem="nvY-r5-8co" firstAttribute="top" relation="greaterThanOrEqual" secondItem="j7C-3f-5bb" secondAttribute="top" id="ZiQ-Of-kMd"/>
-                                                <constraint firstAttribute="bottom" secondItem="nvY-r5-8co" secondAttribute="bottom" id="qDN-DX-Baq"/>
+                                                <constraint firstAttribute="bottom" secondItem="nvY-r5-8co" secondAttribute="bottom" constant="8" id="qDN-DX-Baq"/>
                                                 <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="nvY-r5-8co" secondAttribute="trailing" constant="16" id="umK-Om-gVe"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -2700,6 +2779,7 @@ Tippe dazu unten auf </string>
         <image name="bluecalendar" width="30" height="30"/>
         <image name="bluelist" width="30" height="30"/>
         <image name="bluestar" width="30" height="30"/>
+        <image name="bluetoday_apps" width="30" height="30"/>
         <image name="calendar" width="30" height="30"/>
         <image name="gradient" width="64" height="64"/>
         <image name="greycancel" width="30" height="30"/>
