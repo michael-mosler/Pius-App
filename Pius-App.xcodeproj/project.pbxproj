@@ -62,6 +62,8 @@
 		4CB97F17210A53940019973D /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB97F16210A53940019973D /* DeviceTokenManager.swift */; };
 		4CC332CF2180DAB10055E3F5 /* MetaDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC332CE2180DAB10055E3F5 /* MetaDataTableViewCell.swift */; };
 		4CC332D12180DF580055E3F5 /* MetaDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC332D02180DF580055E3F5 /* MetaDataCollectionViewCell.swift */; };
+		4CC3F9A821C520D800DB98B7 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3F9A621C520D700DB98B7 /* SF-Pro-Display-Regular.otf */; };
+		4CC3F9A921C520D800DB98B7 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3F9A721C520D800DB98B7 /* SF-Pro-Display-Bold.otf */; };
 		4CED4A7D204749580012CB45 /* EinstellungenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */; };
 		4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */; };
 		4CED4A85204AE3510012CB45 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */; };
@@ -167,6 +169,8 @@
 		4CB97F16210A53940019973D /* DeviceTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenManager.swift; sourceTree = "<group>"; };
 		4CC332CE2180DAB10055E3F5 /* MetaDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataTableViewCell.swift; sourceTree = "<group>"; };
 		4CC332D02180DF580055E3F5 /* MetaDataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataCollectionViewCell.swift; sourceTree = "<group>"; };
+		4CC3F9A621C520D700DB98B7 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		4CC3F9A721C520D800DB98B7 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EinstellungenViewController.swift; sourceTree = "<group>"; };
 		4CED4A80204ADB520012CB45 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		4CED4A81204ADB520012CB45 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -315,6 +319,7 @@
 		4C7C228E2043117700ACA17B /* Pius-App */ = {
 			isa = PBXGroup;
 			children = (
+				4CC3F9AA21C520DF00DB98B7 /* Fonts */,
 				4CB2AF5421A75563007E5D1F /* Today */,
 				4CB97F15210A535F0019973D /* PushService */,
 				4CB3EC8420DC10D700BBEAE0 /* Pius-App.entitlements */,
@@ -393,6 +398,15 @@
 				4CB97F16210A53940019973D /* DeviceTokenManager.swift */,
 			);
 			path = PushService;
+			sourceTree = "<group>";
+		};
+		4CC3F9AA21C520DF00DB98B7 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4CC3F9A721C520D800DB98B7 /* SF-Pro-Display-Bold.otf */,
+				4CC3F9A621C520D700DB98B7 /* SF-Pro-Display-Regular.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		4CFB105520D048B700432B1A /* CalendarData */ = {
@@ -591,7 +605,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C7C229A2043117800ACA17B /* LaunchScreen.storyboard in Resources */,
+				4CC3F9A921C520D800DB98B7 /* SF-Pro-Display-Bold.otf in Resources */,
 				4C7C22972043117800ACA17B /* Assets.xcassets in Resources */,
+				4CC3F9A821C520D800DB98B7 /* SF-Pro-Display-Regular.otf in Resources */,
 				4C7C22952043117800ACA17B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -488,7 +488,7 @@ Wir verwenden Ashley Mills Reachability Paket von https://github.com/ashleymills
                                                         <fragment content="Willkommen bei der Pius-App">
                                                             <attributes>
                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="28" name="SFProDisplay-Bold"/>
+                                                                <font key="NSFont" size="36" name="SFProDisplay-Bold"/>
                                                                 <font key="NSOriginalFont" size="28" name="SFProDisplay-Bold"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" headerLevel="1"/>
                                                             </attributes>
@@ -554,14 +554,23 @@ Wir verwenden Ashley Mills Reachability Paket von https://github.com/ashleymills
                                                         <fragment content="Heute">
                                                             <attributes>
                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="17" name="SFProDisplay-Bold"/>
+                                                                <font key="NSFont" size="18" name="SFProDisplay-Bold"/>
                                                                 <font key="NSOriginalFont" size="17" name="SFProDisplay-Bold"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                         <fragment>
-                                                            <string key="content">
-Auf der vollkommen neugestalteten Heute-Seite hast Du alles Wichtige im Blick.</string>
+                                                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                                            <attributes>
+                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                <font key="NSFont" size="17" name="SFProDisplay-Regular"/>
+                                                                <font key="NSOriginalFont" size="15" name=".SFNSText"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content="Auf der vollkommen neugestalteten Heute-Seite hast Du alles Wichtige im Blick.">
                                                             <attributes>
                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                 <font key="NSFont" size="17" name="SFProDisplay-Regular"/>
@@ -599,7 +608,8 @@ Deine Vorteile mit Login:
 </string>
                                                             <attributes>
                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" metaFont="system" size="17"/>
+                                                                <font key="NSFont" size="17" name="SFProDisplay-Regular"/>
+                                                                <font key="NSOriginalFont" size="17" name="SFProDisplay-Regular"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -635,25 +645,18 @@ Deine Vorteile mit Login:
                                                         <fragment content="Vertretungsplan">
                                                             <attributes>
                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="17" name="Arial-BoldMT"/>
+                                                                <font key="NSFont" size="18" name="SFProDisplay-Bold"/>
+                                                                <font key="NSOriginalFont" size="17" name="SFProDisplay-Bold"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                         <fragment>
-                                                            <string key="content" base64-UTF8="YES">
-Cg
-</string>
+                                                            <string key="content">
+Greife mit der App ganz einfach auf den gesamten aktuellen Vertretungsplan zu.</string>
                                                             <attributes>
                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" metaFont="system" size="17"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                        <fragment content="Greife mit der App ganz einfach auf den gesamten aktuellen Vertretungsplan zu.">
-                                                            <attributes>
-                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="17" name="ArialMT"/>
-                                                                <font key="NSOriginalFont" size="17" name="ArialMT"/>
+                                                                <font key="NSFont" size="17" name="SFProDisplay-Regular"/>
+                                                                <font key="NSOriginalFont" size="17" name="SFProDisplay-Regular"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -691,7 +694,8 @@ Cg
                                                         <fragment content="Dashboard">
                                                             <attributes>
                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="17" name="Arial-BoldMT"/>
+                                                                <font key="NSFont" size="17" name="SFProDisplay-Bold"/>
+                                                                <font key="NSOriginalFont" size="17" name="SFProDisplay-Bold"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -701,7 +705,8 @@ Cg
 </string>
                                                             <attributes>
                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" metaFont="system" size="17"/>
+                                                                <font key="NSFont" size="17" name="SFProDisplay-Regular"/>
+                                                                <font key="NSOriginalFont" size="17" name="SFProDisplay-Regular"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -709,7 +714,8 @@ Cg
                                                             <string key="content">Wähle Klasse oder Jahrgangsstufe aus und personalisiere Deinen Vetretungsplan. Verwende das Widget und werde bei Änderungen benachrichtigt.</string>
                                                             <attributes>
                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="17" name="ArialMT"/>
+                                                                <font key="NSFont" size="17" name="SFProDisplay-Regular"/>
+                                                                <font key="NSOriginalFont" size="17" name="SFProDisplay-Regular"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -747,7 +753,8 @@ Cg
                                                         <fragment content="Kalender">
                                                             <attributes>
                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="17" name="Arial-BoldMT"/>
+                                                                <font key="NSFont" size="17" name="SFProDisplay-Bold"/>
+                                                                <font key="NSOriginalFont" size="17" name="SFProDisplay-Bold"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -757,14 +764,16 @@ Cg
 </string>
                                                             <attributes>
                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" metaFont="system" size="17"/>
+                                                                <font key="NSFont" size="17" name="SFProDisplay-Regular"/>
+                                                                <font key="NSOriginalFont" size="17" name="SFProDisplay-Regular"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                         <fragment content="Greife einfach auf den Kalender zu und suche nach Terminen.">
                                                             <attributes>
                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="17" name="ArialMT"/>
+                                                                <font key="NSFont" size="17" name="SFProDisplay-Regular"/>
+                                                                <font key="NSOriginalFont" size="17" name="SFProDisplay-Regular"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
