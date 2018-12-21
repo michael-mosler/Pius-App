@@ -22,9 +22,9 @@ class TodayPostingsDetailsCell: UITableViewCell {
 
         let dateFormatter = DateFormatter();
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ";
-        let isoDate = dateFormatter.date(from: date)!;
+        let isoDate = (dateFormatter.date(from: date) ?? Date())!;
         
-        dateFormatter.dateFormat = "EEEE, d. MMMM, HH:MM";
+        dateFormatter.dateFormat = "EEEE, d. MMMM, HH:mm";
         dateFormatter.locale = Locale(identifier: "de_DE");
         postingSubtitle.text = "\(dateFormatter.string(from: isoDate)) Uhr";
     }
