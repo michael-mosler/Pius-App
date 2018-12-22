@@ -36,6 +36,7 @@
 		4C7C229A2043117800ACA17B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C22982043117800ACA17B /* LaunchScreen.storyboard */; };
 		4C7C22A52043117800ACA17B /* Pius_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C22A42043117800ACA17B /* Pius_AppUITests.swift */; };
 		4C7E61AA20A438A0000D1225 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7E61A920A4389F000D1225 /* SystemConfiguration.framework */; };
+		4C8F8C3721CD560200A42862 /* MyCoursesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8F8C3621CD560200A42862 /* MyCoursesTableViewCell.swift */; };
 		4CA4907720DE4DDC00796457 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4907620DE4DDC00796457 /* AppDefaults.swift */; };
 		4CA4907820DE4E6E00796457 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4907620DE4DDC00796457 /* AppDefaults.swift */; };
 		4CA4907920DE532700796457 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
@@ -153,6 +154,7 @@
 		4C7C22A42043117800ACA17B /* Pius_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pius_AppUITests.swift; sourceTree = "<group>"; };
 		4C7C22A62043117800ACA17B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C7E61A920A4389F000D1225 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4C8F8C3621CD560200A42862 /* MyCoursesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoursesTableViewCell.swift; sourceTree = "<group>"; };
 		4CA4907620DE4DDC00796457 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		4CB2AF512198813C007E5D1F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		4CB2AF5521A75595007E5D1F /* TodayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewController.swift; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 			children = (
 				4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */,
 				4CFBCDD6208925B100E9041D /* MyCoursesViewController.swift */,
+				4C8F8C3621CD560200A42862 /* MyCoursesTableViewCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				4C1FDE5C20603DF1006092C9 /* DetailsCellTableViewCell.swift in Sources */,
 				4CB2AF5821ADBF62007E5D1F /* NewsTableView.swift in Sources */,
 				4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */,
+				4C8F8C3721CD560200A42862 /* MyCoursesTableViewCell.swift in Sources */,
 				4CFB105920D04BA600432B1A /* Calendar.swift in Sources */,
 				4C7C22902043117800ACA17B /* AppDelegate.swift in Sources */,
 				4CFB105B20D1926300432B1A /* MonthButton.swift in Sources */,

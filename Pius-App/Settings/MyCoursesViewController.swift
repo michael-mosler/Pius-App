@@ -35,7 +35,7 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         cellBgView.backgroundColor = Config.colorPiusBlue;
         let savedCourseList: [String]? = AppDefaults.courseList;
         
-        myCoursesTableView.allowsSelection = false;
+        // myCoursesTableView.allowsSelection = false;
         courseList = (savedCourseList != nil) ? savedCourseList! : [];
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
@@ -131,10 +131,11 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBAction func addCoursesButtonAction(_ sender: Any) {
         inEditMode = !inEditMode;
-        myCoursesTableView.allowsSelection = inEditMode;
         
         addCoursesButton.title = (inEditMode) ? "Fertig" : "Bearbeiten";
         showCoursePicker(inEditMode);
+        
+        myCoursesTableView.reloadData();
     }
 
     @IBAction func okAction(sender: UIButton) {
@@ -148,6 +149,18 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
      * ============================================================
      */
     
+    private func deleteButtonAction(sender: UIButton) {
+        let row: Int = sender.tag;
+
+        courseList.remove(at: row);
+        myCoursesTableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .fade);
+        
+        for i in row..<courseList.count {
+            let cell = myCoursesTableView.cellForRow(at: IndexPath(row: i, section: 0)) as! MyCoursesTableViewCell;
+            cell.row -= 1;
+        }
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return courseList.count;
     }
@@ -157,25 +170,28 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = myCoursesTableView.dequeueReusableCell(withIdentifier: "course")!;
-        cell.textLabel?.text = courseList[indexPath.row];
-        cell.selectedBackgroundView = cellBgView;
-        cell.textLabel?.highlightedTextColor = UIColor.white;
-
+        let cell = myCoursesTableView.dequeueReusableCell(withIdentifier: "course") as! MyCoursesTableViewCell;
+        cell.setContent(forRow: indexPath.row, course: courseList[indexPath.row], inEditMode: inEditMode);
+        cell.setDeleteAction(action: deleteButtonAction);
         return cell;
     }
 
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return (inEditMode) ? .delete : .none;
     }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        print(indexPath)
+        return indexPath;
+    }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             courseList.remove(at: indexPath.row);
-            myCoursesTableView.deleteRows(at: [indexPath], with: .fade)
+            myCoursesTableView.deleteRows(at: [indexPath], with: .fade);
         }
     }
-    
+ 
     /*
      * ============================================================
      *                      Keyboard handling

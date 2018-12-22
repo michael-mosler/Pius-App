@@ -393,17 +393,48 @@ Für das Cachen von Bildern verwenden wir Kingfisher von https://github.com/onev
                                     <constraint firstAttribute="height" constant="1" id="0k3-55-HjF"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ChF-bP-u7z">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ChF-bP-u7z">
                                 <rect key="frame" x="16" y="334" width="382" height="562"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="course" id="4tR-5P-rkj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="course" id="4tR-5P-rkj" customClass="MyCoursesTableViewCell" customModule="Pius_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="382" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4tR-5P-rkj" id="1rN-0U-hpo">
                                             <rect key="frame" x="0.0" y="0.0" width="382" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="my4-V5-IHa">
+                                                    <rect key="frame" x="36" y="4" width="342" height="35.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHL-2Y-PyD">
+                                                    <rect key="frame" x="4" y="10" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="Iub-gZ-TKo"/>
+                                                        <constraint firstAttribute="height" constant="24" id="bza-TN-j4Q"/>
+                                                    </constraints>
+                                                    <state key="normal" image="deleteButton">
+                                                        <color key="titleColor" red="1" green="0.0" blue="0.11385231465101242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="my4-V5-IHa" firstAttribute="leading" secondItem="bHL-2Y-PyD" secondAttribute="trailing" constant="8" id="C05-BO-seo"/>
+                                                <constraint firstItem="bHL-2Y-PyD" firstAttribute="centerY" secondItem="1rN-0U-hpo" secondAttribute="centerY" id="DZL-Ql-KdO"/>
+                                                <constraint firstItem="bHL-2Y-PyD" firstAttribute="leading" secondItem="1rN-0U-hpo" secondAttribute="leading" constant="4" id="EC6-xE-NP4"/>
+                                                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="my4-V5-IHa" secondAttribute="trailing" constant="4" id="Mbj-o4-Oex"/>
+                                                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="my4-V5-IHa" secondAttribute="bottom" constant="4" id="a9u-jm-mCO"/>
+                                                <constraint firstItem="my4-V5-IHa" firstAttribute="top" relation="lessThanOrEqual" secondItem="1rN-0U-hpo" secondAttribute="top" constant="4" id="hXM-OA-ikf"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="deleteButton" destination="bHL-2Y-PyD" id="vXJ-Vq-QwJ"/>
+                                            <outlet property="deleteButtonLeading" destination="EC6-xE-NP4" id="FMJ-HE-yfc"/>
+                                            <outlet property="label" destination="my4-V5-IHa" id="wgj-aF-WVI"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -2791,6 +2822,7 @@ Tippe dazu unten auf </string>
         <image name="bluestar" width="30" height="30"/>
         <image name="bluetoday_apps" width="30" height="30"/>
         <image name="calendar" width="30" height="30"/>
+        <image name="deleteButton" width="512" height="512"/>
         <image name="gradient" width="64" height="64"/>
         <image name="greycancel" width="30" height="30"/>
         <image name="list" width="30" height="30"/>
