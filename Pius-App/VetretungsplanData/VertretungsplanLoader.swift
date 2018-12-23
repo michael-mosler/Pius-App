@@ -161,7 +161,7 @@ class VertretungsplanLoader {
         
         if (piusGatewayIsReachable) {
             // Define GET request with basic authentication.
-            request = URLRequest(url: url!);
+            request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalCacheData);
             request.httpMethod = "GET";
             request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization");
         } else {

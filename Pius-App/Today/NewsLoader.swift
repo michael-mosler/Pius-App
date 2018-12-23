@@ -68,7 +68,7 @@ class NewsLoader {
         var request: URLRequest;
         
         if (piusGatewayIsReachable) {
-            request = URLRequest(url: url!);
+            request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalCacheData);
             request.httpMethod = "GET";
         } else {
             request = URLRequest(url: cache.getCacheFileUrl(for: cacheFileName)!);
