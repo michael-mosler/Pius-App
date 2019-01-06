@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import MGSwipeTableCell
 
-class MyCoursesTableViewCell: UITableViewCell {
+class MyCoursesTableViewCell: MGSwipeTableCell { //} UITableViewCell {
     @IBOutlet weak var deleteButtonLeading: NSLayoutConstraint!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var label: UILabel!
     
-    private var deleteButtonActionDelegate: (UIButton) -> Void = { _ in };
+    private var deleteButtonActionDelegate: (MGSwipeTableCell) -> Void = { _ in };
     
     public var row: Int {
         set(value) {
@@ -29,13 +30,21 @@ class MyCoursesTableViewCell: UITableViewCell {
         self.row = row;
         label.text = course;
         deleteButtonLeading.constant = (inEditMode) ? 4 : -(deleteButton.frame.width + 4);
+
+        self.rightButtons = [
+            MGSwipeButton(title: "Löschen", backgroundColor: .red) { (sender: MGSwipeTableCell!) -> Bool in
+                self.deleteButtonActionDelegate(sender);
+                return true;
+            }
+        ];
+        self.rightSwipeSettings.transition = .drag;
     }
 
     @objc func deleteButtonAction(sender: UIButton) {
-        self.deleteButtonActionDelegate(sender);
+        self.showSwipe(.rightToLeft, animated: true);
     }
 
-    func setDeleteAction(action: @escaping (UIButton) -> Void) {
+    func setDeleteAction(action: @escaping (MGSwipeTableCell) -> Void) {
         deleteButtonActionDelegate = action;
         deleteButton.addTarget(self, action: #selector(deleteButtonAction(sender:)), for: .touchUpInside);
     }
