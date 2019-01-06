@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MGSwipeTableCell;
 
 class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIScrollViewDelegate {
     @IBOutlet weak var addCoursesButton: UIBarButtonItem!
@@ -149,15 +150,10 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
      * ============================================================
      */
     
-    private func deleteButtonAction(sender: UIButton) {
-        let row: Int = sender.tag;
-
-        courseList.remove(at: row);
-        myCoursesTableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .fade);
-        
-        for i in row..<courseList.count {
-            let cell = myCoursesTableView.cellForRow(at: IndexPath(row: i, section: 0)) as! MyCoursesTableViewCell;
-            cell.row -= 1;
+    private func deleteButtonAction(sender: MGSwipeTableCell) {
+        if let indexPath = myCoursesTableView.indexPath(for: sender) {
+            courseList.remove(at: indexPath.row);
+            myCoursesTableView.deleteRows(at: [indexPath], with: .fade);
         }
     }
 
@@ -180,11 +176,6 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         return (inEditMode) ? .delete : .none;
     }
     
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        print(indexPath)
-        return indexPath;
-    }
-
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             courseList.remove(at: indexPath.row);
