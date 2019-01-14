@@ -70,6 +70,7 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
             activityIndicator.stopAnimating();
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad();
 
@@ -185,7 +186,7 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
         
         dateFormatter.locale = Locale(identifier: "de-DE");
         dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, d. MMMM");
-        let dateString = NSMutableAttributedString(string: dateFormatter.string(from: date), attributes: [NSAttributedString.Key.font: defaultSystemFont]);
+        let dateString = NSMutableAttributedString(string: dateFormatter.string(from: date) + " (" + DateHelper.week() + "-Woche)", attributes: [NSAttributedString.Key.font: defaultSystemFont]);
         let todayString = NSMutableAttributedString(string: "Heute", attributes: [NSAttributedString.Key.font: largeTitleFont]);
         dateString.append(NSMutableAttributedString(string: "\n"));
         dateString.append(todayString);
