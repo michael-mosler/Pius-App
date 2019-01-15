@@ -99,6 +99,9 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         // in search mode.
         UIView.animate(withDuration: 0, animations: {
             self.changeSelectedMonthButton(to: self.selectedButton!);
+        }, completion: { (finished: Bool) in
+            let indexPath = IndexPath(item: self.selectedButton!.forMonth!, section: 0);
+            self.dateListCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true);
         });
     }
 
