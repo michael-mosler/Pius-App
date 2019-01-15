@@ -946,7 +946,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				HOST_ADDRESS = "http://localhost:3000";
+				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp;

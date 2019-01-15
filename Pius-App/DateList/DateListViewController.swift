@@ -201,10 +201,8 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
             let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton;
             button.makeMonthButton(for: indexPath.row, with: calendar.monthItems[indexPath.row].name, parentCell: cell);
             
-            // Selected button has become visible or initial start of view. In latter case
-            // activate default month indexed by 0.
-            if (indexPath.row == selectedMonth_
-                || selectedMonth_ == nil && hadSelectedMonth == nil && indexPath.row == 0) {
+            // Nothing selected yet, select first month.
+            if (selectedMonth_ == nil && hadSelectedMonth == nil && indexPath.row == 0) {
                 changeSelectedMonthButton(to: button);
             }
             
