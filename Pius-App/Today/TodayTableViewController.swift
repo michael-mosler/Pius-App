@@ -68,6 +68,8 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
         if pendingLoads <= 0 {
             refreshControl?.endRefreshing();
             activityIndicator.stopAnimating();
+            
+            tableView.reloadData()
         }
     }
     

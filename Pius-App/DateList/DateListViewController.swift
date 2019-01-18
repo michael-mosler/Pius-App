@@ -97,12 +97,14 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         // Restore original table view position as user might have scrolled
         // in search mode.
-        UIView.animate(withDuration: 0, animations: {
-            self.changeSelectedMonthButton(to: self.selectedButton!);
-        }, completion: { (finished: Bool) in
-            let indexPath = IndexPath(item: self.selectedButton!.forMonth!, section: 0);
-            self.dateListCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true);
-        });
+        if let selectedButton = self.selectedButton {
+            UIView.animate(withDuration: 0, animations: {
+                self.changeSelectedMonthButton(to: selectedButton);
+            }, completion: { (finished: Bool) in
+                let indexPath = IndexPath(item: selectedButton.forMonth!, section: 0);
+                self.dateListCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true);
+            });
+        }
     }
 
     // Whenever a new month is selected this action load the corresponding dates into
@@ -156,7 +158,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         calendarLoader.load(self.doUpdate);
     }
     
-    // Called when selected month is to changed. Deselects previous month
+    // Called when selected month is about to change. Deselects previous month
     // and changes selection to the new button.
     func changeSelectedMonthButton(to button: MonthButton) {
         if (selectedButton != nil) {
