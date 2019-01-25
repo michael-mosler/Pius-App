@@ -222,7 +222,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if (scrollView == dateListCollectionView) {
-            let itemIndex = (scrollView.contentOffset.x / CGFloat(Config.screenWidth)).rounded();
+            let itemIndex = (scrollView.contentOffset.x / CGFloat(IOSHelper.screenWidth)).rounded();
             let indexPath = NSIndexPath(row: Int(itemIndex), section: 0);
             
             if let cell = monthListCollectionView.cellForItem(at: indexPath as IndexPath) {

@@ -102,7 +102,7 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
         let width: Int;
         
         switch indexPath.item {
-            case 0: width = Config.screenWidth - 2 * defaultWidth - 32;
+            case 0: width = IOSHelper.screenWidth - 2 * defaultWidth - 32;
             case 1: width = defaultWidth;
             case 2: width = defaultWidth;
             default: width = defaultWidth;

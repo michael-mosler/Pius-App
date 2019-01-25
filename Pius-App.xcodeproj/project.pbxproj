@@ -25,6 +25,19 @@
 		4C30DB7D21BC0CDF002FCAF3 /* TodayCalendarDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C30DB7C21BC0CDF002FCAF3 /* TodayCalendarDetailsCell.swift */; };
 		4C30DB7F21BD9B84002FCAF3 /* TodayPostingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C30DB7E21BD9B84002FCAF3 /* TodayPostingsTableView.swift */; };
 		4C30DB8121BD9BD6002FCAF3 /* TodayPostingsDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C30DB8021BD9BD6002FCAF3 /* TodayPostingsDetailsCell.swift */; };
+		4C48F69F21F4E01300B20505 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C48F69D21F4E01300B20505 /* Interface.storyboard */; };
+		4C48F6A121F4E01400B20505 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C48F6A021F4E01400B20505 /* Assets.xcassets */; };
+		4C48F6A821F4E01400B20505 /* Pius-App for WatchOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4C48F6A721F4E01400B20505 /* Pius-App for WatchOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4C48F6AD21F4E01400B20505 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6AC21F4E01400B20505 /* InterfaceController.swift */; };
+		4C48F6AF21F4E01400B20505 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6AE21F4E01400B20505 /* ExtensionDelegate.swift */; };
+		4C48F6B121F4E01400B20505 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6B021F4E01400B20505 /* NotificationController.swift */; };
+		4C48F6B321F4E01500B20505 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C48F6B221F4E01500B20505 /* Assets.xcassets */; };
+		4C48F6B821F4E01500B20505 /* Pius-App for WatchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4C48F69B21F4E01300B20505 /* Pius-App for WatchOS.app */; };
+		4C48F6CA21F641A400B20505 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4907620DE4DDC00796457 /* AppDefaults.swift */; };
+		4C48F6D121F6433C00B20505 /* IOSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D021F6433C00B20505 /* IOSHelper.swift */; };
+		4C48F6D221F6433C00B20505 /* IOSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D021F6433C00B20505 /* IOSHelper.swift */; };
+		4C48F6D521F78F7C00B20505 /* WatchConnectivityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D421F78F7C00B20505 /* WatchConnectivityHandler.swift */; };
+		4C48F6D621F78F7C00B20505 /* WatchConnectivityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D421F78F7C00B20505 /* WatchConnectivityHandler.swift */; };
 		4C55381721B4435C000374D3 /* TodayDashboardTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55381621B4435C000374D3 /* TodayDashboardTableView.swift */; };
 		4C5AA0132189DAA90040A455 /* VertretungsplanDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */; };
 		4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
@@ -37,9 +50,10 @@
 		4C7C229A2043117800ACA17B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C22982043117800ACA17B /* LaunchScreen.storyboard */; };
 		4C7C22A52043117800ACA17B /* Pius_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C22A42043117800ACA17B /* Pius_AppUITests.swift */; };
 		4C7E61AA20A438A0000D1225 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7E61A920A4389F000D1225 /* SystemConfiguration.framework */; };
+		4C803A2221FB7314009130E0 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE59205E77D7006092C9 /* Helper.swift */; };
+		4C803A2421FB84D7009130E0 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE62206D5FE6006092C9 /* Config.swift */; };
 		4C8F8C3721CD560200A42862 /* MyCoursesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8F8C3621CD560200A42862 /* MyCoursesTableViewCell.swift */; };
 		4CA4907720DE4DDC00796457 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4907620DE4DDC00796457 /* AppDefaults.swift */; };
-		4CA4907820DE4E6E00796457 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4907620DE4DDC00796457 /* AppDefaults.swift */; };
 		4CA4907920DE532700796457 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
 		4CA4907A20DEA1C900796457 /* VertretungsplanLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */; };
 		4CA4907C20DEA51400796457 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */; };
@@ -91,6 +105,20 @@
 			remoteGlobalIDString = 4CFB122A210F887E00BC4B44;
 			remoteInfo = "Pius-App Notification-Extension";
 		};
+		4C48F6A921F4E01400B20505 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C7C22842043117700ACA17B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C48F6A621F4E01400B20505;
+			remoteInfo = "Pius-App for WatchOS Extension";
+		};
+		4C48F6B621F4E01500B20505 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C7C22842043117700ACA17B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C48F69A21F4E01300B20505;
+			remoteInfo = "Pius-App for WatchOS";
+		};
 		4C7C22A12043117800ACA17B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4C7C22842043117700ACA17B /* Project object */;
@@ -108,6 +136,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		4C48F6BC21F4E01500B20505 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4C48F6A821F4E01400B20505 /* Pius-App for WatchOS Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C48F6C021F4E01500B20505 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				4C48F6B821F4E01500B20505 /* Pius-App for WatchOS.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4CB3EC8220DC0ECB00BBEAE0 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -140,6 +190,21 @@
 		4C30DB7C21BC0CDF002FCAF3 /* TodayCalendarDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCalendarDetailsCell.swift; sourceTree = "<group>"; };
 		4C30DB7E21BD9B84002FCAF3 /* TodayPostingsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayPostingsTableView.swift; sourceTree = "<group>"; };
 		4C30DB8021BD9BD6002FCAF3 /* TodayPostingsDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayPostingsDetailsCell.swift; sourceTree = "<group>"; };
+		4C48F69B21F4E01300B20505 /* Pius-App for WatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pius-App for WatchOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C48F69E21F4E01300B20505 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		4C48F6A021F4E01400B20505 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4C48F6A221F4E01400B20505 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C48F6A721F4E01400B20505 /* Pius-App for WatchOS Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pius-App for WatchOS Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C48F6AC21F4E01400B20505 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		4C48F6AE21F4E01400B20505 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		4C48F6B021F4E01400B20505 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		4C48F6B221F4E01500B20505 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4C48F6B421F4E01500B20505 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C48F6B521F4E01500B20505 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		4C48F6C821F63D1300B20505 /* Pius-App for WatchOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pius-App for WatchOS.entitlements"; sourceTree = "<group>"; };
+		4C48F6C921F63D2D00B20505 /* Pius-App for WatchOS Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pius-App for WatchOS Extension.entitlements"; sourceTree = "<group>"; };
+		4C48F6D021F6433C00B20505 /* IOSHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSHelper.swift; sourceTree = "<group>"; };
+		4C48F6D421F78F7C00B20505 /* WatchConnectivityHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityHandler.swift; sourceTree = "<group>"; };
 		4C55381621B4435C000374D3 /* TodayDashboardTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDashboardTableView.swift; sourceTree = "<group>"; };
 		4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanDetailsCell.swift; sourceTree = "<group>"; };
 		4C5E0E7520A498DA00DAE459 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
@@ -199,6 +264,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4C48F6A421F4E01400B20505 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C7C22892043117700ACA17B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -280,6 +352,7 @@
 				4C1FDE59205E77D7006092C9 /* Helper.swift */,
 				4C1FDE62206D5FE6006092C9 /* Config.swift */,
 				4CA4907620DE4DDC00796457 /* AppDefaults.swift */,
+				4C48F6D021F6433C00B20505 /* IOSHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -293,6 +366,39 @@
 				4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		4C48F69C21F4E01300B20505 /* Pius-App for WatchOS */ = {
+			isa = PBXGroup;
+			children = (
+				4C48F6C821F63D1300B20505 /* Pius-App for WatchOS.entitlements */,
+				4C48F69D21F4E01300B20505 /* Interface.storyboard */,
+				4C48F6A021F4E01400B20505 /* Assets.xcassets */,
+				4C48F6A221F4E01400B20505 /* Info.plist */,
+			);
+			path = "Pius-App for WatchOS";
+			sourceTree = "<group>";
+		};
+		4C48F6AB21F4E01400B20505 /* Pius-App for WatchOS Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4C48F6C921F63D2D00B20505 /* Pius-App for WatchOS Extension.entitlements */,
+				4C48F6AC21F4E01400B20505 /* InterfaceController.swift */,
+				4C48F6AE21F4E01400B20505 /* ExtensionDelegate.swift */,
+				4C48F6B021F4E01400B20505 /* NotificationController.swift */,
+				4C48F6B221F4E01500B20505 /* Assets.xcassets */,
+				4C48F6B421F4E01500B20505 /* Info.plist */,
+				4C48F6B521F4E01500B20505 /* PushNotificationPayload.apns */,
+			);
+			path = "Pius-App for WatchOS Extension";
+			sourceTree = "<group>";
+		};
+		4C48F6D321F78F5200B20505 /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				4C48F6D421F78F7C00B20505 /* WatchConnectivityHandler.swift */,
+			);
+			path = Watch;
 			sourceTree = "<group>";
 		};
 		4C5E0E7720A872C200DAE459 /* OnboardingViewController */ = {
@@ -310,6 +416,8 @@
 				4C7C22A32043117800ACA17B /* Pius-AppUITests */,
 				4CB3EC7520DC0ECB00BBEAE0 /* Pius-App-Extension */,
 				4CFB1230210F887E00BC4B44 /* Pius-App Notification-Extension */,
+				4C48F69C21F4E01300B20505 /* Pius-App for WatchOS */,
+				4C48F6AB21F4E01400B20505 /* Pius-App for WatchOS Extension */,
 				4C7C228D2043117700ACA17B /* Products */,
 				4C194B4A204AFB3500BA744A /* Frameworks */,
 			);
@@ -322,6 +430,8 @@
 				4C7C22A02043117800ACA17B /* Pius-AppUITests.xctest */,
 				4CB3EC7220DC0ECA00BBEAE0 /* Pius-App-Extension.appex */,
 				4CFB122B210F887E00BC4B44 /* Pius-App Notification-Extension.appex */,
+				4C48F69B21F4E01300B20505 /* Pius-App for WatchOS.app */,
+				4C48F6A721F4E01400B20505 /* Pius-App for WatchOS Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -329,6 +439,7 @@
 		4C7C228E2043117700ACA17B /* Pius-App */ = {
 			isa = PBXGroup;
 			children = (
+				4C48F6D321F78F5200B20505 /* Watch */,
 				4CC3F9AA21C520DF00DB98B7 /* Fonts */,
 				4CB2AF5421A75563007E5D1F /* Today */,
 				4CB97F15210A535F0019973D /* PushService */,
@@ -462,6 +573,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4C48F69A21F4E01300B20505 /* Pius-App for WatchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C48F6BD21F4E01500B20505 /* Build configuration list for PBXNativeTarget "Pius-App for WatchOS" */;
+			buildPhases = (
+				4C48F69921F4E01300B20505 /* Resources */,
+				4C48F6BC21F4E01500B20505 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4C48F6AA21F4E01400B20505 /* PBXTargetDependency */,
+			);
+			name = "Pius-App for WatchOS";
+			productName = "Pius-App for WatchOS";
+			productReference = 4C48F69B21F4E01300B20505 /* Pius-App for WatchOS.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		4C48F6A621F4E01400B20505 /* Pius-App for WatchOS Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C48F6B921F4E01500B20505 /* Build configuration list for PBXNativeTarget "Pius-App for WatchOS Extension" */;
+			buildPhases = (
+				4C48F6A321F4E01400B20505 /* Sources */,
+				4C48F6A421F4E01400B20505 /* Frameworks */,
+				4C48F6A521F4E01400B20505 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pius-App for WatchOS Extension";
+			productName = "Pius-App for WatchOS Extension";
+			productReference = 4C48F6A721F4E01400B20505 /* Pius-App for WatchOS Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		4C7C228B2043117700ACA17B /* Pius-App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C7C22A92043117800ACA17B /* Build configuration list for PBXNativeTarget "Pius-App" */;
@@ -471,12 +616,14 @@
 				4C7C228A2043117700ACA17B /* Resources */,
 				4CB3EC8220DC0ECB00BBEAE0 /* Embed App Extensions */,
 				4CEBAD0C21C5618D00E152BF /* ShellScript */,
+				4C48F6C021F4E01500B20505 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				4CB3EC7D20DC0ECB00BBEAE0 /* PBXTargetDependency */,
 				4C300F3B2126BFEE00D6E129 /* PBXTargetDependency */,
+				4C48F6B721F4E01500B20505 /* PBXTargetDependency */,
 			);
 			name = "Pius-App";
 			productName = "Pius-App";
@@ -541,10 +688,28 @@
 		4C7C22842043117700ACA17B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Felix Krings";
 				TargetAttributes = {
+					4C48F69A21F4E01300B20505 = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					4C48F6A621F4E01400B20505 = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					4C7C228B2043117700ACA17B = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1000;
@@ -607,11 +772,30 @@
 				4C7C229F2043117800ACA17B /* Pius-AppUITests */,
 				4CB3EC7120DC0ECA00BBEAE0 /* Pius-App-Extension */,
 				4CFB122A210F887E00BC4B44 /* Pius-App Notification-Extension */,
+				4C48F69A21F4E01300B20505 /* Pius-App for WatchOS */,
+				4C48F6A621F4E01400B20505 /* Pius-App for WatchOS Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4C48F69921F4E01300B20505 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C48F6A121F4E01400B20505 /* Assets.xcassets in Resources */,
+				4C48F69F21F4E01300B20505 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C48F6A521F4E01400B20505 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C48F6B321F4E01500B20505 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C7C228A2043117700ACA17B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -673,6 +857,18 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4C48F6A321F4E01400B20505 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C48F6B121F4E01400B20505 /* NotificationController.swift in Sources */,
+				4C48F6AF21F4E01400B20505 /* ExtensionDelegate.swift in Sources */,
+				4C803A2421FB84D7009130E0 /* Config.swift in Sources */,
+				4C48F6AD21F4E01400B20505 /* InterfaceController.swift in Sources */,
+				4C803A2221FB7314009130E0 /* Helper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C7C22882043117700ACA17B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -689,6 +885,7 @@
 				4C1FDE5A205E77D7006092C9 /* Helper.swift in Sources */,
 				4C30DB7F21BD9B84002FCAF3 /* TodayPostingsTableView.swift in Sources */,
 				4CF02EB12190C64300647078 /* DateListCollectionViewCell.swift in Sources */,
+				4C48F6D521F78F7C00B20505 /* WatchConnectivityHandler.swift in Sources */,
 				4C7C22922043117800ACA17B /* ViewController.swift in Sources */,
 				4C1FDE57205D90E5006092C9 /* DetailCollectionViewCell.swift in Sources */,
 				4C30DB7D21BC0CDF002FCAF3 /* TodayCalendarDetailsCell.swift in Sources */,
@@ -710,6 +907,7 @@
 				4C5E0E7B20A8797D00DAE459 /* OnboardingViewController.swift in Sources */,
 				4CFB105720D0490B00432B1A /* CalendarLoader.swift in Sources */,
 				4C1AC38221BED6CD00E2F3A5 /* PostingsLoader.swift in Sources */,
+				4C48F6D121F6433C00B20505 /* IOSHelper.swift in Sources */,
 				4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */,
 				4CB97F17210A53940019973D /* DeviceTokenManager.swift in Sources */,
 				4C1FDE50205568E3006092C9 /* ExpandableHeaderView.swift in Sources */,
@@ -735,14 +933,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C48F6D221F6433C00B20505 /* IOSHelper.swift in Sources */,
 				4CB3EC7720DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift in Sources */,
+				4C48F6CA21F641A400B20505 /* AppDefaults.swift in Sources */,
 				4CA4907A20DEA1C900796457 /* VertretungsplanLoader.swift in Sources */,
 				4CA4907F20DF9BE100796457 /* Config.swift in Sources */,
 				4CA4907920DE532700796457 /* Cache.swift in Sources */,
 				4CA4907E20DEA57D00796457 /* Vertretungsplan.swift in Sources */,
-				4CA4907820DE4E6E00796457 /* AppDefaults.swift in Sources */,
 				4CA4907D20DEA51700796457 /* KeychainConfiguration.swift in Sources */,
 				4CA4908020DFABFF00796457 /* Helper.swift in Sources */,
+				4C48F6D621F78F7C00B20505 /* WatchConnectivityHandler.swift in Sources */,
 				4CB2AF53219A15BF007E5D1F /* Reachability.swift in Sources */,
 				4CA4907C20DEA51400796457 /* KeychainPasswordItem.swift in Sources */,
 			);
@@ -767,6 +967,16 @@
 			target = 4CFB122A210F887E00BC4B44 /* Pius-App Notification-Extension */;
 			targetProxy = 4C300F3A2126BFEE00D6E129 /* PBXContainerItemProxy */;
 		};
+		4C48F6AA21F4E01400B20505 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C48F6A621F4E01400B20505 /* Pius-App for WatchOS Extension */;
+			targetProxy = 4C48F6A921F4E01400B20505 /* PBXContainerItemProxy */;
+		};
+		4C48F6B721F4E01500B20505 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C48F69A21F4E01300B20505 /* Pius-App for WatchOS */;
+			targetProxy = 4C48F6B621F4E01500B20505 /* PBXContainerItemProxy */;
+		};
 		4C7C22A22043117800ACA17B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4C7C228B2043117700ACA17B /* Pius-App */;
@@ -780,6 +990,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4C48F69D21F4E01300B20505 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C48F69E21F4E01300B20505 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		4C7C22932043117800ACA17B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -817,6 +1035,98 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4C48F6BA21F4E01500B20505 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "Pius-App for WatchOS Extension/Pius-App for WatchOS Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A6MLRJ6C45;
+				INFOPLIST_FILE = "Pius-App for WatchOS Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		4C48F6BB21F4E01500B20505 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "Pius-App for WatchOS Extension/Pius-App for WatchOS Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A6MLRJ6C45;
+				INFOPLIST_FILE = "Pius-App for WatchOS Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
+		4C48F6BE21F4E01500B20505 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "Pius-App for WatchOS/Pius-App for WatchOS.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A6MLRJ6C45;
+				IBSC_MODULE = Pius_App_for_WatchOS_Extension;
+				INFOPLIST_FILE = "Pius-App for WatchOS/Info.plist";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		4C48F6BF21F4E01500B20505 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "Pius-App for WatchOS/Pius-App for WatchOS.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A6MLRJ6C45;
+				IBSC_MODULE = Pius_App_for_WatchOS_Extension;
+				INFOPLIST_FILE = "Pius-App for WatchOS/Info.plist";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
 		4C7C22A72043117800ACA17B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1109,6 +1419,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4C48F6B921F4E01500B20505 /* Build configuration list for PBXNativeTarget "Pius-App for WatchOS Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C48F6BA21F4E01500B20505 /* Debug */,
+				4C48F6BB21F4E01500B20505 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C48F6BD21F4E01500B20505 /* Build configuration list for PBXNativeTarget "Pius-App for WatchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C48F6BE21F4E01500B20505 /* Debug */,
+				4C48F6BF21F4E01500B20505 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4C7C22872043117700ACA17B /* Build configuration list for PBXProject "Pius-App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Pius_App_for_WatchOS" customModuleProvider="target">
+                    <items>
+                        <table alignment="left" id="3aW-ZS-yAw">
+                            <items>
+                                <tableRow identifier="dateRow" selectable="NO" id="q4Z-rh-oSM" customClass="DateRow" customModule="Pius_App_for_WatchOS_Extension">
+                                    <group key="rootItem" width="1" height="26" alignment="left" id="rV7-Ms-54V">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="Mo, 21.01.2019" id="L4W-vs-nfi">
+                                                <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.82399999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="group" destination="rV7-Ms-54V" id="tcr-ag-5kv"/>
+                                        <outlet property="label" destination="L4W-vs-nfi" id="Tux-EQ-xrJ"/>
+                                    </connections>
+                                </tableRow>
+                                <tableRow identifier="headerRow" selectable="NO" id="6HF-pR-MpJ" customClass="HeaderRow" customModule="Pius_App_for_WatchOS_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="ejH-6k-9Pm">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="KR G2, 1-2. Stunde" id="eTY-I3-cyp">
+                                                <fontDescription key="font" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="13"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.82399999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="label" destination="eTY-I3-cyp" id="kiY-Lb-JGb"/>
+                                    </connections>
+                                </tableRow>
+                                <tableRow identifier="contentRow" selectable="NO" id="teL-mN-I7n" customClass="ContentRow" customModule="Pius_App_for_WatchOS_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="RIV-rY-vrx">
+                                        <items>
+                                            <label alignment="left" text="Vertretung" numberOfLines="0" id="1Kf-7z-jJm">
+                                                <fontDescription key="font" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="13"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="label" destination="1Kf-7z-jJm" id="SgP-bg-Yp7"/>
+                                    </connections>
+                                </tableRow>
+                                <tableRow identifier="evaRow" selectable="NO" id="gTz-zj-JJ1" customClass="EvaRow" customModule="Pius_App_for_WatchOS_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="hUm-j7-k9N">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="EVA" numberOfLines="0" id="jQ9-68-Osh">
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="font" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="13"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="label" destination="jQ9-68-Osh" id="Ixf-Dl-bLT"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="dashboardTable" destination="3aW-ZS-yAw" id="Jlv-WO-nmf"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="345"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" numberOfLines="0" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                        <segue destination="eXb-UN-Cd0" kind="relationship" relationship="dynamicInteractiveNotificationInterface" id="mpB-YA-K8N"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="Pius_App_for_WatchOS" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="Niz-AI-uX2">
+            <objects>
+                <controller id="eXb-UN-Cd0" customClass="NotificationController" customModule="Pius_App_for_WatchOS" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="345"/>
+        </scene>
+    </scenes>
+</document>

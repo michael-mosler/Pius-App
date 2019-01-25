@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import WatchConnectivity
 import UserNotifications
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
-    let storyboard = UIStoryboard(name: "Main", bundle: nil);
+    private let storyboard = UIStoryboard(name: "Main", bundle: nil);
     private let reachability = Reachability();
-    
+    private var connectivityHandler: WatchConnectivityHandler?
+
     var navigationController: UINavigationController? {
         get {
             return window?.rootViewController as? UINavigationController;
@@ -92,6 +94,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             print("Unable to start notifier")
         }
 
+        // Create Watch Connectivity Handler
+        if WCSession.isSupported() {
+            print("Activating Watch Connectivity Handler");
+            self.connectivityHandler = WatchConnectivityHandler();
+        }
+        
         // Current version.
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject;
         let version = nsObject as! String;

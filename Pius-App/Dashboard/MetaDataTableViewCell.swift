@@ -21,7 +21,7 @@ class MetaDataTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
         super.awakeFromNib();
         collectionView.delegate = self;
         collectionView.dataSource = self;
-        flowLayout.itemSize = CGSize(width: CGFloat(Config.screenWidth), height: flowLayout.itemSize.height);
+        flowLayout.itemSize = CGSize(width: CGFloat(IOSHelper.screenWidth), height: flowLayout.itemSize.height);
         pageControl.numberOfPages = 1;
     }
     
@@ -40,7 +40,7 @@ class MetaDataTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let currentPage = round(scrollView.contentOffset.x / CGFloat(Config.screenWidth));
+        let currentPage = round(scrollView.contentOffset.x / CGFloat(IOSHelper.screenWidth));
         pageControl.currentPage = Int(currentPage);
     }
     
