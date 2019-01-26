@@ -17,18 +17,21 @@
     {
       "size" : "29x29",
       "idiom" : "watch",
+      "filename" : "pius-app-58x58 WatchOs Companion.png",
       "role" : "companionSettings",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "watch",
+      "filename" : "pius-app-87x87 WatchOs Companion.png",
       "role" : "companionSettings",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "watch",
+      "filename" : "pius-app-80x80 WatchOs.png",
       "scale" : "2x",
       "role" : "appLauncher",
       "subtype" : "38mm"
@@ -44,6 +47,7 @@
     {
       "size" : "50x50",
       "idiom" : "watch",
+      "filename" : "pius-app-100x100 WatchOs.png",
       "scale" : "2x",
       "role" : "appLauncher",
       "subtype" : "44mm"

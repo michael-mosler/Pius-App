@@ -13,6 +13,20 @@ class WatchConnectivityHandler: NSObject, WCSessionDelegate {
     var session = WCSession.default
     var replyHandler: (([String: Any]) -> Void)?
     
+    private var canUseDashboard: Bool {
+        get {
+            if AppDefaults.authenticated && (AppDefaults.hasLowerGrade || (AppDefaults.hasUpperGrade && AppDefaults.courseList != nil && AppDefaults.courseList!.count > 0)) {
+                if let _ = AppDefaults.selectedGradeRow, let _ = AppDefaults.selectedClassRow {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+
     override init() {
         super.init()
         
@@ -22,6 +36,12 @@ class WatchConnectivityHandler: NSObject, WCSessionDelegate {
         NSLog("%@", "Paired Watch: \(session.isPaired), Watch App Installed: \(session.isWatchAppInstalled)")
     }
 
+    /*
+     * ====================================================
+     *                  Session Handler
+     * ====================================================
+     */
+    
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         NSLog("%@", "activationDidCompleteWith activationState:\(activationState)");
     }
@@ -51,14 +71,19 @@ class WatchConnectivityHandler: NSObject, WCSessionDelegate {
             return
         }
 
-        dictionary!["status"] = "found"
+        dictionary!["status"] = "loaded"
         dictionary!["online"] = online
         self.replyHandler!(dictionary!)
     }
 
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         NSLog("didReceiveMessage: %@", message)
-        if message["request"] as? String == "date" {
+        if message["request"] as? String == "dashboard" {
+            guard canUseDashboard else {
+                replyHandler(["status": "notConfigured"])
+                return
+            }
+
             let grade = AppDefaults.gradeSetting;
             let vertretungsplanLoader = VertretungsplanLoader(forGrade: grade);
             self.replyHandler = replyHandler;
