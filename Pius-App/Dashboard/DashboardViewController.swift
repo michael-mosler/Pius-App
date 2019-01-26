@@ -242,18 +242,23 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         }
     }
 
+    // Toggles header for the given section. Section must be greater or equal to 2
+    // otherwise function will return without any toggle.
     func toggleSection(header: ExpandableHeaderView, section: Int) {
+        guard section >= 2 else { return }
+
         // If another than the current section is selected hide the current
         // section.
         if (currentHeader != nil && currentHeader != header) {
-            let currentSection = currentHeader!.section!;
-            data[currentSection - 2].expanded = false;
-            
-            tableView.beginUpdates();
-            for i in 0 ..< data[currentSection - 2].gradeItems[0].vertretungsplanItems.count {
-                tableView.reloadRows(at: [IndexPath(row: i, section: currentSection)], with: .automatic)
+            if let currentSection = currentHeader?.section!, currentSection >= 2 {
+                data[currentSection - 2].expanded = false;
+                
+                tableView.beginUpdates();
+                for i in 0 ..< data[currentSection - 2].gradeItems[0].vertretungsplanItems.count {
+                    tableView.reloadRows(at: [IndexPath(row: i, section: currentSection)], with: .automatic)
+                }
+                tableView.endUpdates();
             }
-            tableView.endUpdates();
         }
         
         // Expand/collapse the selected header depending on it's current state.

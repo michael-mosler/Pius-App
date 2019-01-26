@@ -179,17 +179,20 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
     // Toggles section headers. If a new header is expanded the previous one when different
     // from the current one is collapsed.
     func toggleSection(header: ExpandableHeaderView, section: Int) {
+        guard section >= 2 else { return }
+        
         // If another than the current section is selected hide the current
         // section.
-        if (currentHeader != nil && currentHeader != header) {
-            let currentSection = currentHeader!.section!;
-            data[currentSection - 2].expanded = false;
-            
-            tableView.beginUpdates();
-            for i in 0 ..< data[currentSection - 2].gradeItems.count {
-                tableView.reloadRows(at: [IndexPath(row: i, section: currentSection)], with: .automatic)
+        if currentHeader != nil && currentHeader != header {
+            if let currentSection = currentHeader?.section, currentSection >= 2 {
+                data[currentSection - 2].expanded = false;
+                
+                tableView.beginUpdates();
+                for i in 0 ..< data[currentSection - 2].gradeItems.count {
+                    tableView.reloadRows(at: [IndexPath(row: i, section: currentSection)], with: .automatic)
+                }
+                tableView.endUpdates();
             }
-            tableView.endUpdates();
         }
 
         // Expand/collapse the selected header depending on it's current state.

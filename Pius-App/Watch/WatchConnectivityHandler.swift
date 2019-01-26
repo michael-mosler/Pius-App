@@ -43,15 +43,19 @@ class WatchConnectivityHandler: NSObject, WCSessionDelegate {
      */
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        NSLog("%@", "activationDidCompleteWith activationState:\(activationState)");
+        if let error = error {
+            NSLog("%@", "activationDidCompleteWith error: activationState:\(activationState), error: \(error)")
+        } else {
+            NSLog("%@", "activationDidCompleteWith: activationState:\(activationState)")
+        }
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {
-        print("session did become inactive")
+        NSLog("session did become inactive")
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
-        print("session did deactivate")
+        NSLog("session did deactivate")
     }
     
     func sessionWatchStateDidChange(_ session: WCSession) {
@@ -87,8 +91,7 @@ class WatchConnectivityHandler: NSObject, WCSessionDelegate {
             let grade = AppDefaults.gradeSetting;
             let vertretungsplanLoader = VertretungsplanLoader(forGrade: grade);
             self.replyHandler = replyHandler;
-            vertretungsplanLoader.load(doUpdate)
-            
+            vertretungsplanLoader.load(doUpdate)            
         }
     }
 }
