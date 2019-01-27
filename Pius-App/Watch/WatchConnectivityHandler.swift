@@ -13,6 +13,8 @@ class WatchConnectivityHandler: NSObject, WCSessionDelegate {
     var session = WCSession.default
     var replyHandler: (([String: Any]) -> Void)?
     
+    // Strict dashboard check: App must be fully configured for watch app to be able
+    // to show substituion schedule.
     private var canUseDashboard: Bool {
         get {
             if AppDefaults.authenticated && (AppDefaults.hasLowerGrade || (AppDefaults.hasUpperGrade && AppDefaults.courseList != nil && AppDefaults.courseList!.count > 0)) {
@@ -38,7 +40,7 @@ class WatchConnectivityHandler: NSObject, WCSessionDelegate {
 
     /*
      * ====================================================
-     *                  Session Handler
+     *             Session Handler Protocol
      * ====================================================
      */
     
@@ -62,6 +64,7 @@ class WatchConnectivityHandler: NSObject, WCSessionDelegate {
         NSLog("%@", "sessionWatchStateDidChange: \(session)")
     }
     
+    // Send dashboard data to watch app.
     func doUpdate(vertretungsplan: Vertretungsplan?, online: Bool) {
         guard vertretungsplan != nil else {
             self.replyHandler!(["status": "error", "online": online])
@@ -80,8 +83,9 @@ class WatchConnectivityHandler: NSObject, WCSessionDelegate {
         self.replyHandler!(dictionary!)
     }
 
+    // Process watch app requests.
+    // Currently the only supported request is "dashboard".
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-        NSLog("didReceiveMessage: %@", message)
         if message["request"] as? String == "dashboard" {
             guard canUseDashboard else {
                 replyHandler(["status": "notConfigured"])

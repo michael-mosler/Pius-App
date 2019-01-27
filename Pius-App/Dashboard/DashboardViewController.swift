@@ -159,7 +159,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                     let itemIndex: Int = indexPath.row / rowsPerItem;
                     return ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) ? 0: UITableView.automaticDimension;
                 default:
-                    print("Invalid row number");
+                    NSLog("Invalid row number");
                     return 0;
                 }
             } else {
@@ -236,7 +236,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                 }
                 return cell;
             default:
-                print("Invalid row number");
+                NSLog("Invalid row number");
                 return UITableViewCell();
             }
         }
@@ -250,7 +250,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         // If another than the current section is selected hide the current
         // section.
         if (currentHeader != nil && currentHeader != header) {
-            if let currentSection = currentHeader?.section!, currentSection >= 2 {
+            if let currentSection = currentHeader?.section, currentSection >= 2 {
                 data[currentSection - 2].expanded = false;
                 
                 tableView.beginUpdates();

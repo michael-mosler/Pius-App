@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         notificationCenter.requestAuthorization(options: [.alert, .sound]) {
             (granted, error) in
-            print("Permission granted: \(granted)");
+            NSLog("Permission granted: \(granted)");
 
             guard granted else { return }
             self.getNotificationSettings();
@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // notifications.
     func getNotificationSettings() {
         notificationCenter.getNotificationSettings { (settings) in
-            print("Notification settings: \(settings)");
+            NSLog("Notification settings: \(settings)");
             
             guard settings.authorizationStatus == .authorized else { return }
             
@@ -91,12 +91,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         do {
             try reachability?.startNotifier()
         } catch {
-            print("Unable to start notifier")
+            NSLog("Unable to start notifier")
         }
 
         // Create Watch Connectivity Handler
         if WCSession.isSupported() {
-            print("Activating Watch Connectivity Handler");
+            NSLog("Activating Watch Connectivity Handler");
             self.connectivityHandler = WatchConnectivityHandler();
         }
         
@@ -180,7 +180,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             return;
  
         default:
-            print("Unknown quick action code \(shortcutItem.type) is being ignored.");
+            NSLog("Unknown quick action code \(shortcutItem.type) is being ignored.");
             completionHandler(false);
         }
     }
@@ -205,7 +205,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     // Callback which is called when registering for remote noftications has failed.
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("Failed to register: \(error)");
+        NSLog("Failed to register: \(error)");
     }
     
     // Navigate to specific view controller when app is opened by tapping on

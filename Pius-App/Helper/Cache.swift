@@ -32,7 +32,7 @@ class Cache {
         do {
             try data.write(to: getCacheFileUrl(for: filename)!, options: [.atomic]);
         } catch {
-            print("Failed to cache item: \(error)");
+            NSLog("Failed to cache item: \(error)");
         }
     }
     
@@ -43,7 +43,7 @@ class Cache {
         do {
             try data = String(contentsOf: getCacheFileUrl(for: filename)!);
         } catch {
-            print("Failed to read from cache: \(error)");
+            NSLog("Failed to read from cache: \(error)");
         }
 
         return data;
@@ -56,7 +56,7 @@ class Cache {
         do {
             try data = Data(contentsOf: getCacheFileUrl(for: filename)!);
         } catch {
-            print("Failed to read from cache: \(error)");
+            NSLog("Failed to read from cache: \(error)");
         }
         
         return data;

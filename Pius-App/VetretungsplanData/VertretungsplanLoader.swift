@@ -28,7 +28,7 @@ class VertretungsplanLoader {
         if (self.cache.fileExists(filename: cacheFileName)) {
             digest = cache.read(filename: digestFileName);
         } else {
-            print("Cache file \(cacheFileName) does not exist. Not sending digest.");
+            NSLog("Cache file \(cacheFileName) does not exist. Not sending digest.");
         }
 
         self.forGrade = forGrade;
@@ -55,7 +55,7 @@ class VertretungsplanLoader {
         do {
             matchEmptyCourse = try NSRegularExpression(pattern: "^[^A-Z]");
         } catch {
-            print("Failed to compile regexp for empty course: \(error)");
+            NSLog("Failed to compile regexp for empty course: \(error)");
             matchEmptyCourse = nil;
         }
     }
@@ -188,7 +188,7 @@ class VertretungsplanLoader {
             
             // Request error. In this case nothing more is to be done here. Inform user and exit.
             if let error = error {
-                print("Vertretungsplan Loader had error: \(error)");
+                NSLog("Vertretungsplan Loader had error: \(error)");
                 update(nil, piusGatewayIsReachable);
                 return;
             }
@@ -198,7 +198,7 @@ class VertretungsplanLoader {
             let notModified = piusGatewayIsReachable == true && ((response as! HTTPURLResponse).statusCode == 304);
             if (notModified) {
                 _data = self.cache.read(filename: self.cacheFileName);
-                print("Vertretungsplan has not changed. Using data from cache.");
+                NSLog("Vertretungsplan has not changed. Using data from cache.");
             }
             
             if let data = _data {
@@ -277,11 +277,11 @@ class VertretungsplanLoader {
                     
                     update(vertretungsplan, piusGatewayIsReachable);
                 }  catch let error as NSError {
-                    print(error.localizedDescription);
+                    NSLog(error.localizedDescription);
                     update(nil, piusGatewayIsReachable);
                 }
             } else if let error = error {
-                print(error.localizedDescription)
+                NSLog(error.localizedDescription)
                 update(nil, piusGatewayIsReachable);
             }
         }

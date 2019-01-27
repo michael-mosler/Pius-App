@@ -84,7 +84,7 @@ struct KeychainPasswordItem {
             guard status == noErr else { throw KeychainError.unhandledError(status: status) }
         }
         catch {
-            print("No password set yet, no updating sec item");
+            NSLog("No password set yet, no updating sec item");
         }
     }
 

@@ -194,17 +194,19 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                     }
                 },
                     errorHandler: { (error) in
-                        print("Error sending message: %@", error)
+                        NSLog("Error sending message: \(error)")
                 })
         } else {
-            // Companion app is unreachable.
-            DispatchQueue.main.async {
-                self.presentAlert(withTitle: "Pius-App", message: "Die App kann Dein iPhone nicht erreichen. Prüfe bitte die Verbindung Deiner Watch mit Deinem iPhone.", preferredStyle: .alert, actions: [action])
-                self.hadLoadError = true
-            }
+            NSLog("Companion app is unreachable.")
         }
     }
 
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
+        setTitle("Pius-App")
+        dashboardTable.setRowTypes([])
+    }
+    
     // When app becomes active check if there was a load error before.
     // In this case show message and reset error flag. This is needed
     // because dismissing error message dialog will reactivate app.
