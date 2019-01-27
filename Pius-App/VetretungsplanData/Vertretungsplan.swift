@@ -59,7 +59,7 @@ struct Vertretungsplan: Encodable {
 
                 // Date formatter.
                 let dateFormatter = DateFormatter();
-                dateFormatter.locale = Locale(identifier: "de-DE");
+                dateFormatter.locale = Locale(identifier: "de_DE");
                 dateFormatter.dateFormat = "dd.MM.yyyy'-'HH:mm";
 
                 // Scan all dates.

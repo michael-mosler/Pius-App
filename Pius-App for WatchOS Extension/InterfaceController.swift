@@ -180,9 +180,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
                     case "error":
                         DispatchQueue.main.async {
-                            self.presentAlert(withTitle: "Pius-App", message: "Beim Laden der Daten ist ein Fehler aufgetreten. Prüfe bitte die Internetverbindung Deines iPhones.", preferredStyle: .alert, actions: [action])
+                            self.presentAlert(withTitle: "Pius-App", message: "Beim Laden des Vertretungsplans ist ein Fehler aufgetreten. Prüfe bitte die Internetverbindung Deines iPhones.", preferredStyle: .alert, actions: [action])
                         }
-
                         break;
                         
                     case "loaded":
@@ -195,6 +194,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                 },
                     errorHandler: { (error) in
                         NSLog("Error sending message: \(error)")
+                        DispatchQueue.main.async {
+                            self.presentAlert(withTitle: "Pius-App", message: "Dein Vertretungsplan konnte leider nicht geladen werden.", preferredStyle: .alert, actions: [action])
+                        }
                 })
         } else {
             NSLog("Companion app is unreachable.")
@@ -207,6 +209,10 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         dashboardTable.setRowTypes([])
     }
     
+    override func didAppear() {
+        NSLog("Did appear")
+    }
+
     // When app becomes active check if there was a load error before.
     // In this case show message and reset error flag. This is needed
     // because dismissing error message dialog will reactivate app.

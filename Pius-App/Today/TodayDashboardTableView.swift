@@ -66,7 +66,7 @@ class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewData
             // Date to filter for. Reduce schedules to the one with the given date.
             let dateFormatter = DateFormatter();
             
-            dateFormatter.locale = Locale(identifier: "de-DE");
+            dateFormatter.locale = Locale(identifier: "de_DE");
             dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, dd.MM.yyyy");
             let filterDate = dateFormatter.string(from: Date());
             vertretungsplan_.vertretungsplaene = vertretungsplan_.vertretungsplaene.filter {$0.date == filterDate};

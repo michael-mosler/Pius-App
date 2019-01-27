@@ -186,7 +186,7 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
         let dateFormatter = DateFormatter();
         let date = Date();
         
-        dateFormatter.locale = Locale(identifier: "de-DE");
+        dateFormatter.locale = Locale(identifier: "de_DE");
         dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, d. MMMM");
         let dateString = NSMutableAttributedString(string: dateFormatter.string(from: date) + " (" + DateHelper.week() + "-Woche)", attributes: [NSAttributedString.Key.font: defaultSystemFont]);
         let todayString = NSMutableAttributedString(string: "Heute", attributes: [NSAttributedString.Key.font: largeTitleFont]);
