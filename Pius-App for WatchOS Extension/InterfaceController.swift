@@ -30,6 +30,11 @@ class EvaRow: NSObject {
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
     private var session: WCSession?
     private var hadLoadError: Bool = false
+    private var appWillDisappear: Bool = false
+    
+    private var rowTypes: [String] = []
+    private var tableRowData: [Any] = []
+
     @IBOutlet weak var dashboardTable: WKInterfaceTable!
     
     var hyphantedTextAttribute: [NSAttributedString.Key: NSMutableParagraphStyle] {
@@ -53,6 +58,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
     // Show a hyphanated text message in content row with a preceeding icon row.
     private func showMessageInRow(_ text: String) {
+        guard !appWillDisappear else { return }
         dashboardTable.setRowTypes(["iconRow", "contentRow"])
         let tableRow = dashboardTable.rowController(at: 1) as! ContentRow
         tableRow.label.setAttributedText(NSAttributedString(string: text, attributes: hyphantedTextAttribute))
@@ -119,6 +125,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     // Fill dashboard table from row typed and table row data.
     private func displayDashboard(rowTypes: [String], tableRowData: [Any]) {
+        guard !appWillDisappear else { return }
         dashboardTable.setRowTypes(rowTypes)
 
         for index in 0..<tableRowData.count {
@@ -166,53 +173,48 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             self.hadLoadError = true
         }
         
-        if session.isReachable {
-            showMessageInRow("Dein Vertretungsplan wird geladen...")
+        showMessageInRow("Dein Vertretungsplan wird geladen...")
 
-            session.sendMessage(["request" : "dashboard"],
-                replyHandler: { (response) in
-                    switch(response["status"] as! String) {
-                    case "notConfigured":
-                        DispatchQueue.main.async {
-                            self.presentAlert(withTitle: "Pius-App", message: "Du musst Dich auf Deinem iPhone in der Pius-Aoo anmelden und, wenn Du in der EF, Q1 oder Q2 bist, eine Kursliste anlegen, um die App nutzen zu können.", preferredStyle: .alert, actions: [action])
-                        }
-                        break;
-
-                    case "error":
-                        DispatchQueue.main.async {
-                            self.presentAlert(withTitle: "Pius-App", message: "Beim Laden des Vertretungsplans ist ein Fehler aufgetreten. Prüfe bitte die Internetverbindung Deines iPhones.", preferredStyle: .alert, actions: [action])
-                        }
-                        break;
-                        
-                    case "loaded":
-                        let (rowTypes, tableRowData) = self.convertResponse(response: response)
-                        self.displayDashboard(rowTypes: rowTypes, tableRowData: tableRowData)
-                        
-                    default:
-                        break
+        session.sendMessage(["request" : "dashboard"],
+            replyHandler: { (response) in
+                switch(response["status"] as! String) {
+                case "notConfigured":
+                    DispatchQueue.main.async {
+                        self.presentAlert(withTitle: "Pius-App", message: "Du musst Dich auf Deinem iPhone in der Pius-Aoo anmelden und, wenn Du in der EF, Q1 oder Q2 bist, eine Kursliste anlegen, um die App nutzen zu können.", preferredStyle: .alert, actions: [action])
                     }
-                },
-                    errorHandler: { (error) in
-                        NSLog("Error sending message: \(error)")
+                    break;
+
+                case "error":
+                    DispatchQueue.main.async {
+                        self.presentAlert(withTitle: "Pius-App", message: "Beim Laden des Vertretungsplans ist leider ein Fehler aufgetreten. Prüfe bitte die Internetverbindung Deines iPhones.", preferredStyle: .alert, actions: [action])
+                    }
+                    break;
+                    
+                case "loaded":
+                    (self.rowTypes, self.tableRowData) = self.convertResponse(response: response)
+                    self.displayDashboard(rowTypes: self.rowTypes, tableRowData: self.tableRowData)
+                    
+                default:
+                    break
+                }
+            },
+                errorHandler: { (error) in
+                    NSLog("Error sending message : \(error)")
+                    
+                    if !self.appWillDisappear {
                         DispatchQueue.main.async {
                             self.presentAlert(withTitle: "Pius-App", message: "Dein Vertretungsplan konnte leider nicht geladen werden.", preferredStyle: .alert, actions: [action])
                         }
-                })
-        } else {
-            NSLog("Companion app is unreachable.")
-        }
-    }
-
-    override func awake(withContext context: Any?) {
-        super.awake(withContext: context)
-        setTitle("Pius-App")
-        dashboardTable.setRowTypes([])
+                    }
+            })
     }
     
-    override func didAppear() {
-        NSLog("Did appear")
+    override func awake(withContext context: Any?) {
+        NSLog("App is awake")
+        super.awake(withContext: context)
+        setTitle("Pius-App")
     }
-
+    
     // When app becomes active check if there was a load error before.
     // In this case show message and reset error flag. This is needed
     // because dismissing error message dialog will reactivate app.
@@ -221,24 +223,39 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     // already active and request data. When active sessions exists
     // request data directly.
     override func willActivate() {
+        NSLog("App will activate")
+        appWillDisappear = false
         super.willActivate()
+        session = WCSession.default
+        session?.delegate = self
         
         if hadLoadError {
-            showMessageInRow("Die Daten konnten leider nicht geladen werden.")
+            showMessageInRow("Dein Vertretungsplan konnte leider nicht geladen werden.")
             hadLoadError = false
-
-        } else {
-            session = WCSession.default
-            session?.delegate = self
-            
-            if session?.activationState == .activated {
-                sendMessage(session: session!)
-            } else {
-                session?.activate()
-            }
+        } else if session?.activationState != .activated {
+            session?.activate()
         }
+        
+        displayDashboard(rowTypes: rowTypes, tableRowData: tableRowData)
     }
 
+    override func didDeactivate() {
+        NSLog("App will deactivate")
+
+        super.didDeactivate()
+
+        // Block send on next reachability change.
+        appWillDisappear = true
+        hadLoadError = false
+    }
+
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        NSLog("Session reachability did change: \(session.isReachable)")
+        if session.isReachable {
+            sendMessage(session: session)
+        }
+    }
+    
     // New session has become active. If there was an error show dialog and set
     // load error flag otherwise request data from companion app.
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
@@ -253,6 +270,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                 self.hadLoadError = true
             }
         } else {
+            NSLog("New session active, requesting data")
             sendMessage(session: session)
         }
     }

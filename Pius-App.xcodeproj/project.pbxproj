@@ -37,7 +37,6 @@
 		4C48F6D121F6433C00B20505 /* IOSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D021F6433C00B20505 /* IOSHelper.swift */; };
 		4C48F6D221F6433C00B20505 /* IOSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D021F6433C00B20505 /* IOSHelper.swift */; };
 		4C48F6D521F78F7C00B20505 /* WatchConnectivityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D421F78F7C00B20505 /* WatchConnectivityHandler.swift */; };
-		4C48F6D621F78F7C00B20505 /* WatchConnectivityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D421F78F7C00B20505 /* WatchConnectivityHandler.swift */; };
 		4C55381721B4435C000374D3 /* TodayDashboardTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55381621B4435C000374D3 /* TodayDashboardTableView.swift */; };
 		4C5AA0132189DAA90040A455 /* VertretungsplanDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */; };
 		4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
@@ -942,7 +941,6 @@
 				4CA4907E20DEA57D00796457 /* Vertretungsplan.swift in Sources */,
 				4CA4907D20DEA51700796457 /* KeychainConfiguration.swift in Sources */,
 				4CA4908020DFABFF00796457 /* Helper.swift in Sources */,
-				4C48F6D621F78F7C00B20505 /* WatchConnectivityHandler.swift in Sources */,
 				4CB2AF53219A15BF007E5D1F /* Reachability.swift in Sources */,
 				4CA4907C20DEA51400796457 /* KeychainPasswordItem.swift in Sources */,
 			);
