@@ -57,8 +57,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
 
     // Show a hyphanated text message in content row with a preceeding icon row.
-    private func showMessageInRow(_ text: String) {
-        guard !appWillDisappear else { return }
+    private func showMessageInRow(_ text: String, forceShow: Bool = false) {
+        guard !appWillDisappear || forceShow else { return }
         dashboardTable.setRowTypes(["iconRow", "contentRow"])
         let tableRow = dashboardTable.rowController(at: 1) as! ContentRow
         tableRow.label.setAttributedText(NSAttributedString(string: text, attributes: hyphantedTextAttribute))
@@ -123,8 +123,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         return (rowTypes, tableRowData)
     }
     
-    // Fill dashboard table from row typed and table row data.
-    private func displayDashboard(rowTypes: [String], tableRowData: [Any]) {
+    // Fill dashboard table from row type and table row data of this instance.
+    private func displayDashboard() {
         guard !appWillDisappear else { return }
         dashboardTable.setRowTypes(rowTypes)
 
@@ -173,7 +173,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             self.hadLoadError = true
         }
         
-        showMessageInRow("Dein Vertretungsplan wird geladen...")
+        showMessageInRow("Dein Vertretungsplan wird geladen...",forceShow: true)
 
         session.sendMessage(["request" : "dashboard"],
             replyHandler: { (response) in
@@ -192,7 +192,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                     
                 case "loaded":
                     (self.rowTypes, self.tableRowData) = self.convertResponse(response: response)
-                    self.displayDashboard(rowTypes: self.rowTypes, tableRowData: self.tableRowData)
+                    DispatchQueue.main.async {
+                        self.displayDashboard()
+                    }
                     
                 default:
                     break
@@ -208,7 +210,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                     }
             })
     }
-    
+
+    // Called when app awakes. Sets app title, that's it.
     override func awake(withContext context: Any?) {
         NSLog("App is awake")
         super.awake(withContext: context)
@@ -224,31 +227,42 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     // request data directly.
     override func willActivate() {
         NSLog("App will activate")
-        appWillDisappear = false
+    
         super.willActivate()
+
+        appWillDisappear = false
         session = WCSession.default
         session?.delegate = self
-        
+
+        // This should have any relevance only when an error message
+        // from request was shown. In this case controller will
+        // become active again but we do not want to reload data.
         if hadLoadError {
             showMessageInRow("Dein Vertretungsplan konnte leider nicht geladen werden.")
             hadLoadError = false
         } else if session?.activationState != .activated {
+            // When session is not active reactivate.
             session?.activate()
         }
         
-        displayDashboard(rowTypes: rowTypes, tableRowData: tableRowData)
+        // Just in case: As order of reachability change and willActivate may
+        // vary we must make sure that new data is displayed.
+        displayDashboard()
     }
 
+    // Called when app deactivates. Resets load error indicator and sets
+    // appWillDisappear indicator.
     override func didDeactivate() {
         NSLog("App will deactivate")
 
         super.didDeactivate()
 
-        // Block send on next reachability change.
+        // Indicate that app is closing, this e.g. prevents screen updates.
         appWillDisappear = true
         hadLoadError = false
     }
 
+    // When session becomes reachable request new data.
     func sessionReachabilityDidChange(_ session: WCSession) {
         NSLog("Session reachability did change: \(session.isReachable)")
         if session.isReachable {
