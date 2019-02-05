@@ -68,8 +68,11 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
         if pendingLoads <= 0 {
             refreshControl?.endRefreshing();
             activityIndicator.stopAnimating();
+            
+            tableView.reloadData()
         }
     }
+
     override func viewDidLoad() {
         super.viewDidLoad();
 
@@ -183,7 +186,7 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
         let dateFormatter = DateFormatter();
         let date = Date();
         
-        dateFormatter.locale = Locale(identifier: "de-DE");
+        dateFormatter.locale = Locale(identifier: "de_DE");
         dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, d. MMMM");
         let dateString = NSMutableAttributedString(string: dateFormatter.string(from: date), attributes: [NSAttributedString.Key.font: defaultSystemFont]);
         let todayString = NSMutableAttributedString(string: "Heute", attributes: [NSAttributedString.Key.font: largeTitleFont]);

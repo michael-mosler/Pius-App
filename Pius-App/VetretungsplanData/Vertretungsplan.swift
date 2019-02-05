@@ -59,6 +59,7 @@ struct Vertretungsplan {
 
                 // Date formatter.
                 let dateFormatter = DateFormatter();
+                dateFormatter.locale = Locale(identifier: "de_DE");
                 dateFormatter.dateFormat = "dd.MM.yyyy'-'HH:mm";
 
                 // Scan all dates.
@@ -77,14 +78,13 @@ struct Vertretungsplan {
                                 // Which lessons are affected? This may be a single figure or a range like "3-4. Stunde". Anyway
                                 // we are interested in the very first figure only as this defines the time.
                                 let lessonRange = vertretungsplanItem[0];
-                                if let startLessonMatch = matchFirstNumber.firstMatch(in: lessonRange, range: NSMakeRange(0, lessonRange.count)) {
-                                    let range = Range(startLessonMatch.range, in: lessonRange);
+                                if let startLessonMatch = matchFirstNumber.firstMatch(in: lessonRange, range: NSMakeRange(0, lessonRange.count)), let range = Range(startLessonMatch.range, in: lessonRange) {
                                     // When something matched convert lesson number to time string, append it to date and convert
                                     // this string to NSDate. Then check if date is greater than current date and time.
-                                    let startLesson = String(lessonRange[range!]);
-                                    let lessonStartTime = lessonStartTimes[Int(startLesson)! - 1];
-                                    
-                                    if dateFormatter.date(from: date + lessonStartTime)! > Date() {
+                                    let startLesson = (String(lessonRange[range]) as NSString).integerValue;
+                                    let lessonStartTime = lessonStartTimes[startLesson - 1];
+
+                                    if let lessonStartDateAndTime = dateFormatter.date(from: date + lessonStartTime), lessonStartDateAndTime > Date() {
                                         // Build a reduced vertretungsplan that only has the "next" item
                                         var filteredGradeItem = gradeItem;
                                         filteredGradeItem.vertretungsplanItems = [vertretungsplanItem];
@@ -99,7 +99,7 @@ struct Vertretungsplan {
                     }
                 }
                 
-                // Nothing found, not next item. Sorry!
+                // Nothing found, no next item. Sorry!
                 return [];
             } catch {
                 print("Failed to return widget data \(error)");
