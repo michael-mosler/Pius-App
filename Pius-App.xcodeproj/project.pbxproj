@@ -37,6 +37,7 @@
 		4C48F6D121F6433C00B20505 /* IOSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D021F6433C00B20505 /* IOSHelper.swift */; };
 		4C48F6D221F6433C00B20505 /* IOSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D021F6433C00B20505 /* IOSHelper.swift */; };
 		4C48F6D521F78F7C00B20505 /* WatchConnectivityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D421F78F7C00B20505 /* WatchConnectivityHandler.swift */; };
+		4C5318D02205F82600D6AAFA /* EvaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5318CF2205F82600D6AAFA /* EvaViewController.swift */; };
 		4C55381721B4435C000374D3 /* TodayDashboardTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55381621B4435C000374D3 /* TodayDashboardTableView.swift */; };
 		4C5AA0132189DAA90040A455 /* VertretungsplanDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */; };
 		4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
@@ -204,6 +205,7 @@
 		4C48F6C921F63D2D00B20505 /* Pius-App for WatchOS Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pius-App for WatchOS Extension.entitlements"; sourceTree = "<group>"; };
 		4C48F6D021F6433C00B20505 /* IOSHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSHelper.swift; sourceTree = "<group>"; };
 		4C48F6D421F78F7C00B20505 /* WatchConnectivityHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityHandler.swift; sourceTree = "<group>"; };
+		4C5318CF2205F82600D6AAFA /* EvaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaViewController.swift; sourceTree = "<group>"; };
 		4C55381621B4435C000374D3 /* TodayDashboardTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDashboardTableView.swift; sourceTree = "<group>"; };
 		4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanDetailsCell.swift; sourceTree = "<group>"; };
 		4C5E0E7520A498DA00DAE459 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
@@ -400,6 +402,14 @@
 			path = Watch;
 			sourceTree = "<group>";
 		};
+		4C5318CE2205F7F400D6AAFA /* EVA */ = {
+			isa = PBXGroup;
+			children = (
+				4C5318CF2205F82600D6AAFA /* EvaViewController.swift */,
+			);
+			path = EVA;
+			sourceTree = "<group>";
+		};
 		4C5E0E7720A872C200DAE459 /* OnboardingViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -438,14 +448,17 @@
 		4C7C228E2043117700ACA17B /* Pius-App */ = {
 			isa = PBXGroup;
 			children = (
-				4C48F6D321F78F5200B20505 /* Watch */,
-				4CC3F9AA21C520DF00DB98B7 /* Fonts */,
-				4CB2AF5421A75563007E5D1F /* Today */,
-				4CB97F15210A535F0019973D /* PushService */,
 				4CB3EC8420DC10D700BBEAE0 /* Pius-App.entitlements */,
 				4C7C22912043117800ACA17B /* ViewController.swift */,
+				4CF02EAE218B559400647078 /* TabBarController.swift */,
 				4C7C228F2043117700ACA17B /* AppDelegate.swift */,
 				4CB2AF512198813C007E5D1F /* Reachability.swift */,
+				4C7C22982043117800ACA17B /* LaunchScreen.storyboard */,
+				4C7C22932043117800ACA17B /* Main.storyboard */,
+				4CC3F9AA21C520DF00DB98B7 /* Fonts */,
+				4C5318CE2205F7F400D6AAFA /* EVA */,
+				4CB2AF5421A75563007E5D1F /* Today */,
+				4CB97F15210A535F0019973D /* PushService */,
 				4C5E0E7720A872C200DAE459 /* OnboardingViewController */,
 				4C7E61A8209F8860000D1225 /* Vertretungsplan */,
 				4C1FDE5F206C2614006092C9 /* Dashboard */,
@@ -455,11 +468,9 @@
 				4C1FDE51205C4FEF006092C9 /* VertretungsplanDetailData */,
 				4CFB105520D048B700432B1A /* CalendarData */,
 				4C1FDE4C205567A6006092C9 /* VetretungsplanData */,
-				4C7C22932043117800ACA17B /* Main.storyboard */,
+				4C48F6D321F78F5200B20505 /* Watch */,
 				4C7C22962043117800ACA17B /* Assets.xcassets */,
-				4C7C22982043117800ACA17B /* LaunchScreen.storyboard */,
 				4C7C229B2043117800ACA17B /* Info.plist */,
-				4CF02EAE218B559400647078 /* TabBarController.swift */,
 			);
 			path = "Pius-App";
 			sourceTree = "<group>";
@@ -877,6 +888,7 @@
 				4CB2AF5E21B302E6007E5D1F /* NewsArticleViewController.swift in Sources */,
 				4CC332D12180DF580055E3F5 /* MetaDataCollectionViewCell.swift in Sources */,
 				4CB2AF5A21ADBFAC007E5D1F /* NewsTableViewCell.swift in Sources */,
+				4C5318D02205F82600D6AAFA /* EvaViewController.swift in Sources */,
 				4CC332CF2180DAB10055E3F5 /* MetaDataTableViewCell.swift in Sources */,
 				4C1FDE61206C2644006092C9 /* DashboardViewController.swift in Sources */,
 				4C1FDE63206D5FE6006092C9 /* Config.swift in Sources */,

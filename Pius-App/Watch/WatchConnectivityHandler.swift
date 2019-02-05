@@ -65,7 +65,7 @@ class WatchConnectivityHandler: NSObject, WCSessionDelegate {
     }
     
     // Send dashboard data to watch app.
-    func doUpdate(vertretungsplan: Vertretungsplan?, online: Bool) {
+    private func doUpdate(vertretungsplan: Vertretungsplan?, online: Bool) {
         guard vertretungsplan != nil else {
             self.replyHandler!(["status": "error", "online": online])
             return
@@ -83,7 +83,7 @@ class WatchConnectivityHandler: NSObject, WCSessionDelegate {
         self.replyHandler!(dictionary!)
     }
 
-    // Process watch app requests.
+    // Process watch app requests. This is the only callback we use.
     // Currently the only supported request is "dashboard".
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         if message["request"] as? String == "dashboard" {

@@ -176,14 +176,14 @@
                                         </constraints>
                                         <attributedString key="attributedText">
                                             <fragment>
-                                                <mutableString key="content">© Felix Krings und Michael Mosler-Krings
+                                                <string key="content">© Felix Krings und Michael Mosler-Krings
 Unter https://github.com/michael-mosler/Pius-App findest Du weitere Infos zur App. 
 Informationen zu unserer Datenschutzrichtlinie findest Du unter https://github.com/michael-mosler/Pius-App/wiki/Datenschutzrichtlinie.
 
 Wir verwenden:
 • Reachability (https://github.com/ashleymills/Reachability.swift)
 • Kingfisher (https://github.com/onevcat/Kingfisher)
-• MGSwipeTableCell (https://github.com/MortimerGoro/MGSwipeTableCell)</mutableString>
+• MGSwipeTableCell (https://github.com/MortimerGoro/MGSwipeTableCell)</string>
                                                 <attributes>
                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                     <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
@@ -1479,7 +1479,13 @@ Tippe unten auf </string>
                             <outlet property="delegate" destination="pyK-AN-dTj" id="SI0-GR-wKj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Dashboard" id="QZA-T6-XZq"/>
+                    <navigationItem key="navigationItem" title="Dashboard" id="QZA-T6-XZq">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="bluepencil" id="6H3-v8-yFh">
+                            <connections>
+                                <segue destination="5az-PB-Xfi" kind="show" id="dDU-Rg-hs2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="XGg-hF-SFU">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1489,6 +1495,21 @@ Tippe unten auf </string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ao0-Wd-UyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-9533" y="-4641"/>
+        </scene>
+        <!--EVA-->
+        <scene sceneID="XEA-uC-wxH">
+            <objects>
+                <viewController title="EVA" id="5az-PB-Xfi" customClass="EvaViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wH1-5V-Am9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="CaV-X0-7IQ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WvV-3e-Brf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-8414" y="-4641"/>
         </scene>
         <!--Kalender-->
         <scene sceneID="NZ4-Ff-b9n">
@@ -2822,6 +2843,7 @@ Tippe dazu unten auf </string>
     <resources>
         <image name="bluecalendar" width="30" height="30"/>
         <image name="bluelist" width="30" height="30"/>
+        <image name="bluepencil" width="30" height="30"/>
         <image name="bluestar" width="30" height="30"/>
         <image name="bluetoday_apps" width="30" height="30"/>
         <image name="calendar" width="30" height="30"/>
