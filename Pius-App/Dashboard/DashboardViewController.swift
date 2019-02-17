@@ -9,10 +9,12 @@
 import UIKit
 
 class DashboardViewController: UITableViewController, UITabBarControllerDelegate, ExpandableHeaderViewDelegate {
+    @IBOutlet weak var evaButton: UIBarButtonItem!
+
     private var vertretungsplan: Vertretungsplan?;
     private var nextDate: String = "";
     private var currentHeader: ExpandableHeaderView?;
-
+    
     private var data: [VertretungsplanForDate] {
         get {
             if let vertretungsplan_ = vertretungsplan {
@@ -48,6 +50,8 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        evaButton.isEnabled = false;
+        evaButton.tintColor = .white;
         refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged);
     }
     
@@ -80,6 +84,9 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
             DispatchQueue.main.async {
+                self.evaButton.tintColor = .white;
+                self.evaButton.isEnabled = false;
+
                 let alert = UIAlertController(title: "Vertretungsplan", message: "Die Daten konnten leider nicht geladen werden.", preferredStyle: UIAlertController.Style.alert);
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
                     (action: UIAlertAction!) in self.navigationController?.popViewController(animated: true);
@@ -102,6 +109,8 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                     self.toggleSection(header: headerInfo.header, section: headerInfo.section);
                 }
                 self.tableView.isHidden = false;
+                self.evaButton.tintColor = (AppDefaults.hasUpperGrade) ? Config.colorPiusBlue : .white;
+                self.evaButton.isEnabled = AppDefaults.hasUpperGrade;
             }
         }
     }

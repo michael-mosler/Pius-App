@@ -15,34 +15,54 @@ class EvaTableSectionHeader: UITableViewCell {
 class EvaTableContentTableViewCell: UITableViewCell {
     @IBOutlet weak var course: UILabel!
     @IBOutlet weak var evaText: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
+    var uuid: String?;
 }
 
 class EvaTableViewController: UITableViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+    private var evaDoc: EvaDoc?
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
+        let evaLoader = EvaLoader(grade: AppDefaults.gradeSetting, courseList: AppDefaults.courseList ?? []);
+        evaLoader.load(doUpdate);
+    }
+
+    func doUpdate(evaDoc: EvaDoc?, online: Bool) {
+        if let evaDoc = evaDoc {
+            self.evaDoc = evaDoc;
+            
+            if evaDoc.evaCollections.count == 0 {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "EVA", message: "Du hast im Moment keine EVA-Aufträge.", preferredStyle: UIAlertController.Style.alert);
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
+                        (action: UIAlertAction!) in self.navigationController?.popViewController(animated: true);
+                    }));
+                    
+                    self.present(alert, animated: true, completion: nil);
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData();
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "EVA", message: "Die Daten konnten leider nicht geladen werden.", preferredStyle: UIAlertController.Style.alert);
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
+                    (action: UIAlertAction!) in self.navigationController?.popViewController(animated: true);
+                }));
+                
+                self.present(alert, animated: true, completion: nil);
+            }
+        }
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1;
+        return self.evaDoc?.evaCollections[section].evaItems.count ?? 0;
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1;
+        return self.evaDoc?.evaCollections.count ?? 0;
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -51,14 +71,21 @@ class EvaTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "date") as! EvaTableSectionHeader;
-        cell.date.text = "Freitag, 15.02.2019";
+        cell.date.text = self.evaDoc?.evaCollections[section].date;
         return cell as UIView;
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "eva") as! EvaTableContentTableViewCell;
-        cell.course.text = "M LK1";
-        cell.evaText.text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sine";
-        return cell;
+        if let evaItems = self.evaDoc?.evaCollections[indexPath.section].evaItems {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "eva") as! EvaTableContentTableViewCell;
+            let evaItem = evaItems[indexPath.row];
+            
+            cell.course.text = evaItem.course;
+            cell.evaText.text = evaItem.evaText;
+            cell.uuid = evaItem.uuid;
+            return cell;
+        } else {
+            return UITableViewCell();
+        }
     }
 }

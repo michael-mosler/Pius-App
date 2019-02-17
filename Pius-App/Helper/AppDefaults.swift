@@ -62,6 +62,7 @@ struct AppDefaults {
             return Config.shortGrades[gradeSetting] + Config.shortClasses[classSetting];
         }
     }
+
     static var hasLowerGrade: Bool {
         get {
             if let selectedGradeRow = selectedGradeRow {

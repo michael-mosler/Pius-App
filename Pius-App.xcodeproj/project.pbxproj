@@ -76,6 +76,7 @@
 		4CB3EC7A20DC0ECB00BBEAE0 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CB3EC7820DC0ECB00BBEAE0 /* MainInterface.storyboard */; };
 		4CB3EC7E20DC0ECB00BBEAE0 /* Pius-App-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4CB3EC7220DC0ECA00BBEAE0 /* Pius-App-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4CB97F17210A53940019973D /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB97F16210A53940019973D /* DeviceTokenManager.swift */; };
+		4CBC31402218164100CEB1D1 /* EvaLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBC313F2218164100CEB1D1 /* EvaLoader.swift */; };
 		4CC332CF2180DAB10055E3F5 /* MetaDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC332CE2180DAB10055E3F5 /* MetaDataTableViewCell.swift */; };
 		4CC332D12180DF580055E3F5 /* MetaDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC332D02180DF580055E3F5 /* MetaDataCollectionViewCell.swift */; };
 		4CC3F9A821C520D800DB98B7 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3F9A621C520D700DB98B7 /* SF-Pro-Display-Regular.otf */; };
@@ -238,6 +239,7 @@
 		4CB3EC8320DC104800BBEAE0 /* Pius-App-Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pius-App-Extension.entitlements"; sourceTree = "<group>"; };
 		4CB3EC8420DC10D700BBEAE0 /* Pius-App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pius-App.entitlements"; sourceTree = "<group>"; };
 		4CB97F16210A53940019973D /* DeviceTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenManager.swift; sourceTree = "<group>"; };
+		4CBC313F2218164100CEB1D1 /* EvaLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaLoader.swift; sourceTree = "<group>"; };
 		4CC332CE2180DAB10055E3F5 /* MetaDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataTableViewCell.swift; sourceTree = "<group>"; };
 		4CC332D02180DF580055E3F5 /* MetaDataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataCollectionViewCell.swift; sourceTree = "<group>"; };
 		4CC3F9A621C520D700DB98B7 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				4C5318CF2205F82600D6AAFA /* EvaTableViewController.swift */,
+				4CBC313F2218164100CEB1D1 /* EvaLoader.swift */,
 			);
 			path = EVA;
 			sourceTree = "<group>";
@@ -922,6 +925,7 @@
 				4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */,
 				4CB97F17210A53940019973D /* DeviceTokenManager.swift in Sources */,
 				4C1FDE50205568E3006092C9 /* ExpandableHeaderView.swift in Sources */,
+				4CBC31402218164100CEB1D1 /* EvaLoader.swift in Sources */,
 				4C1FDE5E20697516006092C9 /* VertretungsplanLoader.swift in Sources */,
 				4C55381721B4435C000374D3 /* TodayDashboardTableView.swift in Sources */,
 				4CA4907720DE4DDC00796457 /* AppDefaults.swift in Sources */,
@@ -1259,7 +1263,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ALWAYS_SHOW_ONBOARDING = false;
+				ALWAYS_SHOW_ONBOARDING = true;
 				API_KEY = "heSXxSOvNcl8J4UB9$#TV9TUZ3zClbX$EyOQzKiqGWxRgonzSe";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Pius-App/Pius-App.entitlements";
@@ -1287,7 +1291,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ALWAYS_SHOW_ONBOARDING = false;
+				ALWAYS_SHOW_ONBOARDING = true;
 				API_KEY = "heSXxSOvNcl8J4UB9$#TV9TUZ3zClbX$EyOQzKiqGWxRgonzSe";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Pius-App/Pius-App.entitlements";

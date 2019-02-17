@@ -1480,7 +1480,7 @@ Tippe unten auf </string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Dashboard" id="QZA-T6-XZq">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="bluepencil" id="6H3-v8-yFh">
+                        <barButtonItem key="rightBarButtonItem" title="EVA" image="bluepencil" id="6H3-v8-yFh">
                             <connections>
                                 <segue destination="e4J-sn-uHW" kind="show" id="dAQ-PU-iY9"/>
                             </connections>
@@ -1491,6 +1491,9 @@ Tippe unten auf </string>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                     </refreshControl>
+                    <connections>
+                        <outlet property="evaButton" destination="6H3-v8-yFh" id="9p6-G9-wKf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ao0-Wd-UyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1508,7 +1511,7 @@ Tippe unten auf </string>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="date" id="CuL-br-jFZ" customClass="EvaTableSectionHeader" customModule="Pius_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CuL-br-jFZ" id="lA1-hy-ANo" customClass="UITable">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CuL-br-jFZ" id="lA1-hy-ANo">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>

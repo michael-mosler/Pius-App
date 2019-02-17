@@ -77,11 +77,11 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     
     // Checks if grade picker has selected an upper grade.
     private func isUpperGradeSelected(_ row: Int) -> Bool {
-        return Config.upperGrades.index(of: Config.grades[row]) != nil
+        return Config.isUpperGrade(Config.grades[row]);
     }
     
     private func isLowerGradeSelected(_ row: Int) -> Bool {
-        return Config.lowerGrades.index(of: Config.grades[row]) != nil
+        return Config.isLowerGrade(Config.grades[row]);
     }
     
     // Update Login button text depending on authentication state.
