@@ -83,6 +83,7 @@ struct Vertretungsplan: Encodable {
                                     // this string to NSDate. Then check if date is greater than current date and time.
                                     let startLesson = (String(lessonRange[range]) as NSString).integerValue;
                                     let lessonStartTime = lessonStartTimes[startLesson - 1];
+                                    
                                     if let lessonStartDateAndTime = dateFormatter.date(from: date + lessonStartTime), lessonStartDateAndTime > Date() {
                                         // Build a reduced vertretungsplan that only has the "next" item
                                         var filteredGradeItem = gradeItem;
