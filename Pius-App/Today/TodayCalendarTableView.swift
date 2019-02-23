@@ -55,7 +55,7 @@ class TodayCalendarTableView: UITableView, UITableViewDelegate, UITableViewDataS
             let dateFormatter = DateFormatter();
             
             // 1. Filter month
-            dateFormatter.locale = Locale(identifier: "de-DE");
+            dateFormatter.locale = Locale(identifier: "de_DE");
             dateFormatter.setLocalizedDateFormatFromTemplate("MMMM yyyy");
             var filterDate = dateFormatter.string(from: date);
 

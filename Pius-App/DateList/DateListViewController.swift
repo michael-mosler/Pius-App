@@ -97,9 +97,14 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         // Restore original table view position as user might have scrolled
         // in search mode.
-        UIView.animate(withDuration: 0, animations: {
-            self.changeSelectedMonthButton(to: self.selectedButton!);
-        });
+        if let selectedButton = self.selectedButton {
+            UIView.animate(withDuration: 0, animations: {
+                self.changeSelectedMonthButton(to: selectedButton);
+            }, completion: { (finished: Bool) in
+                let indexPath = IndexPath(item: selectedButton.forMonth!, section: 0);
+                self.dateListCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true);
+            });
+        }
     }
 
     // Whenever a new month is selected this action load the corresponding dates into
@@ -153,7 +158,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         calendarLoader.load(self.doUpdate);
     }
     
-    // Called when selected month is to changed. Deselects previous month
+    // Called when selected month is about to change. Deselects previous month
     // and changes selection to the new button.
     func changeSelectedMonthButton(to button: MonthButton) {
         if (selectedButton != nil) {
@@ -201,10 +206,8 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
             let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton;
             button.makeMonthButton(for: indexPath.row, with: calendar.monthItems[indexPath.row].name, parentCell: cell);
             
-            // Selected button has become visible or initial start of view. In latter case
-            // activate default month indexed by 0.
-            if (indexPath.row == selectedMonth_
-                || selectedMonth_ == nil && hadSelectedMonth == nil && indexPath.row == 0) {
+            // Nothing selected yet, select first month.
+            if (selectedMonth_ == nil && hadSelectedMonth == nil && indexPath.row == 0) {
                 changeSelectedMonthButton(to: button);
             }
             
@@ -219,7 +222,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if (scrollView == dateListCollectionView) {
-            let itemIndex = (scrollView.contentOffset.x / CGFloat(Config.screenWidth)).rounded();
+            let itemIndex = (scrollView.contentOffset.x / CGFloat(IOSHelper.screenWidth)).rounded();
             let indexPath = NSIndexPath(row: Int(itemIndex), section: 0);
             
             if let cell = monthListCollectionView.cellForItem(at: indexPath as IndexPath) {

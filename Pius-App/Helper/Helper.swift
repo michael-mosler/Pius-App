@@ -48,3 +48,16 @@ class FormatHelper {
         return attributedText;
     }
 }
+
+class DateHelper {
+    // Gets the current week: When odd week num returns "A" else "B".
+    static func week() -> String {
+        if let calendar = NSCalendar(calendarIdentifier: .ISO8601) {
+            let oddWeek = (calendar.component(.weekOfYear, from: Date()) % 2) != 0;
+            return (oddWeek) ? "A" : "B";
+        } else {
+            return "Unbekannte";
+        }
+
+    }
+}

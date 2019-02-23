@@ -38,13 +38,13 @@ class DeviceTokenManager {
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                print("Adding device token failed: \(error)");
+                NSLog("Adding device token failed: \(error)");
                 return;
             }
             
             if let response = (response as? HTTPURLResponse) {
                 if response.statusCode != 200 {
-                    print("Adding device token failed with status \(response.statusCode)");
+                    NSLog("Adding device token failed with status \(response.statusCode)");
                     return;
                 }
             }

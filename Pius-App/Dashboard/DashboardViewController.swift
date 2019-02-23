@@ -9,10 +9,12 @@
 import UIKit
 
 class DashboardViewController: UITableViewController, UITabBarControllerDelegate, ExpandableHeaderViewDelegate {
+    @IBOutlet weak var evaButton: UIBarButtonItem!
+
     private var vertretungsplan: Vertretungsplan?;
     private var nextDate: String = "";
     private var currentHeader: ExpandableHeaderView?;
-
+    
     private var data: [VertretungsplanForDate] {
         get {
             if let vertretungsplan_ = vertretungsplan {
@@ -48,6 +50,8 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        evaButton.isEnabled = false;
+        evaButton.tintColor = .white;
         refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged);
     }
     
@@ -80,6 +84,9 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
             DispatchQueue.main.async {
+                self.evaButton.tintColor = .white;
+                self.evaButton.isEnabled = false;
+
                 let alert = UIAlertController(title: "Vertretungsplan", message: "Die Daten konnten leider nicht geladen werden.", preferredStyle: UIAlertController.Style.alert);
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
                     (action: UIAlertAction!) in self.navigationController?.popViewController(animated: true);
@@ -102,6 +109,8 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                     self.toggleSection(header: headerInfo.header, section: headerInfo.section);
                 }
                 self.tableView.isHidden = false;
+                self.evaButton.tintColor = (AppDefaults.hasUpperGrade) ? Config.colorPiusBlue : .white;
+                self.evaButton.isEnabled = AppDefaults.hasUpperGrade;
             }
         }
     }
@@ -159,7 +168,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                     let itemIndex: Int = indexPath.row / rowsPerItem;
                     return ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) ? 0: UITableView.automaticDimension;
                 default:
-                    print("Invalid row number");
+                    NSLog("Invalid row number");
                     return 0;
                 }
             } else {
@@ -236,24 +245,29 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                 }
                 return cell;
             default:
-                print("Invalid row number");
+                NSLog("Invalid row number");
                 return UITableViewCell();
             }
         }
     }
 
+    // Toggles header for the given section. Section must be greater or equal to 2
+    // otherwise function will return without any toggle.
     func toggleSection(header: ExpandableHeaderView, section: Int) {
+        guard section >= 2 else { return }
+
         // If another than the current section is selected hide the current
         // section.
         if (currentHeader != nil && currentHeader != header) {
-            let currentSection = currentHeader!.section!;
-            data[currentSection - 2].expanded = false;
-            
-            tableView.beginUpdates();
-            for i in 0 ..< data[currentSection - 2].gradeItems[0].vertretungsplanItems.count {
-                tableView.reloadRows(at: [IndexPath(row: i, section: currentSection)], with: .automatic)
+            if let currentSection = currentHeader?.section, currentSection >= 2 {
+                data[currentSection - 2].expanded = false;
+                
+                tableView.beginUpdates();
+                for i in 0 ..< data[currentSection - 2].gradeItems[0].vertretungsplanItems.count {
+                    tableView.reloadRows(at: [IndexPath(row: i, section: currentSection)], with: .automatic)
+                }
+                tableView.endUpdates();
             }
-            tableView.endUpdates();
         }
         
         // Expand/collapse the selected header depending on it's current state.

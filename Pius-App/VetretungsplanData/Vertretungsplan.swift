@@ -12,7 +12,7 @@ let lessonStartTimes = ["07:55", "08:40", "09:45", "10:35", "11:25", "12:40", "1
 
 typealias DetailItems = [String];
 
-struct GradeItem {
+struct GradeItem: Encodable {
     var grade: String!
     var vertretungsplanItems: [DetailItems]!
     
@@ -22,7 +22,7 @@ struct GradeItem {
     }
 }
 
-struct VertretungsplanForDate {
+struct VertretungsplanForDate: Encodable {
     var date: String!
     var gradeItems: [GradeItem]!
     var expanded: Bool!
@@ -34,7 +34,7 @@ struct VertretungsplanForDate {
     }
 }
 
-struct Vertretungsplan {
+struct Vertretungsplan: Encodable {
     var tickerText: String? = nil;
     var additionalText: String? = nil;
     var lastUpdate: String! = ""
@@ -83,7 +83,6 @@ struct Vertretungsplan {
                                     // this string to NSDate. Then check if date is greater than current date and time.
                                     let startLesson = (String(lessonRange[range]) as NSString).integerValue;
                                     let lessonStartTime = lessonStartTimes[startLesson - 1];
-
                                     if let lessonStartDateAndTime = dateFormatter.date(from: date + lessonStartTime), lessonStartDateAndTime > Date() {
                                         // Build a reduced vertretungsplan that only has the "next" item
                                         var filteredGradeItem = gradeItem;
@@ -102,7 +101,7 @@ struct Vertretungsplan {
                 // Nothing found, no next item. Sorry!
                 return [];
             } catch {
-                print("Failed to return widget data \(error)");
+                NSLog("Failed to return widget data \(error)");
                 return [];
             }
         }

@@ -47,6 +47,12 @@ struct Config {
         }
     }
     
+    static var colorGray: UIColor {
+        get {
+            return UIColor(red: 0.667, green: 0.667, blue: 0.667, alpha: 1.0);
+        }
+    }
+    
     // Grades and Classes
     static var grades: [String] {
         get {
@@ -74,6 +80,16 @@ struct Config {
         return  ["Klasse 5", "Klasse 6", "Klasse 7", "Klasse 8", "Klasse 9"];
     }
     
+    // Checks if grade is upper grade.
+    static func isUpperGrade(_ grade: String) -> Bool {
+        return Config.upperGrades.index(of: grade) != nil
+    }
+    
+    // Checks if grade is lower grade.
+    static func isLowerGrade(_ grade: String) -> Bool {
+        return Config.lowerGrades.index(of: grade) != nil
+    }
+
     static var classes: [String] {
         get {
             return ["keine", "a", "b", "c", "d", "e"];
@@ -116,13 +132,6 @@ struct Config {
     
     static func getClassNameForSetting(setting: Int) -> String {
         return Config.classes[setting];
-    }
-    
-    // Returns screen width.
-    static var screenWidth: Int {
-        get {
-            return Int(UIScreen.main.bounds.width);
-        }
     }
     
     static var alwaysShowOnboarding: Bool {

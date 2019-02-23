@@ -8,6 +8,7 @@
 	<array>
 		<string>group.de.rmkrings.piusapp.widget</string>
 		<string>group.de.rmkrings.piusapp.notification-extension</string>
+		<string>group.de.rmkrings.piusapp.watch</string>
 	</array>
 </dict>
 </plist>

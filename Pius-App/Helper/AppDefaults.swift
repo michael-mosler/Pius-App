@@ -62,6 +62,7 @@ struct AppDefaults {
             return Config.shortGrades[gradeSetting] + Config.shortClasses[classSetting];
         }
     }
+
     static var hasLowerGrade: Bool {
         get {
             if let selectedGradeRow = selectedGradeRow {
@@ -128,7 +129,7 @@ struct AppDefaults {
                 }
             }
             catch {
-                print("Die Anmeldedaten konnten nicht geladen werden - \(error)");
+                NSLog("Die Anmeldedaten konnten nicht geladen werden - \(error)");
                 return (webSiteUserName, "");
             }
         }
@@ -151,7 +152,7 @@ struct AppDefaults {
                 try passwordItem.savePassword(password);
             }
             catch {
-                print("Das Password konnte nicht gespeichert werden - \(error)");
+                NSLog("Das Password konnte nicht gespeichert werden - \(error)");
             }
         }
         

@@ -126,7 +126,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
                     cell?.backgroundColor = Config.colorYellow;
 
                 default:
-                    print("Invalid item change type \(type)");
+                    NSLog("Invalid item change type \(type)");
                 }
             }
             

@@ -22,7 +22,8 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        NSLog("init(coder:) has not been implemented")
     }
     
     @objc func selectHeaderAction(gestureRecognizer: UITapGestureRecognizer) {
@@ -40,7 +41,7 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
         super.layoutSubviews();
 
         if (isUserInteractionEnabled) {
-            contentView.backgroundColor = UIColor.init(red: 0.337, green: 0.631, blue: 0.824, alpha: 1.0);
+            contentView.backgroundColor = Config.colorPiusBlue;
         } else {
             contentView.backgroundColor = UIColor.lightGray;
 

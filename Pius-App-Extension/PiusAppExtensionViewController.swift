@@ -109,7 +109,7 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
                     DispatchQueue.main.async {
                         self.lastUpdateLabel.text = vertretungsplan.lastUpdate;
                         
-                        // When offline print last update white on red.
+                        // When offline NSLog last update white on red.
                         if !online {
                             self.lastUpdateLabel.backgroundColor = Config.colorRed;
                             self.lastUpdateLabel.textColor = .white;

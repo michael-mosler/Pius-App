@@ -48,7 +48,7 @@ class NewsLoader {
         if (self.cache.fileExists(filename: cacheFileName)) {
             digest = cache.read(filename: digestFileName);
         } else {
-            print("Cache file \(cacheFileName) does not exist. Not sending digest.");
+            NSLog("Cache file \(cacheFileName) does not exist. Not sending digest.");
         }
         
         self.digest = digest;
@@ -94,7 +94,7 @@ class NewsLoader {
             
             // Request error. In this case nothing more is to be done here. Inform user and exit.
             if let error = error {
-                print("News Loader had error: \(error)");
+                NSLog("News Loader had error: \(error)");
                 update(nil, piusGatewayIsReachable);
                 return;
             }
@@ -104,7 +104,7 @@ class NewsLoader {
             let notModified = piusGatewayIsReachable == true && ((response as! HTTPURLResponse).statusCode == 304);
             if (notModified) {
                 data_ = self.cache.read(filename: self.cacheFileName);
-                print("News have not changed. Using data from cache.");
+                NSLog("News have not changed. Using data from cache.");
             }
             
             if let data = data_ {
@@ -139,11 +139,11 @@ class NewsLoader {
                     
                     update(newsItems, piusGatewayIsReachable);
                 }  catch let error as NSError {
-                    print(error.localizedDescription);
+                    NSLog(error.localizedDescription);
                     update(nil, piusGatewayIsReachable);
                 }
             } else if let error = error {
-                print(error.localizedDescription)
+                NSLog(error.localizedDescription)
                 update(nil, piusGatewayIsReachable);
             }
         }
