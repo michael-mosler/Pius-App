@@ -23,14 +23,12 @@ class StringHelper {
 }
 
 class FormatHelper {
+    // Since middleware version 2.2.4 old teacher is always blank as this info has been
+    // removed from actual schedule for data privacy reasons. Thus, no further formatting
+    // is needed anymore and the function only makes sure that a not-nil value is available.
     static func teacherText(oldTeacher: String?, newTeacher: String?) -> NSAttributedString {
-        guard let oldTeacher = oldTeacher, let newTeacher = newTeacher else { return NSMutableAttributedString()  }
-        
-        let textRange = NSMakeRange(0, oldTeacher.count);
-        let attributedText = NSMutableAttributedString(string: oldTeacher + " → " + newTeacher);
-        attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: textRange);
-        return attributedText;
-        
+        guard let newTeacher = newTeacher else { return NSMutableAttributedString()  }
+        return NSAttributedString(string: newTeacher);
     }
     
     static func roomText(room: String?) -> NSAttributedString {

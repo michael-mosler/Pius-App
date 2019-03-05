@@ -224,9 +224,9 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
             case 0: return tableView.dequeueReusableCell(withIdentifier: "spacerTop")!;
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "course")!;
-                let grade: String! = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][2]);
+                let course: String! = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][2]);
                 let lesson: String! = (gradeItem?.vertretungsplanItems[itemIndex][0])!
-                cell.textLabel?.text = (grade != "") ? String(format: "Fach/Kurs: %@, %@. Stunde", grade, lesson) : String(format: "%@. Stunde", lesson);
+                cell.textLabel?.text = (course != "") ? String(format: "Fach/Kurs: %@, %@. Stunde", course, lesson) : String(format: "%@. Stunde", lesson);
                 return cell;
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "details") as! VertretungsplanDetailsCell;
