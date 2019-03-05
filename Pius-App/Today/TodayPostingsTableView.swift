@@ -42,6 +42,8 @@ class TodayPostingsTableView: UITableView, UITableViewDelegate, UITableViewDataS
         let hadError = postingsItems == nil;
         if !hadError, let postingsItems_ = postingsItems {
             self.postingsItems = postingsItems_;
+        } else {
+            self.postingsItems = nil;
         }
         
         DispatchQueue.main.async {

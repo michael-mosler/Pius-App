@@ -26,7 +26,7 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UI
      */
     
     func needsShow() -> Bool {
-        return true;
+        return newsItems?.count ?? 0 > 0;
     }
 
     func willTryLoading() -> Bool {
