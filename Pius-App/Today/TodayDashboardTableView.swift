@@ -102,12 +102,12 @@ class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewData
      */
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        guard canUseDashboard && !hadError else { return 0; }
-        return (data.count == 0) ? 1 : data[0].gradeItems[0].vertretungsplanItems.count + 1;
+        guard canUseDashboard else { return 0; }
+        return (data.count == 0 || hadError) ? 1 : data[0].gradeItems[0].vertretungsplanItems.count + 1;
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard canUseDashboard && !hadError else { return 0; }
+        guard canUseDashboard else { return 0; }
         guard section > 0 else { return data.count > 0 || hadError ? 1 : 2; }
         
         var numberOfRows = 4;

@@ -21,21 +21,19 @@ class MetaDataTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
         super.awakeFromNib();
         collectionView.delegate = self;
         collectionView.dataSource = self;
+
+        cells[0] = collectionView.dequeueReusableCell(withReuseIdentifier: "metaDataCollectionViewCell", for: IndexPath(row: 0, section: 0)) as? MetaDataCollectionViewCell;
+        cells[1] = collectionView.dequeueReusableCell(withReuseIdentifier: "metaDataCollectionViewCell", for: IndexPath(row: 1, section: 0)) as? MetaDataCollectionViewCell;
+
         flowLayout.itemSize = CGSize(width: CGFloat(IOSHelper.screenWidth), height: flowLayout.itemSize.height);
         pageControl.numberOfPages = 1;
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pageControl.numberOfPages;
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        cells[indexPath.row] = collectionView.dequeueReusableCell(withReuseIdentifier: "metaDataCollectionViewCell", for: indexPath) as? MetaDataCollectionViewCell;
-        setContent(tickerText: tickerText, additionalText: additionalText);
         return cells[indexPath.row]!;
     }
     
@@ -45,8 +43,6 @@ class MetaDataTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
     }
     
     private func setCellContent(_ tickerText: String?, _ additionalText: String!) {
-        pageControl.numberOfPages = (additionalText == "") ? 1 : 2;
-
         if let cell = cells[0] {
             cell.metaDataTextLabel.text = tickerText;
         }
@@ -59,6 +55,12 @@ class MetaDataTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
     func setContent(tickerText: String!, additionalText: String!) {
         self.tickerText = tickerText;
         self.additionalText = additionalText;
-        setCellContent(tickerText, additionalText)
+        setCellContent(tickerText, additionalText);
+
+        pageControl.numberOfPages = (additionalText == "") ? 1 : 2;
+        pageControl.currentPage = 0;
+
+        collectionView.reloadData();
+        collectionView.contentOffset = CGPoint(x: 0, y: 0);
     }
 }

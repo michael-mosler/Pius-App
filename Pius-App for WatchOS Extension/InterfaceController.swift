@@ -91,7 +91,12 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                     vertretungsplanItemArray = vertretungsplanItemArray.map { StringHelper.replaceHtmlEntities(input: $0) }
                     
                     rowTypes.append("headerRow")
-                    tableRowData.append("\(vertretungsplanItemArray[2]), \(vertretungsplanItemArray[0]). Std.")
+                    let course = vertretungsplanItemArray[2]
+                    if course != "" {
+                        tableRowData.append("\(course), \(vertretungsplanItemArray[0]). Std.")
+                    } else {
+                        tableRowData.append("\(vertretungsplanItemArray[0]). Std.")
+                    }
                     
                     // Type of substitution
                     rowTypes.append("contentRow")
