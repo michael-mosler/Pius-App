@@ -22,9 +22,6 @@ class MetaDataTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
         collectionView.delegate = self;
         collectionView.dataSource = self;
 
-        cells[0] = collectionView.dequeueReusableCell(withReuseIdentifier: "metaDataCollectionViewCell", for: IndexPath(row: 0, section: 0)) as? MetaDataCollectionViewCell;
-        cells[1] = collectionView.dequeueReusableCell(withReuseIdentifier: "metaDataCollectionViewCell", for: IndexPath(row: 1, section: 0)) as? MetaDataCollectionViewCell;
-
         flowLayout.itemSize = CGSize(width: CGFloat(IOSHelper.screenWidth), height: flowLayout.itemSize.height);
         pageControl.numberOfPages = 1;
     }
@@ -34,6 +31,8 @@ class MetaDataTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        cells[indexPath.row] = collectionView.dequeueReusableCell(withReuseIdentifier: "metaDataCollectionViewCell", for: indexPath) as? MetaDataCollectionViewCell;
+        setCellContent();
         return cells[indexPath.row]!;
     }
     
@@ -42,7 +41,7 @@ class MetaDataTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
         pageControl.currentPage = Int(currentPage);
     }
     
-    private func setCellContent(_ tickerText: String?, _ additionalText: String!) {
+    private func setCellContent() {
         if let cell = cells[0] {
             cell.metaDataTextLabel.text = tickerText;
         }
@@ -55,7 +54,7 @@ class MetaDataTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
     func setContent(tickerText: String!, additionalText: String!) {
         self.tickerText = tickerText;
         self.additionalText = additionalText;
-        setCellContent(tickerText, additionalText);
+        setCellContent();
 
         pageControl.numberOfPages = (additionalText == "") ? 1 : 2;
         pageControl.currentPage = 0;
