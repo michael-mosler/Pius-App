@@ -31,6 +31,8 @@ class MetaDataTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard indexPath.row < 2 else { return UICollectionViewCell() }
+        
         cells[indexPath.row] = collectionView.dequeueReusableCell(withReuseIdentifier: "metaDataCollectionViewCell", for: indexPath) as? MetaDataCollectionViewCell;
         setCellContent();
         return cells[indexPath.row]!;
