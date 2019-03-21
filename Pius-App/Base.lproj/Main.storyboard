@@ -1691,18 +1691,18 @@ Tippe unten auf </string>
                                             <rect key="frame" x="0.0" y="34.5" width="414" height="41"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, s" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SgR-qu-6FH">
-                                                    <rect key="frame" x="11" y="0.0" width="392" height="41"/>
+                                                    <rect key="frame" x="16" y="0.0" width="382" height="41"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="SgR-qu-6FH" secondAttribute="bottom" id="NIb-WO-t5f"/>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="gd1-Xq-A1G"/>
-                                                <constraint firstAttribute="trailing" secondItem="SgR-qu-6FH" secondAttribute="trailing" constant="11" id="iuZ-Ec-VPP"/>
-                                                <constraint firstItem="SgR-qu-6FH" firstAttribute="leading" secondItem="Vpc-io-cb6" secondAttribute="leading" constant="11" id="jQp-vr-tA8"/>
+                                                <constraint firstAttribute="trailing" secondItem="SgR-qu-6FH" secondAttribute="trailing" constant="16" id="iuZ-Ec-VPP"/>
+                                                <constraint firstItem="SgR-qu-6FH" firstAttribute="leading" secondItem="Vpc-io-cb6" secondAttribute="leading" constant="16" id="jQp-vr-tA8"/>
                                                 <constraint firstItem="SgR-qu-6FH" firstAttribute="top" secondItem="Vpc-io-cb6" secondAttribute="top" id="xhG-hq-ryi"/>
                                             </constraints>
                                         </view>
@@ -1710,7 +1710,7 @@ Tippe unten auf </string>
                                     <constraints>
                                         <constraint firstItem="Vpc-io-cb6" firstAttribute="top" secondItem="bPU-VH-O76" secondAttribute="bottom" constant="2" id="4Vv-bp-oaI"/>
                                         <constraint firstItem="bPU-VH-O76" firstAttribute="top" secondItem="FdG-OC-RJL" secondAttribute="top" constant="2" id="6OH-nz-t8K"/>
-                                        <constraint firstAttribute="bottom" secondItem="Vpc-io-cb6" secondAttribute="bottom" id="EP5-pr-2SS"/>
+                                        <constraint firstAttribute="bottom" secondItem="Vpc-io-cb6" secondAttribute="bottom" constant="2" id="EP5-pr-2SS"/>
                                         <constraint firstItem="Vpc-io-cb6" firstAttribute="leading" secondItem="FdG-OC-RJL" secondAttribute="leading" id="MDs-N3-tbj"/>
                                         <constraint firstAttribute="trailing" secondItem="Vpc-io-cb6" secondAttribute="trailing" id="bKs-ad-hqB"/>
                                         <constraint firstItem="bPU-VH-O76" firstAttribute="leading" secondItem="FdG-OC-RJL" secondAttribute="leading" id="sVI-cp-b0a"/>
