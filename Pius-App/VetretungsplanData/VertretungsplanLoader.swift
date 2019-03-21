@@ -12,7 +12,6 @@ class VertretungsplanLoader {
     private var matchEmptyCourse: NSRegularExpression?;
     private var forGrade: String?;
     private var url: URL?;
-    private let baseUrl = "\(AppDefaults.baseUrl)/v2/vertretungsplan";
     private let cache = Cache();
     private var cacheFileName: String;
     private var digestFileName: String;
@@ -20,7 +19,7 @@ class VertretungsplanLoader {
     
     init(forGrade: String? = nil) {
         var digest: String? = nil;
-        let cacheFileName: String = (forGrade != nil) ? String(format: "%@.html", forGrade!) : "vertretungsplan.html";
+        let cacheFileName: String = (forGrade != nil) ? String(format: "%@.json", forGrade!) : "vertretungsplan.json";
         let digestFileName: String = (forGrade != nil) ? String(format: "%@.md5", forGrade!) : "md5";
 
         // If cache file exists we may use digest to detect changes in Vertretungsplan. Without cache file
@@ -34,7 +33,7 @@ class VertretungsplanLoader {
         self.forGrade = forGrade;
         self.digest = digest;
         
-        var urlString = baseUrl;
+        var urlString = "\(AppDefaults.baseUrl)/v2/vertretungsplan";
         if (forGrade != nil || digest != nil) {
             var separator = "/?";
             if (forGrade != nil) {
@@ -79,7 +78,7 @@ class VertretungsplanLoader {
         return nil;
     }
 
-    // For upper grades filters detail item against course list.
+    // For upper grades filters detail item by course list.
     private func accept(basedOn detailItems: [String]) -> Bool {
         // When not in dashboard mode accept any item.
         if (forGrade == nil) {
@@ -296,7 +295,7 @@ class VertretungsplanLoader {
     func validateLogin(forUser username: String? = nil, withPassword password: String? = nil, notfifyMeOn validationCallback: @escaping (Bool, Bool) -> Void) {
         let base64LoginString = getAndEncodeCredentials(username: username, password: password);
         
-        let url = URL(string: baseUrl)!;
+        let url = URL(string: "\(AppDefaults.baseUrl)/validateLogin")!;
         var request = URLRequest(url: url);
         request.httpMethod = "HEAD";
         request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
