@@ -72,7 +72,7 @@ class WatchConnectivityHandler: NSObject, WCSessionDelegate {
         }
 
         guard let encoded = try? JSONEncoder().encode(vertretungsplan),
-            var dictionary = try? JSONSerialization.jsonObject(with: encoded, options: .allowFragments) as? [String: Any]
+            var dictionary = ((try? JSONSerialization.jsonObject(with: encoded, options: .allowFragments) as? [String: Any]) as [String : Any]??)
         else {
             self.replyHandler!(["status": "error", "online": online])
             return

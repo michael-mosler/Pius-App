@@ -36,7 +36,7 @@ class FormatHelper {
         
         let attributedText = NSMutableAttributedString(string: room);
         
-        let index = room.index(of: "→");
+        let index = room.firstIndex(of: "→");
         if (index != nil) {
             let length = room.distance(from: room.startIndex, to: room.index(before: index!));
             let strikeThroughRange = NSMakeRange(0, length);

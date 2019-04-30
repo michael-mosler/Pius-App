@@ -86,7 +86,7 @@ class VertretungsplanLoader {
         }
 
         // If not an upper grade do not check course list.
-        if (Config.upperGrades.index(of: forGrade!) == nil) {
+        if (Config.upperGrades.firstIndex(of: forGrade!) == nil) {
             return true;
         }
 
