@@ -2340,29 +2340,8 @@ Tippe dazu unten auf </string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VM3-zM-wpY">
-                                                    <rect key="frame" x="8" y="8" width="398" height="89"/>
+                                                    <rect key="frame" x="8" y="0.0" width="398" height="105"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="jG6-yq-g0x">
-                                                            <rect key="frame" x="0.0" y="0.0" width="398" height="89"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="10"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </imageView>
-                                                        <visualEffectView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3N1-Is-WP1">
-                                                            <rect key="frame" x="0.0" y="0.0" width="398" height="89"/>
-                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hoI-wM-Bid">
-                                                                <rect key="frame" x="0.0" y="0.0" width="398" height="89"/>
-                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            </view>
-                                                            <blurEffect style="extraLight"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="10"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </visualEffectView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nW5-Vq-t6w">
                                                             <rect key="frame" x="8" y="0.0" width="382" height="29"/>
                                                             <constraints>
@@ -2372,14 +2351,14 @@ Tippe dazu unten auf </string>
                                                                 <fragment content="Benachrichtigungen">
                                                                     <attributes>
                                                                         <font key="NSFont" size="24" name=".AppleSystemUIFont"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="8" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
                                                                 </fragment>
                                                             </attributedString>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="wQu-El-wjr" customClass="TodayPostingsTableView" customModule="Pius_App" customModuleProvider="target">
-                                                            <rect key="frame" x="8" y="33" width="382" height="48"/>
+                                                            <rect key="frame" x="8" y="29" width="382" height="76"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <prototypes>
                                                                 <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="postingsItem" textLabel="7e7-ft-IEK" detailTextLabel="5fO-hz-srO" rowHeight="44" style="IBUITableViewCellStyleSubtitle" id="F9L-Jc-ez3" customClass="TodayPostingsDetailsCell" customModule="Pius_App" customModuleProvider="target">
@@ -2419,21 +2398,14 @@ Tippe dazu unten auf </string>
                                                             </prototypes>
                                                         </tableView>
                                                     </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="3N1-Is-WP1" firstAttribute="height" secondItem="VM3-zM-wpY" secondAttribute="height" id="4OK-M0-9Bw"/>
                                                         <constraint firstAttribute="trailing" secondItem="nW5-Vq-t6w" secondAttribute="trailing" constant="8" id="55G-F7-5QN"/>
                                                         <constraint firstAttribute="trailing" secondItem="wQu-El-wjr" secondAttribute="trailing" constant="8" id="7fW-xH-07H"/>
-                                                        <constraint firstItem="3N1-Is-WP1" firstAttribute="leading" secondItem="VM3-zM-wpY" secondAttribute="leading" id="Jur-Rj-VBa"/>
                                                         <constraint firstItem="nW5-Vq-t6w" firstAttribute="top" secondItem="VM3-zM-wpY" secondAttribute="top" id="Lnx-ev-roh"/>
-                                                        <constraint firstItem="3N1-Is-WP1" firstAttribute="width" secondItem="VM3-zM-wpY" secondAttribute="width" id="R1P-Wp-7xo"/>
                                                         <constraint firstItem="wQu-El-wjr" firstAttribute="leading" secondItem="VM3-zM-wpY" secondAttribute="leading" constant="8" id="TDz-pg-SHE"/>
-                                                        <constraint firstAttribute="bottom" secondItem="wQu-El-wjr" secondAttribute="bottom" constant="8" id="TeH-CV-pcp"/>
-                                                        <constraint firstItem="jG6-yq-g0x" firstAttribute="height" secondItem="VM3-zM-wpY" secondAttribute="height" id="atV-ei-GqZ"/>
-                                                        <constraint firstItem="wQu-El-wjr" firstAttribute="top" secondItem="nW5-Vq-t6w" secondAttribute="bottom" constant="4" id="bqQ-mE-EWM"/>
-                                                        <constraint firstItem="jG6-yq-g0x" firstAttribute="top" secondItem="VM3-zM-wpY" secondAttribute="top" id="cwo-sS-eCS"/>
-                                                        <constraint firstItem="jG6-yq-g0x" firstAttribute="leading" secondItem="VM3-zM-wpY" secondAttribute="leading" id="j5E-dV-nB3"/>
-                                                        <constraint firstItem="jG6-yq-g0x" firstAttribute="width" secondItem="VM3-zM-wpY" secondAttribute="width" id="pEP-ff-Lgt"/>
-                                                        <constraint firstItem="3N1-Is-WP1" firstAttribute="top" secondItem="VM3-zM-wpY" secondAttribute="top" id="piy-eV-Lh2"/>
+                                                        <constraint firstAttribute="bottom" secondItem="wQu-El-wjr" secondAttribute="bottom" id="TeH-CV-pcp"/>
+                                                        <constraint firstItem="wQu-El-wjr" firstAttribute="top" secondItem="nW5-Vq-t6w" secondAttribute="bottom" id="bqQ-mE-EWM"/>
                                                         <constraint firstItem="nW5-Vq-t6w" firstAttribute="leading" secondItem="VM3-zM-wpY" secondAttribute="leading" constant="8" id="qAY-9E-PQD"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
@@ -2444,8 +2416,8 @@ Tippe dazu unten auf </string>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="VM3-zM-wpY" secondAttribute="bottom" constant="8" id="516-dO-99d"/>
-                                                <constraint firstItem="VM3-zM-wpY" firstAttribute="top" relation="lessThanOrEqual" secondItem="5Fc-qc-LyY" secondAttribute="top" constant="8" id="Aad-vn-Lsh"/>
+                                                <constraint firstAttribute="bottom" secondItem="VM3-zM-wpY" secondAttribute="bottom" id="516-dO-99d"/>
+                                                <constraint firstItem="VM3-zM-wpY" firstAttribute="top" secondItem="5Fc-qc-LyY" secondAttribute="top" id="Aad-vn-Lsh"/>
                                                 <constraint firstAttribute="trailing" secondItem="VM3-zM-wpY" secondAttribute="trailing" constant="8" id="Db8-Yf-3Tb"/>
                                                 <constraint firstItem="VM3-zM-wpY" firstAttribute="leading" secondItem="5Fc-qc-LyY" secondAttribute="leading" constant="8" id="tgC-Ab-7ug"/>
                                             </constraints>
@@ -2460,29 +2432,8 @@ Tippe dazu unten auf </string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMB-5Q-eZU">
-                                                    <rect key="frame" x="8" y="8" width="398" height="130"/>
+                                                    <rect key="frame" x="8" y="8" width="398" height="138"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="q4F-1q-iEf">
-                                                            <rect key="frame" x="0.0" y="0.0" width="398" height="130"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="10"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </imageView>
-                                                        <visualEffectView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1pw-qc-plN">
-                                                            <rect key="frame" x="0.0" y="0.0" width="398" height="130"/>
-                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="t8A-QY-2fN">
-                                                                <rect key="frame" x="0.0" y="0.0" width="398" height="130"/>
-                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            </view>
-                                                            <blurEffect style="extraLight"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="10"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </visualEffectView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lh8-Ih-60G">
                                                             <rect key="frame" x="8" y="0.0" width="382" height="29"/>
                                                             <constraints>
@@ -2499,7 +2450,7 @@ Tippe dazu unten auf </string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="KC8-NF-JKQ" customClass="TodayDashboardTableView" customModule="Pius_App" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="33" width="398" height="97"/>
+                                                            <rect key="frame" x="0.0" y="29" width="398" height="109"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <prototypes>
                                                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="lastUpdateCell" textLabel="Pw6-Tt-Vp6" detailTextLabel="KNJ-bl-JOP" style="IBUITableViewCellStyleSubtitle" id="8b7-zV-cug">
@@ -2701,21 +2652,13 @@ Tippe dazu unten auf </string>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="q4F-1q-iEf" secondAttribute="trailing" id="2W9-iJ-TvQ"/>
-                                                        <constraint firstItem="q4F-1q-iEf" firstAttribute="top" secondItem="RMB-5Q-eZU" secondAttribute="top" id="50q-Wb-f5l"/>
-                                                        <constraint firstAttribute="bottom" secondItem="1pw-qc-plN" secondAttribute="bottom" id="5Zf-HK-bRc"/>
                                                         <constraint firstItem="lh8-Ih-60G" firstAttribute="leading" secondItem="RMB-5Q-eZU" secondAttribute="leading" constant="8" id="7Gw-Zg-dMq"/>
                                                         <constraint firstAttribute="bottom" secondItem="KC8-NF-JKQ" secondAttribute="bottom" id="Ap9-9T-psS"/>
-                                                        <constraint firstAttribute="trailing" secondItem="1pw-qc-plN" secondAttribute="trailing" id="BtZ-Os-HGh"/>
                                                         <constraint firstAttribute="trailing" secondItem="lh8-Ih-60G" secondAttribute="trailing" constant="8" id="JtS-RI-upG"/>
-                                                        <constraint firstItem="1pw-qc-plN" firstAttribute="leading" secondItem="RMB-5Q-eZU" secondAttribute="leading" id="LnW-14-gra"/>
-                                                        <constraint firstItem="q4F-1q-iEf" firstAttribute="leading" secondItem="RMB-5Q-eZU" secondAttribute="leading" id="Tuc-Gl-a5A"/>
                                                         <constraint firstItem="KC8-NF-JKQ" firstAttribute="leading" secondItem="RMB-5Q-eZU" secondAttribute="leading" id="Ujs-Sn-Yge"/>
                                                         <constraint firstAttribute="trailing" secondItem="KC8-NF-JKQ" secondAttribute="trailing" id="bIm-p2-a1Z"/>
-                                                        <constraint firstItem="1pw-qc-plN" firstAttribute="top" secondItem="RMB-5Q-eZU" secondAttribute="top" id="fID-Tc-SIk"/>
                                                         <constraint firstItem="lh8-Ih-60G" firstAttribute="top" secondItem="RMB-5Q-eZU" secondAttribute="top" id="jq1-Ng-PCi"/>
-                                                        <constraint firstAttribute="bottom" secondItem="q4F-1q-iEf" secondAttribute="bottom" id="qLB-Kc-dqh"/>
-                                                        <constraint firstItem="KC8-NF-JKQ" firstAttribute="top" secondItem="lh8-Ih-60G" secondAttribute="bottom" constant="4" id="v8M-1S-1Fa"/>
+                                                        <constraint firstItem="KC8-NF-JKQ" firstAttribute="top" secondItem="lh8-Ih-60G" secondAttribute="bottom" id="v8M-1S-1Fa"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -2724,9 +2667,10 @@ Tippe dazu unten auf </string>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="RMB-5Q-eZU" firstAttribute="top" relation="lessThanOrEqual" secondItem="xm7-Sb-efN" secondAttribute="top" constant="8" id="3Nf-NL-Skn"/>
-                                                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="RMB-5Q-eZU" secondAttribute="bottom" constant="8" id="Dt6-Zo-Uvr"/>
+                                                <constraint firstItem="RMB-5Q-eZU" firstAttribute="top" secondItem="xm7-Sb-efN" secondAttribute="top" constant="8" id="3Nf-NL-Skn"/>
+                                                <constraint firstAttribute="bottom" secondItem="RMB-5Q-eZU" secondAttribute="bottom" id="Dt6-Zo-Uvr"/>
                                                 <constraint firstAttribute="trailing" secondItem="RMB-5Q-eZU" secondAttribute="trailing" constant="8" id="jhB-La-qOl"/>
                                                 <constraint firstItem="RMB-5Q-eZU" firstAttribute="leading" secondItem="xm7-Sb-efN" secondAttribute="leading" constant="8" id="mlq-ec-P5g"/>
                                             </constraints>
@@ -2740,29 +2684,8 @@ Tippe dazu unten auf </string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iNQ-Op-g5V">
-                                                    <rect key="frame" x="8" y="8" width="398" height="89"/>
+                                                    <rect key="frame" x="8" y="8" width="398" height="97"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="Lpe-jX-Rn8">
-                                                            <rect key="frame" x="0.0" y="0.0" width="398" height="89"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="10"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </imageView>
-                                                        <visualEffectView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBr-4R-hY7">
-                                                            <rect key="frame" x="0.0" y="0.0" width="398" height="89"/>
-                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="rvm-j1-92z">
-                                                                <rect key="frame" x="0.0" y="0.0" width="398" height="89"/>
-                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            </view>
-                                                            <blurEffect style="extraLight"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="10"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </visualEffectView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPz-bb-V8L">
                                                             <rect key="frame" x="8" y="0.0" width="382" height="29"/>
                                                             <constraints>
@@ -2780,7 +2703,7 @@ Tippe dazu unten auf </string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="xHW-oC-EXC" customClass="TodayCalendarTableView" customModule="Pius_App" customModuleProvider="target">
-                                                            <rect key="frame" x="8" y="33" width="382" height="48"/>
+                                                            <rect key="frame" x="8" y="33" width="382" height="64"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <prototypes>
                                                                 <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="calendarItem" rowHeight="44" id="ryQ-6a-tBz" customClass="TodayCalendarDetailsCell" customModule="Pius_App" customModuleProvider="target">
@@ -2848,21 +2771,14 @@ Tippe dazu unten auf </string>
                                                             </prototypes>
                                                         </tableView>
                                                     </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="QPz-bb-V8L" firstAttribute="leading" secondItem="iNQ-Op-g5V" secondAttribute="leading" constant="8" id="0bB-bc-WYn"/>
-                                                        <constraint firstItem="Lpe-jX-Rn8" firstAttribute="width" secondItem="iNQ-Op-g5V" secondAttribute="width" id="8HA-f8-87m"/>
-                                                        <constraint firstItem="XBr-4R-hY7" firstAttribute="height" secondItem="iNQ-Op-g5V" secondAttribute="height" id="93J-LY-Omg"/>
-                                                        <constraint firstAttribute="bottom" secondItem="xHW-oC-EXC" secondAttribute="bottom" constant="8" id="CPh-Lj-FUn"/>
+                                                        <constraint firstAttribute="bottom" secondItem="xHW-oC-EXC" secondAttribute="bottom" id="CPh-Lj-FUn"/>
                                                         <constraint firstItem="xHW-oC-EXC" firstAttribute="leading" secondItem="iNQ-Op-g5V" secondAttribute="leading" constant="8" id="CcW-rz-ZxD"/>
                                                         <constraint firstAttribute="trailing" secondItem="QPz-bb-V8L" secondAttribute="trailing" constant="8" id="KAo-3x-ZNs"/>
-                                                        <constraint firstItem="XBr-4R-hY7" firstAttribute="top" secondItem="iNQ-Op-g5V" secondAttribute="top" id="PWB-SX-qHU"/>
-                                                        <constraint firstItem="XBr-4R-hY7" firstAttribute="leading" secondItem="iNQ-Op-g5V" secondAttribute="leading" id="Rca-wb-b03"/>
                                                         <constraint firstAttribute="trailing" secondItem="xHW-oC-EXC" secondAttribute="trailing" constant="8" id="UzR-Ez-gpO"/>
-                                                        <constraint firstItem="Lpe-jX-Rn8" firstAttribute="height" secondItem="iNQ-Op-g5V" secondAttribute="height" id="Vhd-xm-Dje"/>
-                                                        <constraint firstItem="XBr-4R-hY7" firstAttribute="width" secondItem="iNQ-Op-g5V" secondAttribute="width" id="de6-8f-MMY"/>
                                                         <constraint firstItem="xHW-oC-EXC" firstAttribute="top" secondItem="QPz-bb-V8L" secondAttribute="bottom" constant="4" id="j8g-v6-yiN"/>
-                                                        <constraint firstItem="Lpe-jX-Rn8" firstAttribute="leading" secondItem="iNQ-Op-g5V" secondAttribute="leading" id="obR-Ru-Kea"/>
-                                                        <constraint firstItem="Lpe-jX-Rn8" firstAttribute="top" secondItem="iNQ-Op-g5V" secondAttribute="top" id="rId-9L-Azb"/>
                                                         <constraint firstItem="QPz-bb-V8L" firstAttribute="top" secondItem="iNQ-Op-g5V" secondAttribute="top" id="v8s-Pn-lqb"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
@@ -2873,7 +2789,7 @@ Tippe dazu unten auf </string>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="iNQ-Op-g5V" secondAttribute="bottom" constant="8" id="4hQ-US-FQB"/>
+                                                <constraint firstAttribute="bottom" secondItem="iNQ-Op-g5V" secondAttribute="bottom" id="4hQ-US-FQB"/>
                                                 <constraint firstItem="iNQ-Op-g5V" firstAttribute="leading" secondItem="3Ex-Ba-9EY" secondAttribute="leading" constant="8" id="DSd-Qf-esf"/>
                                                 <constraint firstAttribute="trailing" secondItem="iNQ-Op-g5V" secondAttribute="trailing" constant="8" id="TT0-Xl-8fr"/>
                                                 <constraint firstItem="iNQ-Op-g5V" firstAttribute="top" secondItem="3Ex-Ba-9EY" secondAttribute="top" constant="8" id="rfF-pt-o2L"/>
@@ -2888,29 +2804,8 @@ Tippe dazu unten auf </string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="34I-D9-KoN">
-                                                    <rect key="frame" x="8" y="8" width="398" height="89"/>
+                                                    <rect key="frame" x="8" y="8" width="398" height="97"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="hs5-yY-U8k">
-                                                            <rect key="frame" x="0.0" y="0.0" width="398" height="89"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="10"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </imageView>
-                                                        <visualEffectView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhZ-sb-7w7">
-                                                            <rect key="frame" x="0.0" y="0.0" width="398" height="89"/>
-                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CqR-kv-aaG">
-                                                                <rect key="frame" x="0.0" y="0.0" width="398" height="89"/>
-                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            </view>
-                                                            <blurEffect style="extraLight"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="10"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </visualEffectView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJv-xL-Qff">
                                                             <rect key="frame" x="8" y="0.0" width="382" height="29"/>
                                                             <constraints>
@@ -2927,7 +2822,7 @@ Tippe dazu unten auf </string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="cT7-Mi-M1Q" customClass="NewsTableView" customModule="Pius_App" customModuleProvider="target">
-                                                            <rect key="frame" x="8" y="33" width="382" height="48"/>
+                                                            <rect key="frame" x="8" y="33" width="382" height="56"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <prototypes>
                                                                 <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="newsItem" rowHeight="44" id="3dF-mx-axo" customClass="NewsTableViewCell" customModule="Pius_App" customModuleProvider="target">
@@ -2981,18 +2876,11 @@ Tippe dazu unten auf </string>
                                                             </prototypes>
                                                         </tableView>
                                                     </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="hs5-yY-U8k" firstAttribute="width" secondItem="34I-D9-KoN" secondAttribute="width" id="8ZK-2k-tTm"/>
-                                                        <constraint firstItem="hs5-yY-U8k" firstAttribute="height" secondItem="34I-D9-KoN" secondAttribute="height" id="FrB-Fi-LaH"/>
-                                                        <constraint firstItem="lhZ-sb-7w7" firstAttribute="height" secondItem="34I-D9-KoN" secondAttribute="height" id="GTW-mk-bux"/>
                                                         <constraint firstAttribute="trailing" secondItem="cT7-Mi-M1Q" secondAttribute="trailing" constant="8" id="GgQ-v6-Opi"/>
-                                                        <constraint firstItem="lhZ-sb-7w7" firstAttribute="leading" secondItem="34I-D9-KoN" secondAttribute="leading" id="HFf-9E-sq2"/>
-                                                        <constraint firstItem="hs5-yY-U8k" firstAttribute="top" secondItem="34I-D9-KoN" secondAttribute="top" id="MJu-Xb-0SF"/>
                                                         <constraint firstAttribute="trailing" secondItem="QJv-xL-Qff" secondAttribute="trailing" constant="8" id="afE-EW-IwY"/>
-                                                        <constraint firstItem="lhZ-sb-7w7" firstAttribute="top" secondItem="34I-D9-KoN" secondAttribute="top" id="bzq-vf-XsM"/>
-                                                        <constraint firstItem="lhZ-sb-7w7" firstAttribute="width" secondItem="34I-D9-KoN" secondAttribute="width" id="gDa-S6-Hlj"/>
                                                         <constraint firstAttribute="bottom" secondItem="cT7-Mi-M1Q" secondAttribute="bottom" constant="8" id="kov-OI-Sqz"/>
-                                                        <constraint firstItem="hs5-yY-U8k" firstAttribute="leading" secondItem="34I-D9-KoN" secondAttribute="leading" id="lBs-WF-vCD"/>
                                                         <constraint firstItem="QJv-xL-Qff" firstAttribute="top" secondItem="34I-D9-KoN" secondAttribute="top" id="mV6-CI-I6c"/>
                                                         <constraint firstItem="cT7-Mi-M1Q" firstAttribute="leading" secondItem="34I-D9-KoN" secondAttribute="leading" constant="8" id="s4g-1t-rxS"/>
                                                         <constraint firstItem="QJv-xL-Qff" firstAttribute="leading" secondItem="34I-D9-KoN" secondAttribute="leading" constant="8" id="x7D-6H-QfT"/>
@@ -3006,9 +2894,9 @@ Tippe dazu unten auf </string>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="34I-D9-KoN" firstAttribute="top" relation="lessThanOrEqual" secondItem="qnW-6U-9gG" secondAttribute="top" constant="8" id="R7i-1Z-nh2"/>
+                                                <constraint firstItem="34I-D9-KoN" firstAttribute="top" secondItem="qnW-6U-9gG" secondAttribute="top" constant="8" id="R7i-1Z-nh2"/>
                                                 <constraint firstItem="34I-D9-KoN" firstAttribute="leading" secondItem="qnW-6U-9gG" secondAttribute="leading" constant="8" id="Sd3-aT-ib8"/>
-                                                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="34I-D9-KoN" secondAttribute="bottom" constant="8" id="fjZ-29-uRa"/>
+                                                <constraint firstAttribute="bottom" secondItem="34I-D9-KoN" secondAttribute="bottom" id="fjZ-29-uRa"/>
                                                 <constraint firstAttribute="trailing" secondItem="34I-D9-KoN" secondAttribute="trailing" constant="8" id="wWZ-7H-ya5"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -3080,7 +2968,6 @@ Tippe dazu unten auf </string>
         <image name="bluewatch" width="30" height="30"/>
         <image name="calendar" width="30" height="30"/>
         <image name="deleteButton" width="512" height="512"/>
-        <image name="gradient" width="64" height="64"/>
         <image name="greycancel" width="30" height="30"/>
         <image name="list" width="30" height="30"/>
         <image name="settings" width="30" height="30"/>
