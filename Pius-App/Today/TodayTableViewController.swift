@@ -112,7 +112,7 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
         let shadowPath = UIBezierPath(rect: view.bounds)
 
         view.layer.borderColor = Config.colorPiusBlue.cgColor;
-        view.layer.borderWidth = 1.5;
+        view.layer.borderWidth = 1.5 ;
         view.layer.shadowColor = UIColor.lightGray.cgColor;
         view.layer.shadowOffset = CGSize(width: 0, height: 0.5);
         view.layer.shadowOpacity = 0.7;
