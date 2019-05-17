@@ -52,7 +52,10 @@ class PiusAppExtensionViewController: UIViewController, NCWidgetProviding, UITab
     // Height of Widget in compact mode.
     private var compactHeight: CGFloat {
         get {
-            return (extensionContext?.widgetMaximumSize(for: .compact).height)!;
+            // 110 is the default for compact mode. We had a crash here so check if extensionContext
+            // is defined. If not use default, this is even better than crashing.
+            guard let extensionContext = extensionContext else { return 110 }
+            return extensionContext.widgetMaximumSize(for: .compact).height;
         }
     }
     

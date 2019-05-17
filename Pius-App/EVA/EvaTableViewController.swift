@@ -80,7 +80,7 @@ class EvaTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "eva") as! EvaTableContentTableViewCell;
             let evaItem = evaItems[indexPath.row];
             
-            cell.course.text = evaItem.course;
+            cell.course.text = evaItem.course.trimmingCharacters(in: CharacterSet(charactersIn: " "));
             cell.evaText.text = evaItem.evaText;
             cell.uuid = evaItem.uuid;
             return cell;

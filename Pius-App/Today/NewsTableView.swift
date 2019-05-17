@@ -26,7 +26,13 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UI
      */
     
     func needsShow() -> Bool {
-        return newsItems?.count ?? 0 > 0;
+        // When newItems is nil load has not returned yet. In this case
+        // we suppose that news must be shown. When load fails
+        // newsItems will be set to empty array and number of
+        // items in table becomes 0.
+        // Without this logic due to fixed image size a constraint
+        // error would be thrown on start up.
+        return newsItems?.count ?? 1 > 0;
     }
 
     func willTryLoading() -> Bool {

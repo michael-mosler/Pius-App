@@ -149,9 +149,9 @@ class TodayDashboardTableView: UITableView, UITableViewDelegate, UITableViewData
             switch(indexPath.row) {
             case 0:
                 let cell = dequeueReusableCell(withIdentifier: "course")!;
-                let grade: String! = StringHelper.replaceHtmlEntities(input: items[2]);
+                let course: String! = StringHelper.replaceHtmlEntities(input: items[2]);
                 let lesson: String! = items[0];
-                cell.textLabel?.text = (grade != "") ? String(format: "Fach/Kurs: %@, %@. Stunde", grade, lesson) : String(format: "%@. Stunde", lesson);
+                cell.textLabel?.text = (course != "") ? String(format: "Fach/Kurs: %@, %@. Stunde", course, lesson) : String(format: "%@. Stunde", lesson);
                 return cell;
             case 1:
                 let cell = dequeueReusableCell(withIdentifier: "details") as! TodayDashboardDetailsCell;

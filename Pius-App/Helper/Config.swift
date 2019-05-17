@@ -82,12 +82,12 @@ struct Config {
     
     // Checks if grade is upper grade.
     static func isUpperGrade(_ grade: String) -> Bool {
-        return Config.upperGrades.index(of: grade) != nil
+        return Config.upperGrades.firstIndex(of: grade) != nil
     }
     
     // Checks if grade is lower grade.
     static func isLowerGrade(_ grade: String) -> Bool {
-        return Config.lowerGrades.index(of: grade) != nil
+        return Config.lowerGrades.firstIndex(of: grade) != nil
     }
 
     static var classes: [String] {

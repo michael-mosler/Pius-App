@@ -66,7 +66,7 @@ struct AppDefaults {
     static var hasLowerGrade: Bool {
         get {
             if let selectedGradeRow = selectedGradeRow {
-                return Config.lowerGrades.index(of: Config.grades[selectedGradeRow]) != nil
+                return Config.lowerGrades.firstIndex(of: Config.grades[selectedGradeRow]) != nil
             } else {
                 return false;
             }
@@ -76,7 +76,7 @@ struct AppDefaults {
     static var hasExtendedLowerGrade: Bool {
         get {
             if let selectedGradeRow = selectedGradeRow {
-                return Config.extendedLowerGrades.index(of: Config.grades[selectedGradeRow]) != nil
+                return Config.extendedLowerGrades.firstIndex(of: Config.grades[selectedGradeRow]) != nil
             } else {
                 return false;
             }
@@ -86,7 +86,7 @@ struct AppDefaults {
     static var hasUpperGrade: Bool {
         get {
             if let selectedGradeRow = selectedGradeRow {
-                return Config.upperGrades.index(of: Config.grades[selectedGradeRow]) != nil
+                return Config.upperGrades.firstIndex(of: Config.grades[selectedGradeRow]) != nil
             } else {
                 return false;
             }
