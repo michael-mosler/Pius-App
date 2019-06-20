@@ -18,11 +18,11 @@ struct DayItem {
     
     // On search this property is to the range that defines a match.
     // It can be used to hightlight the search result.
-    public var highlight: NSRange?;
+    public var highlight: [NSRange];
 
     init(detailItems: DetailItems) {
         self._detailItems = detailItems;
-        self.highlight = nil;
+        self.highlight = [];
     }
 };
 
@@ -62,7 +62,7 @@ class Calendar {
     var _filter: String? = nil;
     var filter: String? {
         set(filter) {
-            _filter = filter?.lowercased();
+            _filter = filter;
         }
         get {
             return _filter;
@@ -81,16 +81,15 @@ class Calendar {
 
             monthItem.dayItems.forEach { dayItem in
                 if let _filter = filter, _filter.count > 0 {
-                    if let stringRange_ = dayItem.detailItems[1].lowercased().localizedStandardRange(of: _filter) {
-                        // Make a copy of dayItem so that hightlight property can be set.
+                    if let stringRanges = dayItem.detailItems[1].allStandardRanges(of: _filter) {
                         var _dayItem = dayItem;
-                        _dayItem.highlight = NSRange(stringRange_, in: dayItem.detailItems[1]);
+                        stringRanges.forEach { stringRange in
+                            _dayItem.highlight.append(NSRange(stringRange, in: dayItem.detailItems[1]));
+                        };
                         _dayItems.append(_dayItem);
                     }
                 } else {
-                    var _dayItem = dayItem;
-                    _dayItem.highlight = nil;
-                    _dayItems.append(_dayItem);
+                    _dayItems.append(dayItem);
                 }
             }
 

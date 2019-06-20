@@ -19,6 +19,7 @@
 		4C1FDE5E20697516006092C9 /* VertretungsplanLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */; };
 		4C1FDE61206C2644006092C9 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE60206C2644006092C9 /* DashboardViewController.swift */; };
 		4C1FDE63206D5FE6006092C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE62206D5FE6006092C9 /* Config.swift */; };
+		4C21EAE922BBB269006EE613 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21EAE822BBB269006EE613 /* String.swift */; };
 		4C300F392126BFEE00D6E129 /* Pius-App Notification-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4CFB122B210F887E00BC4B44 /* Pius-App Notification-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C30DB7921B86617002FCAF3 /* TodayDashboardDetailsCelll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C30DB7821B86617002FCAF3 /* TodayDashboardDetailsCelll.swift */; };
 		4C30DB7B21BC0C9D002FCAF3 /* TodayCalendarTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C30DB7A21BC0C9D002FCAF3 /* TodayCalendarTableView.swift */; };
@@ -186,6 +187,7 @@
 		4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanLoader.swift; sourceTree = "<group>"; };
 		4C1FDE60206C2644006092C9 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		4C1FDE62206D5FE6006092C9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		4C21EAE822BBB269006EE613 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		4C30DB7821B86617002FCAF3 /* TodayDashboardDetailsCelll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDashboardDetailsCelll.swift; sourceTree = "<group>"; };
 		4C30DB7A21BC0C9D002FCAF3 /* TodayCalendarTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCalendarTableView.swift; sourceTree = "<group>"; };
 		4C30DB7C21BC0CDF002FCAF3 /* TodayCalendarDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCalendarDetailsCell.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				4C1FDE62206D5FE6006092C9 /* Config.swift */,
 				4CA4907620DE4DDC00796457 /* AppDefaults.swift */,
 				4C48F6D021F6433C00B20505 /* IOSHelper.swift */,
+				4C21EAE822BBB269006EE613 /* String.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -920,6 +923,7 @@
 				4CFB105B20D1926300432B1A /* MonthButton.swift in Sources */,
 				4CB2AF5621A75595007E5D1F /* TodayTableViewController.swift in Sources */,
 				4CB2AF5C21ADC498007E5D1F /* NewsLoader.swift in Sources */,
+				4C21EAE922BBB269006EE613 /* String.swift in Sources */,
 				4C5AA0132189DAA90040A455 /* VertretungsplanDetailsCell.swift in Sources */,
 				4C30DB7921B86617002FCAF3 /* TodayDashboardDetailsCelll.swift in Sources */,
 				4C5E0E7B20A8797D00DAE459 /* OnboardingViewController.swift in Sources */,
