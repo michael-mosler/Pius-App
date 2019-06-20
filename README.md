@@ -1,4 +1,4 @@
-Die inoffizielle Pius App für iPhone bietet für Schülerinnen und Schülern des Bischöflichen Pius Gymnasium Aachen eine Erweiterung zum offiziellen Webangebot der Schule. Information werden für die mobile Ansicht angepasst und können auch offline abgefragt werden.
+Die inoffizielle Pius-App für iPhone bietet für Schülerinnen und Schülern des Bischöflichen Pius Gymnasium Aachen eine Erweiterung zum offiziellen Webangebot der Schule. Information werden für die mobile Ansicht angepasst und können auch offline abgefragt werden.
 
 Welche Funktionen gibt es?
 
