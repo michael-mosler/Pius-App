@@ -42,7 +42,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     private var calendar: Calendar = Calendar();
     
     override func viewDidAppear(_ animated: Bool) {
-        dateListCollectionViewFlowLayout.estimatedItemSize = CGSize(width: dateListCollectionView.frame.width - 10, height: dateListCollectionView.frame.height);
+        dateListCollectionViewFlowLayout.itemSize = CGSize(width: dateListCollectionView.frame.width - 10, height: dateListCollectionView.frame.height);
         getCalendarFromWeb();
     }
 
