@@ -298,7 +298,7 @@ Wir verwenden:
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cC0-rA-1OS">
                                 <rect key="frame" x="16" y="148" width="382" height="61"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Hier legst Du fest, für welche Kurse im Dashboard und bei Push-Benachrichtigungen berücksichtigt werden.">
+                                    <fragment content="Hier legst Du fest, welche Kurse im Dashboard und bei Push-Benachrichtigungen berücksichtigt werden.">
                                         <attributes>
                                             <font key="NSFont" metaFont="system" size="17"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" hyphenationFactor="1" tighteningFactorForTruncation="0.0"/>
@@ -397,7 +397,7 @@ Wir verwenden:
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ChF-bP-u7z">
-                                <rect key="frame" x="16" y="334" width="382" height="562"/>
+                                <rect key="frame" x="16" y="334" width="382" height="433"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="course" id="4tR-5P-rkj" customClass="MyCoursesTableViewCell" customModule="Pius_App" customModuleProvider="target">
@@ -445,19 +445,37 @@ Wir verwenden:
                                     <outlet property="delegate" destination="NOa-Bp-GMV" id="0k6-Zf-MBV"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OzU-Ox-50v">
+                                <rect key="frame" x="132" y="775" width="150" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.11385231465101242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="h75-tH-zR9"/>
+                                </constraints>
+                                <state key="normal" title="Alles löschen"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="deleteAllButtonAction:" destination="NOa-Bp-GMV" eventType="touchUpInside" id="5PK-vj-zsa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="4c0-qn-uf2" secondAttribute="trailing" constant="16" id="0Bf-ZQ-m81"/>
                             <constraint firstAttribute="trailing" secondItem="q31-vJ-33k" secondAttribute="trailing" constant="16" id="0XJ-sv-wjC"/>
+                            <constraint firstItem="OzU-Ox-50v" firstAttribute="centerX" secondItem="1D2-hP-AoX" secondAttribute="centerX" id="15E-sg-RhP"/>
                             <constraint firstItem="4c0-qn-uf2" firstAttribute="top" secondItem="q31-vJ-33k" secondAttribute="bottom" constant="8" id="G7f-9j-tUA"/>
                             <constraint firstItem="ChF-bP-u7z" firstAttribute="top" secondItem="4c0-qn-uf2" secondAttribute="bottom" constant="8" id="QxT-Re-pvF"/>
                             <constraint firstItem="4c0-qn-uf2" firstAttribute="leading" secondItem="5MR-M8-Q2w" secondAttribute="leading" constant="16" id="RQG-qM-SLz"/>
                             <constraint firstItem="cC0-rA-1OS" firstAttribute="top" secondItem="1D2-hP-AoX" secondAttribute="top" constant="8" id="aRh-lO-dqt"/>
+                            <constraint firstItem="1D2-hP-AoX" firstAttribute="bottom" secondItem="OzU-Ox-50v" secondAttribute="bottom" constant="8" id="bvn-dg-Xi7"/>
                             <constraint firstItem="1D2-hP-AoX" firstAttribute="trailing" secondItem="cC0-rA-1OS" secondAttribute="trailing" constant="16" id="gZZ-fe-m9G"/>
                             <constraint firstItem="q31-vJ-33k" firstAttribute="top" secondItem="cC0-rA-1OS" secondAttribute="bottom" id="lM6-TT-vgN"/>
                             <constraint firstItem="cC0-rA-1OS" firstAttribute="leading" relation="lessThanOrEqual" secondItem="1D2-hP-AoX" secondAttribute="leading" constant="16" id="qKB-O4-7F1"/>
-                            <constraint firstItem="ChF-bP-u7z" firstAttribute="bottom" secondItem="5MR-M8-Q2w" secondAttribute="bottom" id="s0w-bN-f1o"/>
+                            <constraint firstItem="OzU-Ox-50v" firstAttribute="top" secondItem="ChF-bP-u7z" secondAttribute="bottom" constant="8" id="s0w-bN-f1o"/>
                             <constraint firstItem="1D2-hP-AoX" firstAttribute="trailing" secondItem="ChF-bP-u7z" secondAttribute="trailing" constant="16" id="sjZ-qN-KL5"/>
                             <constraint firstItem="cC0-rA-1OS" firstAttribute="centerX" secondItem="5MR-M8-Q2w" secondAttribute="centerX" id="toz-k3-JqP"/>
                             <constraint firstItem="ChF-bP-u7z" firstAttribute="leading" secondItem="1D2-hP-AoX" secondAttribute="leading" constant="16" id="ubS-yS-vGt"/>
@@ -483,6 +501,7 @@ Wir verwenden:
                         <outlet property="coursePickerViewHeightConstraint" destination="C8c-hQ-VzW" id="hU2-OO-G9f"/>
                         <outlet property="coursePickerViewTopConstraint" destination="lM6-TT-vgN" id="wo7-3C-XZ1"/>
                         <outlet property="courseTypePicker" destination="nZA-9x-dF7" id="XmR-5U-Zte"/>
+                        <outlet property="deleteAllButton" destination="OzU-Ox-50v" id="Tbl-Mu-7xX"/>
                         <outlet property="editTopConstraint" destination="0d5-Ph-kAU" id="Lnp-qg-ItF"/>
                         <outlet property="myCoursesBottomConstraint" destination="s0w-bN-f1o" id="xyi-Xe-E7h"/>
                         <outlet property="myCoursesTableView" destination="ChF-bP-u7z" id="u8g-oo-g5F"/>

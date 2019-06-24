@@ -17,6 +17,7 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var courseTypePicker: UIPickerView!
     @IBOutlet weak var courseNumberPicker: UIPickerView!
     @IBOutlet weak var okButton: UIButton!
+    @IBOutlet weak var deleteAllButton: UIButton!
     @IBOutlet weak var coursePickerViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var coursePickerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var editTopConstraint: NSLayoutConstraint!
@@ -46,6 +47,7 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
+        deleteAllButton.isHidden = true;
         tabBarController?.tabBar.isHidden = true;
     }
     
@@ -64,7 +66,7 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     /*
      * ============================================================
-     *                   Picker and Button
+     *                   Picker and Buttons
      * ============================================================
      */
     
@@ -135,6 +137,7 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         
         addCoursesButton.title = (inEditMode) ? "Fertig" : "Bearbeiten";
         showCoursePicker(inEditMode);
+        deleteAllButton.isHidden = !inEditMode;
         
         myCoursesTableView.reloadData();
     }
@@ -144,6 +147,21 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         myCoursesTableView.reloadData();
     }
 
+    @IBAction func deleteAllButtonAction(_ sender: Any) {
+        let alert = UIAlertController(title: "Alles löschen", message: "Bist Du sicher, dass Du die Kursliste löschen möchtest?", preferredStyle: UIAlertController.Style.alert);
+        alert.addAction(
+            UIAlertAction(
+                title: "OK", style: UIAlertAction.Style.default,
+                handler: {
+                    (action: UIAlertAction!) in
+                    self.courseList.removeAll();
+                    self.myCoursesTableView.reloadData();
+        }));
+        alert.addAction(UIAlertAction(title: "Abbrechen", style: UIAlertAction.Style.cancel, handler: nil));
+        self.present(alert, animated: true, completion: nil);
+
+    }
+    
     /*
      * ============================================================
      *                      Table View
