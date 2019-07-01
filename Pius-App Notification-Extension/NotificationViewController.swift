@@ -51,7 +51,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
      */
 
     // Gets number of rows in section. As we have one section only
-    // and we will display one the top most change only this equals
+    // and we will display the top most change only this equals
     // the number of rows in table.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (self.data == nil) ? 0 : 10;

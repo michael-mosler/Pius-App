@@ -31,7 +31,7 @@ struct Config {
 
     static var colorRed: UIColor {
         get {
-            return UIColor(red: 0.843, green: 0.369, blue: 0.337, alpha: 1.0);
+            return UIColor(red: 0.914, green: 0.200, blue: 0.184, alpha: 1.0)
         }
     }
     

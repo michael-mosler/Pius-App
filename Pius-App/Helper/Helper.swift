@@ -58,4 +58,20 @@ class DateHelper {
         }
 
     }
+    
+    static func formatIsoUTCDate(date: String?) -> String {
+        var isoDate: Date
+        let dateFormatter = DateFormatter();
+
+        if let date = date {
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ";
+            isoDate = (dateFormatter.date(from: date) ?? Date())!;
+        } else {
+            isoDate = Date()
+        }
+        
+        dateFormatter.dateFormat = "EEEE, d. MMMM, HH:mm";
+        dateFormatter.locale = Locale(identifier: "de_DE");
+        return "\(dateFormatter.string(from: isoDate)) Uhr";
+    }
 }

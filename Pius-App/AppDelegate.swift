@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private func configureNavigationController() {
         navigationController?.navigationBar.barTintColor = Config.colorPiusBlue;
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white];
+        navigationController?.isToolbarHidden = false;
     }
 
     private func setCategories(){
@@ -212,19 +213,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // a push notification.
     private func navigateToViewControllerOnNotification(withUserInfo userInfo: [AnyHashable : Any]) {
         configureNavigationController();
-
+        
         let tbc = window?.rootViewController as! UITabBarController;
         let dashboard = tbc.viewControllers![2];
         tbc.selectedViewController = dashboard;
+
+        let dashboardChangesViewController = storyboard.instantiateViewController(withIdentifier: "ChangeDetails") as! DashboardChangesViewController;
+        dashboardChangesViewController.data = userInfo as NSDictionary;
+        window?.rootViewController?.show(dashboardChangesViewController, sender: self);
     }
 
     // Received remote notification when app is running.
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // When app is running in background or not at all navigate to specific view controller on app launch.
-        if UIApplication.shared.applicationState != .active {
-            self.navigateToViewControllerOnNotification(withUserInfo: userInfo);
-        }
-        
+        self.navigateToViewControllerOnNotification(withUserInfo: userInfo);
         completionHandler(.newData);
     }
 

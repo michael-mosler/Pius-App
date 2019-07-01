@@ -82,6 +82,8 @@
 		4CC332D12180DF580055E3F5 /* MetaDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC332D02180DF580055E3F5 /* MetaDataCollectionViewCell.swift */; };
 		4CC3F9A821C520D800DB98B7 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3F9A621C520D700DB98B7 /* SF-Pro-Display-Regular.otf */; };
 		4CC3F9A921C520D800DB98B7 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3F9A721C520D800DB98B7 /* SF-Pro-Display-Bold.otf */; };
+		4CD94FFF22C67D9D0056BA9F /* DashboardChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD94FFE22C67D9D0056BA9F /* DashboardChangesViewController.swift */; };
+		4CD9500122C790150056BA9F /* ChangeListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD9500022C790150056BA9F /* ChangeListData.swift */; };
 		4CEBAD0B21C5613600E152BF /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CEBAD0A21C5613600E152BF /* Kingfisher.framework */; };
 		4CED4A7D204749580012CB45 /* EinstellungenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */; };
 		4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */; };
@@ -246,6 +248,8 @@
 		4CC332D02180DF580055E3F5 /* MetaDataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataCollectionViewCell.swift; sourceTree = "<group>"; };
 		4CC3F9A621C520D700DB98B7 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		4CC3F9A721C520D800DB98B7 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		4CD94FFE22C67D9D0056BA9F /* DashboardChangesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardChangesViewController.swift; sourceTree = "<group>"; };
+		4CD9500022C790150056BA9F /* ChangeListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeListData.swift; sourceTree = "<group>"; };
 		4CEBAD0A21C5613600E152BF /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EinstellungenViewController.swift; sourceTree = "<group>"; };
 		4CED4A80204ADB520012CB45 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
@@ -344,6 +348,7 @@
 				4C1FDE52205C5072006092C9 /* VertretungsplanDetailViewController.swift */,
 				4C1FDE56205D90E5006092C9 /* DetailCollectionViewCell.swift */,
 				4C1FDE5B20603DF1006092C9 /* DetailsCellTableViewCell.swift */,
+				4CD9500022C790150056BA9F /* ChangeListData.swift */,
 			);
 			path = VertretungsplanDetailData;
 			sourceTree = "<group>";
@@ -370,6 +375,7 @@
 				4CC332D02180DF580055E3F5 /* MetaDataCollectionViewCell.swift */,
 				4CC332CE2180DAB10055E3F5 /* MetaDataTableViewCell.swift */,
 				4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */,
+				4CD94FFE22C67D9D0056BA9F /* DashboardChangesViewController.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -896,6 +902,7 @@
 				4C1FDE54205C5072006092C9 /* VertretungsplanDetailViewController.swift in Sources */,
 				4CFBCDD7208925B100E9041D /* MyCoursesViewController.swift in Sources */,
 				4CB2AF5E21B302E6007E5D1F /* NewsArticleViewController.swift in Sources */,
+				4CD9500122C790150056BA9F /* ChangeListData.swift in Sources */,
 				4CC332D12180DF580055E3F5 /* MetaDataCollectionViewCell.swift in Sources */,
 				4CB2AF5A21ADBFAC007E5D1F /* NewsTableViewCell.swift in Sources */,
 				4C5318D02205F82600D6AAFA /* EvaTableViewController.swift in Sources */,
@@ -905,6 +912,7 @@
 				4CED4A85204AE3510012CB45 /* KeychainPasswordItem.swift in Sources */,
 				4C1FDE5A205E77D7006092C9 /* Helper.swift in Sources */,
 				4C30DB7F21BD9B84002FCAF3 /* TodayPostingsTableView.swift in Sources */,
+				4CD94FFF22C67D9D0056BA9F /* DashboardChangesViewController.swift in Sources */,
 				4CF02EB12190C64300647078 /* DateListCollectionViewCell.swift in Sources */,
 				4C48F6D521F78F7C00B20505 /* WatchConnectivityHandler.swift in Sources */,
 				4C7C22922043117800ACA17B /* ViewController.swift in Sources */,
@@ -1271,7 +1279,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ALWAYS_SHOW_ONBOARDING = false;
+				ALWAYS_SHOW_ONBOARDING = true;
 				API_KEY = "heSXxSOvNcl8J4UB9$#TV9TUZ3zClbX$EyOQzKiqGWxRgonzSe";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Pius-App/Pius-App.entitlements";
