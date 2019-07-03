@@ -42,7 +42,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     private var calendar: Calendar = Calendar();
     
     override func viewDidAppear(_ animated: Bool) {
-        dateListCollectionViewFlowLayout.estimatedItemSize = CGSize(width: dateListCollectionView.frame.width - 10, height: dateListCollectionView.frame.height);
+        dateListCollectionViewFlowLayout.itemSize = CGSize(width: dateListCollectionView.frame.width - 10, height: dateListCollectionView.frame.height);
         getCalendarFromWeb();
     }
 
@@ -277,9 +277,9 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
             
             // Event text; hightlight when range is given.
             let text = NSMutableAttributedString(string: item.detailItems[1]);
-            if let _hightlight = item.highlight {
-                text.addAttribute(NSAttributedString.Key.backgroundColor, value: Config.colorYellow, range: _hightlight);
-            }
+            item.highlight.forEach({ range in
+                text.addAttribute(NSAttributedString.Key.backgroundColor, value: Config.colorYellow, range: range);
+            });
             eventLabel.attributedText = text;
         }
         

@@ -20,7 +20,7 @@ class OnboardingViewController: UITableViewController {
      */
     
     @IBOutlet weak var startAppButton: UIButton!
-    private let rowHeights: [CGFloat] = [110, 44, 100, 100, 44, 100, 100, 145, 100];
+    private let rowHeights: [CGFloat] = [110, 44, 100, 44, 100, 100, 145, 100, 100];
     private let offset: CGFloat = 32;
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
