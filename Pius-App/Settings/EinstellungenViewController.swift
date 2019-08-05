@@ -15,13 +15,13 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var webSitePasswordField: UITextField!
     @IBOutlet weak var myCoursesButton: UIButton!
     @IBOutlet weak var versionLabel: UILabel!
-    @IBOutlet weak var ruler3: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var gradePickerView: UIPickerView!
     @IBOutlet weak var classPickerView: UIPickerView!
     
-    @IBOutlet weak var loginButtonOutlet: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var timetableSwitch: UISwitch!
     
     // The active text field, is either webSizeUserNameField or webSitePasswordField.
     private var activeTextField: UITextField?;
@@ -29,6 +29,26 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBAction func loginButtonAction(_ sender: Any) {
         dismissKeyboard(fromTextField: activeTextField)
         saveCredentials();
+    }
+    
+    @IBAction func timetableSwitchAction(_ sender: Any) {
+        guard let sender = sender as? UISwitch else { return }
+        
+        if sender.isOn {
+            myCoursesButton.setTitle("Stundenplan bearbeiten", for: .normal)
+        } else {
+            myCoursesButton.setTitle("Kurse hinzufügen", for: .normal)
+        }
+
+        elementStates(forSelectedGrade: gradePickerView.selectedRow(inComponent: 0))
+    }
+    
+    @IBAction func myCoursesButtonAction(_ sender: Any) {
+        if timetableSwitch.isOn {
+            performSegue(withIdentifier: "toTimetableEditor", sender: sender)
+        } else {
+            performSegue(withIdentifier: "toCourseListEditor", sender: sender)
+        }
     }
     
     override func viewDidLoad() {
@@ -57,7 +77,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         
         if let gradeRow = AppDefaults.selectedGradeRow {
             gradePickerView.selectRow(gradeRow, inComponent: 0, animated: false);
-            setElementStates(forSelectedGrade: gradeRow);
+            elementStates(forSelectedGrade: gradeRow);
         }
         
         showCredentials();
@@ -87,9 +107,9 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     // Update Login button text depending on authentication state.
     private func updateLoginButtonText(authenticated: Bool?) {
         if (authenticated != nil && authenticated!) {
-            loginButtonOutlet.setTitle("Abmelden", for: .normal);
+            loginButton.setTitle("Abmelden", for: .normal);
         } else {
-            loginButtonOutlet.setTitle("Anmelden", for: .normal);
+            loginButton.setTitle("Anmelden", for: .normal);
         }
     }
 
@@ -99,7 +119,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         DispatchQueue.main.async {
             // Stop activity indicator but keep blur effect.
             self.activityIndicator.stopAnimating();
-            self.loginButtonOutlet.isEnabled = true;
+            self.loginButton.isEnabled = true;
 
             // create the alert
             var message: String;
@@ -127,15 +147,14 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     }
 
     // Bring grade and class picker into a consistent state.
-    private func setElementStates(forSelectedGrade row: Int) -> Void {
+    private func elementStates(forSelectedGrade row: Int) -> Void {
         // If grade "None" is selected class picker also is set to None.
         if (row == 0) {
             classPickerView.selectRow(0, inComponent: 0, animated: true);
             AppDefaults.selectedClassRow = 0;
             
             classPickerView.isUserInteractionEnabled = false;
-            myCoursesButton.isEnabled = false;
-            myCoursesButton.backgroundColor = UIColor.lightGray;
+            myCoursesButton.isEnabled = false || timetableSwitch.isOn;
 
         }
 
@@ -147,7 +166,6 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
 
             classPickerView.isUserInteractionEnabled = false;
             myCoursesButton.isEnabled = true;
-            myCoursesButton.backgroundColor = Config.colorPiusBlue;
 
         // When a lower grade is selected disable "Meine Kurse" button and make sure
         // that class is defined.
@@ -158,16 +176,16 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             }
 
             classPickerView.isUserInteractionEnabled = true;
-            myCoursesButton.isEnabled = false;
-            myCoursesButton.backgroundColor = UIColor.lightGray;
+            myCoursesButton.isEnabled = false || timetableSwitch.isOn;
 
         // Neither
         } else {
             classPickerView.selectRow(0, inComponent: 0, animated: true);
             AppDefaults.selectedClassRow = 0;
-            myCoursesButton.isEnabled = false;
-            myCoursesButton.backgroundColor = UIColor.lightGray;
+            myCoursesButton.isEnabled = false || timetableSwitch.isOn;
         }
+        
+        myCoursesButton.backgroundColor = (myCoursesButton.isEnabled) ? Config.colorPiusBlue : UIColor.lightGray
     }
     
     // Return the number of components in picker view;
@@ -203,7 +221,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             }
 
             AppDefaults.selectedGradeRow = row;
-            setElementStates(forSelectedGrade: row);
+            elementStates(forSelectedGrade: row);
         } else {
             // If a non-upper grade row is picked prevent user from setting "none" for class.
             if (row == 0 && !isUpperGradeSelected(AppDefaults.selectedGradeRow!)) {
@@ -241,7 +259,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             // of the app.
             let vertretungsplanLoader = VertretungsplanLoader();
 
-            self.loginButtonOutlet.isEnabled = false;
+            self.loginButton.isEnabled = false;
             vertretungsplanLoader.validateLogin(notfifyMeOn: self.validationCallback);
         } else {
             // User is authenticated and wants to logout.
@@ -315,8 +333,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             var cgRect: CGRect = scrollView.frame;
             cgRect.size.height -= keyboardSize.height;
             
-            if (!cgRect.contains(loginButtonOutlet!.frame.origin)) {
-                scrollView.scrollRectToVisible(loginButtonOutlet!.frame, animated: true);
+            if (!cgRect.contains(loginButton!.frame.origin)) {
+                scrollView.scrollRectToVisible(loginButton!.frame, animated: true);
             }
         }
     }
