@@ -304,7 +304,7 @@ Wir verwenden:
                         <outlet property="webSitePasswordField" destination="j55-pk-XSt" id="ccS-u3-U9M"/>
                         <outlet property="webSiteUserNameField" destination="YzV-FF-8G9" id="Nyk-RM-ZYT"/>
                         <segue destination="NOa-Bp-GMV" kind="show" identifier="toCourseListEditor" id="OUy-Yt-vyf"/>
-                        <segue destination="Rvl-Sb-isv" kind="show" identifier="toTimetableEditor" id="iXE-Ht-Sv4"/>
+                        <segue destination="e2a-ZH-DHo" kind="show" identifier="toTimetableEditor" id="ell-FU-THM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ryY-e2-5wW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -547,20 +547,13 @@ Wir verwenden:
             </objects>
             <point key="canvasLocation" x="-8554" y="-3311"/>
         </scene>
-        <!--Stundenplan-->
-        <scene sceneID="Zgm-2t-LeM">
+        <!--TimetableStoryboard-->
+        <scene sceneID="4Tx-4k-oAK">
             <objects>
-                <viewController title="Stundenplan" id="Rvl-Sb-isv" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Guu-ke-8Lo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="xtW-qT-6nA"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jju-ep-rwb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="TimetableStoryboard" id="e2a-ZH-DHo" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dKu-M4-HOO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8543" y="-2580"/>
+            <point key="canvasLocation" x="-9533" y="-2831"/>
         </scene>
         <!--Onboarding View Controller-->
         <scene sceneID="XJN-43-Axj">

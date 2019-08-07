@@ -110,6 +110,39 @@ struct AppDefaults {
         }
     }
     
+    static var useTimetable: Bool {
+        set(value) {
+            AppDefaults.sharedDefaults?.set(value, forKey: "useTimetable")
+        }
+        get {
+            return AppDefaults.sharedDefaults?.bool(forKey: "useTimetable") ?? false
+        }
+    }
+
+    static var timetable: Timetable {
+        set(value) {
+            let data = NSKeyedArchiver.archivedData(withRootObject: value)
+            AppDefaults.sharedDefaults?.set(data, forKey: "timetable")
+        }
+        get {
+            guard let data = AppDefaults.sharedDefaults?.data(forKey: "timetable") else { return Timetable() }
+            let value = NSKeyedUnarchiver.unarchiveObject(with: data) as! Timetable
+            return value
+        }
+    }
+
+    static var courses: Courses {
+        set(value) {
+            let data = NSKeyedArchiver.archivedData(withRootObject: value)
+            AppDefaults.sharedDefaults?.set(data, forKey: "courses")
+        }
+        get {
+            guard let data = AppDefaults.sharedDefaults?.data(forKey: "courses") else { return Courses() }
+            let value = NSKeyedUnarchiver.unarchiveObject(with: data) as! Courses
+            return value
+        }
+    }
+
     static var credentials: (String, String) {
         get {
             guard let webSiteUserName = AppDefaults.sharedDefaults?.string(forKey: "webSiteUserName"), !webSiteUserName.isEmpty else { return ("", "") };

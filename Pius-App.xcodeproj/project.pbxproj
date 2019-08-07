@@ -54,6 +54,19 @@
 		4C803A2221FB7314009130E0 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE59205E77D7006092C9 /* Helper.swift */; };
 		4C803A2421FB84D7009130E0 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE62206D5FE6006092C9 /* Config.swift */; };
 		4C8F8C3721CD560200A42862 /* MyCoursesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8F8C3621CD560200A42862 /* MyCoursesTableViewCell.swift */; };
+		4C93688022F827C20038CE9B /* TimetableStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C93687F22F827C20038CE9B /* TimetableStoryboard.storyboard */; };
+		4C93688322F82DA90038CE9B /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93688222F82DA90038CE9B /* TimetableViewController.swift */; };
+		4C93688D22F82DDA0038CE9B /* TimetableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93688422F82DD90038CE9B /* TimetableTableViewCell.swift */; };
+		4C93688E22F82DDA0038CE9B /* CourseTypePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93688522F82DD90038CE9B /* CourseTypePickerView.swift */; };
+		4C93688F22F82DDA0038CE9B /* TimetableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93688622F82DD90038CE9B /* TimetableTableView.swift */; };
+		4C93689022F82DDA0038CE9B /* CourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93688722F82DDA0038CE9B /* CourseItem.swift */; };
+		4C93689122F82DDA0038CE9B /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93688822F82DDA0038CE9B /* ScheduleCollectionViewCell.swift */; };
+		4C93689222F82DDA0038CE9B /* ScheduleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93688922F82DDA0038CE9B /* ScheduleCollectionView.swift */; };
+		4C93689322F82DDA0038CE9B /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93688A22F82DDA0038CE9B /* CourseDetailsViewController.swift */; };
+		4C93689422F82DDA0038CE9B /* CourseCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93688B22F82DDA0038CE9B /* CourseCollectionView.swift */; };
+		4C93689522F82DDA0038CE9B /* CourseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93688C22F82DDA0038CE9B /* CourseCollectionViewCell.swift */; };
+		4C93689822F82EFF0038CE9B /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93689722F82EFF0038CE9B /* ScheduleData.swift */; };
+		4C93689922F85D500038CE9B /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93689722F82EFF0038CE9B /* ScheduleData.swift */; };
 		4CA4907720DE4DDC00796457 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4907620DE4DDC00796457 /* AppDefaults.swift */; };
 		4CA4907920DE532700796457 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
 		4CA4907A20DEA1C900796457 /* VertretungsplanLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */; };
@@ -228,6 +241,18 @@
 		4C7C22A62043117800ACA17B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C7E61A920A4389F000D1225 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4C8F8C3621CD560200A42862 /* MyCoursesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoursesTableViewCell.swift; sourceTree = "<group>"; };
+		4C93687F22F827C20038CE9B /* TimetableStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimetableStoryboard.storyboard; sourceTree = "<group>"; };
+		4C93688222F82DA90038CE9B /* TimetableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimetableViewController.swift; path = ../../../../XCode/Playground/Playground/TimetableViewController.swift; sourceTree = "<group>"; };
+		4C93688422F82DD90038CE9B /* TimetableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimetableTableViewCell.swift; path = ../../../../XCode/Playground/Playground/TimetableTableViewCell.swift; sourceTree = "<group>"; };
+		4C93688522F82DD90038CE9B /* CourseTypePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CourseTypePickerView.swift; path = ../../../../XCode/Playground/Playground/CourseTypePickerView.swift; sourceTree = "<group>"; };
+		4C93688622F82DD90038CE9B /* TimetableTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimetableTableView.swift; path = ../../../../XCode/Playground/Playground/TimetableTableView.swift; sourceTree = "<group>"; };
+		4C93688722F82DDA0038CE9B /* CourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItem.swift; sourceTree = "<group>"; };
+		4C93688822F82DDA0038CE9B /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleCollectionViewCell.swift; path = ../../../../XCode/Playground/Playground/ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
+		4C93688922F82DDA0038CE9B /* ScheduleCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleCollectionView.swift; path = ../../../../XCode/Playground/Playground/ScheduleCollectionView.swift; sourceTree = "<group>"; };
+		4C93688A22F82DDA0038CE9B /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CourseDetailsViewController.swift; path = ../../../../XCode/Playground/Playground/CourseDetailsViewController.swift; sourceTree = "<group>"; };
+		4C93688B22F82DDA0038CE9B /* CourseCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CourseCollectionView.swift; path = ../../../../XCode/Playground/Playground/CourseCollectionView.swift; sourceTree = "<group>"; };
+		4C93688C22F82DDA0038CE9B /* CourseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CourseCollectionViewCell.swift; path = ../../../../XCode/Playground/Playground/CourseCollectionViewCell.swift; sourceTree = "<group>"; };
+		4C93689722F82EFF0038CE9B /* ScheduleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleData.swift; path = ../../../XCode/Playground/Playground/ScheduleData.swift; sourceTree = "<group>"; };
 		4CA4907620DE4DDC00796457 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		4CB2AF512198813C007E5D1F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		4CB2AF5521A75595007E5D1F /* TodayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewController.swift; sourceTree = "<group>"; };
@@ -371,6 +396,7 @@
 		4C1FDE5F206C2614006092C9 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				4C5318CE2205F7F400D6AAFA /* EVA */,
 				4C1FDE60206C2644006092C9 /* DashboardViewController.swift */,
 				4CC332D02180DF580055E3F5 /* MetaDataCollectionViewCell.swift */,
 				4CC332CE2180DAB10055E3F5 /* MetaDataTableViewCell.swift */,
@@ -467,20 +493,20 @@
 				4CB2AF512198813C007E5D1F /* Reachability.swift */,
 				4C7C22982043117800ACA17B /* LaunchScreen.storyboard */,
 				4C7C22932043117800ACA17B /* Main.storyboard */,
-				4CC3F9AA21C520DF00DB98B7 /* Fonts */,
-				4C5318CE2205F7F400D6AAFA /* EVA */,
-				4CB2AF5421A75563007E5D1F /* Today */,
-				4CB97F15210A535F0019973D /* PushService */,
+				4C93687F22F827C20038CE9B /* TimetableStoryboard.storyboard */,
 				4C5E0E7720A872C200DAE459 /* OnboardingViewController */,
+				4CB2AF5421A75563007E5D1F /* Today */,
 				4C7E61A8209F8860000D1225 /* Vertretungsplan */,
 				4C1FDE5F206C2614006092C9 /* Dashboard */,
 				4CFBCDD8208FBB6800E9041D /* DateList */,
 				4CFBCDD52089256E00E9041D /* Settings */,
-				4C1FDE58205E77BD006092C9 /* Helper */,
-				4C1FDE51205C4FEF006092C9 /* VertretungsplanDetailData */,
-				4CFB105520D048B700432B1A /* CalendarData */,
 				4C1FDE4C205567A6006092C9 /* VetretungsplanData */,
+				4C1FDE51205C4FEF006092C9 /* VertretungsplanDetailData */,
+				4C93689622F82EE50038CE9B /* TimetableData */,
+				4C1FDE58205E77BD006092C9 /* Helper */,
 				4C48F6D321F78F5200B20505 /* Watch */,
+				4CB97F15210A535F0019973D /* PushService */,
+				4CC3F9AA21C520DF00DB98B7 /* Fonts */,
 				4C7C22962043117800ACA17B /* Assets.xcassets */,
 				4C7C229B2043117800ACA17B /* Info.plist */,
 			);
@@ -503,6 +529,31 @@
 			);
 			name = Vertretungsplan;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		4C93688122F82C340038CE9B /* Timetable */ = {
+			isa = PBXGroup;
+			children = (
+				4C93688222F82DA90038CE9B /* TimetableViewController.swift */,
+				4C93688B22F82DDA0038CE9B /* CourseCollectionView.swift */,
+				4C93688C22F82DDA0038CE9B /* CourseCollectionViewCell.swift */,
+				4C93688A22F82DDA0038CE9B /* CourseDetailsViewController.swift */,
+				4C93688522F82DD90038CE9B /* CourseTypePickerView.swift */,
+				4C93688922F82DDA0038CE9B /* ScheduleCollectionView.swift */,
+				4C93688822F82DDA0038CE9B /* ScheduleCollectionViewCell.swift */,
+				4C93688622F82DD90038CE9B /* TimetableTableView.swift */,
+				4C93688422F82DD90038CE9B /* TimetableTableViewCell.swift */,
+			);
+			path = Timetable;
+			sourceTree = "<group>";
+		};
+		4C93689622F82EE50038CE9B /* TimetableData */ = {
+			isa = PBXGroup;
+			children = (
+				4C93689722F82EFF0038CE9B /* ScheduleData.swift */,
+				4C93688722F82DDA0038CE9B /* CourseItem.swift */,
+			);
+			path = TimetableData;
 			sourceTree = "<group>";
 		};
 		4CB2AF5421A75563007E5D1F /* Today */ = {
@@ -575,6 +626,7 @@
 		4CFBCDD52089256E00E9041D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				4C93688122F82C340038CE9B /* Timetable */,
 				4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */,
 				4CFBCDD6208925B100E9041D /* MyCoursesViewController.swift */,
 				4C8F8C3621CD560200A42862 /* MyCoursesTableViewCell.swift */,
@@ -585,6 +637,7 @@
 		4CFBCDD8208FBB6800E9041D /* DateList */ = {
 			isa = PBXGroup;
 			children = (
+				4CFB105520D048B700432B1A /* CalendarData */,
 				4CFBCDD9208FBB8F00E9041D /* DateListViewController.swift */,
 				4CFB105A20D1926300432B1A /* MonthButton.swift */,
 				4CF02EB02190C64300647078 /* DateListCollectionViewCell.swift */,
@@ -831,6 +884,7 @@
 				4C7C22972043117800ACA17B /* Assets.xcassets in Resources */,
 				4CC3F9A821C520D800DB98B7 /* SF-Pro-Display-Regular.otf in Resources */,
 				4C7C22952043117800ACA17B /* Main.storyboard in Resources */,
+				4C93688022F827C20038CE9B /* TimetableStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -913,19 +967,26 @@
 				4C1FDE5A205E77D7006092C9 /* Helper.swift in Sources */,
 				4C30DB7F21BD9B84002FCAF3 /* TodayPostingsTableView.swift in Sources */,
 				4CD94FFF22C67D9D0056BA9F /* DashboardChangesViewController.swift in Sources */,
+				4C93689122F82DDA0038CE9B /* ScheduleCollectionViewCell.swift in Sources */,
 				4CF02EB12190C64300647078 /* DateListCollectionViewCell.swift in Sources */,
 				4C48F6D521F78F7C00B20505 /* WatchConnectivityHandler.swift in Sources */,
 				4C7C22922043117800ACA17B /* ViewController.swift in Sources */,
+				4C93688D22F82DDA0038CE9B /* TimetableTableViewCell.swift in Sources */,
 				4C1FDE57205D90E5006092C9 /* DetailCollectionViewCell.swift in Sources */,
 				4C30DB7D21BC0CDF002FCAF3 /* TodayCalendarDetailsCell.swift in Sources */,
 				4C30DB7B21BC0C9D002FCAF3 /* TodayCalendarTableView.swift in Sources */,
+				4C93689022F82DDA0038CE9B /* CourseItem.swift in Sources */,
 				4C30DB8121BD9BD6002FCAF3 /* TodayPostingsDetailsCell.swift in Sources */,
 				4C1FDE4E205567C8006092C9 /* Vertretungsplan.swift in Sources */,
+				4C93688322F82DA90038CE9B /* TimetableViewController.swift in Sources */,
+				4C93689222F82DDA0038CE9B /* ScheduleCollectionView.swift in Sources */,
 				4CF02EAF218B559400647078 /* TabBarController.swift in Sources */,
 				4C1FDE5C20603DF1006092C9 /* DetailsCellTableViewCell.swift in Sources */,
 				4CB2AF5821ADBF62007E5D1F /* NewsTableView.swift in Sources */,
+				4C93689422F82DDA0038CE9B /* CourseCollectionView.swift in Sources */,
 				4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */,
 				4C8F8C3721CD560200A42862 /* MyCoursesTableViewCell.swift in Sources */,
+				4C93689522F82DDA0038CE9B /* CourseCollectionViewCell.swift in Sources */,
 				4CFB105920D04BA600432B1A /* Calendar.swift in Sources */,
 				4C7C22902043117800ACA17B /* AppDelegate.swift in Sources */,
 				4CFB105B20D1926300432B1A /* MonthButton.swift in Sources */,
@@ -934,7 +995,9 @@
 				4C21EAE922BBB269006EE613 /* String.swift in Sources */,
 				4C5AA0132189DAA90040A455 /* VertretungsplanDetailsCell.swift in Sources */,
 				4C30DB7921B86617002FCAF3 /* TodayDashboardDetailsCelll.swift in Sources */,
+				4C93688F22F82DDA0038CE9B /* TimetableTableView.swift in Sources */,
 				4C5E0E7B20A8797D00DAE459 /* OnboardingViewController.swift in Sources */,
+				4C93688E22F82DDA0038CE9B /* CourseTypePickerView.swift in Sources */,
 				4CFB105720D0490B00432B1A /* CalendarLoader.swift in Sources */,
 				4C1AC38221BED6CD00E2F3A5 /* PostingsLoader.swift in Sources */,
 				4C48F6D121F6433C00B20505 /* IOSHelper.swift in Sources */,
@@ -942,6 +1005,7 @@
 				4CB97F17210A53940019973D /* DeviceTokenManager.swift in Sources */,
 				4C1FDE50205568E3006092C9 /* ExpandableHeaderView.swift in Sources */,
 				4CBC31402218164100CEB1D1 /* EvaLoader.swift in Sources */,
+				4C93689322F82DDA0038CE9B /* CourseDetailsViewController.swift in Sources */,
 				4C1FDE5E20697516006092C9 /* VertretungsplanLoader.swift in Sources */,
 				4C55381721B4435C000374D3 /* TodayDashboardTableView.swift in Sources */,
 				4CA4907720DE4DDC00796457 /* AppDefaults.swift in Sources */,
@@ -949,6 +1013,7 @@
 				4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */,
 				4CB2AF522198813C007E5D1F /* Reachability.swift in Sources */,
 				4CFBCDDA208FBB8F00E9041D /* DateListViewController.swift in Sources */,
+				4C93689822F82EFF0038CE9B /* ScheduleData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -968,6 +1033,7 @@
 				4CB3EC7720DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift in Sources */,
 				4C48F6CA21F641A400B20505 /* AppDefaults.swift in Sources */,
 				4CA4907A20DEA1C900796457 /* VertretungsplanLoader.swift in Sources */,
+				4C93689922F85D500038CE9B /* ScheduleData.swift in Sources */,
 				4CA4907F20DF9BE100796457 /* Config.swift in Sources */,
 				4CA4907920DE532700796457 /* Cache.swift in Sources */,
 				4CA4907E20DEA57D00796457 /* Vertretungsplan.swift in Sources */,
