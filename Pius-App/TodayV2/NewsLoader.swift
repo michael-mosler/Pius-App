@@ -148,7 +148,7 @@ class NewsLoader {
             }
         }
         
-        // Now get execute task and, thus, get data. This also updates all views.
+        // Now execute task and, thus, get data. This also updates all views.
         task.resume();
     }
 }

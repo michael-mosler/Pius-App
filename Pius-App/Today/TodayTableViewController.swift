@@ -8,16 +8,16 @@
 
 import UIKit
 
+protocol TodaySubTableLoadedDelegate {
+    func doneLoadingSubTable();
+}
+
 protocol TodaySubTableViewDelegate {
     var controller: TodayTableViewController? { get set };
     
     func needsShow() -> Bool;
     func willTryLoading() -> Bool;
     func loadData(controller: TodayTableViewController, sender: UITableView);
-}
-
-protocol TodaySubTableLoadedDelegate {
-    func doneLoadingSubTable();
 }
 
 class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, ModalDismissDelegate, TodaySubTableLoadedDelegate {
@@ -38,7 +38,7 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     
     @IBOutlet weak var newViewHeaderLabel: UILabel!
     @IBOutlet weak var newsView: UIView!
-    @IBOutlet weak var newsTableView: NewsTableView!
+    @IBOutlet weak var newsTableView: NewsTableViewV1!
    
     private var expectedLoads: Int {
         get {

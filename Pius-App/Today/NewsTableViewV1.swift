@@ -12,7 +12,7 @@ protocol ShowNewsArticleDelegate {
     func show(url: URL);
 }
 
-class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, TodaySubTableViewDelegate {
+class NewsTableViewV1: UITableView, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, TodaySubTableViewDelegate {
     var controller: TodayTableViewController?
     
     private var parentTableView: UITableView?;
@@ -78,7 +78,7 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let newsItems = self.newsItems, let text = newsItems[indexPath.row].text else { return UITableViewCell(); }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "newsItem") as! NewsTableViewCell;
+        let cell = tableView.dequeueReusableCell(withIdentifier: "newsItem") as! NewsTableViewCellV1;
         cell.setImageUrl(imgUrl: newsItems[indexPath.row].imgUrl);
 
         let itemText = NSMutableAttributedString(string: "");
@@ -95,7 +95,7 @@ class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? NewsTableViewCell, let href = cell.href, let url = URL(string: href) else { return; };
+        guard let cell = tableView.cellForRow(at: indexPath) as? NewsTableViewCellV1, let href = cell.href, let url = URL(string: href) else { return; };
         controller?.show(url: url);
     }
 }
