@@ -8,82 +8,53 @@
 
 import UIKit
 
-class NewsTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, TodayItem {
-    var container: TodayItemContainer?
+/*
+ * Base class for all embedded table views. This class makes sure
+ * that table view and its containing views gets properly resized
+ * when data has been loaded into table.
+ */
+class TodayItemTableView: UITableView {
     
-    private let newsLoader = NewsLoader()
-    private var newsItems: NewsItems?
+    override var intrinsicContentSize: CGSize {
+        layoutIfNeeded()
+        return contentSize
+    }
+    
+    override var contentSize: CGSize {
+        didSet{
+            invalidateIntrinsicContentSize()
+        }
+    }
+    
+    override func reloadData() {
+        super.reloadData()
+        invalidateIntrinsicContentSize()
+    }
+}
+
+/*
+ * News table view show up to 6 news items with a preview image.
+ * When selecting one item article is opened in a modal popover.
+ */
+class NewsTableView: TodayItemTableView, UITableViewDelegate, UIPopoverPresentationControllerDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        dataSource = self
         delegate = self
-    }
-    /*
-     * ====================================================
-     *                  Data Loader
-     * ====================================================
-     */
-    
-    func needsShow() -> Bool {
-        // When newItems is nil load has not returned yet. In this case
-        // we suppose that news must be shown. When load fails
-        // newsItems will be set to empty array and number of
-        // items in table becomes 0.
-        // Without this logic due to fixed image size a constraint
-        // error would be thrown on start up.
-        return newsItems?.count ?? 1 > 0
+        dataSource = TodayV2TableViewController.shared.dataSource(forType: .news)
     }
     
-    func willTryLoading() -> Bool {
-        return true
-    }
-    
-    private func doUpdate(with newsItems: NewsItems?, online: Bool) {
-        if newsItems == nil {
-            self.newsItems = []
-        } else {
-            self.newsItems = newsItems
-        }
-        
-        DispatchQueue.main.async {
-            // self.parentTableView?.beginUpdates()
-            // self.reloadData()
-            // self.layoutSubviews()
-            // self.parentTableView?.endUpdates()
-            self.container?.didLoadData(self)
-        }
-    }
-    
-    func loadData(container: TodayItemContainer) {
-        self.container = container
-        newsLoader.load(doUpdate)
-    }
-    
-    /*
-     * ====================================================
-     *                  Table Data
-     * ====================================================
-     */
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let newsItems = self.newsItems else { return 0 }
-        NSLog("#items = \(newsItems.count)")
-        return newsItems.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let newsItems = newsItems else { return UITableViewCell() }
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "newsItemCell") as! NewsTableViewCell
-        cell.newsItem = newsItems[indexPath.row]
-        return cell
-    }
-    
-    /*
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? NewsTableViewCell, let href = cell.href, let url = URL(string: href) else { return }
-        container?.show(url: url)
+        TodayV2TableViewController.shared.controller?.perform(segue: "showNews", with: url, presentModally: true)
+        cell.isSelected = false
     }
-    */
+}
+
+class CalendarTableView: TodayItemTableView {
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        dataSource = TodayV2TableViewController.shared.dataSource(forType: .calendar)
+    }
 }

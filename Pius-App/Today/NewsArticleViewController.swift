@@ -6,55 +6,51 @@
 //  Copyright © 2018 Felix Krings. All rights reserved.
 //
 
-import UIKit;
-import WebKit;
+import UIKit
+import WebKit
 
 protocol ModalDismissDelegate {
-    func hasDismissed();
+    func hasDismissed()
 }
 
 class NewsArticleViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     
-    var urlToShow: URL?;
-    var delegate: ModalDismissDelegate?;
-    
-    private func dismissView() {
-        self.delegate?.hasDismissed();
-        dismiss(animated: true);
-    }
+    var segueData: Any?
+    var delegate: ModalDismissDelegate?
 
     @IBAction func dismiss(_ sender: Any) {
-        dismissView();
+        dismiss(animated: true)
+        delegate?.hasDismissed()
     }
 
     @IBAction func panGestureAction(_ sender: UIPanGestureRecognizer) {
         if sender.state == .ended {
             if webView.scrollView.contentOffset.y <= -110 {
-                dismissView();
+                dismiss(animated: true)
+                delegate?.hasDismissed()
             }
         }
     }
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true;
+        return true
     }
 
     override func viewDidLoad() {
-        var pageRequest: URLRequest;
-        let reachability = Reachability();
+        var pageRequest: URLRequest
+        let reachability = Reachability()
         
-        // panGestureRecognizer.delegate = self;
-        view.addGestureRecognizer(panGestureRecognizer);
+        view.addGestureRecognizer(panGestureRecognizer)
         
-        if reachability?.connection != .none, let urlToShow = self.urlToShow {
-            pageRequest = URLRequest(url: urlToShow);
+        if reachability?.connection != .none, let urlToShow = self.segueData as? URL {
+            pageRequest = URLRequest(url: urlToShow)
         } else {
-            let baseUrl = URL(string: "about:blank");
-            pageRequest = URLRequest(url: baseUrl!);
+            let baseUrl = URL(string: "about:blank")
+            pageRequest = URLRequest(url: baseUrl!)
         }
         
-        webView.load(pageRequest);
+        webView.load(pageRequest)
     }
 }

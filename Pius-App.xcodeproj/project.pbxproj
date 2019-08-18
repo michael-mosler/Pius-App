@@ -72,6 +72,8 @@
 		4C9368A723083F490038CE9B /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9368A623083F490038CE9B /* NewsTableViewCell.swift */; };
 		4C9368AA230844FC0038CE9B /* NewsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9368A9230844FC0038CE9B /* NewsTableView.swift */; };
 		4C9368AC23084C520038CE9B /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9368AB23084C520038CE9B /* NewsCell.swift */; };
+		4C9368AF23093BA30038CE9B /* NewsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9368AE23093BA30038CE9B /* NewsTableDataSource.swift */; };
+		4C9368B12309A3660038CE9B /* CalendarTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9368B02309A3660038CE9B /* CalendarTableDataSource.swift */; };
 		4CA4907720DE4DDC00796457 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4907620DE4DDC00796457 /* AppDefaults.swift */; };
 		4CA4907920DE532700796457 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
 		4CA4907A20DEA1C900796457 /* VertretungsplanLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */; };
@@ -263,6 +265,8 @@
 		4C9368A623083F490038CE9B /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		4C9368A9230844FC0038CE9B /* NewsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableView.swift; sourceTree = "<group>"; };
 		4C9368AB23084C520038CE9B /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		4C9368AE23093BA30038CE9B /* NewsTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableDataSource.swift; sourceTree = "<group>"; };
+		4C9368B02309A3660038CE9B /* CalendarTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableDataSource.swift; sourceTree = "<group>"; };
 		4CA4907620DE4DDC00796457 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		4CB2AF512198813C007E5D1F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		4CB2AF5521A75595007E5D1F /* TodayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewController.swift; sourceTree = "<group>"; };
@@ -570,6 +574,7 @@
 		4C93689B230830500038CE9B /* TodayV2 */ = {
 			isa = PBXGroup;
 			children = (
+				4C9368AD23093B450038CE9B /* DataSources */,
 				4C9368A8230844E10038CE9B /* Tables */,
 				4C9368A123083D600038CE9B /* Cells */,
 				4C9368A0230835170038CE9B /* Loader */,
@@ -602,6 +607,15 @@
 				4C9368A9230844FC0038CE9B /* NewsTableView.swift */,
 			);
 			name = Tables;
+			sourceTree = "<group>";
+		};
+		4C9368AD23093B450038CE9B /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				4C9368AE23093BA30038CE9B /* NewsTableDataSource.swift */,
+				4C9368B02309A3660038CE9B /* CalendarTableDataSource.swift */,
+			);
+			name = DataSources;
 			sourceTree = "<group>";
 		};
 		4CB2AF5421A75563007E5D1F /* Today */ = {
@@ -1013,6 +1027,7 @@
 				4C9368AC23084C520038CE9B /* NewsCell.swift in Sources */,
 				4C1FDE63206D5FE6006092C9 /* Config.swift in Sources */,
 				4CED4A85204AE3510012CB45 /* KeychainPasswordItem.swift in Sources */,
+				4C9368B12309A3660038CE9B /* CalendarTableDataSource.swift in Sources */,
 				4C1FDE5A205E77D7006092C9 /* Helper.swift in Sources */,
 				4C30DB7F21BD9B84002FCAF3 /* TodayPostingsTableView.swift in Sources */,
 				4CD94FFF22C67D9D0056BA9F /* DashboardChangesViewController.swift in Sources */,
@@ -1055,6 +1070,7 @@
 				4C48F6D121F6433C00B20505 /* IOSHelper.swift in Sources */,
 				4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */,
 				4CB97F17210A53940019973D /* DeviceTokenManager.swift in Sources */,
+				4C9368AF23093BA30038CE9B /* NewsTableDataSource.swift in Sources */,
 				4C1FDE50205568E3006092C9 /* ExpandableHeaderView.swift in Sources */,
 				4CBC31402218164100CEB1D1 /* EvaLoader.swift in Sources */,
 				4C93689322F82DDA0038CE9B /* CourseDetailsViewController.swift in Sources */,

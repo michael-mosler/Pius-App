@@ -149,7 +149,7 @@ class TodayTableViewController: UITableViewController, ShowNewsArticleDelegate, 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? NewsArticleViewController else { return; }
         destination.delegate = self;
-        destination.urlToShow = newsUrlToShow;
+        // destination.segueData = newsUrlToShow;
     }
 
     func hasDismissed() {

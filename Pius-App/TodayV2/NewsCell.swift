@@ -8,20 +8,34 @@
 
 import UIKit
 
-class NewsCell: UITableViewCell {
+class TodayItemCell: UITableViewCell {
+    func layoutIfNeeded(forFrameView view: UIView) {
+        super.layoutIfNeeded()
+        view.layer.borderColor = Config.colorPiusBlue.cgColor
+        view.layer.borderWidth = 1.5
+        view.layer.cornerRadius = 10
+        view.layer.masksToBounds = false;
+    }
+}
+
+class NewsCell: TodayItemCell {
 
     @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var tableView: NewsTableView?
+    @IBOutlet weak var view: UIView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func layoutIfNeeded() {
+        layoutIfNeeded(forFrameView: view)
     }
+}
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
+class CalendarCell: TodayItemCell {
     
-    func loadData(container: TodayItemContainer) {
-        tableView?.loadData(container: container)
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var view: UIView!
+    @IBOutlet weak var messageLabel: UILabel!
+    
+    override func layoutIfNeeded() {
+        layoutIfNeeded(forFrameView: view)
+        // messageLabel.isHidden
     }
 }

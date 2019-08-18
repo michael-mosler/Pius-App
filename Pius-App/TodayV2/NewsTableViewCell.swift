@@ -9,6 +9,10 @@
 import UIKit
 import Kingfisher
 
+/*
+ * A single news item table cell that is filled from a single
+ * news item. Cell cares about setting of news text and image.
+ */
 class NewsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var newsTextLabel: UILabel!
@@ -41,5 +45,23 @@ class NewsTableViewCell: UITableViewCell {
     
     var href: String? {
         return newsItem?.href
+    }
+}
+
+/*
+ * Calendar item cell. This cell shows event text only as being used in
+ * Today view. In this context date of an event should be clear.
+ */
+class CalendarTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var calendarTextLabel: UILabel!
+    
+    var event: String? {
+        set(value) {
+            calendarTextLabel.text = value
+        }
+        get {
+            return calendarTextLabel.text
+        }
     }
 }
