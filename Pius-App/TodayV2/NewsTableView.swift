@@ -37,7 +37,6 @@ class TodayItemTableView: UITableView {
  * When selecting one item article is opened in a modal popover.
  */
 class NewsTableView: TodayItemTableView, UITableViewDelegate, UIPopoverPresentationControllerDelegate {
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         delegate = self
@@ -52,9 +51,22 @@ class NewsTableView: TodayItemTableView, UITableViewDelegate, UIPopoverPresentat
 }
 
 class CalendarTableView: TodayItemTableView {
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         dataSource = TodayV2TableViewController.shared.dataSource(forType: .calendar)
+    }
+}
+
+class PostingsTableView: TodayItemTableView {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        dataSource = TodayV2TableViewController.shared.dataSource(forType: .postings)
+    }
+}
+
+class DashboardTableView: TodayItemTableView {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        dataSource = TodayV2TableViewController.shared.dataSource(forType: .dashboard)
     }
 }

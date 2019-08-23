@@ -32,12 +32,10 @@ class CalendarTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSou
             // Date to filter for. Reduce schedules to the one with the given date.
             //let date = Date()
             
-            
-             let dateString = "2019-08-26" // change to your date format
-             let dateFormatter1 = DateFormatter()
-             dateFormatter1.dateFormat = "yyyy-MM-dd"
-             let date = dateFormatter1.date(from: dateString)!
-            
+            let dateString = "2019-08-26" // change to your date format
+            let dateFormatter1 = DateFormatter()
+            dateFormatter1.dateFormat = "yyyy-MM-dd"
+            let date = dateFormatter1.date(from: dateString)!
             
             let dateFormatter = DateFormatter()
             

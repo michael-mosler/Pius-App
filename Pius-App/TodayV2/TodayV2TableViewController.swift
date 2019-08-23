@@ -11,6 +11,8 @@ import UIKit
 enum DataSourceType: Int {
     case news = 0
     case calendar = 1
+    case postings = 2
+    case dashboard = 3
 }
 
 /*
@@ -33,7 +35,12 @@ protocol TodayItemDataSource {
  */
 class TodayViewSharedState {
     var controller: TodayItemContainer?
-    private var dataSources: [DataSourceType : UITableViewDataSource] = [ .news : NewsTableDataSource(), .calendar : CalendarTableDataSource() ]
+    private var dataSources: [DataSourceType : UITableViewDataSource] = [
+        .dashboard : DashboardTableDataSource(),
+        .postings : PostingsTableDataSource(),
+        .news : NewsTableDataSource(),
+        .calendar : CalendarTableDataSource()
+    ]
 
     func dataSource(forType type: DataSourceType) -> UITableViewDataSource? {
         return dataSources[type]
@@ -60,15 +67,30 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
         TodayV2TableViewController.shared.controller = self
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged);
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        pendingLoads = 2
+        pendingLoads = 4
+        (TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! DashboardTableDataSource).loadData(self)
+        (TodayV2TableViewController.shared.dataSource(forType: .postings) as! PostingsTableDataSource).loadData(self)
+        (TodayV2TableViewController.shared.dataSource(forType: .news) as! NewsTableDataSource).loadData(self)
+        (TodayV2TableViewController.shared.dataSource(forType: .calendar) as! CalendarTableDataSource).loadData(self)
+    }
+    
+    @objc func refreshScrollView(_ sender: UIRefreshControl) {
+        pendingLoads = 4
+        (TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! DashboardTableDataSource).loadData(self)
+        (TodayV2TableViewController.shared.dataSource(forType: .postings) as! PostingsTableDataSource).loadData(self)
         (TodayV2TableViewController.shared.dataSource(forType: .news) as! NewsTableDataSource).loadData(self)
         (TodayV2TableViewController.shared.dataSource(forType: .calendar) as! CalendarTableDataSource).loadData(self)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 5
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -76,8 +98,12 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
         case 0:
             return tableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath)
         case 1:
-            return tableView.dequeueReusableCell(withIdentifier: "calendarCell", for: indexPath)
+            return tableView.dequeueReusableCell(withIdentifier: "postingsCell", for: indexPath)
         case 2:
+            return tableView.dequeueReusableCell(withIdentifier: "dashboardCell", for: indexPath)
+        case 3:
+            return tableView.dequeueReusableCell(withIdentifier: "calendarCell", for: indexPath)
+        case 4:
             return tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath)
         default:
             return UITableViewCell()
@@ -133,20 +159,38 @@ extension TodayV2TableViewController {
     func didLoadData(_ sender: Any? = nil) {
         DispatchQueue.main.async {
             self.tableView.beginUpdates()
-            
-            if sender as? NewsTableDataSource != nil {
-                self.tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .none)
+            if sender as? DashboardTableDataSource != nil {
+                if let cell = self.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? DashboardCell {
+                    cell.tableView.reloadData()
+                    cell.tableView.layoutIfNeeded()
+                }
+            } else if sender as? NewsTableDataSource != nil {
+                if let cell = self.tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? NewsCell {
+                    cell.tableView.reloadData()
+                    cell.tableView.layoutIfNeeded()
+                }
             } else if sender as? CalendarTableDataSource != nil {
-                self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .none)
+                if let cell = self.tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? CalendarCell {
+                    cell.tableView.reloadData()
+                    cell.tableView.layoutIfNeeded()
+                }
+            } else if sender as? PostingsTableDataSource != nil {
+                if let cell = self.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? PostingsCell {
+                    cell.tableView.reloadData()
+                    cell.tableView.layoutIfNeeded()
+                }
             }
             self.tableView.endUpdates()
+
             self.tableView.reloadData()
             self.tableView.layoutIfNeeded()
         }
 
         pendingLoads -= 1
         if pendingLoads == 0 {
-            NSLog("Will reload")
+            DispatchQueue.main.async {
+                self.refreshControl?.endRefreshing()
+            }
         }
     }
     
