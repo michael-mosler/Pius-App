@@ -46,6 +46,9 @@
 		4C69EA6621E213B5008B77FB /* MGSwipeTableCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C69EA6521E213B5008B77FB /* MGSwipeTableCell.framework */; };
 		4C6BBD87230B2C2400137384 /* PostingsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD86230B2C2400137384 /* PostingsTableDataSource.swift */; };
 		4C6BBD89230F173200137384 /* DashboardTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD88230F173200137384 /* DashboardTableDataSource.swift */; };
+		4C6BBD8B2312BDE600137384 /* TodayTimetableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD8A2312BDE600137384 /* TodayTimetableCollectionViewCell.swift */; };
+		4C6BBD8D2312BF0000137384 /* TodayTimetableCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD8C2312BF0000137384 /* TodayTimetableCollectionView.swift */; };
+		4C6BBD8F2312C1E100137384 /* TimetableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD8E2312C1E100137384 /* TimetableDataSource.swift */; };
 		4C7C22902043117800ACA17B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C228F2043117700ACA17B /* AppDelegate.swift */; };
 		4C7C22922043117800ACA17B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C22912043117800ACA17B /* ViewController.swift */; };
 		4C7C22952043117800ACA17B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C22932043117800ACA17B /* Main.storyboard */; };
@@ -240,6 +243,9 @@
 		4C69EA6521E213B5008B77FB /* MGSwipeTableCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MGSwipeTableCell.framework; path = Carthage/Build/iOS/MGSwipeTableCell.framework; sourceTree = "<group>"; };
 		4C6BBD86230B2C2400137384 /* PostingsTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingsTableDataSource.swift; sourceTree = "<group>"; };
 		4C6BBD88230F173200137384 /* DashboardTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableDataSource.swift; sourceTree = "<group>"; };
+		4C6BBD8A2312BDE600137384 /* TodayTimetableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimetableCollectionViewCell.swift; sourceTree = "<group>"; };
+		4C6BBD8C2312BF0000137384 /* TodayTimetableCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimetableCollectionView.swift; sourceTree = "<group>"; };
+		4C6BBD8E2312C1E100137384 /* TimetableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDataSource.swift; sourceTree = "<group>"; };
 		4C7C228C2043117700ACA17B /* Pius-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pius-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7C228F2043117700ACA17B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C7C22912043117800ACA17B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -602,6 +608,7 @@
 				4C93689E230832590038CE9B /* TodayHeaderCell.swift */,
 				4C9368A623083F490038CE9B /* NewsTableViewCell.swift */,
 				4C9368AB23084C520038CE9B /* NewsCell.swift */,
+				4C6BBD8A2312BDE600137384 /* TodayTimetableCollectionViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -610,6 +617,7 @@
 			isa = PBXGroup;
 			children = (
 				4C9368A9230844FC0038CE9B /* NewsTableView.swift */,
+				4C6BBD8C2312BF0000137384 /* TodayTimetableCollectionView.swift */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -621,6 +629,7 @@
 				4C9368B02309A3660038CE9B /* CalendarTableDataSource.swift */,
 				4C6BBD86230B2C2400137384 /* PostingsTableDataSource.swift */,
 				4C6BBD88230F173200137384 /* DashboardTableDataSource.swift */,
+				4C6BBD8E2312C1E100137384 /* TimetableDataSource.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -1048,6 +1057,7 @@
 				4C30DB7D21BC0CDF002FCAF3 /* TodayCalendarDetailsCell.swift in Sources */,
 				4C30DB7B21BC0C9D002FCAF3 /* TodayCalendarTableView.swift in Sources */,
 				4C93689022F82DDA0038CE9B /* CourseItem.swift in Sources */,
+				4C6BBD8F2312C1E100137384 /* TimetableDataSource.swift in Sources */,
 				4C30DB8121BD9BD6002FCAF3 /* TodayPostingsDetailsCell.swift in Sources */,
 				4C1FDE4E205567C8006092C9 /* Vertretungsplan.swift in Sources */,
 				4C93688322F82DA90038CE9B /* TimetableViewController.swift in Sources */,
@@ -1072,6 +1082,7 @@
 				4C93688F22F82DDA0038CE9B /* TimetableTableView.swift in Sources */,
 				4C5E0E7B20A8797D00DAE459 /* OnboardingViewController.swift in Sources */,
 				4C93688E22F82DDA0038CE9B /* CourseTypePickerView.swift in Sources */,
+				4C6BBD8D2312BF0000137384 /* TodayTimetableCollectionView.swift in Sources */,
 				4CFB105720D0490B00432B1A /* CalendarLoader.swift in Sources */,
 				4C1AC38221BED6CD00E2F3A5 /* PostingsLoader.swift in Sources */,
 				4C48F6D121F6433C00B20505 /* IOSHelper.swift in Sources */,
@@ -1085,6 +1096,7 @@
 				4C55381721B4435C000374D3 /* TodayDashboardTableView.swift in Sources */,
 				4CA4907720DE4DDC00796457 /* AppDefaults.swift in Sources */,
 				4CED4A7D204749580012CB45 /* EinstellungenViewController.swift in Sources */,
+				4C6BBD8B2312BDE600137384 /* TodayTimetableCollectionViewCell.swift in Sources */,
 				4C6BBD89230F173200137384 /* DashboardTableDataSource.swift in Sources */,
 				4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */,
 				4CB2AF522198813C007E5D1F /* Reachability.swift in Sources */,

@@ -13,6 +13,7 @@ enum DataSourceType: Int {
     case calendar = 1
     case postings = 2
     case dashboard = 3
+    case timetable = 4
 }
 
 /*
@@ -22,12 +23,18 @@ enum DataSourceType: Int {
 protocol TodayItemContainer {
     func didLoadData(_ sender: Any?)
     func perform(segue: String, with data: Any?, presentModally: Bool)
+    
+    func registerTimerDelegate(_ delegate: TimerDelegate)
 }
 
 protocol TodayItemDataSource {
     func needsShow() -> Bool
     func willTryLoading() -> Bool
     func loadData(_ observer: TodayItemContainer)
+}
+
+protocol TimerDelegate {
+    func onTick(_ timer: Timer)
 }
 
 /*
@@ -39,7 +46,8 @@ class TodayViewSharedState {
         .dashboard : DashboardTableDataSource(),
         .postings : PostingsTableDataSource(),
         .news : NewsTableDataSource(),
-        .calendar : CalendarTableDataSource()
+        .calendar : CalendarTableDataSource(),
+        .timetable: TimetableDataSource()
     ]
 
     func dataSource(forType type: DataSourceType) -> UITableViewDataSource? {
@@ -50,6 +58,8 @@ class TodayViewSharedState {
 class TodayV2TableViewController: UITableViewController, TodayItemContainer, ModalDismissDelegate {
 
     private var statusBarShouldBeHidden: Bool = false;
+    private var timer: Timer?
+    private var timerDelegates: [TimerDelegate] = []
     
     override var prefersStatusBarHidden: Bool {
         return statusBarShouldBeHidden;
@@ -63,34 +73,52 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
     private var pendingLoads = 0
     private var segueData: Any?
     
+    func registerTimerDelegate(_ delegate: TimerDelegate) {
+        timerDelegates.append(delegate)
+    }
+    
+    private func onTick(_ timer: Timer) {
+        timerDelegates.forEach({ delegate in delegate.onTick(timer) })
+    }
+    
     override func awakeFromNib() {
         TodayV2TableViewController.shared.controller = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged);
+        refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(exactly: 5)!, repeats: true, block: { timer in self.onTick(timer) })
+
         pendingLoads = 4
         (TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! DashboardTableDataSource).loadData(self)
         (TodayV2TableViewController.shared.dataSource(forType: .postings) as! PostingsTableDataSource).loadData(self)
         (TodayV2TableViewController.shared.dataSource(forType: .news) as! NewsTableDataSource).loadData(self)
         (TodayV2TableViewController.shared.dataSource(forType: .calendar) as! CalendarTableDataSource).loadData(self)
+        (TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TimetableDataSource).loadData(self)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        timer?.invalidate()
+    }
+
     @objc func refreshScrollView(_ sender: UIRefreshControl) {
         pendingLoads = 4
         (TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! DashboardTableDataSource).loadData(self)
         (TodayV2TableViewController.shared.dataSource(forType: .postings) as! PostingsTableDataSource).loadData(self)
         (TodayV2TableViewController.shared.dataSource(forType: .news) as! NewsTableDataSource).loadData(self)
         (TodayV2TableViewController.shared.dataSource(forType: .calendar) as! CalendarTableDataSource).loadData(self)
+        (TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TimetableDataSource).loadData(self)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -105,6 +133,8 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
             return tableView.dequeueReusableCell(withIdentifier: "calendarCell", for: indexPath)
         case 4:
             return tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath)
+        case 5:
+            return tableView.dequeueReusableCell(withIdentifier: "timetableCell", for: indexPath)
         default:
             return UITableViewCell()
         }
@@ -161,23 +191,22 @@ extension TodayV2TableViewController {
             self.tableView.beginUpdates()
             if sender as? DashboardTableDataSource != nil {
                 if let cell = self.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? DashboardCell {
-                    cell.tableView.reloadData()
-                    cell.tableView.layoutIfNeeded()
+                    cell.reload()
+                }
+                if let cell = self.tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? TimetableCell {
+                    cell.reload()
                 }
             } else if sender as? NewsTableDataSource != nil {
                 if let cell = self.tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? NewsCell {
-                    cell.tableView.reloadData()
-                    cell.tableView.layoutIfNeeded()
+                    cell.reload()
                 }
             } else if sender as? CalendarTableDataSource != nil {
                 if let cell = self.tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? CalendarCell {
-                    cell.tableView.reloadData()
-                    cell.tableView.layoutIfNeeded()
+                    cell.reload()
                 }
             } else if sender as? PostingsTableDataSource != nil {
                 if let cell = self.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? PostingsCell {
-                    cell.tableView.reloadData()
-                    cell.tableView.layoutIfNeeded()
+                    cell.reload()
                 }
             }
             self.tableView.endUpdates()

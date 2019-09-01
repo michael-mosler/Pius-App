@@ -70,3 +70,15 @@ class DashboardTableView: TodayItemTableView {
         dataSource = TodayV2TableViewController.shared.dataSource(forType: .dashboard)
     }
 }
+
+class TodayTimetableTableView: TodayItemTableView, UITableViewDelegate {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        dataSource = TodayV2TableViewController.shared.dataSource(forType: .timetable)
+        delegate = self
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 30
+    }
+}

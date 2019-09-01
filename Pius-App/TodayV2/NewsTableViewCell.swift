@@ -101,7 +101,7 @@ class DashboardTableViewCell: UITableViewCell {
     
     var _items: DetailItems?
     
-    var item: DetailItems? {
+    var items: DetailItems? {
         set(value) {
             _items = value
             if let items = _items {
@@ -147,6 +147,54 @@ class DashboardTableViewCell: UITableViewCell {
         }
         get {
             return _items
+        }
+    }
+}
+
+class TodayTimetableItemCell: UITableViewCell {
+    private var _scheduleItem: ScheduleItem?
+    private var _lesson: Int?
+    
+    @IBOutlet weak var lessonTextLabel: UILabel!
+    @IBOutlet weak var courseTextLabel: UILabel!
+    @IBOutlet weak var roomTextLabel: UILabel!
+    @IBOutlet weak var teacherTextLabel: UILabel!
+    
+    var scheduleItem: ScheduleItem? {
+        set(value) {
+            _scheduleItem = value
+            if let scheduleItem = _scheduleItem {
+                courseTextLabel.text = scheduleItem.courseName
+                roomTextLabel.text = scheduleItem.room
+                teacherTextLabel.text = scheduleItem.teacher
+            }
+        }
+        get {
+            return _scheduleItem
+        }
+    }
+    
+    var lesson: Int? {
+        set(value) {
+            _lesson = value
+            if let lesson = _lesson {
+                if lesson < 2 {
+                    lessonTextLabel.text = "\(lesson + 1)."
+                } else if lesson == 2 {
+                    lessonTextLabel.text = nil
+                } else if lesson < 6 {
+                    lessonTextLabel.text = "\(lesson)."
+                } else if lesson == 6 {
+                    lessonTextLabel.text = nil
+                } else {
+                    lessonTextLabel.text = "\(lesson - 1)."
+                }
+            } else {
+                lessonTextLabel.text = nil
+            }
+        }
+        get {
+            return _lesson
         }
     }
 }

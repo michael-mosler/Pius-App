@@ -82,7 +82,7 @@ class DashboardTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let items = data[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "dashboardItemCell") as! DashboardTableViewCell
-        cell.item = items
+        cell.items = items
         return cell
     }
 }

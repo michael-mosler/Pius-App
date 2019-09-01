@@ -47,18 +47,39 @@ class FormatHelper {
     }
 }
 
+enum Week: Int {
+    case A = 0
+    case B = 1
+}
+
 class DateHelper {
-    // Gets the current week: When odd week num returns "A" else "B".
-    static func week() -> String {
+    static func week() -> Week? {
         if let calendar = NSCalendar(calendarIdentifier: .ISO8601) {
             let oddWeek = (calendar.component(.weekOfYear, from: Date()) % 2) != 0;
-            return (oddWeek) ? "A" : "B";
+            return (oddWeek) ? .A : .B;
+        } else {
+            return nil;
+        }
+    }
+    
+    // Gets the current week: When odd week num returns "A" else "B".
+    static func week() -> String {
+        if let week = week() {
+            return week == .A ? "A" : "B";
         } else {
             return "Unbekannte";
         }
-
     }
     
+    static func dayOfWeek() -> Int {
+        var calendar = NSCalendar.current
+        calendar.locale = Locale(identifier: "de_DE")
+        let weekDay = calendar.component(.weekday, from: Date())
+        
+        // Monday is day 2 here, we want it to be 0.
+        return (weekDay + 5) % 7
+
+    }
     static func formatIsoUTCDate(date: String?) -> String {
         var isoDate: Date
         let dateFormatter = DateFormatter();
