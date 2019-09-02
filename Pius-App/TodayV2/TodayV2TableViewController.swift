@@ -33,8 +33,8 @@ protocol TodayItemDataSource {
     func loadData(_ observer: TodayItemContainer)
 }
 
-protocol TimerDelegate {
-    func onTick(_ timer: Timer)
+protocol TimerDelegate: NSObject {
+    func onTick(_ timer: Timer?)
 }
 
 /*
@@ -56,7 +56,11 @@ class TodayViewSharedState {
 }
 
 class TodayV2TableViewController: UITableViewController, TodayItemContainer, ModalDismissDelegate {
-
+    private let originalCellOrder: [String] = [
+        "headerCell", "postingsCell", "timetableCell", "dashboardCell", "calendarCell", "newsCell"]
+    private var cellOrder: [String] = []
+        // "headerCell", "postingsCell", "timetableCell", "dashboardCell", "calendarCell", "newsCell"]
+    
     private var statusBarShouldBeHidden: Bool = false;
     private var timer: Timer?
     private var timerDelegates: [TimerDelegate] = []
@@ -74,7 +78,12 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
     private var segueData: Any?
     
     func registerTimerDelegate(_ delegate: TimerDelegate) {
+        if let _ = timerDelegates.first(where: { registeredDelegate in return delegate === registeredDelegate }) {
+            delegate.onTick(timer)
+            return
+        }
         timerDelegates.append(delegate)
+        delegate.onTick(timer)
     }
     
     private func onTick(_ timer: Timer) {
@@ -93,7 +102,9 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(exactly: 5)!, repeats: true, block: { timer in self.onTick(timer) })
+        if timer == nil {
+            timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(exactly: 1)!, repeats: true, block: { timer in self.onTick(timer) })
+        }
 
         pendingLoads = 4
         (TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! DashboardTableDataSource).loadData(self)
@@ -106,6 +117,7 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         timer?.invalidate()
+        timer = nil
     }
 
     @objc func refreshScrollView(_ sender: UIRefreshControl) {
@@ -118,53 +130,18 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        cellOrder = originalCellOrder
         return 6
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
-            return tableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath)
-        case 1:
-            return tableView.dequeueReusableCell(withIdentifier: "postingsCell", for: indexPath)
-        case 2:
-            return tableView.dequeueReusableCell(withIdentifier: "dashboardCell", for: indexPath)
-        case 3:
-            return tableView.dequeueReusableCell(withIdentifier: "calendarCell", for: indexPath)
-        case 4:
-            return tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath)
-        case 5:
-            return tableView.dequeueReusableCell(withIdentifier: "timetableCell", for: indexPath)
-        default:
-            return UITableViewCell()
-        }
+        guard indexPath.row < 6 else { return UITableViewCell() }
+        guard indexPath.row > 0 else { return tableView.dequeueReusableCell(withIdentifier: cellOrder[0], for: indexPath) }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellOrder[indexPath.row], for: indexPath) as! TodayItemCell
+        cell.reload()
+        return cell
     }
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension TodayV2TableViewController {
@@ -186,26 +163,35 @@ extension TodayV2TableViewController {
         }
     }
 
+    private func rowNum(forCellIdentifier id: String) -> Int? {
+        for i in 0...cellOrder.count {
+            if cellOrder[i] == id {
+                return i
+            }
+        }
+        return nil
+    }
+
     func didLoadData(_ sender: Any? = nil) {
         DispatchQueue.main.async {
             self.tableView.beginUpdates()
             if sender as? DashboardTableDataSource != nil {
-                if let cell = self.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? DashboardCell {
+                if let rowNum = self.rowNum(forCellIdentifier: "dashboardCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
                     cell.reload()
                 }
-                if let cell = self.tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? TimetableCell {
+                if let rowNum = self.rowNum(forCellIdentifier: "timetableCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
                     cell.reload()
                 }
             } else if sender as? NewsTableDataSource != nil {
-                if let cell = self.tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? NewsCell {
+                if let rowNum = self.rowNum(forCellIdentifier: "newsCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
                     cell.reload()
                 }
             } else if sender as? CalendarTableDataSource != nil {
-                if let cell = self.tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? CalendarCell {
+                if let rowNum = self.rowNum(forCellIdentifier: "calendarCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
                     cell.reload()
                 }
             } else if sender as? PostingsTableDataSource != nil {
-                if let cell = self.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? PostingsCell {
+                if let rowNum = self.rowNum(forCellIdentifier: "postingsCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
                     cell.reload()
                 }
             }

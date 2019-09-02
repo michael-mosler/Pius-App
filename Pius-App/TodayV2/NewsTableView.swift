@@ -81,4 +81,12 @@ class TodayTimetableTableView: TodayItemTableView, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 30
     }
+    
+    func onTick(forRow row: Int) {
+        for i in 0...numberOfRows(inSection: 0) {
+            if let cell = cellForRow(at: IndexPath(row: i, section: 0)) as? TodayTimetableItemCell {
+                cell.onTick(forRow: row)
+            }
+        }
+    }
 }

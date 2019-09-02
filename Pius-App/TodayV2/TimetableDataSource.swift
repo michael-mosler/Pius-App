@@ -21,6 +21,7 @@ fileprivate class TimetableCollectionViewDataSource: NSObject, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "timetableCollectionCell", for: indexPath) as! TodayTimetableCollectionViewCell
+        cell.forDay = indexPath.row
         cell.reload()
         return cell
     }

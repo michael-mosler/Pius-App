@@ -102,10 +102,29 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var view: UIView!
 
+    // The day that is selected in collection view. 0 = Monday, 4 = Friday
     private var currentDay: Int {
         get {
             guard let scrollView = collectionView else { return 0 }
             return Int((scrollView.contentOffset.x / CGFloat(IOSHelper.screenWidth)).rounded());
+        }
+    }
+
+    // The day to show, for weekends this return 0 = Monday otherwise the real
+    // day is returned.
+    private var dayToShow: Int {
+        get {
+            return DateHelper.dayOfWeek() > 4 ? 0 : DateHelper.dayOfWeek()
+        }
+    }
+    
+    // The week to show. On weekends the week to show swaps, aka if current week is .A
+    // variable value is .B.
+    private var weekToShow: Week {
+        get {
+            guard let week: Week = DateHelper.week() else { return .A }
+            guard DateHelper.dayOfWeek() > 4 else { return week }
+            return week == .A ? .B : .A
         }
     }
 
@@ -114,8 +133,8 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
         collectionView.delegate = self
 
         let dataSource = TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TimetableDataSource
-        dataSource.forWeek = DateHelper.week()
-        dataSource.forDay = DateHelper.dayOfWeek()
+        dataSource.forWeek = weekToShow
+        dataSource.forDay = dayToShow
         reload()
     }
 
@@ -134,7 +153,6 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
         
         // On first show center on timetable for current day of week.
         if firstShow {
-            let dayToShow = DateHelper.dayOfWeek() > 4 ? 0 : DateHelper.dayOfWeek()
             collectionView.scrollToItem(at: IndexPath(row: dayToShow, section: 0), at: .centeredHorizontally, animated: false)
             
             if DateHelper.dayOfWeek() == currentDay {
@@ -149,8 +167,10 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
     
     // This function ensures proper sizing of collection view items.
     override func reload() {
+        let itemCount = ScheduleForDay().numberOfItems
+        
         collectionView.reloadData()
-        collectionViewHeightConstraint.constant = 13 * 30 + 3
+        collectionViewHeightConstraint.constant = CGFloat(itemCount * TodayScreenUnits.timetableRowHeight + 2 * TodayScreenUnits.timetableSpacing)
         flowLayout.itemSize = CGSize(width: collectionView.frame.width - 8, height: collectionViewHeightConstraint.constant)
     }
     
@@ -163,9 +183,11 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
             dayTextLabel.attributedText = NSAttributedString(string: Config.dayNames[currentDay])
         }
         
+        // Set data source and let it know which day of week and week it is running for.
         let dataSource = TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TimetableDataSource
         dataSource.forWeek = DateHelper.week()
         dataSource.forDay = currentDay
+        
         reload()
         layoutIfNeeded()
     }

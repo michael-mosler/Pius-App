@@ -80,6 +80,7 @@ class DateHelper {
         return (weekDay + 5) % 7
 
     }
+
     static func formatIsoUTCDate(date: String?) -> String {
         var isoDate: Date
         let dateFormatter = DateFormatter();
@@ -94,5 +95,20 @@ class DateHelper {
         dateFormatter.dateFormat = "EEEE, d. MMMM, HH:mm";
         dateFormatter.locale = Locale(identifier: "de_DE");
         return "\(dateFormatter.string(from: isoDate)) Uhr";
+    }
+    
+    // Returns epoch for the given time for current date.
+    // Time must be in Format HH:mm:ss, e.g. 07:55:00.
+    static func epoch(forTime time: String) -> TimeInterval? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "de_DE")
+
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let todayDateString = dateFormatter.string(from: Date())
+        let dateString = "\(todayDateString)T\(time)"
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let date = dateFormatter.date(from: dateString)
+        return date?.timeIntervalSince1970
     }
 }

@@ -154,11 +154,13 @@ class DashboardTableViewCell: UITableViewCell {
 class TodayTimetableItemCell: UITableViewCell {
     private var _scheduleItem: ScheduleItem?
     private var _lesson: Int?
+    private var _row: Int?
     
     @IBOutlet weak var lessonTextLabel: UILabel!
     @IBOutlet weak var courseTextLabel: UILabel!
     @IBOutlet weak var roomTextLabel: UILabel!
     @IBOutlet weak var teacherTextLabel: UILabel!
+    @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint!
     
     var scheduleItem: ScheduleItem? {
         set(value) {
@@ -176,18 +178,35 @@ class TodayTimetableItemCell: UITableViewCell {
     
     var lesson: Int? {
         set(value) {
-            _lesson = value
-            if let lesson = _lesson {
+            _row = value
+            if let lesson = value {
+                // Add some extra space to top of first row.
+                // This space is needed to display time marker.
+                if _row == 0 {
+                    stackViewTopConstraint.constant = 0
+                }
+
                 if lesson < 2 {
+                    _lesson = lesson + 1
                     lessonTextLabel.text = "\(lesson + 1)."
                 } else if lesson == 2 {
+                    _lesson = nil
                     lessonTextLabel.text = nil
                 } else if lesson < 6 {
+                    _lesson = lesson
                     lessonTextLabel.text = "\(lesson)."
                 } else if lesson == 6 {
+                    _lesson = nil
+                    lessonTextLabel.text = nil
+                } else if lesson < 9 {
+                    _lesson = lesson - 1
+                    lessonTextLabel.text = "\(lesson - 1)."
+                } else if lesson == 9 {
+                    _lesson = nil
                     lessonTextLabel.text = nil
                 } else {
-                    lessonTextLabel.text = "\(lesson - 1)."
+                    _lesson = lesson - 2
+                    lessonTextLabel.text = "\(lesson - 2)."
                 }
             } else {
                 lessonTextLabel.text = nil
@@ -195,6 +214,21 @@ class TodayTimetableItemCell: UITableViewCell {
         }
         get {
             return _lesson
+        }
+    }
+    
+    func onTick(forRow row: Int) {
+        // For a break item no action is needed.
+        guard let _ = _lesson else { return }
+        
+        if _row == row {
+            if !lessonTextLabel.isHidden {
+                lessonTextLabel.isHidden = true
+            }
+        } else {
+            if lessonTextLabel.isHidden {
+                lessonTextLabel.isHidden = false
+            }
         }
     }
 }

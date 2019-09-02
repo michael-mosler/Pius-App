@@ -17,3 +17,9 @@ class IOSHelper {
         }
     }
 }
+
+struct TodayScreenUnits {
+    static let timetableRowHeight = 30
+    static let timetableSpacing = 8
+    
+}
