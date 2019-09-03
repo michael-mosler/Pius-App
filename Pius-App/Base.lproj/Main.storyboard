@@ -1798,7 +1798,7 @@ Cg
                                                                 </prototypes>
                                                             </tableView>
                                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="07:55" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2n-GP-sts">
-                                                                <rect key="frame" x="4" y="1" width="33" height="15"/>
+                                                                <rect key="frame" x="0.0" y="1" width="33" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="YgS-xK-Z1N"/>
                                                                 </constraints>
@@ -1806,8 +1806,8 @@ Cg
                                                                 <color key="textColor" red="1" green="0.0" blue="0.1138523147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dxd-mz-o9d">
-                                                                <rect key="frame" x="39" y="6.5" width="4" height="4"/>
+                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dxd-mz-o9d">
+                                                                <rect key="frame" x="35" y="6.5" width="4" height="4"/>
                                                                 <color key="backgroundColor" red="1" green="0.0" blue="0.1138523147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="4" id="6of-2a-5MJ"/>
@@ -1820,7 +1820,7 @@ Cg
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OxG-Lh-Qnh">
-                                                                <rect key="frame" x="39" y="8" width="274" height="1"/>
+                                                                <rect key="frame" x="35" y="8" width="278" height="1"/>
                                                                 <color key="backgroundColor" red="1" green="0.0" blue="0.1138523147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="ncG-Q9-Daz"/>
@@ -1834,7 +1834,7 @@ Cg
                                                         <constraint firstAttribute="trailing" secondItem="OxG-Lh-Qnh" secondAttribute="trailing" constant="4" id="YDG-DW-kBC"/>
                                                         <constraint firstItem="Dxd-mz-o9d" firstAttribute="centerY" secondItem="OxG-Lh-Qnh" secondAttribute="centerY" id="Yca-5u-1kc"/>
                                                         <constraint firstAttribute="bottom" secondItem="guA-af-sJK" secondAttribute="bottom" id="Zbd-0u-WtE"/>
-                                                        <constraint firstItem="x2n-GP-sts" firstAttribute="leading" secondItem="gaW-Rb-TJW" secondAttribute="leading" constant="4" id="aEv-ap-Yhk"/>
+                                                        <constraint firstItem="x2n-GP-sts" firstAttribute="leading" secondItem="gaW-Rb-TJW" secondAttribute="leading" id="aEv-ap-Yhk"/>
                                                         <constraint firstItem="guA-af-sJK" firstAttribute="leading" secondItem="gaW-Rb-TJW" secondAttribute="leading" id="e1V-i9-PhT"/>
                                                         <constraint firstItem="OxG-Lh-Qnh" firstAttribute="leading" secondItem="x2n-GP-sts" secondAttribute="trailing" constant="2" id="nFX-ek-6tu"/>
                                                         <constraint firstItem="Dxd-mz-o9d" firstAttribute="leading" secondItem="x2n-GP-sts" secondAttribute="trailing" constant="2" id="rSJ-u9-61H"/>
@@ -1843,6 +1843,7 @@ Cg
                                                     </constraints>
                                                     <connections>
                                                         <outlet property="tableView" destination="guA-af-sJK" id="VsS-3q-DOX"/>
+                                                        <outlet property="timeMarkerDotView" destination="Dxd-mz-o9d" id="4C7-tY-mjB"/>
                                                         <outlet property="timeMarkerLabel" destination="x2n-GP-sts" id="oWa-w6-pya"/>
                                                         <outlet property="timeMarkerTopConstraint" destination="uzc-zd-ez1" id="BSH-iu-jdP"/>
                                                         <outlet property="timeMarkerView" destination="OxG-Lh-Qnh" id="4mR-SB-fhE"/>

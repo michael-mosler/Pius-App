@@ -50,6 +50,7 @@ class TimetableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource 
     // Refresh timetable.
     func loadData(_ observer: TodayItemContainer) {
         timetable  = AppDefaults.timetable
+        observer.didLoadData(self)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

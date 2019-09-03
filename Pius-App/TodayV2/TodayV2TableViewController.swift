@@ -42,7 +42,7 @@ protocol TimerDelegate: NSObject {
  */
 class TodayViewSharedState {
     var controller: TodayItemContainer?
-    private var dataSources: [DataSourceType : UITableViewDataSource] = [
+    fileprivate let dataSources: [DataSourceType : UITableViewDataSource] = [
         .dashboard : DashboardTableDataSource(),
         .postings : PostingsTableDataSource(),
         .news : NewsTableDataSource(),
@@ -56,10 +56,17 @@ class TodayViewSharedState {
 }
 
 class TodayV2TableViewController: UITableViewController, TodayItemContainer, ModalDismissDelegate {
-    private let originalCellOrder: [String] = [
-        "headerCell", "postingsCell", "timetableCell", "dashboardCell", "calendarCell", "newsCell"]
-    private var cellOrder: [String] = []
+    private let dataSourcesToCellPrototypes: [DataSourceType : String] = [
+        .dashboard : "dashboardCell",
+        .postings : "postingsCell",
+        .news : "newsCell",
+        .calendar : "calendarCell",
+        .timetable : "timetableCell"
+    ]
+    
+    private let originalCellOrder: [String]
         // "headerCell", "postingsCell", "timetableCell", "dashboardCell", "calendarCell", "newsCell"]
+    private var cellOrder: [String] = []
     
     private var statusBarShouldBeHidden: Bool = false;
     private var timer: Timer?
@@ -77,6 +84,7 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
     private var pendingLoads = 0
     private var segueData: Any?
     
+    // Register a timer delegate.
     func registerTimerDelegate(_ delegate: TimerDelegate) {
         if let _ = timerDelegates.first(where: { registeredDelegate in return delegate === registeredDelegate }) {
             delegate.onTick(timer)
@@ -86,8 +94,33 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
         delegate.onTick(timer)
     }
     
+    // Delegate timer tick to all registered delegates.
     private func onTick(_ timer: Timer) {
         timerDelegates.forEach({ delegate in delegate.onTick(timer) })
+    }
+    
+    override init(style: UITableView.Style) {
+        originalCellOrder = [
+            "headerCell",
+            dataSourcesToCellPrototypes[.postings],
+            dataSourcesToCellPrototypes[.timetable],
+            dataSourcesToCellPrototypes[.dashboard],
+            dataSourcesToCellPrototypes[.calendar],
+            dataSourcesToCellPrototypes[.news]
+        ] as! [String]
+        super.init(style: style)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        originalCellOrder = [
+            "headerCell",
+            dataSourcesToCellPrototypes[.postings],
+            dataSourcesToCellPrototypes[.timetable],
+            dataSourcesToCellPrototypes[.dashboard],
+            dataSourcesToCellPrototypes[.calendar],
+            dataSourcesToCellPrototypes[.news]
+            ] as! [String]
+        super.init(coder: aDecoder)
     }
     
     override func awakeFromNib() {
@@ -99,6 +132,24 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
         refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged)
     }
     
+    // Starts load for all Today sub-views.
+    private func loadData() {
+        pendingLoads = 0
+        TodayV2TableViewController.shared.dataSources.forEach({ item in
+            let (_, dataSource) = item
+            if let dataSource = dataSource as? TodayItemDataSource, dataSource.willTryLoading() {
+                pendingLoads += 1
+            }
+        })
+        
+        TodayV2TableViewController.shared.dataSources.forEach({ item in
+            let (_, dataSource) = item
+            if let dataSource = dataSource as? TodayItemDataSource, dataSource.willTryLoading() {
+                dataSource.loadData(self)
+            }
+        })
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -106,31 +157,36 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
             timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(exactly: 1)!, repeats: true, block: { timer in self.onTick(timer) })
         }
 
-        pendingLoads = 4
-        (TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! DashboardTableDataSource).loadData(self)
-        (TodayV2TableViewController.shared.dataSource(forType: .postings) as! PostingsTableDataSource).loadData(self)
-        (TodayV2TableViewController.shared.dataSource(forType: .news) as! NewsTableDataSource).loadData(self)
-        (TodayV2TableViewController.shared.dataSource(forType: .calendar) as! CalendarTableDataSource).loadData(self)
-        (TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TimetableDataSource).loadData(self)
+        loadData()
     }
     
+    // Invalidate timer, will be restarted when view appears again.
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         timer?.invalidate()
         timer = nil
     }
 
+    // Does nothing else than reload all sub-views.
     @objc func refreshScrollView(_ sender: UIRefreshControl) {
-        pendingLoads = 4
-        (TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! DashboardTableDataSource).loadData(self)
-        (TodayV2TableViewController.shared.dataSource(forType: .postings) as! PostingsTableDataSource).loadData(self)
-        (TodayV2TableViewController.shared.dataSource(forType: .news) as! NewsTableDataSource).loadData(self)
-        (TodayV2TableViewController.shared.dataSource(forType: .calendar) as! CalendarTableDataSource).loadData(self)
-        (TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TimetableDataSource).loadData(self)
+        loadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         cellOrder = originalCellOrder
+        
+        // Ask all data sources if show is needed. When not remove associated
+        // sub-view.
+        TodayV2TableViewController.shared.dataSources.forEach({ item in
+            let (key, dataSource) = item
+            if let dataSource = dataSource as? TodayItemDataSource,
+                !dataSource.needsShow(),
+                let cellPrototype = dataSourcesToCellPrototypes[key],
+                let index = cellOrder.firstIndex(of: cellPrototype) {
+                cellOrder.remove(at: index)
+            }
+        })
+        
         return 6
     }
 
@@ -138,8 +194,10 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
         guard indexPath.row < 6 else { return UITableViewCell() }
         guard indexPath.row > 0 else { return tableView.dequeueReusableCell(withIdentifier: cellOrder[0], for: indexPath) }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellOrder[indexPath.row], for: indexPath) as! TodayItemCell
-        cell.reload()
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellOrder[indexPath.row], for: indexPath)
+        if let cell = cell as? TodayItemCell {
+            cell.reload()
+        }
         return cell
     }
 }
@@ -164,7 +222,7 @@ extension TodayV2TableViewController {
     }
 
     private func rowNum(forCellIdentifier id: String) -> Int? {
-        for i in 0...cellOrder.count {
+        for i in 0..<cellOrder.count {
             if cellOrder[i] == id {
                 return i
             }

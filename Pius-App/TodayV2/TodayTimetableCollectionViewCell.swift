@@ -12,6 +12,7 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
     @IBOutlet weak var tableView: TodayTimetableTableView!
     @IBOutlet weak var timeMarkerView: UIView!
     @IBOutlet weak var timeMarkerLabel: UILabel!
+    @IBOutlet weak var timeMarkerDotView: UIView!
     @IBOutlet weak var timeMarkerTopConstraint: NSLayoutConstraint!
     
     private let epochFor0755 = DateHelper.epoch(forTime: "07:55:00")
@@ -33,6 +34,10 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
                 }
             }
         }
+
+        timeMarkerView.isHidden = true
+        timeMarkerDotView.isHidden = true
+        timeMarkerLabel.isHidden = true
     }
     
     func reload() {
@@ -42,6 +47,7 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
     func onTick(_ timer: Timer?) {
         guard forDay == DateHelper.dayOfWeek(), let epochFor0755 = epochFor0755 else {
             timeMarkerView.isHidden = true
+            timeMarkerDotView.isHidden = true
             timeMarkerLabel.isHidden = true
             return
         }
@@ -50,7 +56,7 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
         dateFormatter.locale = Locale(identifier: "de_DE")
         dateFormatter.dateFormat = "HH:mm"
 
-        let epochSince1970 = Date().timeIntervalSince1970 - 7200
+        let epochSince1970 = Date().timeIntervalSince1970
         
         // This is the number of seconds since 07:55h today.
         // row is the row which is covered by the lesson addressed
@@ -63,6 +69,7 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
         else {
             timeMarkerLabel.isHidden = true
             timeMarkerView.isHidden = true
+            timeMarkerDotView.isHidden = true
             return
         }
         
@@ -73,6 +80,7 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
         
         timeMarkerLabel.isHidden = false
         timeMarkerView.isHidden = false
+        timeMarkerDotView.isHidden = false
         timeMarkerTopConstraint.constant = offset + 8
         timeMarkerLabel.text = dateFormatter.string(from: Date())
 
