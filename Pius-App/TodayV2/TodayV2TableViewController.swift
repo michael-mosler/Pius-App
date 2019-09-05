@@ -63,9 +63,8 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
         .calendar : "calendarCell",
         .timetable : "timetableCell"
     ]
-    
-    private let originalCellOrder: [String]
-        // "headerCell", "postingsCell", "timetableCell", "dashboardCell", "calendarCell", "newsCell"]
+
+    // This is the final list of cells to show.
     private var cellOrder: [String] = []
     
     private var statusBarShouldBeHidden: Bool = false;
@@ -100,27 +99,13 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
     }
     
     override init(style: UITableView.Style) {
-        originalCellOrder = [
-            "headerCell",
-            dataSourcesToCellPrototypes[.postings],
-            dataSourcesToCellPrototypes[.timetable],
-            dataSourcesToCellPrototypes[.dashboard],
-            dataSourcesToCellPrototypes[.calendar],
-            dataSourcesToCellPrototypes[.news]
-        ] as! [String]
         super.init(style: style)
+        cellOrder = cellsToShow()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        originalCellOrder = [
-            "headerCell",
-            dataSourcesToCellPrototypes[.postings],
-            dataSourcesToCellPrototypes[.timetable],
-            dataSourcesToCellPrototypes[.dashboard],
-            dataSourcesToCellPrototypes[.calendar],
-            dataSourcesToCellPrototypes[.news]
-            ] as! [String]
         super.init(coder: aDecoder)
+        cellOrder = cellsToShow()
     }
     
     override func awakeFromNib() {
@@ -172,22 +157,32 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
         loadData()
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cellOrder = originalCellOrder
-        
+    private func cellsToShow() -> [String] {
         // Ask all data sources if show is needed. When not remove associated
-        // sub-view.
+        // it from cells to show.
+        var newCellOrder = [
+            "headerCell",
+            dataSourcesToCellPrototypes[.postings],
+            dataSourcesToCellPrototypes[.timetable],
+            dataSourcesToCellPrototypes[.dashboard],
+            dataSourcesToCellPrototypes[.calendar],
+            dataSourcesToCellPrototypes[.news]
+            ] as! [String]
+        
         TodayV2TableViewController.shared.dataSources.forEach({ item in
             let (key, dataSource) = item
-            if let dataSource = dataSource as? TodayItemDataSource,
-                !dataSource.needsShow(),
+            if let dataSource = dataSource as? TodayItemDataSource, !dataSource.needsShow(),
                 let cellPrototype = dataSourcesToCellPrototypes[key],
-                let index = cellOrder.firstIndex(of: cellPrototype) {
-                cellOrder.remove(at: index)
+                let index = newCellOrder.firstIndex(of: cellPrototype) {
+                newCellOrder.remove(at: index)
             }
         })
         
-        return 6
+        return newCellOrder
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cellOrder.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -202,6 +197,7 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
     }
 }
 
+// Extension that implements protocol TodayItemContainer.
 extension TodayV2TableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? NewsArticleViewController else { return }
@@ -221,35 +217,54 @@ extension TodayV2TableViewController {
         }
     }
 
-    private func rowNum(forCellIdentifier id: String) -> Int? {
-        for i in 0..<cellOrder.count {
-            if cellOrder[i] == id {
-                return i
-            }
-        }
-        return nil
+    private func rowNum(_ cellOrder: [String], forCellIdentifier id: String) -> Int? {
+        return cellOrder.firstIndex(of: id)
     }
-
+    
     func didLoadData(_ sender: Any? = nil) {
         DispatchQueue.main.async {
             self.tableView.beginUpdates()
+            
+            // Need cells to be added or removed? This must
+            // be done within beginUpdates()/endUpdates()
+            // so that tableview knows about these changes.
+            let newCellOrder = self.cellsToShow()
+            let newCellOrderSet = Set<String>(newCellOrder)
+            let cellOrderSet = Set<String>(self.cellOrder)
+            
+            let inserted = newCellOrderSet.subtracting(cellOrderSet)
+            inserted.forEach({ cellIdentifier in
+                if let rowNum = self.rowNum(newCellOrder, forCellIdentifier: cellIdentifier) {
+                    self.tableView.insertRows(at: [IndexPath(row: rowNum, section: 0)], with: .fade)
+                }
+            })
+            
+            let deleted = cellOrderSet.subtracting(newCellOrderSet)
+            deleted.forEach({ cellIdentifier in
+                if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: cellIdentifier) {
+                    self.tableView.deleteRows(at: [IndexPath(row: rowNum, section: 0)], with: .fade)
+                }
+            })
+            
+            self.cellOrder = newCellOrder
+            
             if sender as? DashboardTableDataSource != nil {
-                if let rowNum = self.rowNum(forCellIdentifier: "dashboardCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
+                if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "dashboardCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
                     cell.reload()
                 }
-                if let rowNum = self.rowNum(forCellIdentifier: "timetableCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
+                if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "timetableCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
                     cell.reload()
                 }
             } else if sender as? NewsTableDataSource != nil {
-                if let rowNum = self.rowNum(forCellIdentifier: "newsCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
+                if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "newsCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
                     cell.reload()
                 }
             } else if sender as? CalendarTableDataSource != nil {
-                if let rowNum = self.rowNum(forCellIdentifier: "calendarCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
+                if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "calendarCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
                     cell.reload()
                 }
             } else if sender as? PostingsTableDataSource != nil {
-                if let rowNum = self.rowNum(forCellIdentifier: "postingsCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
+                if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "postingsCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
                     cell.reload()
                 }
             }
