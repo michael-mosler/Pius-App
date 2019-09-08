@@ -1,5 +1,5 @@
 //
-//  NewsTableView.swift
+//  TodayTableViews.swift
 //  Pius-App
 //
 //  Created by Michael Mosler-Krings on 17.08.19.

@@ -43,6 +43,10 @@ class PostingsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSou
         return true
     }
     
+    func isEmpty() -> Bool {
+        return data.count == 0
+    }
+    
     func loadData(_ observer: TodayItemContainer) {
         self.observer = observer
         postingsLoader.load(doUpdate)

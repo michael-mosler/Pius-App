@@ -30,6 +30,7 @@ protocol TodayItemContainer {
 protocol TodayItemDataSource {
     func needsShow() -> Bool
     func willTryLoading() -> Bool
+    func isEmpty() -> Bool
     func loadData(_ observer: TodayItemContainer)
 }
 
@@ -115,6 +116,7 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged)
+        loadData()
     }
     
     // Starts load for all Today sub-views.
@@ -141,8 +143,6 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
         if timer == nil {
             timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(exactly: 1)!, repeats: true, block: { timer in self.onTick(timer) })
         }
-
-        loadData()
     }
     
     // Invalidate timer, will be restarted when view appears again.
@@ -235,14 +235,14 @@ extension TodayV2TableViewController {
             let inserted = newCellOrderSet.subtracting(cellOrderSet)
             inserted.forEach({ cellIdentifier in
                 if let rowNum = self.rowNum(newCellOrder, forCellIdentifier: cellIdentifier) {
-                    self.tableView.insertRows(at: [IndexPath(row: rowNum, section: 0)], with: .fade)
+                    self.tableView.insertRows(at: [IndexPath(row: rowNum, section: 0)], with: .none)
                 }
             })
             
             let deleted = cellOrderSet.subtracting(newCellOrderSet)
             deleted.forEach({ cellIdentifier in
                 if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: cellIdentifier) {
-                    self.tableView.deleteRows(at: [IndexPath(row: rowNum, section: 0)], with: .fade)
+                    self.tableView.deleteRows(at: [IndexPath(row: rowNum, section: 0)], with: .none)
                 }
             })
             

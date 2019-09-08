@@ -47,7 +47,15 @@ class TimetableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource 
         return true
     }
     
-    // Refresh timetable.
+    func isEmpty() -> Bool {
+        if let forWeek = forWeek, let forDay = forDay {
+            return timetable.schedule(forWeek: forWeek, forDay: forDay).numberOfItems == 0
+        } else {
+            return true
+        }
+    }
+    
+   // Refresh timetable.
     func loadData(_ observer: TodayItemContainer) {
         timetable  = AppDefaults.timetable
         observer.didLoadData(self)
@@ -58,7 +66,11 @@ class TimetableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return timetable.schedule(forWeek: .A, forDay: 0).numberOfItems
+        if isEmpty() {
+            return 0
+        } else {
+            return timetable.schedule(forWeek: forWeek!, forDay: forDay!).numberOfItems
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

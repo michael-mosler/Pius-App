@@ -1,5 +1,5 @@
 //
-//  NewsTableViewCell.swift
+//  TodayTableViewCells.swift
 //  Pius-App
 //
 //  Created by Michael Mosler-Krings on 17.08.19.
@@ -64,6 +64,9 @@ class CalendarTableViewCell: UITableViewCell {
     }
 }
 
+/*
+ * Postings item cell. This cell shows any kind of posting.
+ */
 class PostingsTableViewCell: UITableViewCell {
     @IBOutlet weak var postingsTextLabel: UILabel!
     @IBOutlet weak var postingsDateLabel: UILabel!
@@ -91,6 +94,10 @@ class PostingsTableViewCell: UITableViewCell {
     }
 }
 
+/*
+ * This cell shows dashboard items, aka the personalized substitution schedule
+ * for today.
+ */
 class DashboardTableViewCell: UITableViewCell {
     @IBOutlet weak var courseTextLabel: UILabel!
     @IBOutlet weak var typeTextLabel: UILabel!
@@ -151,6 +158,10 @@ class DashboardTableViewCell: UITableViewCell {
     }
 }
 
+/*
+ * Timetable cell which shows a timetable item for a given week type
+ * and day of week.
+ */
 class TodayTimetableItemCell: UITableViewCell {
     private var _scheduleItem: ScheduleItem?
     private var _lesson: Int?

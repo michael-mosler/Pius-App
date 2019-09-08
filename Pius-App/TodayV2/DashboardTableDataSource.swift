@@ -13,7 +13,6 @@ class DashboardTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSo
     private var hadError = false
     private var observer: TodayItemContainer?
     private var _substitutions: Vertretungsplan?
-    private let substitutionsLoader: VertretungsplanLoader = VertretungsplanLoader(forGrade: AppDefaults.gradeSetting)
     
     var loadDate: String? {
         return _substitutions?.lastUpdate
@@ -51,9 +50,10 @@ class DashboardTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSo
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale(identifier: "de_DE")
             dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, dd.MM.yyyy")
-            // let filterDate = dateFormatter.string(from: Date())
+            let filterDate = dateFormatter.string(from: Date())
 
-            let filterDate = "Mittwoch, 28.08.2019"
+            // ***** DEBUG
+            // let filterDate = "Mittwoch, 28.08.2019"
 
             substitutions.vertretungsplaene = substitutions.vertretungsplaene.filter {$0.date == filterDate}
             _substitutions = substitutions
@@ -70,16 +70,28 @@ class DashboardTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSo
         return canUseDashboard
     }
     
+    func isEmpty() -> Bool {
+        return data.count == 0
+    }
+    
     func loadData(_ observer: TodayItemContainer) {
         self.observer = observer
+        let substitutionsLoader: VertretungsplanLoader = VertretungsplanLoader(forGrade: AppDefaults.gradeSetting)
         substitutionsLoader.load(doUpdate)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return isEmpty() ? 1 : data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard !hadError else {
+            return MessageCell("Die Daten konnten leider nicht geladen werden.")
+        }
+        guard !isEmpty() else {
+            return MessageCell("Heute hast Du keinen Vertretungsunterricht.")
+        }
+
         let items = data[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "dashboardItemCell") as! DashboardTableViewCell
         cell.items = items

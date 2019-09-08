@@ -14,6 +14,7 @@ import UIKit
  * UITableViewDataSource interface for this table.
  */
 class NewsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource {
+    
     private var observer: TodayItemContainer?
     private var newsItems: NewsItems = []
     private let newsLoader: NewsLoader = NewsLoader()
@@ -39,6 +40,10 @@ class NewsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource 
     
     func willTryLoading() -> Bool {
         return true
+    }
+
+    func isEmpty() -> Bool {
+        return newsItems.count == 0
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

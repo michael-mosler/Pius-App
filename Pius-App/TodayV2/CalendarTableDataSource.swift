@@ -30,12 +30,14 @@ class CalendarTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSou
         hadError = calendar == nil
         if !hadError, let calendar = calendar {
             // Date to filter for. Reduce schedules to the one with the given date.
-            //let date = Date()
+            let date = Date()
             
-            let dateString = "2019-08-28" // change to your date format
+            /* ***** DEBUG
+            let dateString = "2019-09-12" // change to your date format
             let dateFormatter1 = DateFormatter()
             dateFormatter1.dateFormat = "yyyy-MM-dd"
             let date = dateFormatter1.date(from: dateString)!
+            */
             
             let dateFormatter = DateFormatter()
             
@@ -64,11 +66,15 @@ class CalendarTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSou
     }
 
     func needsShow() -> Bool {
-        return true
+        return hadError || !isEmpty()
     }
     
     func willTryLoading() -> Bool {
         return true
+    }
+    
+    func isEmpty() -> Bool {
+        return data.count == 0
     }
     
     func loadData(_ observer: TodayItemContainer) {
@@ -77,10 +83,15 @@ class CalendarTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard !hadError else { return 1 }
         return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard !hadError else {
+            return MessageCell("Der Kalender konnte leider nicht geladen werden.")
+        }
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "calendarItemCell") as! CalendarTableViewCell
         cell.event = data[indexPath.row].detailItems[1]
         return cell

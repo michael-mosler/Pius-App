@@ -1,5 +1,5 @@
 //
-//  NewsCell.swift
+//  TodayTableItemCells.swift
 //  Pius-App
 //
 //  Created by Michael Mosler-Krings on 17.08.19.
@@ -43,11 +43,9 @@ class CalendarCell: TodayItemCell {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var tableView: CalendarTableView!
-    @IBOutlet weak var messageLabel: UILabel!
     
     override func layoutIfNeeded() {
         layoutIfNeeded(forFrameView: view)
-        // messageLabel.isHidden
     }
     
     override func reload() {
@@ -92,7 +90,7 @@ class DashboardCell: TodayItemCell {
 }
 
 class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelegate {
-    private var firstShow: Bool = true
+    private var needsPositioning: Bool = true
     
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var lastUpdateLabel: UILabel!
@@ -131,10 +129,6 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
     // When cell gets awakened start showing with current day and week and reload data.
     override func awakeFromNib() {
         collectionView.delegate = self
-
-        let dataSource = TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TimetableDataSource
-        dataSource.forWeek = weekToShow
-        dataSource.forDay = dayToShow
         reload()
     }
 
@@ -150,45 +144,43 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
         
         // Draw border.
         layoutIfNeeded(forFrameView: view)
-        
-        // On first show center on timetable for current day of week.
-        if firstShow {
-            collectionView.scrollToItem(at: IndexPath(row: dayToShow, section: 0), at: .centeredHorizontally, animated: false)
-            
-            if DateHelper.dayOfWeek() == currentDay {
-                dayTextLabel.attributedText = NSAttributedString(string: "Heute")
-            } else {
-                dayTextLabel.attributedText = NSAttributedString(string: Config.dayNames[currentDay])
-            }
 
-            firstShow = false
-        }
-    }
-    
-    // This function ensures proper sizing of collection view items.
-    override func reload() {
-        let itemCount = ScheduleForDay().numberOfItems
-        
-        collectionView.reloadData()
-        collectionViewHeightConstraint.constant = CGFloat(itemCount * TodayScreenUnits.timetableRowHeight + 2 * TodayScreenUnits.timetableSpacing)
-        flowLayout.itemSize = CGSize(width: collectionView.frame.width - 8, height: collectionViewHeightConstraint.constant)
-    }
-    
-    // On end of scrolling of collection view update timetable shown. Also update day name. For current
-    // day show "Heute" otherwise day name.
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if DateHelper.dayOfWeek() == currentDay {
             dayTextLabel.attributedText = NSAttributedString(string: "Heute")
         } else {
             dayTextLabel.attributedText = NSAttributedString(string: Config.dayNames[currentDay])
         }
+
+        // On first show center on timetable for current day of week.
+        if needsPositioning {
+            collectionView.scrollToItem(at: IndexPath(row: dayToShow, section: 0), at: .centeredHorizontally, animated: false)
+            needsPositioning = false
+        }
+    }
+    
+    // This reloads data and positions on current day to show.
+    // It also ensures proper sizing of collection view items.
+    override func reload() {
+        needsPositioning = true
+        let itemCount = ScheduleForDay().numberOfItems
+        let dataSource = TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TimetableDataSource
+        dataSource.forWeek = weekToShow
+        dataSource.forDay = dayToShow
+
+        collectionView.reloadData()
+        collectionViewHeightConstraint.constant = CGFloat(itemCount * TodayScreenUnits.timetableRowHeight + 2 * TodayScreenUnits.timetableSpacing)
+        flowLayout.itemSize = CGSize(width: collectionView.frame.width - 8, height: collectionViewHeightConstraint.constant)
         
+    }
+    
+    // On end of scrolling of collection view update timetable shown. Also update day name. For current
+    // day show "Heute" otherwise day name.
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         // Set data source and let it know which day of week and week it is running for.
         let dataSource = TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TimetableDataSource
         dataSource.forWeek = DateHelper.week()
         dataSource.forDay = currentDay
-        
-        reload()
+        collectionView.reloadData()
         layoutIfNeeded()
     }
 }
