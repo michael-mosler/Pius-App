@@ -15,7 +15,6 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
     @IBOutlet weak var timeMarkerDotView: UIView!
     @IBOutlet weak var timeMarkerTopConstraint: NSLayoutConstraint!
     
-    private let epochFor0755 = DateHelper.epoch(forTime: "07:55:00")
     private var lessonEndTimes: [TimeInterval] = []
     
     // This is the day of week the cell is displaying.
@@ -24,17 +23,6 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
     override func awakeFromNib() {
         TodayV2TableViewController.shared.controller?.registerTimerDelegate(self)
         
-        for i in 0..<lessonsWithAllEndTimes.count-1 {
-            if let epochLessonStart = DateHelper.epoch(forTime: "\(lessonsWithAllEndTimes[i]):00"),
-                let epochLessonEnd = DateHelper.epoch(forTime: "\(lessonsWithAllEndTimes[i+1]):00") {
-                if i == 0 {
-                    lessonEndTimes.append(epochLessonEnd - epochLessonStart)
-                } else {
-                    lessonEndTimes.append(lessonEndTimes[i-1] + epochLessonEnd - epochLessonStart)
-                }
-            }
-        }
-
         timeMarkerView.isHidden = true
         timeMarkerDotView.isHidden = true
         timeMarkerLabel.isHidden = true
@@ -45,17 +33,27 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
     }
 
     func onTick(_ timer: Timer?) {
-        guard forDay == DateHelper.dayOfWeek(), let epochFor0755 = epochFor0755 else {
+        guard forDay == DateHelper.dayOfWeek(), let epochFor0755 = DateHelper.epoch(forTime: "07:55:00") else {
             timeMarkerView.isHidden = true
             timeMarkerDotView.isHidden = true
             timeMarkerLabel.isHidden = true
+            tableView.onTick(forRow: -1)
             return
         }
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "de_DE")
-        dateFormatter.dateFormat = "HH:mm"
-
+        // Epoch for lesson ends. These are needed to find out the current lesson, aka row.
+        lessonEndTimes = []
+        for i in 0..<lessonsWithAllEndTimes.count-1 {
+            if let epochLessonStart = DateHelper.epoch(forTime: "\(lessonsWithAllEndTimes[i]):00"),
+                let epochLessonEnd = DateHelper.epoch(forTime: "\(lessonsWithAllEndTimes[i+1]):00") {
+                if i == 0 {
+                    lessonEndTimes.append(epochLessonEnd - epochLessonStart)
+                } else {
+                    lessonEndTimes.append(lessonEndTimes[i-1] + epochLessonEnd - epochLessonStart)
+                }
+            }
+        }
+        
         let epochSince1970 = Date().timeIntervalSince1970
         
         // This is the number of seconds since 07:55h today.
@@ -70,6 +68,7 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
             timeMarkerLabel.isHidden = true
             timeMarkerView.isHidden = true
             timeMarkerDotView.isHidden = true
+            tableView.onTick(forRow: -1)
             return
         }
         
@@ -77,6 +76,10 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
         let duration = CGFloat(epochLessonEnd - epochLessonStart)
         let lessonDuration = CGFloat(epochSince1970 - epochLessonStart)
         let offset = CGFloat(row) * rowHeight + lessonDuration * rowHeight / duration
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "de_DE")
+        dateFormatter.dateFormat = "HH:mm"
         
         timeMarkerLabel.isHidden = false
         timeMarkerView.isHidden = false

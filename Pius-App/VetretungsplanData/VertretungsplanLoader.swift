@@ -127,6 +127,7 @@ class VertretungsplanLoader {
         let found = courseList!.first(where: {
             $0
             .replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
+            .replacingOccurrences(of: "ZK", with: "Z", options: .literal, range: nil)
             .replacingOccurrences(of: "GK", with: "G", options: .literal, range: nil)
             .replacingOccurrences(of: "LK", with: "L", options: .literal, range: nil) == course
         });

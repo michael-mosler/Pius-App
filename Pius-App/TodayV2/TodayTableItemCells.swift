@@ -178,7 +178,7 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         // Set data source and let it know which day of week and week it is running for.
         let dataSource = TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TimetableDataSource
-        dataSource.forWeek = DateHelper.week()
+        dataSource.forWeek = weekToShow
         dataSource.forDay = currentDay
         collectionView.reloadData()
         layoutIfNeeded()

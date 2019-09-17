@@ -80,6 +80,7 @@
 		4C9368AF23093BA30038CE9B /* NewsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9368AE23093BA30038CE9B /* NewsTableDataSource.swift */; };
 		4C9368B12309A3660038CE9B /* CalendarTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9368B02309A3660038CE9B /* CalendarTableDataSource.swift */; };
 		4C94DFD32322522300C42998 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94DFD22322522300C42998 /* MessageCell.swift */; };
+		4C94DFD523257D3F00C42998 /* DateArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94DFD423257D3F00C42998 /* DateArithmetic.swift */; };
 		4CA4907720DE4DDC00796457 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4907620DE4DDC00796457 /* AppDefaults.swift */; };
 		4CA4907920DE532700796457 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
 		4CA4907A20DEA1C900796457 /* VertretungsplanLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */; };
@@ -279,6 +280,7 @@
 		4C9368AE23093BA30038CE9B /* NewsTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableDataSource.swift; sourceTree = "<group>"; };
 		4C9368B02309A3660038CE9B /* CalendarTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableDataSource.swift; sourceTree = "<group>"; };
 		4C94DFD22322522300C42998 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		4C94DFD423257D3F00C42998 /* DateArithmetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateArithmetic.swift; sourceTree = "<group>"; };
 		4CA4907620DE4DDC00796457 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		4CB2AF512198813C007E5D1F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		4CB2AF5521A75595007E5D1F /* TodayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewController.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				4CA4907620DE4DDC00796457 /* AppDefaults.swift */,
 				4C48F6D021F6433C00B20505 /* IOSHelper.swift */,
 				4C21EAE822BBB269006EE613 /* String.swift */,
+				4C94DFD423257D3F00C42998 /* DateArithmetic.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1057,6 +1060,7 @@
 				4C9368A723083F490038CE9B /* TodayTableViewCells.swift in Sources */,
 				4C7C22922043117800ACA17B /* ViewController.swift in Sources */,
 				4C93688D22F82DDA0038CE9B /* TimetableTableViewCell.swift in Sources */,
+				4C94DFD523257D3F00C42998 /* DateArithmetic.swift in Sources */,
 				4C1FDE57205D90E5006092C9 /* DetailCollectionViewCell.swift in Sources */,
 				4C30DB7D21BC0CDF002FCAF3 /* TodayCalendarDetailsCell.swift in Sources */,
 				4C30DB7B21BC0C9D002FCAF3 /* TodayCalendarTableView.swift in Sources */,

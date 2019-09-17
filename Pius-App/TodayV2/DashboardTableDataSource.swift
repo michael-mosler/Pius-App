@@ -12,18 +12,19 @@ import UIKit
 class DashboardTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource {
     private var hadError = false
     private var observer: TodayItemContainer?
-    private var _substitutions: Vertretungsplan?
-    
+    private var _filteredSubstitutionSchedule: VertretungsplanForDate?
+    var substitutionSchedule: Vertretungsplan?
+
     var loadDate: String? {
-        return _substitutions?.lastUpdate
+        return substitutionSchedule?.lastUpdate
     }
 
     private var data: [DetailItems] {
         get {
             // If there is a schedule at all and if there a substitutions for the configured
             // grade.
-            if let substitutions = _substitutions, substitutions.vertretungsplaene.count > 0, substitutions.vertretungsplaene[0].gradeItems.count > 0 {
-                return substitutions.vertretungsplaene[0].gradeItems[0].vertretungsplanItems
+            if let substitutions = _filteredSubstitutionSchedule, substitutions.gradeItems.count > 0 {
+                return substitutions.gradeItems[0].vertretungsplanItems
             }
             return []
         }
@@ -43,20 +44,12 @@ class DashboardTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSo
         }
     }
 
-    private func doUpdate(with substitutions: Vertretungsplan?, online: Bool) {
-        hadError = substitutions == nil
-        if !hadError, var substitutions = substitutions {
-            // Date to filter for. Reduce schedules to the one with the given date.
-            let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(identifier: "de_DE")
-            dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, dd.MM.yyyy")
-            let filterDate = dateFormatter.string(from: Date())
-
-            // ***** DEBUG
-            // let filterDate = "Mittwoch, 28.08.2019"
-
-            substitutions.vertretungsplaene = substitutions.vertretungsplaene.filter {$0.date == filterDate}
-            _substitutions = substitutions
+    private func doUpdate(with schedule: Vertretungsplan?, online: Bool) {
+        hadError = schedule == nil
+        if !hadError, let schedule = schedule {
+            // Full schedule and filtered schedule.
+            substitutionSchedule = schedule
+            _filteredSubstitutionSchedule = schedule.filter(onDate: Date())
         }
         
         observer?.didLoadData(self)

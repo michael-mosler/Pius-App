@@ -20,6 +20,42 @@ struct GradeItem: Encodable {
         self.grade = grade;
         self.vertretungsplanItems = [];
     }
+    
+    func details(forLesson lesson: Int) -> [DetailItems] {
+        let detailItems = vertretungsplanItems.filter({ details in
+            let parts = details[0].split(separator: "-")
+            
+            // There is no lesson at all.
+            if parts.count == 0 {
+                return false
+            }
+
+            var lessonString = String(parts[0]).trimmingCharacters(in: CharacterSet(charactersIn: " "))
+            let lesson1 = Int(lessonString) ?? -1
+
+            // Invalid range.
+            if lesson1 == -1 {
+                return false
+            }
+            
+            // First lesson matches what we are looking for.
+            if parts.count == 1 {
+                return lesson1 == lesson
+            }
+
+            // There is a range given but first lesson is greater than lesson we are checking for.
+            if lesson1 > lesson {
+                return false
+            }
+
+            lessonString = String(parts[1]).trimmingCharacters(in: CharacterSet(charactersIn: " "))
+            let lesson2 = Int(lessonString) ?? -1
+
+            return lesson1 <= lesson && lesson <= lesson2
+        })
+        
+        return detailItems
+    }
 }
 
 struct VertretungsplanForDate: Encodable {
@@ -31,6 +67,10 @@ struct VertretungsplanForDate: Encodable {
         self.date = date;
         self.gradeItems = gradeItems;
         self.expanded = expanded;
+    }
+    
+    func item(forIndex index: Int) -> GradeItem? {
+        return gradeItems.count > index ? gradeItems[index] : nil
     }
 }
 
@@ -45,6 +85,17 @@ struct Vertretungsplan: Encodable {
         return additionalText != nil && additionalText!.count > 0;
     }
     
+    func filter(onDate date: Date?) -> VertretungsplanForDate? {
+        guard let date = date else { return nil }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "de_DE")
+        dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, dd.MM.yyyy")
+        let filterDate = dateFormatter.string(from: date)
+        let vertretungsplanForDate = vertretungsplaene.filter { $0.date == filterDate }
+        return vertretungsplanForDate.count == 0 ? nil : vertretungsplanForDate[0]
+    }
+
     // Returns a filtered Vertretungsplan that holds information on the next item only.
     // It expects that this is a Vertretungsplan instance which is filtered by grade
     // and a given course list.

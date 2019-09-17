@@ -79,7 +79,7 @@ class TodayTimetableTableView: TodayItemTableView, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 30
+        return 35
     }
     
     func onTick(forRow row: Int) {

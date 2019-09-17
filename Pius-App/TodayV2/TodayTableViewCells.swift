@@ -9,10 +9,10 @@
 import UIKit
 import Kingfisher
 
-/*
+/* *********************************************************************
  * A single news item table cell that is filled from a single
  * news item. Cell cares about setting of news text and image.
- */
+ * *********************************************************************/
 class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var newsTextLabel: UILabel!
     @IBOutlet weak var newsImageView: UIImageView!
@@ -47,10 +47,10 @@ class NewsTableViewCell: UITableViewCell {
     }
 }
 
-/*
+/* *********************************************************************
  * Calendar item cell. This cell shows event text only as being used in
  * Today view. In this context date of an event should be clear.
- */
+ * *********************************************************************/
 class CalendarTableViewCell: UITableViewCell {
     @IBOutlet weak var calendarTextLabel: UILabel!
     
@@ -64,9 +64,9 @@ class CalendarTableViewCell: UITableViewCell {
     }
 }
 
-/*
+/* *********************************************************************
  * Postings item cell. This cell shows any kind of posting.
- */
+ * *********************************************************************/
 class PostingsTableViewCell: UITableViewCell {
     @IBOutlet weak var postingsTextLabel: UILabel!
     @IBOutlet weak var postingsDateLabel: UILabel!
@@ -94,10 +94,10 @@ class PostingsTableViewCell: UITableViewCell {
     }
 }
 
-/*
+/* ****************************************************************************
  * This cell shows dashboard items, aka the personalized substitution schedule
  * for today.
- */
+ * ****************************************************************************/
 class DashboardTableViewCell: UITableViewCell {
     @IBOutlet weak var courseTextLabel: UILabel!
     @IBOutlet weak var typeTextLabel: UILabel!
@@ -158,10 +158,10 @@ class DashboardTableViewCell: UITableViewCell {
     }
 }
 
-/*
+/* *********************************************************************
  * Timetable cell which shows a timetable item for a given week type
  * and day of week.
- */
+ * *********************************************************************/
 class TodayTimetableItemCell: UITableViewCell {
     private var _scheduleItem: ScheduleItem?
     private var _lesson: Int?
@@ -171,15 +171,19 @@ class TodayTimetableItemCell: UITableViewCell {
     @IBOutlet weak var courseTextLabel: UILabel!
     @IBOutlet weak var roomTextLabel: UILabel!
     @IBOutlet weak var teacherTextLabel: UILabel!
+    @IBOutlet weak var infoIconView: UIView!
     @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint!
     
     var scheduleItem: ScheduleItem? {
         set(value) {
             _scheduleItem = value
             if let scheduleItem = _scheduleItem {
-                courseTextLabel.text = scheduleItem.courseName
-                roomTextLabel.text = scheduleItem.room
-                teacherTextLabel.text = scheduleItem.teacher
+                courseTextLabel.text = StringHelper.replaceHtmlEntities(input: scheduleItem.courseName)
+                roomTextLabel.attributedText = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: scheduleItem.room))
+                teacherTextLabel.attributedText = FormatHelper.roomText(room: scheduleItem.teacher)
+                
+                isUserInteractionEnabled = scheduleItem.isSubstitution
+                infoIconView.isHidden = !scheduleItem.isSubstitution
             }
         }
         get {
