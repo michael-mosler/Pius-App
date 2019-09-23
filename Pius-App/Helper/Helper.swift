@@ -52,6 +52,12 @@ enum Week: Int {
     case B = 1
 }
 
+extension Week {
+    static prefix func !(week: Week) -> Week {
+        return week == .A ? .B : .A
+    }
+}
+
 class DateHelper {
     static func week() -> Week? {
         if let calendar = NSCalendar(calendarIdentifier: .ISO8601) {

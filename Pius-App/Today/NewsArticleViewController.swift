@@ -44,7 +44,7 @@ class NewsArticleViewController: UIViewController, UIGestureRecognizerDelegate {
         
         view.addGestureRecognizer(panGestureRecognizer)
         
-        if reachability?.connection != .none, let urlToShow = self.segueData as? URL {
+        if reachability?.connection != Reachability.Connection.none, let urlToShow = self.segueData as? URL {
             pageRequest = URLRequest(url: urlToShow)
         } else {
             let baseUrl = URL(string: "about:blank")

@@ -53,7 +53,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
         var pageRequest: URLRequest;
         let reachability = Reachability();
 
-        if reachability?.connection != .none {
+        if reachability?.connection != Reachability.Connection.none {
             let baseUrl = URL(string: "\(AppDefaults.baseUrl)/news");
             pageRequest = URLRequest(url: baseUrl!);
             webViewLoaded = true;
