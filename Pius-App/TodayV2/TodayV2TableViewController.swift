@@ -252,6 +252,7 @@ extension TodayV2TableViewController {
                 if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "dashboardCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
                     cell.reload()
                 }
+            } else if sender as? TimetableDataSource != nil {
                 if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "timetableCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
                     cell.reload()
                 }

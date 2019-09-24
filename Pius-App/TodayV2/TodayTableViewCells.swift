@@ -76,9 +76,8 @@ class PostingsTableViewCell: UITableViewCell {
         set(value) {
             _item = value
             if let item = _item {
-                let data = Data(item.message.utf8)
-                if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil) {
-                    postingsTextLabel.attributedText = attributedString
+                if let attributedMessage = item.attributedMessage {
+                    postingsTextLabel.attributedText = attributedMessage
                 } else {
                     postingsTextLabel.attributedText = NSAttributedString(string: item.message)
                 }
@@ -139,7 +138,7 @@ class DashboardTableViewCell: UITableViewCell {
                 
                 // 6. EVA
                 if items.count >= 8 {
-                    text = StringHelper.replaceHtmlEntities(input: items[6])
+                    text = StringHelper.replaceHtmlEntities(input: items[7])
                     evaTextLabel.attributedText = NSAttributedString(string: text)
                 } else {
                     evaTextLabel.attributedText = nil

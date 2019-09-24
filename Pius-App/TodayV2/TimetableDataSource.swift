@@ -125,11 +125,11 @@ class TimetableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource 
         // navigation.
         if let forWeek = forWeek, let forDay = forDay {
             cell.scheduleItem = timetable.schedule(forWeek: forWeek, forDay: forDay).item(forLesson: indexPath.row)
-            
+
             // If there is a substituion for this lesson than update schedule item with
             // given details.
-            if let gradeItem = substitutionSchedule?.item(forIndex: 0) {
-                let details = gradeItem.details(forLesson: indexPath.row)
+            if let gradeItem = substitutionSchedule?.item(forIndex: 0), let lesson = cell.lesson {
+                let details = gradeItem.details(forLesson: lesson)
                 cell.scheduleItem = cell.scheduleItem?.update(withDetails: details)
             }
         } else {

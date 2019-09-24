@@ -17,10 +17,13 @@ import Foundation
 struct PostingsItem {
     var message: String;
     var timestamp: String;
+    var attributedMessage: NSAttributedString?
     
     init(message: String, timestamp: String) {
-        self.message = message;
-        self.timestamp = timestamp;
+        let data = Data(message.utf8)
+        self.message = message
+        self.attributedMessage = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
+        self.timestamp = timestamp
     }
 }
 
