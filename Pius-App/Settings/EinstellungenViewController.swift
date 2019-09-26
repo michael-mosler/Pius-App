@@ -23,6 +23,8 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var timetableSwitch: UISwitch!
     
+    @IBOutlet weak var infoTextView: UITextView!
+    
     // The active text field, is either webSizeUserNameField or webSitePasswordField.
     private var activeTextField: UITextField?
 
@@ -76,6 +78,13 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         showCredentials()
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if #available(iOS 13.0, *) {
+            infoTextView.textColor = UIColor.label
+        }
+    }
+    
     private func setVersionLabel() {
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject
         

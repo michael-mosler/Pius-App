@@ -35,7 +35,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="4B7-oG-D0n"/>
                                     <constraint firstAttribute="trailing" secondItem="ocy-bp-SDA" secondAttribute="trailing" id="7Uq-X2-Bsk"/>
@@ -63,7 +62,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="XPq-ZZ-WxZ" secondAttribute="trailing" id="773-8H-FJf"/>
                                     <constraint firstAttribute="bottom" secondItem="XPq-ZZ-WxZ" secondAttribute="bottom" id="RfV-qa-Ojb"/>
@@ -93,7 +91,7 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FqR-ck-4WE" customClass="ScheduleCollectionView" customModule="Pius_App" customModuleProvider="target">
                                 <rect key="frame" x="8" y="129" width="398" height="663"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Sfl-xQ-3x8">
                                     <size key="itemSize" width="317" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -243,7 +241,7 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WMa-XM-cBs" customClass="CourseCollectionView" customModule="Pius_App" customModuleProvider="target">
                                 <rect key="frame" x="8" y="822" width="398" height="32"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="au2-3i-WGk"/>
                                 </constraints>
@@ -292,7 +290,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="10F-F9-1DN" firstAttribute="bottom" secondItem="WMa-XM-cBs" secondAttribute="top" id="07a-Op-6JG"/>
                             <constraint firstItem="W7F-IL-2cj" firstAttribute="top" secondItem="c7u-N4-NJZ" secondAttribute="bottom" constant="4" id="8am-i8-Hf3"/>
@@ -378,7 +376,7 @@ Als Oberstufenschüler kannst Du auch festlegen, ob es sich um einen LK oder GK 
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Azt-h5-8Ca" secondAttribute="trailing" constant="16" id="Iiz-pp-HbR"/>
                                             <constraint firstItem="Azt-h5-8Ca" firstAttribute="leading" secondItem="ziV-ap-vYa" secondAttribute="leading" id="JIi-76-sio"/>
@@ -459,7 +457,7 @@ Als Oberstufenschüler kannst Du auch festlegen, ob es sich um einen LK oder GK 
                                 <rect key="frame" x="357" y="299.5" width="51" height="31"/>
                             </switch>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="5TB-uY-4KE" firstAttribute="trailing" secondItem="Uxp-YG-fhm" secondAttribute="trailing" constant="8" id="Alo-MA-a2h"/>
                             <constraint firstItem="HZh-4f-M2O" firstAttribute="leading" relation="lessThanOrEqual" secondItem="OR5-q8-kwA" secondAttribute="trailing" constant="257" id="BSn-zA-Wou"/>

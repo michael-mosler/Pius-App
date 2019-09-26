@@ -66,11 +66,7 @@ class EvaLoader {
 
         if courseList.count > 0 {
             let mappedCourseList = courseList.reduce(into: "") { (result, course) in
-                let mappedCourse = course
-                    .replacingOccurrences(of: " ", with: "")
-                    .replacingOccurrences(of: "GK", with: "G", options: .literal, range: nil)
-                    .replacingOccurrences(of: "LK", with: "L", options: .literal, range: nil);
-
+                let mappedCourse = CourseItem.normalizeCourseName(course)
                 result += (result.count == 0) ? mappedCourse : ",\(mappedCourse)";
             };
             urlString.append(String(format: "&courseList=%@", mappedCourseList));

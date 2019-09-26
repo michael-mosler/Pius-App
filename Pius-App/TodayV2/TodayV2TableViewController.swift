@@ -82,6 +82,7 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
     }
     
     private var pendingLoads = 0
+    private var isLoadCancelled = true
     private var segueData: Any?
     
     // Register a timer delegate.
@@ -116,12 +117,12 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged)
-        loadData()
     }
     
     // Starts load for all Today sub-views.
     private func loadData() {
         pendingLoads = 0
+        isLoadCancelled = false
         TodayV2TableViewController.shared.dataSources.forEach({ item in
             let (_, dataSource) = item
             if let dataSource = dataSource as? TodayItemDataSource, dataSource.willTryLoading() {
@@ -144,12 +145,25 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
             timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(exactly: 1)!, repeats: true, block: { timer in self.onTick(timer) })
         }
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // When loads have been cancelled reload.
+        if isLoadCancelled {
+            loadData()
+        }
+    }
     
     // Invalidate timer, will be restarted when view appears again.
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         timer?.invalidate()
         timer = nil
+        
+        // If there are pending loads then mark loads as cancelled. This
+        // will cause reload on viewDidAppear().
+        isLoadCancelled = pendingLoads > 0
     }
 
     // Does nothing else than reload all sub-views.
@@ -223,6 +237,10 @@ extension TodayV2TableViewController {
     
     func didLoadData(_ sender: Any? = nil) {
         DispatchQueue.main.async {
+            if self.isLoadCancelled {
+                return
+            }
+
             self.tableView.beginUpdates()
             
             // Need cells to be added or removed? This must
@@ -273,11 +291,9 @@ extension TodayV2TableViewController {
 
             self.tableView.reloadData()
             self.tableView.layoutIfNeeded()
-        }
 
-        pendingLoads -= 1
-        if pendingLoads == 0 {
-            DispatchQueue.main.async {
+            self.pendingLoads -= 1
+            if self.pendingLoads == 0 {
                 self.refreshControl?.endRefreshing()
             }
         }

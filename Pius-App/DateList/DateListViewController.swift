@@ -33,6 +33,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
 
+    private var collectionViewItemSize: CGSize = CGSize(width: 0, height: 0)
     private var selectedButton: MonthButton? = nil;
     private var hadSelectedButton: MonthButton? = nil;
     private var selectedMonth_: Int? = nil;
@@ -41,39 +42,37 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     private var calendar: Calendar = Calendar();
     
-    override func viewDidAppear(_ animated: Bool) {
-        dateListCollectionViewFlowLayout.itemSize = CGSize(width: dateListCollectionView.frame.width - 10, height: dateListCollectionView.frame.height);
-        getCalendarFromWeb();
-    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
-    // Move search bar into view when search button has been tapped in navigation
-    // bar.
-    private func showSearchBar() {
         let search = UISearchController(searchResultsController: nil);
         search.dimsBackgroundDuringPresentation = false;
         search.searchBar.delegate = self;
         navigationItem.searchController = search;
+
         navigationItem.hidesSearchBarWhenScrolling = false;
         navigationItem.searchController?.isActive = true;
+        navigationItem.searchController?.searchBar.isHidden = false
     }
-    
-    // Search button action: Store current state and activate search mode.
-    @IBAction func searchButtonAction(_ sender: Any) {
-        if !inSearchMode_ {
-            hadSelectedMonth = selectedMonth_;
-            selectedMonth_ = nil;
-            hadSelectedButton = selectedButton;
-            selectedButton?.isSelected = false;
-            selectedButton = nil;
-            inSearchMode_ = true;
 
-            dateListSearchTableView.isHidden = false;
-            dateListSearchTableView.reloadData();
-
-            showSearchBar();
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        collectionViewItemSize = CGSize(width: dateListCollectionView.frame.width - 10, height: dateListCollectionView.frame.height)
+        getCalendarFromWeb();
     }
-    
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        hadSelectedMonth = selectedMonth_;
+        selectedMonth_ = nil;
+        hadSelectedButton = selectedButton;
+        selectedButton?.isSelected = false;
+        selectedButton = nil;
+        inSearchMode_ = true;
+
+        dateListSearchTableView.isHidden = false;
+        dateListSearchTableView.reloadData();
+    }
+
     // Called whenever input in search bar is changed. Updates filter text
     // in calendar data and reloads date list. This applies the search text
     // to calendar items.
@@ -85,11 +84,9 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     // Cancel search. This restores the view from before search was started.
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         dateListSearchTableView.isHidden = true;
-        dateListCollectionView.collectionViewLayout.invalidateLayout();
-        
+
         inSearchMode_ = false;
         calendar.filter = nil;
-        navigationItem.searchController = nil;
         selectedMonth_ = hadSelectedMonth;
         hadSelectedMonth = nil;
         selectedButton = hadSelectedButton;
@@ -188,7 +185,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
             return CGSize(width: monthListCollectionViewFlowLayout.itemSize.width, height: monthListCollectionViewFlowLayout.itemSize.height);
         }
         
-        return CGSize(width: collectionView.frame.width - 10, height: collectionView.frame.height);
+        return collectionViewItemSize
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {

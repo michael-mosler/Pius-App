@@ -91,11 +91,11 @@ class TimetableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource 
     let collectionViewDataSource: UICollectionViewDataSource = TimetableCollectionViewDataSource()
     
     func needsShow() -> Bool {
-        return true
+        return AppDefaults.useTimetable
     }
     
     func willTryLoading() -> Bool {
-        return true
+        return AppDefaults.useTimetable
     }
     
     func isEmpty() -> Bool {

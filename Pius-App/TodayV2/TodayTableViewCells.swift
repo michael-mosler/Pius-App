@@ -91,6 +91,13 @@ class PostingsTableViewCell: UITableViewCell {
             return _item
         }
     }
+    
+    override func layoutSubviews() {
+        if #available(iOS 13.0, *) {
+            postingsTextLabel.textColor = UIColor.label
+        }
+        super.layoutSubviews()
+    }
 }
 
 /* ****************************************************************************
