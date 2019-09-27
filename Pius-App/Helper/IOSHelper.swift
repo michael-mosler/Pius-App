@@ -19,7 +19,7 @@ class IOSHelper {
 }
 
 struct TodayScreenUnits {
-    static let timetableRowHeight = 30
+    static let timetableRowHeight = 35
     static let timetableSpacing = 8
     
 }

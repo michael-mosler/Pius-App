@@ -54,7 +54,7 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
             }
         }
         
-        let epochSince1970 = Date().timeIntervalSince1970
+        let epochSince1970 = Date().timeIntervalSince1970 // - 2 * 3600 - 35 * 60 // Debug: N hours, M minutes
         
         // This is the number of seconds since 07:55h today.
         // row is the row which is covered by the lesson addressed
@@ -71,8 +71,8 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
             tableView.onTick(forRow: -1)
             return
         }
-        
-        let rowHeight = CGFloat((frame.height - 2 * CGFloat(TodayScreenUnits.timetableSpacing)) / CGFloat(lessons.count))
+
+        let rowHeight = CGFloat(TodayScreenUnits.timetableRowHeight) // CGFloat((frame.height - 2 * CGFloat(TodayScreenUnits.timetableSpacing)) / CGFloat(lessons.count))
         let duration = CGFloat(epochLessonEnd - epochLessonStart)
         let lessonDuration = CGFloat(epochSince1970 - epochLessonStart)
         let offset = CGFloat(row) * rowHeight + lessonDuration * rowHeight / duration

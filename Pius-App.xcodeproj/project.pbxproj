@@ -87,6 +87,7 @@
 		4CAB552B213AE28600156A13 /* Vertretungsplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4D205567C8006092C9 /* Vertretungsplan.swift */; };
 		4CAB552C213C398200156A13 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE62206D5FE6006092C9 /* Config.swift */; };
 		4CAC0435233D35F2005C6094 /* NewsArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC0434233D35F2005C6094 /* NewsArticleViewController.swift */; };
+		4CAC0438233D3B35005C6094 /* TodayScheduleItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC0437233D3B35005C6094 /* TodayScheduleItemDetailsViewController.swift */; };
 		4CB2AF522198813C007E5D1F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF512198813C007E5D1F /* Reachability.swift */; };
 		4CB2AF53219A15BF007E5D1F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF512198813C007E5D1F /* Reachability.swift */; };
 		4CB2AF5C21ADC498007E5D1F /* NewsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF5B21ADC498007E5D1F /* NewsLoader.swift */; };
@@ -268,6 +269,7 @@
 		4C94DFD423257D3F00C42998 /* DateArithmetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateArithmetic.swift; sourceTree = "<group>"; };
 		4CA4907620DE4DDC00796457 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		4CAC0434233D35F2005C6094 /* NewsArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsArticleViewController.swift; path = ../../../../.Trash/NewsArticleViewController.swift; sourceTree = "<group>"; };
+		4CAC0437233D3B35005C6094 /* TodayScheduleItemDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayScheduleItemDetailsViewController.swift; sourceTree = "<group>"; };
 		4CB2AF512198813C007E5D1F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		4CB2AF5B21ADC498007E5D1F /* NewsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLoader.swift; sourceTree = "<group>"; };
 		4CB3EC7220DC0ECA00BBEAE0 /* Pius-App-Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pius-App-Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -570,6 +572,7 @@
 		4C93689B230830500038CE9B /* TodayV2 */ = {
 			isa = PBXGroup;
 			children = (
+				4CAC0436233D3AFF005C6094 /* Details */,
 				4CAC0433233D35DD005C6094 /* News */,
 				4C9368AD23093B450038CE9B /* DataSources */,
 				4C9368A8230844E10038CE9B /* Tables */,
@@ -628,6 +631,14 @@
 				4CAC0434233D35F2005C6094 /* NewsArticleViewController.swift */,
 			);
 			name = News;
+			sourceTree = "<group>";
+		};
+		4CAC0436233D3AFF005C6094 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				4CAC0437233D3B35005C6094 /* TodayScheduleItemDetailsViewController.swift */,
+			);
+			name = Details;
 			sourceTree = "<group>";
 		};
 		4CB3EC7520DC0ECB00BBEAE0 /* Pius-App-Extension */ = {
@@ -1010,6 +1021,7 @@
 			files = (
 				4C1FDE54205C5072006092C9 /* VertretungsplanDetailViewController.swift in Sources */,
 				4CFBCDD7208925B100E9041D /* MyCoursesViewController.swift in Sources */,
+				4CAC0438233D3B35005C6094 /* TodayScheduleItemDetailsViewController.swift in Sources */,
 				4C93689F230832590038CE9B /* TodayHeaderCell.swift in Sources */,
 				4CD9500122C790150056BA9F /* ChangeListData.swift in Sources */,
 				4CC332D12180DF580055E3F5 /* MetaDataCollectionViewCell.swift in Sources */,

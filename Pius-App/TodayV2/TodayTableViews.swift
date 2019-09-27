@@ -46,7 +46,6 @@ class NewsTableView: TodayItemTableView, UITableViewDelegate, UIPopoverPresentat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? NewsTableViewCell, let href = cell.href, let url = URL(string: href) else { return }
         TodayV2TableViewController.shared.controller?.perform(segue: "showNews", with: url, presentModally: true)
-        cell.isSelected = false
     }
 }
 
@@ -88,5 +87,13 @@ class TodayTimetableTableView: TodayItemTableView, UITableViewDelegate {
                 cell.onTick(forRow: row)
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? TodayTimetableItemCell, let scheduleItem = cell.scheduleItem else {
+            return
+        }
+        
+        TodayV2TableViewController.shared.controller?.perform(segue: "showDetails", with: scheduleItem, presentModally: false)
     }
 }

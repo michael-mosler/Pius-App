@@ -71,17 +71,17 @@ class TimetableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource 
         let dayOfWeek = DateHelper.dayOfWeek()
         let currentDate = Date()
 
-        if dayOfWeek >= 4 {
+        if dayOfWeek > 4 {
             return forWeek != DateHelper.week()
                 ? currentDate + ((7 - dayOfWeek) + forDay).days     // On weekends we expect the next week to show.
                 : currentDate + ((7 - dayOfWeek) + forDay + 7).days // If users toggles week we shift be another 7 days.
             
         } else {
-        // If the week shown is the current week than date is by adding
-        // difference for day shown and current day of week to the current
-        // date.
-        // Weeks will differ for weekend only. In this case we need to
-        // move to next Monday and then we add the day shown.
+            // If the week shown is the current week than date is by adding
+            // difference for day shown and current day of week to the current
+            // date.
+            // Weeks will differ for weekend only. In this case we need to
+            // move to next Monday and then we add the day shown.
             return forWeek == DateHelper.week()
                 ? currentDate + (forDay - dayOfWeek).days
                 : currentDate + (forDay - dayOfWeek + 7).days

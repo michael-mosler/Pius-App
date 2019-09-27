@@ -240,7 +240,7 @@ class TodayTimetableItemCell: UITableViewCell {
     
     func onTick(forRow row: Int) {
         // For a break item no action is needed.
-        guard let _ = _lesson else { return }
+        guard let _ = _row else { return }
         
         if _row == row {
             if !lessonTextLabel.isHidden {
