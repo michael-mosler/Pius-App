@@ -49,7 +49,7 @@ class DashboardTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSo
         if !hadError, let schedule = schedule {
             // Full schedule and filtered schedule.
             substitutionSchedule = schedule
-            _filteredSubstitutionSchedule = schedule.filter(onDate: Date())
+            _filteredSubstitutionSchedule = schedule.vertretungsplaene[0] // .filter(onDate: Date())
         }
         
         observer?.didLoadData(self)
