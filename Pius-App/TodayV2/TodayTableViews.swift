@@ -94,6 +94,6 @@ class TodayTimetableTableView: TodayItemTableView, UITableViewDelegate {
             return
         }
         
-        TodayV2TableViewController.shared.controller?.perform(segue: "showDetails", with: scheduleItem, presentModally: false)
+        TodayV2TableViewController.shared.controller?.perform(segue: "showDetails", with: scheduleItem, presentModally: true)
     }
 }

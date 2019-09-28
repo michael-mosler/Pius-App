@@ -214,9 +214,15 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
 // Extension that implements protocol TodayItemContainer.
 extension TodayV2TableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? NewsArticleViewController else { return }
-        destination.delegate = self
-        destination.segueData = segueData
+        if let destination = segue.destination as? NewsArticleViewController {
+            destination.delegate = self
+            destination.segueData = segueData
+        }
+
+        if let destination = segue.destination as? TodayScheduleItemDetailsViewController {
+            destination.delegate = self
+            destination.segueData = segueData
+        }
     }
     
     func hasDismissed() {

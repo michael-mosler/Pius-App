@@ -46,7 +46,7 @@ class TimetableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource 
         set(value) {
             _forWeek = value
             let dashboardViewDataSource: DashboardTableDataSource = TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! DashboardTableDataSource
-            substitutionSchedule = dashboardViewDataSource.substitutionSchedule?.filter(onDate: forDate)            
+            substitutionSchedule = dashboardViewDataSource.substitutionSchedule?.vertretungsplaene[0] // .filter(onDate: forDate) // DEBUG
         }
         get {
             return _forWeek
@@ -56,7 +56,7 @@ class TimetableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource 
         set(value) {
             _forDay = value
             let dashboardViewDataSource: DashboardTableDataSource = TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! DashboardTableDataSource
-            substitutionSchedule = dashboardViewDataSource.substitutionSchedule?.filter(onDate: forDate)
+            substitutionSchedule = dashboardViewDataSource.substitutionSchedule?.vertretungsplaene[0] // .filter(onDate: forDate) // DEBUG
         }
         get {
             return _forDay

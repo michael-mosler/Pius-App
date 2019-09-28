@@ -10,25 +10,22 @@ import UIKit
 
 class TodayScheduleItemDetailsViewController: UIViewController {
 
+    var delegate: ModalDismissDelegate?
+    var segueData: Any?
+    
+    @IBOutlet weak var contentView: UIView!
+    
     @IBAction func closeButtonAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+        delegate?.hasDismissed()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        contentView.layer.borderColor = Config.colorPiusBlue.cgColor
+        contentView.layer.borderWidth = 1
+        contentView.layer.cornerRadius = 10
+        contentView.layer.masksToBounds = false;
 
-        // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

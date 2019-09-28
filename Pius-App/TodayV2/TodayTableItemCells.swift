@@ -14,7 +14,7 @@ class TodayItemCell: UITableViewCell {
         view.layer.borderColor = Config.colorPiusBlue.cgColor
         view.layer.borderWidth = 1.5
         view.layer.cornerRadius = 10
-        view.layer.masksToBounds = false;
+        view.layer.masksToBounds = false
     }
     
     fileprivate func reload(_ tableView: UITableView) {
