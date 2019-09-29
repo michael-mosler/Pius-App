@@ -46,7 +46,7 @@ class TimetableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource 
         set(value) {
             _forWeek = value
             let dashboardViewDataSource: DashboardTableDataSource = TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! DashboardTableDataSource
-            substitutionSchedule = dashboardViewDataSource.substitutionSchedule?.vertretungsplaene[0] // .filter(onDate: forDate) // DEBUG
+            substitutionSchedule = dashboardViewDataSource.substitutionSchedule?.filter(onDate: forDate) // DEBUG .vertretungsplaene[1] //
         }
         get {
             return _forWeek
@@ -56,7 +56,7 @@ class TimetableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource 
         set(value) {
             _forDay = value
             let dashboardViewDataSource: DashboardTableDataSource = TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! DashboardTableDataSource
-            substitutionSchedule = dashboardViewDataSource.substitutionSchedule?.vertretungsplaene[0] // .filter(onDate: forDate) // DEBUG
+            substitutionSchedule = dashboardViewDataSource.substitutionSchedule?.filter(onDate: forDate) // DEBUG vertretungsplaene[1] // .
         }
         get {
             return _forDay
@@ -135,13 +135,6 @@ class TimetableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource 
         } else {
             cell.scheduleItem = timetable.schedule(forWeek: .A, forDay: 0).item(forLesson: indexPath.row)
         }
-        
-        /*
-        if indexPath.row <= 1 {
-            cell.backgroundColor = UIColor(red: 0.914, green: 0.200, blue: 0.184, alpha: 0.5)
-            cell.alpha = 0.25
-        }
-        */
         
         return cell
     }

@@ -190,6 +190,16 @@ class TodayTimetableItemCell: UITableViewCell {
                 
                 isUserInteractionEnabled = scheduleItem.isSubstitution
                 infoIconView.isHidden = !scheduleItem.isSubstitution
+                
+                if let bgcolor = scheduleItem.color {
+                    backgroundColor = bgcolor
+                } else {
+                    if #available(iOS 13.0, *) {
+                        backgroundColor = UIColor.systemBackground
+                    } else {
+                        backgroundColor = UIColor.white
+                    }
+                }
             }
         }
         get {

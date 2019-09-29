@@ -187,7 +187,7 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
         doReload()
 
         collectionViewHeightConstraint.constant = CGFloat(ScheduleForDay().numberOfItems * TodayScreenUnits.timetableRowHeight + 2 * TodayScreenUnits.timetableSpacing)
-        flowLayout.itemSize = CGSize(width: collectionView.frame.width - 8, height: collectionViewHeightConstraint.constant)
+        flowLayout.itemSize = CGSize(width: collectionView.frame.width, height: collectionViewHeightConstraint.constant)
     }
     
     // On end of scrolling of collection view update timetable shown. Also update day name. For current

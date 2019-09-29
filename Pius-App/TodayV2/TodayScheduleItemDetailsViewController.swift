@@ -16,6 +16,7 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var roomLabel: UILabel!
     @IBOutlet weak var teacherLabel: UILabel!
@@ -53,13 +54,19 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
         } else {
            evaLabel.attributedText = nil
         }
+        
+        if let bgColor = scheduleItem.color {
+            headerView.backgroundColor = bgColor
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*
         contentView.layer.borderColor = Config.colorPiusBlue.cgColor
-        contentView.layer.borderWidth = 1
+        contentView.layer.borderWidth = 0
         contentView.layer.cornerRadius = 10
+        */
         contentView.layer.masksToBounds = true
         
         contentView.addGestureRecognizer(panGestureRecognizer)
