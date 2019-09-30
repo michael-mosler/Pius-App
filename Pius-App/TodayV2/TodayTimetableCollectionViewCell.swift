@@ -55,7 +55,7 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
             }
         }
         
-        let epochSince1970 = Date().timeIntervalSince1970  - 3 * 3600 - 35 * 60 // Debug: N hours, M minutes
+        let epochSince1970 = Date().timeIntervalSince1970 // - 3 * 3600 - 35 * 60 // Debug: N hours, M minutes
         
         // This is the number of seconds since 07:55h today.
         // row is the row which is covered by the lesson addressed
