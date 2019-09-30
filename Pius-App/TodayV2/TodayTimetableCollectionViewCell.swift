@@ -33,13 +33,14 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
     }
 
     func onTick(_ timer: Timer?) {
-        guard forDay == DateHelper.dayOfWeek(), let epochFor0755 = DateHelper.epoch(forTime: "07:55:00") else {
-            timeMarkerView.isHidden = true
-            timeMarkerDotView.isHidden = true
-            timeMarkerLabel.isHidden = true
-            tableView.onTick(forRow: -1)
-            return
-        }
+        guard tableView.forWeek == DateHelper.week(), forDay == DateHelper.dayOfWeek(),
+            let epochFor0755 = DateHelper.epoch(forTime: "07:55:00") else {
+                timeMarkerView.isHidden = true
+                timeMarkerDotView.isHidden = true
+                timeMarkerLabel.isHidden = true
+                tableView.onTick(forRow: -1)
+                return
+            }
         
         // Epoch for lesson ends. These are needed to find out the current lesson, aka row.
         lessonEndTimes = []
@@ -54,7 +55,7 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
             }
         }
         
-        let epochSince1970 = Date().timeIntervalSince1970 // - 2 * 3600 - 35 * 60 // Debug: N hours, M minutes
+        let epochSince1970 = Date().timeIntervalSince1970  - 3 * 3600 - 35 * 60 // Debug: N hours, M minutes
         
         // This is the number of seconds since 07:55h today.
         // row is the row which is covered by the lesson addressed

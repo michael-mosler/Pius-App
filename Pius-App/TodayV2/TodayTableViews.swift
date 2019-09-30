@@ -8,11 +8,11 @@
 
 import UIKit
 
-/*
+/* *************************************************************************
  * Base class for all embedded table views. This class makes sure
  * that table view and its containing views gets properly resized
  * when data has been loaded into table.
- */
+ * *************************************************************************/
 class TodayItemTableView: UITableView {
     
     override var intrinsicContentSize: CGSize {
@@ -32,10 +32,10 @@ class TodayItemTableView: UITableView {
     }
 }
 
-/*
- * News table view show up to 6 news items with a preview image.
+/* *************************************************************************
+ * News table view shows up to 6 news items with a preview image.
  * When selecting one item article is opened in a modal popover.
- */
+ * *************************************************************************/
 class NewsTableView: TodayItemTableView, UITableViewDelegate, UIPopoverPresentationControllerDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,6 +49,9 @@ class NewsTableView: TodayItemTableView, UITableViewDelegate, UIPopoverPresentat
     }
 }
 
+/* *************************************************************************
+ * Calendar tableview shows calendar items for current date.
+ * *************************************************************************/
 class CalendarTableView: TodayItemTableView {
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -56,6 +59,9 @@ class CalendarTableView: TodayItemTableView {
     }
 }
 
+/* *************************************************************************
+ * Postings tableview shows postings items if there are any.
+ * *************************************************************************/
 class PostingsTableView: TodayItemTableView {
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,6 +69,9 @@ class PostingsTableView: TodayItemTableView {
     }
 }
 
+/* *************************************************************************
+ * Dashboard tableview shows substitution schedule entries for today.
+ * *************************************************************************/
 class DashboardTableView: TodayItemTableView {
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -70,6 +79,11 @@ class DashboardTableView: TodayItemTableView {
     }
 }
 
+/* *************************************************************************
+ * This table view is used in timetable collection view of today page.
+ * Each collection view item holds exactly one tableview which shows
+ * one day from timetable either of week A or B.
+ * *************************************************************************/
 class TodayTimetableTableView: TodayItemTableView, UITableViewDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -77,6 +91,14 @@ class TodayTimetableTableView: TodayItemTableView, UITableViewDelegate {
         delegate = self
     }
     
+    // The week that is shown by this tableview.
+    var forWeek: Week {
+        get {
+            guard let dataSource = dataSource as? TimetableDataSource else { return .A }
+            return dataSource.forWeek ?? .A
+        }
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 35
     }

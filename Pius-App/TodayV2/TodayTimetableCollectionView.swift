@@ -9,7 +9,6 @@
 import UIKit
 
 class TodayItemCollectionView: UICollectionView {
-    
     override var intrinsicContentSize: CGSize {
         layoutIfNeeded()
         return contentSize

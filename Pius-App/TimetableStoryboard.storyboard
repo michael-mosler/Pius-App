@@ -59,7 +59,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FqR-ck-4WE" customClass="ScheduleCollectionView" customModule="Pius_App" customModuleProvider="target">
-                                <rect key="frame" x="8" y="130" width="398" height="634"/>
+                                <rect key="frame" x="8" y="130" width="398" height="644"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Sfl-xQ-3x8">
                                     <size key="itemSize" width="317" height="100"/>
@@ -200,7 +200,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ziehe Deine Kurse auf den Stundenplan!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10F-F9-1DN">
-                                <rect key="frame" x="8" y="764" width="398" height="30"/>
+                                <rect key="frame" x="8" y="774" width="398" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="FW5-3f-xBv"/>
                                 </constraints>
@@ -209,27 +209,27 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WMa-XM-cBs" customClass="CourseCollectionView" customModule="Pius_App" customModuleProvider="target">
-                                <rect key="frame" x="8" y="794" width="398" height="60"/>
+                                <rect key="frame" x="8" y="804" width="398" height="50"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="au2-3i-WGk"/>
+                                    <constraint firstAttribute="height" constant="50" id="au2-3i-WGk"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sHr-El-3NO">
-                                    <size key="itemSize" width="80" height="55"/>
+                                    <size key="itemSize" width="80" height="45"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="prototypeCell" id="f5w-en-5t7" customClass="CourseCollectionViewCell" customModule="Pius_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="2.5" width="80" height="55"/>
+                                        <rect key="frame" x="0.0" y="2.5" width="80" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="80" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vic-2v-p5Y">
-                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="55"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="45"/>
                                                     <color key="backgroundColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="55" id="9Gh-XX-qEX"/>

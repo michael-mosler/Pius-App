@@ -114,26 +114,7 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
         }
     }
 
-    // The effective day of week, for weekends this return 0 = Monday otherwise the real
-    // day is returned.
-    private var effectiveDay: Int {
-        get {
-            return DateHelper.dayOfWeek() > 4 ? 0 : DateHelper.dayOfWeek()
-        }
-    }
-
     private var dayToShow: Int = 0
-
-    // The effective week is the week that effectively should be
-    // shown. For Mon-Fri this equals currentWeek but on weekends
-    // effectiveWeek gets shifted to next week.
-    private var effectiveWeek: Week {
-        get {
-            guard let week: Week = DateHelper.week() else { return .A }
-            return DateHelper.dayOfWeek() <= 4 ? week : !week
-        }
-    }
-
     private var weekToShow: Week = .A
     
     // When cell gets awakened set delegate and reload data.
@@ -153,7 +134,7 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
         // Draw border.
         layoutIfNeeded(forFrameView: view)
 
-        if dayToShow == DateHelper.dayOfWeek() && weekToShow == effectiveWeek {
+        if dayToShow == DateHelper.dayOfWeek() && weekToShow == DateHelper.effectiveWeek() {
             dayTextLabel.attributedText = NSAttributedString(string: "Heute")
         } else {
             dayTextLabel.attributedText = NSAttributedString(string: Config.dayNames[selectedDay])
@@ -161,7 +142,7 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
 
         // On first show center on timetable for current day of week.
         if needsPositioning {
-            collectionView.scrollToItem(at: IndexPath(row: effectiveDay, section: 0), at: .centeredHorizontally, animated: false)
+            collectionView.scrollToItem(at: IndexPath(row: DateHelper.effectiveDay(), section: 0), at: .centeredHorizontally, animated: false)
             needsPositioning = false
         }
     }
@@ -182,8 +163,8 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
         needsPositioning = true
         
         // On reload we reset day and week to current date.
-        weekToShow = effectiveWeek
-        dayToShow = effectiveDay
+        weekToShow = DateHelper.effectiveWeek()
+        dayToShow = DateHelper.effectiveDay()
         doReload()
 
         collectionViewHeightConstraint.constant = CGFloat(ScheduleForDay().numberOfItems * TodayScreenUnits.timetableRowHeight + 2 * TodayScreenUnits.timetableSpacing)

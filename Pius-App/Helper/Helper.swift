@@ -77,6 +77,14 @@ class DateHelper {
         }
     }
     
+    // The effective week is the week that effectively should be
+    // shown. For Mon-Fri this equals currentWeek but on weekends
+    // effectiveWeek gets shifted to next week.
+    static func effectiveWeek() -> Week {
+        guard let week: Week = DateHelper.week() else { return .A }
+        return DateHelper.dayOfWeek() <= 4 ? week : !week
+    }
+
     static func dayOfWeek() -> Int {
         var calendar = NSCalendar.current
         calendar.locale = Locale(identifier: "de_DE")
@@ -84,7 +92,12 @@ class DateHelper {
         
         // Monday is day 2 here, we want it to be 0.
         return (weekDay + 5) % 7
-
+    }
+    
+    // The effective day of week, for weekends this return 0 = Monday otherwise the real
+    // day is returned.
+    static func effectiveDay() -> Int {
+        return DateHelper.dayOfWeek() > 4 ? 0 : DateHelper.dayOfWeek()
     }
 
     static func formatIsoUTCDate(date: String?) -> String {
