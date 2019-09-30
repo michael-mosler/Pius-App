@@ -65,8 +65,9 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
         /*
         contentView.layer.borderColor = Config.colorPiusBlue.cgColor
         contentView.layer.borderWidth = 0
-        contentView.layer.cornerRadius = 10
         */
+
+        contentView.layer.cornerRadius = 10
         contentView.layer.masksToBounds = true
         
         contentView.addGestureRecognizer(panGestureRecognizer)

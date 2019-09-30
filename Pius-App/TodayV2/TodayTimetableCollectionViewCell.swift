@@ -61,7 +61,7 @@ class TodayTimetableCollectionViewCell: UICollectionViewCell, TimerDelegate {
         // by secondsSince0755. If row is out of scope hide markers.
         let secondsSince0755 = epochSince1970 - epochFor0755
         
-        guard let row = lessonEndTimes.firstIndex(where: { lessonEndTime in return secondsSince0755 <= lessonEndTime }),
+        guard secondsSince0755 >= 0, let row = lessonEndTimes.firstIndex(where: { lessonEndTime in return secondsSince0755 <= lessonEndTime }),
             let epochLessonStart = DateHelper.epoch(forTime: "\(lessonsWithAllEndTimes[row]):00"),
             let epochLessonEnd = DateHelper.epoch(forTime: "\(lessonsWithAllEndTimes[row + 1]):00")
         else {
