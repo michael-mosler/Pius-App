@@ -303,13 +303,12 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
 
     // Dismiss keyboard on tap gesture somwwhere into view controller.
     @IBAction func tapGestureAction(_ sender: Any) {
+        guard activeTextField != nil else { return }
         dismissKeyboard(fromTextField: activeTextField)
     }
     
     private func dismissKeyboard(fromTextField textField: UITextField?) {
-        if (textField != nil) {
-            textField?.resignFirstResponder()
-        }
+        textField?.resignFirstResponder()
     }
 
     // Remember text field in which editing has begun.
