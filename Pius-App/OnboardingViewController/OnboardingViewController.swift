@@ -8,29 +8,31 @@
 
 import UIKit
 
-class OnboardingViewController: UITableViewController {
+class OnboardingViewController: UIViewController {
     @IBAction func startAppAction(_ sender: Any) {
         dismiss(animated: true, completion: nil);
     }
 
-    /*
-     * ==================================================
-     *                  Table View
-     * ==================================================
-     */
+    @IBOutlet weak var welcomeText: UILabel!
+    @IBOutlet weak var newInVersionText: UILabel!
+    @IBOutlet weak var feature1Text: UILabel!
+    @IBOutlet weak var feature2Text: UILabel!
+    @IBOutlet weak var feature3Text: UILabel!
+    @IBOutlet weak var feature4Text: UILabel!
+    @IBOutlet weak var feature5Text: UILabel!
+    @IBOutlet weak var functionOverviewText: UILabel!
     
-    @IBOutlet weak var startAppButton: UIButton!
-    private let rowHeights: [CGFloat] = [110, 44, 100, 44, 100, 100, 145, 100, 100];
-    private let offset: CGFloat = 32;
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard indexPath.row >= rowHeights.count else { return rowHeights[indexPath.row]; };
-
-        if indexPath.row == rowHeights.count {
-            let totalHeight = rowHeights.reduce(0, { x, y in x + y});
-            return max(tableView.frame.height - totalHeight - startAppButton.frame.height - offset, startAppButton.frame.height + 12);
-        } else {
-            return 0;
+    override func viewDidLoad() {
+        if #available(iOS 13.0, *) {
+            welcomeText.textColor = UIColor.label
+            newInVersionText.textColor = UIColor.label
+            feature1Text.textColor = UIColor.label
+            feature2Text.textColor = UIColor.label
+            feature3Text.textColor = UIColor.label
+            feature4Text.textColor = UIColor.label
+            feature5Text.textColor = UIColor.label
+            functionOverviewText.textColor = UIColor.label
+            // feature7Text.textColor = UIColor.label
         }
     }
 }

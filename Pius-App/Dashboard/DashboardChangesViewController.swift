@@ -30,30 +30,24 @@ class DashboardChangesViewController: UIViewController, UITableViewDelegate, UIT
             case type = 4, room, teacher
         }
     }
+
+    @IBOutlet weak var doneAction: UIBarButtonItem!
     
-    @IBOutlet weak var sendButton: UIButton!
-    @IBAction func sendButtonAction(_ sender: Any) {
+    @IBAction func doneAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let deltaList = self.deltaList {
             itemList = ChangeListDateItemCollection(from: deltaList).dateItems
         }
-        
         timestampLabel.text = DateHelper.formatIsoUTCDate(date: data["timestamp"] as? String)
-        
         tablewView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard indexPath.section < itemList.count else {
-            let totalHeight = tableView.visibleCells.reduce(0, { totalHeight, cell in totalHeight + cell.bounds.height })
-            return max(tableView.frame.height - totalHeight - 0 - 0, 44 + 12);
-        }
-
         let (_, deltaLists) = itemList[indexPath.section]
 
         if indexPath.row == 0 {
@@ -102,11 +96,6 @@ class DashboardChangesViewController: UIViewController, UITableViewDelegate, UIT
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard indexPath.section < itemList.count else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "buttonCell")
-            return cell!
-        }
-        
         let (date, deltaLists) = itemList[indexPath.section]
         let deltaList = deltaLists[(indexPath.row - 1) / 8]
 
@@ -237,21 +226,11 @@ class DashboardChangesViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return itemList.count + 1
+        return itemList.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard section < itemList.count else {
-            return 1
-        }
-
         let (_, deltaLists) = itemList[section]
         return 8 * deltaLists.count + 1
-    }
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
 }
