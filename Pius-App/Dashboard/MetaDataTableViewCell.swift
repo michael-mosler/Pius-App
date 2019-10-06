@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MetaDataTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
+class MetaDataTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -22,8 +22,11 @@ class MetaDataTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
         collectionView.delegate = self;
         collectionView.dataSource = self;
 
-        flowLayout.itemSize = CGSize(width: CGFloat(IOSHelper.screenWidth), height: flowLayout.itemSize.height);
         pageControl.numberOfPages = 1;
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: CGFloat(IOSHelper.screenWidth), height: flowLayout.itemSize.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

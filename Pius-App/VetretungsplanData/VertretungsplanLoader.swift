@@ -59,25 +59,6 @@ class VertretungsplanLoader {
         }
     }
     
-    // Gets 2nd course item for a pattern like "a&rarr;b". In this case 2nd item is
-    // b. If b is not a course name or does not exist at all nil is returned.
-    private static func get2ndCourseFromItem(item: String) -> String? {
-        if let range = item.range(of: "&rarr;") {
-            let characters = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVXYZ");
-            
-            let startIndex = range.upperBound;
-            let secondItem = String(item[startIndex...]);
-            
-            if item.rangeOfCharacter(from: characters) != nil {
-                return secondItem;
-            }
-            
-            return nil;
-        }
-        
-        return nil;
-    }
-
     // For upper grades filters detail item by course list.
     private func accept(basedOn detailItems: [String]) -> Bool {
         // When not in dashboard mode accept any item.
@@ -110,7 +91,7 @@ class VertretungsplanLoader {
         // If no seconds course is notated also skip it.
         let endOfText = course.index(course.startIndex, offsetBy: 3);
         if (course[..<endOfText] == "Mes") {
-            if let secondCourse = VertretungsplanLoader.get2ndCourseFromItem(item: course) {
+            if let secondCourse = CourseItem.course(from: course, first: false) {
                 course = secondCourse;
             } else {
                 return true;
@@ -125,10 +106,7 @@ class VertretungsplanLoader {
         }
         
         let found = courseList!.first(where: {
-            $0
-            .replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
-            .replacingOccurrences(of: "GK", with: "G", options: .literal, range: nil)
-            .replacingOccurrences(of: "LK", with: "L", options: .literal, range: nil) == course
+            CourseItem.normalizeCourseName($0) == course
         });
 
         return found != nil;
