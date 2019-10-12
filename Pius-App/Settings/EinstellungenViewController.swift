@@ -124,15 +124,18 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             self.loginButton.isEnabled = true
 
             // create the alert
-            var message: String
+            var message: String?
             if hadError {
                 message = "Es ist ein Fehler aufgetreten. Bitte überprüfe Deine Internetverbindung und versuche es noch einmal."
-            } else {
-                message = (authenticated) ? "Du bist nun angemeldet." : "Die Anmeldedaten sind ungültig."
+            } else if !authenticated {
+                message = "Die Anmeldedaten sind ungültig."
             }
-            let alert = UIAlertController(title: "Anmeldung", message: message, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            
+            if let message = message {
+                let alert = UIAlertController(title: "Anmeldung", message: message, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
 
             // Store current authentication state in user settings and update text of
             // login button.
@@ -281,10 +284,12 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             AppDefaults.authenticated = false
             updateLoginButtonText(authenticated: false)
             
+            /*
             // Inform user on new login state.
             let alert = UIAlertController(title: "Anmeldung", message: "Du bist nun abgemeldet.", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
+            */
             
             webSiteUserNameField.isEnabled = true
             webSitePasswordField.isEnabled = true
