@@ -268,7 +268,7 @@
 		4C94DFD22322522300C42998 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		4C94DFD423257D3F00C42998 /* DateArithmetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateArithmetic.swift; sourceTree = "<group>"; };
 		4CA4907620DE4DDC00796457 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
-		4CAC0434233D35F2005C6094 /* NewsArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsArticleViewController.swift; path = ../../../../.Trash/NewsArticleViewController.swift; sourceTree = "<group>"; };
+		4CAC0434233D35F2005C6094 /* NewsArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticleViewController.swift; sourceTree = "<group>"; };
 		4CAC0437233D3B35005C6094 /* TodayScheduleItemDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayScheduleItemDetailsViewController.swift; sourceTree = "<group>"; };
 		4CB2AF512198813C007E5D1F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		4CB2AF5B21ADC498007E5D1F /* NewsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLoader.swift; sourceTree = "<group>"; };
