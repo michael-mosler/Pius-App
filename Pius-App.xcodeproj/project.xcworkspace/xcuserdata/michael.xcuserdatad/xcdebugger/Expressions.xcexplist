@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "closure #1 in ScheduleItem.update(withDetails:):ScheduleData.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "detail">
+            </PersistentString>
+            <PersistentString
+               value = "detail[1]">
+            </PersistentString>
+            <PersistentString
+               value = "detail[2]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TimetableCell.reload():TodayTableItemCells.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "collectionView.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TimetableDataSource.tableView(_:cellForRowAt:):TimetableDataSource.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "canUseDashboard">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleItem.update(withDetails:):ScheduleData.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
