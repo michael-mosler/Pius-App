@@ -186,7 +186,7 @@ class TodayTimetableItemCell: UITableViewCell {
             if let scheduleItem = _scheduleItem {
                 courseTextLabel.text = StringHelper.replaceHtmlEntities(input: scheduleItem.courseName)
                 roomTextLabel.attributedText = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: scheduleItem.room))
-                teacherTextLabel.attributedText = FormatHelper.roomText(room: scheduleItem.teacher)
+                teacherTextLabel.text = StringHelper.replaceHtmlEntities(input: scheduleItem.teacher)
                 
                 isUserInteractionEnabled = scheduleItem.isSubstitution
                 infoIconView.isHidden = !scheduleItem.isSubstitution

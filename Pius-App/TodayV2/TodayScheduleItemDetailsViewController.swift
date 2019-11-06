@@ -40,7 +40,7 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
         headerLabel.attributedText = FormatHelper.roomText(room: courseText)
         typeLabel.text = StringHelper.replaceHtmlEntities(input: details[1])
         roomLabel.attributedText = FormatHelper.roomText(room: roomText)
-        teacherLabel.text = details[4]
+        teacherLabel.text = StringHelper.replaceHtmlEntities(input: details[4])
         
         if commentText.count > 0 {
             commentLabel.text = commentText
@@ -62,10 +62,6 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*
-        contentView.layer.borderColor = Config.colorPiusBlue.cgColor
-        contentView.layer.borderWidth = 0
-        */
 
         contentView.layer.cornerRadius = 10
         contentView.layer.masksToBounds = true

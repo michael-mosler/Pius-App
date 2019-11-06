@@ -37,6 +37,7 @@
 		4C5AA0132189DAA90040A455 /* VertretungsplanDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */; };
 		4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
 		4C5E0E7B20A8797D00DAE459 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7A20A8797D00DAE459 /* OnboardingViewController.swift */; };
+		4C62F45C237338AB00088F3D /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA50EBF2373377700718680 /* ScheduleData.swift */; };
 		4C69EA6621E213B5008B77FB /* MGSwipeTableCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C69EA6521E213B5008B77FB /* MGSwipeTableCell.framework */; };
 		4C6BBD87230B2C2400137384 /* PostingsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD86230B2C2400137384 /* PostingsTableDataSource.swift */; };
 		4C6BBD89230F173200137384 /* DashboardTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD88230F173200137384 /* DashboardTableDataSource.swift */; };
@@ -64,8 +65,6 @@
 		4C93689322F82DDA0038CE9B /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93688A22F82DDA0038CE9B /* CourseDetailsViewController.swift */; };
 		4C93689422F82DDA0038CE9B /* CourseCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93688B22F82DDA0038CE9B /* CourseCollectionView.swift */; };
 		4C93689522F82DDA0038CE9B /* CourseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93688C22F82DDA0038CE9B /* CourseCollectionViewCell.swift */; };
-		4C93689822F82EFF0038CE9B /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93689722F82EFF0038CE9B /* ScheduleData.swift */; };
-		4C93689922F85D500038CE9B /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93689722F82EFF0038CE9B /* ScheduleData.swift */; };
 		4C93689D230830BA0038CE9B /* TodayV2TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93689C230830B90038CE9B /* TodayV2TableViewController.swift */; };
 		4C93689F230832590038CE9B /* TodayHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93689E230832590038CE9B /* TodayHeaderCell.swift */; };
 		4C9368A723083F490038CE9B /* TodayTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9368A623083F490038CE9B /* TodayTableViewCells.swift */; };
@@ -83,6 +82,7 @@
 		4CA4907E20DEA57D00796457 /* Vertretungsplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4D205567C8006092C9 /* Vertretungsplan.swift */; };
 		4CA4907F20DF9BE100796457 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE62206D5FE6006092C9 /* Config.swift */; };
 		4CA4908020DFABFF00796457 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE59205E77D7006092C9 /* Helper.swift */; };
+		4CA50EC02373377700718680 /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA50EBF2373377700718680 /* ScheduleData.swift */; };
 		4CAB552A213AE21A00156A13 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE59205E77D7006092C9 /* Helper.swift */; };
 		4CAB552B213AE28600156A13 /* Vertretungsplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4D205567C8006092C9 /* Vertretungsplan.swift */; };
 		4CAB552C213C398200156A13 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE62206D5FE6006092C9 /* Config.swift */; };
@@ -257,7 +257,6 @@
 		4C93688A22F82DDA0038CE9B /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CourseDetailsViewController.swift; path = ../../../../XCode/Playground/Playground/CourseDetailsViewController.swift; sourceTree = "<group>"; };
 		4C93688B22F82DDA0038CE9B /* CourseCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CourseCollectionView.swift; path = ../../../../XCode/Playground/Playground/CourseCollectionView.swift; sourceTree = "<group>"; };
 		4C93688C22F82DDA0038CE9B /* CourseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CourseCollectionViewCell.swift; path = ../../../../XCode/Playground/Playground/CourseCollectionViewCell.swift; sourceTree = "<group>"; };
-		4C93689722F82EFF0038CE9B /* ScheduleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleData.swift; path = ../../../XCode/Playground/Playground/ScheduleData.swift; sourceTree = "<group>"; };
 		4C93689C230830B90038CE9B /* TodayV2TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayV2TableViewController.swift; sourceTree = "<group>"; };
 		4C93689E230832590038CE9B /* TodayHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayHeaderCell.swift; sourceTree = "<group>"; };
 		4C9368A623083F490038CE9B /* TodayTableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewCells.swift; sourceTree = "<group>"; };
@@ -268,7 +267,8 @@
 		4C94DFD22322522300C42998 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		4C94DFD423257D3F00C42998 /* DateArithmetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateArithmetic.swift; sourceTree = "<group>"; };
 		4CA4907620DE4DDC00796457 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
-		4CAC0434233D35F2005C6094 /* NewsArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsArticleViewController.swift; path = ../../../../.Trash/NewsArticleViewController.swift; sourceTree = "<group>"; };
+		4CA50EBF2373377700718680 /* ScheduleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleData.swift; sourceTree = "<group>"; };
+		4CAC0434233D35F2005C6094 /* NewsArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticleViewController.swift; sourceTree = "<group>"; };
 		4CAC0437233D3B35005C6094 /* TodayScheduleItemDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayScheduleItemDetailsViewController.swift; sourceTree = "<group>"; };
 		4CB2AF512198813C007E5D1F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		4CB2AF5B21ADC498007E5D1F /* NewsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLoader.swift; sourceTree = "<group>"; };
@@ -563,7 +563,7 @@
 		4C93689622F82EE50038CE9B /* TimetableData */ = {
 			isa = PBXGroup;
 			children = (
-				4C93689722F82EFF0038CE9B /* ScheduleData.swift */,
+				4CA50EBF2373377700718680 /* ScheduleData.swift */,
 				4C93688722F82DDA0038CE9B /* CourseItem.swift */,
 			);
 			path = TimetableData;
@@ -1081,11 +1081,11 @@
 				4CA4907720DE4DDC00796457 /* AppDefaults.swift in Sources */,
 				4CED4A7D204749580012CB45 /* EinstellungenViewController.swift in Sources */,
 				4C6BBD8B2312BDE600137384 /* TodayTimetableCollectionViewCell.swift in Sources */,
+				4CA50EC02373377700718680 /* ScheduleData.swift in Sources */,
 				4C6BBD89230F173200137384 /* DashboardTableDataSource.swift in Sources */,
 				4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */,
 				4CB2AF522198813C007E5D1F /* Reachability.swift in Sources */,
 				4CFBCDDA208FBB8F00E9041D /* DateListViewController.swift in Sources */,
-				4C93689822F82EFF0038CE9B /* ScheduleData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1105,7 +1105,7 @@
 				4CB3EC7720DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift in Sources */,
 				4C48F6CA21F641A400B20505 /* AppDefaults.swift in Sources */,
 				4CA4907A20DEA1C900796457 /* VertretungsplanLoader.swift in Sources */,
-				4C93689922F85D500038CE9B /* ScheduleData.swift in Sources */,
+				4C62F45C237338AB00088F3D /* ScheduleData.swift in Sources */,
 				4CA4907F20DF9BE100796457 /* Config.swift in Sources */,
 				4CA4907920DE532700796457 /* Cache.swift in Sources */,
 				4CA4907E20DEA57D00796457 /* Vertretungsplan.swift in Sources */,
@@ -1210,10 +1210,11 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = "Pius-App for WatchOS Extension/Pius-App for WatchOS Extension.entitlements";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App for WatchOS Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 3.0.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp.watchkitextension;
@@ -1235,10 +1236,11 @@
 				CODE_SIGN_ENTITLEMENTS = "Pius-App for WatchOS Extension/Pius-App for WatchOS Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App for WatchOS Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 3.0.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -1261,10 +1263,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				IBSC_MODULE = Pius_App_for_WatchOS_Extension;
 				INFOPLIST_FILE = "Pius-App for WatchOS/Info.plist";
+				MARKETING_VERSION = 3.0.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp;
@@ -1288,10 +1291,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				IBSC_MODULE = Pius_App_for_WatchOS_Extension;
 				INFOPLIST_FILE = "Pius-App for WatchOS/Info.plist";
+				MARKETING_VERSION = 3.0.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1428,7 +1432,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1437,6 +1441,7 @@
 				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 3.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "cf5ddccf-af75-4b91-9ce3-82be1c98da3f";
@@ -1457,7 +1462,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1466,6 +1471,7 @@
 				HOST_ADDRESS = "https://pius-gateway.eu-de.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 3.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e2052aaa-c79f-4adb-bac3-6b40135ac9c5";
@@ -1514,12 +1520,13 @@
 				CODE_SIGN_ENTITLEMENTS = "Pius-App-Extension/Pius-App-Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 3.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "497c7351-5074-4a9d-8f5d-ceb39301ed08";
@@ -1537,12 +1544,13 @@
 				CODE_SIGN_ENTITLEMENTS = "Pius-App-Extension/Pius-App-Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				HOST_ADDRESS = "https://pius-gateway.eu-de.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 3.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4dfe11e4-1cf3-4ce6-a67e-05c2934de45f";
@@ -1561,11 +1569,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App Notification-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 3.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.notification-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "09d76f16-6033-4c3a-95ce-45a9a956c1c6";
@@ -1584,11 +1593,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App Notification-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 3.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.notification-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "471b210c-739e-4d68-9173-110200c7a5c7";
