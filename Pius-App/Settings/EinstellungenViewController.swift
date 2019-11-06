@@ -110,8 +110,10 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     private func updateLoginButtonText(authenticated: Bool?) {
         if (authenticated != nil && authenticated!) {
             loginButton.setTitle("Abmelden", for: .normal)
+            loginButton.backgroundColor = UIColor.red
         } else {
             loginButton.setTitle("Anmelden", for: .normal)
+            loginButton.backgroundColor = Config.colorPiusBlue
         }
     }
 
