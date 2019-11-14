@@ -12,7 +12,7 @@
 		<key>Pius-App Notification-Extension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<key>Pius-App for WatchOS (Notification).xcscheme_^#shared#^_</key>
 		<dict>
@@ -32,6 +32,11 @@
 		<key>Pius-App-Extension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>Pius-App-Timetable-Extension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
 		<key>Pius-App.xcscheme</key>
@@ -42,7 +47,7 @@
 		<key>Pius-App.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<key>pius-app-timetable-extension.xcscheme_^#shared#^_</key>
 		<dict>
