@@ -1408,7 +1408,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "pius-app-timetable-extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1431,7 +1431,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "pius-app-timetable-extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-timetable-extension";
