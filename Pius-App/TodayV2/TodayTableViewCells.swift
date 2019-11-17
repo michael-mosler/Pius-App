@@ -168,7 +168,7 @@ class DashboardTableViewCell: UITableViewCell {
  * Timetable cell which shows a timetable item for a given week type
  * and day of week.
  * *********************************************************************/
-class TodayTimetableItemCell: UITableViewCell {
+class TodayTimetableItemCell: UITableViewCell, TimetableItemCellProtocol {
     private var _scheduleItem: ScheduleItem?
     private var _lesson: Int?
     private var _row: Int?

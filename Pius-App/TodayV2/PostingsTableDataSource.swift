@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PostingsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource {
+class PostingsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSourceProtocol {
     private var observer: TodayItemContainer?
     private var _postingsItems: PostingsItems?
     private let postingsLoader: PostingsLoader = PostingsLoader()

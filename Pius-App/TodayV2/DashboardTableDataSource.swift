@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class DashboardTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource {
+class DashboardTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSourceProtocol {
     private var hadError = false
     private var observer: TodayItemContainer?
     private var _filteredSubstitutionSchedule: VertretungsplanForDate?

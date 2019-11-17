@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C09400F2381504F0077C034 /* DateArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94DFD423257D3F00C42998 /* DateArithmetic.swift */; };
+		4C0940102381506E0077C034 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4907620DE4DDC00796457 /* AppDefaults.swift */; };
+		4C094011238150730077C034 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE62206D5FE6006092C9 /* Config.swift */; };
+		4C094012238150760077C034 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE59205E77D7006092C9 /* Helper.swift */; };
+		4C094013238150790077C034 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */; };
+		4C0940142381507C0077C034 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */; };
+		4C0940152381507F0077C034 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
+		4C094016238150840077C034 /* CourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93688722F82DDA0038CE9B /* CourseItem.swift */; };
+		4C0940172381508E0077C034 /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA50EBF2373377700718680 /* ScheduleData.swift */; };
+		4C094018238151F30077C034 /* Vertretungsplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4D205567C8006092C9 /* Vertretungsplan.swift */; };
+		4C09401A238154890077C034 /* TimetableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C094019238154890077C034 /* TimetableDataSource.swift */; };
 		4C194B4C204AFB3500BA744A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C194B4B204AFB3500BA744A /* WebKit.framework */; };
 		4C1AC38221BED6CD00E2F3A5 /* PostingsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */; };
 		4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */; };
@@ -43,7 +54,7 @@
 		4C6BBD89230F173200137384 /* DashboardTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD88230F173200137384 /* DashboardTableDataSource.swift */; };
 		4C6BBD8B2312BDE600137384 /* TodayTimetableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD8A2312BDE600137384 /* TodayTimetableCollectionViewCell.swift */; };
 		4C6BBD8D2312BF0000137384 /* TodayTimetableCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD8C2312BF0000137384 /* TodayTimetableCollectionView.swift */; };
-		4C6BBD8F2312C1E100137384 /* TimetableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD8E2312C1E100137384 /* TimetableDataSource.swift */; };
+		4C6BBD8F2312C1E100137384 /* TodayTimetableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD8E2312C1E100137384 /* TodayTimetableDataSource.swift */; };
 		4C7203BC237DDC45008B1F4F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB3EC7320DC0ECB00BBEAE0 /* NotificationCenter.framework */; };
 		4C7203BF237DDC45008B1F4F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7203BE237DDC45008B1F4F /* TodayViewController.swift */; };
 		4C7203C2237DDC45008B1F4F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7203C0237DDC45008B1F4F /* MainInterface.storyboard */; };
@@ -208,6 +219,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4C094019238154890077C034 /* TimetableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDataSource.swift; sourceTree = "<group>"; };
 		4C194B4B204AFB3500BA744A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingsLoader.swift; sourceTree = "<group>"; };
 		4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanViewController.swift; sourceTree = "<group>"; };
@@ -245,7 +257,7 @@
 		4C6BBD88230F173200137384 /* DashboardTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableDataSource.swift; sourceTree = "<group>"; };
 		4C6BBD8A2312BDE600137384 /* TodayTimetableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimetableCollectionViewCell.swift; sourceTree = "<group>"; };
 		4C6BBD8C2312BF0000137384 /* TodayTimetableCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimetableCollectionView.swift; sourceTree = "<group>"; };
-		4C6BBD8E2312C1E100137384 /* TimetableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDataSource.swift; sourceTree = "<group>"; };
+		4C6BBD8E2312C1E100137384 /* TodayTimetableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimetableDataSource.swift; sourceTree = "<group>"; };
 		4C7203BB237DDC45008B1F4F /* pius-app-timetable-extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "pius-app-timetable-extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7203BE237DDC45008B1F4F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		4C7203C1237DDC45008B1F4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -603,6 +615,7 @@
 			children = (
 				4CA50EBF2373377700718680 /* ScheduleData.swift */,
 				4C93688722F82DDA0038CE9B /* CourseItem.swift */,
+				4C094019238154890077C034 /* TimetableDataSource.swift */,
 			);
 			path = TimetableData;
 			sourceTree = "<group>";
@@ -658,7 +671,7 @@
 				4C9368B02309A3660038CE9B /* CalendarTableDataSource.swift */,
 				4C6BBD86230B2C2400137384 /* PostingsTableDataSource.swift */,
 				4C6BBD88230F173200137384 /* DashboardTableDataSource.swift */,
-				4C6BBD8E2312C1E100137384 /* TimetableDataSource.swift */,
+				4C6BBD8E2312C1E100137384 /* TodayTimetableDataSource.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -1088,7 +1101,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C094013238150790077C034 /* KeychainConfiguration.swift in Sources */,
 				4C7203BF237DDC45008B1F4F /* TodayViewController.swift in Sources */,
+				4C0940172381508E0077C034 /* ScheduleData.swift in Sources */,
+				4C0940152381507F0077C034 /* Cache.swift in Sources */,
+				4C094018238151F30077C034 /* Vertretungsplan.swift in Sources */,
+				4C094011238150730077C034 /* Config.swift in Sources */,
+				4C094016238150840077C034 /* CourseItem.swift in Sources */,
+				4C0940142381507C0077C034 /* KeychainPasswordItem.swift in Sources */,
+				4C094012238150760077C034 /* Helper.swift in Sources */,
+				4C09400F2381504F0077C034 /* DateArithmetic.swift in Sources */,
+				4C0940102381506E0077C034 /* AppDefaults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1118,11 +1141,12 @@
 				4C48F6D521F78F7C00B20505 /* WatchConnectivityHandler.swift in Sources */,
 				4C9368A723083F490038CE9B /* TodayTableViewCells.swift in Sources */,
 				4C7C22922043117800ACA17B /* ViewController.swift in Sources */,
+				4C09401A238154890077C034 /* TimetableDataSource.swift in Sources */,
 				4C93688D22F82DDA0038CE9B /* TimetableTableViewCell.swift in Sources */,
 				4C94DFD523257D3F00C42998 /* DateArithmetic.swift in Sources */,
 				4C1FDE57205D90E5006092C9 /* DetailCollectionViewCell.swift in Sources */,
 				4C93689022F82DDA0038CE9B /* CourseItem.swift in Sources */,
-				4C6BBD8F2312C1E100137384 /* TimetableDataSource.swift in Sources */,
+				4C6BBD8F2312C1E100137384 /* TodayTimetableDataSource.swift in Sources */,
 				4C1FDE4E205567C8006092C9 /* Vertretungsplan.swift in Sources */,
 				4C93688322F82DA90038CE9B /* TimetableViewController.swift in Sources */,
 				4C93689222F82DDA0038CE9B /* ScheduleCollectionView.swift in Sources */,

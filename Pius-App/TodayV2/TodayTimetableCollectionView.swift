@@ -36,6 +36,6 @@ class TodayItemCollectionView: UICollectionView {
 class TodayTimetableCollectionView: UICollectionView, UICollectionViewDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
-        dataSource = (TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TimetableDataSource).collectionViewDataSource
+        dataSource = (TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TodayTimetableDataSource<TodayTimetableItemCell>).collectionViewDataSource
     }
 }

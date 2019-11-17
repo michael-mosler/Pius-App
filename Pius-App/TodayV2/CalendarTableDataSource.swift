@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CalendarTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource {
+class CalendarTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSourceProtocol {
     
     private var observer: TodayItemContainer?
     private var _calendar: Calendar?

@@ -297,7 +297,7 @@ class ScheduleItem: NSObject, NSCoding, NSCopying {
     }
     
     /**
-     * Given a details item of a substitution schedule record the current SchedduleItem
+     * Given a details item of a substitution schedule record the current ScheduleItem
      * is updated if details match.
      * Matching rules:
      *     + if details refer to a Klausur record then there is a match if the course given in details

@@ -13,7 +13,7 @@ import UIKit
  * Data source for news tablew view on Today page. This class also implements
  * UITableViewDataSource interface for this table.
  */
-class NewsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource {
+class NewsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSourceProtocol {
     
     private var observer: TodayItemContainer?
     private var newsItems: NewsItems = []
