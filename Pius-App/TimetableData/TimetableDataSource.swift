@@ -132,12 +132,12 @@ class TimetableDataSource<T: TimetableItemCellProtocol>: NSObject, UITableViewDa
         // Get timetable for lesson and if substitution exists mix in this.
         // Schedule item contains all information needed for display and
         // navigation.
-        if canUseDashboard, let forWeek = forWeek, let forDay = forDay {
+        if let forWeek = forWeek, let forDay = forDay {
             cell.scheduleItem = timetable.schedule(forWeek: forWeek, forDay: forDay).item(forLesson: indexPath.row)
 
             // If there is a substitution for this lesson than update schedule item with
             // given details.
-            if let gradeItem = filteredSubstitutionSchedule?.item(forIndex: 0), let lesson = cell.lesson {
+            if canUseDashboard, let gradeItem = filteredSubstitutionSchedule?.item(forIndex: 0), let lesson = cell.lesson {
                 let details = gradeItem.details(forLesson: lesson)
                 cell.scheduleItem = cell.scheduleItem?.update(withDetails: details)
             }

@@ -28,14 +28,16 @@ class ExtTimetableItemCell: UITableViewCell, TimetableItemCellProtocol {
                  roomLabel.attributedText = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: scheduleItem.room))
                  teacherLabel.text = StringHelper.replaceHtmlEntities(input: scheduleItem.teacher)
                  
-                 isUserInteractionEnabled = scheduleItem.isSubstitution
                  infoIconView.isHidden = !scheduleItem.isSubstitution
                  
                  if let bgcolor = scheduleItem.color {
                      backgroundColor = bgcolor
                  } else {
                      if #available(iOS 13.0, *) {
-                         backgroundColor = UIColor.systemBackground
+                        lessonLabel.textColor = .white
+                        courseLabel.textColor = .white
+                        roomLabel.textColor = .white
+                        teacherLabel.textColor = .white
                      } else {
                          backgroundColor = UIColor.white
                      }

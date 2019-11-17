@@ -47,6 +47,13 @@ class FormatHelper {
     }
 }
 
+/**
+ * We use A (odd) and B (even) weeks according to Pius
+ * timetable specification.
+ * Enum is extended by equality operator. String class
+ * is extended to allow conversion of Week instance to
+ * string.
+ */
 enum Week: Int {
     case A = 0
     case B = 1
@@ -58,6 +65,15 @@ extension Week {
     }
 }
 
+extension String {
+    init(_ week: Week) {
+        self.init(week == .A ? "A" : "B")
+    }
+}
+
+/**
+ * Whole set of Date convenience functions.
+ */
 class DateHelper {
     static func week() -> Week? {
         if let calendar = NSCalendar(calendarIdentifier: .ISO8601) {
@@ -71,9 +87,9 @@ class DateHelper {
     // Gets the current week: When odd week num returns "A" else "B".
     static func week() -> String {
         if let week = week() {
-            return week == .A ? "A" : "B";
+            return String(week)
         } else {
-            return "Unbekannte";
+            return "Woche konnte nicht ermittelt werden.";
         }
     }
     

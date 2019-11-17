@@ -35,5 +35,16 @@
       <ContextState
          contextName = "ScheduleItem.update(withDetails:):ScheduleData.swift">
       </ContextState>
+      <ContextState
+         contextName = "TimetableDataSource.tableView(_:numberOfRowsInSection:):TimetableDataSource.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "AppDefaults.timetable">
+            </PersistentString>
+            <PersistentString
+               value = "timetable.schedule(forWeek: forWeek, forDay: forDay).numberOfItems">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>
