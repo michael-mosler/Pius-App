@@ -18,6 +18,11 @@
 		4C0940172381508E0077C034 /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA50EBF2373377700718680 /* ScheduleData.swift */; };
 		4C094018238151F30077C034 /* Vertretungsplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4D205567C8006092C9 /* Vertretungsplan.swift */; };
 		4C09401A238154890077C034 /* TimetableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C094019238154890077C034 /* TimetableDataSource.swift */; };
+		4C09401C238170DB0077C034 /* ExtTimetableItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C09401B238170DB0077C034 /* ExtTimetableItemCell.swift */; };
+		4C09401E238173290077C034 /* ExtTimetableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C09401D238173290077C034 /* ExtTimetableDataSource.swift */; };
+		4C09401F238173830077C034 /* TimetableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C094019238154890077C034 /* TimetableDataSource.swift */; };
+		4C094022238178A70077C034 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C094021238178A70077C034 /* Protocols.swift */; };
+		4C094023238178BF0077C034 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C094021238178A70077C034 /* Protocols.swift */; };
 		4C194B4C204AFB3500BA744A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C194B4B204AFB3500BA744A /* WebKit.framework */; };
 		4C1AC38221BED6CD00E2F3A5 /* PostingsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */; };
 		4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */; };
@@ -220,6 +225,9 @@
 
 /* Begin PBXFileReference section */
 		4C094019238154890077C034 /* TimetableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDataSource.swift; sourceTree = "<group>"; };
+		4C09401B238170DB0077C034 /* ExtTimetableItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtTimetableItemCell.swift; sourceTree = "<group>"; };
+		4C09401D238173290077C034 /* ExtTimetableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtTimetableDataSource.swift; sourceTree = "<group>"; };
+		4C094021238178A70077C034 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		4C194B4B204AFB3500BA744A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingsLoader.swift; sourceTree = "<group>"; };
 		4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanViewController.swift; sourceTree = "<group>"; };
@@ -392,6 +400,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C094020238178850077C034 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4C094021238178A70077C034 /* Protocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		4C194B4A204AFB3500BA744A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -513,6 +529,8 @@
 				4C7203BE237DDC45008B1F4F /* TodayViewController.swift */,
 				4C7203C0237DDC45008B1F4F /* MainInterface.storyboard */,
 				4C7203C3237DDC45008B1F4F /* Info.plist */,
+				4C09401B238170DB0077C034 /* ExtTimetableItemCell.swift */,
+				4C09401D238173290077C034 /* ExtTimetableDataSource.swift */,
 			);
 			path = "pius-app-timetable-extension";
 			sourceTree = "<group>";
@@ -558,6 +576,7 @@
 				4C7C22932043117800ACA17B /* Main.storyboard */,
 				4C93687F22F827C20038CE9B /* TimetableStoryboard.storyboard */,
 				4C5E0E7720A872C200DAE459 /* OnboardingViewController */,
+				4C094020238178850077C034 /* Protocols */,
 				4C93689B230830500038CE9B /* TodayV2 */,
 				4C7E61A8209F8860000D1225 /* Vertretungsplan */,
 				4C1FDE5F206C2614006092C9 /* Dashboard */,
@@ -1101,7 +1120,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C094023238178BF0077C034 /* Protocols.swift in Sources */,
+				4C09401E238173290077C034 /* ExtTimetableDataSource.swift in Sources */,
 				4C094013238150790077C034 /* KeychainConfiguration.swift in Sources */,
+				4C09401F238173830077C034 /* TimetableDataSource.swift in Sources */,
 				4C7203BF237DDC45008B1F4F /* TodayViewController.swift in Sources */,
 				4C0940172381508E0077C034 /* ScheduleData.swift in Sources */,
 				4C0940152381507F0077C034 /* Cache.swift in Sources */,
@@ -1109,6 +1131,7 @@
 				4C094011238150730077C034 /* Config.swift in Sources */,
 				4C094016238150840077C034 /* CourseItem.swift in Sources */,
 				4C0940142381507C0077C034 /* KeychainPasswordItem.swift in Sources */,
+				4C09401C238170DB0077C034 /* ExtTimetableItemCell.swift in Sources */,
 				4C094012238150760077C034 /* Helper.swift in Sources */,
 				4C09400F2381504F0077C034 /* DateArithmetic.swift in Sources */,
 				4C0940102381506E0077C034 /* AppDefaults.swift in Sources */,
@@ -1143,6 +1166,7 @@
 				4C7C22922043117800ACA17B /* ViewController.swift in Sources */,
 				4C09401A238154890077C034 /* TimetableDataSource.swift in Sources */,
 				4C93688D22F82DDA0038CE9B /* TimetableTableViewCell.swift in Sources */,
+				4C094022238178A70077C034 /* Protocols.swift in Sources */,
 				4C94DFD523257D3F00C42998 /* DateArithmetic.swift in Sources */,
 				4C1FDE57205D90E5006092C9 /* DetailCollectionViewCell.swift in Sources */,
 				4C93689022F82DDA0038CE9B /* CourseItem.swift in Sources */,
@@ -1434,6 +1458,7 @@
 				INFOPLIST_FILE = "pius-app-timetable-extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 3.0.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-timetable-extension";
@@ -1441,7 +1466,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "Debug Timetable Extension on iPhone";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1457,13 +1482,14 @@
 				INFOPLIST_FILE = "pius-app-timetable-extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 3.0.3;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-timetable-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Provision Timetable Extension to App Store";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1692,7 +1718,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "Debug Extension on iPhone";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1716,7 +1742,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "Provision Extension to App Store";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

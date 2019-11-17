@@ -103,6 +103,12 @@ class TimetableDataSource<T: TimetableItemCellProtocol>: NSObject, UITableViewDa
         }
     }
 
+    // Refresh timetable.
+     func loadData(_ observer: ItemContainerProtocol) {
+         timetable  = AppDefaults.timetable
+         observer.didLoadData(self)
+     }
+
     /*
      * ================================================================================
      *                          Data source delegates.

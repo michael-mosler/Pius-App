@@ -11,7 +11,7 @@ import UIKit
 
 class DashboardTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSourceProtocol {
     private var hadError = false
-    private var observer: TodayItemContainer?
+    private var observer: ItemContainerProtocol?
     private var _filteredSubstitutionSchedule: VertretungsplanForDate?
     var substitutionSchedule: Vertretungsplan?
 
@@ -67,7 +67,7 @@ class DashboardTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSo
         return data.count == 0
     }
     
-    func loadData(_ observer: TodayItemContainer) {
+    func loadData(_ observer: ItemContainerProtocol) {
         self.observer = observer
         let substitutionsLoader: VertretungsplanLoader = VertretungsplanLoader(forGrade: AppDefaults.gradeSetting)
         substitutionsLoader.load(doUpdate)

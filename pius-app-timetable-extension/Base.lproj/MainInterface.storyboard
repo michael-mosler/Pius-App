@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="120"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="timetableItemCell" id="IJh-eJ-QdI">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="timetableItemCell" id="IJh-eJ-QdI" customClass="ExtTimetableItemCell" customModule="pius_app_timetable_extension" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="28.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IJh-eJ-QdI" id="A9f-PM-ZhZ">
@@ -153,11 +153,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="courseLabel" destination="Ldo-hz-9fs" id="gAT-A4-pOb"/>
-                                            <outlet property="infoIconImage" destination="Kbk-GF-hZq" id="DYL-Y6-lIK"/>
-                                            <outlet property="lessonLabel" destination="wSn-ff-s0Y" id="A7p-6a-xzJ"/>
-                                            <outlet property="roomLabel" destination="hwG-vm-A4b" id="Nc0-WP-c0n"/>
-                                            <outlet property="teacherLabel" destination="bPq-K5-xW1" id="shp-9q-3qe"/>
+                                            <outlet property="courseLabel" destination="Ldo-hz-9fs" id="ekN-Aw-Mm9"/>
+                                            <outlet property="infoIconImage" destination="Kbk-GF-hZq" id="eoa-Q0-FF9"/>
+                                            <outlet property="infoIconView" destination="NZA-FS-uRJ" id="q0L-tP-4AH"/>
+                                            <outlet property="lessonLabel" destination="wSn-ff-s0Y" id="arl-qL-t2w"/>
+                                            <outlet property="roomLabel" destination="hwG-vm-A4b" id="QJg-DC-aCj"/>
+                                            <outlet property="teacherLabel" destination="bPq-K5-xW1" id="2WH-7q-bmh"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -178,6 +179,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="140"/>
                     <connections>
+                        <outlet property="timetableTableView" destination="XjQ-KJ-er3" id="VvE-fz-cRU"/>
                         <outlet property="weekLabel" destination="mFn-Tp-T5q" id="2Hq-0r-Oaa"/>
                     </connections>
                 </viewController>

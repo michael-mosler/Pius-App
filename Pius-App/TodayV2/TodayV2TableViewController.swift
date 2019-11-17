@@ -16,33 +16,18 @@ enum DataSourceType: Int {
     case timetable = 4
 }
 
-/*
- * Observer protocol for data loaders. Data loaders must call didLoadData() when
- * data has been loaded from backend.
- */
-protocol TodayItemContainer {
-    func didLoadData(_ sender: Any?)
-    func perform(segue: String, with data: Any?, presentModally: Bool)
-    
-    func registerTimerDelegate(_ delegate: TimerDelegate)
-}
-
 protocol TodayItemDataSourceProtocol {
     func needsShow() -> Bool
     func willTryLoading() -> Bool
     func isEmpty() -> Bool
-    func loadData(_ observer: TodayItemContainer)
-}
-
-protocol TimerDelegate: NSObject {
-    func onTick(_ timer: Timer?)
+    func loadData(_ observer: ItemContainerProtocol)
 }
 
 /*
  * This class is used to implement shared state of view controller as a singleton.
  */
 class TodayViewSharedState {
-    var controller: TodayItemContainer?
+    var controller: ItemContainerProtocol?
     fileprivate let dataSources: [DataSourceType : UITableViewDataSource] = [
         .dashboard : DashboardTableDataSource(),
         .postings : PostingsTableDataSource(),
@@ -56,7 +41,7 @@ class TodayViewSharedState {
     }
 }
 
-class TodayV2TableViewController: UITableViewController, TodayItemContainer, ModalDismissDelegate {
+class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, ModalDismissDelegate {
     private let dataSourcesToCellPrototypes: [DataSourceType : String] = [
         .dashboard : "dashboardCell",
         .postings : "postingsCell",

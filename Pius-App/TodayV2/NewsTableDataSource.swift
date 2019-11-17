@@ -15,7 +15,7 @@ import UIKit
  */
 class NewsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSourceProtocol {
     
-    private var observer: TodayItemContainer?
+    private var observer: ItemContainerProtocol?
     private var newsItems: NewsItems = []
     private let newsLoader: NewsLoader = NewsLoader()
     
@@ -29,7 +29,7 @@ class NewsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSourceP
         observer?.didLoadData(self)
     }
     
-    func loadData(_ observer: TodayItemContainer) {
+    func loadData(_ observer: ItemContainerProtocol) {
         self.observer = observer
         newsLoader.load(doUpdate)
     }

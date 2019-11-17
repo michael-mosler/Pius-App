@@ -59,10 +59,12 @@ class TodayTimetableDataSource<T: TimetableItemCellProtocol>: TimetableDataSourc
         }
     }
     
-   // Refresh timetable.
+    /*
+    // Refresh timetable.
     func loadData(_ observer: TodayItemContainer) {
         timetable  = AppDefaults.timetable
         observer.didLoadData(self)
     }
+    */
     
 }
