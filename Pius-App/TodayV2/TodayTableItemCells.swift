@@ -75,7 +75,7 @@ class DashboardCell: TodayItemCell {
     @IBOutlet weak var tableView: UITableView!
 
     override func layoutIfNeeded() {
-        let dataSource = TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! DashboardTableDataSource
+        let dataSource = TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! TodayDashboardDataSource<DashboardTableViewCell>
         if let loadDate = dataSource.loadDate {
             lastUpdateLabel.text = loadDate
         } else {
@@ -124,7 +124,7 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
     }
 
     override func layoutIfNeeded() {
-        let dataSource = TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! DashboardTableDataSource
+        let dataSource = TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! TodayDashboardDataSource<DashboardTableViewCell>
         if let loadDate = dataSource.loadDate {
             lastUpdateLabel.text = loadDate
         } else {

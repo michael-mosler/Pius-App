@@ -31,15 +31,20 @@ class ExtTimetableItemCell: UITableViewCell, TimetableItemCellProtocol {
                  infoIconView.isHidden = !scheduleItem.isSubstitution
                  
                  if let bgcolor = scheduleItem.color {
-                     backgroundColor = bgcolor
+                    lessonLabel.textColor = .black
+                    courseLabel.textColor = .black
+                    roomLabel.textColor = .black
+                    teacherLabel.textColor = .black
+                    backgroundColor = bgcolor
                  } else {
                      if #available(iOS 13.0, *) {
                         lessonLabel.textColor = .white
                         courseLabel.textColor = .white
                         roomLabel.textColor = .white
                         teacherLabel.textColor = .white
+                        backgroundColor = nil
                      } else {
-                         backgroundColor = UIColor.white
+                        backgroundColor = UIColor.white
                      }
                  }
              }

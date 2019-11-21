@@ -25,6 +25,11 @@
 		4C094023238178BF0077C034 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C094021238178A70077C034 /* Protocols.swift */; };
 		4C0940242381891E0077C034 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C22962043117800ACA17B /* Assets.xcassets */; };
 		4C0940252381C0E80077C034 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94DFD22322522300C42998 /* MessageCell.swift */; };
+		4C0940272381C7AF0077C034 /* DashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0940262381C7AF0077C034 /* DashboardDataSource.swift */; };
+		4C0940282385BFE90077C034 /* DashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0940262381C7AF0077C034 /* DashboardDataSource.swift */; };
+		4C0940292385C14C0077C034 /* VertretungsplanLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */; };
+		4C09402A2385C1750077C034 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF512198813C007E5D1F /* Reachability.swift */; };
+		4C09402C2385C34F0077C034 /* ExtDashboardItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C09402B2385C34F0077C034 /* ExtDashboardItemCell.swift */; };
 		4C194B4C204AFB3500BA744A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C194B4B204AFB3500BA744A /* WebKit.framework */; };
 		4C1AC38221BED6CD00E2F3A5 /* PostingsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */; };
 		4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */; };
@@ -58,7 +63,7 @@
 		4C62F45C237338AB00088F3D /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA50EBF2373377700718680 /* ScheduleData.swift */; };
 		4C69EA6621E213B5008B77FB /* MGSwipeTableCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C69EA6521E213B5008B77FB /* MGSwipeTableCell.framework */; };
 		4C6BBD87230B2C2400137384 /* PostingsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD86230B2C2400137384 /* PostingsTableDataSource.swift */; };
-		4C6BBD89230F173200137384 /* DashboardTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD88230F173200137384 /* DashboardTableDataSource.swift */; };
+		4C6BBD89230F173200137384 /* TodayDashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD88230F173200137384 /* TodayDashboardDataSource.swift */; };
 		4C6BBD8B2312BDE600137384 /* TodayTimetableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD8A2312BDE600137384 /* TodayTimetableCollectionViewCell.swift */; };
 		4C6BBD8D2312BF0000137384 /* TodayTimetableCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD8C2312BF0000137384 /* TodayTimetableCollectionView.swift */; };
 		4C6BBD8F2312C1E100137384 /* TodayTimetableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD8E2312C1E100137384 /* TodayTimetableDataSource.swift */; };
@@ -230,6 +235,8 @@
 		4C09401B238170DB0077C034 /* ExtTimetableItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtTimetableItemCell.swift; sourceTree = "<group>"; };
 		4C09401D238173290077C034 /* ExtTimetableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtTimetableDataSource.swift; sourceTree = "<group>"; };
 		4C094021238178A70077C034 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		4C0940262381C7AF0077C034 /* DashboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardDataSource.swift; sourceTree = "<group>"; };
+		4C09402B2385C34F0077C034 /* ExtDashboardItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtDashboardItemCell.swift; sourceTree = "<group>"; };
 		4C194B4B204AFB3500BA744A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingsLoader.swift; sourceTree = "<group>"; };
 		4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanViewController.swift; sourceTree = "<group>"; };
@@ -264,7 +271,7 @@
 		4C5E0E7A20A8797D00DAE459 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		4C69EA6521E213B5008B77FB /* MGSwipeTableCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MGSwipeTableCell.framework; path = Carthage/Build/iOS/MGSwipeTableCell.framework; sourceTree = "<group>"; };
 		4C6BBD86230B2C2400137384 /* PostingsTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingsTableDataSource.swift; sourceTree = "<group>"; };
-		4C6BBD88230F173200137384 /* DashboardTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableDataSource.swift; sourceTree = "<group>"; };
+		4C6BBD88230F173200137384 /* TodayDashboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDashboardDataSource.swift; sourceTree = "<group>"; };
 		4C6BBD8A2312BDE600137384 /* TodayTimetableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimetableCollectionViewCell.swift; sourceTree = "<group>"; };
 		4C6BBD8C2312BF0000137384 /* TodayTimetableCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimetableCollectionView.swift; sourceTree = "<group>"; };
 		4C6BBD8E2312C1E100137384 /* TodayTimetableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimetableDataSource.swift; sourceTree = "<group>"; };
@@ -430,6 +437,7 @@
 				4C1FDE4D205567C8006092C9 /* Vertretungsplan.swift */,
 				4C1FDE4F205568E3006092C9 /* ExpandableHeaderView.swift */,
 				4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */,
+				4C0940262381C7AF0077C034 /* DashboardDataSource.swift */,
 			);
 			path = VetretungsplanData;
 			sourceTree = "<group>";
@@ -533,6 +541,7 @@
 				4C7203C3237DDC45008B1F4F /* Info.plist */,
 				4C09401B238170DB0077C034 /* ExtTimetableItemCell.swift */,
 				4C09401D238173290077C034 /* ExtTimetableDataSource.swift */,
+				4C09402B2385C34F0077C034 /* ExtDashboardItemCell.swift */,
 			);
 			path = "pius-app-timetable-extension";
 			sourceTree = "<group>";
@@ -691,7 +700,7 @@
 				4C9368AE23093BA30038CE9B /* NewsTableDataSource.swift */,
 				4C9368B02309A3660038CE9B /* CalendarTableDataSource.swift */,
 				4C6BBD86230B2C2400137384 /* PostingsTableDataSource.swift */,
-				4C6BBD88230F173200137384 /* DashboardTableDataSource.swift */,
+				4C6BBD88230F173200137384 /* TodayDashboardDataSource.swift */,
 				4C6BBD8E2312C1E100137384 /* TodayTimetableDataSource.swift */,
 			);
 			name = DataSources;
@@ -1125,6 +1134,7 @@
 			files = (
 				4C094023238178BF0077C034 /* Protocols.swift in Sources */,
 				4C0940252381C0E80077C034 /* MessageCell.swift in Sources */,
+				4C09402A2385C1750077C034 /* Reachability.swift in Sources */,
 				4C09401E238173290077C034 /* ExtTimetableDataSource.swift in Sources */,
 				4C094013238150790077C034 /* KeychainConfiguration.swift in Sources */,
 				4C09401F238173830077C034 /* TimetableDataSource.swift in Sources */,
@@ -1135,10 +1145,13 @@
 				4C094011238150730077C034 /* Config.swift in Sources */,
 				4C094016238150840077C034 /* CourseItem.swift in Sources */,
 				4C0940142381507C0077C034 /* KeychainPasswordItem.swift in Sources */,
+				4C09402C2385C34F0077C034 /* ExtDashboardItemCell.swift in Sources */,
 				4C09401C238170DB0077C034 /* ExtTimetableItemCell.swift in Sources */,
+				4C0940282385BFE90077C034 /* DashboardDataSource.swift in Sources */,
 				4C094012238150760077C034 /* Helper.swift in Sources */,
 				4C09400F2381504F0077C034 /* DateArithmetic.swift in Sources */,
 				4C0940102381506E0077C034 /* AppDefaults.swift in Sources */,
+				4C0940292385C14C0077C034 /* VertretungsplanLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1211,7 +1224,8 @@
 				4CED4A7D204749580012CB45 /* EinstellungenViewController.swift in Sources */,
 				4C6BBD8B2312BDE600137384 /* TodayTimetableCollectionViewCell.swift in Sources */,
 				4CA50EC02373377700718680 /* ScheduleData.swift in Sources */,
-				4C6BBD89230F173200137384 /* DashboardTableDataSource.swift in Sources */,
+				4C0940272381C7AF0077C034 /* DashboardDataSource.swift in Sources */,
+				4C6BBD89230F173200137384 /* TodayDashboardDataSource.swift in Sources */,
 				4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */,
 				4CB2AF522198813C007E5D1F /* Reachability.swift in Sources */,
 				4CFBCDDA208FBB8F00E9041D /* DateListViewController.swift in Sources */,
@@ -1453,12 +1467,14 @@
 		4C7203C7237DDC46008B1F4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_KEY = "heSXxSOvNcl8J4UB9$#TV9TUZ3zClbX$EyOQzKiqGWxRgonzSe";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = "pius-app-timetable-extension/pius-app-timetable-extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
+				HOST_ADDRESS = "http://localhost:3000";
 				INFOPLIST_FILE = "pius-app-timetable-extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1477,12 +1493,14 @@
 		4C7203C8237DDC46008B1F4F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_KEY = "heSXxSOvNcl8J4UB9$#TV9TUZ3zClbX$EyOQzKiqGWxRgonzSe";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = "pius-app-timetable-extension/pius-app-timetable-extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
+				HOST_ADDRESS = "https://pius-gateway.eu-de.mybluemix.net";
 				INFOPLIST_FILE = "pius-app-timetable-extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";

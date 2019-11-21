@@ -12,6 +12,7 @@ import NotificationCenter
 class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerProtocol {
     
     var timetableDataSource: ExtTimetableDataSource = ExtTimetableDataSource()
+    var dashboardDataSource: DashboardDataSource<ExtDashboardItemCell> = DashboardDataSource<ExtDashboardItemCell>()
     var completionHandler: ((NCUpdateResult) -> Void)? = nil
     
     @IBOutlet var widgetView: UIView!
@@ -49,6 +50,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerPro
         // If there's an update, use NCUpdateResult.NewData
         if AppDefaults.useTimetable {
             self.completionHandler = completionHandler
+            dashboardDataSource.loadData(self)
             timetableDataSource.loadData(self)
         } else {
             
@@ -56,12 +58,23 @@ class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerPro
     }
     
     func didLoadData(_ sender: Any? = nil) {
-        timetableDataSource.forWeek = DateHelper.effectiveWeek()
-        timetableDataSource.forDay = DateHelper.effectiveDay()
-        timetableTableView.reloadData()
-        widgetView.layoutIfNeeded()
-        extensionContext?.widgetLargestAvailableDisplayMode = .expanded
-        completionHandler?(NCUpdateResult.newData)
+        DispatchQueue.main.async {
+            if sender as? ExtTimetableDataSource != nil {
+                self.timetableDataSource.forWeek = DateHelper.effectiveWeek()
+                self.timetableDataSource.forDay = DateHelper.effectiveDay()
+                self.timetableTableView.reloadData()
+                self.widgetView.layoutIfNeeded()
+            } else if let sender = sender as? DashboardDataSource<ExtDashboardItemCell> {
+                self.timetableDataSource.substitutionSchedule = sender.substitutionSchedule
+                self.timetableDataSource.forWeek = DateHelper.effectiveWeek()
+                self.timetableDataSource.forDay = DateHelper.effectiveDay()
+                self.timetableTableView.reloadData()
+                self.widgetView.layoutIfNeeded()
+            }
+            
+            self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+            self.completionHandler?(NCUpdateResult.newData)
+        }
     }
     
     func perform(segue: String, with data: Any?, presentModally: Bool) {

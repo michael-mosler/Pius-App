@@ -29,7 +29,7 @@ protocol TodayItemDataSourceProtocol {
 class TodayViewSharedState {
     var controller: ItemContainerProtocol?
     fileprivate let dataSources: [DataSourceType : UITableViewDataSource] = [
-        .dashboard : DashboardTableDataSource(),
+        .dashboard : TodayDashboardDataSource<DashboardTableViewCell>(),
         .postings : PostingsTableDataSource(),
         .news : NewsTableDataSource(),
         .calendar : CalendarTableDataSource(),
@@ -257,9 +257,9 @@ extension TodayV2TableViewController {
             
             self.cellOrder = newCellOrder
             
-            if sender as? DashboardTableDataSource != nil {
+            if sender as? TodayDashboardDataSource<DashboardTableViewCell> != nil {
                 // Whenever a new substitution schedule has been loaded update timetable data source.
-                let sender = sender as! DashboardTableDataSource
+                let sender = sender as! TodayDashboardDataSource<DashboardTableViewCell>
                 let timetableDataSource = TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TodayTimetableDataSource<TodayTimetableItemCell>
                 timetableDataSource.substitutionSchedule = sender.substitutionSchedule
                 

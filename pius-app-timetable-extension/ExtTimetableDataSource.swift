@@ -23,3 +23,4 @@ class ExtTimetableDataSource: TimetableDataSource<ExtTimetableItemCell> {
         return super.tableView(tableView, cellForRowAt: indexPath)
     }
 }
+

@@ -36,7 +36,7 @@ fileprivate class TimetableCollectionViewDataSource: NSObject, UICollectionViewD
  * day and week to be shown. Week is one of .A or .B. Days are counted starting from Monday with
  * 0 being the least index.
  * **********************************************************************************************/
-class TodayTimetableDataSource<T: TimetableItemCellProtocol>: TimetableDataSource<T>, /* NSObject, UITableViewDataSource, */ TodayItemDataSourceProtocol {
+class TodayTimetableDataSource<T: TimetableItemCellProtocol>: TimetableDataSource<T>, TodayItemDataSourceProtocol {
    
     let collectionViewDataSource: UICollectionViewDataSource = TimetableCollectionViewDataSource()
     
@@ -58,13 +58,5 @@ class TodayTimetableDataSource<T: TimetableItemCellProtocol>: TimetableDataSourc
             return true
         }
     }
-    
-    /*
-    // Refresh timetable.
-    func loadData(_ observer: TodayItemContainer) {
-        timetable  = AppDefaults.timetable
-        observer.didLoadData(self)
-    }
-    */
     
 }
