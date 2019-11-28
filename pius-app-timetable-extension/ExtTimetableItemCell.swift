@@ -8,6 +8,10 @@
 
 import UIKit
 
+/**
+ * Timetable cell item for iOS Today view. This class is subject to refactoring as it
+ * implements some logic that also is present in App's today view.
+ */
 class ExtTimetableItemCell: UITableViewCell, TimetableItemCellProtocol {
     private var _scheduleItem: ScheduleItem?
     private var _lesson: Int?

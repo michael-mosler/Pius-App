@@ -552,6 +552,9 @@ class Timetable: NSObject, NSCoding {
         super.init()
     }
     
+    /**
+     * Apply function f to each schedule item.
+     */
     func forEachItem(_ f: (Int, ScheduleForDay, ScheduleItem) -> Void) {
         scheduleForWeeks.forEach({ scheduleForDays in
             scheduleForDays.forEach({ scheduleForDay in
@@ -563,6 +566,10 @@ class Timetable: NSObject, NSCoding {
         })
     }
 
+    /**
+     * Save timetable in app options. Calling this function also updates course list
+     * which also forwards course list to backend for use by pusher.
+     */
     private func save() {
         var courses = Courses()
         var courseNameDictionary: [String : CourseItem] = [ : ]
@@ -586,6 +593,9 @@ class Timetable: NSObject, NSCoding {
         }
     }
 
+    /**
+     * Swaps A and B week: A -> B, B -> A.
+     */
     private func swapWeek(_ week: Week) -> Week {
         return (week == .A) ? .B : .A
     }
