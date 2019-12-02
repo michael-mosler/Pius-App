@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class TimetableHelper: NSObject {
     /**
@@ -47,5 +48,19 @@ class TimetableHelper: NSObject {
         }
 
         return lesson
+    }
+    
+    static func offset(forCurrentLesson currentLesson: Int, withTopRow topRow: Int, withRowHeight rowHeight: CGFloat) -> CGFloat? {
+        guard currentLesson != Int.min && currentLesson != Int.max,
+            let epochLessonStart = DateHelper.epoch(forTime: "\(lessonsWithAllEndTimes[currentLesson]):00"),
+            let epochLessonEnd = DateHelper.epoch(forTime: "\(lessonsWithAllEndTimes[currentLesson + 1]):00")
+        else {
+            return nil
+        }
+        
+       // let rowHeight = CGFloat(TodayScreenUnits.timetableRowHeight) // CGFloat((frame.height - 2 * CGFloat(TodayScreenUnits.timetableSpacing)) / CGFloat(lessons.count))
+       let duration = CGFloat(epochLessonEnd - epochLessonStart)
+       let lessonDuration = CGFloat(Date().timeIntervalSince1970 - epochLessonStart)
+       return CGFloat(currentLesson - topRow) * rowHeight + lessonDuration * rowHeight / duration
     }
 }

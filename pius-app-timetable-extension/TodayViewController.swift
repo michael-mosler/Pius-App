@@ -18,9 +18,17 @@ class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerPro
     var dashboardDataSource: DashboardDataSource<ExtDashboardItemCell> = DashboardDataSource<ExtDashboardItemCell>()
     var completionHandler: ((NCUpdateResult) -> Void)? = nil
     
+    // This is set only if widget is refreshed. Otherwise
+    // compuation can get inconsistent. Aka, time stays constant
+    // once widget is refreshed.
+    private var currentLesson: Int? = 0
+    
     @IBOutlet var widgetView: UIView!
     @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var timetableTableView: UITableView!
+    @IBOutlet weak var timeMarkerView: UIView!
+    @IBOutlet weak var timeMarkerDotView: UIView!
+    @IBOutlet weak var timeMarkerViewTopConstraint: NSLayoutConstraint!
     
     /**
      * Returns the top row top be displayed in timetable. Top row refers
@@ -34,7 +42,9 @@ class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerPro
         // If current lesson cannot be computed then top row is also 0.
         guard extensionContext?.widgetActiveDisplayMode ?? .compact == .compact,
             timetableTableView.numberOfRows(inSection: 0) > 0,
-            let row = TimetableHelper.currentLesson()
+            timetableDataSource.forWeek == DateHelper.week(),
+            timetableDataSource.forDay != DateHelper.dayOfWeek(),
+            let row = currentLesson
         else { return 0 }
         
         // If current time is before first lesson start with 0.
@@ -67,6 +77,16 @@ class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerPro
         if #available(iOS 13.0, *) {
             weekLabel.textColor = .white
         }
+        
+        timetableTableView.setNeedsDisplay()
+    }
+    
+    @IBAction func openAppAction(_ sender: Any) {
+        if timetableDataSource.canUseDashboard {
+            extensionContext?.open(URL(string: "pius-app://dashboard")!);
+        } else {
+            extensionContext?.open(URL(string: "pius-app://today")!);
+        }
     }
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
@@ -74,37 +94,18 @@ class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerPro
             let frame = timetableTableView.rectForRow(at: IndexPath(row: 0, section: 0))
             preferredContentSize = CGSize(width: maxSize.width, height: 14 * frame.size.height + weekLabel.frame.size.height + 4)
             timetableDataSource.mode(useDisplayMode: .expanded)
+            marker()
             timetableTableView.reloadData()
-        } else {
+       } else {
             preferredContentSize = maxSize
-            
-            // Now we need to make sure that current lesson is displayed in
-            // the middle of view. For first and last lesson this is not
-            // possible, they are displayed as first or last row, respectively.
-            guard let row = TimetableHelper.currentLesson(), timetableTableView.numberOfRows(inSection: 0) > 0
-                else { return }
-            
-            var topRow: Int
-            var bottomRow: Int
-            if row == Int.min {
-                topRow = 0
-                bottomRow = 2
-            } else if row == Int.max {
-                bottomRow = lessons.count - 1
-                topRow = bottomRow - 2
-            } else {
-                topRow = max(row - 1, 0)
-                bottomRow = min(topRow + 1, lessons.count)
-                let delta = bottomRow - topRow
-                topRow -= (3 - delta)
-            }
-            
             timetableDataSource.mode(useDisplayMode: .compact, withTopRow: topRow)
+            marker()
             timetableTableView.reloadData()
         }
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
+        currentLesson = TimetableHelper.currentLesson()
         if AppDefaults.useTimetable {
             self.completionHandler = completionHandler
             dashboardDataSource.loadData(self)
@@ -112,6 +113,37 @@ class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerPro
         } else {
             timetableDataSource.loadData(self)
         }
+    }
+    
+    /**
+     * Place time marker on timetable view.
+     */
+    private func marker() {
+        // Not current date or day has not started, yet.
+        guard timetableDataSource.forWeek == DateHelper.week(),
+            timetableDataSource.forDay == DateHelper.dayOfWeek(),
+            let currentLesson = currentLesson,
+            currentLesson != Int.min,
+            currentLesson != Int.max
+        else {
+            timeMarkerView.isHidden = true
+            timeMarkerDotView.isHidden = true
+            return
+        }
+        
+        // Offset, if not defined hide marker.
+        guard let offset = TimetableHelper.offset(
+            forCurrentLesson: currentLesson, withTopRow: topRow, withRowHeight: timetableTableView.rowHeight)
+            else {
+                timeMarkerView.isHidden = true
+                timeMarkerDotView.isHidden = true
+                return
+            }
+        
+        // Set marker visible and update top constraint.
+        timeMarkerView.isHidden = false
+        timeMarkerDotView.isHidden = false
+        timeMarkerViewTopConstraint.constant = offset
     }
     
     /**
@@ -126,6 +158,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerPro
                 self.timetableDataSource.forDay = DateHelper.effectiveDay()
                 self.timetableDataSource.mode(useDisplayMode: self.extensionContext?.widgetActiveDisplayMode ?? .compact, withTopRow: self.topRow)
                 self.timetableTableView.reloadData()
+                self.marker()
                 self.widgetView.layoutIfNeeded()
             } else if let sender = sender as? DashboardDataSource<ExtDashboardItemCell> {
                 self.timetableDataSource.substitutionSchedule = sender.substitutionSchedule
@@ -133,6 +166,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerPro
                 self.timetableDataSource.forDay = DateHelper.effectiveDay()
                 self.timetableDataSource.mode(useDisplayMode: self.extensionContext?.widgetActiveDisplayMode ?? .compact, withTopRow: self.topRow)
                 self.timetableTableView.reloadData()
+                self.marker()
                 self.widgetView.layoutIfNeeded()
             }
             

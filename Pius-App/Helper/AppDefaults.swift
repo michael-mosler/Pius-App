@@ -133,6 +133,7 @@ struct AppDefaults {
             NSKeyedUnarchiver.setClass(Timetable.self, forClassName: "Pius_App.Timetable")
             NSKeyedUnarchiver.setClass(ScheduleForDay.self, forClassName: "Pius_App.ScheduleForDay")
             NSKeyedUnarchiver.setClass(CustomScheduleItem.self, forClassName: "Pius_App.CustomScheduleItem")
+            NSKeyedUnarchiver.setClass(CustomScheduleItem.self, forClassName: "Pius_App.ExtraScheduleItem")
             NSKeyedUnarchiver.setClass(CourseItem.self, forClassName: "Pius_App.CourseItem")
             NSKeyedUnarchiver.setClass(FreeScheduleItem.self, forClassName: "Pius_App.FreeScheduleItem")
             NSKeyedUnarchiver.setClass(BreakScheduleItem.self, forClassName: "Pius_App.BreakScheduleItem")

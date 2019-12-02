@@ -26,78 +26,79 @@ class ExtTimetableItemCell: UITableViewCell, TimetableItemCellProtocol {
 
     var scheduleItem: ScheduleItem? {
          set(value) {
-             _scheduleItem = value
-             if let scheduleItem = _scheduleItem {
-                 courseLabel.text = StringHelper.replaceHtmlEntities(input: scheduleItem.courseName)
-                 roomLabel.attributedText = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: scheduleItem.room))
-                 teacherLabel.text = StringHelper.replaceHtmlEntities(input: scheduleItem.teacher)
-                 
-                 infoIconView.isHidden = !scheduleItem.isSubstitution
-                 
-                 if let bgcolor = scheduleItem.color {
-                    lessonLabel.textColor = .black
-                    courseLabel.textColor = .black
-                    roomLabel.textColor = .black
-                    teacherLabel.textColor = .black
+            _scheduleItem = value
+            if let scheduleItem = _scheduleItem {
+                courseLabel.text = StringHelper.replaceHtmlEntities(input: scheduleItem.courseName)
+                roomLabel.attributedText = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: scheduleItem.room))
+                teacherLabel.text = StringHelper.replaceHtmlEntities(input: scheduleItem.teacher)
+                
+                infoIconImage.isHidden = !scheduleItem.isSubstitution
+                
+                if let bgcolor = scheduleItem.color {
+                    var textColor: UIColor
+                    if #available(iOSApplicationExtension 12.0, *) {
+                        textColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
+                    } else {
+                        textColor = .white
+                    }
+                    
+                    lessonLabel.textColor = textColor
+                    courseLabel.textColor = textColor
+                    roomLabel.textColor = textColor
+                    teacherLabel.textColor = textColor
                     backgroundColor = bgcolor
-                 } else {
-                     if #available(iOS 13.0, *) {
+                } else {
+                    if #available(iOS 13.0, *) {
                         lessonLabel.textColor = .white
                         courseLabel.textColor = .white
                         roomLabel.textColor = .white
                         teacherLabel.textColor = .white
                         backgroundColor = nil
-                     } else {
+                    } else {
                         backgroundColor = UIColor.white
-                     }
-                 }
-             }
-         }
-         get {
-             return _scheduleItem
-         }
+                    }
+                }
+            }
+        }
+        get {
+            return _scheduleItem
+        }
      }
      
-     var lesson: Int? {
-         set(value) {
-             _row = value
-             if let lesson = value {
-                 // Add some extra space to top of first row.
-                 // This space is needed to display time marker.
-                 if _row == 0 {
-                     // stackViewTopConstraint.constant = 0
-                 }
-
-                 if lesson < 2 {
-                     _lesson = lesson + 1
-                     lessonLabel.text = "\(lesson + 1)."
-                 } else if lesson == 2 {
-                     _lesson = nil
-                     lessonLabel.text = nil
-                 } else if lesson < 6 {
-                     _lesson = lesson
-                     lessonLabel.text = "\(lesson)."
-                 } else if lesson == 6 {
-                     _lesson = nil
-                     lessonLabel.text = nil
-                 } else if lesson < 9 {
-                     _lesson = lesson - 1
-                     lessonLabel.text = "\(lesson - 1)."
-                 } else if lesson == 9 {
-                     _lesson = nil
-                     lessonLabel.text = nil
-                 } else {
-                     _lesson = lesson - 2
-                     lessonLabel.text = "\(lesson - 2)."
-                 }
-             } else {
-                 lessonLabel.text = nil
-             }
-         }
-         get {
-             return _lesson
-         }
-     }
+    var lesson: Int? {
+        set(value) {
+            _row = value
+            if let lesson = value {
+                if lesson < 2 {
+                    _lesson = lesson + 1
+                    lessonLabel.text = "\(lesson + 1)."
+                } else if lesson == 2 {
+                    _lesson = nil
+                    lessonLabel.text = nil
+                } else if lesson < 6 {
+                    _lesson = lesson
+                    lessonLabel.text = "\(lesson)."
+                } else if lesson == 6 {
+                    _lesson = nil
+                    lessonLabel.text = nil
+                } else if lesson < 9 {
+                    _lesson = lesson - 1
+                    lessonLabel.text = "\(lesson - 1)."
+                } else if lesson == 9 {
+                    _lesson = nil
+                    lessonLabel.text = nil
+                } else {
+                    _lesson = lesson - 2
+                    lessonLabel.text = "\(lesson - 2)."
+                }
+            } else {
+                lessonLabel.text = nil
+            }
+        }
+        get {
+            return _lesson
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

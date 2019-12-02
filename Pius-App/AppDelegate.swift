@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         /*
          * ===============================================================
-         *                      Reachability Chahges
+         *                      Reachability Changes
          * ===============================================================
          */
         reachability?.whenReachable = { _ in
@@ -145,6 +145,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         guard let host = url.host else { return false };
         
         switch(host) {
+        case "today":
+            let tbc = window?.rootViewController as! UITabBarController;
+            let today = tbc.viewControllers![0];
+            tbc.selectedViewController = today;
+
         case "dashboard":
             let tbc = window?.rootViewController as! UITabBarController;
             let dashboard = tbc.viewControllers![2];
