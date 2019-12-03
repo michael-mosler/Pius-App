@@ -34,6 +34,9 @@ class ExtTimetableItemCell: UITableViewCell, TimetableItemCellProtocol {
                 
                 infoIconImage.isHidden = !scheduleItem.isSubstitution
                 
+                // If this cell has a special color assigned set text color.
+                // For iOS 12 and above we must consider dark mode. Default
+                // color would not work well.
                 if let bgcolor = scheduleItem.color {
                     var textColor: UIColor
                     if #available(iOSApplicationExtension 12.0, *) {
@@ -48,6 +51,9 @@ class ExtTimetableItemCell: UITableViewCell, TimetableItemCellProtocol {
                     teacherLabel.textColor = textColor
                     backgroundColor = bgcolor
                 } else {
+                    // Default background color on iOS 13 and above. Use
+                    // white text color. Fits best in dark and normal mode.
+                    // On elder versions simply use white background.
                     if #available(iOS 13.0, *) {
                         lessonLabel.textColor = .white
                         courseLabel.textColor = .white
@@ -65,6 +71,7 @@ class ExtTimetableItemCell: UITableViewCell, TimetableItemCellProtocol {
         }
      }
      
+    // Effective lesson: Here breaks do not count and, thus, get no label.
     var lesson: Int? {
         set(value) {
             _row = value

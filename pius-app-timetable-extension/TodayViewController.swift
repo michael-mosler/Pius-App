@@ -77,8 +77,6 @@ class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerPro
         if #available(iOS 13.0, *) {
             weekLabel.textColor = .white
         }
-        
-        timetableTableView.setNeedsDisplay()
     }
     
     @IBAction func openAppAction(_ sender: Any) {
