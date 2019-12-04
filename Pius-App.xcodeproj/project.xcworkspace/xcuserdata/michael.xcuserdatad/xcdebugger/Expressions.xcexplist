@@ -17,6 +17,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "TodayViewController.topRow.getter:TodayViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "timetableDataSource.forWeek">
+            </PersistentString>
+            <PersistentString
+               value = "timetableDataSource.forDay">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "TimetableCell.reload():TodayTableItemCells.swift">
          <PersistentStrings>
             <PersistentString

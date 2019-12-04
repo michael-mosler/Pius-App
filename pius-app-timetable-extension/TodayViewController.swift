@@ -12,7 +12,7 @@ import NotificationCenter
 /**
  * View controller for iOS Today view timetable widget.
  */
-class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerProtocol {
+class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDelegate, ItemContainerProtocol {
     
     var timetableDataSource: ExtTimetableDataSource = ExtTimetableDataSource()
     var dashboardDataSource: DashboardDataSource<ExtDashboardItemCell> = DashboardDataSource<ExtDashboardItemCell>()
@@ -43,7 +43,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerPro
         guard extensionContext?.widgetActiveDisplayMode ?? .compact == .compact,
             timetableTableView.numberOfRows(inSection: 0) > 0,
             timetableDataSource.forWeek == DateHelper.week(),
-            timetableDataSource.forDay != DateHelper.dayOfWeek(),
+            timetableDataSource.forDay == DateHelper.dayOfWeek(),
             let row = currentLesson
         else { return 0 }
         
@@ -69,9 +69,16 @@ class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerPro
         extensionContext?.widgetLargestAvailableDisplayMode = .compact
         timetableDataSource.mode(useDisplayMode: extensionContext?.widgetActiveDisplayMode ?? .compact)
         timetableTableView.dataSource = timetableDataSource
+        timetableTableView.delegate = self
     }
         
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard AppDefaults.useTimetable else {
+            weekLabel.text = nil
+            return
+        }
+        
         weekLabel.text = "\(String(DateHelper.effectiveWeek()))-Woche"
         
         if #available(iOS 13.0, *) {
@@ -87,6 +94,22 @@ class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerPro
         }
     }
     
+    /**
+     * This delegate is needed because row height depends upon if timetable is configured.
+     * If it is not we show a hint which requires a greater row height than regular display
+     * mode.
+     * As no other delegate methods are needed we do not define a dedicated table view class.
+     * Also, this method needs to know height of widget in compact mode. Thus, it sounds natural
+     * to have it in here.
+     */
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard AppDefaults.useTimetable else { return 110  }
+        return 30
+    }
+    
+    /**
+     * Display mode has been toggled. Update table view and place marker.
+     */
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         if activeDisplayMode == .expanded {
             let frame = timetableTableView.rectForRow(at: IndexPath(row: 0, section: 0))
@@ -102,10 +125,13 @@ class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerPro
         }
     }
     
+    /**
+     * Widget should reload.
+     */
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         currentLesson = TimetableHelper.currentLesson()
+        self.completionHandler = completionHandler
         if AppDefaults.useTimetable {
-            self.completionHandler = completionHandler
             dashboardDataSource.loadData(self)
             timetableDataSource.loadData(self)
         } else {
@@ -151,6 +177,13 @@ class TodayViewController: UIViewController, NCWidgetProviding, ItemContainerPro
      */
     func didLoadData(_ sender: Any? = nil) {
         DispatchQueue.main.async {
+            // Can't use timetable, restrict display mode to compact.
+            guard AppDefaults.useTimetable else {
+                self.extensionContext?.widgetLargestAvailableDisplayMode = .compact
+                self.completionHandler?(NCUpdateResult.newData)
+                return
+            }
+            
             if sender as? ExtTimetableDataSource != nil {
                 self.timetableDataSource.forWeek = DateHelper.effectiveWeek()
                 self.timetableDataSource.forDay = DateHelper.effectiveDay()
