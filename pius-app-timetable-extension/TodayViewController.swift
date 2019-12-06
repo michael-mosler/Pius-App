@@ -52,16 +52,13 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
             return 0
         }
         
-        // If current is after last lesson show last lesson in bottom row.
-        if row == Int.max {
+        // If current is last but one, last or after last lesson show last lesson in bottom row.
+        if row >= lessons.count - 1 {
             return (lessons.count - 1) - 2
         }
         
         // Center current lesson.
-        let topRow = max(row - 1, 0)
-        let bottomRow = min(topRow + 2, lessons.count)
-        let delta = bottomRow - topRow
-        return topRow - (2 - delta)
+        return max(row - 1, 0)
     }
 
     override func viewDidLoad() {
