@@ -58,6 +58,7 @@
 		4C48F6D121F6433C00B20505 /* IOSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D021F6433C00B20505 /* IOSHelper.swift */; };
 		4C48F6D221F6433C00B20505 /* IOSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D021F6433C00B20505 /* IOSHelper.swift */; };
 		4C48F6D521F78F7C00B20505 /* WatchConnectivityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D421F78F7C00B20505 /* WatchConnectivityHandler.swift */; };
+		4C50AD9B239AC45100A2551D /* BEMCheckBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C50AD9A239AC45100A2551D /* BEMCheckBox.framework */; };
 		4C5318D02205F82600D6AAFA /* EvaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5318CF2205F82600D6AAFA /* EvaTableViewController.swift */; };
 		4C5AA0132189DAA90040A455 /* VertretungsplanDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */; };
 		4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
@@ -268,6 +269,7 @@
 		4C48F6C921F63D2D00B20505 /* Pius-App for WatchOS Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pius-App for WatchOS Extension.entitlements"; sourceTree = "<group>"; };
 		4C48F6D021F6433C00B20505 /* IOSHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSHelper.swift; sourceTree = "<group>"; };
 		4C48F6D421F78F7C00B20505 /* WatchConnectivityHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityHandler.swift; sourceTree = "<group>"; };
+		4C50AD9A239AC45100A2551D /* BEMCheckBox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BEMCheckBox.framework; path = Carthage/Build/iOS/BEMCheckBox.framework; sourceTree = "<group>"; };
 		4C5318CF2205F82600D6AAFA /* EvaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaTableViewController.swift; sourceTree = "<group>"; };
 		4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanDetailsCell.swift; sourceTree = "<group>"; };
 		4C5E0E7520A498DA00DAE459 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C50AD9B239AC45100A2551D /* BEMCheckBox.framework in Frameworks */,
 				4C69EA6621E213B5008B77FB /* MGSwipeTableCell.framework in Frameworks */,
 				4CEBAD0B21C5613600E152BF /* Kingfisher.framework in Frameworks */,
 				4C7E61AA20A438A0000D1225 /* SystemConfiguration.framework in Frameworks */,
@@ -423,6 +426,7 @@
 		4C194B4A204AFB3500BA744A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4C50AD9A239AC45100A2551D /* BEMCheckBox.framework */,
 				4C69EA6521E213B5008B77FB /* MGSwipeTableCell.framework */,
 				4CEBAD0A21C5613600E152BF /* Kingfisher.framework */,
 				4C7E61A920A4389F000D1225 /* SystemConfiguration.framework */,
@@ -1107,6 +1111,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/MGSwipeTableCell.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/BEMCheckBox.framework",
 			);
 			outputFileListPaths = (
 			);
