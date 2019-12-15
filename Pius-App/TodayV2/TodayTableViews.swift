@@ -94,13 +94,13 @@ class TodayTimetableTableView: TodayItemTableView, UITableViewDelegate {
     // The week that is shown by this tableview.
     var forWeek: Week {
         get {
-            guard let dataSource = dataSource as? TimetableDataSource else { return .A }
+            guard let dataSource = dataSource as? TodayTimetableDataSource<TodayTimetableItemCell> else { return .A }
             return dataSource.forWeek ?? .A
         }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 35
+        return CGFloat(TodayScreenUnits.timetableRowHeight)
     }
     
     func onTick(forRow row: Int) {

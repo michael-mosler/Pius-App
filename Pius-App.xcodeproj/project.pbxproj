@@ -7,6 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C09400F2381504F0077C034 /* DateArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94DFD423257D3F00C42998 /* DateArithmetic.swift */; };
+		4C0940102381506E0077C034 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4907620DE4DDC00796457 /* AppDefaults.swift */; };
+		4C094011238150730077C034 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE62206D5FE6006092C9 /* Config.swift */; };
+		4C094012238150760077C034 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE59205E77D7006092C9 /* Helper.swift */; };
+		4C094013238150790077C034 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */; };
+		4C0940142381507C0077C034 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */; };
+		4C0940152381507F0077C034 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
+		4C094016238150840077C034 /* CourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C93688722F82DDA0038CE9B /* CourseItem.swift */; };
+		4C0940172381508E0077C034 /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA50EBF2373377700718680 /* ScheduleData.swift */; };
+		4C094018238151F30077C034 /* Vertretungsplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4D205567C8006092C9 /* Vertretungsplan.swift */; };
+		4C09401A238154890077C034 /* TimetableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C094019238154890077C034 /* TimetableDataSource.swift */; };
+		4C09401C238170DB0077C034 /* ExtTimetableItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C09401B238170DB0077C034 /* ExtTimetableItemCell.swift */; };
+		4C09401E238173290077C034 /* ExtTimetableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C09401D238173290077C034 /* ExtTimetableDataSource.swift */; };
+		4C09401F238173830077C034 /* TimetableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C094019238154890077C034 /* TimetableDataSource.swift */; };
+		4C094022238178A70077C034 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C094021238178A70077C034 /* Protocols.swift */; };
+		4C094023238178BF0077C034 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C094021238178A70077C034 /* Protocols.swift */; };
+		4C0940242381891E0077C034 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C22962043117800ACA17B /* Assets.xcassets */; };
+		4C0940252381C0E80077C034 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94DFD22322522300C42998 /* MessageCell.swift */; };
+		4C0940272381C7AF0077C034 /* DashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0940262381C7AF0077C034 /* DashboardDataSource.swift */; };
+		4C0940282385BFE90077C034 /* DashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0940262381C7AF0077C034 /* DashboardDataSource.swift */; };
+		4C0940292385C14C0077C034 /* VertretungsplanLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */; };
+		4C09402A2385C1750077C034 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF512198813C007E5D1F /* Reachability.swift */; };
+		4C09402C2385C34F0077C034 /* ExtDashboardItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C09402B2385C34F0077C034 /* ExtDashboardItemCell.swift */; };
+		4C09402F238EEE970077C034 /* TimetableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C09402E238EEE970077C034 /* TimetableHelper.swift */; };
+		4C094030238EEEBD0077C034 /* TimetableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C09402E238EEE970077C034 /* TimetableHelper.swift */; };
 		4C194B4C204AFB3500BA744A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C194B4B204AFB3500BA744A /* WebKit.framework */; };
 		4C1AC38221BED6CD00E2F3A5 /* PostingsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */; };
 		4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */; };
@@ -33,6 +58,7 @@
 		4C48F6D121F6433C00B20505 /* IOSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D021F6433C00B20505 /* IOSHelper.swift */; };
 		4C48F6D221F6433C00B20505 /* IOSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D021F6433C00B20505 /* IOSHelper.swift */; };
 		4C48F6D521F78F7C00B20505 /* WatchConnectivityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48F6D421F78F7C00B20505 /* WatchConnectivityHandler.swift */; };
+		4C50AD9B239AC45100A2551D /* BEMCheckBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C50AD9A239AC45100A2551D /* BEMCheckBox.framework */; };
 		4C5318D02205F82600D6AAFA /* EvaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5318CF2205F82600D6AAFA /* EvaTableViewController.swift */; };
 		4C5AA0132189DAA90040A455 /* VertretungsplanDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */; };
 		4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
@@ -40,10 +66,14 @@
 		4C62F45C237338AB00088F3D /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA50EBF2373377700718680 /* ScheduleData.swift */; };
 		4C69EA6621E213B5008B77FB /* MGSwipeTableCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C69EA6521E213B5008B77FB /* MGSwipeTableCell.framework */; };
 		4C6BBD87230B2C2400137384 /* PostingsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD86230B2C2400137384 /* PostingsTableDataSource.swift */; };
-		4C6BBD89230F173200137384 /* DashboardTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD88230F173200137384 /* DashboardTableDataSource.swift */; };
+		4C6BBD89230F173200137384 /* TodayDashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD88230F173200137384 /* TodayDashboardDataSource.swift */; };
 		4C6BBD8B2312BDE600137384 /* TodayTimetableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD8A2312BDE600137384 /* TodayTimetableCollectionViewCell.swift */; };
 		4C6BBD8D2312BF0000137384 /* TodayTimetableCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD8C2312BF0000137384 /* TodayTimetableCollectionView.swift */; };
-		4C6BBD8F2312C1E100137384 /* TimetableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD8E2312C1E100137384 /* TimetableDataSource.swift */; };
+		4C6BBD8F2312C1E100137384 /* TodayTimetableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD8E2312C1E100137384 /* TodayTimetableDataSource.swift */; };
+		4C7203BC237DDC45008B1F4F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB3EC7320DC0ECB00BBEAE0 /* NotificationCenter.framework */; };
+		4C7203BF237DDC45008B1F4F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7203BE237DDC45008B1F4F /* TodayViewController.swift */; };
+		4C7203C2237DDC45008B1F4F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7203C0237DDC45008B1F4F /* MainInterface.storyboard */; };
+		4C7203C6237DDC45008B1F4F /* Pius-App Stundenplan.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4C7203BB237DDC45008B1F4F /* Pius-App Stundenplan.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C7C22902043117800ACA17B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C228F2043117700ACA17B /* AppDelegate.swift */; };
 		4C7C22922043117800ACA17B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C22912043117800ACA17B /* ViewController.swift */; };
 		4C7C22952043117800ACA17B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C22932043117800ACA17B /* Main.storyboard */; };
@@ -94,7 +124,7 @@
 		4CB3EC7420DC0ECB00BBEAE0 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB3EC7320DC0ECB00BBEAE0 /* NotificationCenter.framework */; };
 		4CB3EC7720DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB3EC7620DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift */; };
 		4CB3EC7A20DC0ECB00BBEAE0 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CB3EC7820DC0ECB00BBEAE0 /* MainInterface.storyboard */; };
-		4CB3EC7E20DC0ECB00BBEAE0 /* Pius-App-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4CB3EC7220DC0ECA00BBEAE0 /* Pius-App-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4CB3EC7E20DC0ECB00BBEAE0 /* Pius-App Vertretungsplan.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4CB3EC7220DC0ECA00BBEAE0 /* Pius-App Vertretungsplan.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4CB97F17210A53940019973D /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB97F16210A53940019973D /* DeviceTokenManager.swift */; };
 		4CBC31402218164100CEB1D1 /* EvaLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBC313F2218164100CEB1D1 /* EvaLoader.swift */; };
 		4CC332CF2180DAB10055E3F5 /* MetaDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC332CE2180DAB10055E3F5 /* MetaDataTableViewCell.swift */; };
@@ -142,6 +172,13 @@
 			remoteGlobalIDString = 4C48F69A21F4E01300B20505;
 			remoteInfo = "Pius-App for WatchOS";
 		};
+		4C7203C4237DDC45008B1F4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C7C22842043117700ACA17B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C7203BA237DDC45008B1F4F;
+			remoteInfo = "pius-app-timetable-extension";
+		};
 		4C7C22A12043117800ACA17B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4C7C22842043117700ACA17B /* Project object */;
@@ -187,8 +224,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				4CB3EC7E20DC0ECB00BBEAE0 /* Pius-App-Extension.appex in Embed App Extensions */,
+				4CB3EC7E20DC0ECB00BBEAE0 /* Pius-App Vertretungsplan.appex in Embed App Extensions */,
 				4C300F392126BFEE00D6E129 /* Pius-App Notification-Extension.appex in Embed App Extensions */,
+				4C7203C6237DDC45008B1F4F /* Pius-App Stundenplan.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,6 +234,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4C094019238154890077C034 /* TimetableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDataSource.swift; sourceTree = "<group>"; };
+		4C09401B238170DB0077C034 /* ExtTimetableItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtTimetableItemCell.swift; sourceTree = "<group>"; };
+		4C09401D238173290077C034 /* ExtTimetableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtTimetableDataSource.swift; sourceTree = "<group>"; };
+		4C094021238178A70077C034 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		4C0940262381C7AF0077C034 /* DashboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardDataSource.swift; sourceTree = "<group>"; };
+		4C09402B2385C34F0077C034 /* ExtDashboardItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtDashboardItemCell.swift; sourceTree = "<group>"; };
+		4C09402E238EEE970077C034 /* TimetableHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableHelper.swift; sourceTree = "<group>"; };
 		4C194B4B204AFB3500BA744A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingsLoader.swift; sourceTree = "<group>"; };
 		4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanViewController.swift; sourceTree = "<group>"; };
@@ -224,16 +269,22 @@
 		4C48F6C921F63D2D00B20505 /* Pius-App for WatchOS Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pius-App for WatchOS Extension.entitlements"; sourceTree = "<group>"; };
 		4C48F6D021F6433C00B20505 /* IOSHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSHelper.swift; sourceTree = "<group>"; };
 		4C48F6D421F78F7C00B20505 /* WatchConnectivityHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityHandler.swift; sourceTree = "<group>"; };
+		4C50AD9A239AC45100A2551D /* BEMCheckBox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BEMCheckBox.framework; path = Carthage/Build/iOS/BEMCheckBox.framework; sourceTree = "<group>"; };
 		4C5318CF2205F82600D6AAFA /* EvaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaTableViewController.swift; sourceTree = "<group>"; };
 		4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanDetailsCell.swift; sourceTree = "<group>"; };
 		4C5E0E7520A498DA00DAE459 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		4C5E0E7A20A8797D00DAE459 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		4C69EA6521E213B5008B77FB /* MGSwipeTableCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MGSwipeTableCell.framework; path = Carthage/Build/iOS/MGSwipeTableCell.framework; sourceTree = "<group>"; };
 		4C6BBD86230B2C2400137384 /* PostingsTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingsTableDataSource.swift; sourceTree = "<group>"; };
-		4C6BBD88230F173200137384 /* DashboardTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableDataSource.swift; sourceTree = "<group>"; };
+		4C6BBD88230F173200137384 /* TodayDashboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDashboardDataSource.swift; sourceTree = "<group>"; };
 		4C6BBD8A2312BDE600137384 /* TodayTimetableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimetableCollectionViewCell.swift; sourceTree = "<group>"; };
 		4C6BBD8C2312BF0000137384 /* TodayTimetableCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimetableCollectionView.swift; sourceTree = "<group>"; };
-		4C6BBD8E2312C1E100137384 /* TimetableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDataSource.swift; sourceTree = "<group>"; };
+		4C6BBD8E2312C1E100137384 /* TodayTimetableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTimetableDataSource.swift; sourceTree = "<group>"; };
+		4C7203BB237DDC45008B1F4F /* Pius-App Stundenplan.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pius-App Stundenplan.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C7203BE237DDC45008B1F4F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		4C7203C1237DDC45008B1F4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		4C7203C3237DDC45008B1F4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C7203CA237DDC63008B1F4F /* pius-app-timetable-extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pius-app-timetable-extension.entitlements"; sourceTree = "<group>"; };
 		4C7C228C2043117700ACA17B /* Pius-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pius-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7C228F2043117700ACA17B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C7C22912043117800ACA17B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -272,7 +323,7 @@
 		4CAC0437233D3B35005C6094 /* TodayScheduleItemDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayScheduleItemDetailsViewController.swift; sourceTree = "<group>"; };
 		4CB2AF512198813C007E5D1F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		4CB2AF5B21ADC498007E5D1F /* NewsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLoader.swift; sourceTree = "<group>"; };
-		4CB3EC7220DC0ECA00BBEAE0 /* Pius-App-Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pius-App-Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CB3EC7220DC0ECA00BBEAE0 /* Pius-App Vertretungsplan.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pius-App Vertretungsplan.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CB3EC7320DC0ECB00BBEAE0 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		4CB3EC7620DC0ECB00BBEAE0 /* PiusAppExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiusAppExtensionViewController.swift; sourceTree = "<group>"; };
 		4CB3EC7920DC0ECB00BBEAE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -317,10 +368,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4C7203B8237DDC45008B1F4F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C7203BC237DDC45008B1F4F /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4C7C22892043117700ACA17B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C50AD9B239AC45100A2551D /* BEMCheckBox.framework in Frameworks */,
 				4C69EA6621E213B5008B77FB /* MGSwipeTableCell.framework in Frameworks */,
 				4CEBAD0B21C5613600E152BF /* Kingfisher.framework in Frameworks */,
 				4C7E61AA20A438A0000D1225 /* SystemConfiguration.framework in Frameworks */,
@@ -355,9 +415,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C094020238178850077C034 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4C094021238178A70077C034 /* Protocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		4C194B4A204AFB3500BA744A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4C50AD9A239AC45100A2551D /* BEMCheckBox.framework */,
 				4C69EA6521E213B5008B77FB /* MGSwipeTableCell.framework */,
 				4CEBAD0A21C5613600E152BF /* Kingfisher.framework */,
 				4C7E61A920A4389F000D1225 /* SystemConfiguration.framework */,
@@ -375,6 +444,7 @@
 				4C1FDE4D205567C8006092C9 /* Vertretungsplan.swift */,
 				4C1FDE4F205568E3006092C9 /* ExpandableHeaderView.swift */,
 				4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */,
+				4C0940262381C7AF0077C034 /* DashboardDataSource.swift */,
 			);
 			path = VetretungsplanData;
 			sourceTree = "<group>";
@@ -469,6 +539,20 @@
 			path = OnboardingViewController;
 			sourceTree = "<group>";
 		};
+		4C7203BD237DDC45008B1F4F /* pius-app-timetable-extension */ = {
+			isa = PBXGroup;
+			children = (
+				4C7203CA237DDC63008B1F4F /* pius-app-timetable-extension.entitlements */,
+				4C7203BE237DDC45008B1F4F /* TodayViewController.swift */,
+				4C7203C0237DDC45008B1F4F /* MainInterface.storyboard */,
+				4C7203C3237DDC45008B1F4F /* Info.plist */,
+				4C09401B238170DB0077C034 /* ExtTimetableItemCell.swift */,
+				4C09401D238173290077C034 /* ExtTimetableDataSource.swift */,
+				4C09402B2385C34F0077C034 /* ExtDashboardItemCell.swift */,
+			);
+			path = "pius-app-timetable-extension";
+			sourceTree = "<group>";
+		};
 		4C7C22832043117700ACA17B = {
 			isa = PBXGroup;
 			children = (
@@ -478,6 +562,7 @@
 				4CFB1230210F887E00BC4B44 /* Pius-App Notification-Extension */,
 				4C48F69C21F4E01300B20505 /* Pius-App for WatchOS */,
 				4C48F6AB21F4E01400B20505 /* Pius-App for WatchOS Extension */,
+				4C7203BD237DDC45008B1F4F /* pius-app-timetable-extension */,
 				4C7C228D2043117700ACA17B /* Products */,
 				4C194B4A204AFB3500BA744A /* Frameworks */,
 			);
@@ -488,10 +573,11 @@
 			children = (
 				4C7C228C2043117700ACA17B /* Pius-App.app */,
 				4C7C22A02043117800ACA17B /* Pius-AppUITests.xctest */,
-				4CB3EC7220DC0ECA00BBEAE0 /* Pius-App-Extension.appex */,
+				4CB3EC7220DC0ECA00BBEAE0 /* Pius-App Vertretungsplan.appex */,
 				4CFB122B210F887E00BC4B44 /* Pius-App Notification-Extension.appex */,
 				4C48F69B21F4E01300B20505 /* Pius-App for WatchOS.app */,
 				4C48F6A721F4E01400B20505 /* Pius-App for WatchOS Extension.appex */,
+				4C7203BB237DDC45008B1F4F /* Pius-App Stundenplan.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -508,6 +594,7 @@
 				4C7C22932043117800ACA17B /* Main.storyboard */,
 				4C93687F22F827C20038CE9B /* TimetableStoryboard.storyboard */,
 				4C5E0E7720A872C200DAE459 /* OnboardingViewController */,
+				4C094020238178850077C034 /* Protocols */,
 				4C93689B230830500038CE9B /* TodayV2 */,
 				4C7E61A8209F8860000D1225 /* Vertretungsplan */,
 				4C1FDE5F206C2614006092C9 /* Dashboard */,
@@ -565,6 +652,8 @@
 			children = (
 				4CA50EBF2373377700718680 /* ScheduleData.swift */,
 				4C93688722F82DDA0038CE9B /* CourseItem.swift */,
+				4C094019238154890077C034 /* TimetableDataSource.swift */,
+				4C09402E238EEE970077C034 /* TimetableHelper.swift */,
 			);
 			path = TimetableData;
 			sourceTree = "<group>";
@@ -619,8 +708,8 @@
 				4C9368AE23093BA30038CE9B /* NewsTableDataSource.swift */,
 				4C9368B02309A3660038CE9B /* CalendarTableDataSource.swift */,
 				4C6BBD86230B2C2400137384 /* PostingsTableDataSource.swift */,
-				4C6BBD88230F173200137384 /* DashboardTableDataSource.swift */,
-				4C6BBD8E2312C1E100137384 /* TimetableDataSource.swift */,
+				4C6BBD88230F173200137384 /* TodayDashboardDataSource.swift */,
+				4C6BBD8E2312C1E100137384 /* TodayTimetableDataSource.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -748,6 +837,23 @@
 			productReference = 4C48F6A721F4E01400B20505 /* Pius-App for WatchOS Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
+		4C7203BA237DDC45008B1F4F /* pius-app-timetable-extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C7203C9237DDC46008B1F4F /* Build configuration list for PBXNativeTarget "pius-app-timetable-extension" */;
+			buildPhases = (
+				4C7203B7237DDC45008B1F4F /* Sources */,
+				4C7203B8237DDC45008B1F4F /* Frameworks */,
+				4C7203B9237DDC45008B1F4F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "pius-app-timetable-extension";
+			productName = "pius-app-timetable-extension";
+			productReference = 4C7203BB237DDC45008B1F4F /* Pius-App Stundenplan.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		4C7C228B2043117700ACA17B /* Pius-App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C7C22A92043117800ACA17B /* Build configuration list for PBXNativeTarget "Pius-App" */;
@@ -765,6 +871,7 @@
 				4CB3EC7D20DC0ECB00BBEAE0 /* PBXTargetDependency */,
 				4C300F3B2126BFEE00D6E129 /* PBXTargetDependency */,
 				4C48F6B721F4E01500B20505 /* PBXTargetDependency */,
+				4C7203C5237DDC45008B1F4F /* PBXTargetDependency */,
 			);
 			name = "Pius-App";
 			productName = "Pius-App";
@@ -803,7 +910,7 @@
 			);
 			name = "Pius-App-Extension";
 			productName = "Pius-App-Extension";
-			productReference = 4CB3EC7220DC0ECA00BBEAE0 /* Pius-App-Extension.appex */;
+			productReference = 4CB3EC7220DC0ECA00BBEAE0 /* Pius-App Vertretungsplan.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		4CFB122A210F887E00BC4B44 /* Pius-App Notification-Extension */ = {
@@ -829,7 +936,7 @@
 		4C7C22842043117700ACA17B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Felix Krings";
 				TargetAttributes = {
@@ -854,6 +961,10 @@
 								enabled = 0;
 							};
 						};
+					};
+					4C7203BA237DDC45008B1F4F = {
+						CreatedOnToolsVersion = 11.2.1;
+						ProvisioningStyle = Manual;
 					};
 					4C7C228B2043117700ACA17B = {
 						CreatedOnToolsVersion = 9.2;
@@ -919,6 +1030,7 @@
 				4CFB122A210F887E00BC4B44 /* Pius-App Notification-Extension */,
 				4C48F69A21F4E01300B20505 /* Pius-App for WatchOS */,
 				4C48F6A621F4E01400B20505 /* Pius-App for WatchOS Extension */,
+				4C7203BA237DDC45008B1F4F /* pius-app-timetable-extension */,
 			);
 		};
 /* End PBXProject section */
@@ -938,6 +1050,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C48F6B321F4E01500B20505 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C7203B9237DDC45008B1F4F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C0940242381891E0077C034 /* Assets.xcassets in Resources */,
+				4C7203C2237DDC45008B1F4F /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -990,6 +1111,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/MGSwipeTableCell.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/BEMCheckBox.framework",
 			);
 			outputFileListPaths = (
 			);
@@ -1012,6 +1134,34 @@
 				4C803A2421FB84D7009130E0 /* Config.swift in Sources */,
 				4C48F6AD21F4E01400B20505 /* InterfaceController.swift in Sources */,
 				4C803A2221FB7314009130E0 /* Helper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C7203B7237DDC45008B1F4F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C094023238178BF0077C034 /* Protocols.swift in Sources */,
+				4C0940252381C0E80077C034 /* MessageCell.swift in Sources */,
+				4C09402A2385C1750077C034 /* Reachability.swift in Sources */,
+				4C09401E238173290077C034 /* ExtTimetableDataSource.swift in Sources */,
+				4C094013238150790077C034 /* KeychainConfiguration.swift in Sources */,
+				4C094030238EEEBD0077C034 /* TimetableHelper.swift in Sources */,
+				4C09401F238173830077C034 /* TimetableDataSource.swift in Sources */,
+				4C7203BF237DDC45008B1F4F /* TodayViewController.swift in Sources */,
+				4C0940172381508E0077C034 /* ScheduleData.swift in Sources */,
+				4C0940152381507F0077C034 /* Cache.swift in Sources */,
+				4C094018238151F30077C034 /* Vertretungsplan.swift in Sources */,
+				4C094011238150730077C034 /* Config.swift in Sources */,
+				4C094016238150840077C034 /* CourseItem.swift in Sources */,
+				4C0940142381507C0077C034 /* KeychainPasswordItem.swift in Sources */,
+				4C09402C2385C34F0077C034 /* ExtDashboardItemCell.swift in Sources */,
+				4C09401C238170DB0077C034 /* ExtTimetableItemCell.swift in Sources */,
+				4C0940282385BFE90077C034 /* DashboardDataSource.swift in Sources */,
+				4C094012238150760077C034 /* Helper.swift in Sources */,
+				4C09400F2381504F0077C034 /* DateArithmetic.swift in Sources */,
+				4C0940102381506E0077C034 /* AppDefaults.swift in Sources */,
+				4C0940292385C14C0077C034 /* VertretungsplanLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1040,12 +1190,15 @@
 				4CF02EB12190C64300647078 /* DateListCollectionViewCell.swift in Sources */,
 				4C48F6D521F78F7C00B20505 /* WatchConnectivityHandler.swift in Sources */,
 				4C9368A723083F490038CE9B /* TodayTableViewCells.swift in Sources */,
+				4C09402F238EEE970077C034 /* TimetableHelper.swift in Sources */,
 				4C7C22922043117800ACA17B /* ViewController.swift in Sources */,
+				4C09401A238154890077C034 /* TimetableDataSource.swift in Sources */,
 				4C93688D22F82DDA0038CE9B /* TimetableTableViewCell.swift in Sources */,
+				4C094022238178A70077C034 /* Protocols.swift in Sources */,
 				4C94DFD523257D3F00C42998 /* DateArithmetic.swift in Sources */,
 				4C1FDE57205D90E5006092C9 /* DetailCollectionViewCell.swift in Sources */,
 				4C93689022F82DDA0038CE9B /* CourseItem.swift in Sources */,
-				4C6BBD8F2312C1E100137384 /* TimetableDataSource.swift in Sources */,
+				4C6BBD8F2312C1E100137384 /* TodayTimetableDataSource.swift in Sources */,
 				4C1FDE4E205567C8006092C9 /* Vertretungsplan.swift in Sources */,
 				4C93688322F82DA90038CE9B /* TimetableViewController.swift in Sources */,
 				4C93689222F82DDA0038CE9B /* ScheduleCollectionView.swift in Sources */,
@@ -1082,7 +1235,8 @@
 				4CED4A7D204749580012CB45 /* EinstellungenViewController.swift in Sources */,
 				4C6BBD8B2312BDE600137384 /* TodayTimetableCollectionViewCell.swift in Sources */,
 				4CA50EC02373377700718680 /* ScheduleData.swift in Sources */,
-				4C6BBD89230F173200137384 /* DashboardTableDataSource.swift in Sources */,
+				4C0940272381C7AF0077C034 /* DashboardDataSource.swift in Sources */,
+				4C6BBD89230F173200137384 /* TodayDashboardDataSource.swift in Sources */,
 				4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */,
 				4CB2AF522198813C007E5D1F /* Reachability.swift in Sources */,
 				4CFBCDDA208FBB8F00E9041D /* DateListViewController.swift in Sources */,
@@ -1145,6 +1299,11 @@
 			target = 4C48F69A21F4E01300B20505 /* Pius-App for WatchOS */;
 			targetProxy = 4C48F6B621F4E01500B20505 /* PBXContainerItemProxy */;
 		};
+		4C7203C5237DDC45008B1F4F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C7203BA237DDC45008B1F4F /* pius-app-timetable-extension */;
+			targetProxy = 4C7203C4237DDC45008B1F4F /* PBXContainerItemProxy */;
+		};
 		4C7C22A22043117800ACA17B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4C7C228B2043117700ACA17B /* Pius-App */;
@@ -1164,6 +1323,14 @@
 				4C48F69E21F4E01300B20505 /* Base */,
 			);
 			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		4C7203C0237DDC45008B1F4F /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C7203C1237DDC45008B1F4F /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 		4C7C22932043117800ACA17B /* Main.storyboard */ = {
@@ -1210,11 +1377,11 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = "Pius-App for WatchOS Extension/Pius-App for WatchOS Extension.entitlements";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App for WatchOS Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.0.2;
+				MARKETING_VERSION = 3.0.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp.watchkitextension;
@@ -1236,11 +1403,11 @@
 				CODE_SIGN_ENTITLEMENTS = "Pius-App for WatchOS Extension/Pius-App for WatchOS Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App for WatchOS Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.0.2;
+				MARKETING_VERSION = 3.0.3;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -1263,11 +1430,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				IBSC_MODULE = Pius_App_for_WatchOS_Extension;
 				INFOPLIST_FILE = "Pius-App for WatchOS/Info.plist";
-				MARKETING_VERSION = 3.0.2;
+				MARKETING_VERSION = 3.0.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp;
@@ -1291,11 +1458,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				IBSC_MODULE = Pius_App_for_WatchOS_Extension;
 				INFOPLIST_FILE = "Pius-App for WatchOS/Info.plist";
-				MARKETING_VERSION = 3.0.2;
+				MARKETING_VERSION = 3.0.3;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1305,6 +1472,59 @@
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
+		4C7203C7237DDC46008B1F4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				API_KEY = "heSXxSOvNcl8J4UB9$#TV9TUZ3zClbX$EyOQzKiqGWxRgonzSe";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "pius-app-timetable-extension/pius-app-timetable-extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = A6MLRJ6C45;
+				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
+				INFOPLIST_FILE = "pius-app-timetable-extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 3.0.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-timetable-extension";
+				PRODUCT_NAME = "Pius-App Stundenplan";
+				PROVISIONING_PROFILE_SPECIFIER = "Debug Timetable Extension on iPhone";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		4C7203C8237DDC46008B1F4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				API_KEY = "heSXxSOvNcl8J4UB9$#TV9TUZ3zClbX$EyOQzKiqGWxRgonzSe";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "pius-app-timetable-extension/pius-app-timetable-extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = A6MLRJ6C45;
+				HOST_ADDRESS = "https://pius-gateway.eu-de.mybluemix.net";
+				INFOPLIST_FILE = "pius-app-timetable-extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 3.0.3;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-timetable-extension";
+				PRODUCT_NAME = "Pius-App Stundenplan";
+				PROVISIONING_PROFILE_SPECIFIER = "Provision Timetable Extension to App Store";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1432,7 +1652,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1441,7 +1661,7 @@
 				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.0.2;
+				MARKETING_VERSION = 3.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "cf5ddccf-af75-4b91-9ce3-82be1c98da3f";
@@ -1462,7 +1682,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1471,7 +1691,7 @@
 				HOST_ADDRESS = "https://pius-gateway.eu-de.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.0.2;
+				MARKETING_VERSION = 3.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e2052aaa-c79f-4adb-bac3-6b40135ac9c5";
@@ -1520,20 +1740,20 @@
 				CODE_SIGN_ENTITLEMENTS = "Pius-App-Extension/Pius-App-Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.0.2;
+				MARKETING_VERSION = 3.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-extension";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pius-App Vertretungsplan";
 				PROVISIONING_PROFILE = "497c7351-5074-4a9d-8f5d-ceb39301ed08";
 				PROVISIONING_PROFILE_SPECIFIER = "Debug Extension on iPhone";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1544,20 +1764,20 @@
 				CODE_SIGN_ENTITLEMENTS = "Pius-App-Extension/Pius-App-Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				HOST_ADDRESS = "https://pius-gateway.eu-de.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.0.2;
+				MARKETING_VERSION = 3.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-extension";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pius-App Vertretungsplan";
 				PROVISIONING_PROFILE = "4dfe11e4-1cf3-4ce6-a67e-05c2934de45f";
 				PROVISIONING_PROFILE_SPECIFIER = "Provision Extension to App Store";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1569,12 +1789,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App Notification-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.0.2;
+				MARKETING_VERSION = 3.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.notification-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "09d76f16-6033-4c3a-95ce-45a9a956c1c6";
@@ -1593,12 +1813,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App Notification-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.0.2;
+				MARKETING_VERSION = 3.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.notification-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "471b210c-739e-4d68-9173-110200c7a5c7";
@@ -1626,6 +1846,15 @@
 			buildConfigurations = (
 				4C48F6BE21F4E01500B20505 /* Debug */,
 				4C48F6BF21F4E01500B20505 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C7203C9237DDC46008B1F4F /* Build configuration list for PBXNativeTarget "pius-app-timetable-extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C7203C7237DDC46008B1F4F /* Debug */,
+				4C7203C8237DDC46008B1F4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

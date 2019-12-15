@@ -16,39 +16,24 @@ enum DataSourceType: Int {
     case timetable = 4
 }
 
-/*
- * Observer protocol for data loaders. Data loaders must call didLoadData() when
- * data has been loaded from backend.
- */
-protocol TodayItemContainer {
-    func didLoadData(_ sender: Any?)
-    func perform(segue: String, with data: Any?, presentModally: Bool)
-    
-    func registerTimerDelegate(_ delegate: TimerDelegate)
-}
-
-protocol TodayItemDataSource {
+protocol TodayItemDataSourceProtocol {
     func needsShow() -> Bool
     func willTryLoading() -> Bool
     func isEmpty() -> Bool
-    func loadData(_ observer: TodayItemContainer)
-}
-
-protocol TimerDelegate: NSObject {
-    func onTick(_ timer: Timer?)
+    func loadData(_ observer: ItemContainerProtocol)
 }
 
 /*
  * This class is used to implement shared state of view controller as a singleton.
  */
 class TodayViewSharedState {
-    var controller: TodayItemContainer?
+    var controller: ItemContainerProtocol?
     fileprivate let dataSources: [DataSourceType : UITableViewDataSource] = [
-        .dashboard : DashboardTableDataSource(),
+        .dashboard : TodayDashboardDataSource<DashboardTableViewCell>(),
         .postings : PostingsTableDataSource(),
         .news : NewsTableDataSource(),
         .calendar : CalendarTableDataSource(),
-        .timetable: TimetableDataSource()
+        .timetable: TodayTimetableDataSource<TodayTimetableItemCell>()
     ]
 
     func dataSource(forType type: DataSourceType) -> UITableViewDataSource? {
@@ -56,7 +41,7 @@ class TodayViewSharedState {
     }
 }
 
-class TodayV2TableViewController: UITableViewController, TodayItemContainer, ModalDismissDelegate {
+class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, ModalDismissDelegate {
     private let dataSourcesToCellPrototypes: [DataSourceType : String] = [
         .dashboard : "dashboardCell",
         .postings : "postingsCell",
@@ -125,14 +110,14 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
         isLoadCancelled = false
         TodayV2TableViewController.shared.dataSources.forEach({ item in
             let (_, dataSource) = item
-            if let dataSource = dataSource as? TodayItemDataSource, dataSource.willTryLoading() {
+            if let dataSource = dataSource as? TodayItemDataSourceProtocol, dataSource.willTryLoading() {
                 pendingLoads += 1
             }
         })
         
         TodayV2TableViewController.shared.dataSources.forEach({ item in
             let (_, dataSource) = item
-            if let dataSource = dataSource as? TodayItemDataSource, dataSource.willTryLoading() {
+            if let dataSource = dataSource as? TodayItemDataSourceProtocol, dataSource.willTryLoading() {
                 dataSource.loadData(self)
             }
         })
@@ -185,7 +170,7 @@ class TodayV2TableViewController: UITableViewController, TodayItemContainer, Mod
         
         TodayV2TableViewController.shared.dataSources.forEach({ item in
             let (key, dataSource) = item
-            if let dataSource = dataSource as? TodayItemDataSource, !dataSource.needsShow(),
+            if let dataSource = dataSource as? TodayItemDataSourceProtocol, !dataSource.needsShow(),
                 let cellPrototype = dataSourcesToCellPrototypes[key],
                 let index = newCellOrder.firstIndex(of: cellPrototype) {
                 newCellOrder.remove(at: index)
@@ -272,11 +257,16 @@ extension TodayV2TableViewController {
             
             self.cellOrder = newCellOrder
             
-            if sender as? DashboardTableDataSource != nil {
+            if sender as? TodayDashboardDataSource<DashboardTableViewCell> != nil {
+                // Whenever a new substitution schedule has been loaded update timetable data source.
+                let sender = sender as! TodayDashboardDataSource<DashboardTableViewCell>
+                let timetableDataSource = TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TodayTimetableDataSource<TodayTimetableItemCell>
+                timetableDataSource.substitutionSchedule = sender.substitutionSchedule
+                
                 if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "dashboardCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
                     cell.reload()
                 }
-            } else if sender as? TimetableDataSource != nil {
+            } else if sender as? TodayTimetableDataSource<TodayTimetableItemCell> != nil {
                 if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "timetableCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
                     cell.reload()
                 }

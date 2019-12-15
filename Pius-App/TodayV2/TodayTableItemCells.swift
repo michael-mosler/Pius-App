@@ -75,7 +75,7 @@ class DashboardCell: TodayItemCell {
     @IBOutlet weak var tableView: UITableView!
 
     override func layoutIfNeeded() {
-        let dataSource = TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! DashboardTableDataSource
+        let dataSource = TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! TodayDashboardDataSource<DashboardTableViewCell>
         if let loadDate = dataSource.loadDate {
             lastUpdateLabel.text = loadDate
         } else {
@@ -124,7 +124,7 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
     }
 
     override func layoutIfNeeded() {
-        let dataSource = TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! DashboardTableDataSource
+        let dataSource = TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! TodayDashboardDataSource<DashboardTableViewCell>
         if let loadDate = dataSource.loadDate {
             lastUpdateLabel.text = loadDate
         } else {
@@ -151,7 +151,7 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
     // It also ensures proper sizing of collection view items.
     private func doReload() {
         // Set week to show in data source.
-        let dataSource = TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TimetableDataSource
+        let dataSource = TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TodayTimetableDataSource<TodayTimetableItemCell>
         dataSource.forWeek = weekToShow
         dataSource.forDay = selectedDay
         weekSegmentControl.selectedSegmentIndex = weekToShow.rawValue
@@ -175,7 +175,7 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
     // day show "Heute" otherwise day name.
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         // Set data source and let it know which day of week and week it is running for.
-        let dataSource = TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TimetableDataSource
+        let dataSource = TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TodayTimetableDataSource<TodayTimetableItemCell>
         dayToShow = selectedDay
         dataSource.forWeek = weekToShow
         dataSource.forDay = dayToShow

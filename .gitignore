@@ -4,6 +4,7 @@ Carthage
 # XCode
 build/*
 *.pbxuser
+xcuserdata
 *.mode1v3
 
 # OSX

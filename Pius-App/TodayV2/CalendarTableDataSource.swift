@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class CalendarTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource {
+class CalendarTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSourceProtocol {
     
-    private var observer: TodayItemContainer?
+    private var observer: ItemContainerProtocol?
     private var _calendar: Calendar?
     private let calendarLoader: CalendarLoader = CalendarLoader()
     private var hadError: Bool = false
@@ -77,7 +77,7 @@ class CalendarTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSou
         return data.count == 0
     }
     
-    func loadData(_ observer: TodayItemContainer) {
+    func loadData(_ observer: ItemContainerProtocol) {
         self.observer = observer
         calendarLoader.load(doUpdate)
     }

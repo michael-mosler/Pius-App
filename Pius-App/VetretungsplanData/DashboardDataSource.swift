@@ -2,24 +2,27 @@
 //  DashboardDataSource.swift
 //  Pius-App
 //
-//  Created by Michael Mosler-Krings on 22.08.19.
+//  Created by Michael Mosler-Krings on 17.11.19.
 //  Copyright © 2019 Felix Krings. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-class DashboardTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource {
-    private var hadError = false
-    private var observer: TodayItemContainer?
+protocol DashboardItemCellProtocol {
+    var items: DetailItems? { get set }
+}
+
+class DashboardDataSource<T: DashboardItemCellProtocol>: NSObject, UITableViewDataSource {
+
+    private var _hadError = false
+    private var observer: ItemContainerProtocol?
     private var _filteredSubstitutionSchedule: VertretungsplanForDate?
     var substitutionSchedule: Vertretungsplan?
 
-    var loadDate: String? {
-        return substitutionSchedule?.lastUpdate
-    }
+    var hadError: Bool { _hadError }
+    var loadDate: String? { substitutionSchedule?.lastUpdate }
 
-    private var data: [DetailItems] {
+    var data: [DetailItems] {
         get {
             // If there is a schedule at all and if there a substitutions for the configured
             // grade.
@@ -30,7 +33,7 @@ class DashboardTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSo
         }
     }
     
-    private var canUseDashboard: Bool {
+    var canUseDashboard: Bool {
         get {
             if AppDefaults.authenticated && (AppDefaults.hasLowerGrade || (AppDefaults.hasUpperGrade && AppDefaults.courseList != nil && AppDefaults.courseList!.count > 0)) {
                 if let _ = AppDefaults.selectedGradeRow, let _ = AppDefaults.selectedClassRow {
@@ -45,8 +48,8 @@ class DashboardTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSo
     }
 
     private func doUpdate(with schedule: Vertretungsplan?, online: Bool) {
-        hadError = schedule == nil
-        if !hadError, let schedule = schedule {
+        _hadError = schedule == nil
+        if !_hadError, let schedule = schedule {
             // Full schedule and filtered schedule.
             substitutionSchedule = schedule
             _filteredSubstitutionSchedule = schedule.filter(onDate: Date()) // .vertretungsplaene[0] // Debug: First day of subst. schedule.
@@ -55,39 +58,22 @@ class DashboardTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSo
         observer?.didLoadData(self)
     }
 
-    func needsShow() -> Bool {
-        return canUseDashboard
-    }
-    
-    func willTryLoading() -> Bool {
-        return canUseDashboard
-    }
-    
-    func isEmpty() -> Bool {
-        return data.count == 0
-    }
-    
-    func loadData(_ observer: TodayItemContainer) {
+    func loadData(_ observer: ItemContainerProtocol) {
         self.observer = observer
         let substitutionsLoader: VertretungsplanLoader = VertretungsplanLoader(forGrade: AppDefaults.gradeSetting)
         substitutionsLoader.load(doUpdate)
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isEmpty() ? 1 : data.count
+        guard data.count > 0 else { return 1 }
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard !hadError else {
-            return MessageCell("Die Daten konnten leider nicht geladen werden.")
-        }
-        guard !isEmpty() else {
-            return MessageCell("Heute hast Du keinen Vertretungsunterricht.")
-        }
-
         let items = data[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "dashboardItemCell") as! DashboardTableViewCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: "dashboardItemCell") as! T
         cell.items = items
-        return cell
+        return cell as! UITableViewCell
     }
+    
 }

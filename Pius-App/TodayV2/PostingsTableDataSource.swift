@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-class PostingsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource {
-    private var observer: TodayItemContainer?
+class PostingsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSourceProtocol {
+    private var observer: ItemContainerProtocol?
     private var _postingsItems: PostingsItems?
     private let postingsLoader: PostingsLoader = PostingsLoader()
 
@@ -47,7 +47,7 @@ class PostingsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSou
         return data.count == 0
     }
     
-    func loadData(_ observer: TodayItemContainer) {
+    func loadData(_ observer: ItemContainerProtocol) {
         self.observer = observer
         postingsLoader.load(doUpdate)
     }

@@ -80,6 +80,8 @@
 			<string>de.rmkrings.piusapp.dashboard</string>
 		</dict>
 	</array>
+	<key>UIApplicationShortcutWidget</key>
+	<string>de.rmkrings.piusapp.pius-app-extension</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

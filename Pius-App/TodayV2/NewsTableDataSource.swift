@@ -13,9 +13,9 @@ import UIKit
  * Data source for news tablew view on Today page. This class also implements
  * UITableViewDataSource interface for this table.
  */
-class NewsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource {
+class NewsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSourceProtocol {
     
-    private var observer: TodayItemContainer?
+    private var observer: ItemContainerProtocol?
     private var newsItems: NewsItems = []
     private let newsLoader: NewsLoader = NewsLoader()
     
@@ -29,7 +29,7 @@ class NewsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSource 
         observer?.didLoadData(self)
     }
     
-    func loadData(_ observer: TodayItemContainer) {
+    func loadData(_ observer: ItemContainerProtocol) {
         self.observer = observer
         newsLoader.load(doUpdate)
     }

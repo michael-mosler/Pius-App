@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import BEMCheckBox
 
-class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIScrollViewDelegate {
+class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIScrollViewDelegate, BEMCheckBoxDelegate {
     @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var webSiteUserNameField: UITextField!
@@ -24,6 +25,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var timetableSwitch: UISwitch!
     
     @IBOutlet weak var infoTextView: UITextView!
+    @IBOutlet weak var successBox: BEMCheckBox!
     
     // The active text field, is either webSizeUserNameField or webSitePasswordField.
     private var activeTextField: UITextField?
@@ -76,6 +78,9 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         gradePickerView.selectRow(gradeRow, inComponent: 0, animated: false)
         elementStates(forSelectedGrade: gradeRow)
         showCredentials()
+        
+        successBox.isHidden = true
+        successBox.delegate = self
     }
 
     override func viewWillLayoutSubviews() {
@@ -83,6 +88,15 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         if #available(iOS 13.0, *) {
             infoTextView.textColor = UIColor.label
         }
+    }
+    
+    func animationDidStop(for checkBox: BEMCheckBox) {
+        UIView.animate(withDuration: 0.5, delay: 1, animations: {
+            checkBox.alpha = 0
+        }, completion: { _ in
+            checkBox.alpha = 1
+            checkBox.isHidden = true
+        })
     }
     
     private func setVersionLabel() {
@@ -145,6 +159,9 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
                 AppDefaults.authenticated = true
                 self.webSiteUserNameField.isEnabled = false
                 self.webSitePasswordField.isEnabled = false
+                
+                self.successBox.isHidden = false
+                self.successBox.setOn(true, animated: true)
             } else {
                 AppDefaults.authenticated = false
             }
@@ -285,13 +302,6 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             AppDefaults.password = nil
             AppDefaults.authenticated = false
             updateLoginButtonText(authenticated: false)
-            
-            /*
-            // Inform user on new login state.
-            let alert = UIAlertController(title: "Anmeldung", message: "Du bist nun abgemeldet.", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            */
             
             webSiteUserNameField.isEnabled = true
             webSitePasswordField.isEnabled = true
