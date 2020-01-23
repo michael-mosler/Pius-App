@@ -17,7 +17,6 @@ class NewsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSourceP
     
     private var observer: ItemContainerProtocol?
     private var newsItems: NewsItems = []
-    private let newsLoader: NewsLoader = NewsLoader()
     
     private func doUpdate(with items: NewsItems?, online: Bool) {
         if let items = items {
@@ -31,6 +30,7 @@ class NewsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSourceP
     
     func loadData(_ observer: ItemContainerProtocol) {
         self.observer = observer
+        let newsLoader: NewsLoader = NewsLoader()
         newsLoader.load(doUpdate)
     }
 

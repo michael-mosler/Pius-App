@@ -13,7 +13,6 @@ class CalendarTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSou
     
     private var observer: ItemContainerProtocol?
     private var _calendar: Calendar?
-    private let calendarLoader: CalendarLoader = CalendarLoader()
     private var hadError: Bool = false
 
     private var data: [DayItem] {
@@ -79,6 +78,7 @@ class CalendarTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSou
     
     func loadData(_ observer: ItemContainerProtocol) {
         self.observer = observer
+        let calendarLoader: CalendarLoader = CalendarLoader()
         calendarLoader.load(doUpdate)
     }
     
