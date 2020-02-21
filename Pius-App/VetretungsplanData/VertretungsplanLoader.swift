@@ -13,42 +13,42 @@ class VertretungsplanLoader {
     private var forGrade: String?;
     private var url: URL?;
     private let cache = Cache();
-    private var cacheFileName: String;
-    private var digestFileName: String;
+    private var cacheFileName: String = "";
+    private var digestFileName: String = "";
     private var digest: String?;
     
     init(forGrade: String? = nil) {
-        var digest: String? = nil;
-        let cacheFileName: String = (forGrade != nil) ? String(format: "%@.json", forGrade!) : "vertretungsplan.json";
-        let digestFileName: String = (forGrade != nil) ? String(format: "%@.md5", forGrade!) : "md5";
+        var _digest: String? = nil;
+        let _cacheFileName: String = (forGrade != nil) ? String(format: "%@.json", forGrade!) : "vertretungsplan.json";
+        let _digestFileName: String = (forGrade != nil) ? String(format: "%@.md5", forGrade!) : "vertretungsplan.md5";
 
         // If cache file exists we may use digest to detect changes in Vertretungsplan. Without cache file
         // we need to request data.
-        if (self.cache.fileExists(filename: cacheFileName)) {
-            digest = cache.read(filename: digestFileName);
+        if (self.cache.fileExists(filename: _cacheFileName) && self.cache.fileExists(filename: _digestFileName)) {
+            _digest = cache.read(filename: _digestFileName);
         } else {
-            NSLog("Cache file \(cacheFileName) does not exist. Not sending digest.");
+            NSLog("Cache file \(_cacheFileName) does not exist. Not sending digest.");
         }
 
         self.forGrade = forGrade;
-        self.digest = digest;
+        self.digest = _digest;
         
         var urlString = "\(AppDefaults.baseUrl)/v2/vertretungsplan";
-        if (forGrade != nil || digest != nil) {
+        if (forGrade != nil || _digest != nil) {
             var separator = "/?";
             if (forGrade != nil) {
                 urlString.append(String(format: "%@forGrade=%@", separator, forGrade!));
                 separator = "&";
             }
             
-            if (digest != nil) {
-                urlString.append(String(format: "%@digest=%@", separator, digest!));
+            if (_digest != nil) {
+                urlString.append(String(format: "%@digest=%@", separator, _digest!));
             }
         }
         
         self.url = URL(string: urlString);
-        self.cacheFileName = cacheFileName;
-        self.digestFileName = digestFileName;
+        self.cacheFileName = _cacheFileName;
+        self.digestFileName = _digestFileName;
 
         // This expression matches a missing course that is indicated by dashes or blanks.
         do {

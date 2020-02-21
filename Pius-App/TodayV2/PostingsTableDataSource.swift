@@ -12,7 +12,6 @@ import UIKit
 class PostingsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSourceProtocol {
     private var observer: ItemContainerProtocol?
     private var _postingsItems: PostingsItems?
-    private let postingsLoader: PostingsLoader = PostingsLoader()
 
     private var data: [PostingsItem] {
         get {
@@ -49,6 +48,7 @@ class PostingsTableDataSource: NSObject, UITableViewDataSource, TodayItemDataSou
     
     func loadData(_ observer: ItemContainerProtocol) {
         self.observer = observer
+        let postingsLoader: PostingsLoader = PostingsLoader()
         postingsLoader.load(doUpdate)
     }
     

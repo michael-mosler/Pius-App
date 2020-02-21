@@ -11,8 +11,12 @@ import Foundation
 class DeviceTokenManager {
     let url = URL(string: "\(AppDefaults.baseUrl)/deviceToken")!;
     var request: URLRequest;
+    let version: String;
 
     init() {
+        let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject
+        version = nsObject as! String
+
         request = URLRequest(url: url);
         
         // Set content type to application/json as this is what we are using for all
@@ -29,7 +33,8 @@ class DeviceTokenManager {
             "apiKey": AppDefaults.apiKey,
             "deviceToken": token,
             "grade": grade as Any,
-            "courseList": courseList as Any
+            "courseList": courseList as Any,
+            "version": version
         ];
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json);
