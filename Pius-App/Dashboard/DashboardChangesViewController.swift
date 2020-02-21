@@ -123,7 +123,7 @@ class DashboardChangesViewController: UIViewController, UITableViewDelegate, UIT
                 cell?.backgroundColor = Config.colorGreen
                 
             case "DELETED":
-                cell?.textLabel?.text = "Entfällt"
+                cell?.textLabel?.text = "Entfernt"
                 cell?.textLabel?.textColor = .white
                 cell?.backgroundColor = Config.colorRed
                 
