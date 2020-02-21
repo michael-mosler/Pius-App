@@ -127,7 +127,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             loginButton.backgroundColor = UIColor.red
         } else {
             loginButton.setTitle("Anmelden", for: .normal)
-            loginButton.backgroundColor = Config.colorPiusBlue
+            loginButton.backgroundColor = UIColor(named: "piusBlue")
         }
     }
 
@@ -215,7 +215,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             myCoursesButton.isEnabled = false || timetableSwitch.isOn
         }
         
-        myCoursesButton.backgroundColor = (myCoursesButton.isEnabled) ? Config.colorPiusBlue : UIColor.lightGray
+        myCoursesButton.backgroundColor = (myCoursesButton.isEnabled) ? UIColor(named: "piusBlue") : UIColor.lightGray
     }
     
     // Return the number of components in picker view

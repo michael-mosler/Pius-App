@@ -37,11 +37,11 @@ class MonthButton: UIButton {
     // Color button depending on its selection state.
     private func setButtonColorForState() {
         if (isSelected) {
-            backgroundColor = Config.colorPiusBlue;
+            backgroundColor = UIColor(named: "piusBlue");
             setTitleColor(UIColor.white, for: .normal);
         } else {
             backgroundColor = UIColor.white;
-            setTitleColor(Config.colorPiusBlue, for: .normal);
+            setTitleColor(UIColor(named: "piusBlue"), for: .normal);
         }
     }
 

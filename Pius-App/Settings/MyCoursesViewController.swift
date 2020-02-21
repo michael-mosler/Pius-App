@@ -34,7 +34,7 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         
         tabBarController?.tabBar.isHidden = true;
         
-        cellBgView.backgroundColor = Config.colorPiusBlue;
+        cellBgView.backgroundColor = UIColor(named: "piusBlue");
         let savedCourseList: [String]? = AppDefaults.courseList;
         
         // myCoursesTableView.allowsSelection = false;

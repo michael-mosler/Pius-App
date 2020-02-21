@@ -109,7 +109,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                     self.toggleSection(header: headerInfo.header, section: headerInfo.section);
                 }
                 self.tableView.isHidden = false;
-                self.evaButton.tintColor = (AppDefaults.hasUpperGrade) ? Config.colorPiusBlue : .white;
+                self.evaButton.tintColor = (AppDefaults.hasUpperGrade) ? UIColor(named: "piusBlue") : .white;
                 self.evaButton.isEnabled = AppDefaults.hasUpperGrade;
             }
         }

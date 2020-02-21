@@ -8,6 +8,10 @@
 
 import UIKit
 
+/**
+ * Substitution overlay: Navigation is from timetable in Today View when tapping on a
+ * substituted lesson.
+ */
 class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecognizerDelegate {
 
     var delegate: ModalDismissDelegate?
@@ -26,18 +30,34 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
     var lastTranslation: CGPoint?
     var oldCenter: CGPoint?
     
+    /**
+     * Tap close button X to close overlay.
+     */
     @IBAction func closeButtonAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         delegate?.hasDismissed()
     }
     
+    /**
+     * Sets content of detail substitution view when navigating from timetable
+     * to substitution overlay.
+     */
     private func setContent() {
         guard let scheduleItem = scheduleItem, let details = scheduleItem.substitutionDetails else { return }
+        let lessonText = details[0];
         let courseText = StringHelper.replaceHtmlEntities(input: details[2])
         let roomText = StringHelper.replaceHtmlEntities(input: details[3])
         let commentText: String = StringHelper.replaceHtmlEntities(input: details[6])
         
-        headerLabel.attributedText = FormatHelper.roomText(room: courseText)
+        if courseText != "" {
+            let attributedText = NSMutableAttributedString(string: "Fach/Kurs: ")
+            attributedText.append(NSAttributedString(string: ", "))
+            attributedText.append(NSAttributedString(string: lessonText))
+            attributedText.append(NSAttributedString(string: ". Stunde"))
+            headerLabel.attributedText = attributedText
+        } else {
+            headerLabel.attributedText = NSAttributedString(string: String(format: "%@. Stunde", lessonText))
+        }
         typeLabel.text = StringHelper.replaceHtmlEntities(input: details[1])
         roomLabel.attributedText = FormatHelper.roomText(room: roomText)
         teacherLabel.text = StringHelper.replaceHtmlEntities(input: details[4])
@@ -52,7 +72,7 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
            let evaText = StringHelper.replaceHtmlEntities(input: details[7])
            evaLabel.text = evaText
         } else {
-           evaLabel.attributedText = nil
+           evaLabel.text = nil
         }
         
         if let bgColor = scheduleItem.color {
@@ -64,6 +84,8 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
         super.viewDidLoad()
 
         contentView.layer.cornerRadius = 10
+        contentView.layer.borderWidth = 1.5
+        contentView.layer.borderColor = UIColor(named: "piusBlue")?.cgColor
         contentView.layer.masksToBounds = true
         
         contentView.addGestureRecognizer(panGestureRecognizer)
@@ -72,6 +94,9 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
         setContent()
     }
 
+    /**
+     * Close by panning down.
+     */
     @IBAction func panGestureAction(_ sender: UIPanGestureRecognizer) {
         if sender.state == .began {
             lastTranslation = sender.translation(in: contentView)

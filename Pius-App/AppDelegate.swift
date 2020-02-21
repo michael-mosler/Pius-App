@@ -14,27 +14,27 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
-    private let storyboard = UIStoryboard(name: "Main", bundle: nil);
-    private let reachability = Reachability();
+    private let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    private let reachability = Reachability()
     private var connectivityHandler: WatchConnectivityHandler?
 
     var navigationController: UINavigationController? {
         get {
-            return window?.rootViewController as? UINavigationController;
+            return window?.rootViewController as? UINavigationController
         }
     }
 
     private var notificationCenter:  UNUserNotificationCenter {
         get {
-            return UNUserNotificationCenter.current();
+            return UNUserNotificationCenter.current()
         }
     }
 
     // Get the root window navigation controller and set it's colour to our standard.
     private func configureNavigationController() {
-        navigationController?.navigationBar.barTintColor = Config.colorPiusBlue;
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white];
-        navigationController?.isToolbarHidden = false;
+        navigationController?.navigationBar.barTintColor = UIColor(named: "piusBlue")
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.isToolbarHidden = false
     }
 
     private func setCategories(){
@@ -44,15 +44,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     // Register for push notification service.
     private func registerForPushNotifications(forApplication application: UIApplication) {
-        notificationCenter.delegate = self;
-        setCategories();
+        notificationCenter.delegate = self
+        setCategories()
 
         notificationCenter.requestAuthorization(options: [.alert, .sound]) {
             (granted, error) in
-            NSLog("Permission granted: \(granted)");
+            NSLog("Permission granted: \(granted)")
 
             guard granted else { return }
-            self.getNotificationSettings();
+            self.getNotificationSettings()
         }
     }
     
@@ -60,18 +60,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // notifications.
     func getNotificationSettings() {
         notificationCenter.getNotificationSettings { (settings) in
-            NSLog("Notification settings: \(settings)");
+            NSLog("Notification settings: \(settings)")
             
             guard settings.authorizationStatus == .authorized else { return }
             
             DispatchQueue.main.async {
-                UIApplication.shared.registerForRemoteNotifications();
+                UIApplication.shared.registerForRemoteNotifications()
             }
         }
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        UITextField.appearance().tintColor = Config.colorPiusBlue;
+        UITextField.appearance().tintColor = UIColor(named: "piusBlue")
         
         /*
          * ===============================================================
@@ -79,14 +79,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
          * ===============================================================
          */
         reachability?.whenReachable = { _ in
-            let tbc = self.window?.rootViewController as! UITabBarController;
-            let tb = tbc.tabBar;
-            tb.tintColor = Config.colorPiusBlue;
+            let tbc = self.window?.rootViewController as! UITabBarController
+            let tb = tbc.tabBar
+            tb.tintColor = UIColor(named: "piusBlue")
         }
         reachability?.whenUnreachable = { _ in
-            let tbc = self.window?.rootViewController as! UITabBarController;
-            let tb = tbc.tabBar;
-            tb.tintColor = Config.colorRed;
+            let tbc = self.window?.rootViewController as! UITabBarController
+            let tb = tbc.tabBar
+            tb.tintColor = Config.colorRed
         }
 
         do {
@@ -97,38 +97,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         // Create Watch Connectivity Handler
         if WCSession.isSupported() {
-            NSLog("Activating Watch Connectivity Handler");
-            self.connectivityHandler = WatchConnectivityHandler();
+            NSLog("Activating Watch Connectivity Handler")
+            self.connectivityHandler = WatchConnectivityHandler()
         }
         
         // Current version.
-        let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject;
-        let version = nsObject as! String;
+        let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject
+        let version = nsObject as! String
         
         // If new version migrate whatever needs to be and set version.
         if Config.alwaysShowOnboarding || AppDefaults.version != version {
             // Make password accessible after first unlock.
-            let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "PiusApp", accessGroup: "group.de.rmkrings.piusapp.widget");
-            passwordItem.setKSecAttrAccessibleAfterFirstUnlock();
+            let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: "PiusApp", accessGroup: "group.de.rmkrings.piusapp.widget")
+            passwordItem.setKSecAttrAccessibleAfterFirstUnlock()
             
             // Migrate SOWI -> SW
             if let courseList = AppDefaults.courseList {
                 let mappedCourseList = courseList.map { value -> String in
-                    return value.replacingOccurrences(of: "SOWI", with: "SW");
-                };
+                    return value.replacingOccurrences(of: "SOWI", with: "SW")
+                }
                 
-                AppDefaults.courseList = mappedCourseList;
+                AppDefaults.courseList = mappedCourseList
             }
             
             // Update version.
-            AppDefaults.version = version;
+            AppDefaults.version = version
             
             DispatchQueue.main.async {
-                self.window?.rootViewController?.performSegue(withIdentifier: "toOnboarding", sender: self);
+                self.window?.rootViewController?.performSegue(withIdentifier: "toOnboarding", sender: self)
             }
         }
         
-        registerForPushNotifications(forApplication: application);
+        registerForPushNotifications(forApplication: application)
         
         return true
     }
@@ -141,53 +141,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // Delegate for opening app from widget. Host part of URL tells delegate which view controller to open.
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        configureNavigationController();
-        guard let host = url.host else { return false };
+        configureNavigationController()
+        guard let host = url.host else { return false }
         
         switch(host) {
         case "today":
-            let tbc = window?.rootViewController as! UITabBarController;
-            let today = tbc.viewControllers![0];
-            tbc.selectedViewController = today;
+            let tbc = window?.rootViewController as! UITabBarController
+            let today = tbc.viewControllers![0]
+            tbc.selectedViewController = today
 
         case "dashboard":
-            let tbc = window?.rootViewController as! UITabBarController;
-            let dashboard = tbc.viewControllers![2];
-            tbc.selectedViewController = dashboard;
+            let tbc = window?.rootViewController as! UITabBarController
+            let dashboard = tbc.viewControllers![2]
+            tbc.selectedViewController = dashboard
             
         case "settings":
-            let tbc = window?.rootViewController as! UITabBarController;
-            let settings = tbc.viewControllers![4];
-            tbc.selectedViewController = settings;
+            let tbc = window?.rootViewController as! UITabBarController
+            let settings = tbc.viewControllers![4]
+            tbc.selectedViewController = settings
             
         default:
-            return false;
+            return false
         }
         
-        return true;
+        return true
     }
     
     // Register for 3d touch actions.
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        configureNavigationController();
+        configureNavigationController()
         switch(shortcutItem.type) {
         case "de.rmkrings.piusapp.vertretungsplan":
-            let tbc = window?.rootViewController as! UITabBarController;
-            let dashboard = tbc.viewControllers![1];
-            tbc.selectedViewController = dashboard;
-            completionHandler(true);
-            return;
+            let tbc = window?.rootViewController as! UITabBarController
+            let dashboard = tbc.viewControllers![1]
+            tbc.selectedViewController = dashboard
+            completionHandler(true)
+            return
 
         case "de.rmkrings.piusapp.dashboard":
-            let tbc = window?.rootViewController as! UITabBarController;
-            let dashboard = tbc.viewControllers![2];
-            tbc.selectedViewController = dashboard;
-            completionHandler(true);
-            return;
+            let tbc = window?.rootViewController as! UITabBarController
+            let dashboard = tbc.viewControllers![2]
+            tbc.selectedViewController = dashboard
+            completionHandler(true)
+            return
  
         default:
-            NSLog("Unknown quick action code \(shortcutItem.type) is being ignored.");
-            completionHandler(false);
+            NSLog("Unknown quick action code \(shortcutItem.type) is being ignored.")
+            completionHandler(false)
         }
     }
 
@@ -200,42 +200,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // Callback which is called when device has been registered for remote notifications.
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let tokenParts = deviceToken.map { data -> String in
-            return String(format: "%02.2hhx", data);
+            return String(format: "%02.2hhx", data)
         }
         
-        let token = tokenParts.joined();
-        Config.currentDeviceToken = token;
-        let deviceTokenManager = DeviceTokenManager();
-        deviceTokenManager.registerDeviceToken(token: token, subscribeFor: AppDefaults.gradeSetting, withCourseList: AppDefaults.courseList);
+        let token = tokenParts.joined()
+        Config.currentDeviceToken = token
+        let deviceTokenManager = DeviceTokenManager()
+        deviceTokenManager.registerDeviceToken(token: token, subscribeFor: AppDefaults.gradeSetting, withCourseList: AppDefaults.courseList)
     }
     
     // Callback which is called when registering for remote noftications has failed.
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        NSLog("Failed to register: \(error)");
+        NSLog("Failed to register: \(error)")
     }
     
     // Navigate to specific view controller when app is opened by tapping on
     // a push notification.
     private func navigateToViewControllerOnNotification(withUserInfo userInfo: [AnyHashable : Any]) {
-        configureNavigationController();
+        configureNavigationController()
         
-        let tbc = window?.rootViewController as! UITabBarController;
-        let dashboard = tbc.viewControllers![2];
-        tbc.selectedViewController = dashboard;
+        let tbc = window?.rootViewController as! UITabBarController
+        let dashboard = tbc.viewControllers![2]
+        tbc.selectedViewController = dashboard
 
-        let dashboardChangesViewController = storyboard.instantiateViewController(withIdentifier: "ChangeDetails") as! DashboardChangesViewController;
-        dashboardChangesViewController.data = userInfo as NSDictionary;
-        window?.rootViewController?.show(dashboardChangesViewController, sender: self);
+        let dashboardChangesViewController = storyboard.instantiateViewController(withIdentifier: "ChangeDetails") as! DashboardChangesViewController
+        dashboardChangesViewController.data = userInfo as NSDictionary
+        window?.rootViewController?.show(dashboardChangesViewController, sender: self)
     }
 
     // Received remote notification when app is running.
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        self.navigateToViewControllerOnNotification(withUserInfo: userInfo);
-        completionHandler(.newData);
+        self.navigateToViewControllerOnNotification(withUserInfo: userInfo)
+        completionHandler(.newData)
     }
 
     // Show notification when app is running in foreground.
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .sound]);
+        completionHandler([.alert, .sound])
     }
 }

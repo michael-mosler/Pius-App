@@ -51,7 +51,7 @@ class DateListCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UIT
         
         let detailItems = delegate.monthItems()[forMonth!].dayItems[indexPath.row].detailItems;
         
-        dayLabel.attributedText = NSMutableAttributedString(string: detailItems[0], attributes: [NSAttributedString.Key.foregroundColor: Config.colorPiusBlue]);
+        dayLabel.attributedText = NSMutableAttributedString(string: detailItems[0], attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "piusBlue")!]);
         eventLabel.attributedText = NSMutableAttributedString(string: detailItems[1]);
         
         return cell;
