@@ -49,8 +49,9 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
         let roomText = StringHelper.replaceHtmlEntities(input: details[3])
         let commentText: String = StringHelper.replaceHtmlEntities(input: details[6])
         
-        if courseText != "" {
+        if let courseText = courseText, courseText != ""  {
             let attributedText = NSMutableAttributedString(string: "Fach/Kurs: ")
+            attributedText.append(NSAttributedString(string: courseText))
             attributedText.append(NSAttributedString(string: ", "))
             attributedText.append(NSAttributedString(string: lessonText))
             attributedText.append(NSAttributedString(string: ". Stunde"))

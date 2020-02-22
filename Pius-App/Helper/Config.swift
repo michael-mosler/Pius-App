@@ -23,7 +23,6 @@ struct Config {
         }
     }
 
-    static let colorPiusBlue: UIColor = UIColor(red:0.337, green:0.631, blue:0.824, alpha:1.0)
     static let colorRed: UIColor = UIColor(red: 0.914, green: 0.200, blue: 0.184, alpha: 1.0)
     static var colorGreen: UIColor = UIColor(red: 0.557, green: 0.788, blue: 0.259, alpha: 1.0)
     static let colorYellow: UIColor = UIColor(red: 1.0, green: 0.8, blue: 0.004, alpha: 1.0)
