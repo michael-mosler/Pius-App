@@ -206,7 +206,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let token = tokenParts.joined()
         Config.currentDeviceToken = token
         let deviceTokenManager = DeviceTokenManager()
-        deviceTokenManager.registerDeviceToken(token: token, subscribeFor: AppDefaults.gradeSetting, withCourseList: AppDefaults.courseList)
+        deviceTokenManager.registerDeviceToken()
     }
     
     // Callback which is called when registering for remote noftications has failed.

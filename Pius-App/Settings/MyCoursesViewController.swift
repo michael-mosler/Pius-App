@@ -55,13 +55,8 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewWillDisappear(animated);
         tabBarController?.tabBar.isHidden = false;
 
-        AppDefaults.courseList = courseList;
-        
-        // Update subscription when app has push notifications enabled.
-        if let deviceToken = Config.currentDeviceToken {
-            let deviceTokenManager = DeviceTokenManager();
-            deviceTokenManager.registerDeviceToken(token: deviceToken, subscribeFor: AppDefaults.gradeSetting, withCourseList: AppDefaults.courseList);
-        }
+        let deviceTokenManager = DeviceTokenManager();
+        deviceTokenManager.registerDeviceToken();
     }
     
     /*

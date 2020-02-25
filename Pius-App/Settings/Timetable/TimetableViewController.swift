@@ -87,12 +87,8 @@ class TimetableViewController: UIViewController, TimetableViewDataDelegate, UICo
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        // Update subscription when app has push notifications enabled.
-        if let deviceToken = Config.currentDeviceToken {
-            let deviceTokenManager = DeviceTokenManager()
-            deviceTokenManager.registerDeviceToken(token: deviceToken, subscribeFor: AppDefaults.gradeSetting, withCourseList: AppDefaults.courseList)
-        }
-
+        let deviceTokenManager = DeviceTokenManager()
+        deviceTokenManager.registerDeviceToken()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

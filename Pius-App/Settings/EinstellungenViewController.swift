@@ -90,6 +90,17 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         }
     }
     
+    /**
+     * When view is closed register device token. We will not wait for result as registrations
+     * occur repeatedly triggered by iOS.
+     */
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        let deviceTokenManager = DeviceTokenManager()
+        deviceTokenManager.registerDeviceToken()
+    }
+
     func animationDidStop(for checkBox: BEMCheckBox) {
         UIView.animate(withDuration: 0.5, delay: 1, animations: {
             checkBox.alpha = 0
@@ -263,12 +274,6 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         }
         
         changeGradeDelegate?.setGrade(grade: AppDefaults.gradeSetting)
-
-        // Update subscription when app has push notifications enabled.
-        if let deviceToken = Config.currentDeviceToken {
-            let deviceTokenManager = DeviceTokenManager()
-            deviceTokenManager.registerDeviceToken(token: deviceToken, subscribeFor: AppDefaults.gradeSetting, withCourseList: AppDefaults.courseList)
-        }
     }
 
     // Saves credentials in shared defaults.
@@ -292,19 +297,26 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
             self.loginButton.isEnabled = false
             vertretungsplanLoader.validateLogin(notfifyMeOn: self.validationCallback)
         } else {
-            // User is authenticated and wants to logout.
-            webSiteUserNameField.text = ""
-            webSitePasswordField.text = ""
+            // Ask before logging out. Sometimes one taps button accidently.
+            let feedbackController = UIAlertController(title: "Abmelden", message: "Möchtest Du dich wirklich abmelden?", preferredStyle: UIAlertController.Style.alert)
+            feedbackController.addAction(UIAlertAction(title: "Ja", style: UIAlertAction.Style.destructive, handler: {
+                (action: UIAlertAction) in
+                // User is authenticated and wants to logout.
+                self.webSiteUserNameField.text = ""
+                self.webSitePasswordField.text = ""
 
-            // Delete credential from from user settings and clear text of username
-            // and password field.
-            AppDefaults.username = ""
-            AppDefaults.password = nil
-            AppDefaults.authenticated = false
-            updateLoginButtonText(authenticated: false)
-            
-            webSiteUserNameField.isEnabled = true
-            webSitePasswordField.isEnabled = true
+                // Delete credential from from user settings and clear text of username
+                // and password field.
+                AppDefaults.username = ""
+                AppDefaults.password = nil
+                AppDefaults.authenticated = false
+                self.updateLoginButtonText(authenticated: false)
+                
+                self.webSiteUserNameField.isEnabled = true
+                self.webSitePasswordField.isEnabled = true
+            }))
+            feedbackController.addAction(UIAlertAction(title: "Nein", style: UIAlertAction.Style.cancel, handler: nil))
+            present(feedbackController, animated: true, completion: nil)
         }
     }
 
@@ -318,7 +330,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         updateLoginButtonText(authenticated: AppDefaults.authenticated)
     }
 
-    // Dismiss keyboard on tap gesture somwwhere into view controller.
+    // Dismiss keyboard on tap gesture somewhere into view controller.
     @IBAction func tapGestureAction(_ sender: Any) {
         guard activeTextField != nil else { return }
         dismissKeyboard(fromTextField: activeTextField)

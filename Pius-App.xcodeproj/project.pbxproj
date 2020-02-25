@@ -1668,6 +1668,10 @@
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 3.0.6;
+				OTHER_LDFLAGS = (
+					"-weak_framework",
+					CryptoKit,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "cf5ddccf-af75-4b91-9ce3-82be1c98da3f";
@@ -1698,6 +1702,10 @@
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 3.0.6;
+				OTHER_LDFLAGS = (
+					"-weak_framework",
+					CryptoKit,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e2052aaa-c79f-4adb-bac3-6b40135ac9c5";
