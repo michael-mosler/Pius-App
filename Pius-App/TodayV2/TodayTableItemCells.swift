@@ -11,7 +11,7 @@ import UIKit
 class TodayItemCell: UITableViewCell {
     fileprivate func layoutIfNeeded(forFrameView view: UIView) {
         super.layoutIfNeeded()
-        view.layer.borderColor = Config.colorPiusBlue.cgColor
+        view.layer.borderColor = UIColor(named: "piusBlue")?.cgColor
         view.layer.borderWidth = 1.5
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = false

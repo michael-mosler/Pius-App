@@ -269,7 +269,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
             let dayLabel = cell.viewWithTag(tags.tableView.dayLabelInTableViewCell.rawValue) as! UILabel
             let eventLabel = cell.viewWithTag(tags.tableView.eventLabelInTablewViewCell.rawValue) as! UILabel
             
-            dayLabel.attributedText = NSMutableAttributedString(string: item.detailItems[0], attributes: [NSAttributedString.Key.foregroundColor: Config.colorPiusBlue])
+            dayLabel.attributedText = NSMutableAttributedString(string: item.detailItems[0], attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "piusBlue")!])
             
             // Event text; hightlight when range is given.
             let text = NSMutableAttributedString(string: item.detailItems[1])

@@ -41,7 +41,7 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
         super.layoutSubviews();
 
         if (isUserInteractionEnabled) {
-            contentView.backgroundColor = Config.colorPiusBlue;
+            contentView.backgroundColor = UIColor(named: "piusBlue");
         } else {
             contentView.backgroundColor = UIColor.lightGray;
 

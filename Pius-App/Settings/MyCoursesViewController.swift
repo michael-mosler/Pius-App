@@ -34,7 +34,7 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         
         tabBarController?.tabBar.isHidden = true;
         
-        cellBgView.backgroundColor = Config.colorPiusBlue;
+        cellBgView.backgroundColor = UIColor(named: "piusBlue");
         let savedCourseList: [String]? = AppDefaults.courseList;
         
         // myCoursesTableView.allowsSelection = false;
@@ -55,13 +55,8 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewWillDisappear(animated);
         tabBarController?.tabBar.isHidden = false;
 
-        AppDefaults.courseList = courseList;
-        
-        // Update subscription when app has push notifications enabled.
-        if let deviceToken = Config.currentDeviceToken {
-            let deviceTokenManager = DeviceTokenManager();
-            deviceTokenManager.registerDeviceToken(token: deviceToken, subscribeFor: AppDefaults.gradeSetting, withCourseList: AppDefaults.courseList);
-        }
+        let deviceTokenManager = DeviceTokenManager();
+        deviceTokenManager.registerDeviceToken();
     }
     
     /*

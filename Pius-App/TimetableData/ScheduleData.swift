@@ -67,11 +67,12 @@ class CourseItem: NSObject, NSCoding, NSCopying {
                 case "GE": return UIColor(named: "gesellschaft")
                 case "KR": return UIColor(named: "gesellschaft")
                 case "PL": return UIColor(named: "gesellschaft")
-                case "MU": return UIColor(named: "gesellschaft")
-                case "KU": return UIColor(named: "gesellschaft")
                 case "LI": return UIColor(named: "gesellschaft")
                 case "SW": return UIColor(named: "gesellschaft")
                 case "PK": return UIColor(named: "gesellschaft")
+                    
+                case "MU": return UIColor(named: "kuenstlerisch")
+                case "KU": return UIColor(named: "kuenstlerisch")
                     
                 case "SP": return UIColor(named: "sport")
                     
@@ -92,15 +93,16 @@ class CourseItem: NSObject, NSCoding, NSCopying {
                 case "CH": return UIColor(named: "mint")
                 case "BI": return UIColor(named: "mint")
 
-                case "EK": return UIColor(named: "gesellschafft")
-                case "GE": return UIColor(named: "gesellschafft")
-                case "KR": return UIColor(named: "gesellschafft")
-                case "PL": return UIColor(named: "gesellschafft")
-                case "MU": return UIColor(named: "gesellschafft")
-                case "KU": return UIColor(named: "gesellschafft")
-                case "LI": return UIColor(named: "gesellschafft")
-                case "SW": return UIColor(named: "gesellschafft")
-                case "PK": return UIColor(named: "gesellschafft")
+                case "EK": return UIColor(named: "gesellschaft")
+                case "GE": return UIColor(named: "gesellschaft")
+                case "KR": return UIColor(named: "gesellschaft")
+                case "PL": return UIColor(named: "gesellschaft")
+                case "LI": return UIColor(named: "gesellschaft")
+                case "SW": return UIColor(named: "gesellschaft")
+                case "PK": return UIColor(named: "gesellschaft")
+
+                case "MU": return UIColor(named: "kuenstlerisch")
+                case "KU": return UIColor(named: "kuenstlerisch")
 
                 case "SP": return UIColor(named: "sport")
 
