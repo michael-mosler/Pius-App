@@ -68,7 +68,7 @@ class CalendarTableViewCell: UITableViewCell {
  * Postings item cell. This cell shows any kind of posting.
  * *********************************************************************/
 class PostingsTableViewCell: UITableViewCell {
-    @IBOutlet weak var postingsTextLabel: UILabel!
+    @IBOutlet weak var postingsTextLabel: UITextView!
     @IBOutlet weak var postingsDateLabel: UILabel!
     private var _item: PostingsItem?
     

@@ -11,28 +11,28 @@ import UIKit
 class DashboardViewController: UITableViewController, UITabBarControllerDelegate, ExpandableHeaderViewDelegate {
     @IBOutlet weak var evaButton: UIBarButtonItem!
 
-    private var vertretungsplan: Vertretungsplan?;
-    private var nextDate: String = "";
-    private var currentHeader: ExpandableHeaderView?;
+    private var vertretungsplan: Vertretungsplan?
+    private var nextDate: String = ""
+    private var currentHeader: ExpandableHeaderView?
     
     private var data: [VertretungsplanForDate] {
         get {
             if let vertretungsplan_ = vertretungsplan {
-                return vertretungsplan_.vertretungsplaene;
+                return vertretungsplan_.vertretungsplaene
             }
-            return [];
+            return []
         }
         
         set(newValue) {
             if (vertretungsplan != nil) {
-                vertretungsplan!.vertretungsplaene = newValue;
+                vertretungsplan!.vertretungsplaene = newValue
             }
         }
     }
 
     private var canUseDashboard: Bool {
         get {
-            return AppDefaults.authenticated && AppDefaults.hasGrade;
+            return AppDefaults.authenticated && AppDefaults.hasGrade
         }
     }
 
@@ -40,43 +40,43 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         var header: ExpandableHeaderView
         var section: Int
     }
-    private var expandHeaderInfo: ExpandHeaderInfo?;
+    private var expandHeaderInfo: ExpandHeaderInfo?
 
     // This dashboard is for this grade setting.
-    private var grade: String = "";
+    private var grade: String = ""
 
     // That many rows per unfolded item.
-    private let rowsPerItem = 5;
+    private let rowsPerItem = 5
     
     override func viewDidLoad() {
-        super.viewDidLoad();
-        evaButton.isEnabled = false;
-        evaButton.tintColor = .white;
-        refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged);
+        super.viewDidLoad()
+        evaButton.isEnabled = false
+        evaButton.tintColor = .white
+        refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated);
+        super.viewWillAppear(animated)
         
         if !canUseDashboard {
-            tableView.isUserInteractionEnabled = false;
-            tableView.reloadData();
+            tableView.isUserInteractionEnabled = false
+            tableView.reloadData()
         } else {
-            tableView.isUserInteractionEnabled = true;
+            tableView.isUserInteractionEnabled = true
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated);
+        super.viewDidAppear(animated)
         
         // This dashboard is for this grade setting.
-        grade = AppDefaults.gradeSetting;
+        grade = AppDefaults.gradeSetting
         
         if (data.count == 0 || title != grade) {
-            title = (grade != "") ? grade : "Dashboard";
+            title = (grade != "") ? grade : "Dashboard"
             
             if canUseDashboard {
-                getVertretungsplanFromWeb(forGrade: grade);
+                getVertretungsplanFromWeb(forGrade: grade)
             }
         }
     }
@@ -84,123 +84,123 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
             DispatchQueue.main.async {
-                self.evaButton.tintColor = .white;
-                self.evaButton.isEnabled = false;
+                self.evaButton.tintColor = .white
+                self.evaButton.isEnabled = false
 
-                let alert = UIAlertController(title: "Vertretungsplan", message: "Die Daten konnten leider nicht geladen werden.", preferredStyle: UIAlertController.Style.alert);
+                let alert = UIAlertController(title: "Vertretungsplan", message: "Die Daten konnten leider nicht geladen werden.", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
-                    (action: UIAlertAction!) in self.navigationController?.popViewController(animated: true);
-                }));
-                self.present(alert, animated: true, completion: nil);
+                    (action: UIAlertAction!) in self.navigationController?.popViewController(animated: true)
+                }))
+                self.present(alert, animated: true, completion: nil)
             }
         } else {
-            self.vertretungsplan = vertretungsplan;
+            self.vertretungsplan = vertretungsplan
             
             // What is actually next active substitution schedule date?
-            let nextVertretungsplanForDate = vertretungsplan!.next;
+            let nextVertretungsplanForDate = vertretungsplan!.next
             if nextVertretungsplanForDate.count > 0 {
-                self.nextDate = nextVertretungsplanForDate[0].date;
+                self.nextDate = nextVertretungsplanForDate[0].date
             }
             
             DispatchQueue.main.async {
-                self.tableView.reloadData();
-                self.tableView.layoutIfNeeded();
+                self.tableView.reloadData()
+                self.tableView.layoutIfNeeded()
                 if let headerInfo = self.expandHeaderInfo {
-                    self.toggleSection(header: headerInfo.header, section: headerInfo.section);
+                    self.toggleSection(header: headerInfo.header, section: headerInfo.section)
                 }
-                self.tableView.isHidden = false;
-                self.evaButton.tintColor = (AppDefaults.hasUpperGrade) ? UIColor(named: "piusBlue") : .white;
-                self.evaButton.isEnabled = AppDefaults.hasUpperGrade;
+                self.tableView.isHidden = false
+                self.evaButton.tintColor = (AppDefaults.hasUpperGrade) ? UIColor(named: "piusBlue") : .white
+                self.evaButton.isEnabled = AppDefaults.hasUpperGrade
             }
         }
     }
     
     private func getVertretungsplanFromWeb(forGrade grade: String) {
-        let vertretungsplanLoader = VertretungsplanLoader(forGrade: grade);
+        let vertretungsplanLoader = VertretungsplanLoader(forGrade: grade)
         
         // Clear all data.
-        currentHeader = nil;
-        nextDate = "";
-        expandHeaderInfo = nil;
-        vertretungsplanLoader.load(self.doUpdate);
+        currentHeader = nil
+        nextDate = ""
+        expandHeaderInfo = nil
+        vertretungsplanLoader.load(self.doUpdate)
     }
 
     @objc func refreshScrollView(_ sender: UIRefreshControl) {
         guard canUseDashboard else {
-            sender.endRefreshing();
-            return;
+            sender.endRefreshing()
+            return
         }
         
-        getVertretungsplanFromWeb(forGrade: grade);
+        getVertretungsplanFromWeb(forGrade: grade)
         sender.endRefreshing()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         guard canUseDashboard else { return 1; }
-        return (data.count == 0) ? 0 : data.count + 2;
+        return (data.count == 0) ? 0 : data.count + 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         guard canUseDashboard && section >= 2 else { return 1; }
-        return ((data[section - 2].gradeItems.count == 0)) ? 0 : rowsPerItem * data[section - 2].gradeItems[0].vertretungsplanItems.count;
+        return ((data[section - 2].gradeItems.count == 0)) ? 0 : rowsPerItem * data[section - 2].gradeItems[0].vertretungsplanItems.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard canUseDashboard else { return tableView.frame.height - (tabBarController?.tabBar.frame.height)! - (navigationController?.navigationBar.frame.height)!;  }
 
         switch(indexPath.section) {
-        case 0: return 128;
-        case 1: return UITableView.automaticDimension;
+        case 0: return 128
+        case 1: return UITableView.automaticDimension
         default:
             if (data[indexPath.section - 2].expanded) {
-                let gradeItem: GradeItem? = data[indexPath.section - 2].gradeItems[0];
+                let gradeItem: GradeItem? = data[indexPath.section - 2].gradeItems[0]
                 
                 switch indexPath.row % rowsPerItem {
-                case 0: return 2;
-                case 1: return UITableView.automaticDimension;
-                case 2: return tableView.rowHeight;
+                case 0: return 2
+                case 1: return UITableView.automaticDimension
+                case 2: return tableView.rowHeight
                 case 3:
-                    let itemIndex: Int = indexPath.row / rowsPerItem;
-                    let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][6]);
-                    return (text == "") ? 0 : UITableView.automaticDimension;
+                    let itemIndex: Int = indexPath.row / rowsPerItem
+                    let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][6])
+                    return (text == "") ? 0 : UITableView.automaticDimension
                 case 4:
-                    let itemIndex: Int = indexPath.row / rowsPerItem;
-                    return ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) ? 0: UITableView.automaticDimension;
+                    let itemIndex: Int = indexPath.row / rowsPerItem
+                    return ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) ? 0: UITableView.automaticDimension
                 default:
-                    NSLog("Invalid row number");
-                    return 0;
+                    NSLog("Invalid row number")
+                    return 0
                 }
             } else {
-                return 0;
+                return 0
             }
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return (section < 2) ? 0 : 44;
+        return (section < 2) ? 0 : 44
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return (section < 2) ? 0 : 2;
+        return (section < 2) ? 0 : 2
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard (section >= 2) else { return UITableViewHeaderFooterView(); }
 
-        let header = ExpandableHeaderView();
-        header.customInit(userInteractionEnabled: (data[section - 2].gradeItems.count != 0), section: section, delegate: self);
+        let header = ExpandableHeaderView()
+        header.customInit(userInteractionEnabled: (data[section - 2].gradeItems.count != 0), section: section, delegate: self)
         
         // Expand next substitution date entry.
         if data[section - 2].date == nextDate {
-            expandHeaderInfo = ExpandHeaderInfo(header: header, section: section);
+            expandHeaderInfo = ExpandHeaderInfo(header: header, section: section)
          }
 
-        return header;
+        return header
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return (section < 2) ? "" : data[section - 2].date;
+        return (section < 2) ? "" : data[section - 2].date
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -208,45 +208,45 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
 
         switch(indexPath.section) {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "metaDataCell") as! MetaDataTableViewCell;
+            let cell = tableView.dequeueReusableCell(withIdentifier: "metaDataCell") as! MetaDataTableViewCell
             cell.setContent(tickerText: StringHelper.replaceHtmlEntities(input: vertretungsplan?.tickerText), additionalText: StringHelper.replaceHtmlEntities(input: vertretungsplan?.additionalText))
-            return cell;
+            return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "lastUpdateCell")!;
-            cell.textLabel?.text = vertretungsplan?.lastUpdate;
-            cell.detailTextLabel?.text = "Letzte Aktualisierung";
-            return cell;
+            let cell = tableView.dequeueReusableCell(withIdentifier: "lastUpdateCell")!
+            cell.textLabel?.text = vertretungsplan?.lastUpdate
+            cell.detailTextLabel?.text = "Letzte Aktualisierung"
+            return cell
         default:
-            let itemIndex: Int = indexPath.row / rowsPerItem;
-            let gradeItem: GradeItem? = data[indexPath.section - 2].gradeItems[0];
+            let itemIndex: Int = indexPath.row / rowsPerItem
+            let gradeItem: GradeItem? = data[indexPath.section - 2].gradeItems[0]
             
             switch indexPath.row % rowsPerItem {
-            case 0: return tableView.dequeueReusableCell(withIdentifier: "spacerTop")!;
+            case 0: return tableView.dequeueReusableCell(withIdentifier: "spacerTop")!
             case 1:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "course")!;
-                let course: String! = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][2]);
+                let cell = tableView.dequeueReusableCell(withIdentifier: "course")!
+                let course: String! = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][2])
                 let lesson: String! = (gradeItem?.vertretungsplanItems[itemIndex][0])!
-                cell.textLabel?.text = (course != "") ? String(format: "Fach/Kurs: %@, %@. Stunde", course, lesson) : String(format: "%@. Stunde", lesson);
-                return cell;
+                cell.textLabel?.text = (course != "") ? String(format: "Fach/Kurs: %@, %@. Stunde", course, lesson) : String(format: "%@. Stunde", lesson)
+                return cell
             case 2:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "details") as! VertretungsplanDetailsCell;
+                let cell = tableView.dequeueReusableCell(withIdentifier: "details") as! VertretungsplanDetailsCell
                 cell.setContent(type: NSAttributedString(string: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][1])), room: FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][3])), substitution: FormatHelper.teacherText(oldTeacher: (gradeItem?.vertretungsplanItems[itemIndex][5]), newTeacher: gradeItem?.vertretungsplanItems[itemIndex][4]))
-                return cell;
+                return cell
             case 3:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "comment")!;
-                let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][6]);
-                cell.textLabel?.text = text;
-                return cell;
+                let cell = tableView.dequeueReusableCell(withIdentifier: "comment")!
+                let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][6])
+                cell.textLabel?.text = text
+                return cell
             case 4:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "eva")!;
+                let cell = tableView.dequeueReusableCell(withIdentifier: "eva")!
                 if (gradeItem?.vertretungsplanItems[itemIndex].count == 8) {
-                    let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][7]);
-                    cell.textLabel?.text = text;
+                    let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][7])
+                    cell.textLabel?.text = text
                 }
-                return cell;
+                return cell
             default:
-                NSLog("Invalid row number");
-                return UITableViewCell();
+                NSLog("Invalid row number")
+                return UITableViewCell()
             }
         }
     }
@@ -260,24 +260,24 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         // section.
         if (currentHeader != nil && currentHeader != header) {
             if let currentSection = currentHeader?.section, currentSection >= 2 {
-                data[currentSection - 2].expanded = false;
+                data[currentSection - 2].expanded = false
                 
-                tableView.beginUpdates();
+                tableView.beginUpdates()
                 for i in 0 ..< data[currentSection - 2].gradeItems[0].vertretungsplanItems.count {
                     tableView.reloadRows(at: [IndexPath(row: i, section: currentSection)], with: .automatic)
                 }
-                tableView.endUpdates();
+                tableView.endUpdates()
             }
         }
         
         // Expand/collapse the selected header depending on it's current state.
-        currentHeader = header;
-        data[section - 2].expanded = !data[section - 2].expanded;
+        currentHeader = header
+        data[section - 2].expanded = !data[section - 2].expanded
         
-        tableView.beginUpdates();
+        tableView.beginUpdates()
         for i in 0 ..< data[section - 2].gradeItems[0].vertretungsplanItems.count {
             tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
         }
-        tableView.endUpdates();
+        tableView.endUpdates()
     }
 }
