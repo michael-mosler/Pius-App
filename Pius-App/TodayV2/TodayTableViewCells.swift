@@ -97,6 +97,11 @@ class PostingsTableViewCell: UITableViewCell {
             postingsTextLabel.textColor = UIColor.label
         }
         super.layoutSubviews()
+
+        // iOS adds padding to text view content. As this breaks our
+        // layout we remove it.
+        postingsTextLabel.textContainerInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
+        postingsTextLabel.textContainer.lineFragmentPadding = 0
     }
 }
 
