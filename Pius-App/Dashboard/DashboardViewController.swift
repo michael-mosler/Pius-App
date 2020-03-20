@@ -8,6 +8,19 @@
 
 import UIKit
 
+/**
+ * Container class for EVA text label in Dashboard tab.
+ */
+class EvaTableCell: UITableViewCell {
+    @IBOutlet weak var evaTextLabel: UITextView!
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        evaTextLabel.textContainerInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+        evaTextLabel.textContainer.lineFragmentPadding = 0
+    }
+}
+
 class DashboardViewController: UITableViewController, UITabBarControllerDelegate, ExpandableHeaderViewDelegate {
     @IBOutlet weak var evaButton: UIBarButtonItem!
 
@@ -238,10 +251,10 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                 cell.textLabel?.text = text
                 return cell
             case 4:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "eva")!
+                let cell = tableView.dequeueReusableCell(withIdentifier: "eva") as! EvaTableCell
                 if (gradeItem?.vertretungsplanItems[itemIndex].count == 8) {
                     let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][7])
-                    cell.textLabel?.text = text
+                    cell.evaTextLabel.text = text
                 }
                 return cell
             default:

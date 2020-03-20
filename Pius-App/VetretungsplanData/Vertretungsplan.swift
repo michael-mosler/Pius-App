@@ -91,7 +91,8 @@ struct Vertretungsplan: Encodable {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "de_DE")
         dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, dd.MM.yyyy")
-        let filterDate = dateFormatter.string(from: date)
+        // let filterDate = dateFormatter.string(from: date)
+        let filterDate = "Freitag, 13.03.2020"
         let vertretungsplanForDate = vertretungsplaene.filter { $0.date == filterDate }
         return vertretungsplanForDate.count == 0 ? nil : vertretungsplanForDate[0]
     }
