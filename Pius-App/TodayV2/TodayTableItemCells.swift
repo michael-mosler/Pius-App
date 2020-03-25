@@ -18,8 +18,10 @@ class TodayItemCell: UITableViewCell {
     }
     
     fileprivate func reload(_ tableView: UITableView) {
+        setNeedsLayout()
         tableView.reloadData()
-        tableView.layoutIfNeeded()
+        layoutIfNeeded()
+        // tableView.layoutIfNeeded()
     }
     
     func reload() { }
@@ -60,7 +62,6 @@ class PostingsCell: TodayItemCell {
 
     override func layoutIfNeeded() {
         layoutIfNeeded(forFrameView: view)
-        // messageLabel.isHidden
     }
 
     override func reload() {

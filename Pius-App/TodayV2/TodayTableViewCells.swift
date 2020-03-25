@@ -116,6 +116,7 @@ class DashboardTableViewCell: UITableViewCell, DashboardItemCellProtocol {
     @IBOutlet weak var roomTextLabel: UILabel!
     @IBOutlet weak var substitutionTextLabel: UILabel!
     @IBOutlet weak var commentTextLabel: UILabel!
+    @IBOutlet weak var evaTextLabelContainer: UIView!
     @IBOutlet weak var evaTextLabel: UITextView!
     
     var _items: DetailItems?
@@ -152,18 +153,21 @@ class DashboardTableViewCell: UITableViewCell, DashboardItemCellProtocol {
                 // 6. EVA
                 if items.count >= 8 {
                     // text = StringHelper.replaceHtmlEntities(input: items[7])
+                    evaTextLabelContainer.isHidden = false
                     evaTextLabel.text = StringHelper.replaceHtmlEntities(input: items[7])
                     evaTextLabel.textContainerInset = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
                     evaTextLabel.textContainer.lineFragmentPadding = 0
                 } else {
-                    evaTextLabel.attributedText = nil
+                    evaTextLabelContainer.isHidden = true
+                    evaTextLabel.text = nil
                 }
             } else {
                 courseTextLabel.attributedText = nil
                 typeTextLabel.attributedText = nil
                 roomTextLabel.attributedText = nil
                 substitutionTextLabel.attributedText = nil
-                evaTextLabel.attributedText = nil
+                evaTextLabelContainer.isHidden = true
+                evaTextLabel.text = nil
             }
         }
         get {

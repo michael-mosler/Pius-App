@@ -3,16 +3,24 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in ScheduleItem.update(withDetails:):ScheduleData.swift">
+         contextName = "TimetableDataSource.tableView(_:cellForRowAt:):TimetableDataSource.swift">
          <PersistentStrings>
             <PersistentString
-               value = "detail">
+               value = "canUseDashboard">
             </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleItem.update(withDetails:):ScheduleData.swift">
+      </ContextState>
+      <ContextState
+         contextName = "EvaTableViewController.tableView(_:cellForRowAt:):EvaTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TimetableCell.reload():TodayTableItemCells.swift">
+         <PersistentStrings>
             <PersistentString
-               value = "detail[1]">
-            </PersistentString>
-            <PersistentString
-               value = "detail[2]">
+               value = "collectionView.frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -28,23 +36,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "TimetableCell.reload():TodayTableItemCells.swift">
+         contextName = "DashboardCell.layoutIfNeeded():TodayTableItemCells.swift">
          <PersistentStrings>
             <PersistentString
-               value = "collectionView.frame">
+               value = "view.frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "TimetableDataSource.tableView(_:cellForRowAt:):TimetableDataSource.swift">
+         contextName = "closure #1 in ScheduleItem.update(withDetails:):ScheduleData.swift">
          <PersistentStrings>
             <PersistentString
-               value = "canUseDashboard">
+               value = "detail">
+            </PersistentString>
+            <PersistentString
+               value = "detail[1]">
+            </PersistentString>
+            <PersistentString
+               value = "detail[2]">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ScheduleItem.update(withDetails:):ScheduleData.swift">
       </ContextState>
       <ContextState
          contextName = "TimetableDataSource.tableView(_:numberOfRowsInSection:):TimetableDataSource.swift">

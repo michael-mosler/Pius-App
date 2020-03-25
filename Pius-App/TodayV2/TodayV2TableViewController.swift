@@ -191,6 +191,7 @@ class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, 
         let cell = tableView.dequeueReusableCell(withIdentifier: cellOrder[indexPath.row], for: indexPath)
         if let cell = cell as? TodayItemCell {
             cell.reload()
+            // NSLog("Row \(indexPath.row): Height \(cell.frame.height)")
         }
         return cell
     }
@@ -256,32 +257,12 @@ extension TodayV2TableViewController {
             })
             
             self.cellOrder = newCellOrder
-            
+
             if sender as? TodayDashboardDataSource<DashboardTableViewCell> != nil {
                 // Whenever a new substitution schedule has been loaded update timetable data source.
                 let sender = sender as! TodayDashboardDataSource<DashboardTableViewCell>
                 let timetableDataSource = TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TodayTimetableDataSource<TodayTimetableItemCell>
                 timetableDataSource.substitutionSchedule = sender.substitutionSchedule
-                
-                if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "dashboardCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
-                    cell.reload()
-                }
-            } else if sender as? TodayTimetableDataSource<TodayTimetableItemCell> != nil {
-                if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "timetableCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
-                    cell.reload()
-                }
-            } else if sender as? NewsTableDataSource != nil {
-                if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "newsCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
-                    cell.reload()
-                }
-            } else if sender as? CalendarTableDataSource != nil {
-                if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "calendarCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
-                    cell.reload()
-                }
-            } else if sender as? PostingsTableDataSource != nil {
-                if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "postingsCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
-                    cell.reload()
-                }
             }
             self.tableView.endUpdates()
 

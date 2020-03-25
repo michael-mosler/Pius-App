@@ -1252,7 +1252,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <tableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fKN-Jb-Sjd" customClass="DashboardTableView" customModule="Pius_App" customModuleProvider="target">
+                                        <tableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fKN-Jb-Sjd" customClass="DashboardTableView" customModule="Pius_App" customModuleProvider="target">
                                             <rect key="frame" x="16" y="82.5" width="382" height="0.0"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <prototypes>
@@ -1435,6 +1435,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                         <outlet property="commentTextLabel" destination="zcF-zC-bs7" id="Pzl-Id-stx"/>
                                                         <outlet property="courseTextLabel" destination="3oX-Bd-RoS" id="5vX-Mt-6k3"/>
                                                         <outlet property="evaTextLabel" destination="d70-9e-qSO" id="RyO-Br-Qyx"/>
+                                                        <outlet property="evaTextLabelContainer" destination="ca6-SG-2pJ" id="9si-hi-yXt"/>
                                                         <outlet property="roomTextLabel" destination="aDq-0D-mJ7" id="pxK-mj-hOz"/>
                                                         <outlet property="substitutionTextLabel" destination="LL1-hN-x2A" id="lWA-mK-brs"/>
                                                         <outlet property="typeTextLabel" destination="OKv-Hj-ER2" id="BqS-gi-gla"/>
@@ -1561,14 +1562,14 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="timetableItemCell" id="e86-1w-zxE" customClass="TodayTimetableItemCell" customModule="Pius_App" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="28" width="317" height="360.5"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="317" height="373"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e86-1w-zxE" id="ayb-FG-dgy">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="317" height="360.5"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="317" height="373"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ys0-Bp-GFI">
-                                                                                    <rect key="frame" x="0.0" y="171.5" width="25" height="18"/>
+                                                                                    <rect key="frame" x="0.0" y="177.5" width="25" height="18"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKh-d8-zC5">
                                                                                             <rect key="frame" x="2" y="0.0" width="21" height="18"/>
@@ -1586,16 +1587,16 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="UXp-9Q-hPM">
-                                                                                    <rect key="frame" x="29" y="8" width="288" height="344.5"/>
+                                                                                    <rect key="frame" x="29" y="8" width="288" height="357"/>
                                                                                     <subviews>
                                                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="aUO-BO-TQS">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="288" height="344.5"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="288" height="357"/>
                                                                                             <subviews>
                                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5zj-If-mL9">
-                                                                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="344.5"/>
+                                                                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="357"/>
                                                                                                     <subviews>
                                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBE-Fx-V5K">
-                                                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="344.5"/>
+                                                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="357"/>
                                                                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                                             <nil key="textColor"/>
                                                                                                             <nil key="highlightedColor"/>
@@ -1610,10 +1611,10 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                                                     </constraints>
                                                                                                 </view>
                                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ds7-O1-8Zy">
-                                                                                                    <rect key="frame" x="102" y="0.0" width="100" height="344.5"/>
+                                                                                                    <rect key="frame" x="102" y="0.0" width="100" height="357"/>
                                                                                                     <subviews>
                                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="neh-U6-vuX">
-                                                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="344.5"/>
+                                                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="357"/>
                                                                                                             <attributedString key="attributedText">
                                                                                                                 <fragment content="Label">
                                                                                                                     <attributes>
@@ -1633,10 +1634,10 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                                                     </constraints>
                                                                                                 </view>
                                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NuH-uO-Xd8">
-                                                                                                    <rect key="frame" x="204" y="0.0" width="52" height="344.5"/>
+                                                                                                    <rect key="frame" x="204" y="0.0" width="52" height="357"/>
                                                                                                     <subviews>
                                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XX3-JU-gDZ">
-                                                                                                            <rect key="frame" x="0.0" y="0.0" width="52" height="344.5"/>
+                                                                                                            <rect key="frame" x="0.0" y="0.0" width="52" height="357"/>
                                                                                                             <attributedString key="attributedText">
                                                                                                                 <fragment content="Label">
                                                                                                                     <attributes>
@@ -1655,10 +1656,10 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                                                     </constraints>
                                                                                                 </view>
                                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VaQ-oR-0QQ">
-                                                                                                    <rect key="frame" x="258" y="0.0" width="30" height="344.5"/>
+                                                                                                    <rect key="frame" x="258" y="0.0" width="30" height="357"/>
                                                                                                     <subviews>
                                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueinfo" translatesAutoresizingMaskIntoConstraints="NO" id="M8O-lQ-b5V">
-                                                                                                            <rect key="frame" x="5" y="162.5" width="20" height="20"/>
+                                                                                                            <rect key="frame" x="5" y="168.5" width="20" height="20"/>
                                                                                                             <constraints>
                                                                                                                 <constraint firstAttribute="width" constant="20" id="7mX-qR-MRc"/>
                                                                                                                 <constraint firstAttribute="height" constant="20" id="Bvx-Tz-UgP"/>
@@ -1968,19 +1969,19 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqq-OM-jKq">
                                                     <rect key="frame" x="0.0" y="176" width="398" height="128"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fq8-Tu-55x">
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu," textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wzf-mz-ioz">
                                                             <rect key="frame" x="8" y="0.0" width="382" height="128"/>
+                                                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        </textView>
                                                     </subviews>
                                                     <color key="backgroundColor" name="eva"/>
                                                     <constraints>
-                                                        <constraint firstItem="Fq8-Tu-55x" firstAttribute="top" secondItem="rqq-OM-jKq" secondAttribute="top" id="T7Z-gL-793"/>
-                                                        <constraint firstItem="Fq8-Tu-55x" firstAttribute="leading" secondItem="rqq-OM-jKq" secondAttribute="leading" constant="8" id="fK0-KV-1JB"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Fq8-Tu-55x" secondAttribute="trailing" constant="8" id="nd6-iO-nOC"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Fq8-Tu-55x" secondAttribute="bottom" id="qFR-jB-c4E"/>
+                                                        <constraint firstAttribute="trailing" secondItem="wzf-mz-ioz" secondAttribute="trailing" constant="8" id="9TH-8I-tSj"/>
+                                                        <constraint firstItem="wzf-mz-ioz" firstAttribute="top" secondItem="rqq-OM-jKq" secondAttribute="top" id="Mii-Yb-GUM"/>
+                                                        <constraint firstAttribute="bottom" secondItem="wzf-mz-ioz" secondAttribute="bottom" id="UC1-yB-7kA"/>
+                                                        <constraint firstItem="wzf-mz-ioz" firstAttribute="leading" secondItem="rqq-OM-jKq" secondAttribute="leading" constant="8" id="ZNF-OR-fFv"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -2010,9 +2011,11 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                         <blurEffect style="regular"/>
                     </visualEffectView>
                     <connections>
+                        <outlet property="commentBottomConstraint" destination="WGP-w9-wfX" id="GpK-n5-C5o"/>
                         <outlet property="commentLabel" destination="c5C-YM-PBY" id="LOn-Gf-pIQ"/>
                         <outlet property="contentView" destination="uqM-17-91z" id="uir-Nc-SRV"/>
-                        <outlet property="evaLabel" destination="Fq8-Tu-55x" id="FeP-U0-teO"/>
+                        <outlet property="evaLabel" destination="wzf-mz-ioz" id="kXd-fE-FQw"/>
+                        <outlet property="evaLabelContainer" destination="rqq-OM-jKq" id="gmo-zE-uUE"/>
                         <outlet property="headerLabel" destination="DYm-EX-gaQ" id="zye-WK-7pa"/>
                         <outlet property="headerView" destination="BTT-aQ-4rI" id="rMl-kT-670"/>
                         <outlet property="panGestureRecognizer" destination="8LG-Os-wGc" id="Xch-7z-LCQ"/>
@@ -2215,24 +2218,33 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eva" textLabel="eAz-m6-C9C" style="IBUITableViewCellStyleDefault" id="hZr-cO-M0z" userLabel="eva">
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="eva" id="hZr-cO-M0z" userLabel="eva" customClass="SubstitutionScheduleDetailsEvaTableCell" customModule="Pius_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="124" width="414" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hZr-cO-M0z" id="dCi-c9-bMs">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eAz-m6-C9C">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="40"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OUv-l5-gaZ">
+                                                    <rect key="frame" x="16" y="0.0" width="382" height="40"/>
+                                                    <color key="tintColor" name="piusBlue"/>
                                                     <string key="text">Informiert euch bitte ausführlich (!) über die rechtlichen Voraussetzungen, ethischen Positionen und das medizinische Vorgehen zum Thema Organspende.</string>
-                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="OUv-l5-gaZ" secondAttribute="trailing" constant="16" id="3Gn-9R-PSW"/>
+                                                <constraint firstItem="OUv-l5-gaZ" firstAttribute="leading" secondItem="dCi-c9-bMs" secondAttribute="leading" constant="16" id="IKf-bT-odb"/>
+                                                <constraint firstAttribute="bottom" secondItem="OUv-l5-gaZ" secondAttribute="bottom" id="LOO-Mv-ohj"/>
+                                                <constraint firstItem="OUv-l5-gaZ" firstAttribute="top" secondItem="dCi-c9-bMs" secondAttribute="top" id="LqL-H5-RSH"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="eva"/>
+                                        <connections>
+                                            <outlet property="evaTextLabelOutlet" destination="OUv-l5-gaZ" id="eSd-py-gHp"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spacer" rowHeight="5" id="wz3-Fn-OX5" userLabel="spacer">
                                         <rect key="frame" x="0.0" y="164" width="414" height="5"/>
@@ -2483,7 +2495,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="eva" id="bW2-ny-B7T" userLabel="eva" customClass="EvaTableCell" customModule="Pius_App" customModuleProvider="target">
+                            <tableViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="eva" id="bW2-ny-B7T" userLabel="eva" customClass="DashboardEvaTableCell" customModule="Pius_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="358" width="414" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bW2-ny-B7T" id="g59-J8-BzF">
@@ -2508,7 +2520,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" name="eva"/>
                                 <connections>
-                                    <outlet property="evaTextLabel" destination="Y5a-ZQ-c9x" id="2KX-fA-cfL"/>
+                                    <outlet property="evaTextLabelOutlet" destination="Y5a-ZQ-c9x" id="2KX-fA-cfL"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="notLoggedIn" rowHeight="239" id="kcB-5W-hUd">

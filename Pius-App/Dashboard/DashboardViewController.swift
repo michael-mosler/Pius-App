@@ -9,16 +9,26 @@
 import UIKit
 
 /**
- * Container class for EVA text label in Dashboard tab.
+ * Basic Eva Table cell class. This class cares about setting insets and padding.
+ * By default iOS adds some padding and insets which makes it hard to align text
+ * with other elements.
  */
 class EvaTableCell: UITableViewCell {
-    @IBOutlet weak var evaTextLabel: UITextView!
-    
+    var evaTextLabel: UITextView { return UITextView() }
+
     override func layoutSubviews() {
         super.layoutSubviews()
         evaTextLabel.textContainerInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         evaTextLabel.textContainer.lineFragmentPadding = 0
     }
+}
+
+/**
+ * Container class for EVA text label in Dashboard tab.
+ */
+class DashboardEvaTableCell: EvaTableCell {
+    @IBOutlet weak var evaTextLabelOutlet: UITextView!
+    override var evaTextLabel: UITextView { return evaTextLabelOutlet }
 }
 
 class DashboardViewController: UITableViewController, UITabBarControllerDelegate, ExpandableHeaderViewDelegate {
@@ -251,7 +261,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                 cell.textLabel?.text = text
                 return cell
             case 4:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "eva") as! EvaTableCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "eva") as! DashboardEvaTableCell
                 if (gradeItem?.vertretungsplanItems[itemIndex].count == 8) {
                     let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][7])
                     cell.evaTextLabel.text = text
