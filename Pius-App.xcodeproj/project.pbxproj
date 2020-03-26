@@ -1387,7 +1387,7 @@
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App for WatchOS Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.1.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp.watchkitextension;
@@ -1413,7 +1413,7 @@
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App for WatchOS Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.1.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -1440,7 +1440,7 @@
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				IBSC_MODULE = Pius_App_for_WatchOS_Extension;
 				INFOPLIST_FILE = "Pius-App for WatchOS/Info.plist";
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.1.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp;
@@ -1468,7 +1468,7 @@
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				IBSC_MODULE = Pius_App_for_WatchOS_Extension;
 				INFOPLIST_FILE = "Pius-App for WatchOS/Info.plist";
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.1.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1496,7 +1496,7 @@
 				INFOPLIST_FILE = "pius-app-timetable-extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.1.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-timetable-extension";
@@ -1523,7 +1523,7 @@
 				INFOPLIST_FILE = "pius-app-timetable-extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.1.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-timetable-extension";
 				PRODUCT_NAME = "Pius-App Stundenplan";
@@ -1651,7 +1651,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ALWAYS_SHOW_ONBOARDING = false;
+				ALWAYS_SHOW_ONBOARDING = true;
 				API_KEY = "heSXxSOvNcl8J4UB9$#TV9TUZ3zClbX$EyOQzKiqGWxRgonzSe";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Pius-App/Pius-App.entitlements";
@@ -1667,7 +1667,7 @@
 				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.1.1;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CryptoKit,
@@ -1701,7 +1701,7 @@
 				HOST_ADDRESS = "https://pius-gateway.eu-de.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.1.1;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CryptoKit,
@@ -1760,7 +1760,7 @@
 				INFOPLIST_FILE = "Pius-App-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-extension";
 				PRODUCT_NAME = "Pius-App Vertretungsplan";
 				PROVISIONING_PROFILE = "497c7351-5074-4a9d-8f5d-ceb39301ed08";
@@ -1784,7 +1784,7 @@
 				INFOPLIST_FILE = "Pius-App-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-extension";
 				PRODUCT_NAME = "Pius-App Vertretungsplan";
 				PROVISIONING_PROFILE = "4dfe11e4-1cf3-4ce6-a67e-05c2934de45f";
@@ -1808,7 +1808,7 @@
 				INFOPLIST_FILE = "Pius-App Notification-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.notification-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "09d76f16-6033-4c3a-95ce-45a9a956c1c6";
@@ -1832,7 +1832,7 @@
 				INFOPLIST_FILE = "Pius-App Notification-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.notification-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "471b210c-739e-4d68-9173-110200c7a5c7";
