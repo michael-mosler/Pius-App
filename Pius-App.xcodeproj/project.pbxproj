@@ -68,6 +68,7 @@
 		4C49EC1424015A1D00FB9B6A /* TimetableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C49EC0B24015A1D00FB9B6A /* TimetableTableView.swift */; };
 		4C49EC1524015A1D00FB9B6A /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C49EC0C24015A1D00FB9B6A /* TimetableViewController.swift */; };
 		4C50AD9B239AC45100A2551D /* BEMCheckBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C50AD9A239AC45100A2551D /* BEMCheckBox.framework */; };
+		4C52D7B8247AB3D100862BC9 /* StaffLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C52D7B7247AB3D100862BC9 /* StaffLoader.swift */; };
 		4C5318D02205F82600D6AAFA /* EvaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5318CF2205F82600D6AAFA /* EvaTableViewController.swift */; };
 		4C5AA0132189DAA90040A455 /* VertretungsplanDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */; };
 		4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
@@ -282,6 +283,7 @@
 		4C49EC0B24015A1D00FB9B6A /* TimetableTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableTableView.swift; sourceTree = "<group>"; };
 		4C49EC0C24015A1D00FB9B6A /* TimetableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		4C50AD9A239AC45100A2551D /* BEMCheckBox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BEMCheckBox.framework; path = Carthage/Build/iOS/BEMCheckBox.framework; sourceTree = "<group>"; };
+		4C52D7B7247AB3D100862BC9 /* StaffLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffLoader.swift; sourceTree = "<group>"; };
 		4C5318CF2205F82600D6AAFA /* EvaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaTableViewController.swift; sourceTree = "<group>"; };
 		4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanDetailsCell.swift; sourceTree = "<group>"; };
 		4C5E0E7520A498DA00DAE459 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
@@ -541,6 +543,14 @@
 			path = Timetable;
 			sourceTree = "<group>";
 		};
+		4C52D7B6247AB3A100862BC9 /* Staff */ = {
+			isa = PBXGroup;
+			children = (
+				4C52D7B7247AB3D100862BC9 /* StaffLoader.swift */,
+			);
+			path = Staff;
+			sourceTree = "<group>";
+		};
 		4C5318CE2205F7F400D6AAFA /* EVA */ = {
 			isa = PBXGroup;
 			children = (
@@ -622,6 +632,7 @@
 				4C1FDE4C205567A6006092C9 /* VetretungsplanData */,
 				4C1FDE51205C4FEF006092C9 /* VertretungsplanDetailData */,
 				4C93689622F82EE50038CE9B /* TimetableData */,
+				4C52D7B6247AB3A100862BC9 /* Staff */,
 				4C1FDE58205E77BD006092C9 /* Helper */,
 				4C48F6D321F78F5200B20505 /* Watch */,
 				4CB97F15210A535F0019973D /* PushService */,
@@ -1246,6 +1257,7 @@
 				4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */,
 				4CB2AF522198813C007E5D1F /* Reachability.swift in Sources */,
 				4CFBCDDA208FBB8F00E9041D /* DateListViewController.swift in Sources */,
+				4C52D7B8247AB3D100862BC9 /* StaffLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1387,7 +1399,7 @@
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App for WatchOS Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp.watchkitextension;
@@ -1413,7 +1425,7 @@
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App for WatchOS Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.3;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -1440,7 +1452,7 @@
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				IBSC_MODULE = Pius_App_for_WatchOS_Extension;
 				INFOPLIST_FILE = "Pius-App for WatchOS/Info.plist";
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp;
@@ -1468,7 +1480,7 @@
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				IBSC_MODULE = Pius_App_for_WatchOS_Extension;
 				INFOPLIST_FILE = "Pius-App for WatchOS/Info.plist";
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.3;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.rmkrings.piusapp.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1496,7 +1508,7 @@
 				INFOPLIST_FILE = "pius-app-timetable-extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-timetable-extension";
@@ -1523,7 +1535,7 @@
 				INFOPLIST_FILE = "pius-app-timetable-extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.3;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-timetable-extension";
 				PRODUCT_NAME = "Pius-App Stundenplan";
@@ -1667,7 +1679,7 @@
 				HOST_ADDRESS = "http://localhost:3000";
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.3;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CryptoKit,
@@ -1701,7 +1713,7 @@
 				HOST_ADDRESS = "https://pius-gateway.eu-de.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.3;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CryptoKit,
@@ -1760,7 +1772,7 @@
 				INFOPLIST_FILE = "Pius-App-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-extension";
 				PRODUCT_NAME = "Pius-App Vertretungsplan";
 				PROVISIONING_PROFILE = "497c7351-5074-4a9d-8f5d-ceb39301ed08";
@@ -1784,7 +1796,7 @@
 				INFOPLIST_FILE = "Pius-App-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.pius-app-extension";
 				PRODUCT_NAME = "Pius-App Vertretungsplan";
 				PROVISIONING_PROFILE = "4dfe11e4-1cf3-4ce6-a67e-05c2934de45f";
@@ -1808,7 +1820,7 @@
 				INFOPLIST_FILE = "Pius-App Notification-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.notification-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "09d76f16-6033-4c3a-95ce-45a9a956c1c6";
@@ -1832,7 +1844,7 @@
 				INFOPLIST_FILE = "Pius-App Notification-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.rmkrings.piusapp.notification-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "471b210c-739e-4d68-9173-110200c7a5c7";

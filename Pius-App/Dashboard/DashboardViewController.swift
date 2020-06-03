@@ -37,6 +37,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     private var vertretungsplan: Vertretungsplan?
     private var nextDate: String = ""
     private var currentHeader: ExpandableHeaderView?
+    private var staffDictionary: StaffDictionary?
     
     private var data: [VertretungsplanForDate] {
         get {
@@ -75,6 +76,10 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         super.viewDidLoad()
         evaButton.isEnabled = false
         evaButton.tintColor = .white
+        
+        let staffLoader = StaffLoader()
+        staffDictionary = staffLoader.loadFromCache()
+        
         refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged)
     }
     

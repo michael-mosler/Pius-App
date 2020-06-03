@@ -130,6 +130,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         registerForPushNotifications(forApplication: application)
         
+        // Refresh staff dictionary.
+        let staffLoader = StaffLoader(onLoad: { object, bool in })
+        staffLoader.load(withLoaderDelegate: staffLoader)
+        
         return true
     }
 
