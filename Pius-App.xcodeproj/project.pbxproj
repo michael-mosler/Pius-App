@@ -87,6 +87,8 @@
 		4C7203BF237DDC45008B1F4F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7203BE237DDC45008B1F4F /* TodayViewController.swift */; };
 		4C7203C2237DDC45008B1F4F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7203C0237DDC45008B1F4F /* MainInterface.storyboard */; };
 		4C7203C6237DDC45008B1F4F /* Pius-App Stundenplan.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4C7203BB237DDC45008B1F4F /* Pius-App Stundenplan.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4C798295248A9EFB00A51DD7 /* StaffPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C798294248A9EFB00A51DD7 /* StaffPopoverViewController.swift */; };
+		4C798297248A9F7E00A51DD7 /* EntityLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C798296248A9F7E00A51DD7 /* EntityLoader.swift */; };
 		4C7C22902043117800ACA17B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C228F2043117700ACA17B /* AppDelegate.swift */; };
 		4C7C22922043117800ACA17B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C22912043117800ACA17B /* ViewController.swift */; };
 		4C7C22952043117800ACA17B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C22932043117800ACA17B /* Main.storyboard */; };
@@ -299,6 +301,8 @@
 		4C7203C1237DDC45008B1F4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		4C7203C3237DDC45008B1F4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C7203CA237DDC63008B1F4F /* pius-app-timetable-extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pius-app-timetable-extension.entitlements"; sourceTree = "<group>"; };
+		4C798294248A9EFB00A51DD7 /* StaffPopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffPopoverViewController.swift; sourceTree = "<group>"; };
+		4C798296248A9F7E00A51DD7 /* EntityLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityLoader.swift; sourceTree = "<group>"; };
 		4C7C228C2043117700ACA17B /* Pius-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pius-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7C228F2043117700ACA17B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C7C22912043117800ACA17B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -477,6 +481,7 @@
 				4C48F6D021F6433C00B20505 /* IOSHelper.swift */,
 				4C21EAE822BBB269006EE613 /* String.swift */,
 				4C94DFD423257D3F00C42998 /* DateArithmetic.swift */,
+				4C798296248A9F7E00A51DD7 /* EntityLoader.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -656,6 +661,7 @@
 			isa = PBXGroup;
 			children = (
 				4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */,
+				4C798294248A9EFB00A51DD7 /* StaffPopoverViewController.swift */,
 			);
 			name = Vertretungsplan;
 			path = "New Group";
@@ -1194,6 +1200,7 @@
 				4CD9500122C790150056BA9F /* ChangeListData.swift in Sources */,
 				4CC332D12180DF580055E3F5 /* MetaDataCollectionViewCell.swift in Sources */,
 				4C5318D02205F82600D6AAFA /* EvaTableViewController.swift in Sources */,
+				4C798295248A9EFB00A51DD7 /* StaffPopoverViewController.swift in Sources */,
 				4CC332CF2180DAB10055E3F5 /* MetaDataTableViewCell.swift in Sources */,
 				4C1FDE61206C2644006092C9 /* DashboardViewController.swift in Sources */,
 				4C9368AC23084C520038CE9B /* TodayTableItemCells.swift in Sources */,
@@ -1242,6 +1249,7 @@
 				4CAC0435233D35F2005C6094 /* NewsArticleViewController.swift in Sources */,
 				4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */,
 				4CB97F17210A53940019973D /* DeviceTokenManager.swift in Sources */,
+				4C798297248A9F7E00A51DD7 /* EntityLoader.swift in Sources */,
 				4C49EC1124015A1D00FB9B6A /* ScheduleCollectionView.swift in Sources */,
 				4C9368AF23093BA30038CE9B /* NewsTableDataSource.swift in Sources */,
 				4C1FDE50205568E3006092C9 /* ExpandableHeaderView.swift in Sources */,

@@ -9,6 +9,21 @@
 import UIKit
 
 /**
+ * This tap gesture recognizer transports the label which user tapped on.
+ * As this very early implementation does not define custom classes for table
+ * cells there is no other easy way to transport teacher information.
+ * In a future release this code needs to be rewritten.
+ */
+fileprivate class TransportingTapGestureRecognizer: UITapGestureRecognizer {
+    var label: UILabel
+    
+    init(target: Any?, action: Selector?, label: UILabel) {
+        self.label = label
+        super.init(target: target, action: action)
+    }
+}
+
+/**
  * Container class for EVA text label in Substitution Schedule Details view.
  */
 class SubstitutionScheduleDetailsEvaTableCell: EvaTableCell {
@@ -138,9 +153,30 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
         default:
             // Teachers
             cell.label.attributedText = FormatHelper.teacherText(oldTeacher: (gradeItem?.vertretungsplanItems[itemIndex][5]), newTeacher: gradeItem?.vertretungsplanItems[itemIndex][4])
+            cell.label.addGestureRecognizer(TransportingTapGestureRecognizer(target: self, action: #selector(tapGestureSelector), label: cell.label))
         }
 
         return cell
     }
+    
+    /**
+     * When user taps on teacher label this action method shows info popup
+     * for teacher.
+     */
+    @objc func tapGestureSelector(gestureRecognizer: UITapGestureRecognizer) {
+        guard let gestureRecognizer = gestureRecognizer as? TransportingTapGestureRecognizer else { return }
+        let label = gestureRecognizer.label
+        guard let substitution = label.attributedText?.string.trimmingCharacters(in: .whitespaces) else { return }
+        
+        let staffLoader = StaffLoader()
+        let staffDictionary = staffLoader.loadFromCache()
+        guard let staffMember = staffDictionary[substitution] else { return }
+        
+        let popoverController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ShortcutNamePopover") as! StaffPopoverViewController
 
+        // Present popover in current view controller. Then update content.
+        popoverController.setSourceView(view: label)
+        present(popoverController, animated: true, completion: nil)
+        popoverController.setContent(staffMember.name, staffMember.subjects)
+    }
 }

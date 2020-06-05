@@ -37,7 +37,6 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     private var vertretungsplan: Vertretungsplan?
     private var nextDate: String = ""
     private var currentHeader: ExpandableHeaderView?
-    private var staffDictionary: StaffDictionary?
     
     private var data: [VertretungsplanForDate] {
         get {
@@ -76,9 +75,6 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         super.viewDidLoad()
         evaButton.isEnabled = false
         evaButton.tintColor = .white
-        
-        let staffLoader = StaffLoader()
-        staffDictionary = staffLoader.loadFromCache()
         
         refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged)
     }
@@ -258,6 +254,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "details") as! VertretungsplanDetailsCell
+                cell.viewController = self
                 cell.setContent(type: NSAttributedString(string: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][1])), room: FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][3])), substitution: FormatHelper.teacherText(oldTeacher: (gradeItem?.vertretungsplanItems[itemIndex][5]), newTeacher: gradeItem?.vertretungsplanItems[itemIndex][4]))
                 return cell
             case 3:
