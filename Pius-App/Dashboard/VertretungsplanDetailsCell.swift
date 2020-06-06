@@ -29,28 +29,15 @@ class VertretungsplanDetailsCell: UITableViewCell, UIPopoverPresentationControll
         roomLabel.attributedText = room;
         substitutionLabel.attributedText = substitution;
         
-        substitutionLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapGestureSelector)))
+        substitutionLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressSelector)))
     }
     
     /**
      * When user taps on teacher label this action method shows info popup
      * for teacher.
      */
-    @objc func tapGestureSelector(gestureRecognizer: UITapGestureRecognizer) {
-        // No shortcut set, do not show popup.
-        guard let substitution = substitution else { return }
-
-        // Lookup substitution. If it cannot be resolved popup is not
-        // shown.
-        let staffLoader = StaffLoader()
-        let staffDictionary = staffLoader.loadFromCache()
-        guard let staffMember = staffDictionary[substitution] else { return }
-
-        let popoverController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ShortcutNamePopover") as! StaffPopoverViewController
-
-        // Present popover in current view controller. Then update content.
-        popoverController.setSourceView(view: substitutionLabel)
-        viewController?.present(popoverController, animated: true, completion: nil)
-        popoverController.setContent(staffMember.name, staffMember.subjects)
+    @objc func longPressSelector(gestureRecognizer: UILongPressGestureRecognizer) {
+        let staffInfoPopoverController = StaffInfoPopoverController(withShortcutName: substitution, onView: substitutionLabel, permittedArrowDirections: .any)
+        staffInfoPopoverController.present(inViewController: viewController)
     }
 }

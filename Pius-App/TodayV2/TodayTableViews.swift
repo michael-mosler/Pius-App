@@ -112,7 +112,7 @@ class TodayTimetableTableView: TodayItemTableView, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? TodayTimetableItemCell, let scheduleItem = cell.scheduleItem else {
+        guard let cell = tableView.cellForRow(at: indexPath) as? TodayTimetableItemCell, let scheduleItem = cell.scheduleItem, scheduleItem.isSubstitution else {
             return
         }
         

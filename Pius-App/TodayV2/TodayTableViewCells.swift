@@ -141,6 +141,7 @@ class DashboardTableViewCell: UITableViewCell, DashboardItemCellProtocol {
                 
                 // 4, Teacher
                 substitutionTextLabel.attributedText = NSAttributedString(string:  StringHelper.replaceHtmlEntities(input: items[4]))
+                substitutionTextLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressSelector)))
                 
                 // 5. Comment
                 text = StringHelper.replaceHtmlEntities(input: items[6])
@@ -174,6 +175,14 @@ class DashboardTableViewCell: UITableViewCell, DashboardItemCellProtocol {
             return _items
         }
     }
+    
+    @objc func longPressSelector(gestureRecognizer: UILongPressGestureRecognizer) {
+        guard let substitutionLabel = gestureRecognizer.view as? UILabel else { return }
+        guard let shortCutName = substitutionLabel.attributedText?.string.trimmingCharacters(in: .whitespaces) else { return }
+
+        let staffInfoPopoverController = StaffInfoPopoverController(withShortcutName: shortCutName, onView: substitutionLabel, permittedArrowDirections: .any)
+        staffInfoPopoverController.present(inViewController: TodayV2TableViewController.shared.controller as? UIViewController)
+    }
 }
 
 /* *********************************************************************
@@ -199,8 +208,7 @@ class TodayTimetableItemCell: UITableViewCell, TimetableItemCellProtocol {
                 courseTextLabel.text = StringHelper.replaceHtmlEntities(input: scheduleItem.courseName)
                 roomTextLabel.attributedText = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: scheduleItem.room))
                 teacherTextLabel.text = StringHelper.replaceHtmlEntities(input: scheduleItem.teacher)
-                
-                isUserInteractionEnabled = scheduleItem.isSubstitution
+                teacherTextLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressSelector)))
                 infoIconView.isHidden = !scheduleItem.isSubstitution
                 
                 if let bgcolor = scheduleItem.color {
@@ -260,6 +268,24 @@ class TodayTimetableItemCell: UITableViewCell, TimetableItemCellProtocol {
         }
     }
     
+    /**
+     * When user taps on teacher label this action method shows info popup
+     * for teacher.
+     */
+    @objc func longPressSelector(gestureRecognizer: UILongPressGestureRecognizer) {
+        guard let teacherTextLabel = gestureRecognizer.view as? UILabel else { return }
+        guard let shortCutName = teacherTextLabel.attributedText?.string.trimmingCharacters(in: .whitespaces) else { return }
+        
+        let staffInfoPopoverController = StaffInfoPopoverController(withShortcutName: shortCutName, onView: teacherTextLabel, permittedArrowDirections: .any)
+        let viewController = TodayV2TableViewController.shared.controller as? UIViewController
+        staffInfoPopoverController.present(inViewController: viewController)
+    }
+
+    /**
+     * With each clock tick it must be checked if marker has reached this cell.
+     * If so then lesson text label must be hidden as otherwise overlap will make
+     * it unreadable and this looks ugly.
+     */
     func onTick(forRow row: Int) {
         // For a break item no action is needed.
         guard let _ = _row else { return }
