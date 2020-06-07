@@ -70,6 +70,8 @@ class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, 
     private var isLoadCancelled = true
     private var segueData: Any?
     
+    private var newFunctionHelpPopoverViewController: NewFunctionOnboardingViewController?
+    
     // Register a timer delegate.
     func registerTimerDelegate(_ delegate: TimerDelegate) {
         if let _ = timerDelegates.first(where: { registeredDelegate in return delegate === registeredDelegate }) {
@@ -97,11 +99,13 @@ class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, 
     
     override func awakeFromNib() {
         TodayV2TableViewController.shared.controller = self
+        newFunctionHelpPopoverViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewFunctionHelpPopover") as? NewFunctionOnboardingViewController
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged)
+        // NSLog(Config.showOnboarding ? "Onboarding" : "NO Onboarding")
     }
     
     // Starts load for all Today sub-views.
@@ -189,10 +193,11 @@ class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, 
         guard indexPath.row > 0 else { return tableView.dequeueReusableCell(withIdentifier: cellOrder[0], for: indexPath) }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellOrder[indexPath.row], for: indexPath)
-        if let cell = cell as? TodayItemCell {
+        if let cell = cell as? TodayItemCell, cell.window != nil {
             cell.reload()
-            // NSLog("Row \(indexPath.row): Height \(cell.frame.height)")
+            cell.showHelpPopover(viewController: newFunctionHelpPopoverViewController)
         }
+
         return cell
     }
 }

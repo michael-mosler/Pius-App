@@ -122,10 +122,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             // Update version.
             AppDefaults.version = version
+            Config.showOnboarding = true
             
+            /*
             DispatchQueue.main.async {
                 self.window?.rootViewController?.performSegue(withIdentifier: "toOnboarding", sender: self)
             }
+            */
         }
         
         registerForPushNotifications(forApplication: application)

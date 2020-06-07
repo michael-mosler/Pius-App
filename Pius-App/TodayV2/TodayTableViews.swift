@@ -89,6 +89,13 @@ class TodayTimetableTableView: TodayItemTableView, UITableViewDelegate {
         super.awakeFromNib()
         dataSource = TodayV2TableViewController.shared.dataSource(forType: .timetable)
         delegate = self
+        
+        /*
+        let popoverController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ShortcutNameHelp") as! NewFunctionOnboardingViewController
+        popoverController.setSourceView(view: self)
+        let controller = TodayV2TableViewController.shared.controller as? UIViewController
+        controller?.present(popoverController, animated: true)
+        */
     }
     
     // The week that is shown by this tableview.

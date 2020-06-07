@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ * Shows Onboarding Screen usually once for each new version.
+ */
 class OnboardingViewController: UIViewController {
     @IBAction func startAppAction(_ sender: Any) {
         dismiss(animated: true, completion: nil);
@@ -23,6 +26,7 @@ class OnboardingViewController: UIViewController {
     @IBOutlet weak var functionOverviewText: UILabel!
     
     override func viewDidLoad() {
+        // For iOS >= 13.0 we need to make some preparations due to dark mode.
         if #available(iOS 13.0, *) {
             welcomeText.textColor = UIColor.label
             newInVersionText.textColor = UIColor.label
@@ -32,7 +36,11 @@ class OnboardingViewController: UIViewController {
             feature4Text.textColor = UIColor.label
             feature5Text.textColor = UIColor.label
             functionOverviewText.textColor = UIColor.label
-            // feature7Text.textColor = UIColor.label
+        }
+        
+        if let nsObject = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject?,
+            let version = nsObject as? String {
+            newInVersionText.text?.append(version)
         }
     }
 }

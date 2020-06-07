@@ -177,8 +177,10 @@ class DashboardTableViewCell: UITableViewCell, DashboardItemCellProtocol {
     }
     
     @objc func longPressSelector(gestureRecognizer: UILongPressGestureRecognizer) {
-        guard let substitutionLabel = gestureRecognizer.view as? UILabel else { return }
-        guard let shortCutName = substitutionLabel.attributedText?.string.trimmingCharacters(in: .whitespaces) else { return }
+        guard gestureRecognizer.state == .began,
+            let substitutionLabel = gestureRecognizer.view as? UILabel,
+            let shortCutName = substitutionLabel.attributedText?.string.trimmingCharacters(in: .whitespaces)
+        else { return }
 
         let staffInfoPopoverController = StaffInfoPopoverController(withShortcutName: shortCutName, onView: substitutionLabel, permittedArrowDirections: .any)
         staffInfoPopoverController.present(inViewController: TodayV2TableViewController.shared.controller as? UIViewController)
@@ -273,8 +275,10 @@ class TodayTimetableItemCell: UITableViewCell, TimetableItemCellProtocol {
      * for teacher.
      */
     @objc func longPressSelector(gestureRecognizer: UILongPressGestureRecognizer) {
-        guard let teacherTextLabel = gestureRecognizer.view as? UILabel else { return }
-        guard let shortCutName = teacherTextLabel.attributedText?.string.trimmingCharacters(in: .whitespaces) else { return }
+        guard gestureRecognizer.state == .began,
+            let teacherTextLabel = gestureRecognizer.view as? UILabel,
+            let shortCutName = teacherTextLabel.attributedText?.string.trimmingCharacters(in: .whitespaces)
+        else { return }
         
         let staffInfoPopoverController = StaffInfoPopoverController(withShortcutName: shortCutName, onView: teacherTextLabel, permittedArrowDirections: .any)
         let viewController = TodayV2TableViewController.shared.controller as? UIViewController

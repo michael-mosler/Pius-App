@@ -149,8 +149,10 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
      * for teacher.
      */
     @objc func longPressSelector(gestureRecognizer: UILongPressGestureRecognizer) {
-        guard let substitutionLabel = gestureRecognizer.view as? UILabel else { return }
-        guard let shortCutName = substitutionLabel.attributedText?.string.trimmingCharacters(in: .whitespaces) else { return }
+        guard gestureRecognizer.state == .began,
+            let substitutionLabel = gestureRecognizer.view as? UILabel,
+            let shortCutName = substitutionLabel.attributedText?.string.trimmingCharacters(in: .whitespaces)
+        else { return }
         
         let staffInfoPopoverController = StaffInfoPopoverController(withShortcutName: shortCutName, onView: substitutionLabel, permittedArrowDirections: .any)
         staffInfoPopoverController.present(inViewController: self)

@@ -37,6 +37,7 @@ class VertretungsplanDetailsCell: UITableViewCell, UIPopoverPresentationControll
      * for teacher.
      */
     @objc func longPressSelector(gestureRecognizer: UILongPressGestureRecognizer) {
+        guard gestureRecognizer.state == .began else { return }
         let staffInfoPopoverController = StaffInfoPopoverController(withShortcutName: substitution, onView: substitutionLabel, permittedArrowDirections: .any)
         staffInfoPopoverController.present(inViewController: viewController)
     }

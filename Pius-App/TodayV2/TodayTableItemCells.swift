@@ -9,7 +9,10 @@
 import UIKit
 
 class TodayItemCell: UITableViewCell {
+    fileprivate var newFunctionOnboardingViewController: NewFunctionOnboardingViewController?
+    
     fileprivate func layoutIfNeeded(forFrameView view: UIView) {
+        // guard window != nil else { return }
         super.layoutIfNeeded()
         view.layer.borderColor = UIColor(named: "piusBlue")?.cgColor
         view.layer.borderWidth = 1.5
@@ -25,6 +28,10 @@ class TodayItemCell: UITableViewCell {
     }
     
     func reload() { }
+    
+    func showHelpPopover(viewController: NewFunctionOnboardingViewController?) {
+        newFunctionOnboardingViewController = viewController
+    }
 }
 
 class NewsCell: TodayItemCell {
@@ -74,6 +81,18 @@ class DashboardCell: TodayItemCell {
     @IBOutlet weak var lastUpdateLabel: UILabel!
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var tableView: UITableView!
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        guard let newFunctionOnboardingViewController = newFunctionOnboardingViewController,
+            !newFunctionOnboardingViewController.hasShownHelp
+        else { return }
+
+        newFunctionOnboardingViewController.hasShownHelp = true
+        newFunctionOnboardingViewController.setSourceView(view: tableView)
+        let controller = TodayV2TableViewController.shared.controller as? UIViewController
+        controller?.present(newFunctionOnboardingViewController, animated: true)
+    }
 
     override func layoutIfNeeded() {
         let dataSource = TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! TodayDashboardDataSource<DashboardTableViewCell>
@@ -148,6 +167,18 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
         }
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        guard let newFunctionOnboardingViewController = newFunctionOnboardingViewController,
+            !newFunctionOnboardingViewController.hasShownHelp
+        else { return }
+
+        newFunctionOnboardingViewController.hasShownHelp = true
+        newFunctionOnboardingViewController.setSourceView(view: collectionView)
+        let controller = TodayV2TableViewController.shared.controller as? UIViewController
+        controller?.present(newFunctionOnboardingViewController, animated: true)
+    }
+
     // This reloads data and positions on current day to show.
     // It also ensures proper sizing of collection view items.
     private func doReload() {

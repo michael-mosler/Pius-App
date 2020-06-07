@@ -255,7 +255,10 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "details") as! VertretungsplanDetailsCell
                 cell.viewController = self
-                cell.setContent(type: NSAttributedString(string: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][1])), room: FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][3])), substitution: FormatHelper.teacherText(oldTeacher: (gradeItem?.vertretungsplanItems[itemIndex][5]), newTeacher: gradeItem?.vertretungsplanItems[itemIndex][4]))
+                cell.setContent(type: NSAttributedString(string: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][1])),
+                                room: FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][3])),
+                                substitution: FormatHelper.teacherText(oldTeacher: (gradeItem?.vertretungsplanItems[itemIndex][5]),
+                                                                       newTeacher: gradeItem?.vertretungsplanItems[itemIndex][4]))
                 return cell
             case 3:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "comment")!
