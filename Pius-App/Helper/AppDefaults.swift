@@ -18,22 +18,19 @@ struct AppDefaults {
 
     // Base-URL of our IBM Cloud Middlware
     static var baseUrl: String {
-        get {
-            return Bundle.main.infoDictionary?["HOST_ADDRESS"] as! String
-        }
+        get { Bundle.main.infoDictionary?["HOST_ADDRESS"] as! String }
     }
     
     // Shared configuration settings.
     private static let sharedDefaults = UserDefaults(suiteName: "group.de.rmkrings.piusapp.widget")
     static var version: String {
-        set(version) {
-            AppDefaults.sharedDefaults?.set(version, forKey: "version")
-        }
-        
-        get {
-            guard let version = AppDefaults.sharedDefaults?.string(forKey: "version") else { return "" }
-            return version
-        }
+        set { AppDefaults.sharedDefaults?.set(newValue, forKey: "version") }
+        get { AppDefaults.sharedDefaults?.string(forKey: "version") ?? "" }
+    }
+
+    static var hasShownFunctionHelp: [String:Bool] {
+        set { AppDefaults.sharedDefaults?.set(newValue, forKey: "shownFunctionHelp") }
+        get { AppDefaults.sharedDefaults?.dictionary(forKey: "shownFunctionHelp") as? [String:Bool] ?? [:] as [String : Bool] }
     }
 
     static var selectedGradeRow: Int? {

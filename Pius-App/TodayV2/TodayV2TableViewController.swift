@@ -72,6 +72,13 @@ class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, 
     
     private var newFunctionHelpPopoverViewController: NewFunctionOnboardingViewController?
     
+    @IBAction
+    func endOnboardingView(_ unwindSegue: UIStoryboardSegue) {
+        if #available(iOS 13.0, *) {
+            showFunctionHelpPopovers()
+        }
+    }
+    
     // Register a timer delegate.
     func registerTimerDelegate(_ delegate: TimerDelegate) {
         if let _ = timerDelegates.first(where: { registeredDelegate in return delegate === registeredDelegate }) {
@@ -105,7 +112,15 @@ class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, 
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged)
-        // NSLog(Config.showOnboarding ? "Onboarding" : "NO Onboarding")
+    }
+    
+    private func showFunctionHelpPopovers() {
+        for cell in tableView.visibleCells {
+            if let cell = cell as? TodayItemCell {
+                DispatchQueue.main.async(execute: cell.showNewFunctionOnboardingPopover)
+                break
+            }
+        }
     }
     
     // Starts load for all Today sub-views.
@@ -138,6 +153,12 @@ class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        if Config.showOnboarding {
+            performSegue(withIdentifier: "toOnboarding", sender: self)
+        } else {
+            showFunctionHelpPopovers()
+        }
+
         // When loads have been cancelled reload.
         if isLoadCancelled {
             loadData()
@@ -193,9 +214,9 @@ class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, 
         guard indexPath.row > 0 else { return tableView.dequeueReusableCell(withIdentifier: cellOrder[0], for: indexPath) }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellOrder[indexPath.row], for: indexPath)
-        if let cell = cell as? TodayItemCell, cell.window != nil {
+        if let cell = cell as? TodayItemCell {
             cell.reload()
-            cell.showHelpPopover(viewController: newFunctionHelpPopoverViewController)
+            cell.registerNewFunctionOnboardingPopover(viewController: newFunctionHelpPopoverViewController)
         }
 
         return cell
@@ -205,6 +226,7 @@ class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, 
 // Extension that implements protocol TodayItemContainer.
 extension TodayV2TableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if let destination = segue.destination as? NewsArticleViewController {
             destination.delegate = self
             destination.segueData = segueData
@@ -277,6 +299,12 @@ extension TodayV2TableViewController {
             self.pendingLoads -= 1
             if self.pendingLoads == 0 {
                 self.refreshControl?.endRefreshing()
+                
+                // Check that onboarding view controller is not shown.
+                // Then give table view some time to reposition after drag to refresh.
+                if self.presentedViewController == nil {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: self.showFunctionHelpPopovers)
+                }
             }
         }
     }

@@ -8,11 +8,15 @@
 
 import UIKit
 
+/**
+ * Base class for Today view item cell.
+ */
 class TodayItemCell: UITableViewCell {
     fileprivate var newFunctionOnboardingViewController: NewFunctionOnboardingViewController?
+    fileprivate var newFunctionOnboardingSourceView: UIView?
     
     fileprivate func layoutIfNeeded(forFrameView view: UIView) {
-        // guard window != nil else { return }
+        guard window != nil else { return }
         super.layoutIfNeeded()
         view.layer.borderColor = UIColor(named: "piusBlue")?.cgColor
         view.layer.borderWidth = 1.5
@@ -29,8 +33,25 @@ class TodayItemCell: UITableViewCell {
     
     func reload() { }
     
-    func showHelpPopover(viewController: NewFunctionOnboardingViewController?) {
-        newFunctionOnboardingViewController = viewController
+    /**
+     * Overwrite this message if you want to allow registration of a new function help
+     * popover. The overwriting method needs to set newFunctionOnboardingViewController
+     * and newFunctionOnboardingSourceView. On start up view controller will ask
+     * all cells with this base type if they want to display a popover by calling
+     * showNewFunctionOnboardingPopover.
+     */
+    func registerNewFunctionOnboardingPopover(viewController: NewFunctionOnboardingViewController?) { }
+
+    func showNewFunctionOnboardingPopover() {
+        guard let newFunctionOnboardingViewController = newFunctionOnboardingViewController,
+            !newFunctionOnboardingViewController.hasShownHelp,
+            let newFunctionOnboardingSourceView = newFunctionOnboardingSourceView
+        else { return }
+
+        newFunctionOnboardingViewController.hasShownHelp = true
+        newFunctionOnboardingViewController.setSourceView(view: newFunctionOnboardingSourceView)
+        let controller = TodayV2TableViewController.shared.controller as? UIViewController
+        controller?.present(newFunctionOnboardingViewController, animated: true)
     }
 }
 
@@ -82,16 +103,9 @@ class DashboardCell: TodayItemCell {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var tableView: UITableView!
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        guard let newFunctionOnboardingViewController = newFunctionOnboardingViewController,
-            !newFunctionOnboardingViewController.hasShownHelp
-        else { return }
-
-        newFunctionOnboardingViewController.hasShownHelp = true
-        newFunctionOnboardingViewController.setSourceView(view: tableView)
-        let controller = TodayV2TableViewController.shared.controller as? UIViewController
-        controller?.present(newFunctionOnboardingViewController, animated: true)
+   override func registerNewFunctionOnboardingPopover(viewController: NewFunctionOnboardingViewController?) {
+        newFunctionOnboardingViewController = viewController
+        newFunctionOnboardingSourceView = tableView
     }
 
     override func layoutIfNeeded() {
@@ -143,6 +157,11 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
         reload()
     }
 
+    override func registerNewFunctionOnboardingPopover(viewController: NewFunctionOnboardingViewController?) {
+        newFunctionOnboardingViewController = viewController
+        newFunctionOnboardingSourceView = collectionView
+    }
+    
     override func layoutIfNeeded() {
         let dataSource = TodayV2TableViewController.shared.dataSource(forType: .dashboard) as! TodayDashboardDataSource<DashboardTableViewCell>
         if let loadDate = dataSource.loadDate {
@@ -167,18 +186,6 @@ class TimetableCell: TodayItemCell, UICollectionViewDelegate, UIScrollViewDelega
         }
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        guard let newFunctionOnboardingViewController = newFunctionOnboardingViewController,
-            !newFunctionOnboardingViewController.hasShownHelp
-        else { return }
-
-        newFunctionOnboardingViewController.hasShownHelp = true
-        newFunctionOnboardingViewController.setSourceView(view: collectionView)
-        let controller = TodayV2TableViewController.shared.controller as? UIViewController
-        controller?.present(newFunctionOnboardingViewController, animated: true)
-    }
-
     // This reloads data and positions on current day to show.
     // It also ensures proper sizing of collection view items.
     private func doReload() {

@@ -8,14 +8,26 @@
 
 import UIKit
 
+/**
+ * Implements an instance of a New Function Help popover. This can be used
+ * to explain new functions with small popovers.
+ * By tracking display in hasShownHelpProperty the same instance of a
+ * popover can be attached multiple times. After it has been shown once
+ * it then will be not be displayed a second time.
+ */
 class NewFunctionOnboardingViewController: UIViewController, UIPopoverPresentationControllerDelegate {
-    
-    var hasShownHelp: Bool = false
-
-    @IBAction func ButtonAction(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+    let functionHelpCategory = "staffPopover"
+    var _hasShownHelp: Bool = false
+    var hasShownHelp: Bool {
+        set {
+            var hasShownFunctionHelp = AppDefaults.hasShownFunctionHelp
+            hasShownFunctionHelp[functionHelpCategory] = newValue
+            AppDefaults.hasShownFunctionHelp = hasShownFunctionHelp
+            _hasShownHelp = newValue
+        }
+        get { (AppDefaults.hasShownFunctionHelp[functionHelpCategory] ?? false) && (!Config.alwaysShowOnboarding || _hasShownHelp) }
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         modalPresentationStyle = .popover
@@ -24,12 +36,13 @@ class NewFunctionOnboardingViewController: UIViewController, UIPopoverPresentati
 
     func setSourceView(view: UIView) {
         popoverPresentationController?.permittedArrowDirections = .any
+        popoverPresentationController?.canOverlapSourceViewRect = true
         popoverPresentationController?.sourceView = view
         popoverPresentationController?.sourceRect = view.bounds
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {

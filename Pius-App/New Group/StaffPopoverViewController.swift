@@ -58,11 +58,14 @@ class StaffInfoPopoverController: NSObject {
     private var shortCutName: String?
     private var view: UIView
     private var permittedArrowDirections: UIPopoverArrowDirection
+    private var feedbackGenerator: UINotificationFeedbackGenerator
 
     required init(withShortcutName shortCutName: String?, onView view: UIView, permittedArrowDirections: UIPopoverArrowDirection = .down) {
         self.shortCutName = shortCutName
         self.view = view
         self.permittedArrowDirections = permittedArrowDirections
+        self.feedbackGenerator = UINotificationFeedbackGenerator()
+        self.feedbackGenerator.prepare()
     }
     
     func present(inViewController viewController: UIViewController?) {
@@ -81,6 +84,7 @@ class StaffInfoPopoverController: NSObject {
         // Present popover in current view controller. Then update content.
         popoverController.setSourceView(view: view, rect: rect, permittedArrowDirections: permittedArrowDirections)
         popoverController.setContent(staffMember.name, staffMember.subjects)
+        feedbackGenerator.notificationOccurred(.success)
         viewController?.present(popoverController, animated: true, completion: nil)
     }
 }
