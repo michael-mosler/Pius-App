@@ -21,6 +21,7 @@ class VertretungsplanDetailsCell: UITableViewCell, UIPopoverPresentationControll
     
     private var substitution: String?
     
+    // Must be set from outside when table cell has been dequeued.
     var viewController: UIViewController?
     
     func setContent(type: NSAttributedString, room: NSAttributedString, substitution: NSAttributedString) {
@@ -37,7 +38,7 @@ class VertretungsplanDetailsCell: UITableViewCell, UIPopoverPresentationControll
      * for teacher.
      */
     @objc func longPressSelector(gestureRecognizer: UILongPressGestureRecognizer) {
-        guard gestureRecognizer.state == .began else { return }
+        guard gestureRecognizer.state == .began, let _ = viewController else { return }
         let staffInfoPopoverController = StaffInfoPopoverController(withShortcutName: substitution, onView: substitutionLabel, permittedArrowDirections: .any)
         staffInfoPopoverController.present(inViewController: viewController)
     }

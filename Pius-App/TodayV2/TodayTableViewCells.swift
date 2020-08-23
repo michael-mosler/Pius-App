@@ -114,7 +114,7 @@ class DashboardTableViewCell: UITableViewCell, DashboardItemCellProtocol {
     @IBOutlet weak var courseTextLabel: UILabel!
     @IBOutlet weak var typeTextLabel: UILabel!
     @IBOutlet weak var roomTextLabel: UILabel!
-    @IBOutlet weak var substitutionTextLabel: UILabel!
+    @IBOutlet weak var teacherTextLabel: UILabel!
     @IBOutlet weak var commentTextLabel: UILabel!
     @IBOutlet weak var evaTextLabelContainer: UIView!
     @IBOutlet weak var evaTextLabel: UITextView!
@@ -140,8 +140,8 @@ class DashboardTableViewCell: UITableViewCell, DashboardItemCellProtocol {
                 roomTextLabel.attributedText = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: items[3]))
                 
                 // 4, Teacher
-                substitutionTextLabel.attributedText = NSAttributedString(string:  StringHelper.replaceHtmlEntities(input: items[4]))
-                substitutionTextLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressSelector)))
+                teacherTextLabel.attributedText = NSAttributedString(string:  StringHelper.replaceHtmlEntities(input: items[4]))
+                teacherTextLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressSelector)))
                 
                 // 5. Comment
                 text = StringHelper.replaceHtmlEntities(input: items[6])
@@ -166,7 +166,7 @@ class DashboardTableViewCell: UITableViewCell, DashboardItemCellProtocol {
                 courseTextLabel.attributedText = nil
                 typeTextLabel.attributedText = nil
                 roomTextLabel.attributedText = nil
-                substitutionTextLabel.attributedText = nil
+                teacherTextLabel.attributedText = nil
                 evaTextLabelContainer.isHidden = true
                 evaTextLabel.text = nil
             }
@@ -176,13 +176,17 @@ class DashboardTableViewCell: UITableViewCell, DashboardItemCellProtocol {
         }
     }
     
+    /**
+     * Long press gesture callback. Gets label long press was on (teacher label), extracts shortcut name
+     * and presents popover.
+     */
     @objc func longPressSelector(gestureRecognizer: UILongPressGestureRecognizer) {
         guard gestureRecognizer.state == .began,
-            let substitutionLabel = gestureRecognizer.view as? UILabel,
-            let shortCutName = substitutionLabel.attributedText?.string.trimmingCharacters(in: .whitespaces)
+            let teacherTextLabel = gestureRecognizer.view as? UILabel,
+            let shortCutName = teacherTextLabel.attributedText?.string.trimmingCharacters(in: .whitespaces)
         else { return }
 
-        let staffInfoPopoverController = StaffInfoPopoverController(withShortcutName: shortCutName, onView: substitutionLabel, permittedArrowDirections: .any)
+        let staffInfoPopoverController = StaffInfoPopoverController(withShortcutName: shortCutName, onView: teacherTextLabel, permittedArrowDirections: .any)
         staffInfoPopoverController.present(inViewController: TodayV2TableViewController.shared.controller as? UIViewController)
     }
 }

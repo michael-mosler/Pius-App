@@ -249,7 +249,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "course")!
                 let course: String! = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][2])
-                let lesson: String! = (gradeItem?.vertretungsplanItems[itemIndex][0])!
+                let lesson: String! = (gradeItem?.vertretungsplanItems[itemIndex][0]) ?? ""
                 cell.textLabel?.text = (course != "") ? String(format: "Fach/Kurs: %@, %@. Stunde", course, lesson) : String(format: "%@. Stunde", lesson)
                 return cell
             case 2:
