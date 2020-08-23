@@ -72,15 +72,19 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         dateListSearchTableView.reloadData()
     }
 
-    // Called whenever input in search bar is changed. Updates filter text
-    // in calendar data and reloads date list. This applies the search text
-    // to calendar items.
+    /**
+     * Called whenever input in search bar is changed. Updates filter text
+     * in calendar data and reloads date list. This applies the search text
+     * to calendar items.
+     */
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         calendar.filter = searchText
         dateListSearchTableView.reloadData()
     }
 
-    // Cancel search. This restores the view from before search was started.
+    /**
+     * Cancel search. This restores the view from before search was started.
+     */
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         dateListSearchTableView.isHidden = true
 
@@ -98,25 +102,29 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
                 self.changeSelectedMonthButton(to: selectedButton)
             }, completion: { (finished: Bool) in
                 let indexPath = IndexPath(item: selectedButton.forMonth!, section: 0)
-                self.dateListCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+                self.dateListCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
             })
         }
     }
 
-    // Whenever a new month is selected this action load the corresponding dates into
-    // day view table.
+    /**
+     * Whenever a new month is selected this action load the corresponding dates into
+     * day view table.
+     */
     @IBAction func monthButtonAction(_ sender: Any) {
         if let button = sender as? MonthButton {
             UIView.animate(withDuration: 0, animations: {
                 self.changeSelectedMonthButton(to: button)
             }, completion: { (finished: Bool) in
                 let indexPath = IndexPath(item: button.forMonth!, section: 0)
-                self.dateListCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+                self.dateListCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
             })
         }
     }
 
-    // Update view from calendar that just has been loaded.
+    /**
+     * Update view from calendar that just has been loaded.
+     */
     func doUpdate(with calendar: Calendar?, online: Bool) {
         // Error when loading calendar.
         if (calendar == nil) {
@@ -134,7 +142,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
                 self.monthListCollectionView.reloadData()
                 let indexPath = NSIndexPath(row: 0, section: 0)
                 
-                self.monthListCollectionView.scrollToItem(at: indexPath as IndexPath, at: .left, animated: false)
+                self.monthListCollectionView.scrollToItem(at: indexPath as IndexPath, at: .centeredHorizontally, animated: false)
                 self.monthListCollectionView.layoutIfNeeded()
 
                 self.dateListCollectionView.scrollToItem(at: indexPath as IndexPath, at: .left, animated: false)
@@ -145,7 +153,9 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
-    // Loads calendar from middleware.
+    /**
+     * Loads calendar from middleware.
+     */
     private func getCalendarFromWeb() {
         let calendarLoader = CalendarLoader()
         
@@ -154,8 +164,10 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         calendarLoader.load(self.doUpdate)
     }
     
-    // Called when selected month is about to change. Deselects previous month
-    // and changes selection to the new button.
+    /**
+     * Called when selected month is about to change. Deselects previous month
+     * and changes selection to the new button.
+     */
     func changeSelectedMonthButton(to button: MonthButton) {
         if (selectedButton != nil) {
             selectedButton!.isSelected = false
@@ -174,7 +186,9 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
-    // Returns the number of distinct months in the calendar.
+    /**
+     * Returns the number of distinct months in the calendar.
+     */
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return calendar.monthItems.count
     }
@@ -195,7 +209,9 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         return CGSize(width: 90, height: 50)
     }
     
-    // Return a new month selection collection view cell.
+    /**
+     * Return a new month selection collection view cell.
+     */
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if (collectionView == monthListCollectionView) {
             let cell = monthListCollectionView.dequeueReusableCell(withReuseIdentifier: "monthNameCell", for: indexPath)
@@ -216,18 +232,26 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         return cell
     }
     
+    /**
+     * Scrolling to another month did end.
+     */
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if (scrollView == dateListCollectionView) {
             let itemIndex = (scrollView.contentOffset.x / CGFloat(IOSHelper.screenWidth)).rounded()
             let indexPath = NSIndexPath(row: Int(itemIndex), section: 0)
             
             if let cell = monthListCollectionView.cellForItem(at: indexPath as IndexPath) {
+                // Month button that must be highlighted. If it is already selected then user has
+                // tapped on button and not used swipe gesture. In this case no select action
+                // must be triggered. Reloading would destroy any scroll action already started.
                 let button = cell.viewWithTag(tags.collectionView.monthButtonInCollectionViewCell.rawValue) as! MonthButton
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.changeSelectedMonthButton(to: button)
-                }, completion: { (finished: Bool) in
-                    self.dateListCollectionView.reloadData()
-                })
+                if !button.isSelected {
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self.changeSelectedMonthButton(to: button)
+                    }, completion: { (finished: Bool) in
+                        self.dateListCollectionView.reloadData()
+                    })
+                }
             } else {
                 scrollToIndexPath = indexPath
                 monthListCollectionView.scrollToItem(at: indexPath as IndexPath, at: .centeredHorizontally, animated: true)
@@ -236,6 +260,9 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
+    /**
+     * Scroll animation has ended.
+     */
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         if (scrollView == monthListCollectionView && scrollToIndexPath != nil) {
             if let cell = monthListCollectionView.cellForItem(at: scrollToIndexPath! as IndexPath) {
@@ -250,13 +277,17 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
 
-    // Returns the number of rows in the current day list table view. Actual calculation depends
-    // on the mode the view is in.
+    /**
+     * Returns the number of rows in the current day list table view. Actual calculation depends
+     * on the mode the view is in.
+     */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.allItems().count
     }
     
-    // Return a cell of day list table view.
+    /**
+     * Return a cell of day list table view.
+     */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell
         let _item = self.allItems()[indexPath.row]
