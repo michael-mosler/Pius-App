@@ -16,7 +16,7 @@ class SubstitutionScheduleDetailsEvaTableCell: EvaTableCell {
     override var evaTextLabel: UITextView { return evaTextLabelOutlet }
 }
 
-class VertretungsplanDetailViewController: UIViewController, UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class VertretungsplanDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var detailsTableView: UITableView!
     @IBOutlet weak var dateLabel: UILabel!

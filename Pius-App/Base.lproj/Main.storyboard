@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="k2r-lY-dFZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="k2r-lY-dFZ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -39,7 +40,7 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartQuotesType="no" textContentType="username"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passwort" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cz9-iE-Qdn">
-                                        <rect key="frame" x="16" y="176.5" width="76.5" height="21"/>
+                                        <rect key="frame" x="16" y="176.5" width="76" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -49,7 +50,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartQuotesType="no" textContentType="password"/>
                                     </textField>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PrT-S5-1pL">
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PrT-S5-1pL">
                                         <rect key="frame" x="16" y="255.5" width="382" height="40"/>
                                         <color key="backgroundColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.82399999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -70,7 +71,7 @@
                                     </button>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="f1z-H5-S71">
                                         <rect key="frame" x="197" y="265.5" width="20" height="20"/>
-                                        <color key="color" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="color" systemColor="systemGrayColor"/>
                                     </activityIndicatorView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tek-tG-zSw" userLabel="Ruler 3">
                                         <rect key="frame" x="16" y="311.5" width="382" height="1"/>
@@ -141,7 +142,7 @@
                                             <action selector="timetableSwitchAction:" destination="1Vq-aE-bpe" eventType="valueChanged" id="z95-yd-aue"/>
                                         </connections>
                                     </switch>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGV-Wk-lMg">
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGV-Wk-lMg">
                                         <rect key="frame" x="16" y="530.5" width="382" height="40"/>
                                         <color key="backgroundColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.82399999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -285,12 +286,13 @@ Wir verwenden:
                                         <real key="value" value="6"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="onFillColor">
-                                        <color key="value" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="value" systemColor="systemBackgroundColor"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="9dy-jZ-iHq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="9dy-jZ-iHq" firstAttribute="bottom" secondItem="6XJ-lj-pAa" secondAttribute="bottom" id="Kpc-Ai-v9e"/>
                             <constraint firstItem="9dy-jZ-iHq" firstAttribute="trailing" secondItem="6XJ-lj-pAa" secondAttribute="trailing" id="O2a-5A-Rmb"/>
@@ -299,7 +301,6 @@ Wir verwenden:
                             <constraint firstItem="6XJ-lj-pAa" firstAttribute="top" secondItem="9dy-jZ-iHq" secondAttribute="top" id="wEN-yD-gCd"/>
                             <constraint firstItem="6XJ-lj-pAa" firstAttribute="leading" secondItem="9dy-jZ-iHq" secondAttribute="leading" id="zw9-FA-rAG"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="9dy-jZ-iHq"/>
                     </view>
                     <navigationItem key="navigationItem" title="Einstellungen" id="mkA-Us-KDP"/>
                     <connections>
@@ -373,7 +374,7 @@ Wir verwenden:
                                             <outlet property="delegate" destination="NOa-Bp-GMV" id="70Z-80-vhw"/>
                                         </connections>
                                     </pickerView>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Q6-Eh-moX">
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Q6-Eh-moX">
                                         <rect key="frame" x="284" y="78" width="98" height="30"/>
                                         <color key="backgroundColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.82399999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Ok">
@@ -411,7 +412,7 @@ Wir verwenden:
                                         </connections>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="pll-SK-CDE" firstAttribute="top" secondItem="LRE-nf-dRi" secondAttribute="bottom" constant="8" id="0d5-Ph-kAU"/>
                                     <constraint firstItem="8Q6-Eh-moX" firstAttribute="leading" secondItem="nZA-9x-dF7" secondAttribute="leading" id="46c-Lc-RQ2"/>
@@ -486,7 +487,7 @@ Wir verwenden:
                                     <outlet property="delegate" destination="NOa-Bp-GMV" id="0k6-Zf-MBV"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OzU-Ox-50v">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OzU-Ox-50v">
                                 <rect key="frame" x="132" y="775" width="150" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.11385231465101242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -503,7 +504,8 @@ Wir verwenden:
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="1D2-hP-AoX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="4c0-qn-uf2" secondAttribute="trailing" constant="16" id="0Bf-ZQ-m81"/>
                             <constraint firstAttribute="trailing" secondItem="q31-vJ-33k" secondAttribute="trailing" constant="16" id="0XJ-sv-wjC"/>
@@ -522,7 +524,6 @@ Wir verwenden:
                             <constraint firstItem="ChF-bP-u7z" firstAttribute="leading" secondItem="1D2-hP-AoX" secondAttribute="leading" constant="16" id="ubS-yS-vGt"/>
                             <constraint firstItem="q31-vJ-33k" firstAttribute="leading" secondItem="1D2-hP-AoX" secondAttribute="leading" constant="16" id="xBW-qX-Wpe"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="1D2-hP-AoX"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Kurse hinzufügen" largeTitleDisplayMode="always" id="REL-B5-CCL">
@@ -593,7 +594,7 @@ Wir verwenden:
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
-                                                <color key="highlightedColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="highlightedColor" systemColor="labelColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEc-fN-Itf">
                                                 <rect key="frame" x="0.0" y="94" width="398" height="41"/>
@@ -608,7 +609,7 @@ Neu in der Version </string>
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
-                                                <color key="highlightedColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="highlightedColor" systemColor="labelColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tI0-IU-l2G">
                                                 <rect key="frame" x="0.0" y="143" width="398" height="90"/>
@@ -847,7 +848,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="pnq-wT-MRh" firstAttribute="bottom" secondItem="Irk-51-p4J" secondAttribute="bottom" constant="16" id="2UR-F2-0Gg"/>
                                     <constraint firstItem="pnq-wT-MRh" firstAttribute="top" secondItem="Irk-51-p4J" secondAttribute="top" constant="16" id="JrN-MO-dEN"/>
@@ -862,7 +863,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xnF-sM-Cyh">
                                 <rect key="frame" x="0.0" y="752" width="414" height="90"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9x-He-Tva">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9x-He-Tva">
                                         <rect key="frame" x="16" y="23" width="382" height="44"/>
                                         <color key="backgroundColor" red="0.47450980390000003" green="0.68627450980000004" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -879,7 +880,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="V9x-He-Tva" firstAttribute="centerY" secondItem="xnF-sM-Cyh" secondAttribute="centerY" id="JWu-eR-pec"/>
                                     <constraint firstAttribute="height" constant="90" id="Zx7-ad-Lkr"/>
@@ -888,7 +889,8 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="vca-Ks-haJ"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="2kg-d3-f4R" firstAttribute="leading" secondItem="vca-Ks-haJ" secondAttribute="leading" id="Dq8-HP-crw"/>
                             <constraint firstItem="xnF-sM-Cyh" firstAttribute="leading" secondItem="vca-Ks-haJ" secondAttribute="leading" id="JPM-cR-cGO"/>
@@ -898,7 +900,6 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                             <constraint firstItem="xnF-sM-Cyh" firstAttribute="top" secondItem="2kg-d3-f4R" secondAttribute="bottom" id="vxY-Gb-fkn"/>
                             <constraint firstItem="xnF-sM-Cyh" firstAttribute="trailing" secondItem="vca-Ks-haJ" secondAttribute="trailing" id="xkB-dB-FwP"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="vca-Ks-haJ"/>
                     </view>
                     <navigationItem key="navigationItem" id="096-6T-M5G"/>
                     <connections>
@@ -924,7 +925,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                     <tableView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Eao-RQ-dza">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="headerCell" rowHeight="105" id="pEL-pp-j4a" customClass="TodayHeaderCell" customModule="Pius_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="105"/>
@@ -948,7 +949,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="WCM-I4-XzT" secondAttribute="bottom" id="0Vo-wg-XFt"/>
                                                 <constraint firstItem="WCM-I4-XzT" firstAttribute="top" secondItem="Vpc-Jq-BhO" secondAttribute="top" id="ALc-zl-uAq"/>
@@ -1153,7 +1154,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                         </label>
                                         <tableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fZi-4A-u3v" userLabel="Table View" customClass="PostingsTableView" customModule="Pius_App" customModuleProvider="target">
                                             <rect key="frame" x="16" y="36" width="382" height="0.0"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <prototypes>
                                                 <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="postingsItemCell" id="j8N-Ie-7p6" customClass="PostingsTableViewCell" customModule="Pius_App" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="28" width="382" height="44"/>
@@ -1167,9 +1168,9 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                 <subviews>
                                                                     <textView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur " translatesAutoresizingMaskIntoConstraints="NO" id="fMa-FO-7Nf">
                                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="25"/>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <color key="tintColor" name="piusBlue"/>
-                                                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                        <color key="textColor" systemColor="labelColor"/>
                                                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -1257,7 +1258,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                         </label>
                                         <tableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fKN-Jb-Sjd" customClass="DashboardTableView" customModule="Pius_App" customModuleProvider="target">
                                             <rect key="frame" x="16" y="82.5" width="382" height="0.0"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <prototypes>
                                                 <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="dashboardItemCell" id="xBN-yl-dXP" customClass="DashboardTableViewCell" customModule="Pius_App" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="28" width="382" height="44"/>
@@ -1311,7 +1312,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                         </subviews>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstItem="OKv-Hj-ER2" firstAttribute="top" secondItem="EvD-QS-CWd" secondAttribute="top" id="5qo-aP-ijz"/>
                                                                             <constraint firstItem="OKv-Hj-ER2" firstAttribute="leading" secondItem="EvD-QS-CWd" secondAttribute="leading" constant="4" id="BjX-fd-Fe8"/>
@@ -1336,7 +1337,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                         </subviews>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="100" id="0bC-RT-9az"/>
                                                                             <constraint firstItem="aDq-0D-mJ7" firstAttribute="leading" secondItem="5x7-SP-5yN" secondAttribute="leading" id="7ac-Pr-nTy"/>
@@ -1361,7 +1362,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                         </subviews>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="bottom" secondItem="LL1-hN-x2A" secondAttribute="bottom" id="E9Q-66-ZuO"/>
                                                                             <constraint firstItem="LL1-hN-x2A" firstAttribute="leading" secondItem="YGv-QS-Yi2" secondAttribute="leading" id="Eyc-le-iaU"/>
@@ -1391,7 +1392,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                         </subviews>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstItem="zcF-zC-bs7" firstAttribute="top" secondItem="FZf-On-5p3" secondAttribute="top" id="2TY-NV-I6b"/>
                                                                             <constraint firstItem="zcF-zC-bs7" firstAttribute="leading" secondItem="FZf-On-5p3" secondAttribute="leading" constant="4" id="5nK-b4-WhU"/>
@@ -1405,7 +1406,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                             <textView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur c" translatesAutoresizingMaskIntoConstraints="NO" id="d70-9e-qSO">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
                                                                                 <color key="tintColor" name="piusBlue"/>
-                                                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                                <color key="textColor" systemColor="labelColor"/>
                                                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                             </textView>
@@ -1498,7 +1499,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                         </label>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="i3T-ww-2SA">
                                             <rect key="frame" x="247" y="12" width="151" height="32"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="imE-q0-cPt"/>
                                             </constraints>
@@ -1542,7 +1543,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                         </label>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ANG-67-bXB" customClass="TodayTimetableCollectionView" customModule="Pius_App" customModuleProvider="target">
                                             <rect key="frame" x="8" y="121.5" width="398" height="100"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="100" id="a3G-zr-nff"/>
                                             </constraints>
@@ -1565,14 +1566,14 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="timetableItemCell" id="e86-1w-zxE" customClass="TodayTimetableItemCell" customModule="Pius_App" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="28" width="317" height="410"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="317" height="412"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e86-1w-zxE" id="ayb-FG-dgy">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="317" height="410"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="317" height="412"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ys0-Bp-GFI">
-                                                                                    <rect key="frame" x="0.0" y="196" width="25" height="18"/>
+                                                                                    <rect key="frame" x="0.0" y="197" width="25" height="18"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKh-d8-zC5">
                                                                                             <rect key="frame" x="2" y="0.0" width="21" height="18"/>
@@ -1590,16 +1591,16 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="UXp-9Q-hPM">
-                                                                                    <rect key="frame" x="29" y="8" width="288" height="394"/>
+                                                                                    <rect key="frame" x="29" y="8" width="288" height="396"/>
                                                                                     <subviews>
                                                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="aUO-BO-TQS">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="288" height="394"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="288" height="396"/>
                                                                                             <subviews>
                                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5zj-If-mL9">
-                                                                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="394"/>
+                                                                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="396"/>
                                                                                                     <subviews>
                                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBE-Fx-V5K">
-                                                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="394"/>
+                                                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="396"/>
                                                                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                                             <nil key="textColor"/>
                                                                                                             <nil key="highlightedColor"/>
@@ -1614,10 +1615,10 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                                                     </constraints>
                                                                                                 </view>
                                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ds7-O1-8Zy">
-                                                                                                    <rect key="frame" x="102" y="0.0" width="100" height="394"/>
+                                                                                                    <rect key="frame" x="102" y="0.0" width="100" height="396"/>
                                                                                                     <subviews>
                                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="neh-U6-vuX">
-                                                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="394"/>
+                                                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="396"/>
                                                                                                             <attributedString key="attributedText">
                                                                                                                 <fragment content="Label">
                                                                                                                     <attributes>
@@ -1637,10 +1638,10 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                                                     </constraints>
                                                                                                 </view>
                                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NuH-uO-Xd8">
-                                                                                                    <rect key="frame" x="204" y="0.0" width="52" height="394"/>
+                                                                                                    <rect key="frame" x="204" y="0.0" width="52" height="396"/>
                                                                                                     <subviews>
                                                                                                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XX3-JU-gDZ">
-                                                                                                            <rect key="frame" x="0.0" y="0.0" width="52" height="394"/>
+                                                                                                            <rect key="frame" x="0.0" y="0.0" width="52" height="396"/>
                                                                                                             <attributedString key="attributedText">
                                                                                                                 <fragment content="Label">
                                                                                                                     <attributes>
@@ -1659,10 +1660,10 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                                                     </constraints>
                                                                                                 </view>
                                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VaQ-oR-0QQ">
-                                                                                                    <rect key="frame" x="258" y="0.0" width="30" height="394"/>
+                                                                                                    <rect key="frame" x="258" y="0.0" width="30" height="396"/>
                                                                                                     <subviews>
                                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueinfo" translatesAutoresizingMaskIntoConstraints="NO" id="M8O-lQ-b5V">
-                                                                                                            <rect key="frame" x="5" y="187" width="20" height="20"/>
+                                                                                                            <rect key="frame" x="5" y="188" width="20" height="20"/>
                                                                                                             <constraints>
                                                                                                                 <constraint firstAttribute="width" constant="20" id="7mX-qR-MRc"/>
                                                                                                                 <constraint firstAttribute="height" constant="20" id="Bvx-Tz-UgP"/>
@@ -1709,12 +1710,12 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="YgS-xK-Z1N"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                                                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="textColor" systemColor="systemRedColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dxd-mz-o9d">
                                                                 <rect key="frame" x="29" y="5.5" width="6" height="6"/>
-                                                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" systemColor="systemRedColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="6" id="6of-2a-5MJ"/>
                                                                     <constraint firstAttribute="width" constant="6" id="HFB-pG-vTy"/>
@@ -1727,7 +1728,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                             </view>
                                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OxG-Lh-Qnh">
                                                                 <rect key="frame" x="29" y="8" width="284" height="1"/>
-                                                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" systemColor="systemRedColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="ncG-Q9-Daz"/>
                                                                 </constraints>
@@ -1813,7 +1814,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="OfE-12-mNa">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" systemColor="systemGrayColor"/>
                     </refreshControl>
                     <connections>
                         <segue destination="0ce-tQ-RCf" kind="presentation" identifier="showNews" modalPresentationStyle="overCurrentContext" id="qDh-jF-2zC"/>
@@ -1869,7 +1870,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="DYm-EX-gaQ" secondAttribute="trailing" constant="8" id="4OT-aL-vhl"/>
                                                 <constraint firstItem="DYm-EX-gaQ" firstAttribute="top" secondItem="BTT-aQ-4rI" secondAttribute="top" id="6h8-fc-2P8"/>
@@ -1896,7 +1897,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="bottom" secondItem="jDS-Hn-G7v" secondAttribute="bottom" id="IaN-zc-n12"/>
                                                                         <constraint firstItem="jDS-Hn-G7v" firstAttribute="top" secondItem="sN8-1D-B3a" secondAttribute="top" id="bSP-ux-VCo"/>
@@ -1915,7 +1916,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="trailing" secondItem="ABY-cb-RbT" secondAttribute="trailing" id="b01-Tz-Fta"/>
                                                                         <constraint firstItem="ABY-cb-RbT" firstAttribute="top" secondItem="jis-zj-6lM" secondAttribute="top" id="caI-zb-Dbb"/>
@@ -1934,7 +1935,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstItem="8iG-xx-Hie" firstAttribute="leading" secondItem="SCZ-uY-O1h" secondAttribute="leading" id="6VB-Dp-yRw"/>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="O4f-yp-33a"/>
@@ -1946,7 +1947,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstItem="3AC-IN-1hC" firstAttribute="top" secondItem="ktG-Ga-2JD" secondAttribute="top" id="3Ac-YN-1gL"/>
                                                         <constraint firstAttribute="bottom" secondItem="3AC-IN-1hC" secondAttribute="bottom" id="SMS-7w-Wie"/>
@@ -1964,7 +1965,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="c5C-YM-PBY" secondAttribute="trailing" constant="8" id="HAW-J7-NOt"/>
                                                         <constraint firstItem="c5C-YM-PBY" firstAttribute="leading" secondItem="6vO-QB-GQR" secondAttribute="leading" constant="8" id="UG5-SZ-pru"/>
@@ -1977,7 +1978,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                     <subviews>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu," textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wzf-mz-ioz">
                                                             <rect key="frame" x="8" y="0.0" width="382" height="128"/>
-                                                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" systemColor="labelColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
@@ -1993,7 +1994,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                             </subviews>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="400" id="18J-Hh-6jg"/>
                                         <constraint firstItem="gIr-PU-8fr" firstAttribute="leading" secondItem="uqM-17-91z" secondAttribute="leading" id="2Yk-kC-F9i"/>
@@ -2067,7 +2068,8 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ihV-lk-iDC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="AgX-0p-Beh" firstAttribute="leading" secondItem="ihV-lk-iDC" secondAttribute="leading" id="0Yy-gr-ehF"/>
@@ -2077,7 +2079,6 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                             <constraint firstItem="ihV-lk-iDC" firstAttribute="trailing" secondItem="AgX-0p-Beh" secondAttribute="trailing" id="lw8-Oa-sqc"/>
                             <constraint firstItem="OgV-Op-O7x" firstAttribute="top" secondItem="mjq-8e-vkr" secondAttribute="top" constant="16" id="qhQ-Fc-JYP"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ihV-lk-iDC"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -2128,7 +2129,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="3dl-W6-lhJ">
                                 <rect key="frame" x="0.0" y="180" width="414" height="633"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="course" textLabel="5Ig-a6-Org" rowHeight="36" style="IBUITableViewCellStyleDefault" id="Ncn-E2-xmd">
                                         <rect key="frame" x="0.0" y="28" width="414" height="36"/>
@@ -2157,7 +2158,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RT7-vi-dkL">
                                                     <rect key="frame" x="19" y="0.0" width="376" height="25"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Lnt-o8-3BN">
                                                         <size key="itemSize" width="104" height="25"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -2234,7 +2235,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                                     <rect key="frame" x="16" y="0.0" width="382" height="40"/>
                                                     <color key="tintColor" name="piusBlue"/>
                                                     <string key="text">Informiert euch bitte ausführlich (!) über die rechtlichen Voraussetzungen, ethischen Positionen und das medizinische Vorgehen zum Thema Organspende.</string>
-                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
@@ -2271,7 +2272,8 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="5tR-U2-F6v"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="5tR-U2-F6v" firstAttribute="bottom" secondItem="3dl-W6-lhJ" secondAttribute="bottom" id="HDn-pB-6wK"/>
                             <constraint firstItem="FTh-5D-Tqw" firstAttribute="trailing" secondItem="5tR-U2-F6v" secondAttribute="trailing" id="JdP-LT-86j"/>
@@ -2281,7 +2283,6 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                             <constraint firstItem="FTh-5D-Tqw" firstAttribute="trailing" secondItem="3dl-W6-lhJ" secondAttribute="trailing" id="sQo-bj-ir4"/>
                             <constraint firstItem="3dl-W6-lhJ" firstAttribute="top" secondItem="FTh-5D-Tqw" secondAttribute="bottom" constant="8" symbolic="YES" id="twq-AP-EDu"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="5tR-U2-F6v"/>
                     </view>
                     <connections>
                         <outlet property="dateLabel" destination="FTh-5D-Tqw" id="ehx-Ah-Z40"/>
@@ -2299,7 +2300,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="44" sectionFooterHeight="-1" estimatedSectionFooterHeight="2" id="QEg-7e-P7B">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="metaDataCell" rowHeight="130" id="aSs-0x-aBq" customClass="MetaDataTableViewCell" customModule="Pius_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="130"/>
@@ -2310,7 +2311,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                     <subviews>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Xzz-pE-nbI">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="85"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="5xi-PQ-dBH">
                                                 <size key="itemSize" width="382" height="83"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -2393,7 +2394,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ue4-Es-eYt">
-                                            <rect key="frame" x="20" y="3" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="20" y="3" width="33" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -2511,7 +2512,7 @@ Lasse Dir Deinen Vertretungsplan auf Deiner Apple Watch anzeigen.</string>
                                             <rect key="frame" x="16" y="0.0" width="382" height="40"/>
                                             <color key="tintColor" name="piusBlue"/>
                                             <string key="text">Informiert euch bitte ausführlich (!) über die rechtlichen Voraussetzungen, ethischen Positionen und das medizinische Vorgehen zum Thema Organspende.</string>
-                                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" systemColor="labelColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
@@ -2570,7 +2571,7 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="XGg-hF-SFU">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" systemColor="systemGrayColor"/>
                     </refreshControl>
                     <connections>
                         <outlet property="evaButton" destination="6H3-v8-yFh" id="9p6-G9-wKf"/>
@@ -2587,7 +2588,7 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="n9R-CQ-kXU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="date" id="CuL-br-jFZ" customClass="EvaTableSectionHeader" customModule="Pius_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="23"/>
@@ -2658,12 +2659,12 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, s" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rrK-O8-i9f">
                                                     <rect key="frame" x="8" y="0.0" width="398" height="57.5"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <color key="tintColor" name="piusBlue"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="vBf-HE-fgG"/>
                                                     </constraints>
-                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
@@ -2715,7 +2716,7 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="x2K-e9-D9q">
                                 <rect key="frame" x="0.0" y="88" width="414" height="50"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="LEM-6Q-QCL"/>
                                 </constraints>
@@ -2765,7 +2766,7 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HMa-eX-uGG">
                                 <rect key="frame" x="0.0" y="138" width="414" height="675"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="anq-uG-Mm9">
                                     <size key="itemSize" width="300" height="200"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -2854,11 +2855,11 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                             </collectionView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ydO-Mg-jAz">
                                 <rect key="frame" x="197" y="438" width="20" height="20"/>
-                                <color key="color" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="color" systemColor="systemGrayColor"/>
                             </activityIndicatorView>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ug9-6v-TAo">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MonthName" textLabel="fJm-WS-h38" style="IBUITableViewCellStyleDefault" id="aIc-4j-Src">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
@@ -2929,7 +2930,8 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="82f-TF-sxj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="82f-TF-sxj" firstAttribute="bottom" secondItem="ug9-6v-TAo" secondAttribute="bottom" id="2PJ-nO-uHe"/>
@@ -2946,7 +2948,6 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                             <constraint firstItem="x2K-e9-D9q" firstAttribute="top" secondItem="82f-TF-sxj" secondAttribute="top" id="ncB-hh-Eue"/>
                             <constraint firstItem="82f-TF-sxj" firstAttribute="trailing" secondItem="HMa-eX-uGG" secondAttribute="trailing" id="wm9-B4-iyP"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="82f-TF-sxj"/>
                     </view>
                     <navigationItem key="navigationItem" title="Kalender" id="ADm-4p-vp2" userLabel="Termine"/>
                     <connections>
@@ -2972,7 +2973,7 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.33725490200000002" green="0.63137254899999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -2993,7 +2994,7 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zHw-Gb-tsn">
                                 <rect key="frame" x="8" y="44" width="398" height="44"/>
-                                <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="barTintColor" systemColor="systemBackgroundColor"/>
                                 <items>
                                     <navigationItem title="Aktuelle Änderungen" largeTitleDisplayMode="always" id="dax-tU-ngM">
                                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="69W-F4-HXX">
@@ -3013,7 +3014,7 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="baE-74-MEP">
                                 <rect key="frame" x="0.0" y="117" width="414" height="745"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="day" textLabel="rz0-bB-pDG" style="IBUITableViewCellStyleDefault" id="Xvf-gl-otF">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
@@ -3218,7 +3219,8 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="i8d-4w-Rrg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="i8d-4w-Rrg" firstAttribute="trailing" secondItem="I2V-ma-bxI" secondAttribute="trailing" constant="16" id="6rr-p3-hfB"/>
                             <constraint firstItem="baE-74-MEP" firstAttribute="leading" secondItem="i8d-4w-Rrg" secondAttribute="leading" id="7lI-RK-dwD"/>
@@ -3231,7 +3233,6 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                             <constraint firstItem="zHw-Gb-tsn" firstAttribute="top" secondItem="i8d-4w-Rrg" secondAttribute="top" id="yms-RJ-4WH"/>
                             <constraint firstItem="zHw-Gb-tsn" firstAttribute="leading" secondItem="i8d-4w-Rrg" secondAttribute="leading" constant="8" id="zkq-mI-10U"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="i8d-4w-Rrg"/>
                     </view>
                     <connections>
                         <outlet property="tablewView" destination="baE-74-MEP" id="nW0-ZQ-D76"/>
@@ -3252,7 +3253,7 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.82399999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -3273,7 +3274,7 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.82399999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -3294,7 +3295,7 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.33700000000000002" green="0.63100000000000001" blue="0.82399999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -3312,7 +3313,7 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="44" sectionFooterHeight="-1" estimatedSectionFooterHeight="2" id="Axw-UX-gY9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="metaDataCell" rowHeight="130" id="H40-l6-6uW" customClass="MetaDataTableViewCell" customModule="Pius_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="130"/>
@@ -3323,7 +3324,7 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                                     <subviews>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jaU-Rq-HCx">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="85"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="iTH-6I-yYN">
                                                 <size key="itemSize" width="382" height="83"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -3406,7 +3407,7 @@ Tippe unten auf Einstellungen, um mit der Konfiguration zu beginnen.</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="beW-O3-Ra3">
-                                            <rect key="frame" x="20" y="5" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="20" y="5" width="33" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -3500,7 +3501,7 @@ Tippe dazu unten auf </string>
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <attributedString key="attributedTitle"/>
-                        <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" systemColor="systemGrayColor"/>
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ite-7p-3Pv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3523,11 +3524,11 @@ Tippe dazu unten auf </string>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBx-W5-P9K">
                                 <rect key="frame" x="80" y="52" width="334" height="66.5"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Drücke im Dashboard, Vertretungs- und Stundenplan lange auf ein Lehrerkürzel, um Dir den Namen des Lehrers anzeigen zu lassen.">
                                         <attributes>
-                                            <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="NSColor" systemColor="labelColor"/>
                                             <font key="NSFont" metaFont="menu" size="14"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -3535,7 +3536,7 @@ Tippe dazu unten auf </string>
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lw-hx-U1G">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lw-hx-U1G">
                                 <rect key="frame" x="0.0" y="824" width="414" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="GSd-FA-NQK"/>
@@ -3549,7 +3550,8 @@ Tippe dazu unten auf </string>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="1gB-E5-3Yz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="fBx-W5-P9K" firstAttribute="leading" secondItem="mul-dc-mj4" secondAttribute="trailing" id="FDn-Gh-t5b"/>
                             <constraint firstItem="fBx-W5-P9K" firstAttribute="top" secondItem="mul-dc-mj4" secondAttribute="top" id="HZW-tU-OXw"/>
@@ -3561,7 +3563,6 @@ Tippe dazu unten auf </string>
                             <constraint firstItem="1gB-E5-3Yz" firstAttribute="trailing" secondItem="1lw-hx-U1G" secondAttribute="trailing" id="tkS-oS-QMp"/>
                             <constraint firstItem="fBx-W5-P9K" firstAttribute="trailing" secondItem="1gB-E5-3Yz" secondAttribute="trailing" id="urp-Yp-Q2K"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="1gB-E5-3Yz"/>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="414" height="160"/>
                 </viewController>
@@ -3598,7 +3599,7 @@ Tippe dazu unten auf </string>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="LuP-ph-gJ9" secondAttribute="bottom" id="Ca5-G3-Q0K"/>
                                             <constraint firstItem="5Jx-OU-sfA" firstAttribute="top" secondItem="Z60-0T-6LI" secondAttribute="top" id="PVN-rm-tOd"/>
@@ -3618,14 +3619,14 @@ Tippe dazu unten auf </string>
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="dfS-Iz-TVw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="dfS-Iz-TVw" firstAttribute="trailing" secondItem="ekK-gT-MAq" secondAttribute="trailing" constant="4" id="5kT-GG-wqj"/>
                             <constraint firstItem="dfS-Iz-TVw" firstAttribute="bottom" secondItem="ekK-gT-MAq" secondAttribute="bottom" id="Fk1-nF-SVC"/>
                             <constraint firstItem="ekK-gT-MAq" firstAttribute="top" secondItem="dfS-Iz-TVw" secondAttribute="top" id="d35-U4-o6c"/>
                             <constraint firstItem="ekK-gT-MAq" firstAttribute="leading" secondItem="dfS-Iz-TVw" secondAttribute="leading" constant="4" id="s1Y-gt-2IU"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="dfS-Iz-TVw"/>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="250" height="100"/>
                     <connections>
@@ -3659,6 +3660,11 @@ Tippe dazu unten auf </string>
             <point key="canvasLocation" x="-10442" y="-5946"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="gFt-iT-VLa">
+            <size key="intrinsicContentSize" width="128" height="128"/>
+        </designable>
+    </designables>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
     <resources>
         <image name="blueinfo" width="30" height="30"/>
@@ -3681,5 +3687,20 @@ Tippe dazu unten auf </string>
         <namedColor name="piusBlue">
             <color red="0.47499999403953552" green="0.68599998950958252" blue="0.84299999475479126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

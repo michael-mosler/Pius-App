@@ -136,7 +136,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         for index in 0..<tableRowData.count {
             switch rowTypes[index] {
             case "dateRow":
-                let tableRow = dashboardTable.rowController(at: index) as! DateRow
+                guard let tableRow = dashboardTable.rowController(at: index) as? DateRow else { break }
                 tableRow.label.setText(tableRowData[index] as? String)
                 
                 // When no substitutions for the current date set bg color
@@ -149,17 +149,17 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                 break
                 
             case "headerRow":
-                let tableRow = dashboardTable.rowController(at: index) as! HeaderRow
+                guard let tableRow = dashboardTable.rowController(at: index) as? HeaderRow else { break }
                 tableRow.label.setText(tableRowData[index] as? String)
                 break
                 
             case "contentRow":
-                let tableRow = dashboardTable.rowController(at: index) as! ContentRow
+                guard let tableRow = dashboardTable.rowController(at: index) as? ContentRow else { break }
                 tableRow.label.setAttributedText(tableRowData[index] as? NSAttributedString)
                 break
                 
             case "evaRow":
-                let tableRow = dashboardTable.rowController(at: index) as! EvaRow
+                guard let tableRow = dashboardTable.rowController(at: index) as? EvaRow else { break }
                 tableRow.label.setAttributedText(tableRowData[index] as? NSAttributedString)
                 break
                 
