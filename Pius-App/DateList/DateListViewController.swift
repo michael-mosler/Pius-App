@@ -45,7 +45,6 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func awakeFromNib() {
         super.awakeFromNib()
         let search = UISearchController(searchResultsController: nil)
-        search.dimsBackgroundDuringPresentation = false
         search.searchBar.delegate = self
         navigationItem.searchController = search
 

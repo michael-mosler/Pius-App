@@ -125,8 +125,13 @@ struct AppDefaults {
 
     static var timetable: Timetable {
         set(value) {
-            let data = NSKeyedArchiver.archivedData(withRootObject: value)
-            AppDefaults.sharedDefaults?.set(data, forKey: "timetable")
+            // let data = NSKeyedArchiver.archivedData(withRootObject: value)
+            do {
+                let data = try NSKeyedArchiver.archivedData(withRootObject: value, requiringSecureCoding: false)
+                AppDefaults.sharedDefaults?.set(data, forKey: "timetable")
+            } catch let error as NSError {
+                NSLog("Failed to archive timetable: \(error.localizedDescription)")
+            }
         }
         get {
             guard let data = AppDefaults.sharedDefaults?.data(forKey: "timetable") else { return Timetable() }
@@ -142,20 +147,35 @@ struct AppDefaults {
             NSKeyedUnarchiver.setClass(FreeScheduleItem.self, forClassName: "Pius_App.FreeScheduleItem")
             NSKeyedUnarchiver.setClass(BreakScheduleItem.self, forClassName: "Pius_App.BreakScheduleItem")
 
-            let value = NSKeyedUnarchiver.unarchiveObject(with: data) as! Timetable
-            return value
+            do {
+                guard let value = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Timetable else { return Timetable() }
+                return value
+            } catch let error as NSError {
+                NSLog("Failed to unarchive timetable: \(error.localizedDescription)")
+                return Timetable()
+            }
         }
     }
 
     static var courses: Courses {
         set(value) {
-            let data = NSKeyedArchiver.archivedData(withRootObject: value)
-            AppDefaults.sharedDefaults?.set(data, forKey: "courses")
+            do {
+                let data = try NSKeyedArchiver.archivedData(withRootObject: value, requiringSecureCoding: false)
+                AppDefaults.sharedDefaults?.set(data, forKey: "courses")
+            } catch let error as NSError {
+                NSLog("Failed to archive courses: \(error.localizedDescription)")
+            }
         }
         get {
-            guard let data = AppDefaults.sharedDefaults?.data(forKey: "courses") else { return Courses() }
-            let value = NSKeyedUnarchiver.unarchiveObject(with: data) as! Courses
-            return value
+            do {
+                guard let data = AppDefaults.sharedDefaults?.data(forKey: "courses"),
+                      let value = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Courses
+                else { return Courses() }
+                return value
+            } catch let error as NSError {
+                NSLog("Failed to unarchive courses: \(error.localizedDescription)")
+                return Courses()
+            }
         }
     }
 
