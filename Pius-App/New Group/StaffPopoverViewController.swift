@@ -17,8 +17,7 @@ class StaffPopoverViewController: UIViewController, UIPopoverPresentationControl
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subjectsLabel: UILabel!
     
-    private var name: String = ""
-    private var subjects: [String] = []
+    private var staffMember: StaffMember?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -26,9 +25,8 @@ class StaffPopoverViewController: UIViewController, UIPopoverPresentationControl
         popoverPresentationController?.delegate = self
     }
     
-    func setContent(_ name: String, _ subjects: [String]) {
-        self.name = name
-        self.subjects = subjects
+    func setContent(_ staffMember: StaffMember) {
+        self.staffMember = staffMember
     }
     
     func setSourceView(view: UIView, rect: CGRect, permittedArrowDirections: UIPopoverArrowDirection = .down) {
@@ -38,8 +36,8 @@ class StaffPopoverViewController: UIViewController, UIPopoverPresentationControl
     }
 
     override func viewDidLoad() {
-        nameLabel.text = name
-        subjectsLabel.text = subjects.joined(separator: ", ")
+        nameLabel.text = staffMember?.name
+        subjectsLabel.text = staffMember?.subjectsList
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -83,7 +81,7 @@ class StaffInfoPopoverController: NSObject {
 
         // Present popover in current view controller. Then update content.
         popoverController.setSourceView(view: view, rect: rect, permittedArrowDirections: permittedArrowDirections)
-        popoverController.setContent(staffMember.name, staffMember.subjects)
+        popoverController.setContent(staffMember)
         feedbackGenerator.notificationOccurred(.success)
         viewController?.present(popoverController, animated: true, completion: nil)
     }

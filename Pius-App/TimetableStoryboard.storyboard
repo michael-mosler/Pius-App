@@ -495,22 +495,97 @@ Als Oberstufenschüler kannst Du auch festlegen, ob es sich um einen LK oder GK 
             </objects>
             <point key="canvasLocation" x="1640.5797101449277" y="-220.3125"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Extended Teacher Edit Table View Controller-->
         <scene sceneID="auk-OW-ktQ">
             <objects>
-                <tableViewController storyboardIdentifier="ExtendedTeacherEditTablewViewController" id="MI4-Dj-gZM" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ExtendedTeacherEditTableViewController" id="MI4-Dj-gZM" customClass="ExtendedTeacherEditTableViewController" customModule="Pius_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HkG-lT-v56">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="teacherCell" id="Bhc-dy-Ifp">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="teacherCell" id="Bhc-dy-Ifp" customClass="ExtendedTeacherTableViewCell" customModule="Pius_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="82"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bhc-dy-Ifp" id="Mj6-cz-ZY4">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="82"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0BL-ce-hcs">
+                                            <rect key="frame" x="8" y="0.0" width="398" height="82"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqM-dg-dar">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="82"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="Fpz-zb-drS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fWw-GO-BJ4">
+                                                    <rect key="frame" x="80" y="0.0" width="318" height="82"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aA9-pX-ccg">
+                                                            <rect key="frame" x="0.0" y="0.0" width="318" height="30"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJn-fC-u8L">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="318" height="30"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="bJn-fC-u8L" secondAttribute="bottom" id="B1H-Ps-LWg"/>
+                                                                <constraint firstItem="bJn-fC-u8L" firstAttribute="top" secondItem="aA9-pX-ccg" secondAttribute="top" id="KMW-vt-9cN"/>
+                                                                <constraint firstItem="bJn-fC-u8L" firstAttribute="leading" secondItem="aA9-pX-ccg" secondAttribute="leading" id="QUm-Cy-Hrl"/>
+                                                                <constraint firstAttribute="height" constant="30" id="mW1-6w-kQH"/>
+                                                                <constraint firstAttribute="trailing" secondItem="bJn-fC-u8L" secondAttribute="trailing" id="pce-iz-lhW"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Sh-Sm-obD">
+                                                            <rect key="frame" x="0.0" y="30" width="318" height="1"/>
+                                                            <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="1" id="1XI-rL-YTh"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fWT-QP-1rE">
+                                                            <rect key="frame" x="0.0" y="31" width="318" height="51"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Czw-uJ-HcK">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="318" height="51"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="Czw-uJ-HcK" secondAttribute="trailing" id="30s-bx-3B5"/>
+                                                                <constraint firstItem="Czw-uJ-HcK" firstAttribute="leading" secondItem="fWT-QP-1rE" secondAttribute="leading" id="QZe-BD-WcW"/>
+                                                                <constraint firstItem="Czw-uJ-HcK" firstAttribute="top" secondItem="fWT-QP-1rE" secondAttribute="top" id="XxO-cA-ssx"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Czw-uJ-HcK" secondAttribute="bottom" id="qoM-q6-QG5"/>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="rHM-kz-8te"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="0BL-ce-hcs" firstAttribute="leading" secondItem="Mj6-cz-ZY4" secondAttribute="leading" constant="8" id="0Qq-FC-h3H"/>
+                                        <constraint firstAttribute="trailing" secondItem="0BL-ce-hcs" secondAttribute="trailing" constant="8" id="1YE-zz-FUL"/>
+                                        <constraint firstItem="0BL-ce-hcs" firstAttribute="top" secondItem="Mj6-cz-ZY4" secondAttribute="top" id="ddL-71-MxX"/>
+                                        <constraint firstAttribute="bottom" secondItem="0BL-ce-hcs" secondAttribute="bottom" id="m8s-a4-1JY"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="bJn-fC-u8L" id="mN5-ax-NHT"/>
+                                    <outlet property="shortnameLabel" destination="WqM-dg-dar" id="5GI-aF-XUX"/>
+                                    <outlet property="subjectsLabel" destination="Czw-uJ-HcK" id="cls-9H-5ak"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -518,7 +593,7 @@ Als Oberstufenschüler kannst Du auch festlegen, ob es sich um einen LK oder GK 
                             <outlet property="delegate" destination="MI4-Dj-gZM" id="jFI-cu-YXW"/>
                         </connections>
                     </tableView>
-                    <value key="contentSizeForViewInPopover" type="size" width="414" height="896"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="414" height="350"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W1x-5V-7UI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -530,6 +605,9 @@ Als Oberstufenschüler kannst Du auch festlegen, ob es sich um einen LK oder GK 
         <image name="trash" width="30" height="30"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

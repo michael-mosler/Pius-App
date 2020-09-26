@@ -25,12 +25,14 @@ class CourseDetailsViewController: UIViewController, UITextFieldDelegate, UIScro
     @IBOutlet weak var examSwitch: UISwitch!
     @IBOutlet var tapGestureRecogizer: UITapGestureRecognizer!
     @IBOutlet weak var teacherLabel: UILabel!
+    private var searchButton: UIButton?
     
     private var activeTextField: UITextField?
+    private var feedbackGenerator: UINotificationFeedbackGenerator = UINotificationFeedbackGenerator()
 
     var delegate:  TimetableViewDataDelegate?
     weak var scheduleItem: ScheduleItem?
-    var staffDictionary: StaffDictionary?
+    private var staffDictionary: StaffDictionary?
     
     /**
      * View did load: Fill all content and set up notifications and delegates.
@@ -38,6 +40,8 @@ class CourseDetailsViewController: UIViewController, UITextFieldDelegate, UIScro
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        feedbackGenerator.prepare()
+        
         let staffLoader = StaffLoader()
         staffDictionary = staffLoader.loadFromCache()
 
@@ -75,7 +79,6 @@ class CourseDetailsViewController: UIViewController, UITextFieldDelegate, UIScro
      */
     private func addSearchButton(toTextField textField: UITextField, _ searchAction: Selector) {
         let searchImage = UIImage(named: "search")
-        var searchButton: UIButton
 
         if #available(iOS 14.0, *) {
             searchButton = UIButton()
@@ -83,10 +86,18 @@ class CourseDetailsViewController: UIViewController, UITextFieldDelegate, UIScro
             searchButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         }
 
-        searchButton.setImage(searchImage, for: .normal)
-        searchButton.addTarget(self, action: searchAction, for: .touchDown)
+        searchButton?.setImage(searchImage, for: .normal)
+        searchButton?.addTarget(self, action: searchAction, for: .touchDown)
         teacherTextEdit.rightView = searchButton
-        teacherTextEdit.rightViewMode = .whileEditing
+        teacherTextEdit.rightViewMode = .always
+    }
+    
+    /**
+     * Receives result from extended teacher edit search dialog.
+     */
+    func receiveResult(selectedShortname: String?) {
+        teacherTextEdit.text = selectedShortname
+        updateTeacherLabel(fromShortname: selectedShortname)
     }
     
     /**
@@ -95,7 +106,18 @@ class CourseDetailsViewController: UIViewController, UITextFieldDelegate, UIScro
      * a search function. The user may select one entry by tapping.
      */
     @objc private func extendedTeacherEditAction(sender: UIButton) {
-        NSLog("extended text edit")
+        guard let popoverController =
+                UIStoryboard(name: "TimetableStoryboard", bundle: nil)
+                .instantiateViewController(withIdentifier: "ExtendedTeacherEditTableViewController") as? ExtendedTeacherEditTableViewController,
+              let searchButton = searchButton
+        else { return }
+
+        let rect = CGRect(x: view.bounds.minX, y: view.bounds.minY, width: 12, height: view.bounds.height)
+
+        popoverController.resultDelegate = self
+        popoverController.setSourceView(view: searchButton, rect: rect)
+        feedbackGenerator.notificationOccurred(.success)
+        self.present(popoverController, animated: true, completion: nil)
     }
 
     /**
@@ -117,8 +139,9 @@ class CourseDetailsViewController: UIViewController, UITextFieldDelegate, UIScro
      * edit. This requires staff dictionary to have been loaded when
      * view is loaded.
      */
-    private func updateTeacherLabel(fromShortname shortname: String) {
+    private func updateTeacherLabel(fromShortname shortname: String?) {
         guard let staffDictionary = staffDictionary,
+              let shortname = shortname,
               let staffMember = staffDictionary[shortname]
         else {
             teacherLabel.text = ""

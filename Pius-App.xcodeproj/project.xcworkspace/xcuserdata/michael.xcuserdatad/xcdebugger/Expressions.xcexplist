@@ -33,7 +33,12 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "EvaTableViewController.tableView(_:cellForRowAt:):EvaTableViewController.swift">
+         contextName = "ExtendedTeacherEditTableViewController.viewDidLoad():ExtendedTeacherEditTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "staffDictionary.count">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "CourseDetailsViewController.textField(_:shouldChangeCharactersIn:replacementString:):CourseDetailsViewController.swift">
@@ -44,6 +49,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "EvaTableViewController.tableView(_:cellForRowAt:):EvaTableViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "TodayViewController.topRow.getter:TodayViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -51,6 +59,14 @@
             </PersistentString>
             <PersistentString
                value = "timetableDataSource.forDay">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ExtendedTeacherEditTableViewController.filter(_:by:):ExtendedTeacherEditTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "sortedKeys">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -66,10 +82,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ExtendedTeacherEditTableTableViewController.tableView(_:numberOfRowsInSection:):ExtendedTeacherEditTableTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "filteredStaffDictionary.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "static AppDefaults.timetable.setter:AppDefaults.swift">
          <PersistentStrings>
             <PersistentString
                value = "error.localizedDescription">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ExtendedTeacherEditTableViewController.tableView(_:didSelectRowAt:):ExtendedTeacherEditTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.parent">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -82,12 +114,23 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ExtendedTeacherEditTableViewController.tableView(_:numberOfRowsInSection:):ExtendedTeacherEditTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "sortedKeys.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "CourseDetailsViewController.textDidChange(notification:):CourseDetailsViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "textField.text ">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Dictionary&lt;&gt;.filter(by:):ExtendedTeacherEditTableViewController.swift">
       </ContextState>
       <ContextState
          contextName = "ScheduleItem.update(withDetails:):ScheduleData.swift">

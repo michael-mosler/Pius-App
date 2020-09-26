@@ -11,7 +11,8 @@ import Foundation
 struct StaffMember {
     var name: String
     var subjects: [String]
-    
+    var subjectsList: String { return subjects.joined(separator: ", ")}
+
     init(fromJSON: [String: Any]) {
         guard let name = fromJSON["name"] as? String,
             let subjects = fromJSON["subjects"] as? [String]
@@ -25,9 +26,35 @@ struct StaffMember {
     }
 }
 
+/**
+ * StaffDictionary:
+ * The dictionary is extended by a filter function and a
+ * computed property which returns a sorted array of shortnames.
+ */
 typealias StaffDictionary = [String : StaffMember]
+extension StaffDictionary {
+    var sortdedKeys: [String] { return Array(keys).sorted(by: <) }
+    
+    /**
+     * Filter dictionary by the given string. Filter is applied as "contains"
+     * to shortnames, names and subjects. A filtered copy of dictionary is returned.
+     */
+    func filter(by: String?) -> StaffDictionary {
+        guard let by = by, by.count > 0 else { return self }
+
+        var filteredStaffDictionary = StaffDictionary()
+        for (shortname, staffMember) in self {
+            if shortname.contains(by) || staffMember.name.contains(by) || staffMember.subjectsList.contains(by) {
+                filteredStaffDictionary.updateValue(staffMember, forKey: shortname)
+            }
+        }
+
+        return filteredStaffDictionary
+    }
+}
 
 /**
+ * StaffLoader:
  * Loads staff dictionary from Pius website and refreshes cache. Other then
  * common loaders load() updates cache only but does not return dictionary.
  * This is because staff dictionary is refreshed once on app start.
@@ -73,9 +100,9 @@ class StaffLoader: EntityLoader, EntityLoaderDelegate {
             guard let dictionaryJSON = json["staffDictionary"] as? [String: Any] else { return [ : ] }
             
             var staffDictionary: StaffDictionary = [ : ]
-            for (shortHandSymbol, infoJSON) in dictionaryJSON {
+            for (shortname, infoJSON) in dictionaryJSON {
                 let staffMember = StaffMember(fromJSON: infoJSON as! [String: Any])
-                staffDictionary[shortHandSymbol] = staffMember
+                staffDictionary[shortname] = staffMember
             }
 
             return staffDictionary

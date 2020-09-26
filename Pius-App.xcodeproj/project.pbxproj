@@ -44,6 +44,8 @@
 		4C1FDE5E20697516006092C9 /* VertretungsplanLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */; };
 		4C1FDE61206C2644006092C9 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE60206C2644006092C9 /* DashboardViewController.swift */; };
 		4C1FDE63206D5FE6006092C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE62206D5FE6006092C9 /* Config.swift */; };
+		4C20AAAF251F83A700415133 /* ExtendedTeacherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C20AAAE251F83A700415133 /* ExtendedTeacherTableViewCell.swift */; };
+		4C20AACD251F8EEE00415133 /* ExtendedTeacherEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C20AACC251F8EEE00415133 /* ExtendedTeacherEditTableViewController.swift */; };
 		4C21EAE922BBB269006EE613 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21EAE822BBB269006EE613 /* String.swift */; };
 		4C300F392126BFEE00D6E129 /* Pius-App Notification-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4CFB122B210F887E00BC4B44 /* Pius-App Notification-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C48F69F21F4E01300B20505 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C48F69D21F4E01300B20505 /* Interface.storyboard */; };
@@ -260,6 +262,8 @@
 		4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanLoader.swift; sourceTree = "<group>"; };
 		4C1FDE60206C2644006092C9 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		4C1FDE62206D5FE6006092C9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		4C20AAAE251F83A700415133 /* ExtendedTeacherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedTeacherTableViewCell.swift; sourceTree = "<group>"; };
+		4C20AACC251F8EEE00415133 /* ExtendedTeacherEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTeacherEditTableViewController.swift; sourceTree = "<group>"; };
 		4C21EAE822BBB269006EE613 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		4C48F69B21F4E01300B20505 /* Pius-App for WatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pius-App for WatchOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C48F69E21F4E01300B20505 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -501,6 +505,15 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
+		4C20AA9D251F57F700415133 /* ExtendedTeacherEdit */ = {
+			isa = PBXGroup;
+			children = (
+				4C20AACC251F8EEE00415133 /* ExtendedTeacherEditTableViewController.swift */,
+				4C20AAAE251F83A700415133 /* ExtendedTeacherTableViewCell.swift */,
+			);
+			path = ExtendedTeacherEdit;
+			sourceTree = "<group>";
+		};
 		4C48F69C21F4E01300B20505 /* Pius-App for WatchOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -537,6 +550,7 @@
 		4C49EC0324015A1D00FB9B6A /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
+				4C20AA9D251F57F700415133 /* ExtendedTeacherEdit */,
 				4C49EC0424015A1D00FB9B6A /* CourseDetailsViewController.swift */,
 				4C49EC0524015A1D00FB9B6A /* CourseCollectionView.swift */,
 				4C49EC0624015A1D00FB9B6A /* CourseCollectionViewCell.swift */,
@@ -1245,6 +1259,7 @@
 				4C5AA0132189DAA90040A455 /* VertretungsplanDetailsCell.swift in Sources */,
 				4C9368AA230844FC0038CE9B /* TodayTableViews.swift in Sources */,
 				4C49EC1224015A1D00FB9B6A /* TimetableTableViewCell.swift in Sources */,
+				4C20AACD251F8EEE00415133 /* ExtendedTeacherEditTableViewController.swift in Sources */,
 				4C5E0E7B20A8797D00DAE459 /* OnboardingViewController.swift in Sources */,
 				4C6BBD8D2312BF0000137384 /* TodayTimetableCollectionView.swift in Sources */,
 				4CFB105720D0490B00432B1A /* CalendarLoader.swift in Sources */,
@@ -1266,6 +1281,7 @@
 				4C0940272381C7AF0077C034 /* DashboardDataSource.swift in Sources */,
 				4C49EC1324015A1D00FB9B6A /* ScheduleCollectionViewCell.swift in Sources */,
 				4C6BBD89230F173200137384 /* TodayDashboardDataSource.swift in Sources */,
+				4C20AAAF251F83A700415133 /* ExtendedTeacherTableViewCell.swift in Sources */,
 				4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */,
 				4CB2AF522198813C007E5D1F /* Reachability.swift in Sources */,
 				4CFBCDDA208FBB8F00E9041D /* DateListViewController.swift in Sources */,
