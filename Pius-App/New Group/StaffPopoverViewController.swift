@@ -70,13 +70,13 @@ class StaffInfoPopoverController: NSObject {
     
     func present(inViewController viewController: UIViewController?) {
         // No shortcut set, do not show popup.
-        guard let shortCutName = shortCutName else { return }
+        guard let shortname = shortCutName else { return }
 
         // Lookup substitution. If it cannot be resolved popup is not
         // shown.
         let staffLoader = StaffLoader()
         let staffDictionary = staffLoader.loadFromCache()
-        guard let staffMember = staffDictionary[shortCutName] else { return }
+        guard let staffMember = staffDictionary[shortname] else { return }
 
         let popoverController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ShortcutNamePopover") as! StaffPopoverViewController
         let rect = CGRect(x: view.bounds.minX, y: view.bounds.minY, width: 12, height: view.bounds.height)

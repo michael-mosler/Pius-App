@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j4i-vU-hBr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j4i-vU-hBr">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -60,7 +61,7 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FqR-ck-4WE" customClass="ScheduleCollectionView" customModule="Pius_App" customModuleProvider="target">
                                 <rect key="frame" x="8" y="130" width="398" height="644"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Sfl-xQ-3x8">
                                     <size key="itemSize" width="317" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -210,7 +211,7 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WMa-XM-cBs" customClass="CourseCollectionView" customModule="Pius_App" customModuleProvider="target">
                                 <rect key="frame" x="8" y="804" width="398" height="50"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="au2-3i-WGk"/>
                                 </constraints>
@@ -262,7 +263,8 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="X7E-8M-9au"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="10F-F9-1DN" firstAttribute="bottom" secondItem="WMa-XM-cBs" secondAttribute="top" id="07a-Op-6JG"/>
                             <constraint firstItem="W7F-IL-2cj" firstAttribute="top" secondItem="c7u-N4-NJZ" secondAttribute="bottom" constant="4" id="8am-i8-Hf3"/>
@@ -283,7 +285,6 @@
                             <constraint firstItem="W7F-IL-2cj" firstAttribute="leading" secondItem="X7E-8M-9au" secondAttribute="leading" constant="8" id="hM2-yd-tbc"/>
                             <constraint firstItem="c7u-N4-NJZ" firstAttribute="leading" secondItem="X7E-8M-9au" secondAttribute="leading" constant="8" id="oYF-ll-KOe"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="X7E-8M-9au"/>
                     </view>
                     <navigationItem key="navigationItem" title="Stundenplan" leftItemsSupplementBackButton="YES" id="ItR-wN-pgA">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="trash" id="TiF-U3-6L7">
@@ -343,11 +344,11 @@ Als Oberstufenschüler kannst Du auch festlegen, ob es sich um einen LK oder GK 
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="g6r-Oc-AV9"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="Azt-h5-8Ca" secondAttribute="trailing" constant="16" id="Iiz-pp-HbR"/>
                                                     <constraint firstItem="Azt-h5-8Ca" firstAttribute="leading" secondItem="ziV-ap-vYa" secondAttribute="leading" id="JIi-76-sio"/>
@@ -384,7 +385,7 @@ Als Oberstufenschüler kannst Du auch festlegen, ob es sich um einen LK oder GK 
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="204" id="myg-3X-NFt"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                         </subviews>
@@ -403,13 +404,19 @@ Als Oberstufenschüler kannst Du auch festlegen, ob es sich um einen LK oder GK 
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="204" id="79g-Mh-RRO"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86d-Bp-dY4">
-                                        <rect key="frame" x="8" y="287.5" width="382" height="1"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teacher Label" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yki-CG-Rtr" userLabel="Teacher Label">
+                                        <rect key="frame" x="186" y="279.5" width="204" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86d-Bp-dY4" userLabel="Separator 1">
+                                        <rect key="frame" x="8" y="316" width="382" height="1"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="880-t3-mj5"/>
@@ -419,32 +426,35 @@ Als Oberstufenschüler kannst Du auch festlegen, ob es sich um einen LK oder GK 
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Klausurfach" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OR5-q8-kwA">
-                                        <rect key="frame" x="8" y="304.5" width="91.5" height="20.5"/>
+                                        <rect key="frame" x="8" y="333" width="91" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HZh-4f-M2O">
-                                        <rect key="frame" x="341" y="299.5" width="51" height="31"/>
+                                        <rect key="frame" x="341" y="328" width="51" height="31"/>
                                     </switch>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="csC-FV-uiR" firstAttribute="leading" secondItem="KXe-bC-qNS" secondAttribute="leading" constant="8" id="7Th-zr-qvq"/>
-                                    <constraint firstItem="86d-Bp-dY4" firstAttribute="top" secondItem="csC-FV-uiR" secondAttribute="bottom" constant="16" id="9CU-Li-z8E"/>
+                                    <constraint firstItem="86d-Bp-dY4" firstAttribute="top" secondItem="Yki-CG-Rtr" secondAttribute="bottom" constant="16" id="9CU-Li-z8E"/>
                                     <constraint firstItem="Uxp-YG-fhm" firstAttribute="top" secondItem="FvT-6M-48w" secondAttribute="bottom" constant="8" id="B0Y-gx-HGr"/>
                                     <constraint firstItem="FvT-6M-48w" firstAttribute="leading" secondItem="KXe-bC-qNS" secondAttribute="leading" constant="8" id="CPP-Lt-vnO"/>
                                     <constraint firstItem="FvT-6M-48w" firstAttribute="top" secondItem="puL-d4-aFZ" secondAttribute="top" constant="8" id="EDP-Vt-uSb"/>
                                     <constraint firstItem="OR5-q8-kwA" firstAttribute="top" secondItem="86d-Bp-dY4" secondAttribute="bottom" constant="16" id="EoD-Gg-foI"/>
                                     <constraint firstItem="yQz-G2-Vqj" firstAttribute="top" secondItem="Uxp-YG-fhm" secondAttribute="bottom" constant="8" id="K5v-7z-YJr"/>
                                     <constraint firstItem="86d-Bp-dY4" firstAttribute="leading" secondItem="KXe-bC-qNS" secondAttribute="leading" constant="8" id="LeY-dT-qXo"/>
+                                    <constraint firstItem="KXe-bC-qNS" firstAttribute="trailing" secondItem="Yki-CG-Rtr" secondAttribute="trailing" constant="8" id="OzU-JR-QEV"/>
                                     <constraint firstItem="HZh-4f-M2O" firstAttribute="centerY" secondItem="OR5-q8-kwA" secondAttribute="centerY" id="PG2-hh-CYp"/>
                                     <constraint firstItem="KXe-bC-qNS" firstAttribute="trailing" secondItem="Uxp-YG-fhm" secondAttribute="trailing" constant="8" id="QvO-U8-e4S"/>
                                     <constraint firstItem="KXe-bC-qNS" firstAttribute="trailing" secondItem="HZh-4f-M2O" secondAttribute="trailing" constant="8" id="RC5-xM-Inl"/>
                                     <constraint firstItem="yQz-G2-Vqj" firstAttribute="leading" secondItem="KXe-bC-qNS" secondAttribute="leading" constant="8" id="Wql-gY-7ab"/>
                                     <constraint firstItem="KXe-bC-qNS" firstAttribute="trailing" secondItem="FvT-6M-48w" secondAttribute="trailing" constant="8" id="XS9-Ig-v4U"/>
                                     <constraint firstItem="puL-d4-aFZ" firstAttribute="bottom" secondItem="OR5-q8-kwA" secondAttribute="bottom" constant="8" id="Xl8-gZ-cdS"/>
+                                    <constraint firstItem="Yki-CG-Rtr" firstAttribute="width" secondItem="g2z-m6-rVA" secondAttribute="width" id="Zm5-Q3-F4y"/>
                                     <constraint firstItem="OR5-q8-kwA" firstAttribute="leading" secondItem="KXe-bC-qNS" secondAttribute="leading" constant="8" id="bYw-96-Bim"/>
                                     <constraint firstItem="KXe-bC-qNS" firstAttribute="trailing" secondItem="86d-Bp-dY4" secondAttribute="trailing" constant="8" id="hhL-Nj-ASY"/>
+                                    <constraint firstItem="Yki-CG-Rtr" firstAttribute="top" secondItem="csC-FV-uiR" secondAttribute="bottom" constant="8" id="iph-XD-F7y"/>
                                     <constraint firstItem="KXe-bC-qNS" firstAttribute="trailing" secondItem="csC-FV-uiR" secondAttribute="trailing" constant="8" id="kMO-e8-gGT"/>
                                     <constraint firstItem="Uxp-YG-fhm" firstAttribute="width" secondItem="puL-d4-aFZ" secondAttribute="width" id="qE8-ey-SAq"/>
                                     <constraint firstItem="Uxp-YG-fhm" firstAttribute="leading" secondItem="KXe-bC-qNS" secondAttribute="leading" constant="8" id="rLy-Ia-CzZ"/>
@@ -455,14 +465,14 @@ Als Oberstufenschüler kannst Du auch festlegen, ob es sich um einen LK oder GK 
                                 <viewLayoutGuide key="frameLayoutGuide" id="KXe-bC-qNS"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="5TB-uY-4KE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="dlc-bK-6dc" firstAttribute="leading" secondItem="5TB-uY-4KE" secondAttribute="leading" constant="8" id="RPs-mO-dRs"/>
                             <constraint firstItem="5TB-uY-4KE" firstAttribute="trailing" secondItem="dlc-bK-6dc" secondAttribute="trailing" constant="8" id="n9N-3Q-Rp1"/>
                             <constraint firstItem="5TB-uY-4KE" firstAttribute="bottom" secondItem="dlc-bK-6dc" secondAttribute="bottom" id="oOQ-fV-9Xq"/>
                             <constraint firstItem="dlc-bK-6dc" firstAttribute="top" secondItem="5TB-uY-4KE" secondAttribute="top" id="sye-vd-lbO"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="5TB-uY-4KE"/>
                     </view>
                     <connections>
                         <outlet property="courseEdit" destination="Azt-h5-8Ca" id="lcU-mB-H0r"/>
@@ -472,6 +482,7 @@ Als Oberstufenschüler kannst Du auch festlegen, ob es sich um einen LK oder GK 
                         <outlet property="roomTextEdit" destination="JeT-Nh-aCL" id="t5s-CY-RKc"/>
                         <outlet property="scrollView" destination="dlc-bK-6dc" id="zhZ-2J-t7v"/>
                         <outlet property="tapGestureRecogizer" destination="wcR-TE-M9v" id="RMJ-VU-nEX"/>
+                        <outlet property="teacherLabel" destination="Yki-CG-Rtr" id="jor-RD-mri"/>
                         <outlet property="teacherTextEdit" destination="g2z-m6-rVA" id="BFs-Aj-X2M"/>
                     </connections>
                 </viewController>
@@ -484,9 +495,41 @@ Als Oberstufenschüler kannst Du auch festlegen, ob es sich um einen LK oder GK 
             </objects>
             <point key="canvasLocation" x="1640.5797101449277" y="-220.3125"/>
         </scene>
+        <!--Table View Controller-->
+        <scene sceneID="auk-OW-ktQ">
+            <objects>
+                <tableViewController storyboardIdentifier="ExtendedTeacherEditTablewViewController" id="MI4-Dj-gZM" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HkG-lT-v56">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="teacherCell" id="Bhc-dy-Ifp">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bhc-dy-Ifp" id="Mj6-cz-ZY4">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MI4-Dj-gZM" id="x6D-4T-0fu"/>
+                            <outlet property="delegate" destination="MI4-Dj-gZM" id="jFI-cu-YXW"/>
+                        </connections>
+                    </tableView>
+                    <value key="contentSizeForViewInPopover" type="size" width="414" height="896"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W1x-5V-7UI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1641" y="482"/>
+        </scene>
     </scenes>
     <resources>
         <image name="deleteButton" width="512" height="512"/>
         <image name="trash" width="30" height="30"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

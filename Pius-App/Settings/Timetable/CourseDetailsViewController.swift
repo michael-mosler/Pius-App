@@ -24,22 +24,32 @@ class CourseDetailsViewController: UIViewController, UITextFieldDelegate, UIScro
     @IBOutlet weak var teacherTextEdit: UITextField!
     @IBOutlet weak var examSwitch: UISwitch!
     @IBOutlet var tapGestureRecogizer: UITapGestureRecognizer!
+    @IBOutlet weak var teacherLabel: UILabel!
     
     private var activeTextField: UITextField?
 
     var delegate:  TimetableViewDataDelegate?
     weak var scheduleItem: ScheduleItem?
+    var staffDictionary: StaffDictionary?
     
+    /**
+     * View did load: Fill all content and set up notifications and delegates.
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        let staffLoader = StaffLoader()
+        staffDictionary = staffLoader.loadFromCache()
+
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(notification:)), name: UITextField.textDidChangeNotification, object: teacherTextEdit)
 
         courseEdit.delegate = self
         roomTextEdit.delegate = self
         teacherTextEdit.delegate = self
         
+        addSearchButton(toTextField: teacherTextEdit, #selector(extendedTeacherEditAction(sender:)))
         scrollView.addGestureRecognizer(tapGestureRecogizer)
         
         if let scheduleItem = scheduleItem {
@@ -54,9 +64,43 @@ class CourseDetailsViewController: UIViewController, UITextFieldDelegate, UIScro
             roomTextEdit.text = scheduleItem.room
             teacherTextEdit.text = scheduleItem.teacher
             examSwitch.isOn = scheduleItem.courseItem.exam
+
+            updateTeacherLabel(fromShortname: scheduleItem.teacher)
         }
     }
     
+    /**
+     * Add a search button to the given text field. The button
+     * is added as right view.
+     */
+    private func addSearchButton(toTextField textField: UITextField, _ searchAction: Selector) {
+        let searchImage = UIImage(named: "search")
+        var searchButton: UIButton
+
+        if #available(iOS 14.0, *) {
+            searchButton = UIButton()
+        } else {
+            searchButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        }
+
+        searchButton.setImage(searchImage, for: .normal)
+        searchButton.addTarget(self, action: searchAction, for: .touchDown)
+        teacherTextEdit.rightView = searchButton
+        teacherTextEdit.rightViewMode = .whileEditing
+    }
+    
+    /**
+     * Action function for search button in teacher text field.
+     * This action shows a comprehensive list of all teachers with
+     * a search function. The user may select one entry by tapping.
+     */
+    @objc private func extendedTeacherEditAction(sender: UIButton) {
+        NSLog("extended text edit")
+    }
+
+    /**
+     * View will disappear: Save data.
+     */
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -67,34 +111,57 @@ class CourseDetailsViewController: UIViewController, UITextFieldDelegate, UIScro
             : ExtraScheduleItem(room: roomTextEdit.text ?? "", courseItem: newCourseItem)
         delegate.details(updateWithItem: newScheduleItem, forOldItem: scheduleItem, sender: self)
     }
-    
-    private func dismissKeyboard(fromTextField textField: UITextField?) {
-        textField?.resignFirstResponder()
+
+    /**
+     * Update teacher name in teacher label from shortname in text
+     * edit. This requires staff dictionary to have been loaded when
+     * view is loaded.
+     */
+    private func updateTeacherLabel(fromShortname shortname: String) {
+        guard let staffDictionary = staffDictionary,
+              let staffMember = staffDictionary[shortname]
+        else {
+            teacherLabel.text = ""
+            return
+        }
+        
+        teacherLabel.text = staffMember.name
     }
 
-    // Remember text field in which editing has begun.
+    /**
+     * Remember text field in which editing has begun.
+     */
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
     }
     
-    // Forget text field which was edited in as editing has ended.
+    /**
+     * Forget text field which was edited in as editing has ended.
+     */
     func textFieldDidEndEditing(_ textField: UITextField) {
         activeTextField = nil
     }
 
-    // Dismiss keyboard on request.
+    /**
+     * Dismiss keyboard on request.
+     */
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        dismissKeyboard(fromTextField: textField)
+        textField.resignFirstResponder()
         return true
     }
 
+    /**
+     * User has tapped somewhere on the screen, dismiss keyboard.
+     */
     @IBAction func tapGestureAction(_ sender: Any) {
         guard activeTextField != nil else { return }
-        dismissKeyboard(fromTextField: activeTextField)
+        activeTextField?.resignFirstResponder()
     }
     
-    // Keyboard was shown, we need to resize our scrollview to make sure that keyboard is visible
-    // on any device.
+    /**
+     * Keyboard was shown, we need to resize our scrollview to make sure that keyboard is visible.
+     * on any device.
+     */
     @objc func keyboardWasShown(notification: NSNotification) {
         guard activeTextField != nil else { return }
 
@@ -105,10 +172,21 @@ class CourseDetailsViewController: UIViewController, UITextFieldDelegate, UIScro
         }
     }
 
-    // Keyboard will hide; scroll view can be expanded again.
+    /**
+     * Keyboard will hide; scroll view can be expanded again.
+     */
     @objc func keyboardWillHide(notification: NSNotification) {
         let contentInsets: UIEdgeInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
+    }
+
+    /**
+     * Processes text edit change in teacher text edit. Each change
+     * causes an update of teacher name label content.
+     */
+    @objc func textDidChange(notification: NSNotification) {
+        guard let textField = notification.object as? UITextField else { return }
+        updateTeacherLabel(fromShortname: textField.text ?? "")
     }
 }

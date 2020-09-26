@@ -3,13 +3,16 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ScheduleItem.update(withDetails:):ScheduleData.swift">
-      </ContextState>
-      <ContextState
-         contextName = "TimetableDataSource.tableView(_:cellForRowAt:):TimetableDataSource.swift">
+         contextName = "closure #1 in ScheduleItem.update(withDetails:):ScheduleData.swift">
          <PersistentStrings>
             <PersistentString
-               value = "canUseDashboard">
+               value = "detail">
+            </PersistentString>
+            <PersistentString
+               value = "detail[1]">
+            </PersistentString>
+            <PersistentString
+               value = "detail[2]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -22,10 +25,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "EntityLoader.load(withLoaderDelegate:):StaffLoader.swift">
+         contextName = "DashboardCell.layoutIfNeeded():TodayTableItemCells.swift">
          <PersistentStrings>
             <PersistentString
-               value = "AppDefaults.baseUrl">
+               value = "view.frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -33,18 +36,10 @@
          contextName = "EvaTableViewController.tableView(_:cellForRowAt:):EvaTableViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "TimetableCell.reload():TodayTableItemCells.swift">
+         contextName = "CourseDetailsViewController.textField(_:shouldChangeCharactersIn:replacementString:):CourseDetailsViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "collectionView.frame">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "static AppDefaults.timetable.setter:AppDefaults.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "error.localizedDescription">
+               value = "textField.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -60,28 +55,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "DashboardCell.layoutIfNeeded():TodayTableItemCells.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "view.frame">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in ScheduleItem.update(withDetails:):ScheduleData.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "detail">
-            </PersistentString>
-            <PersistentString
-               value = "detail[1]">
-            </PersistentString>
-            <PersistentString
-               value = "detail[2]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "TimetableDataSource.tableView(_:numberOfRowsInSection:):TimetableDataSource.swift">
          <PersistentStrings>
             <PersistentString
@@ -89,6 +62,49 @@
             </PersistentString>
             <PersistentString
                value = "timetable.schedule(forWeek: forWeek, forDay: forDay).numberOfItems">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static AppDefaults.timetable.setter:AppDefaults.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "error.localizedDescription">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EntityLoader.load(withLoaderDelegate:):StaffLoader.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "AppDefaults.baseUrl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CourseDetailsViewController.textDidChange(notification:):CourseDetailsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "textField.text ">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleItem.update(withDetails:):ScheduleData.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TimetableDataSource.tableView(_:cellForRowAt:):TimetableDataSource.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "canUseDashboard">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TimetableCell.reload():TodayTableItemCells.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "collectionView.frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
