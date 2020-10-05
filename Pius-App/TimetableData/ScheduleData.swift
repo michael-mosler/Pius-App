@@ -394,7 +394,11 @@ class BreakScheduleItem: ScheduleItem {
 
     override var color: UIColor? {
         get {
-            return UIColor.groupTableViewBackground
+            if #available(iOS 13, *) {
+                return UIColor.systemGroupedBackground
+            } else {
+                return UIColor.groupTableViewBackground
+            }
         }
     }
         

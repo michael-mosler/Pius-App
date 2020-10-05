@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class StringHelper {
     static func replaceHtmlEntities(input: String?) -> String! {
@@ -23,14 +24,24 @@ class StringHelper {
 }
 
 class FormatHelper {
-    // Since middleware version 2.2.4 old teacher is always blank as this info has been
-    // removed from actual schedule for data privacy reasons. Thus, no further formatting
-    // is needed anymore and the function only makes sure that a not-nil value is available.
+    /// Since middleware version 2.2.4 old teacher is always blank as this info has been
+    /// removed from actual schedule for data privacy reasons. Thus, no further formatting
+    /// is needed anymore and the function only makes sure that a not-nil value is available.
+    /// Deprecated
+    /// - Parameters:
+    ///   - oldTeacher: Input text
+    ///   - newTeacher: Always empty since middleware 2.2.4
+    /// - Returns: Input text
     static func teacherText(oldTeacher: String?, newTeacher: String?) -> NSAttributedString {
         guard let newTeacher = newTeacher else { return NSMutableAttributedString()  }
         return NSAttributedString(string: newTeacher);
     }
     
+    /// Returns attributed string which
+    /// * if input contains → character text after arrow is stroken through
+    /// * is unchanged otherwise
+    /// - Parameter room: Input text
+    /// - Returns: Attributed string formatted as described.
     static func roomText(room: String?) -> NSAttributedString {
         guard let room = room, room != "" else { return NSAttributedString(string: "") }
         
@@ -44,6 +55,33 @@ class FormatHelper {
         }
         
         return attributedText;
+    }
+    
+    /// Returns AnyView object with Text objects. The text is rendered as follows:
+    /// * if input contains → character text after arrow is stroken through.
+    /// * as is otherwise
+    /// - Parameter room: Input text
+    /// - Returns: Attributed string formatted as described.
+    @available(iOS 14.0, *)
+    @available(watchOSApplicationExtension 6.0, *)
+    static func roomText(room: String?) -> AnyView {
+        guard let room = room, room.count > 0
+        else {
+            return AnyView(Text(""))
+        }
+        
+        if let index = room.firstIndex(of: "→") {
+            let upto = room.index(before: index)
+            let from = room.index(after: index)
+            return AnyView(Group(content: {
+                Text(room[..<upto])
+                + Text(" → ")
+                + Text(room[from...])
+                    .strikethrough()
+            }))
+        } else {
+            return AnyView(Text(room))
+        }
     }
 }
 
