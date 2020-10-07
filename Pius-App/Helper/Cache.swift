@@ -10,20 +10,20 @@ import Foundation
 
 /// Stores file on apps device storage.
 class Cache {
-    private let fileManager = FileManager.default;
-    private let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first! as NSURL;
-    private var documentsPath: String?;
+    private let fileManager = FileManager.default
+    private let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first! as NSURL
+    private var documentsPath: String?
     
     /// Constructor
     init() {
-        documentsPath = documentsURL.path;
+        documentsPath = documentsURL.path
     }
     
     /// Gets the cache file URL for the given filename.
     /// - Parameter filename: Filename to get URL for. This file is supposed to be located on apps device storage.
     /// - Returns: URL for file access.
     func getCacheFileUrl(for filename: String) -> URL? {
-        return documentsURL.appendingPathComponent(filename);
+        return documentsURL.appendingPathComponent(filename)
     }
     
     /// Check if file exists on apps device storage.
@@ -31,7 +31,20 @@ class Cache {
     /// - Returns: True if file exists
     func fileExists(filename: String) -> Bool {
         let fileManager = FileManager.default
-        return fileManager.fileExists(atPath: (getCacheFileUrl(for: filename)!).path);
+        return fileManager.fileExists(atPath: (getCacheFileUrl(for: filename)!).path)
+    }
+    
+    /// Remove file from apps device storage.
+    /// - Parameter filename: Filename of file to delete
+    func fileRemove(filename: String) -> Bool {
+        let fileManager = FileManager.default
+        do {
+            try fileManager.removeItem(atPath: (getCacheFileUrl(for: filename)!).path)
+            return true
+        } catch let error as NSError {
+            NSLog("Could not delete \(filename): \(error.localizedDescription)")
+            return false
+        }
     }
 
     /// Store data under given filename in cache directory.
@@ -40,9 +53,9 @@ class Cache {
     ///   - data: Data object to store.
     func store(filename: String, data: Data) {
         do {
-            try data.write(to: getCacheFileUrl(for: filename)!, options: [.atomic]);
+            try data.write(to: getCacheFileUrl(for: filename)!, options: [.atomic])
         } catch {
-            NSLog("Failed to cache item: \(error)");
+            NSLog("Failed to cache item: \(error)")
         }
     }
     
@@ -51,14 +64,14 @@ class Cache {
     /// - Parameter filename: Cache filename
     /// - Returns: Cache content as string object
     func read(filename: String) -> String? {
-        var data: String? = nil;
+        var data: String? = nil
         do {
-            try data = String(contentsOf: getCacheFileUrl(for: filename)!);
+            try data = String(contentsOf: getCacheFileUrl(for: filename)!)
         } catch {
-            NSLog("Failed to read from cache: \(error)");
+            NSLog("Failed to read from cache: \(error)")
         }
 
-        return data;
+        return data
     }
     
     /// Read data from filename in cache directory. If data cannot
@@ -66,13 +79,13 @@ class Cache {
     /// - Parameter filename: Cache filename
     /// - Returns: Cache content as data object.
     func read(filename: String) -> Data? {
-        var data: Data? = nil;
+        var data: Data? = nil
         do {
-            try data = Data(contentsOf: getCacheFileUrl(for: filename)!);
+            try data = Data(contentsOf: getCacheFileUrl(for: filename)!)
         } catch {
-            NSLog("Failed to read from cache: \(error)");
+            NSLog("Failed to read from cache: \(error)")
         }
         
-        return data;
+        return data
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WidgetKit
 import BEMCheckBox
 
 class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIScrollViewDelegate, BEMCheckBoxDelegate {
@@ -274,6 +275,10 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         }
         
         changeGradeDelegate?.setGrade(grade: AppDefaults.gradeSetting)
+        
+        if #available(iOS 14.0, *) {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
     }
 
     // Saves credentials in shared defaults.

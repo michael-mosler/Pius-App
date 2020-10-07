@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WidgetKit
 
 class VertretungsplanViewController: UITableViewController, ExpandableHeaderViewDelegate {
     private var vertretungsplan: Vertretungsplan?;
@@ -75,6 +76,10 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
             DispatchQueue.main.async {
                 self.tableView.reloadData();
             }
+        }
+        
+        if #available(iOS 14.0, *) {
+            WidgetCenter.shared.reloadAllTimelines()
         }
     }
     

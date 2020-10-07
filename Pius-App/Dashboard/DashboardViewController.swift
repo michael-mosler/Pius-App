@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WidgetKit
 
 /**
  * Basic Eva Table cell class. This class cares about setting insets and padding.
@@ -136,6 +137,10 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                 self.evaButton.tintColor = (AppDefaults.hasUpperGrade) ? UIColor(named: "piusBlue") : .white
                 self.evaButton.isEnabled = AppDefaults.hasUpperGrade
             }
+        }
+        
+        if #available(iOS 14.0, *) {
+            WidgetCenter.shared.reloadAllTimelines()
         }
     }
     

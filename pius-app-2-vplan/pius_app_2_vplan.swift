@@ -10,6 +10,7 @@ import WidgetKit
 import SwiftUI
 import Intents
 
+/// Sample data for widget preview and canvas view
 fileprivate var demoDetailItems: Dictionary<String, [DetailItems]> {
     get {
         var detailItems: Dictionary<String, [DetailItems]> = Dictionary<String, [DetailItems]>()
@@ -96,12 +97,19 @@ fileprivate var demoGradeItems: [[GradeItem]] {
 
 fileprivate var demoVPlaene: [VertretungsplanForDate] {
     get {
+        let date1 = Date()
+        let date2 = date1 + 1.days
+        let date3 = date2 + 1.days
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, dd.MM.yyyy"
+        dateFormatter.locale = Locale(identifier: "de_DE")
+        
         var vplaene: [VertretungsplanForDate] = []
-        vplaene.append(VertretungsplanForDate(date: "Freitag, 02.10.2020", gradeItems: [], expanded: false))
+        vplaene.append(VertretungsplanForDate(date: dateFormatter.string(from: date1), gradeItems: [], expanded: false))
         vplaene[0].gradeItems = demoGradeItems[0]
-        vplaene.append(VertretungsplanForDate(date: "Montag, 05.10.2020", gradeItems: [], expanded: false))
+        vplaene.append(VertretungsplanForDate(date: dateFormatter.string(from: date2), gradeItems: [], expanded: false))
         vplaene[1].gradeItems = demoGradeItems[1]
-        vplaene.append(VertretungsplanForDate(date: "Dienstag, 06.10.2020", gradeItems: [], expanded: false))
+        vplaene.append(VertretungsplanForDate(date: dateFormatter.string(from: date3), gradeItems: [], expanded: false))
         vplaene[2].gradeItems = demoGradeItems[2]
 
         return vplaene
@@ -112,7 +120,7 @@ fileprivate var demoVPlan: Vertretungsplan {
     get {
         var vplan: Vertretungsplan = Vertretungsplan()
         vplan.tickerText = "Heute ist Freitag, der 02.10.2020"
-        vplan.additionalText = "Willkommen bei der PiusApp foür iOS!"
+        vplan.additionalText = "Willkommen bei der PiusApp für iOS!"
         vplan.digest = "digest"
         vplan.lastUpdate = "02.10.2020, 18:39 Uhr"
         vplan.vertretungsplaene = demoVPlaene
@@ -121,17 +129,22 @@ fileprivate var demoVPlan: Vertretungsplan {
     }
 }
 
+/// Provider for VPlan widget.
 struct Provider: IntentTimelineProvider {
-    //func nextUpdateAt
+    /// Gets widget placeholder based on sample data.
     func placeholder(in context: Context) -> Entry {
         Entry(date: Date(), configuration: ConfigurationIntent(), canUseDashboard: true, isReachable: true, vplan: demoVPlan)
     }
 
+    /// Gets a widget snapshot baed on sample data.
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Entry) -> ()) {
         let entry = Entry(date: Date(), configuration: configuration, canUseDashboard: true, isReachable: true, vplan: demoVPlan)
         completion(entry)
     }
 
+    /// Get timeline. The timeline has one entry only and is reloaded as defined by variable
+    /// nextUpdateAt. On refresh vplan is read from backend. If this fails it is tried to
+    /// use cache instead.
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [Entry] = []
         let currentDate = Date()
@@ -158,7 +171,7 @@ struct Provider: IntentTimelineProvider {
             }
             
             entries.append(entry)
-            let timeline = Timeline(entries: entries, policy: .atEnd)
+            let timeline = Timeline(entries: entries, policy: .after(nextUpdateAt))
             completion(timeline)
         })
     }
@@ -177,8 +190,29 @@ struct Provider: IntentTimelineProvider {
             }
         }
     }
+    
+    /// Compute next reload of timeline. Weekdays between 7 and 17 o'clock
+    /// timeline is reloaded every 5 minutes and every 60 minutes else.
+    /// On weekends refresh is every 30 minutes,
+    private var nextUpdateAt: Date {
+        var date = Date()
+        let dayOfWeek = DateHelper.dayOfWeek()
+        
+        if dayOfWeek < 5 {
+            var calendar = Calendar.current
+            calendar.locale = Locale(identifier: "de_DE")
+            let hour = Calendar.current.component(.hour, from: date)
+            date = date + ((hour >= 7 && hour < 17) ? 5.minutes : 30.minutes)
+        } else {
+            date = date + 1.hours
+        }
+        
+        NSLog("Next update at \(date)")
+        return date
+    }
 }
 
+/// Timeline Entry definition.
 struct Entry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
@@ -207,6 +241,7 @@ struct MediumSizeView {
                 .foregroundColor(.white))
     }
 
+    /// Small Widget body
     var body: AnyView {
         var view: AnyView
         
@@ -216,7 +251,9 @@ struct MediumSizeView {
                 Group(content: {
                     heading("Pius-App")
                     Text("Du musst Dich anmelden und, wenn Du in der EF, Q1 oder Q2 bist, eine Kursliste anlegen, um das Widget verwenden zu können.")
-                }))
+                    Spacer()
+                })
+            )
         }
 
         // Any error when loading data?
@@ -236,7 +273,10 @@ struct MediumSizeView {
                 Group(content: {
                     heading("Pius-App")
                     Text("Das Widget hat noch keine Informationen zu Deinem Vetretungsplan.")
-                }))
+                    Spacer()
+                })
+                .widgetURL(URL(string: "pius-app://settings")!)
+            )
         }
         
         let nextVPlanForDate = vplan.next
@@ -306,10 +346,21 @@ struct MediumSizeView {
                     Text(vplan.lastUpdate)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                         .font(.footnote)
-                }))
+                })
+                .widgetURL(URL(string: "pius-app://dashboard")!)
+            )
         } else {
             view = AnyView(
-                Text("In den nächsten Tagen hast Du keinen Vertretungsunterricht."))
+                Group(content: {
+                    heading("Pius-App")
+                    Text("In den nächsten Tagen hast Du keinen Vertretungsunterricht.")
+                        .widgetURL(URL(string: "pius-app://dashboard")!)
+                    Spacer()
+                    Text(vplan.lastUpdate)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                        .font(.footnote)
+                })
+            )
         }
         
         return view
@@ -326,6 +377,7 @@ struct pius_app_2_vplanEntryView : View {
     }
 }
 
+/// Widget view configuration
 @main
 struct pius_app_2_vplan: Widget {
     let kind: String = "pius_app_2_vplan"
@@ -335,11 +387,12 @@ struct pius_app_2_vplan: Widget {
             pius_app_2_vplanEntryView(entry: entry)
         }
         .configurationDisplayName("Pius-App Vertretungsplan")
-        .description("Dieses Widget zeigt Dir die kommenden Vertretungsstunde.")
+        .description("Dieses Widget zeigt Dir deine nächste Vertretungsstunde.")
         .supportedFamilies([.systemMedium /*, .systemLarge*/])
     }
 }
 
+/// Widget preview provider
 struct pius_app_2_vplan_Previews: PreviewProvider {
     static var previews: some View {
         Group {

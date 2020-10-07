@@ -11,7 +11,7 @@ import SwiftUI
 
 class StringHelper {
     static func replaceHtmlEntities(input: String?) -> String! {
-        guard let input = input else { return "" };
+        guard let input = input else { return "" }
         return input
             .replacingOccurrences(of: "&auml;", with: "ä", options: .literal, range: nil)
             .replacingOccurrences(of: "&uuml;", with: "ü", options: .literal, range: nil)
@@ -19,7 +19,7 @@ class StringHelper {
             .replacingOccurrences(of: "&rarr;", with: "→", options: .literal, range: nil)
             .replacingOccurrences(of: "&nbsp;", with: "", options: .literal, range: nil)
             .replacingOccurrences(of: "\\", with: "", options: .literal, range: nil)
-            .trimmingCharacters(in: .whitespacesAndNewlines);
+            .trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
 
@@ -34,7 +34,7 @@ class FormatHelper {
     /// - Returns: Input text
     static func teacherText(oldTeacher: String?, newTeacher: String?) -> NSAttributedString {
         guard let newTeacher = newTeacher else { return NSMutableAttributedString()  }
-        return NSAttributedString(string: newTeacher);
+        return NSAttributedString(string: newTeacher)
     }
     
     /// Returns attributed string which
@@ -45,16 +45,16 @@ class FormatHelper {
     static func roomText(room: String?) -> NSAttributedString {
         guard let room = room, room != "" else { return NSAttributedString(string: "") }
         
-        let attributedText = NSMutableAttributedString(string: room);
+        let attributedText = NSMutableAttributedString(string: room)
         
-        let index = room.firstIndex(of: "→");
+        let index = room.firstIndex(of: "→")
         if (index != nil) {
-            let length = room.distance(from: room.startIndex, to: room.index(before: index!));
-            let strikeThroughRange = NSMakeRange(0, length);
-            attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: strikeThroughRange);
+            let length = room.distance(from: room.startIndex, to: room.index(before: index!))
+            let strikeThroughRange = NSMakeRange(0, length)
+            attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: strikeThroughRange)
         }
         
-        return attributedText;
+        return attributedText
     }
     
     /// Returns AnyView object with Text objects. The text is rendered as follows:
@@ -115,10 +115,10 @@ extension String {
 class DateHelper {
     static func week() -> Week? {
         if let calendar = NSCalendar(calendarIdentifier: .ISO8601) {
-            let oddWeek = (calendar.component(.weekOfYear, from: Date()) % 2) != 0;
-            return (oddWeek) ? .A : .B;
+            let oddWeek = (calendar.component(.weekOfYear, from: Date()) % 2) != 0
+            return (oddWeek) ? .A : .B
         } else {
-            return nil;
+            return nil
         }
     }
     
@@ -127,7 +127,7 @@ class DateHelper {
         if let week = week() {
             return String(week)
         } else {
-            return "Woche konnte nicht ermittelt werden.";
+            return "Woche konnte nicht ermittelt werden."
         }
     }
     
@@ -156,18 +156,18 @@ class DateHelper {
 
     static func formatIsoUTCDate(date: String?) -> String {
         var isoDate: Date
-        let dateFormatter = DateFormatter();
+        let dateFormatter = DateFormatter()
 
         if let date = date {
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ";
-            isoDate = (dateFormatter.date(from: date) ?? Date())!;
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            isoDate = (dateFormatter.date(from: date) ?? Date())!
         } else {
             isoDate = Date()
         }
         
-        dateFormatter.dateFormat = "EEEE, d. MMMM, HH:mm";
-        dateFormatter.locale = Locale(identifier: "de_DE");
-        return "\(dateFormatter.string(from: isoDate)) Uhr";
+        dateFormatter.dateFormat = "EEEE, d. MMMM, HH:mm"
+        dateFormatter.locale = Locale(identifier: "de_DE")
+        return "\(dateFormatter.string(from: isoDate)) Uhr"
     }
     
     // Returns epoch for the given time for current date.

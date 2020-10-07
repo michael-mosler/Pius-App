@@ -158,6 +158,7 @@
 		4CC332D12180DF580055E3F5 /* MetaDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC332D02180DF580055E3F5 /* MetaDataCollectionViewCell.swift */; };
 		4CC3F9A821C520D800DB98B7 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3F9A621C520D700DB98B7 /* SF-Pro-Display-Regular.otf */; };
 		4CC3F9A921C520D800DB98B7 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3F9A721C520D800DB98B7 /* SF-Pro-Display-Bold.otf */; };
+		4CD0F0D0252CCAD200243E17 /* DateArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94DFD423257D3F00C42998 /* DateArithmetic.swift */; };
 		4CD94FFF22C67D9D0056BA9F /* DashboardChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD94FFE22C67D9D0056BA9F /* DashboardChangesViewController.swift */; };
 		4CD9500122C790150056BA9F /* ChangeListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD9500022C790150056BA9F /* ChangeListData.swift */; };
 		4CEBAD0B21C5613600E152BF /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CEBAD0A21C5613600E152BF /* Kingfisher.framework */; };
@@ -1271,6 +1272,7 @@
 				4C20AB0C2520F5C900415133 /* pius_app_2_vplan.swift in Sources */,
 				4C20AB63252246BC00415133 /* Config.swift in Sources */,
 				4C20AB7E2522473500415133 /* KeychainPasswordItem.swift in Sources */,
+				4CD0F0D0252CCAD200243E17 /* DateArithmetic.swift in Sources */,
 				4C20AB992522475600415133 /* Vertretungsplan.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

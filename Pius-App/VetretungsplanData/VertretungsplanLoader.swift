@@ -187,6 +187,14 @@ class VertretungsplanLoader {
                 // Request error. In this case nothing more is to be done here. Inform user and exit.
                 if let error = error {
                     NSLog("Vertretungsplan Loader had error: \(error)")
+                    
+                    // When not authenticated remove cached files.
+                    if (response as! HTTPURLResponse).statusCode == 401 {
+                        NSLog("Unauthenticated, will delete cached vplan files.")
+                        let _ = self.cache.fileRemove(filename: self.cacheFileName)
+                        let _ = self.cache.fileRemove(filename: self.digestFileName)
+                    }
+
                     update(nil, piusGatewayIsReachable)
                     return
                 }
