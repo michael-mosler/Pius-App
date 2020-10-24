@@ -94,6 +94,8 @@
 		4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
 		4C5E0E7B20A8797D00DAE459 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7A20A8797D00DAE459 /* OnboardingViewController.swift */; };
 		4C62F45C237338AB00088F3D /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA50EBF2373377700718680 /* ScheduleData.swift */; };
+		4C641A1525434BA40006ED93 /* VPlanSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C641A1425434BA40006ED93 /* VPlanSampleData.swift */; };
+		4C641A1E25434BAC0006ED93 /* VPlanSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C641A1425434BA40006ED93 /* VPlanSampleData.swift */; };
 		4C69EA6621E213B5008B77FB /* MGSwipeTableCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C69EA6521E213B5008B77FB /* MGSwipeTableCell.framework */; };
 		4C6BBD87230B2C2400137384 /* PostingsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD86230B2C2400137384 /* PostingsTableDataSource.swift */; };
 		4C6BBD89230F173200137384 /* TodayDashboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6BBD88230F173200137384 /* TodayDashboardDataSource.swift */; };
@@ -330,6 +332,7 @@
 		4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanDetailsCell.swift; sourceTree = "<group>"; };
 		4C5E0E7520A498DA00DAE459 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		4C5E0E7A20A8797D00DAE459 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		4C641A1425434BA40006ED93 /* VPlanSampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPlanSampleData.swift; sourceTree = "<group>"; };
 		4C69EA6521E213B5008B77FB /* MGSwipeTableCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MGSwipeTableCell.framework; path = Carthage/Build/iOS/MGSwipeTableCell.framework; sourceTree = "<group>"; };
 		4C6BBD86230B2C2400137384 /* PostingsTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingsTableDataSource.swift; sourceTree = "<group>"; };
 		4C6BBD88230F173200137384 /* TodayDashboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDashboardDataSource.swift; sourceTree = "<group>"; };
@@ -567,6 +570,7 @@
 				4C20AB0D2520F5C900415133 /* pius_app_2_vplan.intentdefinition */,
 				4C20AB0E2520F5CA00415133 /* Assets.xcassets */,
 				4C20AB102520F5CA00415133 /* Info.plist */,
+				4C641A1425434BA40006ED93 /* VPlanSampleData.swift */,
 			);
 			path = "pius-app-2-vplan";
 			sourceTree = "<group>";
@@ -1270,6 +1274,7 @@
 				4C20AB6C252246C600415133 /* AppDefaults.swift in Sources */,
 				4C20AB752522470D00415133 /* ScheduleData.swift in Sources */,
 				4C20AB0C2520F5C900415133 /* pius_app_2_vplan.swift in Sources */,
+				4C641A1E25434BAC0006ED93 /* VPlanSampleData.swift in Sources */,
 				4C20AB63252246BC00415133 /* Config.swift in Sources */,
 				4C20AB7E2522473500415133 /* KeychainPasswordItem.swift in Sources */,
 				4CD0F0D0252CCAD200243E17 /* DateArithmetic.swift in Sources */,
@@ -1369,6 +1374,7 @@
 				4C21EAE922BBB269006EE613 /* String.swift in Sources */,
 				4C93689D230830BA0038CE9B /* TodayV2TableViewController.swift in Sources */,
 				4C49EC0D24015A1D00FB9B6A /* CourseDetailsViewController.swift in Sources */,
+				4C641A1525434BA40006ED93 /* VPlanSampleData.swift in Sources */,
 				4C5AA0132189DAA90040A455 /* VertretungsplanDetailsCell.swift in Sources */,
 				4C9368AA230844FC0038CE9B /* TodayTableViews.swift in Sources */,
 				4C49EC1224015A1D00FB9B6A /* TimetableTableViewCell.swift in Sources */,

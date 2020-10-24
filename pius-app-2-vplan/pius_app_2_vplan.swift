@@ -10,135 +10,18 @@ import WidgetKit
 import SwiftUI
 import Intents
 
-/// Sample data for widget preview and canvas view
-fileprivate var demoDetailItems: Dictionary<String, [DetailItems]> {
-    get {
-        var detailItems: Dictionary<String, [DetailItems]> = Dictionary<String, [DetailItems]>()
-        detailItems["7A"] = [[]]
-        detailItems["7A"]!.append([])
-        detailItems["7A"]![0].append("1 - 2")
-        detailItems["7A"]![0].append("Vertretung")
-        detailItems["7A"]![0].append("D")
-        detailItems["7A"]![0].append("202 → 309")
-        detailItems["7A"]![0].append("IOS")
-        detailItems["7A"]![0].append(" ")
-        detailItems["7A"]![0].append("&nbsp;")
-
-        detailItems["7A"]!.append([])
-        detailItems["7A"]![1].append("3")
-        detailItems["7A"]![1].append("Vertretung")
-        detailItems["7A"]![1].append("M")
-        detailItems["7A"]![1].append("300 404")
-        detailItems["7A"]![1].append("FOO")
-        detailItems["7A"]![1].append(" ")
-        detailItems["7A"]![1].append("Alle Aufgaben im Buch rechnen und auswendig lernen.")
-
-        detailItems["7A"]!.append([])
-        detailItems["7A"]![2].append("4")
-        detailItems["7A"]![2].append("Vertretung")
-        detailItems["7A"]![2].append("D")
-        detailItems["7A"]![2].append("202 → 309")
-        detailItems["7A"]![2].append("BAR")
-        detailItems["7A"]![2].append(" ")
-        detailItems["7A"]![2].append("Wir treffen uns in der Aula und gehen von dort zusammen in den Raum.")
-        detailItems["7A"]![2].append("Bitte beachtet die E-Mail, die ich euch geschickt habe (Bearbeitung der Aufgaben a) und b) auf Seite 41 sowie Lesen der Seiten 42-45). Viel Erfolg und bis Montag!")
-
-        detailItems["7A"]!.append([])
-        detailItems["7A"]![3].append("7")
-        detailItems["7A"]![3].append("Entfall")
-        detailItems["7A"]![3].append("MU")
-        detailItems["7A"]![3].append("---")
-        detailItems["7A"]![3].append("XXX")
-        detailItems["7A"]![3].append(" ")
-        detailItems["7A"]![3].append("&nbsp;")
-
-        detailItems["7A"]!.append([])
-        detailItems["7A"]![4].append("1")
-        detailItems["7A"]![4].append("Entfall")
-        detailItems["7A"]![4].append("GE")
-        detailItems["7A"]![4].append("---")
-        detailItems["7A"]![4].append("XXX")
-        detailItems["7A"]![4].append(" ")
-        detailItems["7A"]![4].append("&nbsp;")
-
-        detailItems["7A"]!.append([])
-        detailItems["7A"]![5].append("3")
-        detailItems["7A"]![5].append("Entfall")
-        detailItems["7A"]![5].append("BI")
-        detailItems["7A"]![5].append("---")
-        detailItems["7A"]![5].append("XXX")
-        detailItems["7A"]![5].append(" ")
-        detailItems["7A"]![5].append("&nbsp;")
-
-        return detailItems
-    }
-}
-fileprivate var demoGradeItems: [[GradeItem]] {
-    get {
-        var gradeItems: [[GradeItem]] = [[]]
-        gradeItems.append([])
-        gradeItems[0].append(GradeItem(grade: "7A"))
-        gradeItems[0][0].vertretungsplanItems.append(demoDetailItems["7A"]![0])
-        gradeItems[0][0].vertretungsplanItems.append(demoDetailItems["7A"]![1])
-
-        gradeItems.append([])
-        gradeItems[1].append(GradeItem(grade: "7A"))
-        gradeItems[1][0].vertretungsplanItems.append(demoDetailItems["7A"]![2])
-        gradeItems[1][0].vertretungsplanItems.append(demoDetailItems["7A"]![3])
-
-        gradeItems.append([])
-        gradeItems[2].append(GradeItem(grade: "7A"))
-        gradeItems[2][0].vertretungsplanItems.append(demoDetailItems["7A"]![4])
-        gradeItems[2][0].vertretungsplanItems.append(demoDetailItems["7A"]![5])
-
-        return gradeItems
-    }
-}
-
-fileprivate var demoVPlaene: [VertretungsplanForDate] {
-    get {
-        let date1 = Date()
-        let date2 = date1 + 1.days
-        let date3 = date2 + 1.days
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE, dd.MM.yyyy"
-        dateFormatter.locale = Locale(identifier: "de_DE")
-        
-        var vplaene: [VertretungsplanForDate] = []
-        vplaene.append(VertretungsplanForDate(date: dateFormatter.string(from: date1), gradeItems: [], expanded: false))
-        vplaene[0].gradeItems = demoGradeItems[0]
-        vplaene.append(VertretungsplanForDate(date: dateFormatter.string(from: date2), gradeItems: [], expanded: false))
-        vplaene[1].gradeItems = demoGradeItems[1]
-        vplaene.append(VertretungsplanForDate(date: dateFormatter.string(from: date3), gradeItems: [], expanded: false))
-        vplaene[2].gradeItems = demoGradeItems[2]
-
-        return vplaene
-    }
-}
-
-fileprivate var demoVPlan: Vertretungsplan {
-    get {
-        var vplan: Vertretungsplan = Vertretungsplan()
-        vplan.tickerText = "Heute ist Freitag, der 02.10.2020"
-        vplan.additionalText = "Willkommen bei der PiusApp für iOS!"
-        vplan.digest = "digest"
-        vplan.lastUpdate = "02.10.2020, 18:39 Uhr"
-        vplan.vertretungsplaene = demoVPlaene
-
-        return vplan
-    }
-}
-
 /// Provider for VPlan widget.
 struct Provider: IntentTimelineProvider {
     /// Gets widget placeholder based on sample data.
     func placeholder(in context: Context) -> Entry {
-        Entry(date: Date(), configuration: ConfigurationIntent(), canUseDashboard: true, isReachable: true, vplan: demoVPlan)
+        let vplanSampleData = VPlanSampleData()
+        return Entry(date: Date(), configuration: ConfigurationIntent(), canUseDashboard: true, isReachable: true, vplan: vplanSampleData.demoVPlan)
     }
 
     /// Gets a widget snapshot baed on sample data.
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Entry) -> ()) {
-        let entry = Entry(date: Date(), configuration: configuration, canUseDashboard: true, isReachable: true, vplan: demoVPlan)
+        let vplanSampleData = VPlanSampleData()
+        let entry = Entry(date: Date(), configuration: configuration, canUseDashboard: true, isReachable: true, vplan: vplanSampleData.demoVPlan)
         completion(entry)
     }
 
@@ -396,7 +279,8 @@ struct pius_app_2_vplan: Widget {
 struct pius_app_2_vplan_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            pius_app_2_vplanEntryView(entry: Entry(date: Date(), configuration: ConfigurationIntent(), canUseDashboard: true, isReachable: true, vplan:demoVPlan))
+            let vplanSampleData = VPlanSampleData()
+            pius_app_2_vplanEntryView(entry: Entry(date: Date(), configuration: ConfigurationIntent(), canUseDashboard: true, isReachable: true, vplan: vplanSampleData.demoVPlan))
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
             /*
             pius_app_2_vplanEntryView(entry: Entry(date: Date(), configuration: ConfigurationIntent(), canUseDashboard: true, hadError: false, vplan: demoVPlan))
