@@ -109,7 +109,6 @@ struct Entry: TimelineEntry {
 /// Defines layout and content of medium size VPlan widget.
 struct MediumSizeView {
     var entry: Entry
-    var vplan: Vertretungsplan?
     
     /// Returns standard heading for widget built from text.
     /// - Parameter text: Heading text
@@ -124,7 +123,7 @@ struct MediumSizeView {
                 .foregroundColor(.white))
     }
 
-    /// Small Widget body
+    /// Medium Size Widget body
     var body: AnyView {
         var view: AnyView
         
@@ -182,50 +181,49 @@ struct MediumSizeView {
                         .background(Color("piusBlue").opacity(0.9))
                         .foregroundColor(.white)
                     
-                    // Details:
-                    // Type
-                    // Room
-                    // Teacher
-                    let items = gradeItem?.vertretungsplanItems[0]
-                    let replacementTypeText = StringHelper.replaceHtmlEntities(input: items?[1]) ?? ""
-                    let roomText: AnyView = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: items?[3]))
-                    let teacherText = StringHelper.replaceHtmlEntities(input: items?[4]) ?? ""
+                    Group(content: {
+                        let items = gradeItem?.vertretungsplanItems[0]
+                        Group(content: {
+                            // Details:
+                            // Type
+                            // Room
+                            // Teacher
+                            let replacementTypeText = StringHelper.replaceHtmlEntities(input: items?[1]) ?? ""
+                            let roomText: AnyView = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: items?[3]))
+                            let teacherText = StringHelper.replaceHtmlEntities(input: items?[4]) ?? ""
 
-                    HStack(alignment: .top, spacing: 4, content: {
-                        Text(replacementTypeText)
-                            .font(.callout)
-                        roomText
-                            .font(.callout)
-                            .frame(width: 100)
-                        Text(teacherText)
-                            .font(.callout)
-                            .frame(width: 100)
+                            HStack(alignment: .top, spacing: 4, content: {
+                                Text(replacementTypeText)
+                                roomText
+                                    .frame(width: 100)
+                                Text(teacherText)
+                                    .frame(width: 100)
+                            })
+
+                            // Comment text
+                            let commentText = StringHelper.replaceHtmlEntities(input: items?[6]) ?? ""
+                            if commentText.count > 0 {
+                                Divider()
+                                Text(commentText)
+                            }
+     
+                        })
+                        .padding([.leading, .trailing], 8)
+                       
+                        // EVA
+                        if items?.count == 8 {
+                            let evaText = StringHelper.replaceHtmlEntities(input: items?[7]) ?? ""
+                            Divider()
+                            Text(evaText)
+                                .padding([.leading, .trailing], 8)
+                                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                                .background(Color("eva"))
+                                .foregroundColor(.black)
+                        }
                     })
-                    .padding([.leading, .trailing], 8)
+                    .font(.callout)
+                    .frame(maxHeight: .infinity)
 
-                    // Comment text
-                    let commentText = StringHelper.replaceHtmlEntities(input: items?[6]) ?? ""
-                    if commentText.count > 0 {
-                        Divider()
-                        Text(commentText)
-                            .font(.callout)
-                            .padding([.leading, .trailing], 8)
-                    }
-                    
-                    // EVA
-                    if items?.count == 8 {
-                        let evaText = StringHelper.replaceHtmlEntities(input: items?[7]) ?? ""
-                        Divider()
-                        Text(evaText)
-                            .font(.callout)
-                            .padding([.leading, .trailing], 8)
-                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                            .background(Color("eva"))
-                            .foregroundColor(.black)
-                    }
-
-                    Spacer()
-                    
                     Text(vplan.lastUpdate)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                         .font(.footnote)

@@ -79,8 +79,7 @@ class CourseItem: NSObject, NSCoding, NSCopying {
                 default: return nil
                 }
             }
-            
-            if AppDefaults.hasExtendedLowerGrade {
+            else {
                 switch course {
                 case "M": return UIColor(named: "hauptfach")
                 case "D": return UIColor(named: "hauptfach")
@@ -109,8 +108,6 @@ class CourseItem: NSObject, NSCoding, NSCopying {
                 default: return nil
                 }
             }
-            
-            return nil
         }
     }
 
@@ -145,7 +142,6 @@ class CourseItem: NSObject, NSCoding, NSCopying {
         return copy
     }
     
-    // TODO
     // Gets first or second course item for a pattern like "a&rarr;b". In this case 2nd item is
     // b. If a/b is not a course name or does not exist at all nil is returned.
     // If courseSpec does not contain and first is true courseSpec is returned.
@@ -611,6 +607,11 @@ class Timetable: NSObject, NSCoding {
         return scheduleForWeeks[week.rawValue][index]
     }
     
+    func schedule(forWeek week: Week = .A, forDay index: Int, _ scheduleForDay: ScheduleForDay) {
+        guard index < 5 else { return }
+        scheduleForWeeks[week.rawValue][index] = scheduleForDay
+    }
+
     func schedule(forSubject subject: String) -> [ScheduleItem] {
         if let cachedTopLevelItem = courseItemDictionary[subject] {
             let scheduleItems: [ScheduleItem] = cachedTopLevelItem.map({(key: String, scheduleItem: CustomScheduleItem) -> ScheduleItem in

@@ -212,5 +212,4 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         // be moved as nobody will be using widget that long that any movement
         // gets visible.
     }
-
 }

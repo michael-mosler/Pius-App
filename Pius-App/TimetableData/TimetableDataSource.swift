@@ -51,7 +51,7 @@ class TimetableDataSource<T: TimetableItemCellProtocol>: NSObject, UITableViewDa
         }
     }
 
-    // Which das of week is the timetable requested for. Setting this property causes
+    // Which day of week is the timetable requested for. Setting this property causes
     // filtered schedule to be updated.
     var forDay: Int? {
         set(value) {
