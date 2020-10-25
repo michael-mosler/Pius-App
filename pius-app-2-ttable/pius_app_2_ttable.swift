@@ -11,11 +11,11 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> TTableEntry {
-        TTableEntry(date: Date(), forDay: 0, forWeek: .A, tTableForDay: TTableSampleData().scheduleForDay)
+        TTableEntry(date: Date(), fromLesson: 0, forDay: 0, forWeek: .A, tTableForDay: TTableSampleData().scheduleForDay)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (TTableEntry) -> ()) {
-        let tTableEntry = TTableEntry(date: Date(), forDay: 0, forWeek: .A, tTableForDay: TTableSampleData().scheduleForDay)
+        let tTableEntry = TTableEntry(date: Date(), fromLesson: 0, forDay: 0, forWeek: .A, tTableForDay: TTableSampleData().scheduleForDay)
         completion(tTableEntry)
     }
 
@@ -26,7 +26,7 @@ struct Provider: TimelineProvider {
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = TTableEntry(date: entryDate, forDay: DateHelper.effectiveDay(), forWeek: DateHelper.effectiveWeek(), tTableForDay: Timetable().schedule(forWeek: DateHelper.effectiveWeek(), forDay: DateHelper.effectiveDay()))
+            let entry = TTableEntry(date: entryDate, fromLesson: 0, forDay: DateHelper.effectiveDay(), forWeek: DateHelper.effectiveWeek(), tTableForDay: Timetable().schedule(forWeek: DateHelper.effectiveWeek(), forDay: DateHelper.effectiveDay()))
             entries.append(entry)
         }
 
@@ -39,7 +39,7 @@ struct pius_app_2_ttableEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        let view = TTableMediumSizeView(entry: entry)
+        let view = TTableWidgetView(entry: entry)
         return view.body
     }
 }
@@ -61,7 +61,7 @@ struct pius_app_2_ttable: Widget {
 
 struct pius_app_2_ttable_Previews: PreviewProvider {
     static var previews: some View {
-        pius_app_2_ttableEntryView(entry: TTableEntry(date: Date(), forDay: 0, forWeek: .A, tTableForDay: TTableSampleData().scheduleForDay))
+        pius_app_2_ttableEntryView(entry: TTableEntry(date: Date(), fromLesson: 0, forDay: 0, forWeek: .A, tTableForDay: TTableSampleData().scheduleForDay))
             .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }

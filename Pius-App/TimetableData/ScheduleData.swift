@@ -493,6 +493,29 @@ class ScheduleForDay: NSObject, NSCoding {
     func item(forLesson index: Int, _ value: ScheduleItem) {
         scheduleEntries[index] = value
     }
+    
+    /// Returns effective lesson based on index value. Breaks do not count up.
+    /// - Parameter value: An index value
+    static func effectiveLessonFromIndex(_ value: Int?) -> Int? {
+        guard let lesson = value else { return nil }
+        
+        switch lesson {
+        case 0..<2:
+            return lesson + 1
+        case 2:
+            return nil
+        case 3..<6:
+            return lesson
+        case 6:
+            return nil
+        case 7..<9:
+            return lesson - 1
+        case 9:
+            return nil
+        default:
+            return lesson - 2
+        }
+    }
 }
 
 /* ****************************************************************

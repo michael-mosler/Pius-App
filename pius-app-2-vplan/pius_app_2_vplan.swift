@@ -113,14 +113,14 @@ struct MediumSizeView {
     /// Returns standard heading for widget built from text.
     /// - Parameter text: Heading text
     /// - Returns: Heading view
-    private func heading(_ text: String) -> AnyView {
-        AnyView(
-            Text(text)
-                .font(.headline)
-                .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, 8)
-                .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-                .background(Color("piusBlue"))
-                .foregroundColor(.white))
+    @ViewBuilder
+    private func heading(_ text: String) -> some View {
+        Text(text)
+            .font(.headline)
+            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, 8)
+            .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+            .background(Color("piusBlue"))
+            .foregroundColor(.white)
     }
 
     /// Medium Size Widget body

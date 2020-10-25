@@ -11,7 +11,18 @@ import Foundation
 
 struct TTableEntry: TimelineEntry {
     let date: Date
+    let fromLesson: Int
     let forDay: Int
     let forWeek: Week
-    var tTableForDay: ScheduleForDay
+    let tTableForDay: ScheduleForDay
+    let lastUpdate: String?
+    
+    init(date: Date, fromLesson: Int, forDay: Int, forWeek: Week, tTableForDay: ScheduleForDay, lastUpdate: String? = nil) {
+        self.date = date
+        self.fromLesson = fromLesson
+        self.forDay = forDay
+        self.forWeek = forWeek
+        self.tTableForDay = tTableForDay
+        self.lastUpdate = lastUpdate
+    }
 }

@@ -109,7 +109,7 @@
 		4C641AC2254486D20006ED93 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A83204AE3510012CB45 /* KeychainPasswordItem.swift */; };
 		4C641ACC254486D40006ED93 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */; };
 		4C641AD6254486ED0006ED93 /* Vertretungsplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4D205567C8006092C9 /* Vertretungsplan.swift */; };
-		4C641B0625448C330006ED93 /* TTableMediumSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C641B0525448C330006ED93 /* TTableMediumSizeView.swift */; };
+		4C641B0625448C330006ED93 /* TTableWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C641B0525448C330006ED93 /* TTableWidgetView.swift */; };
 		4C641B1125448D050006ED93 /* TTableEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C641B1025448D050006ED93 /* TTableEntry.swift */; };
 		4C641B242545811F0006ED93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C22962043117800ACA17B /* Assets.xcassets */; };
 		4C69EA6621E213B5008B77FB /* MGSwipeTableCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C69EA6521E213B5008B77FB /* MGSwipeTableCell.framework */; };
@@ -363,7 +363,7 @@
 		4C641A4325447CB30006ED93 /* pius_app_2_ttable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pius_app_2_ttable.swift; sourceTree = "<group>"; };
 		4C641A8F254481620006ED93 /* TTableSampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTableSampleData.swift; sourceTree = "<group>"; };
 		4C641AE9254487EC0006ED93 /* pius-app-2-ttableExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pius-app-2-ttableExtension.entitlements"; sourceTree = "<group>"; };
-		4C641B0525448C330006ED93 /* TTableMediumSizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTableMediumSizeView.swift; sourceTree = "<group>"; };
+		4C641B0525448C330006ED93 /* TTableWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTableWidgetView.swift; sourceTree = "<group>"; };
 		4C641B1025448D050006ED93 /* TTableEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTableEntry.swift; sourceTree = "<group>"; };
 		4C69EA6521E213B5008B77FB /* MGSwipeTableCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MGSwipeTableCell.framework; path = Carthage/Build/iOS/MGSwipeTableCell.framework; sourceTree = "<group>"; };
 		4C6BBD86230B2C2400137384 /* PostingsTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingsTableDataSource.swift; sourceTree = "<group>"; };
@@ -612,7 +612,6 @@
 				4C20AB0E2520F5CA00415133 /* Assets.xcassets */,
 				4C20AB102520F5CA00415133 /* Info.plist */,
 				4C641A1425434BA40006ED93 /* VPlanSampleData.swift */,
-				4C641B0525448C330006ED93 /* TTableMediumSizeView.swift */,
 			);
 			path = "pius-app-2-vplan";
 			sourceTree = "<group>";
@@ -699,8 +698,9 @@
 				4C641A4325447CB30006ED93 /* pius_app_2_ttable.swift */,
 				4C641A3125447C140006ED93 /* Assets.xcassets */,
 				4C641A3325447C140006ED93 /* Info.plist */,
-				4C641A8F254481620006ED93 /* TTableSampleData.swift */,
+				4C641B0525448C330006ED93 /* TTableWidgetView.swift */,
 				4C641B1025448D050006ED93 /* TTableEntry.swift */,
+				4C641A8F254481620006ED93 /* TTableSampleData.swift */,
 			);
 			path = "pius-app-2-ttable";
 			sourceTree = "<group>";
@@ -1391,7 +1391,7 @@
 				4C641AAE2544868A0006ED93 /* AppDefaults.swift in Sources */,
 				4C641ACC254486D40006ED93 /* KeychainConfiguration.swift in Sources */,
 				4C641A9A254482150006ED93 /* ScheduleData.swift in Sources */,
-				4C641B0625448C330006ED93 /* TTableMediumSizeView.swift in Sources */,
+				4C641B0625448C330006ED93 /* TTableWidgetView.swift in Sources */,
 				4C641AC2254486D20006ED93 /* KeychainPasswordItem.swift in Sources */,
 				4C641A90254481620006ED93 /* TTableSampleData.swift in Sources */,
 				4C641AA4254486050006ED93 /* Helper.swift in Sources */,

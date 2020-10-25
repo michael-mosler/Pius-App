@@ -71,33 +71,11 @@ class ExtTimetableItemCell: UITableViewCell, TimetableItemCellProtocol {
         }
      }
      
-    // Effective lesson: Here breaks do not count and, thus, get no label.
     var lesson: Int? {
         set(value) {
             _row = value
-            if let lesson = value {
-                if lesson < 2 {
-                    _lesson = lesson + 1
-                    lessonLabel.text = "\(lesson + 1)."
-                } else if lesson == 2 {
-                    _lesson = nil
-                    lessonLabel.text = nil
-                } else if lesson < 6 {
-                    _lesson = lesson
-                    lessonLabel.text = "\(lesson)."
-                } else if lesson == 6 {
-                    _lesson = nil
-                    lessonLabel.text = nil
-                } else if lesson < 9 {
-                    _lesson = lesson - 1
-                    lessonLabel.text = "\(lesson - 1)."
-                } else if lesson == 9 {
-                    _lesson = nil
-                    lessonLabel.text = nil
-                } else {
-                    _lesson = lesson - 2
-                    lessonLabel.text = "\(lesson - 2)."
-                }
+            if let effectiveLesson = ScheduleForDay.effectiveLessonFromIndex(value) {
+                lessonLabel.text = String(effectiveLesson)
             } else {
                 lessonLabel.text = nil
             }
