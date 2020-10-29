@@ -30,8 +30,7 @@ struct Provider: IntentTimelineProvider {
     /// use cache instead.
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [Entry] = []
-        let currentDate = Date()
-        let entryDate = currentDate
+        let entryDate = Date()
 
         if !canUseDashboard {
             let entry = Entry(date: entryDate, configuration: configuration, canUseDashboard: false, isReachable: true, vplan: nil)
@@ -90,7 +89,6 @@ struct Provider: IntentTimelineProvider {
             date = date + 1.hours
         }
         
-        NSLog("Next update at \(date)")
         return date
     }
 }

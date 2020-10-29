@@ -435,22 +435,26 @@ class ExtraScheduleItem: ScheduleItem {
     }
 }
 
-/* ****************************************************************
- * Timetable for a single day.
- * ****************************************************************/
+/// Timetable for a single day.
 class ScheduleForDay: NSObject, NSCoding {
     private var scheduleEntries: [ScheduleItem]
 
+    /// Number of entries in this schedule.
+    /// Read only
     var numberOfItems: Int {
         get {
             return scheduleEntries.count
         }
     }
     
+    /// Encode schedule for storage on backing store.
+    /// - Parameter aCoder: Encoder to use
     func encode(with aCoder: NSCoder) {
         aCoder.encode(scheduleEntries, forKey: "scheduleEntries")
     }
     
+    /// Decode schedule from backing store.
+    /// - Parameter aDecoder: Decoder to use
     required convenience init?(coder aDecoder: NSCoder) {
         guard let scheduleEntries = aDecoder.decodeObject(forKey: "scheduleEntries") as? [ScheduleItem] else {
             self.init()
@@ -459,10 +463,13 @@ class ScheduleForDay: NSObject, NSCoding {
         self.init(scheduleEntries)
     }
     
+    /// Create schedule from given entries.
+    /// - Parameter scheduleEntries: Entries that define the schedule
     init(_ scheduleEntries: [ScheduleItem]) {
         self.scheduleEntries = scheduleEntries
     }
-
+    
+    /// Default constructor that creates an empty schedule.
     override init() {
         let freeScheduleItem = FreeScheduleItem()
         let breakScheduleItem = BreakScheduleItem()
@@ -485,11 +492,18 @@ class ScheduleForDay: NSObject, NSCoding {
         super.init()
     }
     
+    /// Gets schedule item for a lesson
+    /// - Parameter index: Index of the lesson; starts with 0
+    /// - Returns: Schedule item for requested lesson
     func item(forLesson index: Int) -> ScheduleItem {
         guard index < scheduleEntries.count else { return ScheduleItem(courseItem: CourseItem(course: ""))}
         return scheduleEntries[index]
     }
     
+    /// Sets schedule item for a given lesson.
+    /// - Parameters:
+    ///   - index: Index of the lesson; starts with 0
+    ///   - value: New value
     func item(forLesson index: Int, _ value: ScheduleItem) {
         scheduleEntries[index] = value
     }
@@ -514,6 +528,16 @@ class ScheduleForDay: NSObject, NSCoding {
             return nil
         default:
             return lesson - 2
+        }
+    }
+    
+    /// Apply function to every schedule item. Current schedule item is replaced
+    /// by item returned by f.
+    /// - Parameter f: A function that receives lesson and lesson's schedule item.
+    /// - Returns: New schedule item
+    func map(_ f: @escaping (_ lesson: Int?, _ scheduleItem: ScheduleItem) -> ScheduleItem) {
+        for (index, scheduleItem) in scheduleEntries.enumerated() {
+            item(forLesson: index, f(ScheduleForDay.effectiveLessonFromIndex(index), scheduleItem))
         }
     }
 }

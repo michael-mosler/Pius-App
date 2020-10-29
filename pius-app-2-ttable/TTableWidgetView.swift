@@ -11,15 +11,36 @@ import SwiftUI
 
 /// Timetable Widget medium size configuration
 struct TTableWidgetView: View {
-    @Environment(\.widgetFamily) var size
+    var family: WidgetFamily
     var entry: TTableEntry
+    let numItems: [WidgetFamily:Int] = [.systemMedium: 4, .systemLarge: 8]
     
+    /// Computes the top lesson to show from the requested lesson and
+    /// widget size.
+    /// - Parameters:
+    ///   - fromLesson: Requested top lesson
+    ///   - family: Widget family
+    /// - Returns: Effective from lesson
+    private func effectiveFromLesson(fromLesson: Int, family: WidgetFamily) -> Int {
+        // If current time is before first lesson start with 0.
+        if fromLesson == Int.min {
+            return 0
+        }
+        
+        // If current is last but one, last or after last lesson show last lesson in bottom row.
+        if fromLesson >= lessons.count - 1 {
+            return (lessons.count - 1) - (numItems[family]! - 1)
+        }
+        
+        // Center current lesson.
+        return max(fromLesson - 1, 0)
+    }
+
     /// Widget body
     @ViewBuilder
     var body: some View {
         VStack(alignment: .leading, spacing: 2, content: {
             let tTableForDay = entry.tTableForDay
-            let numItems: Int = size == .systemMedium ? 4 : 8
             
             Text(String("\(entry.forWeek)-Woche"))
                 .font(.callout)
@@ -30,7 +51,12 @@ struct TTableWidgetView: View {
             
             Group(content: {
                 // Show up to lessons for this type of widget.
-                ForEach((entry.fromLesson..<(entry.fromLesson + numItems)), id: \.self) { lesson -> AnyView in
+                let fromLesson = effectiveFromLesson(fromLesson: entry.fromLesson, family: family)
+                let iconImage = Image("blueinfo")
+                    .resizable()
+                    .frame(width: 20, height: 20, alignment: .center)
+                
+                ForEach((fromLesson..<(fromLesson + numItems[family]!)), id: \.self) { lesson -> AnyView in
                     let tTableEntry = tTableForDay.item(forLesson: lesson)
                     
                     let lesson = ScheduleForDay.effectiveLessonFromIndex(lesson)
@@ -44,15 +70,13 @@ struct TTableWidgetView: View {
                         lessonText
                             .frame(minWidth: 20, alignment: .trailing)
                         courseText
-                            .frame(minWidth: 100, maxHeight: .infinity, alignment: .leading)
+                            .frame(minWidth: 100, maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                         roomText
-                            .frame(minWidth: 100, maxHeight: .infinity, alignment: .leading)
+                            .frame(minWidth: 100, maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                         teacherText
-                            .frame(minWidth: 50, maxHeight: .infinity, alignment: .leading)
+                            .frame(minWidth: 50, maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
 
-                        ViewBuilder.buildIf(
-                            tTableEntry.isSubstitution ? Image("blueinfo").resizable() : nil
-                        )
+                        ViewBuilder.buildIf(tTableEntry.isSubstitution ? iconImage : nil)
                     })
                     .padding([.leading, .trailing], 8)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
@@ -83,9 +107,19 @@ struct TTableWidgetView: View {
 /// Provides a preview of medium and large size widget.
 struct ttable_medium_size_Preview: PreviewProvider {
     static var previews: some View {
-        TTableWidgetView(entry: TTableEntry(date: Date(), fromLesson: 0, forDay: 0, forWeek: .A, tTableForDay: TTableSampleData().scheduleForDay, lastUpdate: "26.10.2020, 07:50 Uhr"))
+        TTableWidgetView(
+            family: .systemMedium,
+            entry: TTableEntry(
+                date: Date(), fromLesson: 0, forDay: 0, forWeek: .A,
+                tTableForDay: TTableSampleData().scheduleForDay,
+                lastUpdate: "26.10.2020, 07:50 Uhr"))
             .previewContext(WidgetPreviewContext(family: .systemMedium))
-        TTableWidgetView(entry: TTableEntry(date: Date(), fromLesson: 0, forDay: 0, forWeek: .A, tTableForDay: TTableSampleData().scheduleForDay, lastUpdate: "26.10.2020, 07:50 Uhr"))
+        TTableWidgetView(
+            family: .systemLarge,
+            entry: TTableEntry(
+                date: Date(), fromLesson: 0, forDay: 0, forWeek: .A,
+                tTableForDay: TTableSampleData().scheduleForDay,
+                lastUpdate: "26.10.2020, 07:50 Uhr"))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

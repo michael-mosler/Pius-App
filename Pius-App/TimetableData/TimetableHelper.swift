@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TimetableHelper: NSObject {
+struct TimetableHelper {
     /**
      * Gives current lesson. If calculation fails for some reason
      * nil is returned. This value also counts breaks; if you want
@@ -62,5 +62,33 @@ class TimetableHelper: NSObject {
        let duration = CGFloat(epochLessonEnd - epochLessonStart)
        let lessonDuration = CGFloat(Date().timeIntervalSince1970 - epochLessonStart)
        return CGFloat(currentLesson - topRow) * rowHeight + lessonDuration * rowHeight / duration
+    }
+    
+    /// For a given day of week and week (A/B) compute the date that is shown in timetable.
+    /// - Parameters:
+    ///   - forWeek: A or B week
+    ///   - forDay: Day of week
+    /// - Returns: Date that is defined by week and day of week.
+    static func effectiveDate(forWeek: Week?, forDay: Int?) -> Date? {
+        guard let forWeek = forWeek, let forDay = forDay else { return nil }
+
+        let dayOfWeek = DateHelper.dayOfWeek()
+        let currentDate = Date()
+
+        if dayOfWeek > 4 {
+            return forWeek != DateHelper.week()
+                ? currentDate + ((7 - dayOfWeek) + forDay).days     // On weekends we expect the next week to show.
+                : currentDate + ((7 - dayOfWeek) + forDay + 7).days // If users toggles week we shift by another 7 days.
+            
+        } else {
+            // If the week shown is the current week than date is by adding
+            // difference for day shown and current day of week to the current
+            // date.
+            // Weeks will differ for weekend only. In this case we need to
+            // move to next Monday and then we add the day shown.
+            return forWeek == DateHelper.week()
+                ? currentDate + (forDay - dayOfWeek).days
+                : currentDate + (forDay - dayOfWeek + 7).days
+        }
     }
 }

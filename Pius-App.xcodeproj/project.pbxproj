@@ -179,6 +179,11 @@
 		4CD0F0D0252CCAD200243E17 /* DateArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94DFD423257D3F00C42998 /* DateArithmetic.swift */; };
 		4CD94FFF22C67D9D0056BA9F /* DashboardChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD94FFE22C67D9D0056BA9F /* DashboardChangesViewController.swift */; };
 		4CD9500122C790150056BA9F /* ChangeListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD9500022C790150056BA9F /* ChangeListData.swift */; };
+		4CE0FDEB2549E12F00DECF0C /* TimetableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C09402E238EEE970077C034 /* TimetableHelper.swift */; };
+		4CE0FDF52549F1DF00DECF0C /* VertretungsplanLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */; };
+		4CE0FDFF254B2D2A00DECF0C /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
+		4CE0FE09254B2D3D00DECF0C /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF512198813C007E5D1F /* Reachability.swift */; };
+		4CE0FE1C254B2DD400DECF0C /* DateArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94DFD423257D3F00C42998 /* DateArithmetic.swift */; };
 		4CEBAD0B21C5613600E152BF /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CEBAD0A21C5613600E152BF /* Kingfisher.framework */; };
 		4CED4A7D204749580012CB45 /* EinstellungenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */; };
 		4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CED4A82204AE3510012CB45 /* KeychainConfiguration.swift */; };
@@ -1387,17 +1392,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CE0FDFF254B2D2A00DECF0C /* Cache.swift in Sources */,
 				4C641A4525447CB30006ED93 /* pius_app_2_ttable.swift in Sources */,
 				4C641AAE2544868A0006ED93 /* AppDefaults.swift in Sources */,
 				4C641ACC254486D40006ED93 /* KeychainConfiguration.swift in Sources */,
 				4C641A9A254482150006ED93 /* ScheduleData.swift in Sources */,
 				4C641B0625448C330006ED93 /* TTableWidgetView.swift in Sources */,
 				4C641AC2254486D20006ED93 /* KeychainPasswordItem.swift in Sources */,
+				4CE0FE1C254B2DD400DECF0C /* DateArithmetic.swift in Sources */,
 				4C641A90254481620006ED93 /* TTableSampleData.swift in Sources */,
+				4CE0FE09254B2D3D00DECF0C /* Reachability.swift in Sources */,
 				4C641AA4254486050006ED93 /* Helper.swift in Sources */,
 				4C641AB82544868F0006ED93 /* Config.swift in Sources */,
 				4C641B1125448D050006ED93 /* TTableEntry.swift in Sources */,
+				4CE0FDF52549F1DF00DECF0C /* VertretungsplanLoader.swift in Sources */,
 				4C641AD6254486ED0006ED93 /* Vertretungsplan.swift in Sources */,
+				4CE0FDEB2549E12F00DECF0C /* TimetableHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1821,6 +1831,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
+				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
 				INFOPLIST_FILE = "pius-app-2-ttable/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1847,6 +1858,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				HOST_ADDRESS = "https://pius-gateway.eu-de.mybluemix.net";
 				INFOPLIST_FILE = "pius-app-2-ttable/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
