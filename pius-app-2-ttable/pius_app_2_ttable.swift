@@ -46,13 +46,12 @@ struct Provider: TimelineProvider {
         let timetable = AppDefaults.timetable
         let effectiveWeek = DateHelper.effectiveWeek()
         let effectiveDay = DateHelper.effectiveDay()
-        let entry = TTableEntry(
+        var entry = TTableEntry(
             date: entryDate,
-            fromLesson: 0, // TimetableHelper.currentLesson() ?? 0,
+            fromLesson: TimetableHelper.currentLesson() ?? 0,
             forDay: effectiveDay,
             forWeek: effectiveWeek,
             tTableForDay: timetable.schedule(forWeek: effectiveWeek, forDay: effectiveDay))
-        entries.append(entry)
         
         if canUseDashboard {
             let grade = AppDefaults.gradeSetting
@@ -66,8 +65,9 @@ struct Provider: TimelineProvider {
                     let effectiveDate = TimetableHelper.effectiveDate(forWeek: effectiveWeek, forDay: effectiveDay)
                     let filteredVplan = vplan?.filter(onDate: effectiveDate)
 
+                    entry.lastUpdate = vplan?.lastUpdateDate
                     if let gradeItem = filteredVplan?.item(forIndex: 0) {
-                        entry.tTableForDay.map(
+                        entry.tTableForDay?.map(
                             {
                                 (lesson, scheduleItem) in
                                 guard let lesson = lesson else { return scheduleItem }
@@ -110,12 +110,17 @@ struct pius_app_2_ttable: Widget {
         }
         .configurationDisplayName("Pius-App Stundenplan")
         .description("Dieses Widget zeigt Dir deinen Stundenplan an und kombiniert ihn mit Deine aktuellen Vertretungsplan. ")
-        .supportedFamilies([.systemMedium, .systemLarge])
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
 
 struct pius_app_2_ttable_Previews: PreviewProvider {
     static var previews: some View {
+        pius_app_2_ttableEntryView(
+            entry: TTableEntry(
+                date: Date(), fromLesson: 0, forDay: 0, forWeek: .A,
+                tTableForDay: TTableSampleData().scheduleForDay))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
         pius_app_2_ttableEntryView(
             entry: TTableEntry(
                 date: Date(), fromLesson: 0, forDay: 0, forWeek: .A,

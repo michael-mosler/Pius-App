@@ -109,10 +109,18 @@ extension String {
     }
 }
 
-/**
- * Whole set of Date convenience functions.
- */
+
+/// Whole set of Date convenience functions.
 class DateHelper {
+    enum DateFormat: Int {
+        case standard = 0
+        case shortStandard
+        case german
+        case iso
+    }
+    
+    /// Gets the current week: When odd week num returns .A else .B.
+    /// - Returns: Current week as .A. or .B
     static func week() -> Week? {
         if let calendar = NSCalendar(calendarIdentifier: .ISO8601) {
             let oddWeek = (calendar.component(.weekOfYear, from: Date()) % 2) != 0
@@ -122,7 +130,8 @@ class DateHelper {
         }
     }
     
-    // Gets the current week: When odd week num returns "A" else "B".
+    /// Gets the current week: When odd week num returns "A" else "B".
+    /// - Returns: Current week as A or B
     static func week() -> String {
         if let week = week() {
             return String(week)
@@ -131,14 +140,17 @@ class DateHelper {
         }
     }
     
-    // The effective week is the week that effectively should be
-    // shown. For Mon-Fri this equals currentWeek but on weekends
-    // effectiveWeek gets shifted to next week.
+    /// The effective week is the week that effectively should be
+    /// shown. For Mon-Fri this equals currentWeek but on weekends
+    /// effectiveWeek gets shifted to next week.
+    /// - Returns: Effective week
     static func effectiveWeek() -> Week {
         guard let week: Week = DateHelper.week() else { return .A }
         return DateHelper.dayOfWeek() <= 4 ? week : !week
     }
-
+    
+    /// Returns real day of week.
+    /// - Returns: Day of week, 0 = Monday
     static func dayOfWeek() -> Int {
         var calendar = NSCalendar.current
         calendar.locale = Locale(identifier: "de_DE")
@@ -148,30 +160,69 @@ class DateHelper {
         return (weekDay + 5) % 7
     }
     
-    // The effective day of week, for weekends this return 0 = Monday otherwise the real
-    // day is returned.
+    /// The effective day of week, for weekends this return 0 = Monday otherwise the real
+    /// day is returned.
+    /// - Returns: Effective day of week
     static func effectiveDay() -> Int {
         return DateHelper.dayOfWeek() > 4 ? 0 : DateHelper.dayOfWeek()
     }
+    
+    /// Converts given date into requested format.
+    /// .standard: dd.MM.yyyy HH:mm
+    /// .german: EEE, d. MMMM, HH:mm
+    /// - Parameters:
+    ///   - date: The date to convert
+    ///   - using: The format to use.
+    /// - Returns: Formatted date string or nil if conversion is not possible
+    static func format(_ date: Date?, using: DateFormat = .standard) -> String? {
+        guard let date = date else { return nil }
 
-    static func formatIsoUTCDate(date: String?) -> String {
-        var isoDate: Date
-        let dateFormatter = DateFormatter()
-
-        if let date = date {
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-            isoDate = (dateFormatter.date(from: date) ?? Date())!
-        } else {
-            isoDate = Date()
-        }
+        let formatString: [ DateFormat:String ] = [
+            DateFormat.standard: "dd.MM.yyyy HH:mm",
+            DateFormat.shortStandard: "dd.MM.yy HH:mm",
+            DateFormat.german: "EEEE, d. MMMM, HH:mm",
+            DateFormat.iso: "yyyy-MM-ddTHH:mm:ssZ"
+        ]
         
-        dateFormatter.dateFormat = "EEEE, d. MMMM, HH:mm"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = formatString[using]
         dateFormatter.locale = Locale(identifier: "de_DE")
-        return "\(dateFormatter.string(from: isoDate)) Uhr"
+        return dateFormatter.string(from: date)
     }
     
-    // Returns epoch for the given time for current date.
-    // Time must be in Format HH:mm:ss, e.g. 07:55:00.
+    /// Convert given date string to Date object. Assume string to be in
+    /// format given by using.
+    /// - Parameters:
+    ///   - date: Date stringg to convert
+    ///   - using: Format date string is in
+    /// - Returns: Date object or nil if conversion is not conversion is not possible
+    static func format(_ date: String?, using: DateFormat = .standard) -> Date? {
+        guard let date = date else { return nil }
+
+        let formatString: [ DateFormat:String ] = [
+            DateFormat.standard: "dd.MM.yyyy' 'HH:mm",
+            DateFormat.shortStandard: "dd.MM.yy' 'HH:mm",
+            DateFormat.german: "EEEE', 'd. MMMM', 'HH:mm",
+            DateFormat.iso: "yyyy-MM-dd'T'HH:mm:ssZ"
+        ]
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = formatString[using]
+        dateFormatter.locale = Locale(identifier: "de_DE")
+        return dateFormatter.date(from: date)
+    }
+    
+    /// Format given ISO date string in .german format.
+    /// - Parameter date: ISO date string
+    /// - Returns: Date in .german format
+    static func formatIsoUTCDate(date: String?) -> String {
+        let isoDate: Date? = format(date, using: .iso)
+        return "\(format(isoDate ?? Date(), using: .german)!) Uhr"
+    }
+    
+    /// Return epoch for the given time supposing it is for current date.
+    /// - Parameter time: Time as String object
+    /// - Returns: Epoch for this time as of today
     static func epoch(forTime time: String) -> TimeInterval? {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "de_DE")

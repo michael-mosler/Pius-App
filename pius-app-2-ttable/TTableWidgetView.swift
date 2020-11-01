@@ -13,7 +13,7 @@ import SwiftUI
 struct TTableWidgetView: View {
     var family: WidgetFamily
     var entry: TTableEntry
-    let numItems: [WidgetFamily:Int] = [.systemMedium: 4, .systemLarge: 8]
+    let numItems: [WidgetFamily:Int] = [.systemSmall: 3, .systemMedium: 4, .systemLarge: 7]
     
     /// Computes the top lesson to show from the requested lesson and
     /// widget size.
@@ -27,79 +27,103 @@ struct TTableWidgetView: View {
             return 0
         }
         
-        // If current is last but one, last or after last lesson show last lesson in bottom row.
-        if fromLesson >= lessons.count - 1 {
-            return (lessons.count - 1) - (numItems[family]! - 1)
-        }
-        
         // Center current lesson.
-        return max(fromLesson - 1, 0)
+        let N = numItems[family]!
+        return max(
+            min(
+                fromLesson - N/2,
+                lessons.count - N),
+            0)
+    }
+    
+    /// Gets the last update date to display as String object.
+    /// - Returns: Last update string to use.
+    private func lastUpdate() -> String? {
+        guard let d = entry.lastUpdate else { return nil }
+        
+        switch family {
+        case .systemSmall:
+            return DateHelper.format(d, using: .shortStandard)
+        default:
+            guard let s = DateHelper.format(d, using: .standard) else { return nil }
+            return "\(s) Uhr"
+        }
     }
 
     /// Widget body
     @ViewBuilder
     var body: some View {
         VStack(alignment: .leading, spacing: 2, content: {
-            let tTableForDay = entry.tTableForDay
-            
-            Text(String("\(entry.forWeek)-Woche"))
-                .font(.callout)
-                .padding([.leading, .trailing], 8)
-                .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-                .background(Color("piusBlue"))
-                .foregroundColor(.white)
-            
-            Group(content: {
-                // Show up to lessons for this type of widget.
-                let fromLesson = effectiveFromLesson(fromLesson: entry.fromLesson, family: family)
-                let iconImage = Image("blueinfo")
-                    .resizable()
-                    .frame(width: 20, height: 20, alignment: .center)
-                
-                ForEach((fromLesson..<(fromLesson + numItems[family]!)), id: \.self) { lesson -> AnyView in
-                    let tTableEntry = tTableForDay.item(forLesson: lesson)
+            if let tTableForDay = entry.tTableForDay {
+                Group(content: {
+                    // Show up to lessons for this type of widget.
+                    let fromLesson = effectiveFromLesson(fromLesson: entry.fromLesson, family: family)
+                    let iconImage = Image("blueinfo")
+                        .resizable()
+                        .frame(width: 20, height: 20, alignment: .center)
                     
-                    let lesson = ScheduleForDay.effectiveLessonFromIndex(lesson)
-                    let lessonText = lesson != nil ? Text("\(lesson!).") : Text("")
+                    ForEach((fromLesson..<(fromLesson + numItems[family]!)), id: \.self) { lesson -> AnyView in
+                        let tTableEntry = tTableForDay.item(forLesson: lesson)
+                        
+                        let lesson = ScheduleForDay.effectiveLessonFromIndex(lesson)
+                        let lessonText = lesson != nil ? Text("\(lesson!).") : Text("")
 
-                    let courseText: Text = Text(StringHelper.replaceHtmlEntities(input: tTableEntry.courseName))
-                    let roomText: AnyView = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: tTableEntry.room))
-                    let teacherText: Text = Text(StringHelper.replaceHtmlEntities(input: tTableEntry.teacher))
-                    
-                    let hstack = HStack(alignment: .center, spacing: 2, content: {
-                        lessonText
-                            .frame(minWidth: 20, alignment: .trailing)
-                        courseText
-                            .frame(minWidth: 100, maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                        roomText
-                            .frame(minWidth: 100, maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                        teacherText
-                            .frame(minWidth: 50, maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                        let courseText: Text = Text(StringHelper.replaceHtmlEntities(input: tTableEntry.courseName))
+                        let roomText: AnyView = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: tTableEntry.room))
+                        let teacherText: Text = Text(StringHelper.replaceHtmlEntities(input: tTableEntry.teacher))
+                        
+                        let hstack = HStack(alignment: .center, spacing: 2, content: {
+                            lessonText
+                                .frame(minWidth: 20, alignment: .trailing)
+                            courseText
+                                .frame(minWidth: 100, maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                            
+                            ViewBuilder.buildIf(
+                                family != .systemSmall
+                                    ? roomText
+                                        .frame(
+                                            minWidth: 100, maxWidth: .infinity,
+                                            maxHeight: .infinity,
+                                            alignment: .leading)
+                                : nil)
+                            
+                            ViewBuilder.buildIf(
+                                family != .systemSmall
+                                    ? teacherText
+                                        .frame(
+                                            minWidth: 50, maxWidth: .infinity,
+                                            maxHeight: .infinity, alignment: .leading)
+                                    : nil)
 
-                        ViewBuilder.buildIf(tTableEntry.isSubstitution ? iconImage : nil)
-                    })
-                    .padding([.leading, .trailing], 8)
-                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                    .font(.callout)
+                            ViewBuilder.buildIf(tTableEntry.isSubstitution ? iconImage : nil)
+                        })
+                        .padding([.leading, .trailing], 8)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                        .font(.callout)
 
-                    // If a background is color is defined use it for stack view.
-                    if let color = tTableEntry.color {
-                        return AnyView(hstack.background(Color(color)))
+                        // If a background is color is defined use it for stack view.
+                        if let color = tTableEntry.color {
+                            return AnyView(hstack.background(Color(color)))
+                        }
+                        
+                        return AnyView(hstack)
                     }
-                    
-                    return AnyView(hstack)
-                }
 
-                ViewBuilder.buildIf(
-                    entry.lastUpdate != nil
-                        ? Text(entry.lastUpdate!)
-                            .font(.footnote)
-                            .padding([.leading, .trailing], 8)
-                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-                        : nil
-                )
-            })
-            .frame(maxHeight: .infinity)
+                    let lastUpdate = self.lastUpdate()
+                    ViewBuilder.buildIf(
+                        lastUpdate != nil
+                            ? Text(lastUpdate!)
+                                .font(.footnote)
+                                .padding([.leading, .trailing], 8)
+                                .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                            : nil
+                    )
+                })
+                .frame(maxHeight: .infinity)
+            } else {
+                Text("Konfiguriere in den Einstellungen Deinen Stundenplan, um das Widget zu verwenden.")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            }
         })
     }
 }
@@ -107,19 +131,29 @@ struct TTableWidgetView: View {
 /// Provides a preview of medium and large size widget.
 struct ttable_medium_size_Preview: PreviewProvider {
     static var previews: some View {
+        // let lastUpdate = Date()
+        let lastUpdate = DateHelper.format("26.10.2020 07:50", using: .standard)
+        
+        TTableWidgetView(
+            family: .systemSmall,
+            entry: TTableEntry(
+                date: Date(), fromLesson: 0, forDay: 0, forWeek: .A,
+                tTableForDay: TTableSampleData().scheduleForDay,
+                lastUpdate: lastUpdate))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
         TTableWidgetView(
             family: .systemMedium,
             entry: TTableEntry(
                 date: Date(), fromLesson: 0, forDay: 0, forWeek: .A,
                 tTableForDay: TTableSampleData().scheduleForDay,
-                lastUpdate: "26.10.2020, 07:50 Uhr"))
+                lastUpdate: lastUpdate))
             .previewContext(WidgetPreviewContext(family: .systemMedium))
         TTableWidgetView(
             family: .systemLarge,
             entry: TTableEntry(
                 date: Date(), fromLesson: 0, forDay: 0, forWeek: .A,
                 tTableForDay: TTableSampleData().scheduleForDay,
-                lastUpdate: "26.10.2020, 07:50 Uhr"))
+                lastUpdate: lastUpdate))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

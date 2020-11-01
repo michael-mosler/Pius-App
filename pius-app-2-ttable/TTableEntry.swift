@@ -15,10 +15,10 @@ struct TTableEntry: TimelineEntry {
     let fromLesson: Int
     let forDay: Int
     let forWeek: Week
-    let tTableForDay: ScheduleForDay
-    let lastUpdate: String?
+    let tTableForDay: ScheduleForDay?
+    var lastUpdate: Date?
 
-    init(date: Date, fromLesson: Int, forDay: Int, forWeek: Week, tTableForDay: ScheduleForDay, lastUpdate: String? = nil) {
+    init(date: Date, fromLesson: Int, forDay: Int, forWeek: Week, tTableForDay: ScheduleForDay, lastUpdate: Date? = nil) {
         self.date = date
         self.fromLesson = fromLesson
         self.forDay = forDay

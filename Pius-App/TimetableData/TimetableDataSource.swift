@@ -126,5 +126,4 @@ class TimetableDataSource<T: TimetableItemCellProtocol>: NSObject, UITableViewDa
         
         return cell as! UITableViewCell
     }
-
 }

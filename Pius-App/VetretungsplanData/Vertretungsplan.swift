@@ -89,6 +89,12 @@ struct Vertretungsplan: Encodable {
         vertretungsplaene = []
     }
     
+    /// Gets last update date as Date object.
+    var lastUpdateDate: Date? {
+        guard lastUpdate.count > 0 else { return nil }
+        return DateHelper.format(lastUpdate.replacingOccurrences(of: " Uhr", with: ""), using: .standard)
+    }
+
     /// Create Vertretungsplan from given data. Uses accept() function on detail
     /// in order to decide if an item is added or not.
     /// - Parameters:
