@@ -11,29 +11,41 @@ import SwiftUI
 import Intents
 
 /// Provider for VPlan widget.
-struct Provider: IntentTimelineProvider {
+struct Provider: TimelineProvider {
     /// Gets widget placeholder based on sample data.
     func placeholder(in context: Context) -> Entry {
         let vplanSampleData = VPlanSampleData()
-        return Entry(date: Date(), configuration: ConfigurationIntent(), canUseDashboard: true, isReachable: true, vplan: vplanSampleData.demoVPlan)
+        return Entry(
+            date: Date(),
+            canUseDashboard: true,
+            isReachable: true,
+            vplan: vplanSampleData.demoVPlan)
     }
 
     /// Gets a widget snapshot baed on sample data.
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Entry) -> ()) {
+    func getSnapshot(in context: Context, completion: @escaping (Entry) -> ()) {
         let vplanSampleData = VPlanSampleData()
-        let entry = Entry(date: Date(), configuration: configuration, canUseDashboard: true, isReachable: true, vplan: vplanSampleData.demoVPlan)
+        let entry = Entry(
+            date: Date(),
+            canUseDashboard: true,
+            isReachable: true,
+            vplan: vplanSampleData.demoVPlan)
         completion(entry)
     }
 
     /// Get timeline. The timeline has one entry only and is reloaded as defined by variable
     /// nextUpdateAt. On refresh vplan is read from backend. If this fails it is tried to
     /// use cache instead.
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [Entry] = []
         let entryDate = Date()
 
         if !canUseDashboard {
-            let entry = Entry(date: entryDate, configuration: configuration, canUseDashboard: false, isReachable: true, vplan: nil)
+            let entry = Entry(
+                date: entryDate,
+                canUseDashboard: false,
+                isReachable: true,
+                vplan: nil)
             entries.append(entry)
             let timeline = Timeline(entries: entries, policy: .never)
             completion(timeline)
@@ -42,15 +54,11 @@ struct Provider: IntentTimelineProvider {
         let grade = AppDefaults.gradeSetting
         let vplanLoader = VertretungsplanLoader(forGrade: grade)
         vplanLoader.load({ vplan, isReachable in
-            var entry: Entry
-            
-            // When backend load failed use data from cache. If this also fails
-            // pass nil (aka error).
-            if vplan == nil {
-                entry = Entry(date: entryDate, configuration: configuration, canUseDashboard: true, isReachable: isReachable, vplan: try? vplanLoader.loadFromCache())
-            } else {
-                entry = Entry(date: entryDate, configuration: configuration, canUseDashboard: true, isReachable: isReachable, vplan: vplan)
-            }
+            let entry = Entry(
+                    date: entryDate,
+                    canUseDashboard: true,
+                    isReachable: isReachable,
+                    vplan: vplan)
             
             entries.append(entry)
             let timeline = Timeline(entries: entries, policy: .after(nextUpdateAt))
@@ -96,7 +104,6 @@ struct Provider: IntentTimelineProvider {
 /// Timeline Entry definition.
 struct Entry: TimelineEntry {
     let date: Date
-    let configuration: ConfigurationIntent
     let canUseDashboard: Bool
     let isReachable: Bool
     let vplan: Vertretungsplan?
@@ -108,19 +115,6 @@ struct Entry: TimelineEntry {
 struct MediumSizeView {
     var entry: Entry
     
-    /// Returns standard heading for widget built from text.
-    /// - Parameter text: Heading text
-    /// - Returns: Heading view
-    @ViewBuilder
-    private func heading(_ text: String) -> some View {
-        Text(text)
-            .font(.headline)
-            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, 8)
-            .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-            .background(Color("piusBlue"))
-            .foregroundColor(.white)
-    }
-
     /// Medium Size Widget body
     var body: AnyView {
         var view: AnyView
@@ -128,34 +122,25 @@ struct MediumSizeView {
         // Can we display anything?
         guard entry.canUseDashboard else {
             return AnyView(
-                Group(content: {
-                    heading("Pius-App")
-                    Text("Du musst Dich anmelden und, wenn Du in der EF, Q1 oder Q2 bist, eine Kursliste anlegen, um das Widget verwenden zu können.")
-                    Spacer()
-                })
+                Text("Du musst Dich anmelden und, wenn Du in der EF, Q1 oder Q2 bist, eine Kursliste anlegen, um das Widget verwenden zu können.")
+                    .frame(maxHeight: .infinity)
             )
         }
 
         // Any error when loading data?
         guard !entry.hadError else {
             return AnyView(
-                Group(content: {
-                    heading("Pius-App")
-                    Text("Die Daten konnten leider nicht geladen werden.")
-                    Spacer()
-                })
+                Text("Die Daten konnten leider nicht geladen werden.")
+                    .frame(maxHeight: .infinity)
             )
         }
 
         // Any data? Should never occur but who knows?
         guard let vplan = entry.vplan else {
             return AnyView(
-                Group(content: {
-                    heading("Pius-App")
-                    Text("Das Widget hat noch keine Informationen zu Deinem Vetretungsplan.")
-                    Spacer()
-                })
-                .widgetURL(URL(string: "pius-app://settings")!)
+                Text("Das Widget hat noch keine Informationen zu Deinem Vetretungsplan.")
+                    .frame(maxHeight: .infinity)
+                    .widgetURL(URL(string: "pius-app://settings")!)
             )
         }
         
@@ -166,8 +151,8 @@ struct MediumSizeView {
             let lesson: String = gradeItem?.vertretungsplanItems[0][0] ?? ""
 
             view = AnyView(
-                VStack(alignment: .leading, spacing: 2, content: {
-                    heading(nextVPlanForDate[0].date)
+                VStack(alignment: .leading, spacing: 0) {
+                    //heading(nextVPlanForDate[0].date)
 
                     let heading2Text = grade.count > 0
                         ? "Fach/Kurs: \(grade), \(lesson). Stunde"
@@ -175,13 +160,13 @@ struct MediumSizeView {
                     Text(heading2Text)
                         .font(.subheadline)
                         .padding([.leading, .trailing], 8)
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                         .background(Color("piusBlue").opacity(0.9))
                         .foregroundColor(.white)
                     
-                    Group(content: {
+                    Group {
                         let items = gradeItem?.vertretungsplanItems[0]
-                        Group(content: {
+                        Group {
                             // Details:
                             // Type
                             // Room
@@ -190,55 +175,49 @@ struct MediumSizeView {
                             let roomText: AnyView = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: items?[3]))
                             let teacherText = StringHelper.replaceHtmlEntities(input: items?[4]) ?? ""
 
-                            HStack(alignment: .top, spacing: 4, content: {
+                            HStack(spacing: 4) {
                                 Text(replacementTypeText)
-                                roomText
-                                    .frame(width: 100)
-                                Text(teacherText)
-                                    .frame(width: 100)
-                            })
+                                roomText.frame(width: 100)
+                                Text(teacherText).frame(width: 100)
+                            }
 
                             // Comment text
                             let commentText = StringHelper.replaceHtmlEntities(input: items?[6]) ?? ""
-                            if commentText.count > 0 {
-                                Divider()
-                                Text(commentText)
-                            }
+                            ViewBuilder.buildIf(
+                                commentText.count > 0 ? Text(commentText) : nil)
      
-                        })
+                        }
                         .padding([.leading, .trailing], 8)
                        
                         // EVA
                         if items?.count == 8 {
                             let evaText = StringHelper.replaceHtmlEntities(input: items?[7]) ?? ""
-                            Divider()
                             Text(evaText)
                                 .padding([.leading, .trailing], 8)
                                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                                 .background(Color("eva"))
                                 .foregroundColor(.black)
                         }
-                    })
+                    }
                     .font(.callout)
                     .frame(maxHeight: .infinity)
-
+                    
                     Text(vplan.lastUpdate)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                         .font(.footnote)
-                })
+                }
                 .widgetURL(URL(string: "pius-app://dashboard")!)
             )
         } else {
             view = AnyView(
-                Group(content: {
-                    heading("Pius-App")
-                    Text("In den nächsten Tagen hast Du keinen Vertretungsunterricht.")
+                VStack {
+                    Text("In den nächsten Tagen hast Du keinen Vertretungsunterricht. \(vplan.lastUpdate)")
+                        .frame(maxHeight: .infinity)
                         .widgetURL(URL(string: "pius-app://dashboard")!)
-                    Spacer()
                     Text(vplan.lastUpdate)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                         .font(.footnote)
-                })
+                }
             )
         }
         
@@ -262,7 +241,7 @@ struct pius_app_2_vplan: Widget {
     let kind: String = "pius_app_2_vplan"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
             pius_app_2_vplanEntryView(entry: entry)
         }
         .configurationDisplayName("Pius-App Vertretungsplan")
@@ -276,7 +255,12 @@ struct pius_app_2_vplan_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             let vplanSampleData = VPlanSampleData()
-            pius_app_2_vplanEntryView(entry: Entry(date: Date(), configuration: ConfigurationIntent(), canUseDashboard: true, isReachable: true, vplan: vplanSampleData.demoVPlan))
+            pius_app_2_vplanEntryView(
+                entry: Entry(
+                    date: Date(),
+                    canUseDashboard: true,
+                    isReachable: true,
+                    vplan: vplanSampleData.demoVPlan))
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
             /*
             pius_app_2_vplanEntryView(entry: Entry(date: Date(), configuration: ConfigurationIntent(), canUseDashboard: true, hadError: false, vplan: demoVPlan))

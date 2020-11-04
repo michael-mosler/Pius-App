@@ -1,5 +1,5 @@
 //
-//  StringHelper.swift
+//  Helper.swift
 //  Pius-App
 //
 //  Created by Michael on 18.03.18.
@@ -9,7 +9,11 @@
 import Foundation
 import SwiftUI
 
+/// This class should be converted into a String extension.
 class StringHelper {
+    /// Repleace typical HTML entities with their represented character.
+    /// - Parameter input: String containing HTML entities
+    /// - Returns: String with entities replaced
     static func replaceHtmlEntities(input: String?) -> String! {
         guard let input = input else { return "" }
         return input
@@ -23,6 +27,7 @@ class StringHelper {
     }
 }
 
+/// Set of string format helpers.
 class FormatHelper {
     /// Since middleware version 2.2.4 old teacher is always blank as this info has been
     /// removed from actual schedule for data privacy reasons. Thus, no further formatting
@@ -74,10 +79,9 @@ class FormatHelper {
             let upto = room.index(before: index)
             let from = room.index(after: index)
             return AnyView(Group(content: {
-                Text(room[..<upto])
-                + Text(" → ")
-                + Text(room[from...])
-                    .strikethrough()
+                Text(room[..<upto]).strikethrough()
+                    + Text(" → ")
+                    + Text(room[from...])
             }))
         } else {
             return AnyView(Text(room))
@@ -110,7 +114,7 @@ extension String {
 }
 
 
-/// Whole set of Date convenience functions.
+/// Set of Date convenience functions.
 class DateHelper {
     enum DateFormat: Int {
         case standard = 0

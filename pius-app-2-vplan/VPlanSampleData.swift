@@ -121,7 +121,7 @@ struct VPlanSampleData {
             vplan.tickerText = "Heute ist Freitag, der 02.10.2020"
             vplan.additionalText = "Willkommen bei der PiusApp für iOS!"
             vplan.digest = "digest"
-            vplan.lastUpdate = "02.10.2020, 18:39 Uhr"
+            vplan.lastUpdate = "02.10.2020 18:39 Uhr"
             vplan.vertretungsplaene = demoVPlaene
             
             return vplan

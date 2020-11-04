@@ -180,35 +180,40 @@ class VertretungsplanLoader {
         let request = getURLRequest(piusGatewayIsReachable)
 
         // Create task to get data in background.
-        let task = URLSession.shared.dataTask(with: request) {
-            (data, response, error) in
-                var vertretungsplan: Vertretungsplan
-                
-                // Request error. In this case nothing more is to be done here. Inform user and exit.
-                if let error = error {
-                    NSLog("Vertretungsplan Loader had error: \(error)")
-                    
-                    // When not authenticated remove cached files.
-                    if (response as! HTTPURLResponse).statusCode == 401 {
-                        NSLog("Unauthenticated, will delete cached vplan files.")
-                        let _ = self.cache.fileRemove(filename: self.cacheFileName)
-                        let _ = self.cache.fileRemove(filename: self.digestFileName)
-                    }
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            // Request error. In this case nothing more is to be done here. Inform user and exit.
+            if let error = error {
+                NSLog("Vertretungsplan Loader had error: \(error)")
+                update(nil, piusGatewayIsReachable)
+                return
+            }
 
-                    update(nil, piusGatewayIsReachable)
-                    return
-                }
+            if !piusGatewayIsReachable {
+                NSLog("Backend unreachable, using data from cache")
+                let vertretungsplan = try? self.loadFromCache()
+                update(vertretungsplan, piusGatewayIsReachable)
+                return
+            }
 
+            guard let response = response
+            else {
+                update(nil, piusGatewayIsReachable)
+                return
+            }
+
+            let statusCode = (response as? HTTPURLResponse)?.statusCode ?? (piusGatewayIsReachable ? 200 : 500)
+            switch statusCode {
+            case 200, 304:
                 do {
                     // Cached data is not modified. This can be checked in online mode only.
                     // In offline mode _data will come from cache already if available.
                     let notModified = piusGatewayIsReachable == true && ((response as! HTTPURLResponse).statusCode == 304)
                     if (notModified) {
                         NSLog("Vertretungsplan has not changed. Using data from cache.")
-                        vertretungsplan = try self.loadFromCache()
+                        let vertretungsplan = try self.loadFromCache()
                         update(vertretungsplan, piusGatewayIsReachable)
                     } else if let data = data {
-                        vertretungsplan = try Vertretungsplan(data, accept: self.accept(basedOn:))
+                        let vertretungsplan = try Vertretungsplan(data, accept: self.accept(basedOn:))
 
                         if piusGatewayIsReachable {
                             self.cache.store(filename: self.cacheFileName, data: data)
@@ -222,8 +227,21 @@ class VertretungsplanLoader {
                     NSLog(error.localizedDescription)
                     update(nil, piusGatewayIsReachable)
                 }
+                
+                break
+                
+            case 401:
+                NSLog("Unauthenticated, will delete cached vplan files.")
+                let _ = self.cache.fileRemove(filename: self.cacheFileName)
+                let _ = self.cache.fileRemove(filename: self.digestFileName)
+                update(nil, piusGatewayIsReachable)
+                break
+            
+            default:
+                update(nil, piusGatewayIsReachable)
+                break
+            }
         }
-
 
         // Now execute task and get data. This also updates all views.
         task.resume()

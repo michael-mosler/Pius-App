@@ -4,7 +4,6 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.de.rmkrings.piusapp.timetable.widget</string>
 		<string>group.de.rmkrings.piusapp.widget</string>
 	</array>
 </dict>

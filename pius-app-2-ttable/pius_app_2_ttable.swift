@@ -9,6 +9,7 @@
 import WidgetKit
 import SwiftUI
 
+/// Timeline ptovider for timetable widget view.
 struct Provider: TimelineProvider {
     /// For all timetable views this function checks if dashboard can be used. In this case
     /// timetable is able to mix substitution schedule into timetable before displaying a
@@ -25,19 +26,45 @@ struct Provider: TimelineProvider {
         }
     }
 
+    /// Compute next reload of timeline. Weekdays between 7 and 17 o'clock
+    /// timeline is reloaded every 5 minutes and every 60 minutes else.
+    /// On weekends refresh is every 30 minutes,
+    private var nextUpdateAt: Date {
+        var date = Date()
+        let dayOfWeek = DateHelper.dayOfWeek()
+        
+        if dayOfWeek < 5 {
+            var calendar = Calendar.current
+            calendar.locale = Locale(identifier: "de_DE")
+            let hour = Calendar.current.component(.hour, from: date)
+            date = date + ((hour >= 7 && hour < 17) ? 5.minutes : 30.minutes)
+        } else {
+            date = date + 1.hours
+        }
+        
+        return date
+    }
+
+    /// Gets widget placeholder based on sample data.
     func placeholder(in context: Context) -> TTableEntry {
         TTableEntry(
             date: Date(), fromLesson: 0, forDay: 0, forWeek: .A,
             tTableForDay: TTableSampleData().scheduleForDay)
     }
 
+    /// Gets a widget snapshot baed on sample data.
     func getSnapshot(in context: Context, completion: @escaping (TTableEntry) -> ()) {
         let tTableEntry = TTableEntry(
             date: Date(), fromLesson: 0, forDay: 0, forWeek: .A,
             tTableForDay: TTableSampleData().scheduleForDay)
         completion(tTableEntry)
     }
-
+    
+    /// Get timeline for timetable widget. Timeline provides timetable and vplan data
+    /// in ready to use ScheduleForDay object.
+    /// - Parameters:
+    ///   - context: Widget Context
+    ///   - completion: Completion Handler
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [TTableEntry] = []
         let currentDate = Date()
@@ -56,11 +83,7 @@ struct Provider: TimelineProvider {
         if canUseDashboard {
             let grade = AppDefaults.gradeSetting
             let vplanLoader = VertretungsplanLoader(forGrade: grade)
-            vplanLoader.load({ vplan_, isReachable in
-                // When backend load failed use data from cache. If this also fails
-                // pass nil (aka error).
-                let vplan = try? vplan_ ?? vplanLoader.loadFromCache()
-                
+            vplanLoader.load({ vplan, isReachable in
                 if vplan != nil {
                     let effectiveDate = TimetableHelper.effectiveDate(forWeek: effectiveWeek, forDay: effectiveDay)
                     let filteredVplan = vplan?.filter(onDate: effectiveDate)
@@ -78,17 +101,18 @@ struct Provider: TimelineProvider {
                 }
 
                 entries.append(entry)
-                let timeline = Timeline(entries: entries, policy: .never)
+                let timeline = Timeline(entries: entries, policy: .after(nextUpdateAt))
                 completion(timeline)
             })
 
         } else {
-            let timeline = Timeline(entries: entries, policy: .never)
+            let timeline = Timeline(entries: entries, policy: .after(nextUpdateAt))
             completion(timeline)
         }
     }
 }
 
+/// The timetable widget view itself.
 struct pius_app_2_ttableEntryView : View {
     @Environment(\.widgetFamily) var size
     var entry: Provider.Entry

@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 struct TimetableHelper {
-    /**
-     * Gives current lesson. If calculation fails for some reason
-     * nil is returned. This value also counts breaks; if you want
-     * to read the real lesson then call function realLesson(from:lesson).
-     * Before the very first lesson currentLesson is -1, after last lesson
-     * value is 99.
-     */
+    /// Gives current lesson. If calculation fails for some reason
+    /// nil is returned. This value also counts breaks; if you want
+    /// to read the real lesson then call function realLesson(from:lesson).
+    /// Before the very first lesson currentLesson is Int.min, after last lesson
+    /// value is Int.max.
+    /// - Returns: current lesson
+    ////
     static func currentLesson() -> Int? {
         // Compute number of seconds since 07:55. This is the number of seconds since 07:55h today.
         // row is the row which is covered by the lesson addressed
@@ -50,6 +50,12 @@ struct TimetableHelper {
         return lesson
     }
     
+    /// Computes offset of timetable marker from top a view.
+    /// - Parameters:
+    ///   - currentLesson: Current lesson
+    ///   - topRow: The top row that is shown in timetable
+    ///   - rowHeight: The row height used
+    /// - Returns: Offset from top of view
     static func offset(forCurrentLesson currentLesson: Int, withTopRow topRow: Int, withRowHeight rowHeight: CGFloat) -> CGFloat? {
         guard currentLesson != Int.min && currentLesson != Int.max,
             let epochLessonStart = DateHelper.epoch(forTime: "\(lessonsWithAllEndTimes[currentLesson]):00"),
@@ -58,7 +64,6 @@ struct TimetableHelper {
             return nil
         }
         
-       // let rowHeight = CGFloat(TodayScreenUnits.timetableRowHeight) // CGFloat((frame.height - 2 * CGFloat(TodayScreenUnits.timetableSpacing)) / CGFloat(lessons.count))
        let duration = CGFloat(epochLessonEnd - epochLessonStart)
        let lessonDuration = CGFloat(Date().timeIntervalSince1970 - epochLessonStart)
        return CGFloat(currentLesson - topRow) * rowHeight + lessonDuration * rowHeight / duration
