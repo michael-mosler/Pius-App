@@ -51,6 +51,21 @@ struct TTableWidgetView: View {
             return "\(s) Uhr"
         }
     }
+    
+    /// Computes opacity value for the given lesson based on configuration
+    /// in entry.
+    /// - Parameters:
+    ///   - lesson: Lesson for which opactity is requested.
+    ///   - entry: Entry definition used for display.
+    /// - Returns: Opacity value for lesson.
+    private func opacityValue(forLesson lesson: Int?, withEntry entry: TTableEntry) -> Double {
+        guard entry.forWeek == entry.week ?? DateHelper.week(),
+              entry.forDay == entry.day ?? DateHelper.dayOfWeek(),
+            lesson == entry.currentLesson
+        else { return 1 }
+        
+        return 2
+    }
 
     /// Widget body
     @ViewBuilder
@@ -69,9 +84,9 @@ struct TTableWidgetView: View {
                             ForEach((fromLesson..<(fromLesson + numItems[family]!)), id: \.self) { lesson -> AnyView in
                                 let tTableEntry = tTableForDay.item(forLesson: lesson)
                                 
-                                let lesson = ScheduleForDay.effectiveLessonFromIndex(lesson)
-                                let lessonText = lesson != nil
-                                    ? Text("\(lesson!).")
+                                let effectiveLesson = ScheduleForDay.effectiveLessonFromIndex(lesson)
+                                let lessonText = effectiveLesson != nil
+                                    ? Text("\(effectiveLesson!).")
                                     : Text("")
 
                                 let courseText: Text = Text(StringHelper.replaceHtmlEntities(input: tTableEntry.courseName))
@@ -110,7 +125,12 @@ struct TTableWidgetView: View {
 
                                 // If a background is color is defined use it for stack view.
                                 if let color = tTableEntry.color {
-                                    return AnyView(hstack.background(Color(color)))
+                                    return AnyView(
+                                        hstack.background(
+                                            Color(color)
+                                                .opacity(opacityValue(forLesson: effectiveLesson, withEntry: entry))
+                                        )
+                                    )
                                 }
                                 return AnyView(hstack)
                             }
@@ -139,30 +159,22 @@ struct TTableWidgetView: View {
 
 /// Provides a preview of medium and large size widget.
 struct ttable_medium_size_Preview: PreviewProvider {
+    static var tTableEntry: TTableEntry {
+        var e = TTableEntry(
+            date: Date(), fromLesson: 0, forDay: 0, forWeek: .A, currentLesson: 2,
+            tTableForDay: TTableSampleData().scheduleForDay)
+        e.day = 0
+        e.week = .A
+        e.lastUpdate = DateHelper.format("26.10.2020 07:50", using: .standard)
+        return e
+    }
+
     static var previews: some View {
-        // let lastUpdate = Date()
-        let lastUpdate = DateHelper.format("26.10.2020 07:50", using: .standard)
-        
-        TTableWidgetView(
-            family: .systemSmall,
-            entry: TTableEntry(
-                date: Date(), fromLesson: 0, forDay: 0, forWeek: .A,
-                tTableForDay: TTableSampleData().scheduleForDay,
-                lastUpdate: lastUpdate))
+        TTableWidgetView(family: .systemSmall, entry: tTableEntry)
             .previewContext(WidgetPreviewContext(family: .systemSmall))
-        TTableWidgetView(
-            family: .systemMedium,
-            entry: TTableEntry(
-                date: Date(), fromLesson: 0, forDay: 0, forWeek: .A,
-                tTableForDay: TTableSampleData().scheduleForDay,
-                lastUpdate: lastUpdate))
+        TTableWidgetView(family: .systemMedium, entry: tTableEntry)
             .previewContext(WidgetPreviewContext(family: .systemMedium))
-        TTableWidgetView(
-            family: .systemLarge,
-            entry: TTableEntry(
-                date: Date(), fromLesson: 0, forDay: 0, forWeek: .A,
-                tTableForDay: TTableSampleData().scheduleForDay,
-                lastUpdate: lastUpdate))
+        TTableWidgetView(family: .systemLarge, entry: tTableEntry)
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

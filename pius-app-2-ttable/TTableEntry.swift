@@ -15,14 +15,21 @@ struct TTableEntry: TimelineEntry {
     let fromLesson: Int
     let forDay: Int
     let forWeek: Week
+    let currentLesson: Int?
     let tTableForDay: ScheduleForDay?
     var lastUpdate: Date?
+    
+    // These are used for preview and overwrite the current
+    // computed day and week.
+    var day: Int?
+    var week: Week?
 
-    init(date: Date, fromLesson: Int, forDay: Int, forWeek: Week, tTableForDay: ScheduleForDay, lastUpdate: Date? = nil) {
+    init(date: Date, fromLesson: Int, forDay: Int, forWeek: Week, currentLesson: Int?, tTableForDay: ScheduleForDay, lastUpdate: Date? = nil) {
         self.date = date
         self.fromLesson = fromLesson
         self.forDay = forDay
         self.forWeek = forWeek
+        self.currentLesson = currentLesson
         self.tTableForDay = tTableForDay
         self.lastUpdate = lastUpdate
     }

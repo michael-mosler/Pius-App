@@ -14,7 +14,7 @@ struct TimetableHelper {
     /// nil is returned. This value also counts breaks; if you want
     /// to read the real lesson then call function realLesson(from:lesson).
     /// Before the very first lesson currentLesson is Int.min, after last lesson
-    /// value is Int.max.
+    /// value is Int.max. Lessons start from 0
     /// - Returns: current lesson
     ////
     static func currentLesson() -> Int? {
