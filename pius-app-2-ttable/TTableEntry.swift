@@ -24,7 +24,7 @@ struct TTableEntry: TimelineEntry {
     var day: Int?
     var week: Week?
 
-    init(date: Date, fromLesson: Int, forDay: Int, forWeek: Week, currentLesson: Int?, tTableForDay: ScheduleForDay, lastUpdate: Date? = nil) {
+    init(date: Date, fromLesson: Int, forDay: Int, forWeek: Week, currentLesson: Int?, tTableForDay: ScheduleForDay?, lastUpdate: Date? = nil) {
         self.date = date
         self.fromLesson = fromLesson
         self.forDay = forDay

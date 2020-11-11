@@ -149,8 +149,12 @@ struct TTableWidgetView: View {
                         : nil
                 )
             } else {
-                Text("Konfiguriere in den Einstellungen Deinen Stundenplan, um das Widget zu verwenden.")
+                let text = family == .systemSmall
+                    ? "Konfiguriere Deinen Stundenplan, um das Widget zu nutzen."
+                    : "Konfiguriere in den Einstellungen Deinen Stundenplan, um das Widget zu verwenden."
+                Text(text)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    .padding([.leading, .trailing], 4)
             }
         }
         .widgetURL(URL(string: "pius-app://today")!)

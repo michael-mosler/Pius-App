@@ -15,7 +15,11 @@ struct Provider: TimelineProvider {
     /// timetable is able to mix substitution schedule into timetable before displaying a
     /// particular row.
     var canUseDashboard: Bool {
-        if AppDefaults.authenticated && (AppDefaults.hasLowerGrade || (AppDefaults.hasUpperGrade && AppDefaults.courseList != nil && AppDefaults.courseList!.count > 0)) {
+        if AppDefaults.authenticated
+            && (AppDefaults.hasLowerGrade
+                    || (AppDefaults.hasUpperGrade && AppDefaults.courseList != nil && AppDefaults.courseList!.count > 0
+                    )
+            ) {
             if let _ = AppDefaults.selectedGradeRow, let _ = AppDefaults.selectedClassRow {
                 return true
             } else {
@@ -69,19 +73,22 @@ struct Provider: TimelineProvider {
         var entries: [TTableEntry] = []
         let currentDate = Date()
         let entryDate = currentDate
-        
-        let timetable = AppDefaults.timetable
         let effectiveWeek = DateHelper.effectiveWeek()
         let effectiveDay = DateHelper.effectiveDay()
-        var entry = TTableEntry(
-            date: entryDate,
-            fromLesson: TimetableHelper.currentLesson() ?? 0,
-            forDay: effectiveDay,
-            forWeek: effectiveWeek,
-            currentLesson: TimetableHelper.currentLesson(),
-            tTableForDay: timetable.schedule(forWeek: effectiveWeek, forDay: effectiveDay))
         
-        if canUseDashboard {
+        let schedule = AppDefaults.useTimetable
+            ? AppDefaults.timetable.schedule(forWeek: effectiveWeek, forDay: effectiveDay)
+            : nil
+        var entry = TTableEntry(
+                date: entryDate,
+                fromLesson: TimetableHelper.currentLesson() ?? 0,
+                forDay: effectiveDay,
+                forWeek: effectiveWeek,
+                currentLesson: TimetableHelper.currentLesson(),
+                tTableForDay: schedule)
+            
+        // Mix in vplan if timetable is used and vplan is accessible.
+        if AppDefaults.useTimetable && canUseDashboard {
             let grade = AppDefaults.gradeSetting
             let vplanLoader = VertretungsplanLoader(forGrade: grade)
             vplanLoader.load({ vplan, isReachable in
@@ -107,6 +114,7 @@ struct Provider: TimelineProvider {
             })
 
         } else {
+            entries.append(entry)
             let timeline = Timeline(entries: entries, policy: .after(nextUpdateAt))
             completion(timeline)
         }
