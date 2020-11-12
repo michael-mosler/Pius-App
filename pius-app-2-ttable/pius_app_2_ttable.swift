@@ -124,10 +124,11 @@ struct Provider: TimelineProvider {
 /// The timetable widget view itself.
 struct pius_app_2_ttableEntryView : View {
     @Environment(\.widgetFamily) var size
+    @Environment(\.colorScheme) var colorScheme
     var entry: Provider.Entry
 
     var body: some View {
-        let view = TTableWidgetView(family: size, entry: entry)
+        let view = TTableWidgetView(family: size, entry: entry, colorScheme: colorScheme)
         return view.body
     }
 }
@@ -150,7 +151,7 @@ struct pius_app_2_ttable: Widget {
 struct pius_app_2_ttable_Previews: PreviewProvider {
     static var tTableEntry: TTableEntry {
         var e = TTableEntry(
-            date: Date(), fromLesson: 0, forDay: 0, forWeek: .A, currentLesson: 2,
+            date: Date(), fromLesson: 0, forDay: 0, forWeek: .A, currentLesson: 1,
             tTableForDay: TTableSampleData().scheduleForDay)
         e.day = 0
         e.week = .A

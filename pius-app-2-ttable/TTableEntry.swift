@@ -10,6 +10,9 @@ import SwiftUI
 import WidgetKit
 import Foundation
 
+/// Payload passed from timeline provider to view provider. Some
+/// properties are used for preview only when it does not make
+/// sense to use dynamic values.
 struct TTableEntry: TimelineEntry {
     let date: Date
     let fromLesson: Int
@@ -18,6 +21,7 @@ struct TTableEntry: TimelineEntry {
     let currentLesson: Int?
     let tTableForDay: ScheduleForDay?
     var lastUpdate: Date?
+    var colorScheme: ColorScheme = .light
     
     // These are used for preview and overwrite the current
     // computed day and week.

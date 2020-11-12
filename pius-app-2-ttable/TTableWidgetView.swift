@@ -13,6 +13,7 @@ import SwiftUI
 struct TTableWidgetView: View {
     var family: WidgetFamily
     var entry: TTableEntry
+    var colorScheme: ColorScheme = .light
 
     /// Number of items to show in timetable depending on widget family.
     let numItems: [WidgetFamily : Int] = [.systemSmall: 3, .systemMedium: 4, .systemLarge: 7]
@@ -64,7 +65,7 @@ struct TTableWidgetView: View {
             lesson == entry.currentLesson
         else { return 1 }
         
-        return 2
+        return colorScheme == .light ? 2 : 0.65
     }
 
     /// Widget body
@@ -75,7 +76,6 @@ struct TTableWidgetView: View {
                 GeometryReader { g in
                     VStack(spacing: 2) {
                         Group {
-                            // Show up to lessons for this type of widget.
                             let fromLesson = effectiveFromLesson(fromLesson: entry.fromLesson, family: family)
                             let iconImage = Image("blueinfo")
                                 .resizable()
@@ -128,7 +128,7 @@ struct TTableWidgetView: View {
                                     return AnyView(
                                         hstack.background(
                                             Color(color)
-                                                .opacity(opacityValue(forLesson: effectiveLesson, withEntry: entry))
+                                                .opacity(opacityValue(forLesson: lesson, withEntry: entry))
                                         )
                                     )
                                 }
@@ -165,7 +165,7 @@ struct TTableWidgetView: View {
 struct ttable_medium_size_Preview: PreviewProvider {
     static var tTableEntry: TTableEntry {
         var e = TTableEntry(
-            date: Date(), fromLesson: 0, forDay: 0, forWeek: .A, currentLesson: 2,
+            date: Date(), fromLesson: 0, forDay: 0, forWeek: .A, currentLesson: 1,
             tTableForDay: TTableSampleData().scheduleForDay)
         e.day = 0
         e.week = .A
@@ -178,7 +178,10 @@ struct ttable_medium_size_Preview: PreviewProvider {
             .previewContext(WidgetPreviewContext(family: .systemSmall))
         TTableWidgetView(family: .systemMedium, entry: tTableEntry)
             .previewContext(WidgetPreviewContext(family: .systemMedium))
-        TTableWidgetView(family: .systemLarge, entry: tTableEntry)
+        TTableWidgetView(family: .systemLarge, entry: tTableEntry, colorScheme: .dark)
             .previewContext(WidgetPreviewContext(family: .systemLarge))
+            .environment(\.colorScheme, .dark)
+        TTableWidgetView(family: .systemMedium, entry: tTableEntry)
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }
