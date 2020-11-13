@@ -50,7 +50,6 @@
 		4C20AB092520F5C900415133 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C20AADC2520F50A00415133 /* SwiftUI.framework */; };
 		4C20AB0C2520F5C900415133 /* pius_app_2_vplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C20AB0B2520F5C900415133 /* pius_app_2_vplan.swift */; };
 		4C20AB0F2520F5CA00415133 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C20AB0E2520F5CA00415133 /* Assets.xcassets */; };
-		4C20AB112520F5CA00415133 /* pius_app_2_vplan.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 4C20AB0D2520F5C900415133 /* pius_app_2_vplan.intentdefinition */; };
 		4C20AB152520F5CA00415133 /* pius-app-2-vplanExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4C20AB072520F5C900415133 /* pius-app-2-vplanExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C20AB312520FC4600415133 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C7C22962043117800ACA17B /* Assets.xcassets */; };
 		4C20AB63252246BC00415133 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE62206D5FE6006092C9 /* Config.swift */; };
@@ -100,7 +99,6 @@
 		4C641A3225447C140006ED93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C641A3125447C140006ED93 /* Assets.xcassets */; };
 		4C641A3625447C140006ED93 /* pius-app-2-ttableExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4C641A2B25447C120006ED93 /* pius-app-2-ttableExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C641A4525447CB30006ED93 /* pius_app_2_ttable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C641A4325447CB30006ED93 /* pius_app_2_ttable.swift */; };
-		4C641A6125447D240006ED93 /* pius_app_2_vplan.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 4C20AB0D2520F5C900415133 /* pius_app_2_vplan.intentdefinition */; };
 		4C641A90254481620006ED93 /* TTableSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C641A8F254481620006ED93 /* TTableSampleData.swift */; };
 		4C641A9A254482150006ED93 /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA50EBF2373377700718680 /* ScheduleData.swift */; };
 		4C641AA4254486050006ED93 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE59205E77D7006092C9 /* Helper.swift */; };
@@ -326,7 +324,6 @@
 		4C20AADC2520F50A00415133 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		4C20AB072520F5C900415133 /* pius-app-2-vplanExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "pius-app-2-vplanExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C20AB0B2520F5C900415133 /* pius_app_2_vplan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pius_app_2_vplan.swift; sourceTree = "<group>"; };
-		4C20AB0D2520F5C900415133 /* pius_app_2_vplan.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = pius_app_2_vplan.intentdefinition; sourceTree = "<group>"; };
 		4C20AB0E2520F5CA00415133 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C20AB102520F5CA00415133 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C20AB42252242B300415133 /* pius-app-2-vplanExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pius-app-2-vplanExtension.entitlements"; sourceTree = "<group>"; };
@@ -613,7 +610,6 @@
 			isa = PBXGroup;
 			children = (
 				4C20AB0B2520F5C900415133 /* pius_app_2_vplan.swift */,
-				4C20AB0D2520F5C900415133 /* pius_app_2_vplan.intentdefinition */,
 				4C20AB0E2520F5CA00415133 /* Assets.xcassets */,
 				4C20AB102520F5CA00415133 /* Info.plist */,
 				4C641A1425434BA40006ED93 /* VPlanSampleData.swift */,
@@ -1359,7 +1355,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C20AB112520F5CA00415133 /* pius_app_2_vplan.intentdefinition in Sources */,
 				4C20AB872522474100415133 /* Helper.swift in Sources */,
 				4C20ABC425225CC800415133 /* Reachability.swift in Sources */,
 				4C20AB902522474D00415133 /* KeychainConfiguration.swift in Sources */,
@@ -1479,7 +1474,6 @@
 				4C49EC0F24015A1D00FB9B6A /* CourseCollectionViewCell.swift in Sources */,
 				4C6BBD8F2312C1E100137384 /* TodayTimetableDataSource.swift in Sources */,
 				4C1FDE4E205567C8006092C9 /* Vertretungsplan.swift in Sources */,
-				4C641A6125447D240006ED93 /* pius_app_2_vplan.intentdefinition in Sources */,
 				4CF02EAF218B559400647078 /* TabBarController.swift in Sources */,
 				4C1FDE5C20603DF1006092C9 /* DetailsCellTableViewCell.swift in Sources */,
 				4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */,
@@ -1672,6 +1666,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
 				INFOPLIST_FILE = "pius-app-2-vplan/Info.plist";
@@ -1699,6 +1694,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				HOST_ADDRESS = "https://pius-gateway.eu-de.mybluemix.net";
 				INFOPLIST_FILE = "pius-app-2-vplan/Info.plist";
@@ -1722,7 +1718,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = "Pius-App for WatchOS Extension/Pius-App for WatchOS Extension.entitlements";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App for WatchOS Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1748,7 +1744,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Pius-App for WatchOS Extension/Pius-App for WatchOS Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App for WatchOS Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1775,7 +1771,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				IBSC_MODULE = Pius_App_for_WatchOS_Extension;
 				INFOPLIST_FILE = "Pius-App for WatchOS/Info.plist";
@@ -1803,7 +1799,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				IBSC_MODULE = Pius_App_for_WatchOS_Extension;
 				INFOPLIST_FILE = "Pius-App for WatchOS/Info.plist";
@@ -1830,6 +1826,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
 				INFOPLIST_FILE = "pius-app-2-ttable/Info.plist";
@@ -1857,6 +1854,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				HOST_ADDRESS = "https://pius-gateway.eu-de.mybluemix.net";
 				INFOPLIST_FILE = "pius-app-2-ttable/Info.plist";
@@ -1882,7 +1880,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
 				INFOPLIST_FILE = "pius-app-timetable-extension/Info.plist";
@@ -1909,7 +1907,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				HOST_ADDRESS = "https://pius-gateway.eu-de.mybluemix.net";
 				INFOPLIST_FILE = "pius-app-timetable-extension/Info.plist";
@@ -2052,7 +2050,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2086,7 +2084,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2148,7 +2146,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Pius-App-Extension/Pius-App-Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				HOST_ADDRESS = "https://pius-gateway-ng.eu-gb.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App-Extension/Info.plist";
@@ -2172,7 +2170,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Pius-App-Extension/Pius-App-Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				HOST_ADDRESS = "https://pius-gateway.eu-de.mybluemix.net";
 				INFOPLIST_FILE = "Pius-App-Extension/Info.plist";
@@ -2197,7 +2195,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App Notification-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2221,7 +2219,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A6MLRJ6C45;
 				INFOPLIST_FILE = "Pius-App Notification-Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

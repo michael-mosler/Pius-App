@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExtendedTeacherEditTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate, UISearchResultsUpdating {
+class ExtendedTeacherEditTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate, UISearchResultsUpdating, UISearchControllerDelegate {
     
     private let searchController: UISearchController
     private let staffDictionary: StaffDictionary
@@ -44,8 +44,18 @@ class ExtendedTeacherEditTableViewController: UITableViewController, UIPopoverPr
         super.viewDidLoad()
 
         searchController.searchResultsUpdater = self
+        searchController.delegate = self
         searchController.searchBar.sizeToFit()
         tableView.tableHeaderView = searchController.searchBar
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        searchController.isActive = true
+    }
+    
+    func didPresentSearchController(_ searchController: UISearchController) {
+        searchController.searchBar.becomeFirstResponder()
     }
 
     /**
