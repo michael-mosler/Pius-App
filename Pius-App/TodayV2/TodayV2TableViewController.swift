@@ -70,6 +70,15 @@ class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, 
     private var isLoadCancelled = true
     private var segueData: Any?
     
+    private var newFunctionHelpPopoverViewController: NewFunctionOnboardingViewController?
+    
+    @IBAction
+    func endOnboardingView(_ unwindSegue: UIStoryboardSegue) {
+        if #available(iOS 13.0, *) {
+            showFunctionHelpPopovers()
+        }
+    }
+    
     // Register a timer delegate.
     func registerTimerDelegate(_ delegate: TimerDelegate) {
         if let _ = timerDelegates.first(where: { registeredDelegate in return delegate === registeredDelegate }) {
@@ -97,11 +106,21 @@ class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, 
     
     override func awakeFromNib() {
         TodayV2TableViewController.shared.controller = self
+        newFunctionHelpPopoverViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewFunctionHelpPopover") as? NewFunctionOnboardingViewController
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged)
+    }
+    
+    private func showFunctionHelpPopovers() {
+        for cell in tableView.visibleCells {
+            if let cell = cell as? TodayItemCell {
+                DispatchQueue.main.async(execute: cell.showNewFunctionOnboardingPopover)
+                break
+            }
+        }
     }
     
     // Starts load for all Today sub-views.
@@ -134,6 +153,12 @@ class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        if Config.showOnboarding {
+            performSegue(withIdentifier: "toOnboarding", sender: self)
+        } else {
+            showFunctionHelpPopovers()
+        }
+
         // When loads have been cancelled reload.
         if isLoadCancelled {
             loadData()
@@ -191,7 +216,9 @@ class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, 
         let cell = tableView.dequeueReusableCell(withIdentifier: cellOrder[indexPath.row], for: indexPath)
         if let cell = cell as? TodayItemCell {
             cell.reload()
+            cell.registerNewFunctionOnboardingPopover(viewController: newFunctionHelpPopoverViewController)
         }
+
         return cell
     }
 }
@@ -199,6 +226,7 @@ class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, 
 // Extension that implements protocol TodayItemContainer.
 extension TodayV2TableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if let destination = segue.destination as? NewsArticleViewController {
             destination.delegate = self
             destination.segueData = segueData
@@ -256,32 +284,12 @@ extension TodayV2TableViewController {
             })
             
             self.cellOrder = newCellOrder
-            
+
             if sender as? TodayDashboardDataSource<DashboardTableViewCell> != nil {
                 // Whenever a new substitution schedule has been loaded update timetable data source.
                 let sender = sender as! TodayDashboardDataSource<DashboardTableViewCell>
                 let timetableDataSource = TodayV2TableViewController.shared.dataSource(forType: .timetable) as! TodayTimetableDataSource<TodayTimetableItemCell>
                 timetableDataSource.substitutionSchedule = sender.substitutionSchedule
-                
-                if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "dashboardCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
-                    cell.reload()
-                }
-            } else if sender as? TodayTimetableDataSource<TodayTimetableItemCell> != nil {
-                if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "timetableCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
-                    cell.reload()
-                }
-            } else if sender as? NewsTableDataSource != nil {
-                if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "newsCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
-                    cell.reload()
-                }
-            } else if sender as? CalendarTableDataSource != nil {
-                if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "calendarCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
-                    cell.reload()
-                }
-            } else if sender as? PostingsTableDataSource != nil {
-                if let rowNum = self.rowNum(self.cellOrder, forCellIdentifier: "postingsCell"), let cell = self.tableView.cellForRow(at: IndexPath(row: rowNum, section: 0)) as? TodayItemCell {
-                    cell.reload()
-                }
             }
             self.tableView.endUpdates()
 
@@ -291,6 +299,12 @@ extension TodayV2TableViewController {
             self.pendingLoads -= 1
             if self.pendingLoads == 0 {
                 self.refreshControl?.endRefreshing()
+                
+                // Check that onboarding view controller is not shown.
+                // Then give table view some time to reposition after drag to refresh.
+                if self.presentedViewController == nil {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: self.showFunctionHelpPopovers)
+                }
             }
         }
     }

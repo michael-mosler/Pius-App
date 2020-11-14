@@ -55,6 +55,8 @@ class MyCoursesViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewWillDisappear(animated);
         tabBarController?.tabBar.isHidden = false;
 
+        AppDefaults.courseList = courseList;
+
         let deviceTokenManager = DeviceTokenManager();
         deviceTokenManager.registerDeviceToken();
     }

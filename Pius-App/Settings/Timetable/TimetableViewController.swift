@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WidgetKit
 
 /* ****************************************************************
  * Simple class that implements colouring of Week selection button.
@@ -89,6 +90,10 @@ class TimetableViewController: UIViewController, TimetableViewDataDelegate, UICo
 
         let deviceTokenManager = DeviceTokenManager()
         deviceTokenManager.registerDeviceToken()
+        
+        if #available(iOS 14.0, *) {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

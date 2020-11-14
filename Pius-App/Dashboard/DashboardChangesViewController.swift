@@ -174,6 +174,7 @@ class DashboardChangesViewController: UIViewController, UITableViewDelegate, UIT
                 
                 let teacherLabel = cell?.viewWithTag(tags.details.teacher.rawValue) as! UILabel
                 teacherLabel.attributedText = FormatHelper.teacherText(oldTeacher: details[5] as? String, newTeacher: details[4] as? String)
+                teacherLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressSelector)))
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "spacer")
             }
@@ -193,6 +194,7 @@ class DashboardChangesViewController: UIViewController, UITableViewDelegate, UIT
                 
                 let teacherLabel = cell?.viewWithTag(tagsOld.details.teacher.rawValue) as! UILabel
                 teacherLabel.attributedText = FormatHelper.teacherText(oldTeacher: details[5] as? String, newTeacher: details[4] as? String)
+                teacherLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressSelector)))
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "spacer")
             }
@@ -225,6 +227,20 @@ class DashboardChangesViewController: UIViewController, UITableViewDelegate, UIT
         }
     }
     
+    /**
+     * Long press gesture callback. Gets label long press was on (teacher label), extracts shortcut name
+     * and presents popover.
+     */
+    @objc func longPressSelector(gestureRecognizer: UILongPressGestureRecognizer) {
+        guard gestureRecognizer.state == .began,
+            let teacherLabel = gestureRecognizer.view as? UILabel,
+            let shortCutName = teacherLabel.attributedText?.string.trimmingCharacters(in: .whitespaces)
+        else { return }
+
+        let staffInfoPopoverController = StaffInfoPopoverController(withShortcutName: shortCutName, onView: teacherLabel, permittedArrowDirections: .any)
+        staffInfoPopoverController.present(inViewController: self)
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return itemList.count
     }

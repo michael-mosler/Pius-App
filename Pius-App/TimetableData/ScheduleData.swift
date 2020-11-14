@@ -79,8 +79,7 @@ class CourseItem: NSObject, NSCoding, NSCopying {
                 default: return nil
                 }
             }
-            
-            if AppDefaults.hasExtendedLowerGrade {
+            else {
                 switch course {
                 case "M": return UIColor(named: "hauptfach")
                 case "D": return UIColor(named: "hauptfach")
@@ -109,8 +108,6 @@ class CourseItem: NSObject, NSCoding, NSCopying {
                 default: return nil
                 }
             }
-            
-            return nil
         }
     }
 
@@ -145,7 +142,6 @@ class CourseItem: NSObject, NSCoding, NSCopying {
         return copy
     }
     
-    // TODO
     // Gets first or second course item for a pattern like "a&rarr;b". In this case 2nd item is
     // b. If a/b is not a course name or does not exist at all nil is returned.
     // If courseSpec does not contain and first is true courseSpec is returned.
@@ -394,7 +390,11 @@ class BreakScheduleItem: ScheduleItem {
 
     override var color: UIColor? {
         get {
-            return UIColor.groupTableViewBackground
+            if #available(iOS 13, *) {
+                return UIColor.systemGroupedBackground
+            } else {
+                return UIColor.groupTableViewBackground
+            }
         }
     }
         
@@ -435,22 +435,26 @@ class ExtraScheduleItem: ScheduleItem {
     }
 }
 
-/* ****************************************************************
- * Timetable for a single day.
- * ****************************************************************/
+/// Timetable for a single day.
 class ScheduleForDay: NSObject, NSCoding {
     private var scheduleEntries: [ScheduleItem]
 
+    /// Number of entries in this schedule.
+    /// Read only
     var numberOfItems: Int {
         get {
             return scheduleEntries.count
         }
     }
     
+    /// Encode schedule for storage on backing store.
+    /// - Parameter aCoder: Encoder to use
     func encode(with aCoder: NSCoder) {
         aCoder.encode(scheduleEntries, forKey: "scheduleEntries")
     }
     
+    /// Decode schedule from backing store.
+    /// - Parameter aDecoder: Decoder to use
     required convenience init?(coder aDecoder: NSCoder) {
         guard let scheduleEntries = aDecoder.decodeObject(forKey: "scheduleEntries") as? [ScheduleItem] else {
             self.init()
@@ -459,10 +463,13 @@ class ScheduleForDay: NSObject, NSCoding {
         self.init(scheduleEntries)
     }
     
+    /// Create schedule from given entries.
+    /// - Parameter scheduleEntries: Entries that define the schedule
     init(_ scheduleEntries: [ScheduleItem]) {
         self.scheduleEntries = scheduleEntries
     }
-
+    
+    /// Default constructor that creates an empty schedule.
     override init() {
         let freeScheduleItem = FreeScheduleItem()
         let breakScheduleItem = BreakScheduleItem()
@@ -485,13 +492,53 @@ class ScheduleForDay: NSObject, NSCoding {
         super.init()
     }
     
+    /// Gets schedule item for a lesson
+    /// - Parameter index: Index of the lesson; starts with 0
+    /// - Returns: Schedule item for requested lesson
     func item(forLesson index: Int) -> ScheduleItem {
         guard index < scheduleEntries.count else { return ScheduleItem(courseItem: CourseItem(course: ""))}
         return scheduleEntries[index]
     }
     
+    /// Sets schedule item for a given lesson.
+    /// - Parameters:
+    ///   - index: Index of the lesson; starts with 0
+    ///   - value: New value
     func item(forLesson index: Int, _ value: ScheduleItem) {
         scheduleEntries[index] = value
+    }
+    
+    /// Returns effective lesson based on index value. Breaks do not count up.
+    /// - Parameter value: An index value
+    static func effectiveLessonFromIndex(_ value: Int?) -> Int? {
+        guard let lesson = value else { return nil }
+        
+        switch lesson {
+        case 0..<2:
+            return lesson + 1
+        case 2:
+            return nil
+        case 3..<6:
+            return lesson
+        case 6:
+            return nil
+        case 7..<9:
+            return lesson - 1
+        case 9:
+            return nil
+        default:
+            return lesson - 2
+        }
+    }
+    
+    /// Apply function to every schedule item. Current schedule item is replaced
+    /// by item returned by f.
+    /// - Parameter f: A function that receives lesson and lesson's schedule item.
+    /// - Returns: New schedule item
+    func map(_ f: @escaping (_ lesson: Int?, _ scheduleItem: ScheduleItem) -> ScheduleItem) {
+        for (index, scheduleItem) in scheduleEntries.enumerated() {
+            item(forLesson: index, f(ScheduleForDay.effectiveLessonFromIndex(index), scheduleItem))
+        }
     }
 }
 
@@ -607,6 +654,11 @@ class Timetable: NSObject, NSCoding {
         return scheduleForWeeks[week.rawValue][index]
     }
     
+    func schedule(forWeek week: Week = .A, forDay index: Int, _ scheduleForDay: ScheduleForDay) {
+        guard index < 5 else { return }
+        scheduleForWeeks[week.rawValue][index] = scheduleForDay
+    }
+
     func schedule(forSubject subject: String) -> [ScheduleItem] {
         if let cachedTopLevelItem = courseItemDictionary[subject] {
             let scheduleItems: [ScheduleItem] = cachedTopLevelItem.map({(key: String, scheduleItem: CustomScheduleItem) -> ScheduleItem in

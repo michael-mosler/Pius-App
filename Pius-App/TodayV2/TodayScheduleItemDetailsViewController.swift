@@ -25,7 +25,9 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
     @IBOutlet weak var roomLabel: UILabel!
     @IBOutlet weak var teacherLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
-    @IBOutlet weak var evaLabel: UILabel!
+    @IBOutlet weak var commentBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var evaLabelContainer: UIView!
+    @IBOutlet weak var evaLabel: UITextView!
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     var lastTranslation: CGPoint?
     var oldCenter: CGPoint?
@@ -70,10 +72,20 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
         }
         
         if details.count >= 8 {
-           let evaText = StringHelper.replaceHtmlEntities(input: details[7])
-           evaLabel.text = evaText
+            let evaText = StringHelper.replaceHtmlEntities(input: details[7])
+            evaLabelContainer.isHidden = false
+            evaLabel.text = evaText
+            evaLabel.textContainerInset = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
+            evaLabel.textContainer.lineFragmentPadding = 0
+            commentBottomConstraint.constant = 0
         } else {
-           evaLabel.text = nil
+            evaLabelContainer.isHidden = true
+            evaLabel.text = nil
+            
+            // For layout reasons, if there is no EVA text add some
+            // extra space to bottom as otherwise comment is very close
+            // to view border.
+            commentBottomConstraint.constant = 4
         }
         
         if let bgColor = scheduleItem.color {

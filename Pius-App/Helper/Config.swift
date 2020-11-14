@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 struct Config {
+    // Gets true if onboarding view shall be shown.
+    static var showOnboarding: Bool = false
+    
     private static let userDefaults = UserDefaults()
 
     // The current device token. This is for transporting device token to Settings view controller only.

@@ -122,13 +122,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             // Update version.
             AppDefaults.version = version
-            
-            DispatchQueue.main.async {
-                self.window?.rootViewController?.performSegue(withIdentifier: "toOnboarding", sender: self)
-            }
+            Config.showOnboarding = true
         }
         
         registerForPushNotifications(forApplication: application)
+        
+        // Refresh staff dictionary.
+        let staffLoader = StaffLoader(onLoad: { object, bool in })
+        staffLoader.load(withLoaderDelegate: staffLoader)
         
         return true
     }

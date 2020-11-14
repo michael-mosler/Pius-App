@@ -68,7 +68,7 @@ class CalendarTableViewCell: UITableViewCell {
  * Postings item cell. This cell shows any kind of posting.
  * *********************************************************************/
 class PostingsTableViewCell: UITableViewCell {
-    @IBOutlet weak var postingsTextLabel: UILabel!
+    @IBOutlet weak var postingsTextLabel: UITextView!
     @IBOutlet weak var postingsDateLabel: UILabel!
     private var _item: PostingsItem?
     
@@ -97,6 +97,11 @@ class PostingsTableViewCell: UITableViewCell {
             postingsTextLabel.textColor = UIColor.label
         }
         super.layoutSubviews()
+
+        // iOS adds padding to text view content. As this breaks our
+        // layout we remove it.
+        postingsTextLabel.textContainerInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
+        postingsTextLabel.textContainer.lineFragmentPadding = 0
     }
 }
 
@@ -109,9 +114,10 @@ class DashboardTableViewCell: UITableViewCell, DashboardItemCellProtocol {
     @IBOutlet weak var courseTextLabel: UILabel!
     @IBOutlet weak var typeTextLabel: UILabel!
     @IBOutlet weak var roomTextLabel: UILabel!
-    @IBOutlet weak var substitutionTextLabel: UILabel!
+    @IBOutlet weak var teacherTextLabel: UILabel!
     @IBOutlet weak var commentTextLabel: UILabel!
-    @IBOutlet weak var evaTextLabel: UILabel!
+    @IBOutlet weak var evaTextLabelContainer: UIView!
+    @IBOutlet weak var evaTextLabel: UITextView!
     
     var _items: DetailItems?
     
@@ -134,7 +140,8 @@ class DashboardTableViewCell: UITableViewCell, DashboardItemCellProtocol {
                 roomTextLabel.attributedText = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: items[3]))
                 
                 // 4, Teacher
-                substitutionTextLabel.attributedText = NSAttributedString(string:  StringHelper.replaceHtmlEntities(input: items[4]))
+                teacherTextLabel.attributedText = NSAttributedString(string:  StringHelper.replaceHtmlEntities(input: items[4]))
+                teacherTextLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressSelector)))
                 
                 // 5. Comment
                 text = StringHelper.replaceHtmlEntities(input: items[6])
@@ -146,22 +153,41 @@ class DashboardTableViewCell: UITableViewCell, DashboardItemCellProtocol {
                 
                 // 6. EVA
                 if items.count >= 8 {
-                    text = StringHelper.replaceHtmlEntities(input: items[7])
-                    evaTextLabel.attributedText = NSAttributedString(string: text)
+                    // text = StringHelper.replaceHtmlEntities(input: items[7])
+                    evaTextLabelContainer.isHidden = false
+                    evaTextLabel.text = StringHelper.replaceHtmlEntities(input: items[7])
+                    evaTextLabel.textContainerInset = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
+                    evaTextLabel.textContainer.lineFragmentPadding = 0
                 } else {
-                    evaTextLabel.attributedText = nil
+                    evaTextLabelContainer.isHidden = true
+                    evaTextLabel.text = nil
                 }
             } else {
                 courseTextLabel.attributedText = nil
                 typeTextLabel.attributedText = nil
                 roomTextLabel.attributedText = nil
-                substitutionTextLabel.attributedText = nil
-                evaTextLabel.attributedText = nil
+                teacherTextLabel.attributedText = nil
+                evaTextLabelContainer.isHidden = true
+                evaTextLabel.text = nil
             }
         }
         get {
             return _items
         }
+    }
+    
+    /**
+     * Long press gesture callback. Gets label long press was on (teacher label), extracts shortcut name
+     * and presents popover.
+     */
+    @objc func longPressSelector(gestureRecognizer: UILongPressGestureRecognizer) {
+        guard gestureRecognizer.state == .began,
+            let teacherTextLabel = gestureRecognizer.view as? UILabel,
+            let shortCutName = teacherTextLabel.attributedText?.string.trimmingCharacters(in: .whitespaces)
+        else { return }
+
+        let staffInfoPopoverController = StaffInfoPopoverController(withShortcutName: shortCutName, onView: teacherTextLabel, permittedArrowDirections: .any)
+        staffInfoPopoverController.present(inViewController: TodayV2TableViewController.shared.controller as? UIViewController)
     }
 }
 
@@ -188,8 +214,7 @@ class TodayTimetableItemCell: UITableViewCell, TimetableItemCellProtocol {
                 courseTextLabel.text = StringHelper.replaceHtmlEntities(input: scheduleItem.courseName)
                 roomTextLabel.attributedText = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: scheduleItem.room))
                 teacherTextLabel.text = StringHelper.replaceHtmlEntities(input: scheduleItem.teacher)
-                
-                isUserInteractionEnabled = scheduleItem.isSubstitution
+                teacherTextLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressSelector)))
                 infoIconView.isHidden = !scheduleItem.isSubstitution
                 
                 if let bgcolor = scheduleItem.color {
@@ -249,6 +274,26 @@ class TodayTimetableItemCell: UITableViewCell, TimetableItemCellProtocol {
         }
     }
     
+    /**
+     * When user taps on teacher label this action method shows info popup
+     * for teacher.
+     */
+    @objc func longPressSelector(gestureRecognizer: UILongPressGestureRecognizer) {
+        guard gestureRecognizer.state == .began,
+            let teacherTextLabel = gestureRecognizer.view as? UILabel,
+            let shortCutName = teacherTextLabel.attributedText?.string.trimmingCharacters(in: .whitespaces)
+        else { return }
+        
+        let staffInfoPopoverController = StaffInfoPopoverController(withShortcutName: shortCutName, onView: teacherTextLabel, permittedArrowDirections: .any)
+        let viewController = TodayV2TableViewController.shared.controller as? UIViewController
+        staffInfoPopoverController.present(inViewController: viewController)
+    }
+
+    /**
+     * With each clock tick it must be checked if marker has reached this cell.
+     * If so then lesson text label must be hidden as otherwise overlap will make
+     * it unreadable and this looks ugly.
+     */
     func onTick(forRow row: Int) {
         // For a break item no action is needed.
         guard let _ = _row else { return }

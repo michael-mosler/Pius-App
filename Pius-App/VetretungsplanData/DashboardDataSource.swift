@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WidgetKit
 
 protocol DashboardItemCellProtocol {
     var items: DetailItems? { get set }
@@ -56,6 +57,10 @@ class DashboardDataSource<T: DashboardItemCellProtocol>: NSObject, UITableViewDa
         }
         
         observer?.didLoadData(self)
+        
+        if #available(iOS 14.0, *) {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
     }
 
     func loadData(_ observer: ItemContainerProtocol) {

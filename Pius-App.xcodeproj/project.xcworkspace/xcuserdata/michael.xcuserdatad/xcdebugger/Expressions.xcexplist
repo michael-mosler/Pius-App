@@ -3,6 +3,44 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "Cache.read(filename:):Cache.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "getCacheFileUrl(for: filename)">
+            </PersistentString>
+            <PersistentString
+               value = "documentsURL">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Provider.nextUpdateAt.getter:pius_app_2_vplan.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Provider.getTimeline(for:in:completion:):pius_app_2_vplan.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "AppDefaults.gradeSetting">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static AppDefaults.timetable.getter:AppDefaults.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "error.localizedDescription">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DashboardCell.layoutIfNeeded():TodayTableItemCells.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "view.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in ScheduleItem.update(withDetails:):ScheduleData.swift">
          <PersistentStrings>
             <PersistentString
@@ -17,6 +55,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "CourseDetailsViewController.textField(_:shouldChangeCharactersIn:replacementString:):CourseDetailsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "textField.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EvaTableViewController.tableView(_:cellForRowAt:):EvaTableViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "TodayViewController.topRow.getter:TodayViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -28,12 +77,61 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "TimetableCell.reload():TodayTableItemCells.swift">
+         contextName = "static AppDefaults.baseUrl.getter:AppDefaults.swift">
          <PersistentStrings>
             <PersistentString
-               value = "collectionView.frame">
+               value = "Bundle.main.infoDictionary">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TimetableDataSource.tableView(_:numberOfRowsInSection:):TimetableDataSource.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "AppDefaults.timetable">
+            </PersistentString>
+            <PersistentString
+               value = "timetable.schedule(forWeek: forWeek, forDay: forDay).numberOfItems">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "VertretungsplanLoader.loadFromCache():VertretungsplanLoader.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cacheFileName">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static AppDefaults.timetable.setter:AppDefaults.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "error.localizedDescription">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EntityLoader.load(withLoaderDelegate:):StaffLoader.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "AppDefaults.baseUrl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in VertretungsplanLoader.load(_:):VertretungsplanLoader.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CourseDetailsViewController.textDidChange(notification:):CourseDetailsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "textField.text ">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleItem.update(withDetails:):ScheduleData.swift">
       </ContextState>
       <ContextState
          contextName = "TimetableDataSource.tableView(_:cellForRowAt:):TimetableDataSource.swift">
@@ -44,16 +142,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ScheduleItem.update(withDetails:):ScheduleData.swift">
-      </ContextState>
-      <ContextState
-         contextName = "TimetableDataSource.tableView(_:numberOfRowsInSection:):TimetableDataSource.swift">
+         contextName = "TimetableCell.reload():TodayTableItemCells.swift">
          <PersistentStrings>
             <PersistentString
-               value = "AppDefaults.timetable">
-            </PersistentString>
-            <PersistentString
-               value = "timetable.schedule(forWeek: forWeek, forDay: forDay).numberOfItems">
+               value = "collectionView.frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
