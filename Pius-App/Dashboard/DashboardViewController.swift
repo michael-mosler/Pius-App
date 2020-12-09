@@ -291,15 +291,9 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
 
         // If another than the current section is selected hide the current
         // section.
-        if (currentHeader != nil && currentHeader != header) {
+        if currentHeader != nil && currentHeader != header {
             if let currentSection = currentHeader?.section, currentSection >= 2 {
                 data[currentSection - 2].expanded = false
-                
-                tableView.beginUpdates()
-                for i in 0 ..< data[currentSection - 2].gradeItems[0].vertretungsplanItems.count {
-                    tableView.reloadRows(at: [IndexPath(row: i, section: currentSection)], with: .automatic)
-                }
-                tableView.endUpdates()
             }
         }
         
