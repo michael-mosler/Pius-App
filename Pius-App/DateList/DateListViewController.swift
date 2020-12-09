@@ -50,6 +50,7 @@ class DateListViewController: UIViewController, UICollectionViewDelegate, UIColl
 
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController?.isActive = true
+        navigationItem.searchController?.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController?.searchBar.isHidden = false
     }
     
