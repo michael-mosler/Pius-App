@@ -25,10 +25,11 @@ struct TTableWidgetView: View {
     ///   - family: Widget family
     /// - Returns: Effective from lesson
     private func effectiveFromLesson(fromLesson: Int, family: WidgetFamily) -> Int {
+        // For weekend move to first lesson on Monday.
+        guard entry.forDay == DateHelper.dayOfWeek() else { return 0 }
+
         // If current time is before first lesson start with 0.
-        if fromLesson == Int.min {
-            return 0
-        }
+        guard fromLesson != Int.min else { return 0 }
         
         // Center current lesson.
         let N = numItems[family]!
@@ -76,6 +77,9 @@ struct TTableWidgetView: View {
                 GeometryReader { g in
                     VStack(spacing: 2) {
                         Group {
+                            // Get the lesson we have to start from:
+                            // + For weekends this will be 0 as we move to Monday.
+                            // + Before first lesson it will be 0.
                             let fromLesson = effectiveFromLesson(fromLesson: entry.fromLesson, family: family)
                             let iconImage = Image("blueinfo")
                                 .resizable()

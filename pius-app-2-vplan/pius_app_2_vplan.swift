@@ -262,10 +262,6 @@ struct pius_app_2_vplan_Previews: PreviewProvider {
                     isReachable: true,
                     vplan: vplanSampleData.demoVPlan))
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
-            /*
-            pius_app_2_vplanEntryView(entry: Entry(date: Date(), configuration: ConfigurationIntent(), canUseDashboard: true, hadError: false, vplan: demoVPlan))
-                .previewContext(WidgetPreviewContext(family: .systemLarge))
-            */
         }
     }
 }

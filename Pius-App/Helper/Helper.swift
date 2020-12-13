@@ -164,7 +164,7 @@ class DateHelper {
         return (weekDay + 5) % 7
     }
     
-    /// The effective day of week, for weekends this return 0 = Monday otherwise the real
+    /// The effective day of week, for weekends this returns 0 = Monday otherwise the real
     /// day is returned.
     /// - Returns: Effective day of week
     static func effectiveDay() -> Int {
