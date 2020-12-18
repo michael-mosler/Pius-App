@@ -109,6 +109,8 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
             DispatchQueue.main.async {
+                self.refreshControl?.endRefreshing()
+
                 self.evaButton.tintColor = .white
                 self.evaButton.isEnabled = false
 
@@ -136,6 +138,8 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
                 self.tableView.isHidden = false
                 self.evaButton.tintColor = (AppDefaults.hasUpperGrade) ? UIColor(named: "piusBlue") : .white
                 self.evaButton.isEnabled = AppDefaults.hasUpperGrade
+                
+                self.refreshControl?.endRefreshing()
             }
         }
         
@@ -145,12 +149,12 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     }
     
     private func getVertretungsplanFromWeb(forGrade grade: String) {
-        let vertretungsplanLoader = VertretungsplanLoader(forGrade: grade)
-        
         // Clear all data.
         currentHeader = nil
         nextDate = ""
         expandHeaderInfo = nil
+
+        let vertretungsplanLoader = VertretungsplanLoader(forGrade: grade)
         vertretungsplanLoader.load(self.doUpdate)
     }
 
@@ -161,7 +165,6 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         }
         
         getVertretungsplanFromWeb(forGrade: grade)
-        sender.endRefreshing()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -291,15 +294,9 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
 
         // If another than the current section is selected hide the current
         // section.
-        if (currentHeader != nil && currentHeader != header) {
+        if currentHeader != nil && currentHeader != header {
             if let currentSection = currentHeader?.section, currentSection >= 2 {
                 data[currentSection - 2].expanded = false
-                
-                tableView.beginUpdates()
-                for i in 0 ..< data[currentSection - 2].gradeItems[0].vertretungsplanItems.count {
-                    tableView.reloadRows(at: [IndexPath(row: i, section: currentSection)], with: .automatic)
-                }
-                tableView.endUpdates()
             }
         }
         

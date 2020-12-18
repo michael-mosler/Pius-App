@@ -65,6 +65,7 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
     func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
             DispatchQueue.main.async {
+                self.refreshControl?.endRefreshing()
                 let alert = UIAlertController(title: "Vertretungsplan", message: "Die Daten konnten leider nicht geladen werden.", preferredStyle: UIAlertController.Style.alert);
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
                     (action: UIAlertAction!) in self.navigationController?.popViewController(animated: true);
@@ -75,6 +76,7 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
             self.vertretungsplan = vertretungsplan;
             DispatchQueue.main.async {
                 self.tableView.reloadData();
+                self.refreshControl?.endRefreshing()
             }
         }
         
@@ -99,7 +101,6 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
         }
 
         getVertretungsplanFromWeb();
-        sender.endRefreshing()
     }
 
     /*

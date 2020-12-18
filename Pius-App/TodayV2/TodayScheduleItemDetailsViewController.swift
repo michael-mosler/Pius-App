@@ -33,6 +33,14 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
     var oldCenter: CGPoint?
     
     /**
+     * We prefer to hide status bar as otherwise it will overlap
+     * close button on devices with a notch.
+     */
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
+    /**
      * Tap close button X to close overlay.
      */
     @IBAction func closeButtonAction(_ sender: Any) {
@@ -92,7 +100,8 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
             headerView.backgroundColor = bgColor
         }
     }
-
+    
+    /// Initialize schedule item details overlay.
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -137,6 +146,11 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
         }
     }
     
+    /// Allow simultaneous gestures.
+    /// - Parameters:
+    ///   - gestureRecognizer: Primary gesture recognizer
+    ///   - otherGestureRecognizer: Secondary gesture recognizer requesting simultaneous gesture.
+    /// - Returns: Returns always true
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }

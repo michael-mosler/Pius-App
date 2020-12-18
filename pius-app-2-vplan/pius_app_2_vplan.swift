@@ -49,21 +49,21 @@ struct Provider: TimelineProvider {
             entries.append(entry)
             let timeline = Timeline(entries: entries, policy: .never)
             completion(timeline)
+        } else {
+            let grade = AppDefaults.gradeSetting
+            let vplanLoader = VertretungsplanLoader(forGrade: grade)
+            vplanLoader.load({ vplan, isReachable in
+                let entry = Entry(
+                        date: entryDate,
+                        canUseDashboard: true,
+                        isReachable: isReachable,
+                        vplan: vplan)
+                
+                entries.append(entry)
+                let timeline = Timeline(entries: entries, policy: .after(nextUpdateAt))
+                completion(timeline)
+            })
         }
-
-        let grade = AppDefaults.gradeSetting
-        let vplanLoader = VertretungsplanLoader(forGrade: grade)
-        vplanLoader.load({ vplan, isReachable in
-            let entry = Entry(
-                    date: entryDate,
-                    canUseDashboard: true,
-                    isReachable: isReachable,
-                    vplan: vplan)
-            
-            entries.append(entry)
-            let timeline = Timeline(entries: entries, policy: .after(nextUpdateAt))
-            completion(timeline)
-        })
     }
     
     /// true when dashboard can be used.
@@ -262,10 +262,6 @@ struct pius_app_2_vplan_Previews: PreviewProvider {
                     isReachable: true,
                     vplan: vplanSampleData.demoVPlan))
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
-            /*
-            pius_app_2_vplanEntryView(entry: Entry(date: Date(), configuration: ConfigurationIntent(), canUseDashboard: true, hadError: false, vplan: demoVPlan))
-                .previewContext(WidgetPreviewContext(family: .systemLarge))
-            */
         }
     }
 }
