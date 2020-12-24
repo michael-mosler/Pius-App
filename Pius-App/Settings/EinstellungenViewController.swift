@@ -116,6 +116,7 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     }
     
     private func setVersionLabel() {
+        return
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject
         
         //Then just cast the object as a String, but be careful, you may want to double check for nil

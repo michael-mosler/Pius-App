@@ -64,6 +64,7 @@
 		4C20ABC425225CC800415133 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF512198813C007E5D1F /* Reachability.swift */; };
 		4C21EAE922BBB269006EE613 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21EAE822BBB269006EE613 /* String.swift */; };
 		4C300F392126BFEE00D6E129 /* Pius-App Notification-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4CFB122B210F887E00BC4B44 /* Pius-App Notification-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4C461F352593A94100F26FF7 /* SettingsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C461F342593A94100F26FF7 /* SettingsPageViewController.swift */; };
 		4C48F69F21F4E01300B20505 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C48F69D21F4E01300B20505 /* Interface.storyboard */; };
 		4C48F6A121F4E01400B20505 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C48F6A021F4E01400B20505 /* Assets.xcassets */; };
 		4C48F6A821F4E01400B20505 /* Pius-App for WatchOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4C48F6A721F4E01400B20505 /* Pius-App for WatchOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -147,6 +148,7 @@
 		4C9368B12309A3660038CE9B /* CalendarTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9368B02309A3660038CE9B /* CalendarTableDataSource.swift */; };
 		4C94DFD32322522300C42998 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94DFD22322522300C42998 /* MessageCell.swift */; };
 		4C94DFD523257D3F00C42998 /* DateArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94DFD423257D3F00C42998 /* DateArithmetic.swift */; };
+		4C97C8F22594B24000FA665A /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97C8F12594B24000FA665A /* AboutViewController.swift */; };
 		4CA4907720DE4DDC00796457 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4907620DE4DDC00796457 /* AppDefaults.swift */; };
 		4CA4907920DE532700796457 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
 		4CA4907A20DEA1C900796457 /* VertretungsplanLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */; };
@@ -328,6 +330,7 @@
 		4C20AB102520F5CA00415133 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C20AB42252242B300415133 /* pius-app-2-vplanExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pius-app-2-vplanExtension.entitlements"; sourceTree = "<group>"; };
 		4C21EAE822BBB269006EE613 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		4C461F342593A94100F26FF7 /* SettingsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPageViewController.swift; sourceTree = "<group>"; };
 		4C48F69B21F4E01300B20505 /* Pius-App for WatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pius-App for WatchOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C48F69E21F4E01300B20505 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		4C48F6A021F4E01400B20505 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -404,6 +407,7 @@
 		4C9368B02309A3660038CE9B /* CalendarTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableDataSource.swift; sourceTree = "<group>"; };
 		4C94DFD22322522300C42998 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		4C94DFD423257D3F00C42998 /* DateArithmetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateArithmetic.swift; sourceTree = "<group>"; };
+		4C97C8F12594B24000FA665A /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		4CA4907620DE4DDC00796457 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		4CA50EBF2373377700718680 /* ScheduleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleData.swift; sourceTree = "<group>"; };
 		4CAC0434233D35F2005C6094 /* NewsArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticleViewController.swift; sourceTree = "<group>"; };
@@ -615,6 +619,15 @@
 				4C641A1425434BA40006ED93 /* VPlanSampleData.swift */,
 			);
 			path = "pius-app-2-vplan";
+			sourceTree = "<group>";
+		};
+		4C461F332593A8FF00F26FF7 /* SettingsV2 */ = {
+			isa = PBXGroup;
+			children = (
+				4C461F342593A94100F26FF7 /* SettingsPageViewController.swift */,
+				4C97C8F12594B24000FA665A /* AboutViewController.swift */,
+			);
+			path = SettingsV2;
 			sourceTree = "<group>";
 		};
 		4C48F69C21F4E01300B20505 /* Pius-App for WatchOS */ = {
@@ -940,6 +953,7 @@
 		4CFBCDD52089256E00E9041D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				4C461F332593A8FF00F26FF7 /* SettingsV2 */,
 				4C49EC0324015A1D00FB9B6A /* Timetable */,
 				4CED4A7C204749580012CB45 /* EinstellungenViewController.swift */,
 				4CFBCDD6208925B100E9041D /* MyCoursesViewController.swift */,
@@ -1458,6 +1472,7 @@
 				4C49EC0E24015A1D00FB9B6A /* CourseCollectionView.swift in Sources */,
 				4C9368B12309A3660038CE9B /* CalendarTableDataSource.swift in Sources */,
 				4C1FDE5A205E77D7006092C9 /* Helper.swift in Sources */,
+				4C461F352593A94100F26FF7 /* SettingsPageViewController.swift in Sources */,
 				4C94DFD32322522300C42998 /* MessageCell.swift in Sources */,
 				4CD94FFF22C67D9D0056BA9F /* DashboardChangesViewController.swift in Sources */,
 				4CF02EB12190C64300647078 /* DateListCollectionViewCell.swift in Sources */,
@@ -1515,6 +1530,7 @@
 				4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */,
 				4CB2AF522198813C007E5D1F /* Reachability.swift in Sources */,
 				4CFBCDDA208FBB8F00E9041D /* DateListViewController.swift in Sources */,
+				4C97C8F22594B24000FA665A /* AboutViewController.swift in Sources */,
 				4C52D7B8247AB3D100862BC9 /* StaffLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
