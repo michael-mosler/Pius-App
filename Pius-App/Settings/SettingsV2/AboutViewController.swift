@@ -11,11 +11,22 @@ import UIKit
 class AboutViewController: UIViewController {
 
     @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var infoTextView: UITextView!
     
+    /// Initialize view controller after loading.
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setVersionLabel()
+    }
+    
+    /// Set label colour of app text box on iOS 13. This is needed in
+    /// dark mode.
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if #available(iOS 13.0, *) {
+            infoTextView.textColor = UIColor.label
+        }
     }
     
     /// Sets the version label.

@@ -59,7 +59,6 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         
         changeGradeDelegate = tabBarController as! TabBarController
         
-        setVersionLabel()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
@@ -88,13 +87,6 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         successBox.delegate = self
     }
 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        if #available(iOS 13.0, *) {
-            infoTextView.textColor = UIColor.label
-        }
-    }
-    
     /**
      * When view is closed register device token. We will not wait for result as registrations
      * occur repeatedly triggered by iOS.
@@ -115,17 +107,6 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         })
     }
     
-    private func setVersionLabel() {
-        return
-        let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject
-        
-        //Then just cast the object as a String, but be careful, you may want to double check for nil
-        let version = nsObject as! String
-        let versionString = String(format: "Pius-App für iOS Version %@", version)
-
-        versionLabel.text = versionString
-    }
-
     var changeGradeDelegate: ChangeGradeDelegate?
     
     // Checks if grade picker has selected an upper grade.

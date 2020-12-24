@@ -48,6 +48,9 @@ class SettingsPageViewController: UIPageViewController {
     /// page control height.
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        if #available(iOS 14.0, *) {
+            return
+        }
 
         let subViews = view.subviews
         var scrollView: UIScrollView? = nil
