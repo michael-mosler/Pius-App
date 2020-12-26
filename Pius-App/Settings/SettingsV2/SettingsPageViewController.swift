@@ -9,10 +9,17 @@
 import UIKit
 
 class SettingsPageViewController: UIPageViewController {
-    private(set) lazy var settingsViewControllers: [UIViewController] = {
+    private lazy var settingsViewControllers: [UIViewController] = {
         return [
             UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Preferences"),
             UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "About")
+        ]
+    }()
+    
+    private lazy var titles: [String] = {
+        return [
+            "Einstellungen",
+            "Über Pius-App"
         ]
     }()
     
@@ -89,24 +96,39 @@ class SettingsPageViewController: UIPageViewController {
 extension SettingsPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let index = settingsViewControllers.firstIndex(of: viewController) else { return nil }
-
+        
         let previousIndex = index - 1
-        guard previousIndex >= 0 else { return nil }
+        guard previousIndex >= 0 else {
+            title = titles[index]
+            return nil
+        }
         
-        guard settingsViewControllers.count > previousIndex else { return nil }
+        guard settingsViewControllers.count > previousIndex else {
+            title = titles[index]
+            return nil
+        }
         
+        title = titles[previousIndex]
         return settingsViewControllers[previousIndex]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let index = settingsViewControllers.firstIndex(of: viewController) else { return nil }
-
+        
         let nextIndex = index + 1
         let count = settingsViewControllers.count
-        guard count != nextIndex else { return nil }
+        guard count != nextIndex else {
+            title = titles[index]
+            return nil
+            
+        }
         
-        guard count > nextIndex else { return nil }
+        guard count > nextIndex else {
+            title = titles[index]
+            return nil
+        }
         
+        title = titles[nextIndex]
         return settingsViewControllers[nextIndex]
     }
 }
