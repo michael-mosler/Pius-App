@@ -149,6 +149,8 @@
 		4C94DFD32322522300C42998 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94DFD22322522300C42998 /* MessageCell.swift */; };
 		4C94DFD523257D3F00C42998 /* DateArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94DFD423257D3F00C42998 /* DateArithmetic.swift */; };
 		4C97C8F22594B24000FA665A /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97C8F12594B24000FA665A /* AboutViewController.swift */; };
+		4C97C91A2599E58000FA665A /* StaffTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97C9192599E58000FA665A /* StaffTableViewController.swift */; };
+		4C97C925259B7D1700FA665A /* StaffMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97C924259B7D1700FA665A /* StaffMemberTableViewCell.swift */; };
 		4CA4907720DE4DDC00796457 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4907620DE4DDC00796457 /* AppDefaults.swift */; };
 		4CA4907920DE532700796457 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
 		4CA4907A20DEA1C900796457 /* VertretungsplanLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */; };
@@ -408,6 +410,8 @@
 		4C94DFD22322522300C42998 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		4C94DFD423257D3F00C42998 /* DateArithmetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateArithmetic.swift; sourceTree = "<group>"; };
 		4C97C8F12594B24000FA665A /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		4C97C9192599E58000FA665A /* StaffTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffTableViewController.swift; sourceTree = "<group>"; };
+		4C97C924259B7D1700FA665A /* StaffMemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffMemberTableViewCell.swift; sourceTree = "<group>"; };
 		4CA4907620DE4DDC00796457 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		4CA50EBF2373377700718680 /* ScheduleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleData.swift; sourceTree = "<group>"; };
 		4CAC0434233D35F2005C6094 /* NewsArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticleViewController.swift; sourceTree = "<group>"; };
@@ -626,6 +630,8 @@
 			children = (
 				4C461F342593A94100F26FF7 /* SettingsPageViewController.swift */,
 				4C97C8F12594B24000FA665A /* AboutViewController.swift */,
+				4C97C9192599E58000FA665A /* StaffTableViewController.swift */,
+				4C97C924259B7D1700FA665A /* StaffMemberTableViewCell.swift */,
 			);
 			path = SettingsV2;
 			sourceTree = "<group>";
@@ -1492,6 +1498,7 @@
 				4CF02EAF218B559400647078 /* TabBarController.swift in Sources */,
 				4C1FDE5C20603DF1006092C9 /* DetailsCellTableViewCell.swift in Sources */,
 				4C5E0E7620A498DA00DAE459 /* Cache.swift in Sources */,
+				4C97C925259B7D1700FA665A /* StaffMemberTableViewCell.swift in Sources */,
 				4C8F8C3721CD560200A42862 /* MyCoursesTableViewCell.swift in Sources */,
 				4CFB105920D04BA600432B1A /* Calendar.swift in Sources */,
 				4C7C22902043117800ACA17B /* AppDelegate.swift in Sources */,
@@ -1518,6 +1525,7 @@
 				4C9368AF23093BA30038CE9B /* NewsTableDataSource.swift in Sources */,
 				4C1FDE50205568E3006092C9 /* ExpandableHeaderView.swift in Sources */,
 				4CBC31402218164100CEB1D1 /* EvaLoader.swift in Sources */,
+				4C97C91A2599E58000FA665A /* StaffTableViewController.swift in Sources */,
 				4C1FDE5E20697516006092C9 /* VertretungsplanLoader.swift in Sources */,
 				4CA4907720DE4DDC00796457 /* AppDefaults.swift in Sources */,
 				4CED4A7D204749580012CB45 /* EinstellungenViewController.swift in Sources */,

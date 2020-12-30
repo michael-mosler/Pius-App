@@ -12,6 +12,8 @@ struct StaffMember {
     var name: String
     var subjects: [String]
     var subjectsList: String { return subjects.joined(separator: ", ")}
+    var isTeacher: Bool = false
+    var email: String?
 
     init(fromJSON: [String: Any]) {
         guard let name = fromJSON["name"] as? String,
@@ -23,6 +25,8 @@ struct StaffMember {
         }
         self.name = name
         self.subjects = subjects
+        self.isTeacher = fromJSON["isTeacher"] as? Bool ?? false
+        self.email = fromJSON["email"] as? String
     }
 }
 
@@ -48,7 +52,19 @@ extension StaffDictionary {
                 filteredStaffDictionary.updateValue(staffMember, forKey: shortname)
             }
         }
-
+        return filteredStaffDictionary
+    }
+    
+    /// Filter dictionary by isTeacher flag.
+    /// - Parameter isTeacher: Flag value to filter on
+    /// - Returns: Filtered staff dictionary
+    func filter(isTeacher: Bool) -> StaffDictionary {
+        var filteredStaffDictionary = StaffDictionary()
+        for (shortname, staffMember) in self {
+            if staffMember.isTeacher == isTeacher {
+                filteredStaffDictionary.updateValue(staffMember, forKey: shortname)
+            }
+        }
         return filteredStaffDictionary
     }
 }

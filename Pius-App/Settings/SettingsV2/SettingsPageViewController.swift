@@ -8,10 +8,11 @@
 
 import UIKit
 
-class SettingsPageViewController: UIPageViewController {
+class SettingsPageViewController: UIPageViewController, UIPageViewControllerDelegate {
     private lazy var settingsViewControllers: [UIViewController] = {
         return [
             UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Preferences"),
+            UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Staff"),
             UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "About")
         ]
     }()
@@ -19,6 +20,7 @@ class SettingsPageViewController: UIPageViewController {
     private lazy var titles: [String] = {
         return [
             "Einstellungen",
+            "Kollegium",
             "Über Pius-App"
         ]
     }()
@@ -42,6 +44,7 @@ class SettingsPageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        delegate = self
         dataSource = self
         
         if let initialViewController = settingsViewControllers.first {
@@ -49,6 +52,7 @@ class SettingsPageViewController: UIPageViewController {
         }
         
         setupPageControl()
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     /// After sub-views have been layouted size embedded content to match
@@ -78,6 +82,53 @@ class SettingsPageViewController: UIPageViewController {
         }
     }
     
+    /// Sets page title when page transition has completed.
+    /// - Parameters:
+    ///   - pageViewController: Page view controller for which transition has completed
+    ///   - finished: Animation finished indicator
+    ///   - previousViewControllers: View controller transition has started from
+    ///   - completed: Transition completed indicator
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        guard completed,
+              let currentViewController = pageViewController.viewControllers?.first,
+              let index = settingsViewControllers.firstIndex(of: currentViewController)
+        else { return }
+        
+        title = titles[index]
+    }
+}
+
+extension SettingsPageViewController: UIPageViewControllerDataSource {
+    /// Returns view controller to be shown before given view controller
+    /// - Parameters:
+    ///   - pageViewController: Page view controller requesting info
+    ///   - viewController: Reference view controller
+    /// - Returns: Before view controller
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let index = settingsViewControllers.firstIndex(of: viewController) else { return nil }
+
+        let previousIndex = index - 1
+        guard previousIndex >= 0 else { return nil }
+        
+        return settingsViewControllers[previousIndex]
+    }
+    
+    /// Returns view controller to be shown before given view controller
+    /// - Parameters:
+    ///   - pageViewController: Page view controller requesting info
+    ///   - viewController: Reference view controller
+    /// - Returns: After view controller
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let index = settingsViewControllers.firstIndex(of: viewController) else { return nil }
+        
+        let nextIndex = index + 1
+        let count = settingsViewControllers.count
+        
+        guard count > nextIndex else { return nil }
+        
+        return settingsViewControllers[nextIndex]
+    }
+    
     /// Returns the number of pages to be shown.
     /// - Parameter pageViewController: The view controller number of pages is requested for.
     /// - Returns: The number of pages to show
@@ -90,45 +141,5 @@ class SettingsPageViewController: UIPageViewController {
     /// - Returns: Always 0.
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
-    }
-}
-
-extension SettingsPageViewController: UIPageViewControllerDataSource {
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let index = settingsViewControllers.firstIndex(of: viewController) else { return nil }
-        
-        let previousIndex = index - 1
-        guard previousIndex >= 0 else {
-            title = titles[index]
-            return nil
-        }
-        
-        guard settingsViewControllers.count > previousIndex else {
-            title = titles[index]
-            return nil
-        }
-        
-        title = titles[previousIndex]
-        return settingsViewControllers[previousIndex]
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let index = settingsViewControllers.firstIndex(of: viewController) else { return nil }
-        
-        let nextIndex = index + 1
-        let count = settingsViewControllers.count
-        guard count != nextIndex else {
-            title = titles[index]
-            return nil
-            
-        }
-        
-        guard count > nextIndex else {
-            title = titles[index]
-            return nil
-        }
-        
-        title = titles[nextIndex]
-        return settingsViewControllers[nextIndex]
     }
 }

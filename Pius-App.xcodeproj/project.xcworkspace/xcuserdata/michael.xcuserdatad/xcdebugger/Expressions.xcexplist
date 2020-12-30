@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "SettingsPageViewController.viewWillAppear(_:):SettingsPageViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tabBarController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in VertretungsplanLoader.load(_:):VertretungsplanLoader.swift">
       </ContextState>
       <ContextState
@@ -58,7 +66,15 @@
          contextName = "ScheduleItem.update(withDetails:):ScheduleData.swift">
       </ContextState>
       <ContextState
-         contextName = "EvaTableViewController.tableView(_:cellForRowAt:):EvaTableViewController.swift">
+         contextName = "SettingsPageViewController.pageViewController(_:viewControllerAfter:):SettingsPageViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "titles">
+            </PersistentString>
+            <PersistentString
+               value = "self.presentationIndex">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "TodayViewController.topRow.getter:TodayViewController.swift">
@@ -70,6 +86,9 @@
                value = "timetableDataSource.forDay">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EvaTableViewController.tableView(_:cellForRowAt:):EvaTableViewController.swift">
       </ContextState>
       <ContextState
          contextName = "EntityLoader.load(withLoaderDelegate:):StaffLoader.swift">
