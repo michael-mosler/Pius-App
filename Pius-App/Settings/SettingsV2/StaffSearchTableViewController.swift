@@ -21,11 +21,21 @@ class StaffSearchTableViewController: UITableViewController {
         }
         get { staffDictionary }
     }
-
+    
+    /// Returns number of rows in section.
+    /// - Parameters:
+    ///   - tableView: Table view
+    ///   - section: Section number
+    /// - Returns: Number of rows
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredStaffDictionary?.count ?? 0
     }
-
+    
+    /// Returns table view cell for index path.
+    /// - Parameters:
+    ///   - tableView: Table view
+    ///   - indexPath: Index path
+    /// - Returns: Table view cell to show at index path
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "staffMember", for: indexPath) as! StaffMemberSearchTableViewCell
 

@@ -49,11 +49,16 @@ class SettingsPageViewController: UIPageViewController, UIPageViewControllerDele
     /// navigation item.
     /// - Parameter index: Index of current view controller.
     private func setupNavigationItem(_ index: Array<UIViewController>.Index) {
-        if let activeViewController = settingsViewControllers[index] as? EmbeddedSettingsViewController {
-            navigationItem.hidesSearchBarWhenScrolling = false
-            navigationItem.searchController = activeViewController.searchController
+        if #available(iOS 13, *) {
+            navigationItem.searchController?.dismiss(animated: false, completion: {
+                self.navigationItem.searchController = nil
+            })
         } else {
             navigationItem.searchController = nil
+        }
+
+        if let activeViewController = settingsViewControllers[index] as? EmbeddedSettingsViewController {
+            navigationItem.searchController = activeViewController.searchController
         }
     }
 
@@ -63,7 +68,10 @@ class SettingsPageViewController: UIPageViewController, UIPageViewControllerDele
         
         delegate = self
         dataSource = self
-        
+
+        definesPresentationContext = true
+        navigationItem.hidesSearchBarWhenScrolling = false
+
         if let initialViewController = settingsViewControllers.first {
             setViewControllers([initialViewController], direction: .forward, animated: true, completion: nil)
             setupNavigationItem(0)
@@ -90,6 +98,7 @@ class SettingsPageViewController: UIPageViewController, UIPageViewControllerDele
 }
 
 extension SettingsPageViewController: UIPageViewControllerDataSource {
+    
     /// Returns view controller to be shown before given view controller
     /// - Parameters:
     ///   - pageViewController: Page view controller requesting info

@@ -166,6 +166,7 @@ class StaffTableViewController: UITableViewController, ExpandableHeaderViewDeleg
 }
 
 extension StaffTableViewController: UISearchResultsUpdating, UISearchControllerDelegate {
+    
     /// Update search result when user types into search field.
     /// - Parameter searchController: Search controller
     func updateSearchResults(for searchController: UISearchController) {
@@ -176,5 +177,8 @@ extension StaffTableViewController: UISearchResultsUpdating, UISearchControllerD
         
         searchViewController.filteredStaffDictionary = filteredResult
         searchViewController.tableView.reloadData()
+    }
+    
+    func willDismissSearchController(_ searchController: UISearchController) {
     }
 }
