@@ -25,15 +25,22 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        NSLog("init(coder:) has not been implemented")
     }
     
+    /// Action function called when header is tapped.
+    /// - Parameter gestureRecognizer: Gesture recognizer
     @objc func selectHeaderAction(gestureRecognizer: UITapGestureRecognizer) {
         let cell = gestureRecognizer.view as! ExpandableHeaderView
         expanded = !expanded
         delegate?.toggleSection(header: self, section: cell.section)
     }
     
+    /// Custom initialization of expandle header view.
+    /// - Parameters:
+    ///   - userInteractionEnabled: Pass true if enabled
+    ///   - section: Table section no. this header is for
+    ///   - expanded: Pass true if initially expanded
+    ///   - delegate: Delegate to call when header is toggled
     func customInit(
         userInteractionEnabled: Bool = true, section: Int, expanded: Bool = true,
         delegate: ExpandableHeaderViewDelegate) {
@@ -46,6 +53,7 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
         self.isUserInteractionEnabled = userInteractionEnabled
     }
     
+    /// Sets look and feel of expandable header table cell.
     override func layoutSubviews() {
         super.layoutSubviews()
 

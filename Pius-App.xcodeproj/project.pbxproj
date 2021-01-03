@@ -62,6 +62,7 @@
 		4C20ABB225225CA500415133 /* VertretungsplanLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE5D20697510006092C9 /* VertretungsplanLoader.swift */; };
 		4C20ABBB25225CBF00415133 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E0E7520A498DA00DAE459 /* Cache.swift */; };
 		4C20ABC425225CC800415133 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2AF512198813C007E5D1F /* Reachability.swift */; };
+		4C219D4225A213EB00BA9BEA /* StaffSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C219D4125A213EB00BA9BEA /* StaffSearchTableViewController.swift */; };
 		4C21EAE922BBB269006EE613 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21EAE822BBB269006EE613 /* String.swift */; };
 		4C300F392126BFEE00D6E129 /* Pius-App Notification-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4CFB122B210F887E00BC4B44 /* Pius-App Notification-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4C461F352593A94100F26FF7 /* SettingsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C461F342593A94100F26FF7 /* SettingsPageViewController.swift */; };
@@ -331,6 +332,7 @@
 		4C20AB0E2520F5CA00415133 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C20AB102520F5CA00415133 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C20AB42252242B300415133 /* pius-app-2-vplanExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pius-app-2-vplanExtension.entitlements"; sourceTree = "<group>"; };
+		4C219D4125A213EB00BA9BEA /* StaffSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffSearchTableViewController.swift; sourceTree = "<group>"; };
 		4C21EAE822BBB269006EE613 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		4C461F342593A94100F26FF7 /* SettingsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPageViewController.swift; sourceTree = "<group>"; };
 		4C48F69B21F4E01300B20505 /* Pius-App for WatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pius-App for WatchOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -632,6 +634,7 @@
 				4C97C8F12594B24000FA665A /* AboutViewController.swift */,
 				4C97C9192599E58000FA665A /* StaffTableViewController.swift */,
 				4C97C924259B7D1700FA665A /* StaffMemberTableViewCell.swift */,
+				4C219D4125A213EB00BA9BEA /* StaffSearchTableViewController.swift */,
 			);
 			path = SettingsV2;
 			sourceTree = "<group>";
@@ -1521,6 +1524,7 @@
 				4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */,
 				4CB97F17210A53940019973D /* DeviceTokenManager.swift in Sources */,
 				4C798297248A9F7E00A51DD7 /* EntityLoader.swift in Sources */,
+				4C219D4225A213EB00BA9BEA /* StaffSearchTableViewController.swift in Sources */,
 				4C49EC1124015A1D00FB9B6A /* ScheduleCollectionView.swift in Sources */,
 				4C9368AF23093BA30038CE9B /* NewsTableDataSource.swift in Sources */,
 				4C1FDE50205568E3006092C9 /* ExpandableHeaderView.swift in Sources */,

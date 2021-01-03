@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol EmbeddedSettingsViewController {
+    var searchController: UISearchController? { get }
+}
+
 class SettingsPageViewController: UIPageViewController, UIPageViewControllerDelegate {
     private lazy var settingsViewControllers: [UIViewController] = {
         return [
@@ -40,6 +44,19 @@ class SettingsPageViewController: UIPageViewController, UIPageViewControllerDele
         appearance.frame.size = CGSize(width: 30, height: 10)
     }
     
+    /// Set up navigation item for display of view controller with given index.
+    /// If view controller supports searching then searchbar is shown in
+    /// navigation item.
+    /// - Parameter index: Index of current view controller.
+    private func setupNavigationItem(_ index: Array<UIViewController>.Index) {
+        if let activeViewController = settingsViewControllers[index] as? EmbeddedSettingsViewController {
+            navigationItem.hidesSearchBarWhenScrolling = false
+            navigationItem.searchController = activeViewController.searchController
+        } else {
+            navigationItem.searchController = nil
+        }
+    }
+
     /// After view controller has been loaded set up page control.
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,10 +66,10 @@ class SettingsPageViewController: UIPageViewController, UIPageViewControllerDele
         
         if let initialViewController = settingsViewControllers.first {
             setViewControllers([initialViewController], direction: .forward, animated: true, completion: nil)
+            setupNavigationItem(0)
         }
         
         setupPageControl()
-        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     /// Sets page title when page transition has completed.
@@ -67,6 +84,7 @@ class SettingsPageViewController: UIPageViewController, UIPageViewControllerDele
               let index = settingsViewControllers.firstIndex(of: currentViewController)
         else { return }
         
+        setupNavigationItem(index)
         title = titles[index]
     }
 }

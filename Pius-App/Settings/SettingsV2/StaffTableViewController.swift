@@ -8,7 +8,9 @@
 
 import UIKit
 
-class StaffTableViewController: UITableViewController, ExpandableHeaderViewDelegate {
+class StaffTableViewController: UITableViewController, ExpandableHeaderViewDelegate, EmbeddedSettingsViewController {
+
+    private(set) var searchController: UISearchController?
     private var staffDictionary: StaffDictionary = StaffDictionary()
     private var teacherDictionary: StaffDictionary = StaffDictionary()
     private var teacherKeys: [String] = []
@@ -35,7 +37,21 @@ class StaffTableViewController: UITableViewController, ExpandableHeaderViewDeleg
             return 0
         }
     }
+    
+    /// Required constructor initializes search control.
+    /// - Parameter coder: Coder
+    required init?(coder: NSCoder) {
+        let searchViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StaffSeachResult")
+        searchController = UISearchController(searchResultsController: searchViewController)
+        searchController?.obscuresBackgroundDuringPresentation = false
 
+        super.init(coder: coder)
+
+        searchController?.searchResultsUpdater = self
+        searchController?.delegate = self
+    }
+    
+    /// Initialize all values that cannot be initialized in constructor.
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -147,4 +163,18 @@ class StaffTableViewController: UITableViewController, ExpandableHeaderViewDeleg
     func toggleSection(header: ExpandableHeaderView, section: Int) {
         tableView.reloadSections(IndexSet(integer: section), with: .automatic)
      }
+}
+
+extension StaffTableViewController: UISearchResultsUpdating, UISearchControllerDelegate {
+    /// Update search result when user types into search field.
+    /// - Parameter searchController: Search controller
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchViewController = searchController.searchResultsController as? StaffSearchTableViewController else { return }
+        
+        let searchText = searchController.searchBar.text
+        let filteredResult = staffDictionary.filter(by: searchText)
+        
+        searchViewController.filteredStaffDictionary = filteredResult
+        searchViewController.tableView.reloadData()
+    }
 }
