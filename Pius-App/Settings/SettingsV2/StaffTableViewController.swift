@@ -15,6 +15,27 @@ class StaffTableViewController: UITableViewController, ExpandableHeaderViewDeleg
     private var nonTeacherDictionary: StaffDictionary = StaffDictionary()
     private var nonTeacherKeys: [String] = []
     
+    private lazy var sectionHeaders: [ExpandableHeaderView] = {
+        return [
+            ExpandableHeaderView(),
+            ExpandableHeaderView()
+        ]
+    }()
+    
+    /// Retutns number of rows in given section.
+    /// - Parameter section: Section number
+    /// - Returns: Nunber of rows in section
+    private func numberOfRowsInSection(_ section: Int) -> Int {
+        switch section {
+        case 0:
+            return teacherDictionary.count
+        case 1:
+            return nonTeacherDictionary.count
+        default:
+            return 0
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,17 +53,7 @@ class StaffTableViewController: UITableViewController, ExpandableHeaderViewDeleg
     /// - Parameter tableView: Table view
     /// - Returns: Number of sections
     override func numberOfSections(in tableView: UITableView) -> Int {
-        var sections = 0
-        
-        if teacherDictionary.count > 0 {
-            sections += 1
-        }
-        
-        if nonTeacherDictionary.count > 0 {
-            sections += 1
-        }
-
-        return sections
+        return 2
     }
     
     /// Returns number of rows in section.
@@ -51,14 +62,8 @@ class StaffTableViewController: UITableViewController, ExpandableHeaderViewDeleg
     ///   - section: Section for which number of rows is requested
     /// - Returns: Number of rows in section
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return teacherDictionary.count
-        case 1:
-            return nonTeacherDictionary.count
-        default:
-            return 0
-        }
+        guard section < 2, sectionHeaders[section].expanded else { return 0 }
+        return numberOfRowsInSection(section)
     }
     
     /// Return section header view. Here we use ExpandableHeaderView as section header.
@@ -67,25 +72,33 @@ class StaffTableViewController: UITableViewController, ExpandableHeaderViewDeleg
     ///   - section: Section which header is needed for
     /// - Returns: Header view
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = ExpandableHeaderView()
-        var enabled: Bool
+        guard section < 2 else { return ExpandableHeaderView() }
         
-        switch section {
-        case 0:
-            enabled = teacherDictionary.count > 0
-        case 1:
-            enabled = nonTeacherDictionary.count > 0
-        default:
-            enabled = false
-        }
-        
+        let header = sectionHeaders[section]
+        let enabled = numberOfRowsInSection(section) > 0
+                
         header.customInit(
             userInteractionEnabled: enabled,
             section: section,
             delegate: self)
         return header
     }
+    
+    /// Returns height for section footer. This adds some space between
+    /// section headers
+    /// - Parameters:
+    ///   - tableView: Table view
+    ///   - section: Section number
+    /// - Returns: Height for section footer
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return section < 2 ? 2 : 0
+    }
 
+    /// Return title for section.
+    /// - Parameters:
+    ///   - tableView: Table view
+    ///   - section: Section which title is needed for
+    /// - Returns: Section title
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
@@ -97,6 +110,11 @@ class StaffTableViewController: UITableViewController, ExpandableHeaderViewDeleg
         }
     }
     
+    /// Tables data source function; returns rows for each section.
+    /// - Parameters:
+    ///   - tableView: Table view
+    ///   - indexPath: Address of the row fow which a cell must be returned.
+    /// - Returns: Table view cell to use at index path
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "staffMember", for: indexPath) as! StaffMemberTableViewCell
         var shorthandSymbol: String
@@ -122,23 +140,11 @@ class StaffTableViewController: UITableViewController, ExpandableHeaderViewDeleg
         return cell
     }
     
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        /*
-        if scrollView.contentOffset.y <= 0 {
-            self.navigationItem.largeTitleDisplayMode = .always
-        } else {
-            self.navigationItem.largeTitleDisplayMode = .never
-        }
-        self.navigationController?.navigationBar.setNeedsLayout()
-        self.view.setNeedsLayout()
-        UIView.animate(withDuration: 0.25, animations: {
-            self.navigationController?.navigationBar.layoutIfNeeded()
-            self.view.layoutIfNeeded()
-        })
-        */
-    }
-    
+    /// Toggles expansion of a given section.
+    /// - Parameters:
+    ///   - header: Header view for section
+    ///   - section: Section to toggle
     func toggleSection(header: ExpandableHeaderView, section: Int) {
-        return
-    }
+        tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+     }
 }

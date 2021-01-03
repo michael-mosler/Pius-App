@@ -55,33 +55,6 @@ class SettingsPageViewController: UIPageViewController, UIPageViewControllerDele
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
-    /// After sub-views have been layouted size embedded content to match
-    /// page control height.
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if #available(iOS 14.0, *) {
-            return
-        }
-
-        let subViews = view.subviews
-        var scrollView: UIScrollView? = nil
-        var pageControl: UIPageControl? = nil
-
-        for view in subViews {
-            if let _ = view as? UIScrollView {
-                scrollView = view as? UIScrollView
-            }
-            else if let _ = view as? UIPageControl {
-                pageControl = view as? UIPageControl
-            }
-        }
-
-        if (scrollView != nil && pageControl != nil) {
-            scrollView?.frame = view.bounds
-            view.bringSubviewToFront(pageControl!)
-        }
-    }
-    
     /// Sets page title when page transition has completed.
     /// - Parameters:
     ///   - pageViewController: Page view controller for which transition has completed
