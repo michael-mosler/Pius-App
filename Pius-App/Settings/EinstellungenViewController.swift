@@ -10,13 +10,16 @@ import UIKit
 import WidgetKit
 import BEMCheckBox
 
-class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIScrollViewDelegate, BEMCheckBoxDelegate {
+class EinstellungenViewController:
+    UIViewController,
+    UIPickerViewDataSource, UIPickerViewDelegate,
+    UITextFieldDelegate, UIScrollViewDelegate, BEMCheckBoxDelegate {
+    
     @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var webSiteUserNameField: UITextField!
     @IBOutlet weak var webSitePasswordField: UITextField!
     @IBOutlet weak var myCoursesButton: UIButton!
-    @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var gradePickerView: UIPickerView!
@@ -25,7 +28,6 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var timetableSwitch: UISwitch!
     
-    @IBOutlet weak var infoTextView: UITextView!
     @IBOutlet weak var successBox: BEMCheckBox!
     
     // The active text field, is either webSizeUserNameField or webSitePasswordField.

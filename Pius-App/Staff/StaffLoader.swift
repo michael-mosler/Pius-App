@@ -46,26 +46,18 @@ extension StaffDictionary {
     func filter(by: String?) -> StaffDictionary {
         guard let by = by, by.count > 0 else { return self }
 
-        var filteredStaffDictionary = StaffDictionary()
-        for (shortname, staffMember) in self {
-            if shortname.contains(by) || staffMember.name.contains(by) || staffMember.subjectsList.contains(by) {
-                filteredStaffDictionary.updateValue(staffMember, forKey: shortname)
-            }
-        }
-        return filteredStaffDictionary
+        return filter({ (shortname, staffMember) in
+            shortname.contains(by) || staffMember.name.contains(by) || staffMember.subjectsList.contains(by)
+        })
     }
     
     /// Filter dictionary by isTeacher flag.
     /// - Parameter isTeacher: Flag value to filter on
     /// - Returns: Filtered staff dictionary
     func filter(isTeacher: Bool) -> StaffDictionary {
-        var filteredStaffDictionary = StaffDictionary()
-        for (shortname, staffMember) in self {
-            if staffMember.isTeacher == isTeacher {
-                filteredStaffDictionary.updateValue(staffMember, forKey: shortname)
-            }
-        }
-        return filteredStaffDictionary
+        return filter({ (_, staffMember) in
+            staffMember.isTeacher == isTeacher
+        })
     }
 }
 
