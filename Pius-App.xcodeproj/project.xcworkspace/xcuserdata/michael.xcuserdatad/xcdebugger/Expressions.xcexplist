@@ -69,10 +69,10 @@
          contextName = "SettingsPageViewController.pageViewController(_:viewControllerAfter:):SettingsPageViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "titles">
+               value = "self.presentationIndex">
             </PersistentString>
             <PersistentString
-               value = "self.presentationIndex">
+               value = "titles">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -123,6 +123,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "AboutViewController.colorLabelText(label:):AboutViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "labelText.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "TimetableDataSource.tableView(_:cellForRowAt:):TimetableDataSource.swift">
          <PersistentStrings>
             <PersistentString
@@ -151,6 +159,17 @@
          <PersistentStrings>
             <PersistentString
                value = "error.localizedDescription">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in AboutViewController.colorLabelText(label:):AboutViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "range.lowerBound">
+            </PersistentString>
+            <PersistentString
+               value = "range.upperBound">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

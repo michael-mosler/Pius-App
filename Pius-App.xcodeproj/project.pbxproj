@@ -175,6 +175,7 @@
 		4CB3EC7E20DC0ECB00BBEAE0 /* Pius-App Vertretungsplan.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4CB3EC7220DC0ECA00BBEAE0 /* Pius-App Vertretungsplan.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4CB97F17210A53940019973D /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB97F16210A53940019973D /* DeviceTokenManager.swift */; };
 		4CBC31402218164100CEB1D1 /* EvaLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBC313F2218164100CEB1D1 /* EvaLoader.swift */; };
+		4CBEB3EF25A50072008920DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C48F6A021F4E01400B20505 /* Assets.xcassets */; };
 		4CC332CF2180DAB10055E3F5 /* MetaDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC332CE2180DAB10055E3F5 /* MetaDataTableViewCell.swift */; };
 		4CC332D12180DF580055E3F5 /* MetaDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC332D02180DF580055E3F5 /* MetaDataCollectionViewCell.swift */; };
 		4CC3F9A821C520D800DB98B7 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3F9A621C520D700DB98B7 /* SF-Pro-Display-Regular.otf */; };
@@ -1317,6 +1318,7 @@
 				4CC3F9A921C520D800DB98B7 /* SF-Pro-Display-Bold.otf in Resources */,
 				4C7C22972043117800ACA17B /* Assets.xcassets in Resources */,
 				4CC3F9A821C520D800DB98B7 /* SF-Pro-Display-Regular.otf in Resources */,
+				4CBEB3EF25A50072008920DF /* Assets.xcassets in Resources */,
 				4C7C22952043117800ACA17B /* Main.storyboard in Resources */,
 				4C93688022F827C20038CE9B /* TimetableStoryboard.storyboard in Resources */,
 			);
