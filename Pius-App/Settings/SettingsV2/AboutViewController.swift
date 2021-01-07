@@ -33,6 +33,23 @@ class AboutViewController: UIViewController, UIGestureRecognizerDelegate {
         gitHubLabelOutlet.colorText(with: linkColor)
     }
     
+    /// When view reappears bring tabbar item title in sync with
+    /// selected view controller.
+    /// - Parameter animated: Passed to super-class method call
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.selectedItem?.title = title
+    }
+
+    /// Set label colour of app text box on iOS 13. This is needed in
+    /// dark mode.
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if #available(iOS 13.0, *) {
+            infoTextViewOutlet.textColor = UIColor.label
+        }
+    }
+    
     /// Handle tap gesture on label.
     /// - Parameter gestureRecognizer: Gesture recognizer that received tap.
     @objc func handleTap(gestureRecognizer: UILongPressGestureRecognizer) {
@@ -47,15 +64,6 @@ class AboutViewController: UIViewController, UIGestureRecognizerDelegate {
         UIApplication.shared.open(url)
     }
 
-    /// Set label colour of app text box on iOS 13. This is needed in
-    /// dark mode.
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        if #available(iOS 13.0, *) {
-            infoTextViewOutlet.textColor = UIColor.label
-        }
-    }
-    
     /// Build view to URL map. This map is used by handleTap()
     /// to open URL assigned to label.
     private func buildLabelToUrlMap() {

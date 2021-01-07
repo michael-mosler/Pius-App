@@ -65,6 +65,14 @@ class StaffTableViewController: UITableViewController, ExpandableHeaderViewDeleg
         nonTeacherKeys = nonTeacherDictionary.sortdedKeys
     }
     
+    /// When view reappears bring tabbar item title in sync with
+    /// selected view controller.
+    /// - Parameter animated: Passed to super-class method call
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.selectedItem?.title = title
+    }
+    
     /// Returns the number of sections to show.
     /// - Parameter tableView: Table view
     /// - Returns: Number of sections

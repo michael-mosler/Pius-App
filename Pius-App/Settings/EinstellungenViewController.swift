@@ -89,6 +89,14 @@ class EinstellungenViewController:
         successBox.delegate = self
     }
 
+    /// When view reappears bring tabbar item title in sync with
+    /// selected view controller.
+    /// - Parameter animated: Passed to super-class method call
+override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.selectedItem?.title = title
+    }
+
     /**
      * When view is closed register device token. We will not wait for result as registrations
      * occur repeatedly triggered by iOS.

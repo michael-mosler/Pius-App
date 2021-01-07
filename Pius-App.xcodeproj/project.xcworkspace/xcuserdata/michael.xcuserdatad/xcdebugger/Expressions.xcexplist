@@ -8,6 +8,9 @@
             <PersistentString
                value = "tabBarController">
             </PersistentString>
+            <PersistentString
+               value = "titles[index]">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
@@ -99,6 +102,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "StaffTableViewController.viewWillAppear(_:):StaffTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tabBarController?.tabBar.selectedItem">
+            </PersistentString>
+            <PersistentString
+               value = "title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "DashboardCell.layoutIfNeeded():TodayTableItemCells.swift">
          <PersistentStrings>
             <PersistentString
@@ -131,6 +145,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "SettingsPageViewController.viewDidLoad():SettingsPageViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tabBarItem">
+            </PersistentString>
+            <PersistentString
+               value = "tabBarController.tabBar.selectedItem">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "TimetableDataSource.tableView(_:cellForRowAt:):TimetableDataSource.swift">
          <PersistentStrings>
             <PersistentString
@@ -151,6 +176,14 @@
          <PersistentStrings>
             <PersistentString
                value = "collectionView.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SettingsPageViewController.viewDidAppear(_:):SettingsPageViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "settingsViewControllers.firstIndex(of: viewController)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

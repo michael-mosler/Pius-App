@@ -28,6 +28,8 @@ class SettingsPageViewController: UIPageViewController, UIPageViewControllerDele
             "Über Pius-App"
         ]
     }()
+
+    private var myTabBarItem: UITabBarItem?
     
     /// Sets up page control colors.
     private func setupPageControl() {
@@ -60,11 +62,17 @@ class SettingsPageViewController: UIPageViewController, UIPageViewControllerDele
         if let activeViewController = settingsViewControllers[index] as? EmbeddedSettingsViewController {
             navigationItem.searchController = activeViewController.searchController
         }
+        
+        settingsViewControllers[index].title = titles[index]
+        title = titles[index]
     }
 
     /// After view controller has been loaded set up page control.
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Remember linked tabbar item.
+        myTabBarItem = tabBarController?.tabBar.selectedItem
         
         delegate = self
         dataSource = self
@@ -80,6 +88,13 @@ class SettingsPageViewController: UIPageViewController, UIPageViewControllerDele
         setupPageControl()
     }
     
+    /// Restore tabbar item title when view disappears.
+    /// - Parameter animated: Passed to super class method call.
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        myTabBarItem?.title = "Mehr"
+    }
+    
     /// Sets page title when page transition has completed.
     /// - Parameters:
     ///   - pageViewController: Page view controller for which transition has completed
@@ -93,7 +108,6 @@ class SettingsPageViewController: UIPageViewController, UIPageViewControllerDele
         else { return }
         
         setupNavigationItem(index)
-        title = titles[index]
     }
 }
 
