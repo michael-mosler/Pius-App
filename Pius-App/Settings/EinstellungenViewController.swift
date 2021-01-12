@@ -10,13 +10,16 @@ import UIKit
 import WidgetKit
 import BEMCheckBox
 
-class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIScrollViewDelegate, BEMCheckBoxDelegate {
+class EinstellungenViewController:
+    UIViewController,
+    UIPickerViewDataSource, UIPickerViewDelegate,
+    UITextFieldDelegate, UIScrollViewDelegate, BEMCheckBoxDelegate {
+    
     @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var webSiteUserNameField: UITextField!
     @IBOutlet weak var webSitePasswordField: UITextField!
     @IBOutlet weak var myCoursesButton: UIButton!
-    @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var gradePickerView: UIPickerView!
@@ -25,7 +28,6 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var timetableSwitch: UISwitch!
     
-    @IBOutlet weak var infoTextView: UITextView!
     @IBOutlet weak var successBox: BEMCheckBox!
     
     // The active text field, is either webSizeUserNameField or webSitePasswordField.
@@ -59,7 +61,6 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         
         changeGradeDelegate = tabBarController as! TabBarController
         
-        setVersionLabel()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
@@ -88,13 +89,14 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         successBox.delegate = self
     }
 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        if #available(iOS 13.0, *) {
-            infoTextView.textColor = UIColor.label
-        }
+    /// When view reappears bring tabbar item title in sync with
+    /// selected view controller.
+    /// - Parameter animated: Passed to super-class method call
+override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.selectedItem?.title = title
     }
-    
+
     /**
      * When view is closed register device token. We will not wait for result as registrations
      * occur repeatedly triggered by iOS.
@@ -115,16 +117,6 @@ class EinstellungenViewController: UIViewController, UIPickerViewDataSource, UIP
         })
     }
     
-    private func setVersionLabel() {
-        let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject
-        
-        //Then just cast the object as a String, but be careful, you may want to double check for nil
-        let version = nsObject as! String
-        let versionString = String(format: "Pius-App für iOS Version %@", version)
-
-        versionLabel.text = versionString
-    }
-
     var changeGradeDelegate: ChangeGradeDelegate?
     
     // Checks if grade picker has selected an upper grade.

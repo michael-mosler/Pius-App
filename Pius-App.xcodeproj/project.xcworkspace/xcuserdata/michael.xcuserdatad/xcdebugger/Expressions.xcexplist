@@ -3,6 +3,17 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "SettingsPageViewController.viewWillAppear(_:):SettingsPageViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tabBarController">
+            </PersistentString>
+            <PersistentString
+               value = "titles[index]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in VertretungsplanLoader.load(_:):VertretungsplanLoader.swift">
       </ContextState>
       <ContextState
@@ -58,7 +69,15 @@
          contextName = "ScheduleItem.update(withDetails:):ScheduleData.swift">
       </ContextState>
       <ContextState
-         contextName = "EvaTableViewController.tableView(_:cellForRowAt:):EvaTableViewController.swift">
+         contextName = "SettingsPageViewController.pageViewController(_:viewControllerAfter:):SettingsPageViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.presentationIndex">
+            </PersistentString>
+            <PersistentString
+               value = "titles">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "TodayViewController.topRow.getter:TodayViewController.swift">
@@ -72,10 +91,24 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "EvaTableViewController.tableView(_:cellForRowAt:):EvaTableViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "EntityLoader.load(withLoaderDelegate:):StaffLoader.swift">
          <PersistentStrings>
             <PersistentString
                value = "AppDefaults.baseUrl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StaffTableViewController.viewWillAppear(_:):StaffTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tabBarController?.tabBar.selectedItem">
+            </PersistentString>
+            <PersistentString
+               value = "title">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -104,6 +137,25 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "AboutViewController.colorLabelText(label:):AboutViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "labelText.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SettingsPageViewController.viewDidLoad():SettingsPageViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tabBarItem">
+            </PersistentString>
+            <PersistentString
+               value = "tabBarController.tabBar.selectedItem">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "TimetableDataSource.tableView(_:cellForRowAt:):TimetableDataSource.swift">
          <PersistentStrings>
             <PersistentString
@@ -128,10 +180,29 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "SettingsPageViewController.viewDidAppear(_:):SettingsPageViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "settingsViewControllers.firstIndex(of: viewController)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "static AppDefaults.timetable.getter:AppDefaults.swift">
          <PersistentStrings>
             <PersistentString
                value = "error.localizedDescription">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in AboutViewController.colorLabelText(label:):AboutViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "range.lowerBound">
+            </PersistentString>
+            <PersistentString
+               value = "range.upperBound">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
