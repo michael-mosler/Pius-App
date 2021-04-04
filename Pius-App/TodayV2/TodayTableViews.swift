@@ -32,20 +32,47 @@ class TodayItemTableView: UITableView {
     }
 }
 
-/* *************************************************************************
- * News table view shows up to 6 news items with a preview image.
- * When selecting one item article is opened in a modal popover.
- * *************************************************************************/
-class NewsTableView: TodayItemTableView, UITableViewDelegate, UIPopoverPresentationControllerDelegate {
+/// News table view shows up to 6 news items with a preview image.
+/// When selecting one item article is opened in a modal popover.
+class NewsTableView: TodayItemTableView,
+                     UITableViewDelegate,
+                     UIPopoverPresentationControllerDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         delegate = self
         dataSource = TodayV2TableViewController.shared.dataSource(forType: .news)
     }
     
+    /// Opens a given URL with browser engine selected by user.
+    /// - Parameters:
+    ///   - selection:Browser engine to use.
+    ///   - url: URL to open
+    private func openUrl(selection: AppDefaults.BrowserSelection, url: URL) {
+        if selection == .useInternal {
+            TodayV2TableViewController.shared.controller?.perform(segue: "showNews", with: url, presentModally: true)
+        } else {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    /// This function gets called whenever the use selects a news row.
+    /// - Parameters:
+    ///   - tableView: News table view
+    ///   - indexPath: Index path of row that has been selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? NewsTableViewCell, let href = cell.href, let url = URL(string: href) else { return }
-        TodayV2TableViewController.shared.controller?.perform(segue: "showNews", with: url, presentModally: true)
+        
+        // Ask for browser engine to use. Once the selection is made onSelect-handler function
+        // is called which will delegate open request to openURL function.
+        let browserSelection = BrowserSelection(
+            parentViewController: TodayV2TableViewController.shared.controller as? UIViewController,
+            onSelect: { (url: URL) in
+                return { (selection: AppDefaults.BrowserSelection) in
+                    self.openUrl(selection: selection, url: url)
+                }
+            }(url))
+
+        browserSelection.choice()
     }
 }
 

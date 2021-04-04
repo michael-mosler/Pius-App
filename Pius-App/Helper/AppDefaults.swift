@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// This class gives access to all persistent settings.
 struct AppDefaults {
     // API Key for middleware access
     static var apiKey: String {
@@ -244,6 +245,39 @@ struct AppDefaults {
             } else {
                 return false
             }
+        }
+    }
+    
+    /// Possible decisions on browser engine. Option ask will cause user to
+    /// be asked every time a page needsto be opened in some kind of web view.
+    enum BrowserSelection: Int {
+        case useInternal = 0,
+             useSafari = 1
+    }
+
+    /// Defines the browser to use when opening news pages. Default is
+    /// to always ask user. User may decide to either use Safari,
+    /// internal WebView or to be asked always.
+    static var browser: BrowserSelection {
+        set {
+            sharedDefaults?.set(newValue.rawValue, forKey: "browser")
+        }
+        
+        get {
+            let rawSelectionValue = sharedDefaults?.integer(forKey: "browser") ?? 0
+            return BrowserSelection(rawValue: rawSelectionValue) ?? .useInternal
+        }
+    }
+    
+    /// If true the app will remember users browser selection and it will not ask
+    /// again when a web page is displayed. This can be changed in settings.
+    static var rememberBrowserSelection: Bool {
+        set {
+            sharedDefaults?.setValue(newValue, forKey: "rememberBrowserSelection")
+        }
+        
+        get {
+            return sharedDefaults?.bool(forKey: "rememberBrowserSelection") ?? false
         }
     }
 }

@@ -32,6 +32,8 @@
 		4C09402C2385C34F0077C034 /* ExtDashboardItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C09402B2385C34F0077C034 /* ExtDashboardItemCell.swift */; };
 		4C09402F238EEE970077C034 /* TimetableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C09402E238EEE970077C034 /* TimetableHelper.swift */; };
 		4C094030238EEEBD0077C034 /* TimetableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C09402E238EEE970077C034 /* TimetableHelper.swift */; };
+		4C18103926175383005123F5 /* BrowserSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C18103826175383005123F5 /* BrowserSelection.swift */; };
+		4C18104D2619DBCC005123F5 /* Sheeeeeeeeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C18104C2619DBCC005123F5 /* Sheeeeeeeeet.framework */; };
 		4C194B4C204AFB3500BA744A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C194B4B204AFB3500BA744A /* WebKit.framework */; };
 		4C1AC38221BED6CD00E2F3A5 /* PostingsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */; };
 		4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */; };
@@ -312,6 +314,8 @@
 		4C0940262381C7AF0077C034 /* DashboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardDataSource.swift; sourceTree = "<group>"; };
 		4C09402B2385C34F0077C034 /* ExtDashboardItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtDashboardItemCell.swift; sourceTree = "<group>"; };
 		4C09402E238EEE970077C034 /* TimetableHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableHelper.swift; sourceTree = "<group>"; };
+		4C18103826175383005123F5 /* BrowserSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserSelection.swift; sourceTree = "<group>"; };
+		4C18104C2619DBCC005123F5 /* Sheeeeeeeeet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sheeeeeeeeet.framework; path = Carthage/Build/iOS/Sheeeeeeeeet.framework; sourceTree = "<group>"; };
 		4C194B4B204AFB3500BA744A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingsLoader.swift; sourceTree = "<group>"; };
 		4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanViewController.swift; sourceTree = "<group>"; };
@@ -498,6 +502,7 @@
 			files = (
 				4C50AD9B239AC45100A2551D /* BEMCheckBox.framework in Frameworks */,
 				4C69EA6621E213B5008B77FB /* MGSwipeTableCell.framework in Frameworks */,
+				4C18104D2619DBCC005123F5 /* Sheeeeeeeeet.framework in Frameworks */,
 				4CEBAD0B21C5613600E152BF /* Kingfisher.framework in Frameworks */,
 				4C7E61AA20A438A0000D1225 /* SystemConfiguration.framework in Frameworks */,
 				4C194B4C204AFB3500BA744A /* WebKit.framework in Frameworks */,
@@ -542,6 +547,7 @@
 		4C194B4A204AFB3500BA744A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4C18104C2619DBCC005123F5 /* Sheeeeeeeeet.framework */,
 				4C50AD9A239AC45100A2551D /* BEMCheckBox.framework */,
 				4C69EA6521E213B5008B77FB /* MGSwipeTableCell.framework */,
 				4CEBAD0A21C5613600E152BF /* Kingfisher.framework */,
@@ -591,6 +597,7 @@
 				4C21EAE822BBB269006EE613 /* String.swift */,
 				4C94DFD423257D3F00C42998 /* DateArithmetic.swift */,
 				4C798296248A9F7E00A51DD7 /* EntityLoader.swift */,
+				4C18103826175383005123F5 /* BrowserSelection.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1363,6 +1370,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/MGSwipeTableCell.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BEMCheckBox.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Sheeeeeeeeet.framework",
 			);
 			outputFileListPaths = (
 			);
@@ -1522,6 +1530,7 @@
 				4CFB105720D0490B00432B1A /* CalendarLoader.swift in Sources */,
 				4C1AC38221BED6CD00E2F3A5 /* PostingsLoader.swift in Sources */,
 				4C48F6D121F6433C00B20505 /* IOSHelper.swift in Sources */,
+				4C18103926175383005123F5 /* BrowserSelection.swift in Sources */,
 				4CAC0435233D35F2005C6094 /* NewsArticleViewController.swift in Sources */,
 				4CED4A84204AE3510012CB45 /* KeychainConfiguration.swift in Sources */,
 				4CB97F17210A53940019973D /* DeviceTokenManager.swift in Sources */,
