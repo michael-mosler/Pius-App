@@ -51,7 +51,7 @@ class BrowserSelection {
 
         let useInternal = AppDefaults.browser == .useInternal
         let userSafari = AppDefaults.browser == .useSafari
-        
+
         let item1 = SingleSelectItem(title: "Interner Browser", isSelected: useInternal, group: "browser", tapBehavior: .none)
         let item2 = SingleSelectItem(title: "Safari", isSelected: userSafari, group: "browser", tapBehavior: .none)
 
@@ -62,8 +62,8 @@ class BrowserSelection {
         let ok = OkButton(title: "Ok")
         let cancel = CancelButton(title: "Abbrechen")
         let items = [item1, item2, sectionMargin, sectionTitle, item3, ok, cancel]
-        let menu = Menu(title: "Wähle einen Browser", items: items)
-        let sheet = menu.toActionSheet() { (sheet, item) in
+        let menu = Menu(title: "Wähle bitte einen Browser", items: items)
+        let sheet: ActionSheet = menu.toActionSheet() { (sheet, item) in
             if item is OkButton {
                 let selection: AppDefaults.BrowserSelection = (item1.isSelected) ? .useInternal : .useSafari
                 
@@ -75,7 +75,7 @@ class BrowserSelection {
                 sheet.dismiss()
             }
         }
-
+        
         sheet.present(in: parentViewController, from: nil)
     }
 }

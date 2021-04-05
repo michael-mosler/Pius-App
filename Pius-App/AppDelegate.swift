@@ -9,10 +9,17 @@
 import UIKit
 import WatchConnectivity
 import UserNotifications
-
+import Sheeeeeeeeet
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+/// App Delegate class. This class handles all messages that are received and processed
+/// by this app.
+class AppDelegate:
+    UIResponder,
+    UIApplicationDelegate,
+    UNUserNotificationCenterDelegate
+{
+    
     var window: UIWindow?
     private let storyboard = UIStoryboard(name: "Main", bundle: nil)
     private let reachability = Reachability()
@@ -30,19 +37,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
-    // Get the root window navigation controller and set it's colour to our standard.
+    /// Get the root window navigation controller and set it's colour to our standard.
     private func configureNavigationController() {
         navigationController?.navigationBar.barTintColor = UIColor(named: "piusBlue")
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.isToolbarHidden = false
     }
-
+    
+    /// Sets push notification categories.
     private func setCategories(){
         let category = UNNotificationCategory(identifier: "substitution-schedule.changed", actions: [], intentIdentifiers: [], options: [])
         notificationCenter.setNotificationCategories([category])
     }
     
-    // Register for push notification service.
+    /// Register for push notification service.
+    /// - Parameter application: This application
     private func registerForPushNotifications(forApplication application: UIApplication) {
         notificationCenter.delegate = self
         setCategories()
@@ -56,8 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    // Gets current push notifications settings when authorized registers for remote
-    // notifications.
+    /// Gets current push notifications settings when authorized registers for remote
+    /// notifications.
     func getNotificationSettings() {
         notificationCenter.getNotificationSettings { (settings) in
             NSLog("Notification settings: \(settings)")
@@ -70,14 +79,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        UITextField.appearance().tintColor = UIColor(named: "piusBlue")
+    /// Application launch delegate
+    /// - Parameters:
+    ///   - application: This application
+    ///   - launchOptions: App launching options
+    /// - Returns: True when request has been handled
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
         
-        /*
-         * ===============================================================
-         *                      Reachability Changes
-         * ===============================================================
-         */
+        // Apply appearances
+        UITextField.appearance().tintColor = UIColor(named: "piusBlue")
+        ActionSheet.applyAppearance(PiusAppActionSheetAppearance(), force: true)
+        
+        // Reachability
         reachability?.whenReachable = { _ in
             let tbc = self.window?.rootViewController as! UITabBarController
             let tb = tbc.tabBar
@@ -134,13 +150,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
 
-    /*
-     * ===============================================================
-     * Activation by 3D Touch or Tap on Extension or Push Notification
-     * ===============================================================
-     */
-
-    // Delegate for opening app from widget. Host part of URL tells delegate which view controller to open.
+    /// Delegate for opening app from widget. Host part of URL tells delegate which view controller to open.
+    /// - Parameters:
+    ///   - app: This application
+    ///   - url: URL app is launched with
+    ///   - options: Open URL options
+    /// - Returns: true when URL has been handled.
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         configureNavigationController()
         guard let host = url.host else { return false }
@@ -168,8 +183,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
-    // Register for 3d touch actions.
-    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+    /// Register for 3d touch actions.
+    /// - Parameters:
+    ///   - application: This application
+    ///   - shortcutItem: 3d action shortcut used
+    ///   - completionHandler: Handler that must be called on completion
+    func application(
+        _ application: UIApplication,
+        performActionFor shortcutItem: UIApplicationShortcutItem,
+        completionHandler: @escaping (Bool) -> Void) {
+        
         configureNavigationController()
         switch(shortcutItem.type) {
         case "de.rmkrings.piusapp.vertretungsplan":
@@ -192,13 +215,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
-    /*
-     * ============================================================
-     *                 Push Notifications
-     * ============================================================
-     */
-    
-    // Callback which is called when device has been registered for remote notifications.
+    /// Callback which is called when device has been registered for remote notifications.
+    /// - Parameters:
+    ///   - application: This application
+    ///   - deviceToken: Device token for instance of this app
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let tokenParts = deviceToken.map { data -> String in
             return String(format: "%02.2hhx", data)
@@ -210,13 +230,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         deviceTokenManager.registerDeviceToken()
     }
     
-    // Callback which is called when registering for remote noftications has failed.
+    /// Callback which is called when registering for remote noftications has failed.
+    /// - Parameters:
+    ///   - application: This application
+    ///   - error: Error description
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         NSLog("Failed to register: \(error)")
     }
     
-    // Navigate to specific view controller when app is opened by tapping on
-    // a push notification.
+    /// Navigate to specific view controller when app is opened by tapping on a push notification.
+    /// - Parameter userInfo: Push message payload
     private func navigateToViewControllerOnNotification(withUserInfo userInfo: [AnyHashable : Any]) {
         configureNavigationController()
         
@@ -229,14 +252,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window?.rootViewController?.show(dashboardChangesViewController, sender: self)
     }
 
-    // Received remote notification when app is running.
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    //
+    /// Received remote notification when app is running.
+    /// - Parameters:
+    ///   - application: This application
+    ///   - userInfo: Push message payload
+    ///   - completionHandler: Completion handler to call
+    func application(
+        _ application: UIApplication,
+        didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+        fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult)-> Void)
+    {
         self.navigateToViewControllerOnNotification(withUserInfo: userInfo)
         completionHandler(.newData)
     }
 
-    // Show notification when app is running in foreground.
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    /// Show notification when app is running in foreground.
+    /// - Parameters:
+    ///   - center: Notification center instance
+    ///   - notification: Notification
+    ///   - completionHandler: Completion handlet to call
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
         completionHandler([.alert, .sound])
     }
 }

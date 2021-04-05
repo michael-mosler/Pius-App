@@ -34,6 +34,7 @@
 		4C094030238EEEBD0077C034 /* TimetableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C09402E238EEE970077C034 /* TimetableHelper.swift */; };
 		4C18103926175383005123F5 /* BrowserSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C18103826175383005123F5 /* BrowserSelection.swift */; };
 		4C18104D2619DBCC005123F5 /* Sheeeeeeeeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C18104C2619DBCC005123F5 /* Sheeeeeeeeet.framework */; };
+		4C181062261B6B05005123F5 /* PiusAppActionSheetAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C181061261B6B05005123F5 /* PiusAppActionSheetAppearance.swift */; };
 		4C194B4C204AFB3500BA744A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C194B4B204AFB3500BA744A /* WebKit.framework */; };
 		4C1AC38221BED6CD00E2F3A5 /* PostingsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */; };
 		4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */; };
@@ -316,6 +317,7 @@
 		4C09402E238EEE970077C034 /* TimetableHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableHelper.swift; sourceTree = "<group>"; };
 		4C18103826175383005123F5 /* BrowserSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserSelection.swift; sourceTree = "<group>"; };
 		4C18104C2619DBCC005123F5 /* Sheeeeeeeeet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sheeeeeeeeet.framework; path = Carthage/Build/iOS/Sheeeeeeeeet.framework; sourceTree = "<group>"; };
+		4C181061261B6B05005123F5 /* PiusAppActionSheetAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiusAppActionSheetAppearance.swift; sourceTree = "<group>"; };
 		4C194B4B204AFB3500BA744A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingsLoader.swift; sourceTree = "<group>"; };
 		4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanViewController.swift; sourceTree = "<group>"; };
@@ -598,6 +600,7 @@
 				4C94DFD423257D3F00C42998 /* DateArithmetic.swift */,
 				4C798296248A9F7E00A51DD7 /* EntityLoader.swift */,
 				4C18103826175383005123F5 /* BrowserSelection.swift */,
+				4C181061261B6B05005123F5 /* PiusAppActionSheetAppearance.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1507,6 +1510,7 @@
 				4C93689022F82DDA0038CE9B /* CourseItem.swift in Sources */,
 				4C49EC0F24015A1D00FB9B6A /* CourseCollectionViewCell.swift in Sources */,
 				4C6BBD8F2312C1E100137384 /* TodayTimetableDataSource.swift in Sources */,
+				4C181062261B6B05005123F5 /* PiusAppActionSheetAppearance.swift in Sources */,
 				4C1FDE4E205567C8006092C9 /* Vertretungsplan.swift in Sources */,
 				4CF02EAF218B559400647078 /* TabBarController.swift in Sources */,
 				4C1FDE5C20603DF1006092C9 /* DetailsCellTableViewCell.swift in Sources */,
