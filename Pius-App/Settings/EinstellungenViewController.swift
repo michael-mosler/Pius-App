@@ -24,15 +24,19 @@ class EinstellungenViewController:
     
     @IBOutlet weak var gradePickerView: UIPickerView!
     @IBOutlet weak var classPickerView: UIPickerView!
+    @IBOutlet weak var browserPickerView: BrowserPickerView!
     
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var timetableSwitch: UISwitch!
     
     @IBOutlet weak var successBox: BEMCheckBox!
+    @IBOutlet weak var browserSwitch: BrowserSwitch!
     
     // The active text field, is either webSizeUserNameField or webSitePasswordField.
     private var activeTextField: UITextField?
 
+    private var browserSelectionController: BrowserSelectionController?
+    
     @IBAction func loginButtonAction(_ sender: Any) {
         dismissKeyboard(fromTextField: activeTextField)
         saveCredentials()
@@ -87,27 +91,30 @@ class EinstellungenViewController:
         
         successBox.isHidden = true
         successBox.delegate = self
+        
+        browserSelectionController = BrowserSelectionController(browserSwitch, browserPickerView)
     }
 
     /// When view reappears bring tabbar item title in sync with
     /// selected view controller.
     /// - Parameter animated: Passed to super-class method call
-override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.selectedItem?.title = title
     }
 
-    /**
-     * When view is closed register device token. We will not wait for result as registrations
-     * occur repeatedly triggered by iOS.
-     */
+    // When view is closed register device token. We will not wait for result as registrations
+    // occur repeatedly triggered by iOS.
+    // - Parameter animated: True if view should disappear with animation
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         let deviceTokenManager = DeviceTokenManager()
         deviceTokenManager.registerDeviceToken()
     }
-
+    
+    /// Callback for login checkbox animation.
+    /// - Parameter checkBox: Checkbox that was animated
     func animationDidStop(for checkBox: BEMCheckBox) {
         UIView.animate(withDuration: 0.5, delay: 1, animations: {
             checkBox.alpha = 0
@@ -119,16 +126,22 @@ override func viewWillAppear(_ animated: Bool) {
     
     var changeGradeDelegate: ChangeGradeDelegate?
     
-    // Checks if grade picker has selected an upper grade.
+    /// Checks if grade picker has selected an upper grade.
+    /// - Parameter row: Row to check in picker view
+    /// - Returns: True when upper grade is selected
     private func isUpperGradeSelected(_ row: Int) -> Bool {
         return Config.isUpperGrade(Config.grades[row])
     }
     
+    /// Checks if grade picker has selected a lower grade.
+    /// - Parameter row: Row to check in picker view
+    /// - Returns: True when lower grade is selected
     private func isLowerGradeSelected(_ row: Int) -> Bool {
         return Config.isLowerGrade(Config.grades[row])
     }
     
-    // Update Login button text depending on authentication state.
+    /// Update Login button text depending on authentication state.
+    /// - Parameter authenticated: True means user is authenticated
     private func updateLoginButtonText(authenticated: Bool?) {
         if (authenticated != nil && authenticated!) {
             loginButton.setTitle("Abmelden", for: .normal)

@@ -35,6 +35,7 @@
 		4C18103926175383005123F5 /* BrowserSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C18103826175383005123F5 /* BrowserSelection.swift */; };
 		4C18104D2619DBCC005123F5 /* Sheeeeeeeeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C18104C2619DBCC005123F5 /* Sheeeeeeeeet.framework */; };
 		4C181062261B6B05005123F5 /* PiusAppActionSheetAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C181061261B6B05005123F5 /* PiusAppActionSheetAppearance.swift */; };
+		4C18106D261B8361005123F5 /* BrowserPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C18106C261B8361005123F5 /* BrowserPickerView.swift */; };
 		4C194B4C204AFB3500BA744A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C194B4B204AFB3500BA744A /* WebKit.framework */; };
 		4C1AC38221BED6CD00E2F3A5 /* PostingsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */; };
 		4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */; };
@@ -318,6 +319,7 @@
 		4C18103826175383005123F5 /* BrowserSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserSelection.swift; sourceTree = "<group>"; };
 		4C18104C2619DBCC005123F5 /* Sheeeeeeeeet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sheeeeeeeeet.framework; path = Carthage/Build/iOS/Sheeeeeeeeet.framework; sourceTree = "<group>"; };
 		4C181061261B6B05005123F5 /* PiusAppActionSheetAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiusAppActionSheetAppearance.swift; sourceTree = "<group>"; };
+		4C18106C261B8361005123F5 /* BrowserPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserPickerView.swift; sourceTree = "<group>"; };
 		4C194B4B204AFB3500BA744A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingsLoader.swift; sourceTree = "<group>"; };
 		4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanViewController.swift; sourceTree = "<group>"; };
@@ -646,6 +648,7 @@
 				4C97C9192599E58000FA665A /* StaffTableViewController.swift */,
 				4C97C924259B7D1700FA665A /* StaffMemberTableViewCell.swift */,
 				4C219D4125A213EB00BA9BEA /* StaffSearchTableViewController.swift */,
+				4C18106C261B8361005123F5 /* BrowserPickerView.swift */,
 			);
 			path = SettingsV2;
 			sourceTree = "<group>";
@@ -1491,6 +1494,7 @@
 				4C6BBD87230B2C2400137384 /* PostingsTableDataSource.swift in Sources */,
 				4C49EC1524015A1D00FB9B6A /* TimetableViewController.swift in Sources */,
 				4CED4A85204AE3510012CB45 /* KeychainPasswordItem.swift in Sources */,
+				4C18106D261B8361005123F5 /* BrowserPickerView.swift in Sources */,
 				4C49EC0E24015A1D00FB9B6A /* CourseCollectionView.swift in Sources */,
 				4C9368B12309A3660038CE9B /* CalendarTableDataSource.swift in Sources */,
 				4C1FDE5A205E77D7006092C9 /* Helper.swift in Sources */,
