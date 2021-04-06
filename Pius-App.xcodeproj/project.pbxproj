@@ -36,6 +36,7 @@
 		4C18104D2619DBCC005123F5 /* Sheeeeeeeeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C18104C2619DBCC005123F5 /* Sheeeeeeeeet.framework */; };
 		4C181062261B6B05005123F5 /* PiusAppActionSheetAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C181061261B6B05005123F5 /* PiusAppActionSheetAppearance.swift */; };
 		4C18106D261B8361005123F5 /* BrowserPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C18106C261B8361005123F5 /* BrowserPickerView.swift */; };
+		4C181078261C6CD7005123F5 /* NewsWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C181077261C6CD7005123F5 /* NewsWebView.swift */; };
 		4C194B4C204AFB3500BA744A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C194B4B204AFB3500BA744A /* WebKit.framework */; };
 		4C1AC38221BED6CD00E2F3A5 /* PostingsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */; };
 		4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */; };
@@ -320,6 +321,7 @@
 		4C18104C2619DBCC005123F5 /* Sheeeeeeeeet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sheeeeeeeeet.framework; path = Carthage/Build/iOS/Sheeeeeeeeet.framework; sourceTree = "<group>"; };
 		4C181061261B6B05005123F5 /* PiusAppActionSheetAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiusAppActionSheetAppearance.swift; sourceTree = "<group>"; };
 		4C18106C261B8361005123F5 /* BrowserPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserPickerView.swift; sourceTree = "<group>"; };
+		4C181077261C6CD7005123F5 /* NewsWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsWebView.swift; sourceTree = "<group>"; };
 		4C194B4B204AFB3500BA744A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingsLoader.swift; sourceTree = "<group>"; };
 		4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanViewController.swift; sourceTree = "<group>"; };
@@ -913,6 +915,7 @@
 			isa = PBXGroup;
 			children = (
 				4CAC0434233D35F2005C6094 /* NewsArticleViewController.swift */,
+				4C181077261C6CD7005123F5 /* NewsWebView.swift */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -1506,6 +1509,7 @@
 				4C798299248CEBBE00A51DD7 /* NewFunctionOnboardingViewController.swift in Sources */,
 				4C9368A723083F490038CE9B /* TodayTableViewCells.swift in Sources */,
 				4C09402F238EEE970077C034 /* TimetableHelper.swift in Sources */,
+				4C181078261C6CD7005123F5 /* NewsWebView.swift in Sources */,
 				4C7C22922043117800ACA17B /* ViewController.swift in Sources */,
 				4C09401A238154890077C034 /* TimetableDataSource.swift in Sources */,
 				4C094022238178A70077C034 /* Protocols.swift in Sources */,

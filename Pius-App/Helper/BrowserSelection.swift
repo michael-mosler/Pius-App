@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import Sheeeeeeeeet
 
-typealias OnBrowserSelect = (_ selection: AppDefaults.BrowserSelection) -> Void
+typealias OnBrowserSelect = (_ selection: AppDefaults.BrowserSelection?) -> Void
 protocol BrowserSelectProtocol {
-    func onBrowserSelect(selection: AppDefaults.BrowserSelection)
+    func onBrowserSelect(selection: AppDefaults.BrowserSelection?)
 }
 
 /// Depending on the configuration value of AppDefaults.browser
@@ -67,11 +67,16 @@ class BrowserSelection {
             if item is OkButton {
                 let selection: AppDefaults.BrowserSelection = (item1.isSelected) ? .useInternal : .useSafari
                 
-                AppDefaults.browser = selection
-                AppDefaults.rememberBrowserSelection = item3.isSelected
+                // If user asks to remember selection then persist browser
+                // and remember option.
+                if item3.isSelected {
+                    AppDefaults.browser = selection
+                    AppDefaults.rememberBrowserSelection = item3.isSelected
+                }
                 
                 self.onSelect(selection)
             } else if item is CancelButton {
+                self.onSelect(nil)
                 sheet.dismiss()
             }
         }

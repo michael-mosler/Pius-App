@@ -13,18 +13,24 @@ protocol ModalDismissDelegate {
     func hasDismissed()
 }
 
+/// Shows a webview with page content. On link navigation browser choice setting
+/// is checked by webview.
 class NewsArticleViewController: UIViewController, UIGestureRecognizerDelegate {
-    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var webView: NewsWebView!
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     
     var segueData: Any?
     var delegate: ModalDismissDelegate?
-
+    
+    /// Dismiss view controller
+    /// - Parameter sender: Control that has sent dismiss.
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true)
         delegate?.hasDismissed()
     }
-
+    
+    /// Swipe down to close webview.
+    /// - Parameter sender: Control that has sent pan gesture.
     @IBAction func panGestureAction(_ sender: UIPanGestureRecognizer) {
         if sender.state == .ended {
             if webView.scrollView.contentOffset.y <= -110 {
@@ -33,11 +39,17 @@ class NewsArticleViewController: UIViewController, UIGestureRecognizerDelegate {
             }
         }
     }
-
+    
+    /// Allows simultaneous gesture recognition.
+    /// - Parameters:
+    ///   - gestureRecognizer: Gesture recognizer asking for configuration,
+    ///   - otherGestureRecognizer: Second recognizer
+    /// - Returns: This function returns always true.
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
-
+    
+    /// Initialise view when loaded.
     override func viewDidLoad() {
         var pageRequest: URLRequest
         let reachability = Reachability()
@@ -51,6 +63,7 @@ class NewsArticleViewController: UIViewController, UIGestureRecognizerDelegate {
             pageRequest = URLRequest(url: baseUrl!)
         }
         
+        webView.containingViewController = self
         webView.load(pageRequest)
     }
 }

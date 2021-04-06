@@ -69,13 +69,24 @@
          contextName = "ScheduleItem.update(withDetails:):ScheduleData.swift">
       </ContextState>
       <ContextState
+         contextName = "StaffTableViewController.viewWillAppear(_:):StaffTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tabBarController?.tabBar.selectedItem">
+            </PersistentString>
+            <PersistentString
+               value = "title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SettingsPageViewController.pageViewController(_:viewControllerAfter:):SettingsPageViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.presentationIndex">
+               value = "titles">
             </PersistentString>
             <PersistentString
-               value = "titles">
+               value = "self.presentationIndex">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -102,17 +113,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "StaffTableViewController.viewWillAppear(_:):StaffTableViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "tabBarController?.tabBar.selectedItem">
-            </PersistentString>
-            <PersistentString
-               value = "title">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "DashboardCell.layoutIfNeeded():TodayTableItemCells.swift">
          <PersistentStrings>
             <PersistentString
@@ -129,18 +129,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "CourseDetailsViewController.textDidChange(notification:):CourseDetailsViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "textField.text ">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "AboutViewController.colorLabelText(label:):AboutViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "labelText.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CourseDetailsViewController.textDidChange(notification:):CourseDetailsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "textField.text ">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -176,6 +176,20 @@
          <PersistentStrings>
             <PersistentString
                value = "collectionView.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NewsWebView.webView(_:decidePolicyFor:decisionHandler:):NewsWebView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navigationAction.navigationType">
+            </PersistentString>
+            <PersistentString
+               value = "navigationAction">
+            </PersistentString>
+            <PersistentString
+               value = "self">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

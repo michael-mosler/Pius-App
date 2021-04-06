@@ -47,10 +47,10 @@ class NewsTableView: TodayItemTableView,
     /// - Parameters:
     ///   - selection:Browser engine to use.
     ///   - url: URL to open
-    private func openUrl(selection: AppDefaults.BrowserSelection, url: URL) {
+    private func openUrl(selection: AppDefaults.BrowserSelection?, url: URL) {
         if selection == .useInternal {
             TodayV2TableViewController.shared.controller?.perform(segue: "showNews", with: url, presentModally: true)
-        } else {
+        } else if selection == .useSafari {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
@@ -67,7 +67,7 @@ class NewsTableView: TodayItemTableView,
         let browserSelection = BrowserSelection(
             parentViewController: TodayV2TableViewController.shared.controller as? UIViewController,
             onSelect: { (url: URL) in
-                return { (selection: AppDefaults.BrowserSelection) in
+                return { (selection: AppDefaults.BrowserSelection?) in
                     self.openUrl(selection: selection, url: url)
                 }
             }(url))
