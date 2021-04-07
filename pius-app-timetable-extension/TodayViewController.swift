@@ -203,7 +203,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         }
     }
     
-    func perform(segue: String, with data: Any?, presentModally: Bool) {
+    func perform(segue: String, with data: Any?) {
         // Empty, no segue exists.
     }
     

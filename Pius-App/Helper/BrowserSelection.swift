@@ -52,7 +52,7 @@ class BrowserSelection {
         let useInternal = AppDefaults.browser == .useInternal
         let userSafari = AppDefaults.browser == .useSafari
 
-        let item1 = SingleSelectItem(title: "Interner Browser", isSelected: useInternal, group: "browser", tapBehavior: .none)
+        let item1 = SingleSelectItem(title: "In-App Ansicht", isSelected: useInternal, group: "browser", tapBehavior: .none)
         let item2 = SingleSelectItem(title: "Safari", isSelected: userSafari, group: "browser", tapBehavior: .none)
 
         let sectionMargin = SectionMargin()

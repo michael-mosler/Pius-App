@@ -9,7 +9,7 @@
 import UIKit
 
 /// Shows information on the app and the libraries that are used.
-class AboutViewController: UIViewController, UIGestureRecognizerDelegate, ModalDismissDelegate {
+class AboutViewController: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var versionLabelOutlet: UILabel!
     @IBOutlet weak var infoTextViewOutlet: UITextView!
@@ -55,7 +55,6 @@ class AboutViewController: UIViewController, UIGestureRecognizerDelegate, ModalD
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? NewsArticleViewController {
-            destination.delegate = self
             destination.segueData = segueData
         }
     }
@@ -107,6 +106,4 @@ class AboutViewController: UIViewController, UIGestureRecognizerDelegate, ModalD
 
         versionLabelOutlet.text = versionString
     }
-
-    func hasDismissed() { }
 }

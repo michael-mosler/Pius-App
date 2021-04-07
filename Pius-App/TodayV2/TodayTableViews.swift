@@ -49,7 +49,7 @@ class NewsTableView: TodayItemTableView,
     ///   - indexPath: Index path of row that has been selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? NewsTableViewCell, let href = cell.href, let url = URL(string: href) else { return }
-        TodayV2TableViewController.shared.controller?.perform(segue: "showNews", with: url, presentModally: true)
+        TodayV2TableViewController.shared.controller?.perform(segue: "showNews", with: url)
     }
 }
 
@@ -127,6 +127,6 @@ class TodayTimetableTableView: TodayItemTableView, UITableViewDelegate {
             return
         }
         
-        TodayV2TableViewController.shared.controller?.perform(segue: "showDetails", with: scheduleItem, presentModally: true)
+        TodayV2TableViewController.shared.controller?.perform(segue: "showDetails", with: scheduleItem)
     }
 }

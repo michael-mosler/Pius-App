@@ -36,7 +36,7 @@ class BrowserPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSou
     /// - Returns: Title for row
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch row {
-        case 0: return "Interner Browser"
+        case 0: return "In-App Ansicht"
         case 1: return "Safari"
         default: return nil
         }

@@ -9,10 +9,6 @@
 import UIKit
 import WebKit
 
-protocol ModalDismissDelegate {
-    func hasDismissed()
-}
-
 /// Shows a webview with page content. On link navigation browser choice setting
 /// is checked by webview.
 class NewsArticleViewController: UIViewController, UIGestureRecognizerDelegate, WebViewDecisionDelegate {
@@ -28,7 +24,6 @@ class NewsArticleViewController: UIViewController, UIGestureRecognizerDelegate, 
         
         if navigationAction.navigationType == .other && navigationActionPolicy == .cancel {
             dismiss(animated: false)
-            delegate?.hasDismissed()
         }
     }
     
@@ -36,13 +31,11 @@ class NewsArticleViewController: UIViewController, UIGestureRecognizerDelegate, 
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     
     var segueData: Any?
-    var delegate: ModalDismissDelegate?
     
     /// Dismiss view controller
     /// - Parameter sender: Control that has sent dismiss.
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true)
-        delegate?.hasDismissed()
     }
     
     /// Swipe down to close webview.
@@ -51,7 +44,6 @@ class NewsArticleViewController: UIViewController, UIGestureRecognizerDelegate, 
         if sender.state == .ended {
             if webView.scrollView.contentOffset.y <= -110 {
                 dismiss(animated: true)
-                delegate?.hasDismissed()
             }
         }
     }
