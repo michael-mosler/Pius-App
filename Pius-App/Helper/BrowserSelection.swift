@@ -63,7 +63,8 @@ class BrowserSelection {
         let cancel = CancelButton(title: "Abbrechen")
         let items = [item1, item2, sectionMargin, sectionTitle, item3, ok, cancel]
         let menu = Menu(title: "Wähle bitte einen Browser", items: items)
-        let sheet: ActionSheet = menu.toActionSheet() { (sheet, item) in
+        let sheet = BrowserSelectionActionSheet(menu: menu) { (sheet, item) in
+            let sheet = sheet as! BrowserSelectionActionSheet
             if item is OkButton {
                 let selection: AppDefaults.BrowserSelection = (item1.isSelected) ? .useInternal : .useSafari
                 
@@ -74,13 +75,36 @@ class BrowserSelection {
                     AppDefaults.rememberBrowserSelection = item3.isSelected
                 }
                 
-                self.onSelect(selection)
+                sheet.selection = selection
             } else if item is CancelButton {
-                self.onSelect(nil)
                 sheet.dismiss()
             }
         }
-        
-        sheet.present(in: parentViewController, from: nil)
+
+        sheet.present(in: parentViewController, onSelect: onSelect)
+    }
+}
+
+/// The only purpose of this class is to make sure that onSelect() is called
+/// whenever action sheet is dismissed.
+private class BrowserSelectionActionSheet: ActionSheet {
+    var onSelect: OnBrowserSelect?
+    var selection: AppDefaults.BrowserSelection?
+    
+    /// Views disappear handler. It will call onSelect() with the
+    /// selection that has been set.
+    /// - Parameter animated: Disappear with animation if true
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        onSelect?(selection)
+    }
+    
+    /// Call action sheet's present method after setting onSelect handler.
+    /// - Parameters:
+    ///   - vc: View controller sheet is presented in
+    ///   - onSelect: onSelect handler is called when view is dismissed.
+    func present(in vc: UIViewController, onSelect: @escaping OnBrowserSelect) {
+        self.onSelect = onSelect
+        super.present(in: vc, from: nil)
     }
 }

@@ -9,9 +9,31 @@
 import UIKit
 import WebKit
 
+typealias WebViewDecisionHandler = (WKNavigationActionPolicy) -> Void
+
+/// View controllers that set containingViewController property of NewsWebView must conform
+/// to this protocol. Whenver a navigation occurs decisionHandler will be called. It is
+/// the parent's responsibility to call webViewDecisionHandler(). If not done app is
+/// likely to crash with a protocol error.
+protocol WebViewDecisionDelegate: UIViewController {
+    
+    /// This decision handler is called whenever user has selected a browser to open
+    /// a web page and navigation has occured. The implementation has to decide what
+    /// to do but finally it must call the given webViewDecisionHandler() in order
+    /// to comply to web view protocol.
+    /// - Parameters:
+    ///   - navigationAction: The action object that caused navigation.
+    ///   - navigationActionPolicy: The suggested policy to pass to webViewDecisionHandler()
+    ///   - webViewDecisionHandler: The web view view decision handler that must be called.
+    func decisionHandler(_ navigationAction: WKNavigationAction, _ navigationActionPolicy: WKNavigationActionPolicy, webViewDecisionHandler: WebViewDecisionHandler) -> Void
+}
+
 /// Implementation of webview that integrates browser choice setting.
 class NewsWebView: WKWebView, WKNavigationDelegate {
-    var containingViewController: UIViewController?
+
+    /// Register parent view controller here. This view controller must comply to protocol
+    /// WebViewDecisionDelegate.
+    var containingViewController: WebViewDecisionDelegate?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -24,8 +46,8 @@ class NewsWebView: WKWebView, WKNavigationDelegate {
     ///   - navigationAction: The navigation action, only link tapped is evaluated
     ///   - decisionHandler: Callback to send decision to webview.
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        guard navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url else {
-            decisionHandler(.allow)
+        guard [.other, .linkActivated].contains(navigationAction.navigationType), let url = navigationAction.request.url else {
+            containingViewController?.decisionHandler(navigationAction, .allow, webViewDecisionHandler: decisionHandler)
             return
         }
 
@@ -33,21 +55,21 @@ class NewsWebView: WKWebView, WKNavigationDelegate {
         if AppDefaults.rememberBrowserSelection {
             switch AppDefaults.browser {
             case .useInternal:
-                decisionHandler(.allow)
+                containingViewController?.decisionHandler(navigationAction, .allow, webViewDecisionHandler: decisionHandler)
 
             case .useSafari:
-                decisionHandler(.cancel)
+                containingViewController?.decisionHandler(navigationAction, .cancel, webViewDecisionHandler: decisionHandler)
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         } else {
             // Get users choice and navigate.
             let browserSelection = BrowserSelection(
                 parentViewController: containingViewController,
-                onSelect: { (url: URL, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) in
+                onSelect: { (navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) in
                     return { (selection: AppDefaults.BrowserSelection?) in
-                        self.openUrl(selection: selection, url: url, decisionHandler: decisionHandler)
+                        self.openUrl(selection: selection, navigationAction: navigationAction, decisionHandler: decisionHandler)
                     }
-                }(url, decisionHandler))
+                }(navigationAction, decisionHandler))
 
             browserSelection.choice()
         }
@@ -56,17 +78,22 @@ class NewsWebView: WKWebView, WKNavigationDelegate {
     /// OpenURL and send browser selection to webview.
     /// - Parameters:
     ///   - selection: User's selection
-    ///   - url: URL to open
+    ///   - navigationAction: Navigation action that wants to open URL.
     ///   - decisionHandler: Decision handler of webview.
-    private func openUrl(selection: AppDefaults.BrowserSelection?, url: URL, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    private func openUrl(selection: AppDefaults.BrowserSelection?, navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy)-> Void) {
+        guard let url = navigationAction.request.url else {
+            containingViewController?.decisionHandler(navigationAction, .allow, webViewDecisionHandler: decisionHandler)
+            return
+        }
+
         switch selection {
         case .useInternal:
-            decisionHandler(.allow)
+            containingViewController?.decisionHandler(navigationAction, .allow, webViewDecisionHandler: decisionHandler)
         case .useSafari:
-            decisionHandler(.cancel)
+            containingViewController?.decisionHandler(navigationAction, .cancel, webViewDecisionHandler: decisionHandler)
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         case nil:
-            decisionHandler(.cancel)
+            containingViewController?.decisionHandler(navigationAction, .cancel, webViewDecisionHandler: decisionHandler)
         }
     }
 }

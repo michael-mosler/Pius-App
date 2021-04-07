@@ -15,7 +15,23 @@ protocol ModalDismissDelegate {
 
 /// Shows a webview with page content. On link navigation browser choice setting
 /// is checked by webview.
-class NewsArticleViewController: UIViewController, UIGestureRecognizerDelegate {
+class NewsArticleViewController: UIViewController, UIGestureRecognizerDelegate, WebViewDecisionDelegate {
+    
+    /// Implements WebViewDecisionDelegate decisionHandler() method. It decides if view controller has to dismiss
+    /// because user selected Safari to open a web page.
+    /// - Parameters:
+    ///   - navigationAction: The action that caused navigation
+    ///   - navigationActionPolicy: Suggested policy to pass to webViewDecisionHandler.
+    ///   - webViewDecisionHandler: The original webview decision handler that must be called in any case.
+    func decisionHandler(_ navigationAction: WKNavigationAction, _ navigationActionPolicy: WKNavigationActionPolicy, webViewDecisionHandler: WebViewDecisionHandler) {
+        webViewDecisionHandler(navigationActionPolicy)
+        
+        if navigationAction.navigationType == .other && navigationActionPolicy == .cancel {
+            dismiss(animated: false)
+            delegate?.hasDismissed()
+        }
+    }
+    
     @IBOutlet weak var webView: NewsWebView!
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     

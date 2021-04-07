@@ -17,6 +17,7 @@ class AboutViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var kingFisherLabelOutlet: UILabel!
     @IBOutlet weak var mgSwipeTableCellLabelOutlet: UILabel!
     @IBOutlet weak var gitHubLabelOutlet: UILabel!
+    @IBOutlet weak var sheeeeeeeeetLabelOutlet: UILabel!
     
     private var labelToUrlMap: [UIView : String?] = [:]
     private let linkColor = UIColor(named: "piusBlue")
@@ -72,6 +73,7 @@ class AboutViewController: UIViewController, UIGestureRecognizerDelegate {
         labelToUrlMap[kingFisherLabelOutlet] = "https://github.com/onevcat/Kingfisher"
         labelToUrlMap[mgSwipeTableCellLabelOutlet] = "https://github.com/MortimerGoro/MGSwipeTableCell"
         labelToUrlMap[gitHubLabelOutlet] = "https://github.com/michael-mosler/Pius-App"
+        labelToUrlMap[sheeeeeeeeetLabelOutlet] = "https://github.com/danielsaidi/Sheeeeeeeeet"
     }
 
     /// Bind tap gesture recognizer to labels.
@@ -81,6 +83,7 @@ class AboutViewController: UIViewController, UIGestureRecognizerDelegate {
         kingFisherLabelOutlet.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
         mgSwipeTableCellLabelOutlet.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
         gitHubLabelOutlet.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+        sheeeeeeeeetLabelOutlet.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
     }
 
     /// Sets the version label.
