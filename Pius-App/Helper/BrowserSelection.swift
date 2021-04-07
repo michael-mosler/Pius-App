@@ -10,8 +10,15 @@ import Foundation
 import UIKit
 import Sheeeeeeeeet
 
+/// Function definition for browser selection callback.
+/// - Parameter selection: Actual selection
 typealias OnBrowserSelect = (_ selection: AppDefaults.BrowserSelection?) -> Void
+
+/// Implement this protocol to get notified when user has selected browser
+/// to use.
 protocol BrowserSelectProtocol {
+    /// The function is called after browser has been selected.
+    /// - Parameter selection: Actual selection
     func onBrowserSelect(selection: AppDefaults.BrowserSelection?)
 }
 

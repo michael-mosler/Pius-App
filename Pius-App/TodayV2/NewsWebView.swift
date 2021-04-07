@@ -9,7 +9,9 @@
 import UIKit
 import WebKit
 
-typealias WebViewDecisionHandler = (WKNavigationActionPolicy) -> Void
+/// Short hand for WK decision callback.
+/// - Parameter navigationActionPolicy : Suggested policy to use.
+typealias WebViewDecisionHandler = (_ navigationActionPolicy: WKNavigationActionPolicy) -> Void
 
 /// View controllers that set containingViewController property of NewsWebView must conform
 /// to this protocol. Whenver a navigation occurs decisionHandler will be called. It is
