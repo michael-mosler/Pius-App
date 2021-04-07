@@ -8,7 +8,8 @@
 
 import UIKit
 
-class AboutViewController: UIViewController, UIGestureRecognizerDelegate {
+/// Shows information on the app and the libraries that are used.
+class AboutViewController: UIViewController, UIGestureRecognizerDelegate, ModalDismissDelegate {
 
     @IBOutlet weak var versionLabelOutlet: UILabel!
     @IBOutlet weak var infoTextViewOutlet: UITextView!
@@ -19,6 +20,7 @@ class AboutViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var gitHubLabelOutlet: UILabel!
     @IBOutlet weak var sheeeeeeeeetLabelOutlet: UILabel!
     
+    private var segueData: Any?
     private var labelToUrlMap: [UIView : String?] = [:]
     private let linkColor = UIColor(named: "piusBlue")
 
@@ -51,6 +53,13 @@ class AboutViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? NewsArticleViewController {
+            destination.delegate = self
+            destination.segueData = segueData
+        }
+    }
+    
     /// Handle tap gesture on label.
     /// - Parameter gestureRecognizer: Gesture recognizer that received tap.
     @objc func handleTap(gestureRecognizer: UILongPressGestureRecognizer) {
@@ -62,7 +71,8 @@ class AboutViewController: UIViewController, UIGestureRecognizerDelegate {
             let url = URL(string: value)
         else { return }
         
-        UIApplication.shared.open(url)
+        segueData = url
+        performSegue(withIdentifier: "showInfo", sender: self)
     }
 
     /// Build view to URL map. This map is used by handleTap()
@@ -97,47 +107,6 @@ class AboutViewController: UIViewController, UIGestureRecognizerDelegate {
 
         versionLabelOutlet.text = versionString
     }
- }
 
-extension UILabel {
-    /// Highlight text that is enclosed by "*" characters.
-    /// - Parameter color: Color to use for highlighting. If not given default color is used.
-    func colorText(with color: UIColor?) {
-        guard
-            let regex: NSRegularExpression = try? NSRegularExpression(pattern: "\\*[^*]*\\*"),
-            let attributedSourceText = attributedText
-        else { return }
-        
-        // Find all substrings to color.
-        let labelText = attributedSourceText.string
-        let searchRange = NSRange(location: 0, length: labelText.count)
-        let results = regex.matches(in: labelText, options: [], range: searchRange)
-
-        var linkColor: UIColor
-        if #available(iOS 13, *) {
-            linkColor = color ?? UIColor.link
-        } else {
-            linkColor = color ?? UIColor.systemBlue
-        }
-
-        let attributedTargetText = NSMutableAttributedString(attributedString: attributedSourceText)
-        let targetText = attributedTargetText.string
-
-        // For each substring created a colored attributed string and replace
-        // substring with this new attributed string. Remove "*" characters from
-        // target.
-        attributedTargetText.beginEditing()
-        results.forEach({ result in
-            if let range = Range(result.range, in: targetText) {
-                var matchedText = String(targetText[range.lowerBound..<range.upperBound])
-                matchedText = matchedText.replacingOccurrences(of: "*", with: "")
-                
-                let attributedMatchedText = NSAttributedString(string: matchedText, attributes: [NSAttributedString.Key.foregroundColor : linkColor])
-                attributedTargetText.replaceCharacters(in: result.range, with: attributedMatchedText)
-            }
-        })
-        attributedTargetText.endEditing()
-        
-        attributedText = attributedTargetText
-    }
+    func hasDismissed() { }
 }

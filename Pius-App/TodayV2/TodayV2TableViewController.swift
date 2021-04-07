@@ -230,9 +230,7 @@ extension TodayV2TableViewController {
         if let destination = segue.destination as? NewsArticleViewController {
             destination.delegate = self
             destination.segueData = segueData
-        }
-
-        if let destination = segue.destination as? TodayScheduleItemDetailsViewController {
+        } else if let destination = segue.destination as? TodayScheduleItemDetailsViewController {
             destination.delegate = self
             destination.segueData = segueData
         }
