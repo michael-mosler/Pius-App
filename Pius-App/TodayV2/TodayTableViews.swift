@@ -32,20 +32,24 @@ class TodayItemTableView: UITableView {
     }
 }
 
-/* *************************************************************************
- * News table view shows up to 6 news items with a preview image.
- * When selecting one item article is opened in a modal popover.
- * *************************************************************************/
-class NewsTableView: TodayItemTableView, UITableViewDelegate, UIPopoverPresentationControllerDelegate {
+/// News table view shows up to 6 news items with a preview image.
+/// When selecting one item article is opened in a modal popover.
+class NewsTableView: TodayItemTableView,
+                     UITableViewDelegate,
+                     UIPopoverPresentationControllerDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         delegate = self
         dataSource = TodayV2TableViewController.shared.dataSource(forType: .news)
     }
     
+    /// This function gets called whenever the use selects a news row.
+    /// - Parameters:
+    ///   - tableView: News table view
+    ///   - indexPath: Index path of row that has been selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? NewsTableViewCell, let href = cell.href, let url = URL(string: href) else { return }
-        TodayV2TableViewController.shared.controller?.perform(segue: "showNews", with: url, presentModally: true)
+        TodayV2TableViewController.shared.controller?.perform(segue: "showNews", with: url)
     }
 }
 
@@ -123,6 +127,6 @@ class TodayTimetableTableView: TodayItemTableView, UITableViewDelegate {
             return
         }
         
-        TodayV2TableViewController.shared.controller?.perform(segue: "showDetails", with: scheduleItem, presentModally: true)
+        TodayV2TableViewController.shared.controller?.perform(segue: "showDetails", with: scheduleItem)
     }
 }

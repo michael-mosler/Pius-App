@@ -14,7 +14,6 @@ import UIKit
  */
 class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecognizerDelegate {
 
-    var delegate: ModalDismissDelegate?
     var segueData: Any?
     var scheduleItem: ScheduleItem?
     
@@ -45,7 +44,6 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
      */
     @IBAction func closeButtonAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        delegate?.hasDismissed()
     }
     
     /**
@@ -132,7 +130,6 @@ class TodayScheduleItemDetailsViewController: UIViewController, UIGestureRecogni
 
             if translation.y >= 110 {
                 dismiss(animated: true)
-                delegate?.hasDismissed()
             }
         }
 

@@ -18,7 +18,7 @@ protocol TimerDelegate: NSObject {
  */
 protocol ItemContainerProtocol {
     func didLoadData(_ sender: Any?)
-    func perform(segue: String, with data: Any?, presentModally: Bool)
+    func perform(segue: String, with data: Any?)
     
     func registerTimerDelegate(_ delegate: TimerDelegate)
 }

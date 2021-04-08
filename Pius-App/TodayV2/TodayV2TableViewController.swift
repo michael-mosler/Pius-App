@@ -41,7 +41,7 @@ class TodayViewSharedState {
     }
 }
 
-class TodayV2TableViewController: UITableViewController, ItemContainerProtocol, ModalDismissDelegate {
+class TodayV2TableViewController: UITableViewController, ItemContainerProtocol {
     private let dataSourcesToCellPrototypes: [DataSourceType : String] = [
         .dashboard : "dashboardCell",
         .postings : "postingsCell",
@@ -228,28 +228,12 @@ extension TodayV2TableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let destination = segue.destination as? NewsArticleViewController {
-            destination.delegate = self
             destination.segueData = segueData
-        }
-
-        if let destination = segue.destination as? TodayScheduleItemDetailsViewController {
-            destination.delegate = self
+        } else if let destination = segue.destination as? TodayScheduleItemDetailsViewController {
             destination.segueData = segueData
         }
     }
     
-    func hasDismissed() {
-        if statusBarShouldBeHidden || tabBarController?.tabBar.isHidden ?? false {
-            statusBarShouldBeHidden = false
-            tabBarController?.tabBar.isHidden = false
-            UIView.animate(withDuration: 0.25) {
-                self.setNeedsStatusBarAppearanceUpdate()
-            }
-            
-            view.setNeedsDisplay()
-        }
-    }
-
     private func rowNum(_ cellOrder: [String], forCellIdentifier id: String) -> Int? {
         return cellOrder.firstIndex(of: id)
     }
@@ -309,16 +293,7 @@ extension TodayV2TableViewController {
         }
     }
     
-    func perform(segue: String, with data: Any?, presentModally: Bool = true) {
-        if presentModally {
-            statusBarShouldBeHidden = true
-            tabBarController?.tabBar.isHidden = true
-            
-            UIView.animate(withDuration: 0.25) {
-                self.setNeedsStatusBarAppearanceUpdate()
-            }
-        }
-
+    func perform(segue: String, with data: Any?) {
         segueData = data
         performSegue(withIdentifier: segue, sender: self)
     }

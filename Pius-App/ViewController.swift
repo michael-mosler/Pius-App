@@ -38,7 +38,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, WKNavigatio
 
     /*
      * =====================================================================
-     *                          Wewb View
+     *                          Web View
      * =====================================================================
      */
 
