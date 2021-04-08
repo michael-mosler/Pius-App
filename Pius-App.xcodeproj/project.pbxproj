@@ -38,6 +38,7 @@
 		4C18106D261B8361005123F5 /* BrowserPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C18106C261B8361005123F5 /* BrowserPickerView.swift */; };
 		4C181078261C6CD7005123F5 /* NewsWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C181077261C6CD7005123F5 /* NewsWebView.swift */; };
 		4C181084261E10AA005123F5 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C181083261E10AA005123F5 /* UILabelExtension.swift */; };
+		4C1810B3261F1316005123F5 /* DashboardDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1810B2261F1316005123F5 /* DashboardDetailsTableViewCell.swift */; };
 		4C194B4C204AFB3500BA744A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C194B4B204AFB3500BA744A /* WebKit.framework */; };
 		4C1AC38221BED6CD00E2F3A5 /* PostingsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */; };
 		4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */; };
@@ -324,6 +325,7 @@
 		4C18106C261B8361005123F5 /* BrowserPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserPickerView.swift; sourceTree = "<group>"; };
 		4C181077261C6CD7005123F5 /* NewsWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsWebView.swift; sourceTree = "<group>"; };
 		4C181083261E10AA005123F5 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
+		4C1810B2261F1316005123F5 /* DashboardDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		4C194B4B204AFB3500BA744A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingsLoader.swift; sourceTree = "<group>"; };
 		4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanViewController.swift; sourceTree = "<group>"; };
@@ -628,6 +630,7 @@
 				4CC332CE2180DAB10055E3F5 /* MetaDataTableViewCell.swift */,
 				4C5AA0122189DAA90040A455 /* VertretungsplanDetailsCell.swift */,
 				4CD94FFE22C67D9D0056BA9F /* DashboardChangesViewController.swift */,
+				4C1810B2261F1316005123F5 /* DashboardDetailsTableViewCell.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1517,6 +1520,7 @@
 				4C94DFD32322522300C42998 /* MessageCell.swift in Sources */,
 				4CD94FFF22C67D9D0056BA9F /* DashboardChangesViewController.swift in Sources */,
 				4CF02EB12190C64300647078 /* DateListCollectionViewCell.swift in Sources */,
+				4C1810B3261F1316005123F5 /* DashboardDetailsTableViewCell.swift in Sources */,
 				4C48F6D521F78F7C00B20505 /* WatchConnectivityHandler.swift in Sources */,
 				4C798299248CEBBE00A51DD7 /* NewFunctionOnboardingViewController.swift in Sources */,
 				4C9368A723083F490038CE9B /* TodayTableViewCells.swift in Sources */,
