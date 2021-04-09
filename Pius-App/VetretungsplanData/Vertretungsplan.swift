@@ -10,7 +10,10 @@ import Foundation
 
 let lessonStartTimes = ["07:55", "08:40", "09:45", "10:35", "11:25", "12:40", "13:25", "14:30", "15:15", "16:00", "16:45"]
 
-typealias DetailItems = [String]
+// typealias DetailItems = [String]
+class DetailItems: [String], Encodable {
+    
+}
 
 struct GradeItem: Encodable {
     var grade: String!
