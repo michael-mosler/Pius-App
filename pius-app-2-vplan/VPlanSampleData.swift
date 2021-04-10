@@ -77,18 +77,18 @@ struct VPlanSampleData {
             var gradeItems: [[GradeItem]] = [[]]
             gradeItems.append([])
             gradeItems[0].append(GradeItem(grade: "7A"))
-            gradeItems[0][0].vertretungsplanItems.append(demoDetailItems["7A"]![0])
-            gradeItems[0][0].vertretungsplanItems.append(demoDetailItems["7A"]![1])
+            gradeItems[0][0].vertretungsplanItems.append(DetailItem(demoDetailItems["7A"]![0]))
+            gradeItems[0][0].vertretungsplanItems.append(DetailItem(demoDetailItems["7A"]![1]))
             
             gradeItems.append([])
             gradeItems[1].append(GradeItem(grade: "7A"))
-            gradeItems[1][0].vertretungsplanItems.append(demoDetailItems["7A"]![2])
-            gradeItems[1][0].vertretungsplanItems.append(demoDetailItems["7A"]![3])
+            gradeItems[1][0].vertretungsplanItems.append(DetailItem(demoDetailItems["7A"]![2]))
+            gradeItems[1][0].vertretungsplanItems.append(DetailItem(demoDetailItems["7A"]![3]))
             
             gradeItems.append([])
             gradeItems[2].append(GradeItem(grade: "7A"))
-            gradeItems[2][0].vertretungsplanItems.append(demoDetailItems["7A"]![4])
-            gradeItems[2][0].vertretungsplanItems.append(demoDetailItems["7A"]![5])
+            gradeItems[2][0].vertretungsplanItems.append(DetailItem(demoDetailItems["7A"]![4]))
+            gradeItems[2][0].vertretungsplanItems.append(DetailItem(demoDetailItems["7A"]![5]))
             
             return gradeItems
         }

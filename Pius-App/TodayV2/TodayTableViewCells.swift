@@ -119,9 +119,9 @@ class DashboardTableViewCell: UITableViewCell, DashboardItemCellProtocol {
     @IBOutlet weak var evaTextLabelContainer: UIView!
     @IBOutlet weak var evaTextLabel: UITextView!
     
-    var _items: DetailItems?
+    var _items: DetailItem?
     
-    var items: DetailItems? {
+    var items: DetailItem? {
         set(value) {
             _items = value
             if let items = _items {

@@ -48,27 +48,17 @@ class VertretungsplanDetailViewController: UIViewController, UITableViewDataSour
             
             cell.containingViewController = self
             
-            let grade = StringHelper.replaceHtmlEntities(input: item[2]) ?? ""
+            let course = StringHelper.replaceHtmlEntities(input: item.course) ?? ""
+            let lesson = item.lesson ?? ""
             
-            if grade != "" {
-                cell.course = String(format: "Fach/Kurs: %@, %@. Stunde", grade, item[0])
-            } else {
-                cell.course = String(format: "%@. Stunde", item[0])
-            }
-            
-            cell.type = StringHelper.replaceHtmlEntities(input: item[1])
-            cell.room = FormatHelper.roomText(
-                room: StringHelper.replaceHtmlEntities(input: item[3])
-            )
-            cell.teacher = StringHelper.replaceHtmlEntities(input: item[4])
-            cell.comment = StringHelper.replaceHtmlEntities(input: item[6])
-            
-            var eva: String?
-            if item.count == 8 {
-                eva = StringHelper.replaceHtmlEntities(input: item[7])
-            }
-            
-            cell.eva = eva
+            cell.course = course != ""
+                ? String(format: "Fach/Kurs: %@, %@. Stunde", course, lesson)
+                : String(format: "%@. Stunde", lesson)
+            cell.type = StringHelper.replaceHtmlEntities(input: item.type)
+            cell.room = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: item.room))
+            cell.teacher = StringHelper.replaceHtmlEntities(input: item.teacher)
+            cell.comment = StringHelper.replaceHtmlEntities(input: item.comment)
+            cell.eva = StringHelper.replaceHtmlEntities(input: item.eva)
         }
 
         return cell ?? UITableViewCell()

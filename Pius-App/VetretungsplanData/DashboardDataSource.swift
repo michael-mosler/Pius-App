@@ -10,7 +10,7 @@ import UIKit
 import WidgetKit
 
 protocol DashboardItemCellProtocol {
-    var items: DetailItems? { get set }
+    var items: DetailItem? { get set }
 }
 
 class DashboardDataSource<T: DashboardItemCellProtocol>: NSObject, UITableViewDataSource {
@@ -23,7 +23,7 @@ class DashboardDataSource<T: DashboardItemCellProtocol>: NSObject, UITableViewDa
     var hadError: Bool { _hadError }
     var loadDate: String? { substitutionSchedule?.lastUpdate }
 
-    var data: [DetailItems] {
+    var data: [DetailItem] {
         get {
             // If there is a schedule at all and if there a substitutions for the configured
             // grade.

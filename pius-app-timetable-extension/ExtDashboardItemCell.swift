@@ -15,5 +15,5 @@ import Foundation
  * implement our own child class but go with the default implementation.
  */
 class ExtDashboardItemCell: DashboardItemCellProtocol {
-    var items: DetailItems?
+    var items: DetailItem?
 }

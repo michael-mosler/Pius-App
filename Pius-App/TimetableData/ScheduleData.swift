@@ -197,7 +197,7 @@ typealias Courses = [CourseItem]
 class ScheduleItem: NSObject, NSCoding, NSCopying {
     var room: String
     var isSubstitution: Bool = false
-    var substitutionDetails: DetailItems?
+    var substitutionDetails: DetailItem?
     
     fileprivate var _courseItem: CourseItem
     
@@ -303,7 +303,7 @@ class ScheduleItem: NSObject, NSCoding, NSCopying {
      *     + otherwise: if courses match then details must not refer to a Klausur record
      *     + otherwise: There is no course given in details, i.e. it is something like a wildcard record
      */
-    func update(withDetails details: [DetailItems]) -> ScheduleItem {
+    func update(withDetails details: [DetailItem]) -> ScheduleItem {
         guard details.count > 0 else { return self }
         
         // Course name match?

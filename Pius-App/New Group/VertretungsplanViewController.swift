@@ -16,15 +16,15 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
     
     private var data: [VertretungsplanForDate] {
         get {
-            if let vertretungsplan_ = vertretungsplan {
-                return vertretungsplan_.vertretungsplaene;
+            if let vertretungsplan = vertretungsplan {
+                return vertretungsplan.vertretungsplaene;
             }
             return [];
         }
         
-        set(newValue) {
-            if (vertretungsplan != nil) {
-                vertretungsplan!.vertretungsplaene = newValue;
+        set {
+            if var vertretungsplan = vertretungsplan {
+                vertretungsplan.vertretungsplaene = newValue;
             }
         }
     }
