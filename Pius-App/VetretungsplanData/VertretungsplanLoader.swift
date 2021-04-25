@@ -8,6 +8,15 @@
 
 import Foundation
 
+/// Protocol for VPlan data processing
+protocol VPlanLoaderDelegate {
+    /// When data has been loaded this function is called to process the data.
+    /// - Parameters:
+    ///   - vertretungsplan: VPlan data; will be nil when data could not be loaded.
+    ///   - online: True when app was online, if false data has been loaded from cache.
+    func onload(with vertretungsplan: Vertretungsplan?, online: Bool)
+}
+
 /// Loader for Vertretungsplan.
 class VertretungsplanLoader {
     private var matchEmptyCourse: NSRegularExpression?
@@ -68,18 +77,18 @@ class VertretungsplanLoader {
     /// - Returns: True when to be accepted.
     private func accept(basedOn detailItems: [String]) -> Bool {
         // When not in dashboard mode accept any item.
-        if (forGrade == nil) {
+        if forGrade == nil {
             return true
         }
 
         // If not an upper grade do not check course list.
-        if (Config.upperGrades.firstIndex(of: forGrade!) == nil) {
+        if Config.upperGrades.firstIndex(of: forGrade!) == nil {
             return true
         }
 
         // If no course list set or list is empty accept any item.
         let courseList = AppDefaults.courseList
-        if (courseList == nil || courseList!.count == 0) {
+        if courseList == nil || courseList!.count == 0 {
             return true
         }
 
@@ -92,11 +101,11 @@ class VertretungsplanLoader {
             return true
         }
 
-        // "Messe": Starts with "Mes", if seconds item is a course on users own course list
+        // "Messe": Starts with "Mes", if second item is a course on users own course list
         // show it otherwise skip it.
         // If no seconds course is notated also skip it.
         let endOfText = course.index(course.startIndex, offsetBy: 3)
-        if (course[..<endOfText] == "Mes") {
+        if course[..<endOfText] == "Mes" {
             if let secondCourse = CourseItem.course(from: course, first: false) {
                 course = secondCourse
             } else {
@@ -127,7 +136,7 @@ class VertretungsplanLoader {
     func getAndEncodeCredentials(username: String? = nil, password: String? = nil) -> String {
         var realUsername: String
         var realPassword: String
-        if (username == nil && password == nil) {
+        if username == nil && password == nil {
             (realUsername, realPassword) = AppDefaults.credentials
         } else {
             realUsername = username!
@@ -148,7 +157,7 @@ class VertretungsplanLoader {
         let base64LoginString = getAndEncodeCredentials()
         var request: URLRequest
         
-        if (piusGatewayIsReachable) {
+        if piusGatewayIsReachable {
             // Define GET request with basic authentication.
             request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalCacheData)
             request.httpMethod = "GET"
@@ -208,7 +217,7 @@ class VertretungsplanLoader {
                     // Cached data is not modified. This can be checked in online mode only.
                     // In offline mode _data will come from cache already if available.
                     let notModified = piusGatewayIsReachable == true && ((response as! HTTPURLResponse).statusCode == 304)
-                    if (notModified) {
+                    if notModified {
                         NSLog("Vertretungsplan has not changed. Using data from cache.")
                         let vertretungsplan = try self.loadFromCache()
                         update(vertretungsplan, piusGatewayIsReachable)
@@ -245,6 +254,12 @@ class VertretungsplanLoader {
 
         // Now execute task and get data. This also updates all views.
         task.resume()
+    }
+    
+    /// Same as load above but with delegate.
+    /// - Parameter onLoadDelegate: The delegate that implements VPlanLoaderDelegate protocol.
+    func load(_ onLoadDelegate: VPlanLoaderDelegate) {
+        load(onLoadDelegate.onload)
     }
     
     /// Validate that given credentials are these that are stored in user settings.

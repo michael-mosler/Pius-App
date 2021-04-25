@@ -9,26 +9,13 @@
 import UIKit
 import WidgetKit
 
-class VertretungsplanViewController: UITableViewController, ExpandableHeaderViewDelegate {
-    private var vertretungsplan: Vertretungsplan?;
+class VertretungsplanViewController:
+    ExpandableHeaderVPlanViewController,
+    ExpandableHeaderViewDelegate,
+    VPlanLoaderDelegate
+{
     private var selected: IndexPath?;
-    private var currentHeader: ExpandableHeaderView?;
     
-    private var data: [VertretungsplanForDate] {
-        get {
-            if let vertretungsplan = vertretungsplan {
-                return vertretungsplan.vertretungsplaene;
-            }
-            return [];
-        }
-        
-        set {
-            if var vertretungsplan = vertretungsplan {
-                vertretungsplan.vertretungsplaene = newValue;
-            }
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad();
         refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged);
@@ -62,7 +49,7 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
      * ===============================================================
      */
 
-    func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
+    func onload(with vertretungsplan: Vertretungsplan?, online: Bool) {
         if (vertretungsplan == nil) {
             DispatchQueue.main.async {
                 self.refreshControl?.endRefreshing()
@@ -86,12 +73,9 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
     }
     
     private func getVertretungsplanFromWeb() {
-        let vertretungsplanLoader = VertretungsplanLoader(forGrade: nil);
-        
-        // Clear all data and reload.
-        currentHeader = nil;
         selected = nil;
-        vertretungsplanLoader.load(self.doUpdate);        
+        let vertretungsplanLoader = VertretungsplanLoader(forGrade: nil);
+        vertretungsplanLoader.load(self);
     }
 
     @objc func refreshScrollView(_ sender: UIRefreshControl) {
@@ -182,33 +166,4 @@ class VertretungsplanViewController: UITableViewController, ExpandableHeaderView
         }
     }
     
-    // Toggles section headers. If a new header is expanded the previous one when different
-    // from the current one is collapsed.
-    func toggleSection(header: ExpandableHeaderView, section: Int) {
-        guard section >= 2 else { return }
-        
-        // If another than the current section is selected hide the current
-        // section.
-        if currentHeader != nil && currentHeader != header {
-            if let currentSection = currentHeader?.section, currentSection >= 2 {
-                data[currentSection - 2].expanded = false;
-                
-                tableView.beginUpdates();
-                for i in 0 ..< data[currentSection - 2].gradeItems.count {
-                    tableView.reloadRows(at: [IndexPath(row: i, section: currentSection)], with: .automatic)
-                }
-                tableView.endUpdates();
-            }
-        }
-
-        // Expand/collapse the selected header depending on it's current state.
-        currentHeader = header;
-        data[section - 2].expanded = !data[section - 2].expanded;
-        
-        tableView.beginUpdates();
-        for i in 0 ..< data[section - 2].gradeItems.count {
-            tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
-        }
-        tableView.endUpdates();
-    }
 }

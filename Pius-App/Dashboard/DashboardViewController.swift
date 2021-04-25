@@ -15,7 +15,7 @@ import WidgetKit
  * with other elements.
  */
 class EvaTableCell: UITableViewCell {
-    var evaTextLabel: UITextView { return UITextView() }
+    var evaTextLabel: UITextView { UITextView() }
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -32,39 +32,22 @@ class DashboardEvaTableCell: EvaTableCell {
     override var evaTextLabel: UITextView { return evaTextLabelOutlet }
 }
 
-class DashboardViewController: UITableViewController, UITabBarControllerDelegate, ExpandableHeaderViewDelegate {
+/// Dashboard View Controller class
+class DashboardViewController:
+    ExpandableHeaderVPlanViewController,
+    UITabBarControllerDelegate,
+    ExpandableHeaderViewDelegate,
+    VPlanLoaderDelegate
+{
+    
     @IBOutlet weak var evaButton: UIBarButtonItem!
 
-    private var vertretungsplan: Vertretungsplan?
+    // private var vertretungsplan: Vertretungsplan?
     private var nextDate: String = ""
-    private var currentHeader: ExpandableHeaderView?
     
-    private var data: [VertretungsplanForDate] {
-        get {
-            if let vertretungsplan_ = vertretungsplan {
-                return vertretungsplan_.vertretungsplaene
-            }
-            return []
-        }
-        
-        set(newValue) {
-            if (vertretungsplan != nil) {
-                vertretungsplan!.vertretungsplaene = newValue
-            }
-        }
-    }
-
     private var canUseDashboard: Bool {
-        get {
-            return AppDefaults.authenticated && AppDefaults.hasGrade
-        }
+        get { AppDefaults.authenticated && AppDefaults.hasGrade }
     }
-
-    private struct ExpandHeaderInfo {
-        var header: ExpandableHeaderView
-        var section: Int
-    }
-    private var expandHeaderInfo: ExpandHeaderInfo?
 
     // This dashboard is for this grade setting.
     private var grade: String = ""
@@ -72,6 +55,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
     // That many rows per unfolded item.
     private let rowsPerItem = 5
     
+    /// Initialise all properties after view has been loaded.
     override func viewDidLoad() {
         super.viewDidLoad()
         evaButton.isEnabled = false
@@ -80,6 +64,8 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         refreshControl!.addTarget(self, action: #selector(refreshScrollView(_:)), for: UIControl.Event.valueChanged)
     }
     
+    /// If dashboard can be used enable user interaction.
+    /// - Parameter animated: Appear with animation when true
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -91,13 +77,15 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         }
     }
     
+    /// When view did appear set title.
+    /// - Parameter animated: Appear with animation when true
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // This dashboard is for this grade setting.
         grade = AppDefaults.gradeSetting
         
-        if (data.count == 0 || title != grade) {
+        if data.count == 0 || title != grade {
             title = (grade != "") ? grade : "Dashboard"
             
             if canUseDashboard {
@@ -106,8 +94,12 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         }
     }
     
-    func doUpdate(with vertretungsplan: Vertretungsplan?, online: Bool) {
-        if (vertretungsplan == nil) {
+    /// Implements VPlanLoaderDelegate protocol function onload.
+    /// - Parameters:
+    ///   - vertretungsplan: VPlan data
+    ///   - online: Flag indicating if data was loaded online
+    func onload(with vertretungsplan: Vertretungsplan?, online: Bool) {
+        if vertretungsplan == nil {
             DispatchQueue.main.async {
                 self.refreshControl?.endRefreshing()
 
@@ -132,13 +124,11 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.tableView.layoutIfNeeded()
-                if let headerInfo = self.expandHeaderInfo {
-                    self.toggleSection(header: headerInfo.header, section: headerInfo.section)
-                }
                 self.tableView.isHidden = false
-                self.evaButton.tintColor = (AppDefaults.hasUpperGrade) ? UIColor(named: "piusBlue") : .white
+                self.evaButton.tintColor = (AppDefaults.hasUpperGrade)
+                    ? UIColor(named: "piusBlue")
+                    : .white
                 self.evaButton.isEnabled = AppDefaults.hasUpperGrade
-                
                 self.refreshControl?.endRefreshing()
             }
         }
@@ -148,14 +138,11 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         }
     }
     
+    /// Load VPlan data
+    /// - Parameter grade: Load data for this grade
     private func getVertretungsplanFromWeb(forGrade grade: String) {
-        // Clear all data.
-        currentHeader = nil
         nextDate = ""
-        expandHeaderInfo = nil
-
-        let vertretungsplanLoader = VertretungsplanLoader(forGrade: grade)
-        vertretungsplanLoader.load(self.doUpdate)
+        getVertretungsplanFromWeb(forGrade: grade, onLoadDelegate: self)
     }
 
     @objc func refreshScrollView(_ sender: UIRefreshControl) {
@@ -224,9 +211,7 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         header.customInit(userInteractionEnabled: (data[section - 2].gradeItems.count != 0), section: section, delegate: self)
         
         // Expand next substitution date entry.
-        if data[section - 2].date == nextDate {
-            expandHeaderInfo = ExpandHeaderInfo(header: header, section: section)
-         }
+        data[section-2].expanded = data[section - 2].date == nextDate
 
         return header
     }
@@ -256,29 +241,34 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
             case 0: return tableView.dequeueReusableCell(withIdentifier: "spacerTop")!
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "course")!
-                let course: String! = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][2])
-                let lesson: String! = (gradeItem?.vertretungsplanItems[itemIndex][0]) ?? ""
-                cell.textLabel?.text = (course != "") ? String(format: "Fach/Kurs: %@, %@. Stunde", course, lesson) : String(format: "%@. Stunde", lesson)
+                let course = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex].course) ?? ""
+                let lesson = (gradeItem?.vertretungsplanItems[itemIndex].lesson) ?? ""
+                cell.textLabel?.text = (course != "")
+                    ? String(format: "Fach/Kurs: %@, %@. Stunde", course, lesson)
+                    : String(format: "%@. Stunde", lesson)
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "details") as! VertretungsplanDetailsCell
                 cell.viewController = self
-                cell.setContent(type: NSAttributedString(string: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][1])),
-                                room: FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][3])),
-                                substitution: FormatHelper.teacherText(oldTeacher: (gradeItem?.vertretungsplanItems[itemIndex][5]),
-                                                                       newTeacher: gradeItem?.vertretungsplanItems[itemIndex][4]))
+                cell.setContent(type: NSAttributedString(string: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex].type)),
+                                room: FormatHelper.roomText(
+                                    room: StringHelper.replaceHtmlEntities(
+                                        input: gradeItem?.vertretungsplanItems[itemIndex].room)
+                                ),
+                                substitution: FormatHelper.teacherText(
+                                    oldTeacher: nil, newTeacher: gradeItem?.vertretungsplanItems[itemIndex].teacher
+                                )
+                )
                 return cell
             case 3:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "comment")!
-                let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][6])
+                let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex].comment)
                 cell.textLabel?.text = text
                 return cell
             case 4:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "eva") as! DashboardEvaTableCell
-                if (gradeItem?.vertretungsplanItems[itemIndex].count == 8) {
-                    let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][7])
-                    cell.evaTextLabel.text = text
-                }
+                let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex].eva)
+                cell.evaTextLabel.text = text
                 return cell
             default:
                 NSLog("Invalid row number")
@@ -287,27 +277,4 @@ class DashboardViewController: UITableViewController, UITabBarControllerDelegate
         }
     }
 
-    // Toggles header for the given section. Section must be greater or equal to 2
-    // otherwise function will return without any toggle.
-    func toggleSection(header: ExpandableHeaderView, section: Int) {
-        guard section >= 2 else { return }
-
-        // If another than the current section is selected hide the current
-        // section.
-        if currentHeader != nil && currentHeader != header {
-            if let currentSection = currentHeader?.section, currentSection >= 2 {
-                data[currentSection - 2].expanded = false
-            }
-        }
-        
-        // Expand/collapse the selected header depending on it's current state.
-        currentHeader = header
-        data[section - 2].expanded = !data[section - 2].expanded
-        
-        tableView.beginUpdates()
-        for i in 0 ..< data[section - 2].gradeItems[0].vertretungsplanItems.count {
-            tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
-        }
-        tableView.endUpdates()
-    }
 }

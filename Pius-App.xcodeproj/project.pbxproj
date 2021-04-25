@@ -39,6 +39,7 @@
 		4C181078261C6CD7005123F5 /* NewsWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C181077261C6CD7005123F5 /* NewsWebView.swift */; };
 		4C181084261E10AA005123F5 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C181083261E10AA005123F5 /* UILabelExtension.swift */; };
 		4C1810B3261F1316005123F5 /* DashboardDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1810B2261F1316005123F5 /* DashboardDetailsTableViewCell.swift */; };
+		4C1810BE26231D12005123F5 /* ExpandableHeaderVPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1810BD26231D12005123F5 /* ExpandableHeaderVPlanViewController.swift */; };
 		4C194B4C204AFB3500BA744A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C194B4B204AFB3500BA744A /* WebKit.framework */; };
 		4C1AC38221BED6CD00E2F3A5 /* PostingsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */; };
 		4C1FDE4B20556472006092C9 /* VertretungsplanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */; };
@@ -326,6 +327,7 @@
 		4C181077261C6CD7005123F5 /* NewsWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsWebView.swift; sourceTree = "<group>"; };
 		4C181083261E10AA005123F5 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		4C1810B2261F1316005123F5 /* DashboardDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		4C1810BD26231D12005123F5 /* ExpandableHeaderVPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderVPlanViewController.swift; sourceTree = "<group>"; };
 		4C194B4B204AFB3500BA744A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		4C1AC38121BED6CD00E2F3A5 /* PostingsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingsLoader.swift; sourceTree = "<group>"; };
 		4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertretungsplanViewController.swift; sourceTree = "<group>"; };
@@ -853,6 +855,7 @@
 			children = (
 				4C1FDE4A20556472006092C9 /* VertretungsplanViewController.swift */,
 				4C798294248A9EFB00A51DD7 /* StaffPopoverViewController.swift */,
+				4C1810BD26231D12005123F5 /* ExpandableHeaderVPlanViewController.swift */,
 			);
 			name = Vertretungsplan;
 			path = "New Group";
@@ -1568,6 +1571,7 @@
 				4C9368AF23093BA30038CE9B /* NewsTableDataSource.swift in Sources */,
 				4C1FDE50205568E3006092C9 /* ExpandableHeaderView.swift in Sources */,
 				4CBC31402218164100CEB1D1 /* EvaLoader.swift in Sources */,
+				4C1810BE26231D12005123F5 /* ExpandableHeaderVPlanViewController.swift in Sources */,
 				4C97C91A2599E58000FA665A /* StaffTableViewController.swift in Sources */,
 				4C1FDE5E20697516006092C9 /* VertretungsplanLoader.swift in Sources */,
 				4CA4907720DE4DDC00796457 /* AppDefaults.swift in Sources */,
