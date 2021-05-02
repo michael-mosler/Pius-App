@@ -116,7 +116,7 @@ class VertretungsplanViewController:
         switch(indexPath.section) {
         case 0: return 128; // 85 (Cell height) + 42 (Page Control + Spacing) + 1
         case 1: return UITableView.automaticDimension;
-        default: return (data[indexPath.section - 2].expanded) ? UITableView.automaticDimension : 0;
+        default: return (data[indexPath.section - 2].expanded) ? 35 /* UITableView.automaticDimension */ : 0;
         }
     }
     
@@ -124,7 +124,7 @@ class VertretungsplanViewController:
         switch(section) {
         case 0: return 0;
         case 1: return 0;
-        default: return 44;
+        default: return 35;
         }
     }
     

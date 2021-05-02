@@ -9,7 +9,11 @@
 import UIKit
 
 /// Substitution details for a given grade.
-class VertretungsplanDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class VertretungsplanDetailViewController:
+    UIViewController,
+    UITableViewDataSource,
+    UITableViewDelegate
+{
 
     @IBOutlet weak var detailsTableView: UITableView!
     @IBOutlet weak var dateLabel: UILabel!

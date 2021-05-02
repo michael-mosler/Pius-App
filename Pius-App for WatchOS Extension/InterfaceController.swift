@@ -60,8 +60,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     private func showMessageInRow(_ text: String, forceShow: Bool = false) {
         guard !appWillDisappear || forceShow else { return }
         dashboardTable.setRowTypes(["iconRow", "contentRow"])
-        let tableRow = dashboardTable.rowController(at: 1) as! ContentRow
-        tableRow.label.setAttributedText(NSAttributedString(string: text, attributes: hyphantedTextAttribute))
+        if let tableRow = dashboardTable.rowController(at: 1) as? ContentRow {
+            tableRow.label.setAttributedText(NSAttributedString(string: text, attributes: hyphantedTextAttribute))
+        }
     }
 
     // Converts dashboard response to an array of table tow types and an array of table row data.
