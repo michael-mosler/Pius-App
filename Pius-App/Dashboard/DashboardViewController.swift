@@ -118,7 +118,11 @@ class DashboardViewController:
             // What is actually next active substitution schedule date?
             let nextVertretungsplanForDate = vertretungsplan!.next
             if nextVertretungsplanForDate.count > 0 {
-                self.nextDate = nextVertretungsplanForDate[0].date
+                nextDate = nextVertretungsplanForDate[0].date
+
+                if let i = data.firstIndex(where: { $0.date == nextDate }) {
+                    data[i].expanded = true
+                }
             }
             
             DispatchQueue.main.async {
@@ -144,7 +148,9 @@ class DashboardViewController:
         nextDate = ""
         getVertretungsplanFromWeb(forGrade: grade, onLoadDelegate: self)
     }
-
+    
+    /// Reloads data from backend on pull-to-refresh action.
+    /// - Parameter sender: Triggering refresh control
     @objc func refreshScrollView(_ sender: UIRefreshControl) {
         guard canUseDashboard else {
             sender.endRefreshing()
@@ -153,127 +159,125 @@ class DashboardViewController:
         
         getVertretungsplanFromWeb(forGrade: grade)
     }
-
+    
+    /// Returns number of sections.
+    /// - Parameter tableView: Table view which requests number of sections.
+    /// - Returns: Number of sections of table view
     override func numberOfSections(in tableView: UITableView) -> Int {
-        guard canUseDashboard else { return 1; }
+        guard canUseDashboard else { return 1 }
         return (data.count == 0) ? 0 : data.count + 2
     }
     
+    /// Returns number of rows in table view section.
+    /// - Parameters:
+    ///   - tableView: tableView: Table view which requests information
+    ///   - section: Section number
+    /// - Returns: Number of rows in given section
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        guard canUseDashboard && section >= 2 else { return 1; }
-        return ((data[section - 2].gradeItems.count == 0)) ? 0 : rowsPerItem * data[section - 2].gradeItems[0].vertretungsplanItems.count
+        guard canUseDashboard && section >= 2 else { return 1 }
+        return data[section - 2].expanded
+            ? data[section - 2].gradeItems[0].vertretungsplanItems.count
+            : 0
     }
     
+    /// Computes height for row at index path.
+    /// - Parameters:
+    ///   - tableView: Table view which requests information
+    ///   - indexPath: Path to cell
+    /// - Returns: Hight of addressed cell
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard canUseDashboard else { return tableView.frame.height - (tabBarController?.tabBar.frame.height)! - (navigationController?.navigationBar.frame.height)!;  }
-
-        switch(indexPath.section) {
-        case 0: return 128
-        case 1: return UITableView.automaticDimension
-        default:
-            if (data[indexPath.section - 2].expanded) {
-                let gradeItem: GradeItem? = data[indexPath.section - 2].gradeItems[0]
-                
-                switch indexPath.row % rowsPerItem {
-                case 0: return 2
-                case 1: return UITableView.automaticDimension
-                case 2: return tableView.rowHeight
-                case 3:
-                    let itemIndex: Int = indexPath.row / rowsPerItem
-                    let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex][6])
-                    return (text == "") ? 0 : UITableView.automaticDimension
-                case 4:
-                    let itemIndex: Int = indexPath.row / rowsPerItem
-                    return ((gradeItem?.vertretungsplanItems[itemIndex].count)! < 8) ? 0: UITableView.automaticDimension
-                default:
-                    NSLog("Invalid row number")
-                    return 0
-                }
-            } else {
-                return 0
-            }
+        guard canUseDashboard else {
+            return tableView.frame.height
+                - (tabBarController?.tabBar.frame.height)!
+                - (navigationController?.navigationBar.frame.height)!
         }
+
+        return indexPath.section == 0 ? 128 : UITableView.automaticDimension
     }
     
+    /// Computes height of section header.
+    /// - Parameters:
+    ///   - tableView: Table view which requests information
+    ///   - section: Section number
+    /// - Returns: Height of section
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return (section < 2) ? 0 : 44
+        return (section < 2) ? 0 : 35
     }
-
+    
+    /// Computes height of section footer.
+    /// - Parameters:
+    ///   - tableView: Table view which requests information
+    ///   - section: Section number
+    /// - Returns: Height of footer
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return (section < 2) ? 0 : 2
     }
     
+    /// Returns the view which shows up in section header.
+    /// - Parameters:
+    ///   - tableView: Table view which requests information
+    ///   - section: Section number
+    /// - Returns: UITableViewHeaderFooterView instance
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard (section >= 2) else { return UITableViewHeaderFooterView(); }
+        guard (section >= 2) else { return UITableViewHeaderFooterView() }
 
         let header = ExpandableHeaderView()
         header.customInit(userInteractionEnabled: (data[section - 2].gradeItems.count != 0), section: section, delegate: self)
-        
-        // Expand next substitution date entry.
-        data[section-2].expanded = data[section - 2].date == nextDate
-
         return header
     }
-
+    
+    /// Returns the title for section header. Date of vplan record shown in section is used as title.
+    /// - Parameters:
+    ///   - tableView:
+    ///   - section: Table view which requests information
+    /// - Returns: Section header title
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return (section < 2) ? "" : data[section - 2].date
     }
     
+    /// Returns the cell for a given index path
+    /// - Parameters:
+    ///   - tableView: Table view which requests information
+    ///   - indexPath: Index path which addresses the cell
+    /// - Returns: Cell to display at index path
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard canUseDashboard else { return tableView.dequeueReusableCell(withIdentifier: "notLoggedIn")!; }
+        guard canUseDashboard else { return tableView.dequeueReusableCell(withIdentifier: "notLoggedIn")! }
 
         switch(indexPath.section) {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "metaDataCell") as! MetaDataTableViewCell
             cell.setContent(tickerText: StringHelper.replaceHtmlEntities(input: vertretungsplan?.tickerText), additionalText: StringHelper.replaceHtmlEntities(input: vertretungsplan?.additionalText))
             return cell
+            
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "lastUpdateCell")!
             cell.textLabel?.text = vertretungsplan?.lastUpdate
             cell.detailTextLabel?.text = "Letzte Aktualisierung"
             return cell
-        default:
-            let itemIndex: Int = indexPath.row / rowsPerItem
-            let gradeItem: GradeItem? = data[indexPath.section - 2].gradeItems[0]
             
-            switch indexPath.row % rowsPerItem {
-            case 0: return tableView.dequeueReusableCell(withIdentifier: "spacerTop")!
-            case 1:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "course")!
-                let course = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex].course) ?? ""
-                let lesson = (gradeItem?.vertretungsplanItems[itemIndex].lesson) ?? ""
-                cell.textLabel?.text = (course != "")
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "detailsCell") as? DashboardDetailsTableViewCell
+            if let cell = cell {
+                let gradeItem = data[indexPath.section - 2].gradeItems[0]
+                let item = gradeItem.vertretungsplanItems[indexPath.row]
+                
+                cell.containingViewController = self
+
+                let course = StringHelper.replaceHtmlEntities(input: item.course) ?? ""
+                let lesson = item.lesson ?? ""
+                
+                cell.course = course != ""
                     ? String(format: "Fach/Kurs: %@, %@. Stunde", course, lesson)
                     : String(format: "%@. Stunde", lesson)
-                return cell
-            case 2:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "details") as! VertretungsplanDetailsCell
-                cell.viewController = self
-                cell.setContent(type: NSAttributedString(string: StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex].type)),
-                                room: FormatHelper.roomText(
-                                    room: StringHelper.replaceHtmlEntities(
-                                        input: gradeItem?.vertretungsplanItems[itemIndex].room)
-                                ),
-                                substitution: FormatHelper.teacherText(
-                                    oldTeacher: nil, newTeacher: gradeItem?.vertretungsplanItems[itemIndex].teacher
-                                )
-                )
-                return cell
-            case 3:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "comment")!
-                let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex].comment)
-                cell.textLabel?.text = text
-                return cell
-            case 4:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "eva") as! DashboardEvaTableCell
-                let text = StringHelper.replaceHtmlEntities(input: gradeItem?.vertretungsplanItems[itemIndex].eva)
-                cell.evaTextLabel.text = text
-                return cell
-            default:
-                NSLog("Invalid row number")
-                return UITableViewCell()
+                cell.type = StringHelper.replaceHtmlEntities(input: item.type)
+                cell.room = FormatHelper.roomText(room: StringHelper.replaceHtmlEntities(input: item.room))
+                cell.teacher = StringHelper.replaceHtmlEntities(input: item.teacher)
+                cell.comment = StringHelper.replaceHtmlEntities(input: item.comment)
+                cell.eva = StringHelper.replaceHtmlEntities(input: item.eva)
             }
+            
+            return cell ?? UITableViewCell()
         }
     }
 

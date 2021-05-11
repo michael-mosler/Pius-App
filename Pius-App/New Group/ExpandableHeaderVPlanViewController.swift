@@ -43,14 +43,16 @@ class ExpandableHeaderVPlanViewController: UITableViewController {
     ///   - section: Section of header
     func toggleSection(header: ExpandableHeaderView, section: Int) {
         guard section >= 2 else { return }
-        
-        for i in 0..<data.count {
-            if i != section - 2 && data[i].expanded {
+
+        tableView.beginUpdates()
+        for i in 2..<data.count + 2 {
+            if i != section && data[i - 2].expanded {
                 expandSection(i, with: false)
             }
         }
 
-        expandSection(section - 2, with: !data[section - 2].expanded)
+        expandSection(section, with: !data[section - 2].expanded)
+        tableView.endUpdates()
     }
     
     /// Expands/collapses given section.
@@ -58,7 +60,7 @@ class ExpandableHeaderVPlanViewController: UITableViewController {
     ///   - section: Section to expand/collaps
     ///   - with: True indicated expand, false collapse
     private func expandSection(_ section: Int, with: Bool) {
-        data[section].expanded = with
+        data[section - 2].expanded = with
         tableView.reloadSections(IndexSet(integer: section), with: .automatic)
     }
 
