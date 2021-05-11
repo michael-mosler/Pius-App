@@ -12,16 +12,62 @@ let lessonStartTimes = ["07:55", "08:40", "09:45", "10:35", "11:25", "12:40", "1
 
 typealias DetailItems = [String]
 
-struct GradeItem: Encodable {
-    var grade: String!
-    var vertretungsplanItems: [DetailItems]!
+/// This struct implements an abstraction for the original DetailItems type. It
+/// holds an instance of this type and provides getters for the different
+/// properties. Instead of using subscripts the user now may access such
+/// properties by means of named getters.
+/// The class may also be used as array for compat. reasons.
+struct DetailItem: Encodable {
     
-    init(grade: String!) {
-        self.grade = grade
-        self.vertretungsplanItems = []
+    private var data: DetailItems
+    
+    init(_ details: DetailItems) {
+        data = details
+    }
+
+    var course: String? { getItem(2) }
+    var lesson: String? { getItem(0) }
+    var type: String? { getItem(1) }
+    var room: String? { getItem(3) }
+    var teacher: String? { getItem(4) }
+    var comment: String? { getItem(6) }
+    var eva: String? { getItem(7) }
+    
+    var count: Int { data.count }
+
+    subscript(index: Int) -> String {
+        return getItem(index) ?? ""
     }
     
-    func details(forLesson lesson: Int) -> [DetailItems] {
+    /// Protected getter for subscript value. If array
+    /// does not have requested index then nil is returned.
+    /// - Parameter i: Subscript index
+    /// - Returns: Value at index or nil when not defined.
+    private func getItem(_ i: Int) -> String? {
+        return i < data.count ? data[i] : nil
+    }
+    
+}
+
+/// A GradeItem holds all substitutions for a given grade.
+struct GradeItem: Encodable {
+    
+    var grade: String!
+
+    private var vertretungsplanItems_: [DetailItem] = []
+    var vertretungsplanItems: [DetailItem] {
+        set { vertretungsplanItems_ = newValue }
+        get { vertretungsplanItems_ }
+    }
+
+    init(grade: String!) {
+        self.grade = grade
+    }
+    
+    /// Get details for given lesson.
+    /// - Parameter lesson: Requested lesson
+    /// - Returns: Details for given lesson
+    func details(forLesson lesson: Int) -> [DetailItem] {
         let detailItems = vertretungsplanItems.filter({ details in
             let parts = details[0].split(separator: "-")
             
@@ -56,9 +102,13 @@ struct GradeItem: Encodable {
         
         return detailItems
     }
+    
 }
 
+/// Substitution schedule for a given date. This struct holds schedules
+/// for all grades for a date.
 struct VertretungsplanForDate: Encodable {
+    
     var date: String!
     var gradeItems: [GradeItem]!
     var expanded: Bool!
@@ -69,13 +119,19 @@ struct VertretungsplanForDate: Encodable {
         self.expanded = expanded
     }
     
+    /// Get item at index position. If index does not exist nil
+    /// is returned.
+    /// - Parameter index: Index position
+    /// - Returns: Item at index or nil
     func item(forIndex index: Int) -> GradeItem? {
         return gradeItems.count > index ? gradeItems[index] : nil
     }
+    
 }
 
 /// Full Vertretungsplan from cache or backend.
 struct Vertretungsplan: Encodable {
+    
     var tickerText: String?
     var additionalText: String?
     var lastUpdate: String!
@@ -151,7 +207,7 @@ struct Vertretungsplan: Encodable {
                             }
                             
                             if accept?(detailItems) ?? true {
-                                gradeItem.vertretungsplanItems.append(detailItems)
+                                gradeItem.vertretungsplanItems.append(DetailItem(detailItems))
                             }
                         }
                         
@@ -250,4 +306,5 @@ struct Vertretungsplan: Encodable {
             }
         }
     }
+    
 }

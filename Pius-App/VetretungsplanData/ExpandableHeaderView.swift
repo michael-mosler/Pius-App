@@ -8,11 +8,20 @@
 
 import UIKit
 
+/// This delegate must implement the actual expand/collaps
+/// functionality of an ExpandableHeaderView.
 protocol ExpandableHeaderViewDelegate {
+    /// Toggles expansion/collapsing of section header.
+    /// - Parameters:
+    ///   - header: The header for which section shall be expanded/collapsed
+    ///   - section: Section number
     func toggleSection(header: ExpandableHeaderView, section: Int)
 }
 
+/// Table View Header that allows expanding and collapsing of
+/// sections.
 class ExpandableHeaderView: UITableViewHeaderFooterView {
+    
     private var isInitialized = false
     private var delegate: ExpandableHeaderViewDelegate?
     private(set) var section: Int!
@@ -42,9 +51,11 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     ///   - expanded: Pass true if initially expanded
     ///   - delegate: Delegate to call when header is toggled
     func customInit(
-        userInteractionEnabled: Bool = true, section: Int, expanded: Bool = true,
-        delegate: ExpandableHeaderViewDelegate) {
-        
+        userInteractionEnabled: Bool = true,
+        section: Int,
+        expanded: Bool = true,
+        delegate: ExpandableHeaderViewDelegate)
+    {
         guard !isInitialized else { return }
         self.isInitialized = true
         self.section = section
@@ -56,14 +67,9 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     /// Sets look and feel of expandable header table cell.
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        if (isUserInteractionEnabled) {
-            contentView.backgroundColor = UIColor(named: "piusBlue")
-        } else {
-            contentView.backgroundColor = UIColor.lightGray
-
-        }
+        contentView.backgroundColor = isUserInteractionEnabled ? UIColor(named: "piusBlue") : .lightGray
         textLabel?.textColor = UIColor.white
         textLabel?.font = textLabel?.font.withSize(17)
     }
+    
 }

@@ -17,6 +17,9 @@
          contextName = "closure #1 in VertretungsplanLoader.load(_:):VertretungsplanLoader.swift">
       </ContextState>
       <ContextState
+         contextName = "DashboardViewController.onload(with:online:):DashboardViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "DateListViewController.searchBarTextDidEndEditing(_:):DateListViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -83,10 +86,10 @@
          contextName = "SettingsPageViewController.pageViewController(_:viewControllerAfter:):SettingsPageViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "titles">
+               value = "self.presentationIndex">
             </PersistentString>
             <PersistentString
-               value = "self.presentationIndex">
+               value = "titles">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -141,6 +144,14 @@
          <PersistentStrings>
             <PersistentString
                value = "textField.text ">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DashboardViewController.tableView(_:numberOfRowsInSection:):DashboardViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "data[section - 2].expanded ">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -217,6 +228,14 @@
             </PersistentString>
             <PersistentString
                value = "range.upperBound">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DashboardViewController.tableView(_:viewForHeaderInSection:):DashboardViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "data[section-2].date ">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

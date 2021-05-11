@@ -1,4 +1,4 @@
-github "onevcat/Kingfisher" ~> 5.7.0
+github "onevcat/Kingfisher"
 github "MortimerGoro/MGSwipeTableCell"
 github "Boris-Em/BEMCheckBox"
 github "danielsaidi/Sheeeeeeeeet"
