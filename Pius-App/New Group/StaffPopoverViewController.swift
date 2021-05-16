@@ -14,32 +14,54 @@ import UIKit
  * and view popover shall be shown for.
  */
 class StaffPopoverViewController: UIViewController, UIPopoverPresentationControllerDelegate {
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var subjectsLabel: UILabel!
+    @IBOutlet weak var nameTextView: UITextView!
+    @IBOutlet weak var subjectsTextView: UITextView!
+    @IBOutlet weak var emailTextView: UITextView!
+
+    var staffMember: StaffMember?
     
-    private var staffMember: StaffMember?
+    var sourceView: UIView? {
+        get { popoverPresentationController?.sourceView }
+        set { popoverPresentationController?.sourceView = newValue }
+    }
     
+    var permittedArrowDirections: UIPopoverArrowDirection? {
+        get { popoverPresentationController?.permittedArrowDirections }
+        set { popoverPresentationController?.permittedArrowDirections =
+            newValue ?? .any
+        }
+    }
+    
+    /// Standard constructor sets basic properties of view controller.
+    /// - Parameter coder: Coder for view controller, we don't care.
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         modalPresentationStyle = .popover
         popoverPresentationController?.delegate = self
     }
     
-    func setContent(_ staffMember: StaffMember) {
-        self.staffMember = staffMember
-    }
-    
-    func setSourceView(view: UIView, rect: CGRect, permittedArrowDirections: UIPopoverArrowDirection = .down) {
-        popoverPresentationController?.permittedArrowDirections = permittedArrowDirections
-        popoverPresentationController?.sourceView = view
-        popoverPresentationController?.sourceRect = rect
-    }
-
+    /// Copies staff member information to view when
+    /// view has been loaded.
     override func viewDidLoad() {
-        nameLabel.text = staffMember?.name
-        subjectsLabel.text = staffMember?.subjectsList
+        nameTextView.text = staffMember?.name
+        subjectsTextView.text = staffMember?.subjectsList
+        emailTextView.text = staffMember?.email
+        emailTextView.isHidden = staffMember?.email == nil
     }
     
+    /// When view will appear preferred content size
+    /// is set to minimum aka compressed. By this
+    /// popover will exactly fit content size.
+    /// - Parameter animated: Popover will appear with animation when true
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        preferredContentSize = view.systemLayoutSizeFitting(
+                UIView.layoutFittingCompressedSize)
+    }
+    
+    /// Returns presentation style, .none in this case.
+    /// - Parameter controller: Presentation controller
+    /// - Returns: Always .none
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }
@@ -57,8 +79,16 @@ class StaffInfoPopoverController: NSObject {
     private var view: UIView
     private var permittedArrowDirections: UIPopoverArrowDirection
     private var feedbackGenerator: UINotificationFeedbackGenerator
-
-    required init(withShortcutName shortCutName: String?, onView view: UIView, permittedArrowDirections: UIPopoverArrowDirection = .down) {
+    
+    /// Constructor sets basic properties of controller instance.
+    /// - Parameters:
+    ///   - shortCutName: Teacher shortcut popover is shown for.
+    ///   - view: View on which popover is presented
+    ///   - permittedArrowDirections: Permitted popover arrow directions
+    required init(
+        withShortcutName shortCutName: String?, onView view: UIView,
+        permittedArrowDirections: UIPopoverArrowDirection = .down)
+    {
         self.shortCutName = shortCutName
         self.view = view
         self.permittedArrowDirections = permittedArrowDirections
@@ -66,6 +96,8 @@ class StaffInfoPopoverController: NSObject {
         self.feedbackGenerator.prepare()
     }
     
+    /// Present the given view controller as popover.
+    /// - Parameter viewController: View controller to present as popover
     func present(inViewController viewController: UIViewController?) {
         // No shortcut set, do not show popup.
         guard let shortname = shortCutName else { return }
@@ -74,15 +106,19 @@ class StaffInfoPopoverController: NSObject {
         // shown.
         let staffLoader = StaffLoader()
         let staffDictionary = staffLoader.loadFromCache()
+
         guard let staffMember = staffDictionary[shortname] else { return }
 
-        let popoverController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ShortcutNamePopover") as! StaffPopoverViewController
-        let rect = CGRect(x: view.bounds.minX, y: view.bounds.minY, width: 12, height: view.bounds.height)
-
+        let popoverController = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "ShortcutNamePopover")
+            as! StaffPopoverViewController
+        popoverController.staffMember = staffMember
+        
         // Present popover in current view controller. Then update content.
-        popoverController.setSourceView(view: view, rect: rect, permittedArrowDirections: permittedArrowDirections)
-        popoverController.setContent(staffMember)
+        popoverController.sourceView = view
+        popoverController.permittedArrowDirections = permittedArrowDirections
+
         feedbackGenerator.notificationOccurred(.success)
-        viewController?.present(popoverController, animated: true, completion: nil)
+        viewController?.present(popoverController, animated: false, completion: nil)
     }
 }
